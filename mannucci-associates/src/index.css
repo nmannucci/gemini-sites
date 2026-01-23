@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-inter text-neutral-600 bg-stone-100 antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-geist text-neutral-900;
+  }
+}
+
+@layer components {
+  /* Glass effect panels */
+  .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/50 shadow-xl;
+  }
+
+  .glass-dark {
+    @apply bg-[#151e32]/80 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  /* Gradient blur background */
+  .gradient-blur {
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f5f5f4; /* stone-100 */
+  }
+
+  .gradient-blur > div {
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.4;
+    border-radius: 50%;
+    animation: blob 10s infinite alternate;
+  }
+
+  .gradient-blur > div:nth-child(1) {
+    top: -10%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: #dbeafe; /* blue-100 */
+    animation-delay: 0s;
+  }
+
+  .gradient-blur > div:nth-child(2) {
+    bottom: -10%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: #ede9fe; /* violet-100 */
+    animation-delay: 2s;
+  }
+
+  .gradient-blur > div:nth-child(3) {
+    top: 40%;
+    left: 40%;
+    width: 30vw;
+    height: 30vw;
+    background: #f0f9ff; /* sky-50 */
+    animation-delay: 4s;
+  }
+}
+
+@layer utilities {
+  /* Animation delay utilities */
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}

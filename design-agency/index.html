@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAUS — Design Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F5F1E8;
+      --charcoal: #1A1A1A;
+      --electric: #CDFF00;
+      --rust: #C74D2A;
+      --ink: #0D0D0D;
+      --stone: #8A8577;
+
+      --font-display: 'Syne', sans-serif;
+      --font-serif: 'Instrument Serif', serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::selection {
+      background: var(--electric);
+      color: var(--ink);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-display);
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* Custom Cursor */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--charcoal);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease, background 0.15s ease;
+      mix-blend-mode: difference;
+    }
+
+    .cursor.hover {
+      transform: scale(2.5);
+      background: var(--electric);
+      border-color: var(--electric);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: difference;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-decoration: none;
+      color: var(--cream);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--cream);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      padding: 0 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(20rem, 40vw, 50rem);
+      font-weight: 800;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(26, 26, 26, 0.08);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--stone);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-label::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--stone);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 12vw, 12rem);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-title .line {
+      display: block;
+      overflow: hidden;
+    }
+
+    .hero-title .line span {
+      display: block;
+      transform: translateY(100%);
+      animation: revealText 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    }
+
+    .hero-title .line:nth-child(2) span {
+      animation-delay: 0.15s;
+    }
+
+    .hero-title .line:nth-child(3) span {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes revealText {
+      to { transform: translateY(0); }
+    }
+
+    .hero-title .highlight {
+      color: var(--rust);
+      font-family: var(--font-serif);
+      font-style: italic;
+      text-transform: none;
+      font-weight: 400;
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 4rem;
+    }
+
+    .hero-description {
+      max-width: 400px;
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--charcoal);
+      opacity: 0;
+      animation: fadeIn 1s ease 0.6s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .scroll-indicator {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.8s forwards;
+    }
+
+    .scroll-indicator span {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--rust);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    @keyframes scrollPulse {
+      0% { top: -100%; }
+      50% { top: 100%; }
+      100% { top: 100%; }
+    }
+
+    /* Marquee */
+    .marquee-section {
+      background: var(--charcoal);
+      padding: 1.5rem 0;
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marquee 30s linear infinite;
+    }
+
+    .marquee-content {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      padding-right: 4rem;
+      flex-shrink: 0;
+    }
+
+    .marquee-content span {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--cream);
+      white-space: nowrap;
+    }
+
+    .marquee-content .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--electric);
+      border-radius: 50%;
+    }
+
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
+    }
+
+    /* Services Section */
+    .services {
+      padding: 10rem 4rem;
+      position: relative;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 6rem;
+    }
+
+    .section-number {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--stone);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .section-description {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      line-height: 1.7;
+      color: var(--stone);
+      max-width: 500px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--charcoal);
+      border: 2px solid var(--charcoal);
+    }
+
+    .service-card {
+      background: var(--cream);
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s ease;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--electric);
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+      z-index: 0;
+    }
+
+    .service-card:hover::before {
+      transform: translateY(0);
+    }
+
+    .service-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-index {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--stone);
+      margin-bottom: 2rem;
+      transition: color 0.4s ease;
+    }
+
+    .service-card:hover .service-index {
+      color: var(--charcoal);
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .service-desc {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--stone);
+      transition: color 0.4s ease;
+    }
+
+    .service-card:hover .service-desc {
+      color: var(--charcoal);
+    }
+
+    .service-arrow {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.4s ease;
+    }
+
+    .service-card:hover .service-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Work Section */
+    .work {
+      padding: 10rem 4rem;
+      background: var(--charcoal);
+      color: var(--cream);
+    }
+
+    .work .section-title {
+      color: var(--cream);
+    }
+
+    .work .section-description {
+      color: var(--stone);
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .work-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--ink);
+    }
+
+    .work-item:first-child {
+      aspect-ratio: 4/5;
+    }
+
+    .work-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .work-item:hover .work-image {
+      transform: scale(1.05);
+    }
+
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13, 13, 13, 0.9) 0%, transparent 50%);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .work-item:hover .work-overlay {
+      opacity: 1;
+    }
+
+    .work-category {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--electric);
+      margin-bottom: 0.5rem;
+    }
+
+    .work-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .work-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .work-item.small {
+      aspect-ratio: 1/1;
+    }
+
+    /* Philosophy Section */
+    .philosophy {
+      padding: 10rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: center;
+    }
+
+    .philosophy-visual {
+      position: relative;
+      aspect-ratio: 1/1;
+    }
+
+    .philosophy-shape {
+      position: absolute;
+      width: 80%;
+      height: 80%;
+      border: 2px solid var(--charcoal);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .philosophy-shape:nth-child(2) {
+      width: 60%;
+      height: 60%;
+      background: var(--electric);
+      border: none;
+      transform: translate(-50%, -50%) rotate(15deg);
+    }
+
+    .philosophy-shape:nth-child(3) {
+      width: 40%;
+      height: 40%;
+      background: var(--rust);
+      border: none;
+      border-radius: 50%;
+      transform: translate(-30%, -70%);
+    }
+
+    .philosophy-text {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .philosophy-text strong {
+      font-family: var(--font-display);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .philosophy-author {
+      margin-top: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--stone);
+      font-style: normal;
+    }
+
+    /* Stats Section */
+    .stats {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 6rem 4rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--electric);
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--stone);
+      margin-top: 1rem;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 10rem 4rem;
+      text-align: center;
+    }
+
+    .contact-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--stone);
+      margin-bottom: 2rem;
+    }
+
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 10vw, 10rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .contact-title a {
+      text-decoration: none;
+      color: var(--charcoal);
+      position: relative;
+      display: inline-block;
+    }
+
+    .contact-title a::after {
+      content: '';
+      position: absolute;
+      bottom: 0.1em;
+      left: 0;
+      width: 100%;
+      height: 0.08em;
+      background: var(--rust);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .contact-title a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .contact-info {
+      margin-top: 4rem;
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+    }
+
+    .contact-info a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-decoration: none;
+      color: var(--stone);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.3s ease;
+    }
+
+    .contact-info a:hover {
+      color: var(--charcoal);
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(26, 26, 26, 0.1);
+    }
+
+    .footer-left {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--stone);
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-right a {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-decoration: none;
+      color: var(--stone);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.3s ease;
+    }
+
+    .footer-right a:hover {
+      color: var(--charcoal);
+    }
+
+    /* Grain Overlay */
+    .grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      nav { padding: 1.5rem 2rem; }
+      .hero { padding: 0 2rem; }
+      .services { padding: 6rem 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .work { padding: 6rem 2rem; }
+      .work-grid { grid-template-columns: 1fr; }
+      .philosophy {
+        padding: 6rem 2rem;
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+      .stats {
+        padding: 4rem 2rem;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .contact { padding: 6rem 2rem; }
+      footer { padding: 2rem; }
+      .section-header { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-bottom { flex-direction: column; gap: 2rem; align-items: flex-start; }
+      .contact-info { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="grain"></div>
+
+  <nav>
+    <div class="logo">HAUS®</div>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg-text">HAUS</div>
+    <div class="hero-content">
+      <p class="hero-label">Design Studio — Est. 2019</p>
+      <h1 class="hero-title">
+        <span class="line"><span>We craft</span></span>
+        <span class="line"><span><em class="highlight">digital</em></span></span>
+        <span class="line"><span>experiences</span></span>
+      </h1>
+      <div class="hero-bottom">
+        <p class="hero-description">
+          A multidisciplinary design studio creating bold identities,
+          immersive digital experiences, and brands that demand attention.
+        </p>
+        <div class="scroll-indicator">
+          <span>Scroll</span>
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <span>Brand Identity</span>
+        <div class="dot"></div>
+        <span>Web Design</span>
+        <div class="dot"></div>
+        <span>Art Direction</span>
+        <div class="dot"></div>
+        <span>Motion Design</span>
+        <div class="dot"></div>
+        <span>Digital Products</span>
+        <div class="dot"></div>
+        <span>Brand Strategy</span>
+        <div class="dot"></div>
+      </div>
+      <div class="marquee-content">
+        <span>Brand Identity</span>
+        <div class="dot"></div>
+        <span>Web Design</span>
+        <div class="dot"></div>
+        <span>Art Direction</span>
+        <div class="dot"></div>
+        <span>Motion Design</span>
+        <div class="dot"></div>
+        <span>Digital Products</span>
+        <div class="dot"></div>
+        <span>Brand Strategy</span>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="services" id="services">
+    <div class="section-header">
+      <div>
+        <span class="section-number">01</span>
+        <h2 class="section-title">What we do</h2>
+      </div>
+      <p class="section-description">
+        We partner with ambitious brands and people to create work that
+        transcends the ordinary. Every pixel, every interaction, every detail matters.
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-index">01</span>
+        <h3 class="service-title">Brand Identity</h3>
+        <p class="service-desc">Strategic positioning, visual systems, and brand worlds that resonate and endure.</p>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card">
+        <span class="service-index">02</span>
+        <h3 class="service-title">Digital Design</h3>
+        <p class="service-desc">Websites, apps, and digital products crafted for impact and seamless experience.</p>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card">
+        <span class="service-index">03</span>
+        <h3 class="service-title">Art Direction</h3>
+        <p class="service-desc">Visual storytelling and creative direction that elevates campaigns and content.</p>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card">
+        <span class="service-index">04</span>
+        <h3 class="service-title">Motion Design</h3>
+        <p class="service-desc">Animation and motion systems that bring brands to life across all touchpoints.</p>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card">
+        <span class="service-index">05</span>
+        <h3 class="service-title">Development</h3>
+        <p class="service-desc">Front-end engineering with meticulous attention to performance and craft.</p>
+        <span class="service-arrow">→</span>
+      </div>
+      <div class="service-card">
+        <span class="service-index">06</span>
+        <h3 class="service-title">Strategy</h3>
+        <p class="service-desc">Research-driven insights and brand positioning that fuel creative excellence.</p>
+        <span class="service-arrow">→</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <div class="section-header">
+      <div>
+        <span class="section-number" style="color: var(--stone);">02</span>
+        <h2 class="section-title">Selected work</h2>
+      </div>
+      <p class="section-description">
+        A curated selection of projects where bold ideas met rigorous execution.
+      </p>
+    </div>
+    <div class="work-grid">
+      <div class="work-item">
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" alt="Abstract gradient" class="work-image">
+        <div class="work-overlay">
+          <span class="work-category">Brand Identity</span>
+          <h3 class="work-title">Lumina Studios</h3>
+        </div>
+      </div>
+      <div class="work-row">
+        <div class="work-item small">
+          <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=600&q=80" alt="Geometric shapes" class="work-image">
+          <div class="work-overlay">
+            <span class="work-category">Digital Product</span>
+            <h3 class="work-title">Forma App</h3>
+          </div>
+        </div>
+        <div class="work-item small">
+          <img src="https://images.unsplash.com/photo-1634017839464-5c339ez562b2?w=600&q=80" alt="Abstract art" class="work-image">
+          <div class="work-overlay">
+            <span class="work-category">Web Design</span>
+            <h3 class="work-title">Noir Gallery</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="philosophy" id="about">
+    <div class="philosophy-visual">
+      <div class="philosophy-shape"></div>
+      <div class="philosophy-shape"></div>
+      <div class="philosophy-shape"></div>
+    </div>
+    <blockquote class="philosophy-text">
+      "Design is not just what it looks like. Design is <strong>how it works</strong>.
+      We obsess over the invisible details that make experiences feel inevitable."
+      <cite class="philosophy-author">— The Haus Manifesto</cite>
+    </blockquote>
+  </section>
+
+  <section class="stats">
+    <div class="stat-item">
+      <div class="stat-number">127</div>
+      <div class="stat-label">Projects Delivered</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">42</div>
+      <div class="stat-label">Global Clients</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">15</div>
+      <div class="stat-label">Awards Won</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">6</div>
+      <div class="stat-label">Years Running</div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="contact-label">Ready to create something extraordinary?</p>
+    <h2 class="contact-title">
+      <a href="mailto:hello@haus.studio">Let's talk</a>
+    </h2>
+    <div class="contact-info">
+      <a href="mailto:hello@haus.studio">hello@haus.studio</a>
+      <a href="tel:+1234567890">+1 (234) 567-890</a>
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© 2024 HAUS Design Studio. All rights reserved.</div>
+    <div class="footer-right">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </footer>
+
+  <script>
+    // Custom Cursor
+    const cursor = document.querySelector('.cursor');
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      const dx = mouseX - cursorX;
+      const dy = mouseY - cursorY;
+
+      cursorX += dx * 0.15;
+      cursorY += dy * 0.15;
+
+      cursor.style.left = cursorX - 10 + 'px';
+      cursor.style.top = cursorY - 10 + 'px';
+
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Cursor hover effects
+    const hoverElements = document.querySelectorAll('a, button, .service-card, .work-item');
+    hoverElements.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // Scroll reveal animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.service-card, .work-item, .stat-item').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Stagger animation for grid items
+    document.querySelectorAll('.services-grid .service-card').forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.1}s`;
+    });
+
+    document.querySelectorAll('.stats .stat-item').forEach((stat, i) => {
+      stat.style.transitionDelay = `${i * 0.15}s`;
+    });
+
+    // Counter animation for stats
+    function animateCounter(el, target) {
+      let current = 0;
+      const increment = target / 60;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, 16);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const numbers = entry.target.querySelectorAll('.stat-number');
+          numbers.forEach(num => {
+            const target = parseInt(num.textContent);
+            animateCounter(num, target);
+          });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    statsObserver.observe(document.querySelector('.stats'));
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Parallax effect on philosophy shapes
+    document.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const shapes = document.querySelectorAll('.philosophy-shape');
+      shapes.forEach((shape, i) => {
+        const speed = 0.05 * (i + 1);
+        shape.style.transform = `translate(-50%, -50%) rotate(${15 + scrolled * speed}deg)`;
+      });
+    });
+  </script>
+</body>
+</html>

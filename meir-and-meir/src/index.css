@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-stone-100 text-neutral-900 font-sans antialiased;
+  }
+}
+
+@layer components {
+  .gradient-blur {
+    position: fixed;
+    z-index: 40;
+    inset: auto 0 100% 0;
+    height: 120px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, 
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.9) 20%,
+      rgba(255,255,255,0.7) 40%,
+      rgba(255,255,255,0.4) 60%,
+      rgba(255,255,255,0) 100%
+    );
+  }
+  
+  .shiny-cta {
+    @apply relative overflow-hidden rounded-full;
+  }
+}
