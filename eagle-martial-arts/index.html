@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eagle Martial Arts | Learn Taekwondo Martial Arts in La Jolla, California</title>
+  <meta name="description" content="Eagle Martial Arts La Jolla offers world-class Taekwondo training for all ages. Build discipline, confidence, and self-defense skills with Master Sam's 40+ years of experience.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --blood-red: #B91C1C;
+      --deep-black: #0A0A0A;
+      --bone-white: #F5F5F0;
+      --steel-gray: #3A3A3A;
+      --off-black: #141414;
+      --light-bg: #F5F5F0;
+      --light-bg-alt: #EAEAE5;
+      --dark-text: #1A1A1A;
+      --muted-text: #5A5A5A;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Archivo', sans-serif;
+      background: var(--deep-black);
+      color: var(--bone-white);
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    /* ============================================
+       NAVIGATION
+    ============================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 0.75rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: white;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .nav.scrolled {
+      background: white;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dark-text);
+    }
+
+    .logo span {
+      color: var(--blood-red);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--dark-text);
+      text-decoration: none;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--blood-red);
+    }
+
+    .nav-cta {
+      padding: 0.55rem 1.2rem;
+      background: var(--blood-red);
+      color: var(--bone-white);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .nav-cta:hover {
+      background: #991B1B;
+    }
+
+    /* ============================================
+       HERO SECTION (LIGHT)
+    ============================================ */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--deep-black);
+      color: var(--bone-white);
+    }
+
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .hero-background img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    .hero-background::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(10, 10, 10, 0.92) 0%,
+        rgba(10, 10, 10, 0.8) 40%,
+        rgba(10, 10, 10, 0.6) 60%,
+        rgba(10, 10, 10, 0.4) 100%
+      );
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 10rem 4rem 6rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-right {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--blood-red);
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      color: var(--bone-white);
+    }
+
+    .hero-title span {
+      display: block;
+    }
+
+    .hero-title .outline {
+      -webkit-text-stroke: 2px var(--bone-white);
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      max-width: 500px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .btn-primary {
+      padding: 1.25rem 2.5rem;
+      background: var(--blood-red);
+      color: var(--bone-white);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.875rem;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:hover::after {
+      left: 100%;
+    }
+
+    .btn-secondary {
+      padding: 1.25rem 2.5rem;
+      background: transparent;
+      color: var(--bone-white);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.875rem;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--bone-white);
+      background: var(--bone-white);
+      color: var(--deep-black);
+    }
+
+    .stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .stat-item h3 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--blood-red);
+      line-height: 1;
+    }
+
+    .stat-item p {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 0.5rem;
+    }
+
+    /* Hero Contact Form */
+    .hero-form-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-form {
+      background: rgba(255, 255, 255, 0.97);
+      padding: 2rem 2rem 1.75rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-form-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-form-badge {
+      display: inline-block;
+      background: var(--blood-red);
+      color: var(--bone-white);
+      padding: 0.35rem 0.65rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-form-title {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 0.4rem;
+      color: var(--dark-text);
+    }
+
+    .hero-form-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted-text);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.85rem;
+      background: white;
+      border: 1px solid #D1D1D1;
+      color: var(--dark-text);
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--blood-red);
+    }
+
+    .form-input::placeholder {
+      color: #999;
+    }
+
+    .form-select {
+      width: 100%;
+      padding: 0.85rem;
+      background: white;
+      border: 1px solid #D1D1D1;
+      color: var(--dark-text);
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.85rem center;
+    }
+
+    .form-select:focus {
+      outline: none;
+      border-color: var(--blood-red);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--blood-red);
+      color: var(--bone-white);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.8rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 0.25rem;
+    }
+
+    .form-submit:hover {
+      background: #991B1B;
+      transform: translateY(-2px);
+    }
+
+    .form-disclaimer {
+      font-size: 0.65rem;
+      color: #888;
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* Dark form variant for Get Started section */
+    .form-label-dark {
+      color: #A1A1A1;
+    }
+
+    .form-input-dark {
+      background: var(--off-black);
+      border: 1px solid var(--steel-gray);
+      color: var(--bone-white);
+    }
+
+    .form-input-dark:focus {
+      border-color: var(--blood-red);
+    }
+
+    .form-input-dark::placeholder {
+      color: #555;
+    }
+
+    .form-select-dark {
+      background: var(--off-black);
+      border: 1px solid var(--steel-gray);
+      color: var(--bone-white);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+    }
+
+    .form-select-dark:focus {
+      border-color: var(--blood-red);
+    }
+
+    .form-disclaimer-dark {
+      color: #666;
+    }
+
+    .form-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .form-divider::before,
+    .form-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--steel-gray);
+    }
+
+    .form-divider span {
+      font-size: 0.75rem;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .btn-call {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 1.25rem;
+      background: transparent;
+      color: var(--bone-white);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.875rem;
+      border: 2px solid var(--steel-gray);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-call:hover {
+      border-color: var(--bone-white);
+      background: var(--bone-white);
+      color: var(--deep-black);
+    }
+
+    .btn-call svg {
+      width: 18px;
+      height: 18px;
+    }
+
+
+    /* ============================================
+       SECTION UTILITIES
+    ============================================ */
+    .section {
+      padding: 5.5rem 4rem;
+      position: relative;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--blood-red);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title .outline {
+      -webkit-text-stroke: 2px var(--bone-white);
+      color: transparent;
+    }
+
+    /* ============================================
+       ABOUT SECTION
+    ============================================ */
+    .about {
+      background: var(--light-bg);
+      color: var(--dark-text);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about .section-label {
+      color: var(--blood-red);
+    }
+
+    .about .section-title {
+      color: var(--dark-text);
+    }
+
+    .about .section-title .outline {
+      -webkit-text-stroke: 2px var(--dark-text);
+      color: transparent;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image-main {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--light-bg-alt) 0%, #D8D8D3 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image-main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.1;
+    }
+
+    .about-image-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+    }
+
+    .about-image-placeholder svg {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 1rem;
+      stroke-width: 1;
+    }
+
+    .about-image-placeholder p {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--blood-red);
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--bone-white);
+    }
+
+    .about-badge h4 {
+      font-size: 2.25rem;
+      line-height: 1;
+    }
+
+    .about-badge p {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-top: 0.25rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .about-content h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.3;
+      color: var(--dark-text);
+    }
+
+    .about-content h3 span {
+      color: var(--blood-red);
+    }
+
+    .about-text {
+      color: var(--muted-text);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .about-credentials {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--light-bg-alt);
+    }
+
+    .credential {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .credential-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--light-bg-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--blood-red);
+    }
+
+    .credential-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .credential h5 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--dark-text);
+    }
+
+    .credential p {
+      font-size: 0.75rem;
+      color: var(--muted-text);
+    }
+
+    /* ============================================
+       PROGRAMS SECTION (LIGHT)
+    ============================================ */
+    .programs {
+      background: var(--light-bg);
+      color: var(--dark-text);
+    }
+
+    .programs .section-label {
+      color: var(--blood-red);
+    }
+
+    .programs .section-title {
+      color: var(--dark-text);
+    }
+
+    .programs .section-title .outline {
+      -webkit-text-stroke: 2px var(--dark-text);
+      color: transparent;
+    }
+
+    .programs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2.5rem;
+    }
+
+    .programs-header-text {
+      max-width: 600px;
+    }
+
+    .programs-header p {
+      color: var(--muted-text);
+      line-height: 1.6;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .program-card {
+      background: white;
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      border: 1px solid var(--light-bg-alt);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .program-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--blood-red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .program-card:hover {
+      border-color: var(--blood-red);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .program-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .program-icon {
+      margin-bottom: 1rem;
+      color: var(--blood-red);
+    }
+
+    .program-icon svg {
+      width: 36px;
+      height: 36px;
+      stroke-width: 1.5;
+    }
+
+    .program-age {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blood-red);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .program-title {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      line-height: 1.1;
+      color: var(--dark-text);
+    }
+
+    .program-description {
+      font-size: 0.85rem;
+      color: var(--muted-text);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .program-features {
+      list-style: none;
+      margin-bottom: 1.25rem;
+    }
+
+    .program-features li {
+      font-size: 0.8rem;
+      color: var(--muted-text);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--light-bg-alt);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .program-features li::before {
+      content: '→';
+      color: var(--blood-red);
+    }
+
+    .program-link {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--dark-text);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: gap 0.3s ease;
+    }
+
+    .program-link:hover {
+      gap: 1rem;
+      color: var(--blood-red);
+    }
+
+    /* ============================================
+       REVIEWS SECTION (LIGHT)
+    ============================================ */
+    .reviews {
+      background: var(--light-bg-alt);
+      color: var(--dark-text);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reviews::before {
+      content: '"';
+      position: absolute;
+      top: -5rem;
+      left: 4rem;
+      font-size: 40rem;
+      color: var(--blood-red);
+      opacity: 0.05;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .reviews .section-label {
+      color: var(--blood-red);
+    }
+
+    .reviews .section-title {
+      color: var(--dark-text);
+    }
+
+    .reviews .section-title .outline {
+      -webkit-text-stroke: 2px var(--dark-text);
+      color: transparent;
+    }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .reviews-header .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .reviews-rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .reviews-rating-stars {
+      color: #D97706;
+      font-size: 1.5rem;
+      letter-spacing: 0.25rem;
+    }
+
+    .reviews-rating-text {
+      font-size: 0.8rem;
+      color: var(--muted-text);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .review-card {
+      background: white;
+      padding: 1.75rem;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.05);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .review-card::before {
+      content: '"';
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-size: 4rem;
+      color: var(--blood-red);
+      opacity: 0.15;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    .review-stars {
+      color: #D97706;
+      font-size: 0.875rem;
+      letter-spacing: 0.15rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .review-text {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--dark-text);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--light-bg-alt);
+    }
+
+    .review-author-avatar {
+      width: 40px;
+      height: 40px;
+      background: var(--blood-red);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .review-author-info h5 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--dark-text);
+    }
+
+    .review-author-info p {
+      font-size: 0.75rem;
+      color: var(--muted-text);
+    }
+
+    /* ============================================
+       GET STARTED SECTION
+    ============================================ */
+    .get-started {
+      background: var(--deep-black);
+      position: relative;
+    }
+
+    .get-started-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .get-started-content .section-title {
+      margin-bottom: 1.5rem;
+    }
+
+    .get-started-content > p {
+      color: #A1A1A1;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: var(--blood-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-content p {
+      font-size: 0.9rem;
+      color: #A1A1A1;
+      line-height: 1.6;
+    }
+
+    .get-started-form-container {
+      background: var(--off-black);
+      padding: 2rem;
+      border: 1px solid var(--steel-gray);
+    }
+
+    .get-started-form {
+      width: 100%;
+    }
+
+    .get-started-form-header {
+      margin-bottom: 1.25rem;
+    }
+
+    .get-started-form-header h3 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      color: var(--bone-white);
+    }
+
+    .get-started-form-header p {
+      font-size: 1rem;
+      color: #A1A1A1;
+      line-height: 1.6;
+    }
+
+    .offer-badge {
+      display: inline-block;
+      background: var(--blood-red);
+      color: var(--bone-white);
+      padding: 0.5rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info-bottom {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--steel-gray);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item-bottom {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #888;
+      font-size: 0.85rem;
+    }
+
+    .contact-item-bottom svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--blood-red);
+    }
+
+    .contact-item-bottom p {
+      margin: 0;
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    .footer {
+      background: var(--off-black);
+      padding: 2.5rem 4rem;
+      border-top: 1px solid var(--steel-gray);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .footer-logo span {
+      color: var(--blood-red);
+    }
+
+    .footer-info {
+      text-align: center;
+    }
+
+    .footer-info p {
+      font-size: 0.8rem;
+      color: #6B6B6B;
+    }
+
+    .footer-info a {
+      color: var(--bone-white);
+      text-decoration: none;
+    }
+
+    .footer-info a:hover {
+      color: var(--blood-red);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      background: var(--steel-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bone-white);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-social a:hover {
+      background: var(--blood-red);
+    }
+
+    .footer-social svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ============================================
+       GALLERY SECTION
+    ============================================ */
+    .gallery {
+      background: var(--deep-black);
+      color: var(--bone-white);
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .gallery-header .section-title {
+      margin-bottom: 0.75rem;
+    }
+
+    .gallery-header p {
+      color: #6B6B6B;
+      font-size: 0.95rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 0.5rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      display: block;
+      background: var(--off-black);
+    }
+
+    .gallery-item:first-child {
+      grid-column: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      aspect-ratio: 3/2;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:first-child img {
+      aspect-ratio: 16/7;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(185, 28, 28, 0);
+      transition: background 0.4s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      background: rgba(185, 28, 28, 0.5);
+    }
+
+    .gallery-item-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.1em;
+      color: white;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-item-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 1200px) {
+      .programs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .hero-form {
+        padding: 1.75rem;
+        max-width: 360px;
+      }
+
+      .hero-form-title {
+        font-size: 1.35rem;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .section {
+        padding: 5rem 2rem;
+      }
+
+      .nav {
+        padding: 1.5rem 2rem;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+        padding: 8rem 2rem 4rem;
+        gap: 3rem;
+      }
+
+      .hero-right {
+        justify-content: center;
+      }
+
+      .hero-form {
+        max-width: 480px;
+        padding: 2rem;
+      }
+
+      .hero-form-title {
+        font-size: 1.5rem;
+      }
+
+      .hero-background::after {
+        background: linear-gradient(
+          to bottom,
+          rgba(10, 10, 10, 0.85) 0%,
+          rgba(10, 10, 10, 0.75) 50%,
+          rgba(10, 10, 10, 0.85) 100%
+        );
+      }
+
+      .stats {
+        gap: 2rem;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+
+      .about-image {
+        order: -1;
+      }
+
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .gallery-item:first-child {
+        grid-column: span 2;
+      }
+
+      .get-started-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-container {
+        padding: 7rem 1.5rem 3rem;
+      }
+
+      .hero-form {
+        max-width: 100%;
+      }
+
+      .cta-group {
+        flex-direction: column;
+      }
+
+      .stats {
+        flex-wrap: wrap;
+      }
+
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .programs-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+      }
+
+      .about-credentials {
+        grid-template-columns: 1fr;
+      }
+
+      .get-started-form-container {
+        padding: 2rem;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="logo font-display">Eagle <span>Martial Arts</span></div>
+    <ul class="nav-links">
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#get-started">Contact</a></li>
+    </ul>
+    <a href="#get-started" class="nav-cta">Free Trial</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-background">
+      <img src="assets/EMA - Post.jpg" alt="Eagle Martial Arts students practicing Taekwondo">
+    </div>
+
+    <div class="hero-container">
+      <div class="hero-left">
+        <p class="tagline">La Jolla's Premier Taekwondo Academy</p>
+        <h1 class="hero-title font-display">
+          <span>Build</span>
+          <span class="outline">Character</span>
+          <span>& Strength</span>
+        </h1>
+        <p class="hero-subtitle">
+          Give your child the superpower of discipline, confidence, and self-defense.
+          World-class Taekwondo training for ages 3 to adult in La Jolla.
+        </p>
+
+        <div class="cta-group">
+          <a href="#get-started" class="btn-primary">Claim Free Week</a>
+          <a href="#programs" class="btn-secondary">View Programs</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat-item">
+            <h3 class="font-display">40+</h3>
+            <p>Years Teaching</p>
+          </div>
+          <div class="stat-item">
+            <h3 class="font-display">300+</h3>
+            <p>Black Belts Trained</p>
+          </div>
+          <div class="stat-item">
+            <h3 class="font-display">5.0</h3>
+            <p>Star Rating</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-form-container">
+          <form class="hero-form" action="#" method="POST">
+            <div class="hero-form-header">
+              <span class="hero-form-badge">1 Week Free</span>
+              <h3 class="hero-form-title font-display">Start Your Free Trial</h3>
+              <p class="hero-form-subtitle">No commitment required. See what we're all about.</p>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Smith" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="(858) 555-0123" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="program">Program Interest</label>
+              <select id="program" name="program" class="form-select" required>
+                <option value="" disabled selected>Select a program</option>
+                <option value="little-ninjas">Little Ninjas (Ages 3-5)</option>
+                <option value="kids">Kids Martial Arts</option>
+                <option value="teens">Teen Martial Arts</option>
+                <option value="adults">Adult Classes (15+)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="form-submit">Claim Your Free Week</button>
+
+            <p class="form-disclaimer">
+              By submitting, you agree to receive emails and texts about your trial.
+              We respect your privacy and will never share your information.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section about" id="about">
+    <div class="about-image">
+      <div class="about-image-main">
+        <div class="about-image-placeholder">
+          <i data-lucide="swords"></i>
+          <p>Master Sam Hadaf</p>
+        </div>
+      </div>
+      <div class="about-badge font-display">
+        <h4>6th</h4>
+        <p>Degree Black Belt</p>
+      </div>
+    </div>
+
+    <div class="about-content">
+      <p class="section-label">Meet Your Instructor</p>
+      <h2 class="section-title font-display">
+        Master <span class="outline">Sam</span> Hadaf
+      </h2>
+      <h3>A devoted and compassionate instructor with <span>40+ years</span> of teaching excellence</h3>
+
+      <p class="about-text">
+        Master Sam has been teaching martial arts since 1983, earning his 6th Degree Black Belt
+        certification from the World Taekwondo Federation. His articulate, focused, and dedicated
+        teaching style—combined with an amazing sense of humor—makes learning martial arts both
+        challenging and fun.
+      </p>
+
+      <p class="about-text">
+        Using a scientific approach combined with perseverance, courtesy, and indomitable spirit,
+        Master Sam has trained over 300 black belt students around the world. He regularly assesses
+        students and visualizes the correct path for each individual, ensuring personalized growth
+        for every martial artist who enters the dojo.
+      </p>
+
+      <div class="about-credentials">
+        <div class="credential">
+          <div class="credential-icon">
+            <i data-lucide="award"></i>
+          </div>
+          <div>
+            <h5>World Taekwondo Federation</h5>
+            <p>Certified Master Instructor</p>
+          </div>
+        </div>
+        <div class="credential">
+          <div class="credential-icon">
+            <i data-lucide="globe"></i>
+          </div>
+          <div>
+            <h5>300+ Black Belts</h5>
+            <p>Trained Worldwide</p>
+          </div>
+        </div>
+        <div class="credential">
+          <div class="credential-icon">
+            <i data-lucide="users"></i>
+          </div>
+          <div>
+            <h5>Family Legacy</h5>
+            <p>All Three Sons Are Black Belts</p>
+          </div>
+        </div>
+        <div class="credential">
+          <div class="credential-icon">
+            <i data-lucide="heart-handshake"></i>
+          </div>
+          <div>
+            <h5>Community Leader</h5>
+            <p>Active in Charitable Organizations</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section class="section programs" id="programs">
+    <div class="programs-header">
+      <div class="programs-header-text">
+        <p class="section-label">Our Programs</p>
+        <h2 class="section-title font-display">
+          Training For <span class="outline">Every</span> Age
+        </h2>
+        <p>
+          From our Little Ninjas program for ages 3-5 to adult classes, we offer
+          structured, nurturing Taekwondo training designed to build character,
+          discipline, and physical fitness at every stage of life.
+        </p>
+      </div>
+      <a href="#get-started" class="btn-primary">Start Free Trial</a>
+    </div>
+
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-icon">
+          <i data-lucide="baby"></i>
+        </div>
+        <p class="program-age">Ages 3-5</p>
+        <h3 class="program-title font-display">Little Ninjas</h3>
+        <p class="program-description">
+          Fun, age-appropriate classes designed specifically for our youngest martial artists,
+          building foundational skills through play and positive reinforcement.
+        </p>
+        <ul class="program-features">
+          <li>Basic Taekwondo fundamentals</li>
+          <li>Motor skill development</li>
+          <li>Discipline & respect training</li>
+          <li>Confidence building</li>
+        </ul>
+        <a href="#get-started" class="program-link">Learn More →</a>
+      </div>
+
+      <div class="program-card">
+        <div class="program-icon">
+          <i data-lucide="sparkles"></i>
+        </div>
+        <p class="program-age">Youth</p>
+        <h3 class="program-title font-display">Kids Martial Arts</h3>
+        <p class="program-description">
+          Build character, self-esteem, and positive energy in a supportive environment
+          designed to help kids thrive both on and off the mat.
+        </p>
+        <ul class="program-features">
+          <li>Character development</li>
+          <li>Self-defense techniques</li>
+          <li>Focus & concentration</li>
+          <li>Anti-bullying skills</li>
+        </ul>
+        <a href="#get-started" class="program-link">Learn More →</a>
+      </div>
+
+      <div class="program-card">
+        <div class="program-icon">
+          <i data-lucide="flame"></i>
+        </div>
+        <p class="program-age">Teenagers</p>
+        <h3 class="program-title font-display">Teen Martial Arts</h3>
+        <p class="program-description">
+          Specialized programs recognizing teens' unique needs, providing an excellent
+          outlet for physical activity while building discipline and mental strength.
+        </p>
+        <ul class="program-features">
+          <li>Advanced techniques</li>
+          <li>Physical fitness</li>
+          <li>Stress management</li>
+          <li>Leadership development</li>
+        </ul>
+        <a href="#get-started" class="program-link">Learn More →</a>
+      </div>
+
+      <div class="program-card">
+        <div class="program-icon">
+          <i data-lucide="swords"></i>
+        </div>
+        <p class="program-age">Ages 15+</p>
+        <h3 class="program-title font-display">Adult Classes</h3>
+        <p class="program-description">
+          Comprehensive Taekwondo training for adults focusing on self-defense,
+          fitness, and personal development in a challenging yet welcoming environment.
+        </p>
+        <ul class="program-features">
+          <li>Complete Taekwondo curriculum</li>
+          <li>Self-defense mastery</li>
+          <li>Fitness & flexibility</li>
+          <li>Belt progression system</li>
+        </ul>
+        <a href="#get-started" class="program-link">Learn More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="section reviews" id="reviews">
+    <div class="reviews-header">
+      <p class="section-label">Testimonials</p>
+      <h2 class="section-title font-display">
+        What <span class="outline">Families</span> Say
+      </h2>
+      <div class="reviews-rating">
+        <span class="reviews-rating-stars">★★★★★</span>
+        <span class="reviews-rating-text">5.0 Rating • 49+ Reviews on Google & Yelp</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">
+          "This is an amazing program. Master Sam is amazing with kids and has helped
+          both my boys with their confidence and self discipline."
+        </p>
+        <div class="review-author">
+          <div class="review-author-avatar">P</div>
+          <div class="review-author-info">
+            <h5>Parent of Two</h5>
+            <p>Verified Review</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">
+          "We have been taking our kids to Eagle Martial Arts for five years now.
+          He's not only a great coach for martial arts, he teaches the kids respect,
+          integrity and discipline."
+        </p>
+        <div class="review-author">
+          <div class="review-author-avatar">L</div>
+          <div class="review-author-info">
+            <h5>Long-time Member</h5>
+            <p>5 Years Training</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">
+          "My son has been attending classes here for 3 years. Martial Arts has given
+          him confidence in a way no other sport has. Master Sam strikes a good balance
+          of positivity and discipline."
+        </p>
+        <div class="review-author">
+          <div class="review-author-avatar">M</div>
+          <div class="review-author-info">
+            <h5>Proud Parent</h5>
+            <p>3 Years Training</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section gallery" id="gallery">
+    <div class="gallery-header">
+      <p class="section-label">Inside the Dojo</p>
+      <h2 class="section-title font-display">
+        Life at <span class="outline">Eagle</span> Martial Arts
+      </h2>
+      <p>Real students. Real training. Real results.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="assets/EMA - Cover Page.jpg" alt="Eagle Martial Arts class in session" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Training in La Jolla</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/EMA Image 2.webp" alt="Eagle Martial Arts students" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Our Students</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/EMA - Post 2.jpg" alt="Taekwondo practice" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Taekwondo</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/EMA - Post 6.jpg" alt="Kids martial arts class" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Kids Program</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/EMA - Post 12.jpg" alt="Eagle Martial Arts training" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">Discipline & Focus</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/EMA - Post.jpg" alt="Eagle Martial Arts dojo" loading="lazy">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label">The Dojo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Started Section -->
+  <section class="section get-started" id="get-started">
+    <div class="get-started-container">
+      <div class="get-started-content">
+        <p class="section-label">How to Get Started</p>
+        <h2 class="section-title font-display">
+          Begin Your <span class="outline">Journey</span>
+        </h2>
+        <p>
+          Starting martial arts training is easier than you think. Join hundreds of
+          families who have discovered the life-changing benefits of Taekwondo at
+          Eagle Martial Arts.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number font-display">1</div>
+            <div class="step-content">
+              <h4>Claim Your Free Week</h4>
+              <p>
+                Sign up for our complimentary 1-week trial. No commitment required—just
+                come experience what Eagle Martial Arts is all about.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number font-display">2</div>
+            <div class="step-content">
+              <h4>Meet Master Sam</h4>
+              <p>
+                Tour our facility, meet our instructors, and find the right program for
+                you or your child. We'll answer all your questions.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number font-display">3</div>
+            <div class="step-content">
+              <h4>Start Training</h4>
+              <p>
+                Join our family of martial artists and begin your path to discipline,
+                confidence, and black belt mastery.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="get-started-form-container">
+        <form class="get-started-form" action="#" method="POST">
+          <div class="get-started-form-header">
+            <span class="offer-badge">Limited Time Offer</span>
+            <h3 class="font-display">1 Week Free Classes</h3>
+            <p>Experience world-class Taekwondo training with no commitment.</p>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label form-label-dark" for="firstNameBottom">First Name</label>
+              <input type="text" id="firstNameBottom" name="firstName" class="form-input form-input-dark" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label form-label-dark" for="lastNameBottom">Last Name</label>
+              <input type="text" id="lastNameBottom" name="lastName" class="form-input form-input-dark" placeholder="Smith" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label form-label-dark" for="emailBottom">Email Address</label>
+            <input type="email" id="emailBottom" name="email" class="form-input form-input-dark" placeholder="john@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label form-label-dark" for="phoneBottom">Phone Number</label>
+            <input type="tel" id="phoneBottom" name="phone" class="form-input form-input-dark" placeholder="(858) 555-0123" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label form-label-dark" for="programBottom">Program Interest</label>
+            <select id="programBottom" name="program" class="form-select form-select-dark" required>
+              <option value="" disabled selected>Select a program</option>
+              <option value="little-ninjas">Little Ninjas (Ages 3-5)</option>
+              <option value="kids">Kids Martial Arts</option>
+              <option value="teens">Teen Martial Arts</option>
+              <option value="adults">Adult Classes (15+)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="form-submit">Claim Your Free Week</button>
+
+          <div class="form-divider">
+            <span>or</span>
+          </div>
+
+          <a href="tel:8583610961" class="btn-call">
+            <i data-lucide="phone"></i>
+            Call (858) 361-0961
+          </a>
+
+          <p class="form-disclaimer form-disclaimer-dark">
+            By submitting, you agree to receive emails and texts about your trial.
+            We respect your privacy and will never share your information.
+          </p>
+        </form>
+
+        <div class="contact-info-bottom">
+          <div class="contact-item-bottom">
+            <i data-lucide="map-pin"></i>
+            <p>7438 Girard Ave, La Jolla, CA 92037</p>
+          </div>
+          <div class="contact-item-bottom">
+            <i data-lucide="clock"></i>
+            <p>Mon-Thu: 3-8:30pm | Sat: 10am-1pm</p>
+          </div>
+          <div class="contact-item-bottom">
+            <i data-lucide="mail"></i>
+            <p>Samhadaf@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo font-display">Eagle <span>Martial Arts</span></div>
+      <div class="footer-info">
+        <p>
+          7438 Girard Ave, La Jolla, CA 92037 •
+          <a href="tel:8583610961">(858) 361-0961</a> •
+          <a href="mailto:Samhadaf@gmail.com">Samhadaf@gmail.com</a>
+        </p>
+        <p style="margin-top: 0.5rem;">© 2024 Eagle Martial Arts. All rights reserved.</p>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+          <i data-lucide="facebook"></i>
+        </a>
+        <a href="https://lajollamartialarts.com/" target="_blank" rel="noopener" aria-label="Website">
+          <i data-lucide="globe"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Initialize Lucide icons and scroll behavior -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Scroll behavior for nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>

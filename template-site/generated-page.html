@@ -1,0 +1,895 @@
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mannucci &amp; Associates | Expert CPA &amp; Business Accounting</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Geist:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Inter', sans-serif; }
+.font-geist { font-family: 'Geist', sans-serif !important; }
+/* Custom scrollbar hide */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.mask-gradient {
+mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+-webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+.glass-nav {
+background: rgba(255, 255, 255, 0.7);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255,255,255,0.5);
+}
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+/* Form input transition */
+.input-transition { transition: border-color 0.2s, box-shadow 0.2s; }
+/* --- Shiny CTA Button Styles --- */
+@property --gradient-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@property --gradient-angle-offset { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@property --gradient-percent { syntax: "<percentage>"; initial-value: 20%; inherits: false; }
+@property --gradient-shine { syntax: "<color>"; initial-value: #8484ff; inherits: false; }
+.shiny-cta {
+--gradient-angle: 0deg;
+--gradient-angle-offset: 0deg;
+--gradient-percent: 20%;
+--gradient-shine: #8484ff;
+--shadow-size: 2px;
+position: relative;
+overflow: hidden;
+border-radius: 9999px;
+padding: 1rem 2rem;
+font-size: 1rem;
+line-height: 1.2;
+font-weight: 500;
+color: #ffffff;
+background: linear-gradient(#171717, #171717) padding-box,
+conic-gradient(from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+transparent 0%, #1d4ed8 5%, var(--gradient-shine) 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box;
+border: 2px solid transparent;
+box-shadow: inset 0 0 0 1px #1a1818;
+outline: none;
+transition: --gradient-angle-offset 800ms cubic-bezier(0.25, 1, 0.5, 1),
+--gradient-percent 800ms cubic-bezier(0.25, 1, 0.5, 1),
+--gradient-shine 800ms cubic-bezier(0.25, 1, 0.5, 1),
+box-shadow 0.3s;
+cursor: pointer;
+isolation: isolate;
+outline-offset: 4px;
+font-family: 'Geist', sans-serif !important;
+z-index: 0;
+animation: border-spin 2.5s linear infinite;
+}
+@keyframes border-spin { to { --gradient-angle: 360deg; } }
+.shiny-cta:active { transform: translateY(1px); }
+.shiny-cta::before {
+content: '';
+pointer-events: none;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+z-index: 0;
+--size: calc(100% - 6px);
+--position: 2px;
+--space: 4px;
+width: var(--size);
+height: var(--size);
+background: radial-gradient(circle at var(--position) var(--position), white 0.5px, transparent 0) padding-box;
+background-size: var(--space) var(--space);
+background-repeat: space;
+mask-image: conic-gradient(from calc(var(--gradient-angle) + 45deg), black, transparent 10% 90%, black);
+-webkit-mask-image: conic-gradient(from calc(var(--gradient-angle) + 45deg), black, transparent 10% 90%, black);
+border-radius: inherit;
+opacity: 0.4;
+}
+.shiny-cta::after {
+content: '';
+pointer-events: none;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+z-index: 1;
+width: 100%;
+aspect-ratio: 1;
+background: linear-gradient(-50deg, transparent, #1d4ed8, transparent);
+mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+-webkit-mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+opacity: 0.6;
+animation: shimmer 4s linear infinite;
+}
+.shiny-cta span {
+position: relative;
+z-index: 2;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+}
+.shiny-cta span::before {
+content: '';
+pointer-events: none;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+z-index: -1;
+--size: calc(100% + 1rem);
+width: var(--size);
+height: var(--size);
+box-shadow: inset 0 -1ex 2rem 4px #1d4ed8;
+opacity: 0;
+border-radius: inherit;
+transition: opacity 800ms cubic-bezier(0.25, 1, 0.5, 1);
+animation: breathe 4.5s linear infinite;
+}
+@keyframes shimmer { to { transform: translate(-50%, -50%) rotate(360deg);} }
+@keyframes breathe {
+0%, 100% { transform: translate(-50%, -50%) scale(1);}
+50% { transform: translate(-50%, -50%) scale(1.20);}
+}
+/* --- Hero Animation & Background --- */
+@keyframes blob-bounce {
+0% { transform: translate(0px, 0px) scale(1); }
+33% { transform: translate(30px, -50px) scale(1.1); }
+66% { transform: translate(-20px, 20px) scale(0.9); }
+100% { transform: translate(0px, 0px) scale(1); }
+}
+.animate-blob {
+animation: blob-bounce 10s infinite ease-in-out;
+}
+.animation-delay-2000 {
+animation-delay: 2s;
+}
+.animation-delay-4000 {
+animation-delay: 4s;
+}
+.glass-panel {
+background: rgba(255, 255, 255, 0.6);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border: 1px solid rgba(255, 255, 255, 0.5);
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+/* --- Blur Gradient for Header --- */
+.gradient-blur {
+  position: fixed;
+  z-index: 40;
+  inset: 0 0 auto 0;
+  height: 120px;
+  pointer-events: none;
+}
+.gradient-blur > div,
+.gradient-blur::before,
+.gradient-blur::after {
+  position: absolute;
+  inset: 0;
+}
+.gradient-blur::before {
+  content: "";
+  z-index: 1;
+  backdrop-filter: blur(0.5px);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%);
+}
+.gradient-blur > div:nth-of-type(1) {
+  z-index: 2;
+  backdrop-filter: blur(1px);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%);
+}
+.gradient-blur > div:nth-of-type(2) {
+  z-index: 3;
+  backdrop-filter: blur(2px);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%);
+}
+.gradient-blur > div:nth-of-type(3) {
+  z-index: 4;
+  backdrop-filter: blur(4px);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%);
+}
+.gradient-blur > div:nth-of-type(4) {
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%);
+}
+.gradient-blur > div:nth-of-type(5) {
+  z-index: 6;
+  backdrop-filter: blur(16px);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%);
+}
+.gradient-blur > div:nth-of-type(6) {
+  z-index: 7;
+  backdrop-filter: blur(32px);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 1) 100%);
+}
+.gradient-blur::after {
+  content: "";
+  z-index: 8;
+  backdrop-filter: blur(64px);
+  mask: linear-gradient(to top, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%);
+}
+</style>
+<link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style></head>
+<body class="antialiased selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden text-slate-900 bg-stone-100">
+
+<!-- Progressive Blur Top -->
+<div class="gradient-blur">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<!-- Responsive Fixed Header (Moved outside of Main to fix stacking context) -->
+<header class="fixed z-50 w-full max-w-[1600px] top-0 left-1/2 -translate-x-1/2 bg-white/80 backdrop-blur-md border-b border-neutral-200/50">
+  <div class="sm:px-6 lg:px-8 max-w-7xl mr-auto ml-auto pr-4 pl-4">
+    <div class="flex pt-4 pb-4 items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="flex text-white bg-neutral-900 w-9 h-9 rounded-full items-center justify-center shadow-lg group-hover:bg-blue-600 transition-colors">
+          <iconify-icon icon="lucide:briefcase" width="18" height="18"></iconify-icon>
+        </div>
+        <span class="text-base font-semibold tracking-tight font-geist text-neutral-900 leading-none">
+          Mannucci<br><span class="text-neutral-500 font-medium text-xs">&amp; Associates</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium font-geist text-neutral-500">
+        <a href="#services" class="hover:text-blue-600 transition-colors">Services</a>
+        <a href="#results" class="hover:text-blue-600 transition-colors">Results</a>
+        <a href="#testimonials" class="hover:text-blue-600 transition-colors">Reviews</a>
+        <a href="#contact" class="hover:text-blue-600 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3">
+          <a href="tel:6263403194" class="hidden sm:inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium font-geist text-neutral-600 hover:bg-neutral-100 transition-colors">
+              <iconify-icon icon="lucide:phone" width="16" height="16"></iconify-icon>
+              (626) 340-3194
+          </a>
+          <button class="hidden sm:inline-flex shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium rounded-full px-5 py-2.5 items-center gap-2">
+              <span class="relative flex items-center gap-2 font-geist z-10">
+                Get Started
+                <iconify-icon icon="lucide:calendar-days" width="14" height="14"></iconify-icon>
+              </span>
+          </button>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobileMenuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg bg-neutral-100 border border-neutral-200 text-neutral-600 hover:bg-neutral-200 transition backdrop-blur-sm">
+              <iconify-icon icon="lucide:menu" width="20" height="20"></iconify-icon>
+          </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Menu Slide-over -->
+  <div id="mobileMenu" class="fixed inset-0 z-50 hidden">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-neutral-900/40 backdrop-blur-sm transition-opacity duration-300 opacity-0" id="mobileMenuOverlay"></div>
+    
+    <!-- Panel -->
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white shadow-2xl transform transition-transform duration-300 translate-x-full flex flex-col" id="mobileMenuPanel">
+      
+      <div class="flex items-center justify-between p-4 border-b border-neutral-100">
+        <span class="text-sm font-bold text-neutral-900 font-geist">Menu</span>
+        <button id="mobileMenuClose" class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-neutral-100 border border-neutral-200 text-neutral-500 hover:bg-neutral-200 transition">
+            <iconify-icon icon="lucide:x" width="20" height="20"></iconify-icon>
+        </button>
+      </div>
+
+      <nav class="p-6 space-y-2 flex-grow font-geist">
+        <a href="#services" class="block px-4 py-3 text-base font-medium text-neutral-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+            Services
+        </a>
+        <a href="#results" class="block px-4 py-3 text-base font-medium text-neutral-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+            Client Results
+        </a>
+        <a href="#testimonials" class="block px-4 py-3 text-base font-medium text-neutral-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+            Reviews
+        </a>
+        <a href="#faq" class="block px-4 py-3 text-base font-medium text-neutral-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+            FAQ
+        </a>
+        
+        <div class="pt-6 border-t border-neutral-100 mt-4 space-y-3">
+           <a href="tel:6263403194" class="flex items-center justify-center gap-2 w-full px-4 py-3 text-base font-medium text-neutral-600 bg-neutral-100 hover:bg-neutral-200 rounded-lg transition">
+            <iconify-icon icon="lucide:phone" width="18" height="18"></iconify-icon>
+            (626) 340-3194
+          </a>
+          <a href="#" class="flex items-center justify-center gap-2 w-full px-4 py-3 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition shadow-lg shadow-blue-500/20">
+            <iconify-icon icon="lucide:calendar-days" width="18" height="18"></iconify-icon>
+            Schedule Consultation
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+        const menuBtn = document.getElementById('mobileMenuBtn');
+        const menu = document.getElementById('mobileMenu');
+        const menuPanel = document.getElementById('mobileMenuPanel');
+        const closeBtn = document.getElementById('mobileMenuClose');
+        const overlay = document.getElementById('mobileMenuOverlay');
+        const menuLinks = menu.querySelectorAll('nav a');
+        
+        function openMenu() {
+          menu.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+          // Trigger reflow for transition
+          setTimeout(() => {
+            menuPanel.classList.remove('translate-x-full');
+            overlay.classList.remove('opacity-0');
+          }, 10);
+        }
+        
+        function closeMenu() {
+          menuPanel.classList.add('translate-x-full');
+          overlay.classList.add('opacity-0');
+          
+          // Wait for transition to finish
+          setTimeout(() => {
+            menu.classList.add('hidden');
+            document.body.style.overflow = '';
+          }, 300);
+        }
+        
+        if(menuBtn) menuBtn.addEventListener('click', openMenu);
+        if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+        if(overlay) overlay.addEventListener('click', closeMenu);
+        
+        menuLinks.forEach(link => {
+          link.addEventListener('click', closeMenu);
+        });
+    })();
+  </script>
+</header>
+
+<!-- Main Wrapper -->
+<main class="shadow-slate-200/50 overflow-hidden min-h-screen bg-white max-w-[1600px] z-10 mr-auto ml-auto relative shadow-2xl">
+
+  <!-- Hero Section (Adjusted Padding for Fixed Header) -->
+  <section class="grid min-h-[740px] pt-32 lg:grid-cols-12 lg:pt-0 relative overflow-hidden" id="hero">
+    
+    <!-- Animated iOS 17 Style Background -->
+    <div class="absolute inset-0 -z-10 overflow-hidden bg-white">
+        <div class="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] rounded-full bg-blue-400/20 blur-[100px] animate-blob mix-blend-multiply"></div>
+        <div class="absolute top-[-10%] right-[-20%] w-[60%] h-[60%] rounded-full bg-indigo-400/20 blur-[100px] animate-blob animation-delay-2000 mix-blend-multiply"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-[50%] h-[50%] rounded-full bg-sky-300/30 blur-[100px] animate-blob animation-delay-4000 mix-blend-multiply"></div>
+        <div class="absolute inset-0 opacity-[0.35] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMwMDAiLz4KPC9zdmc+')] mix-blend-overlay"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#3b82f61a_1px,transparent_1px),linear-gradient(to_bottom,#3b82f61a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+    </div>
+
+    <!-- Left Content -->
+    <div class="lg:col-span-7 lg:px-12 flex flex-col z-10 pt-20 px-6 pb-16 justify-center relative">
+        
+        <div class="flex lg:mt-24 w-fit mb-8 items-center animate-fade-in-up">
+            <div class="inline-flex gap-2 text-[11px] uppercase font-semibold text-blue-700 tracking-wider font-geist bg-white/80 backdrop-blur-md border-blue-200 border rounded-full py-1.5 px-4 items-center shadow-sm">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+                </span>
+                Accepting New Clients for 2024 Tax Season
+            </div>
+        </div>
+
+        <h1 class="leading-[0.95] lg:text-[4.5rem] text-5xl text-neutral-900 tracking-tighter mb-6 font-geist font-semibold drop-shadow-sm">
+          Expert CPA &amp; <br>
+          <span class="text-neutral-500/90">Business Accounting</span><br>
+          in Pasadena, CA
+        </h1>
+
+        <p class="text-lg text-neutral-600 max-w-lg leading-relaxed mb-10 font-normal font-geist">
+          Maximize your tax savings and streamline your bookkeeping with Mannucci &amp; Associates. Serving small business owners in Pasadena and Old Town since 2010.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-16">
+          <button class="shiny-cta w-full sm:w-auto shadow-xl shadow-blue-900/10">
+            <span>
+                Book Your Free Tax Review 
+                <iconify-icon icon="lucide:arrow-right" width="16" height="16"></iconify-icon>
+            </span>
+          </button>
+          
+          <button class="w-full sm:w-auto px-8 py-4 rounded-full border border-neutral-200/80 bg-white/60 backdrop-blur-sm text-neutral-600 font-medium hover:bg-white hover:text-neutral-900 transition-all font-geist h-[58px] shadow-sm">
+            Learn More
+          </button>
+        </div>
+
+        <!-- Trust Bar -->
+        <div class="border-t border-neutral-200/60 pt-8">
+            <p class="text-xs font-medium text-neutral-500 uppercase tracking-widest mb-6 font-geist">Trusted by 500+ Local Businesses</p>
+            <div class="flex flex-wrap gap-8 items-center opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
+                <iconify-icon icon="simple-icons:quickbooks" width="28" height="28" class="text-[#2CA01C]"></iconify-icon>
+                <iconify-icon icon="simple-icons:xero" width="28" height="28" class="text-[#13B5EA]"></iconify-icon>
+                <div class="flex items-center gap-1 font-bold text-xl tracking-tight text-[#FA544E]">
+                    <span class="font-geist">gusto</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Visual / Contact Form -->
+    <div class="lg:col-span-5 px-6 pb-12 lg:pb-0 flex items-center justify-center lg:pr-12 relative z-20 pt-10 lg:pt-0">
+        <div class="glass-panel p-8 rounded-2xl w-full max-w-[440px] relative shadow-2xl shadow-blue-900/5">
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold text-neutral-900 font-geist tracking-tight mb-2">Get Your Free Consultation</h3>
+                <p class="text-sm text-neutral-500 font-geist">Fill out the form below and our team will get back to you within 24 hours.</p>
+            </div>
+
+            <form action="#" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1.5">
+                        <label for="first-name" class="text-xs font-semibold text-neutral-700 font-geist ml-1">First Name</label>
+                        <input type="text" id="first-name" placeholder="John" class="w-full px-3 py-2.5 rounded-lg border border-neutral-200/80 bg-white/50 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all input-transition font-geist backdrop-blur-sm">
+                    </div>
+                    <div class="space-y-1.5">
+                        <label for="last-name" class="text-xs font-semibold text-neutral-700 font-geist ml-1">Last Name</label>
+                        <input type="text" id="last-name" placeholder="Doe" class="w-full px-3 py-2.5 rounded-lg border border-neutral-200/80 bg-white/50 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all input-transition font-geist backdrop-blur-sm">
+                    </div>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label for="email" class="text-xs font-semibold text-neutral-700 font-geist ml-1">Work Email</label>
+                    <div class="relative">
+                        <iconify-icon icon="lucide:mail" width="14" height="14" class="absolute left-3 top-3 text-neutral-400 pointer-events-none"></iconify-icon>
+                        <input type="email" id="email" placeholder="john@company.com" class="w-full pl-9 pr-3 py-2.5 rounded-lg border border-neutral-200/80 bg-white/50 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all input-transition font-geist backdrop-blur-sm">
+                    </div>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label for="service" class="text-xs font-semibold text-neutral-700 font-geist ml-1">Service Interest</label>
+                    <div class="relative">
+                        <select id="service" class="w-full appearance-none pl-3 pr-8 py-2.5 rounded-lg border border-neutral-200/80 bg-white/50 text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all input-transition font-geist cursor-pointer backdrop-blur-sm">
+                            <option value="" disabled="" selected="">Select a service...</option>
+                            <option value="tax">Tax Preparation</option>
+                            <option value="bookkeeping">Bookkeeping</option>
+                            <option value="payroll">Payroll Services</option>
+                            <option value="consulting">Business Consulting</option>
+                        </select>
+                        <iconify-icon icon="lucide:chevron-down" width="14" height="14" class="absolute right-3 top-3 text-neutral-400 pointer-events-none"></iconify-icon>
+                    </div>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label for="message" class="text-xs font-semibold text-neutral-700 font-geist ml-1">Message (Optional)</label>
+                    <textarea id="message" rows="3" placeholder="Tell us about your business needs..." class="w-full px-3 py-2.5 rounded-lg border border-neutral-200/80 bg-white/50 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all input-transition resize-none font-geist backdrop-blur-sm"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg shadow-lg shadow-blue-500/25 transition-all duration-300 flex items-center justify-center gap-2 group mt-2 font-geist">
+                    Get Started
+                    <iconify-icon icon="lucide:arrow-right" width="16" height="16" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                </button>
+            </form>
+        </div>
+    </div>
+  </section>
+
+  <!-- Benefits & Clarity Section -->
+  <section class="bg-white py-20 border-b border-neutral-100">
+      <div class="container mx-auto px-6 lg:px-12">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <h2 class="text-3xl lg:text-4xl font-semibold text-neutral-900 tracking-tight mb-4 font-geist">
+            Professional Accounting Services You Can Actually Understand
+          </h2>
+          <p class="text-neutral-500 text-lg font-geist leading-relaxed">
+            We simplify taxes and bookkeeping so you can focus on what you do best. No jargon, no runaround—just honest guidance and real results.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+          <div class="flex flex-col items-center text-center group">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+               <iconify-icon icon="lucide:briefcase" width="24" height="24"></iconify-icon>
+            </div>
+            <h3 class="font-semibold text-neutral-900 mb-2 font-geist">15+ Years Serving Local Businesses</h3>
+            <p class="text-sm text-neutral-500 font-geist leading-relaxed">Trusted by Pasadena's entrepreneurs and families</p>
+          </div>
+          <div class="flex flex-col items-center text-center group">
+             <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+               <iconify-icon icon="lucide:bar-chart-3" width="24" height="24"></iconify-icon>
+            </div>
+            <h3 class="font-semibold text-neutral-900 mb-2 font-geist">Clear, Upfront Pricing</h3>
+            <p class="text-sm text-neutral-500 font-geist leading-relaxed">No surprise fees or hidden charges</p>
+          </div>
+           <div class="flex flex-col items-center text-center group">
+             <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+               <iconify-icon icon="lucide:zap" width="24" height="24"></iconify-icon>
+            </div>
+            <h3 class="font-semibold text-neutral-900 mb-2 font-geist">Fast, Friendly Service</h3>
+            <p class="text-sm text-neutral-500 font-geist leading-relaxed">Same-day responses and flexible scheduling</p>
+          </div>
+           <div class="flex flex-col items-center text-center group">
+             <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+               <iconify-icon icon="lucide:target" width="24" height="24"></iconify-icon>
+            </div>
+            <h3 class="font-semibold text-neutral-900 mb-2 font-geist">Proactive Tax Strategies</h3>
+            <p class="text-sm text-neutral-500 font-geist leading-relaxed">We find savings before you even ask</p>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- NEW SERVICES SECTION (DARK MODE) -->
+  <section id="services" class="bg-[#0B1120] border-t border-slate-800 relative overflow-hidden py-24 scroll-mt-24">
+      <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+      
+      <div class="container mx-auto px-6 lg:px-12 relative z-10">
+          <div class="max-w-3xl mb-16">
+              <div class="inline-flex items-center gap-1.5 rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-blue-400 text-[11px] font-bold uppercase tracking-wider font-geist mb-6 shadow-sm">
+                  ⚡ OUR SERVICES
+              </div>
+              <h2 class="text-3xl lg:text-4xl font-semibold text-white tracking-tight mb-4 font-geist">
+                  Full-Service Tax Planning &amp; Bookkeeping
+              </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              <div class="group bg-[#151e32] hover:border-blue-500/50 hover:shadow-[0_8px_30px_rgb(59,130,246,0.1)] transition-all duration-300 border border-slate-800 rounded-2xl p-8 flex flex-col relative overflow-hidden">
+                  <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6 border border-blue-500/20 group-hover:scale-105 transition-transform duration-300">
+                      <iconify-icon icon="lucide:user" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h3 class="text-xl font-semibold text-white mb-4 font-geist">INDIVIDUAL TAX SERVICES</h3>
+                  <p class="text-slate-400 mb-8 leading-relaxed text-sm font-geist">
+                      We make personal tax filing simple and maximize your refund. From straightforward W-2s to complex investment portfolios, we handle it all with accuracy and care.
+                  </p>
+                  <ul class="space-y-3 mt-auto">
+                      <li class="flex items-start gap-3 text-sm font-medium text-slate-300 font-geist">
+                          <iconify-icon icon="lucide:chevron-right" class="text-blue-400 mt-0.5 min-w-[16px]" width="16" height="16"></iconify-icon>
+                          Personal Tax Returns
+                      </li>
+                      <li class="flex items-start gap-3 text-sm font-medium text-slate-300 font-geist">
+                          <iconify-icon icon="lucide:chevron-right" class="text-blue-400 mt-0.5 min-w-[16px]" width="16" height="16"></iconify-icon>
+                          Itemized Deductions
+                      </li>
+                  </ul>
+              </div>
+
+              <div class="group bg-[#151e32] hover:border-emerald-500/50 hover:shadow-[0_8px_30px_rgb(16,185,129,0.1)] transition-all duration-300 border border-slate-800 rounded-2xl p-8 flex flex-col relative overflow-hidden">
+                  <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20 group-hover:scale-105 transition-transform duration-300">
+                      <iconify-icon icon="lucide:building-2" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h3 class="text-xl font-semibold text-white mb-4 font-geist">BUSINESS BOOKKEEPING &amp; PAYROLL</h3>
+                  <p class="text-slate-400 mb-8 leading-relaxed text-sm font-geist">
+                      Keep your business finances organized and compliant year-round. We handle the numbers so you can focus on growing your business.
+                  </p>
+                  <ul class="space-y-3 mt-auto">
+                      <li class="flex items-start gap-3 text-sm font-medium text-slate-300 font-geist">
+                          <iconify-icon icon="lucide:chevron-right" class="text-emerald-400 mt-0.5 min-w-[16px]" width="16" height="16"></iconify-icon>
+                          Monthly Bookkeeping
+                      </li>
+                      <li class="flex items-start gap-3 text-sm font-medium text-slate-300 font-geist">
+                          <iconify-icon icon="lucide:chevron-right" class="text-emerald-400 mt-0.5 min-w-[16px]" width="16" height="16"></iconify-icon>
+                          Payroll Processing
+                      </li>
+                  </ul>
+              </div>
+
+              <div class="group bg-[#151e32] hover:border-purple-500/50 hover:shadow-[0_8px_30px_rgb(168,85,247,0.1)] transition-all duration-300 border border-slate-800 rounded-2xl p-8 flex flex-col relative overflow-hidden">
+                  <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 mb-6 border border-purple-500/20 group-hover:scale-105 transition-transform duration-300">
+                      <iconify-icon icon="lucide:compass" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h3 class="text-xl font-semibold text-white mb-4 font-geist">STRATEGIC TAX PLANNING</h3>
+                  <p class="text-slate-400 mb-8 leading-relaxed text-sm font-geist">
+                      Proactive planning to minimize your tax burden and protect your wealth. We develop customized strategies for major financial decisions.
+                  </p>
+                  <ul class="space-y-3 mt-auto">
+                      <li class="flex items-start gap-3 text-sm font-medium text-slate-300 font-geist">
+                          <iconify-icon icon="lucide:chevron-right" class="text-purple-400 mt-0.5 min-w-[16px]" width="16" height="16"></iconify-icon>
+                          Business Structure Optimization
+                      </li>
+                      <li class="flex items-start gap-3 text-sm font-medium text-slate-300 font-geist">
+                          <iconify-icon icon="lucide:chevron-right" class="text-purple-400 mt-0.5 min-w-[16px]" width="16" height="16"></iconify-icon>
+                          Real Estate Investment Planning
+                      </li>
+                  </ul>
+              </div>
+
+              <div class="group bg-[#151e32] hover:border-orange-500/50 hover:shadow-[0_8px_30px_rgb(249,115,22,0.1)] transition-all duration-300 border border-slate-800 rounded-2xl p-8 flex flex-col relative overflow-hidden">
+                  <div class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400 mb-6 border border-orange-500/20 group-hover:scale-105 transition-transform duration-300">
+                      <iconify-icon icon="lucide:sparkles" width="24" height="24"></iconify-icon>
+                  </div>
+                  <h3 class="text-xl font-semibold text-white mb-4 font-geist">SPECIALIZED SERVICES</h3>
+                  <p class="text-slate-400 mb-8 leading-relaxed text-sm font-geist">
+                      Expert support when you're facing complex tax challenges or unique situations. We navigate the complicated stuff so you don't have to.
+                  </p>
+                  <ul class="space-y-3 mt-auto">
+                      <li class="flex items-start gap-3 text-sm font-medium text-slate-300 font-geist">
+                          <iconify-icon icon="lucide:chevron-right" class="text-orange-400 mt-0.5 min-w-[16px]" width="16" height="16"></iconify-icon>
+                          IRS Audit Representation
+                      </li>
+                      <li class="flex items-start gap-3 text-sm font-medium text-slate-300 font-geist">
+                          <iconify-icon icon="lucide:chevron-right" class="text-orange-400 mt-0.5 min-w-[16px]" width="16" height="16"></iconify-icon>
+                          Tax Resolution &amp; Back Taxes
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Client Results -->
+  <section id="results" class="bg-white py-24 border-b border-neutral-100 relative scroll-mt-24">
+        <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 pointer-events-none"></div>
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <div class="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-blue-700 text-xs font-semibold uppercase tracking-wider font-geist mb-6">
+                    <iconify-icon icon="lucide:briefcase" width="12" height="12"></iconify-icon> Client Success Stories
+                </div>
+                <h2 class="text-3xl lg:text-4xl font-semibold text-neutral-900 tracking-tight font-geist mb-4">
+                    Real Results. Real Businesses. <span class="text-blue-600">Real Savings.</span>
+                </h2>
+                <p class="text-neutral-500 text-lg font-geist leading-relaxed">
+                    See how we've helped local businesses and individuals achieve their financial goals.
+                </p>
+            </div>
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div class="group relative bg-white rounded-2xl p-8 border border-neutral-200 hover:border-emerald-300 hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-300 flex flex-col h-full">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100">
+                            <iconify-icon icon="lucide:trending-down" width="24" height="24"></iconify-icon>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold font-geist tracking-wide">SAVED $47K</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-neutral-900 mb-6 font-geist tracking-tight">$47,000 in Tax Savings</h3>
+                    <p class="text-neutral-600 text-sm font-geist">A local real estate investor saved $47k in year one through proper restructuring and cost segregation.</p>
+                </div>
+
+                <div class="group relative bg-white rounded-2xl p-8 border border-neutral-200 hover:border-orange-300 hover:shadow-xl hover:shadow-orange-500/5 transition-all duration-300 flex flex-col h-full">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center border border-orange-100">
+                            <iconify-icon icon="lucide:hard-hat" width="24" height="24"></iconify-icon>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-orange-50 text-orange-700 text-xs font-bold font-geist tracking-wide">RECOVERED $23K</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-neutral-900 mb-6 font-geist tracking-tight">Construction Turnaround</h3>
+                    <p class="text-neutral-600 text-sm font-geist">Recovered $23,000 in overlooked deductions for a growing contractor with messy books.</p>
+                </div>
+
+                <div class="group relative bg-white rounded-2xl p-8 border border-neutral-200 hover:border-red-300 hover:shadow-xl hover:shadow-red-500/5 transition-all duration-300 flex flex-col h-full">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center border border-red-100">
+                            <iconify-icon icon="lucide:shield-alert" width="24" height="24"></iconify-icon>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs font-bold font-geist tracking-wide">SAVED $70K</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-neutral-900 mb-6 font-geist tracking-tight">IRS Audit Resolution</h3>
+                    <p class="text-neutral-600 text-sm font-geist">Reduced an IRS liability from $80,000+ to just $8,500 through expert representation.</p>
+                </div>
+            </div>
+        </div>
+  </section>
+
+  <!-- New Reviews Section -->
+  <section id="testimonials" class="bg-neutral-50 py-24 relative overflow-hidden scroll-mt-24">
+        <div class="absolute inset-0 w-full h-full bg-[linear-gradient(to_right,#e5e5e5_1px,transparent_1px),linear-gradient(to_bottom,#e5e5e5_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-70 pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 lg:px-12 relative z-10">
+            <div class="flex flex-col items-center text-center mb-16">
+                <div class="inline-flex items-center gap-2 bg-white border border-neutral-200 rounded-full px-4 py-1.5 shadow-sm mb-6 animate-fade-in">
+                    <iconify-icon icon="logos:google-icon" width="16" height="16"></iconify-icon>
+                    <div class="flex gap-0.5 text-yellow-500">
+                        <iconify-icon icon="lucide:star" width="12" height="12" class="fill-current"></iconify-icon>
+                        <iconify-icon icon="lucide:star" width="12" height="12" class="fill-current"></iconify-icon>
+                        <iconify-icon icon="lucide:star" width="12" height="12" class="fill-current"></iconify-icon>
+                        <iconify-icon icon="lucide:star" width="12" height="12" class="fill-current"></iconify-icon>
+                        <iconify-icon icon="lucide:star" width="12" height="12" class="fill-current"></iconify-icon>
+                    </div>
+                    <span class="text-xs font-semibold text-neutral-900 font-geist">5.0 Star Rating</span>
+                </div>
+                <h2 class="text-3xl lg:text-4xl font-semibold text-neutral-900 tracking-tight font-geist mb-4">
+                    Trusted by Pasadena Businesses
+                </h2>
+                <p class="text-neutral-500 max-w-xl text-lg font-geist leading-relaxed">
+                    Don't just take our word for it. See what our clients have to say about their experience with Mannucci &amp; Associates.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-8 rounded-2xl bg-white border border-neutral-200 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex text-yellow-500 gap-0.5 mb-4">
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                        </div>
+                        <p class="text-neutral-700 text-sm leading-relaxed font-geist mb-6 relative">
+                            "Mannucci &amp; Associates saved my business thousands in missed deductions. Their team is responsive, professional, and truly cares."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-6 border-t border-neutral-100">
+                         <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xs">JS</div>
+                         <div>
+                             <p class="text-xs font-bold text-neutral-900 font-geist">Jennifer Stevens</p>
+                             <p class="text-[10px] uppercase tracking-wide text-neutral-500 font-geist">Owner, Pasadena Florals</p>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white border border-neutral-200 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex text-yellow-500 gap-0.5 mb-4">
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                        </div>
+                        <p class="text-neutral-700 text-sm leading-relaxed font-geist mb-6">
+                            "Finally an accountant that speaks plain English. They cleaned up our books from a previous mess and set us up on Xero perfectly."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-6 border-t border-neutral-100">
+                         <div class="w-9 h-9 rounded-full bg-orange-100 flex items-center justify-center text-orange-700 font-bold text-xs">MD</div>
+                         <div>
+                             <p class="text-xs font-bold text-neutral-900 font-geist">Michael Davis</p>
+                             <p class="text-[10px] uppercase tracking-wide text-neutral-500 font-geist">CEO, TechStart Inc.</p>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white border border-neutral-200 hover:border-blue-200 hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex text-yellow-500 gap-0.5 mb-4">
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                            <iconify-icon icon="lucide:star" width="16" height="16" class="fill-current"></iconify-icon>
+                        </div>
+                        <p class="text-neutral-700 text-sm leading-relaxed font-geist mb-6">
+                            "Robert has handled our personal and business taxes for 5 years. The peace of mind knowing everything is filed correctly is invaluable."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-6 border-t border-neutral-100">
+                         <div class="w-9 h-9 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xs">EL</div>
+                         <div>
+                             <p class="text-xs font-bold text-neutral-900 font-geist">Elena Lopez</p>
+                             <p class="text-[10px] uppercase tracking-wide text-neutral-500 font-geist">Real Estate Agent</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="contact" class="relative py-20 bg-blue-600 overflow-hidden scroll-mt-24">
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
+    <div class="container mx-auto px-6 lg:px-12 relative z-10 text-center">
+        <h2 class="text-3xl lg:text-5xl font-bold text-white mb-6 font-geist tracking-tight">Ready to Secure Your Financial Future?</h2>
+        <p class="text-blue-100 text-lg mb-10 max-w-2xl mx-auto font-geist">
+            Schedule a free 15-minute consultation to discuss your tax situation and business goals with a certified expert.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="tel:6263403194" class="bg-white text-blue-900 font-semibold py-4 px-8 rounded-lg shadow-xl hover:bg-neutral-100 transition-colors flex items-center gap-2 font-geist">
+                <iconify-icon icon="lucide:phone" width="18" height="18"></iconify-icon> Call (626) 340-3194
+            </a>
+            <button class="bg-blue-700 text-white border border-blue-500 font-semibold py-4 px-8 rounded-lg hover:bg-blue-800 transition-colors font-geist">
+                Book Consultation Online
+            </button>
+        </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section (Adjusted ID) -->
+  <section id="faq" class="bg-white py-24 border-t border-neutral-100 scroll-mt-24">
+      <div class="container mx-auto px-6 lg:px-12">
+          <div class="max-w-2xl mx-auto text-center mb-16">
+              <h2 class="text-3xl lg:text-4xl font-semibold text-neutral-900 tracking-tight font-geist mb-4">
+                  Frequently Asked Questions
+              </h2>
+              <p class="text-neutral-500 text-lg font-geist leading-relaxed">
+                  Clear answers to common questions about our accounting, tax, and bookkeeping services.
+              </p>
+          </div>
+
+          <div class="max-w-3xl mx-auto border-t border-neutral-100">
+              <details class="group border-b border-neutral-100">
+                  <summary class="flex cursor-pointer items-center justify-between py-6 text-neutral-900 transition-colors hover:text-blue-600">
+                      <span class="font-medium text-lg font-geist">What specific services do you offer?</span>
+                      <span class="transition-transform duration-300 group-open:-rotate-180 text-neutral-400">
+                          <iconify-icon icon="lucide:chevron-down" width="20" height="20"></iconify-icon>
+                      </span>
+                  </summary>
+                  <div class="pb-6 text-neutral-500 font-geist leading-relaxed text-sm">
+                      We provide a comprehensive range of services including individual and business tax preparation (LLCs, S-Corps, C-Corps), monthly bookkeeping, payroll processing, sales tax filing, and strategic financial consulting/CFO services.
+                  </div>
+              </details>
+              
+              <details class="group border-b border-neutral-100">
+                  <summary class="flex cursor-pointer items-center justify-between py-6 text-neutral-900 transition-colors hover:text-blue-600">
+                      <span class="font-medium text-lg font-geist">Do you work with clients outside of Pasadena?</span>
+                      <span class="transition-transform duration-300 group-open:-rotate-180 text-neutral-400">
+                          <iconify-icon icon="lucide:chevron-down" width="20" height="20"></iconify-icon>
+                      </span>
+                  </summary>
+                  <div class="pb-6 text-neutral-500 font-geist leading-relaxed text-sm">
+                      Yes! While our office is in Pasadena, we serve clients throughout California and the United States. We utilize secure client portals and video conferencing to work seamlessly with remote clients.
+                  </div>
+              </details>
+
+               <details class="group border-b border-neutral-100">
+                  <summary class="flex cursor-pointer items-center justify-between py-6 text-neutral-900 transition-colors hover:text-blue-600">
+                      <span class="font-medium text-lg font-geist">How much do your services cost?</span>
+                      <span class="transition-transform duration-300 group-open:-rotate-180 text-neutral-400">
+                          <iconify-icon icon="lucide:chevron-down" width="20" height="20"></iconify-icon>
+                      </span>
+                  </summary>
+                  <div class="pb-6 text-neutral-500 font-geist leading-relaxed text-sm">
+                      Our pricing is tailored to the complexity of your needs. Simple tax returns start at competitive rates, while monthly bookkeeping packages are customized based on transaction volume. We offer transparent, flat-fee pricing for ongoing services.
+                  </div>
+              </details>
+          </div>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-neutral-950 text-neutral-400 py-16 border-t border-neutral-900">
+      <div class="container mx-auto px-6 lg:px-12">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+              <div class="space-y-4">
+                  <div class="flex items-center gap-2 text-white mb-2">
+                    <iconify-icon icon="lucide:briefcase" width="20" height="20"></iconify-icon>
+                    <span class="font-bold text-lg font-geist">Mannucci &amp; Associates</span>
+                  </div>
+                  <p class="text-sm leading-relaxed font-geist">
+                      Providing professional accounting, tax, and payroll services to Pasadena and surrounding areas since 2010.
+                  </p>
+              </div>
+
+              <div class="space-y-4">
+                  <h4 class="text-white font-semibold text-sm uppercase tracking-widest font-geist">Contact</h4>
+                  <ul class="space-y-3 text-sm font-geist">
+                      <li class="flex items-start gap-3">
+                          <iconify-icon icon="lucide:map-pin" class="mt-0.5 text-neutral-600"></iconify-icon>
+                          <span>123 Main Street, Suite 100Pasadena, CA 91105</span>
+                      </li>
+                      <li class="flex items-center gap-3">
+                          <iconify-icon icon="lucide:phone" class="text-neutral-600"></iconify-icon>
+                          <a href="tel:6263403194" class="hover:text-white transition-colors">(626) 340-3194</a>
+                      </li>
+                      <li class="flex items-center gap-3">
+                          <iconify-icon icon="lucide:mail" class="text-neutral-600"></iconify-icon>
+                          <a href="mailto:info@mannucci.com" class="hover:text-white transition-colors">info@mannucci.com</a>
+                      </li>
+                  </ul>
+              </div>
+
+              <div class="space-y-4">
+                  <h4 class="text-white font-semibold text-sm uppercase tracking-widest font-geist">Business Hours</h4>
+                  <ul class="space-y-2 text-sm font-geist">
+                      <li class="flex justify-between"><span>Monday - Friday</span> <span class="text-white">9:00 AM - 5:00 PM</span></li>
+                      <li class="flex justify-between"><span>Saturday</span> <span>By Appointment</span></li>
+                  </ul>
+              </div>
+
+              <div class="space-y-4">
+                <h4 class="text-white font-semibold text-sm uppercase tracking-widest font-geist">Affiliations</h4>
+                <div class="flex flex-wrap gap-4 grayscale opacity-50">
+                    <span class="border border-neutral-700 px-2 py-1 rounded text-xs">AICPA Member</span>
+                    <span class="border border-neutral-700 px-2 py-1 rounded text-xs">CalCPA</span>
+                </div>
+              </div>
+          </div>
+          <div class="border-t border-neutral-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-geist">
+              <p>© 2024 Mannucci &amp; Associates. All rights reserved.</p>
+          </div>
+      </div>
+  </footer>
+
+</main>
+
+</body></html>

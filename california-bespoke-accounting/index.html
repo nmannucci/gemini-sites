@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>California Bespoke Accounting | Expert Bookkeeping & Tax Services | South Bay, CA</title>
+  <meta name="description" content="California Bespoke Bookkeeping LLC — Expert bookkeeping, tax services, QuickBooks consulting, and CFO advisory for small businesses and nonprofits in the South Bay and Greater Los Angeles area since 2007.">
+  <meta name="keywords" content="bookkeeping South Bay, tax services Los Angeles, QuickBooks ProAdvisor, CFO services small business, accounting Hawthorne CA, nonprofit bookkeeping, payroll services LA">
+  <meta name="author" content="California Bespoke Accounting">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="California Bespoke Accounting | South Bay, CA">
+  <meta property="og:description" content="Big-Firm Expertise. Built for Small Business. Serving South Bay & Greater LA since 2007.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <link rel="canonical" href="https://www.cbbaccounting.com/">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AccountingService",
+    "name": "California Bespoke Bookkeeping LLC",
+    "description": "Expert bookkeeping, tax, QuickBooks consulting, and CFO services for small businesses and nonprofits.",
+    "url": "https://www.cbbaccounting.com",
+    "telephone": "+13109854733",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Hawthorne",
+      "addressRegion": "CA",
+      "postalCode": "90250",
+      "addressCountry": "US"
+    },
+    "areaServed": "Greater Los Angeles, South Bay, CA",
+    "foundingDate": "2007"
+  }
+  </script>
+
+  <!-- Fonts: Cormorant Garamond (display) + Jost (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── RESET & ROOT ─────────────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --navy:       #0d1f3c;
+      --navy-dark:  #07111f;
+      --navy-mid:   #142848;
+      --gold:       #c9a84c;
+      --gold-light: #dfc068;
+      --gold-muted: rgba(201,168,76,0.18);
+      --cream:      #f6f1e7;
+      --cream-dark: #ede6d5;
+      --white:      #ffffff;
+      --text:       #1c1c2e;
+      --text-mid:   #1e1c2c;
+      --text-light: rgba(255,255,255,0.90);
+
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Jost', sans-serif;
+
+      --max-w: 1240px;
+      --pad-x: clamp(1.25rem, 5vw, 3rem);
+
+      --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: var(--ff-body);
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5 { font-family: var(--ff-display); font-weight: 500; line-height: 1.18; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    /* ─── UTILITIES ────────────────────────────────────────────── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--pad-x); }
+    .eyebrow {
+      font-family: var(--ff-body);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .gold-rule {
+      width: 44px; height: 1.5px;
+      background: var(--gold);
+      display: block;
+    }
+    .gold-rule.mx-auto { margin-left: auto; margin-right: auto; }
+
+    /* Section heading */
+    .section-heading {
+      font-size: clamp(1.875rem, 3.2vw, 2.75rem);
+      font-weight: 500;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .section-heading--white { color: var(--white); }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.875rem 2.125rem;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    .btn--gold {
+      background: var(--gold);
+      color: var(--navy-dark);
+    }
+    .btn--gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(201,168,76,0.28);
+    }
+    .btn--ghost {
+      border: 1px solid rgba(255,255,255,0.32);
+      color: rgba(255,255,255,0.88);
+      background: transparent;
+    }
+    .btn--ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.06);
+    }
+    .btn--navy {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .btn--navy:hover {
+      background: var(--navy-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(13,31,60,0.22);
+    }
+
+    /* ─── SCROLL REVEAL ────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── NAVBAR ───────────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 1.375rem var(--pad-x);
+      transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+    }
+    #navbar.transparent { background: transparent; }
+    #navbar.solid {
+      background: var(--navy-dark);
+      padding: 1rem var(--pad-x);
+      box-shadow: 0 1px 0 rgba(201,168,76,0.15);
+    }
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      flex-shrink: 0;
+    }
+    .nav-logo-mark {
+      width: 40px; height: 40px;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-display);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--navy-dark);
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+    }
+    .nav-logo-text-top {
+      font-family: var(--ff-display);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+    .nav-logo-text-sub {
+      font-family: var(--ff-body);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.42);
+      line-height: 1;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+    }
+    .nav-link {
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.88);
+      transition: color var(--transition);
+    }
+    .nav-link:hover { color: var(--gold); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 1.5px;
+      background: rgba(255,255,255,0.8);
+      transition: var(--transition);
+    }
+
+    /* Mobile menu */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 199;
+      background: var(--navy-dark);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    #mobile-menu.open { display: flex; }
+    .mobile-close {
+      position: absolute;
+      top: 1.5rem; right: 1.75rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color var(--transition);
+    }
+    .mobile-close:hover { color: var(--gold); }
+    .mobile-nav-link {
+      font-family: var(--ff-display);
+      font-size: 2.25rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      transition: color var(--transition);
+    }
+    .mobile-nav-link:hover { color: var(--gold); }
+
+    /* ─── HERO ─────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      background:
+        linear-gradient(105deg, rgba(7,17,31,0.92) 0%, rgba(7,17,31,0.78) 45%, rgba(13,31,60,0.72) 100%),
+        url('https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Fine grid texture */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.045) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none;
+    }
+
+    /* Large decorative watermark */
+    .hero-watermark {
+      position: absolute;
+      right: -2%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--ff-display);
+      font-size: clamp(180px, 22vw, 320px);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(201,168,76,0.045);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    /* Decorative rings */
+    .hero-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.1);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      margin-bottom: 1.75rem;
+    }
+    .hero-eyebrow-line { width: 32px; height: 1px; background: var(--gold); }
+
+    .hero-h1 {
+      font-size: clamp(2.625rem, 5.5vw, 5rem);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.12;
+      margin-bottom: 1.625rem;
+    }
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-family: var(--ff-body);
+      font-size: 1.0625rem;
+      font-weight: 300;
+      color: var(--text-light);
+      line-height: 1.8;
+      max-width: 520px;
+      margin-bottom: 2.75rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.875rem;
+      align-items: center;
+    }
+
+    /* ─── TRUST BAR ─────────────────────────────────────────────── */
+    #trust-bar {
+      background: var(--navy);
+      border-top: 1px solid rgba(201,168,76,0.18);
+      border-bottom: 1px solid rgba(201,168,76,0.18);
+      padding: 1.375rem var(--pad-x);
+    }
+    .trust-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 0.5rem 2.25rem;
+    }
+    .trust-icon { color: var(--gold); flex-shrink: 0; }
+    .trust-text {
+      font-family: var(--ff-body);
+      font-size: 0.84rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .trust-divider {
+      width: 1px; height: 36px;
+      background: rgba(201,168,76,0.22);
+      flex-shrink: 0;
+    }
+
+    /* ─── SECTIONS BASE ─────────────────────────────────────────── */
+    .section { padding: 6.5rem var(--pad-x); }
+    .section--cream { background: var(--cream); }
+    .section--white { background: var(--white); }
+    .section--navy { background: var(--navy-dark); }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.75rem;
+    }
+    .section-header .eyebrow { margin-bottom: 0.875rem; }
+    .section-header .section-heading { margin-bottom: 1.125rem; }
+    .section-header .gold-rule { margin: 0 auto 1.5rem; }
+    .section-header p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.82;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ─── SERVICES ──────────────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid #e4ddd0;
+      padding: 2.125rem 1.875rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2.5px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .service-card::after {
+      content: attr(data-number);
+      position: absolute;
+      bottom: 1.25rem; right: 1.5rem;
+      font-family: var(--ff-display);
+      font-size: 4.5rem;
+      font-weight: 300;
+      color: rgba(13,31,60,0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .service-card:hover {
+      border-color: rgba(201,168,76,0.35);
+      box-shadow: 0 12px 40px rgba(13,31,60,0.09);
+      transform: translateY(-4px);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 44px; height: 44px;
+      color: var(--gold);
+      margin-bottom: 1.375rem;
+    }
+    .service-card h3 {
+      font-size: 1.3125rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+    .service-card p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.75;
+    }
+
+    /* ─── ABOUT ─────────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: var(--navy);
+      overflow: hidden;
+    }
+    .about-visual-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      text-align: center;
+    }
+    .about-monogram {
+      font-family: var(--ff-display);
+      font-size: 7rem;
+      font-weight: 300;
+      color: rgba(201,168,76,0.1);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+    .about-divider-h {
+      width: 80%;
+      height: 1px;
+      background: rgba(201,168,76,0.22);
+      margin-bottom: 1.5rem;
+    }
+    .about-est {
+      font-family: var(--ff-body);
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+      margin-bottom: 2.5rem;
+    }
+    .about-quote {
+      font-family: var(--ff-display);
+      font-size: 1.375rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+      line-height: 1.55;
+      max-width: 240px;
+    }
+    /* Corner brackets */
+    .corner { position: absolute; width: 50px; height: 50px; }
+    .corner--tl { top: 0; left: 0; border-top: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
+    .corner--br { bottom: 0; right: 0; border-bottom: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
+
+    .about-content .eyebrow { margin-bottom: 0.875rem; }
+    .about-content .section-heading { margin-bottom: 0.5rem; }
+    .about-content .gold-rule { margin: 1.25rem 0 1.875rem; }
+    .about-content p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.88;
+      margin-bottom: 1.25rem;
+    }
+    .about-content p:last-of-type { margin-bottom: 2.125rem; }
+
+    /* ─── WHY CBB ────────────────────────────────────────────────── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    .why-card {
+      padding: 1.625rem 1.5rem;
+      border-left: 2px solid var(--gold);
+      background: rgba(255,255,255,0.5);
+      transition: background var(--transition), transform var(--transition);
+    }
+    .why-card:hover {
+      background: rgba(255,255,255,0.92);
+      transform: translateX(4px);
+    }
+    .why-card h3 {
+      font-size: 1.1875rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.625rem;
+    }
+    .why-card p {
+      font-size: 0.89rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.75;
+    }
+
+    /* ─── FAQ ───────────────────────────────────────────────────── */
+    .faq-list { max-width: 780px; margin: 0 auto; }
+    details {
+      border-bottom: 1px solid #e0dace;
+    }
+    details:first-of-type { border-top: 1px solid #e0dace; }
+    details summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      cursor: pointer;
+      list-style: none;
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--navy);
+      transition: color var(--transition);
+      gap: 1.25rem;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after {
+      content: '+';
+      font-family: var(--ff-body);
+      font-size: 1.375rem;
+      font-weight: 300;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform 0.3s ease, color 0.3s;
+    }
+    details[open] summary { color: var(--navy-mid); }
+    details[open] summary::after {
+      transform: rotate(45deg);
+      color: var(--gold-light);
+    }
+    .faq-answer {
+      padding: 0 0 1.625rem 0;
+      font-family: var(--ff-body);
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.82;
+    }
+
+    /* ─── LOCATION ──────────────────────────────────────────────── */
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 4.5rem;
+      align-items: start;
+    }
+    .map-wrap {
+      position: relative;
+      padding-bottom: 68%;
+      height: 0;
+      overflow: hidden;
+      border: 1px solid #e4ddd0;
+    }
+    .map-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .location-info h3 {
+      font-size: 1.625rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .location-info > p {
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.82;
+      margin-bottom: 1.875rem;
+    }
+    .areas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .area-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-mid);
+    }
+    .area-diamond {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .location-remote {
+      border-top: 1px solid #e0dace;
+      padding-top: 1.5rem;
+    }
+    .location-remote-label {
+      font-family: var(--ff-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      margin-bottom: 0.5rem;
+    }
+    .location-remote p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.75;
+    }
+
+    /* ─── CTA SECTION ────────────────────────────────────────────── */
+    #cta-section {
+      padding: 7.5rem var(--pad-x);
+      background: var(--navy-dark);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    #cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none;
+    }
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-inner .eyebrow { margin-bottom: 0.875rem; }
+    .cta-h2 {
+      font-size: clamp(2.125rem, 4vw, 3.375rem);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .cta-inner .gold-rule { margin: 1.25rem auto 1.75rem; }
+    .cta-inner p {
+      font-family: var(--ff-body);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-light);
+      line-height: 1.82;
+      margin-bottom: 2.75rem;
+    }
+    .cta-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.875rem;
+      justify-content: center;
+    }
+    .cta-phone {
+      font-family: var(--ff-display);
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+      display: block;
+      margin-top: 2rem;
+      transition: color var(--transition);
+    }
+    .cta-phone:hover { color: var(--white); }
+
+    /* ─── CONTACT ────────────────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.625fr;
+      gap: 5.5rem;
+      align-items: start;
+    }
+    .contact-info-block { margin-bottom: 2.125rem; }
+    .contact-label {
+      font-family: var(--ff-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .contact-value {
+      font-family: var(--ff-display);
+      font-size: 1.625rem;
+      font-weight: 400;
+      color: var(--navy);
+      transition: color var(--transition);
+    }
+    a.contact-value:hover { color: var(--gold); }
+    .contact-value--sm {
+      font-family: var(--ff-body);
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.75;
+    }
+    .contact-hours {
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.82;
+    }
+
+    /* Form */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.125rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.125rem; }
+    .form-group:last-child { margin-bottom: 0; }
+    label {
+      font-family: var(--ff-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 1px solid #d8d1c4;
+      background: var(--white);
+      font-family: var(--ff-body);
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--text);
+      outline: none;
+      transition: border-color var(--transition);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+    input::placeholder, textarea::placeholder { color: #b8b0a0; }
+    textarea { resize: vertical; min-height: 130px; }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a4862' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      cursor: pointer;
+    }
+    #form-success {
+      display: none;
+      padding: 1rem 1.25rem;
+      background: #eef8f3;
+      border: 1px solid #7ec4a0;
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #2a7050;
+      margin-top: 1rem;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--navy-dark);
+      padding: 4rem var(--pad-x) 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2.25fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand-name {
+      font-family: var(--ff-display);
+      font-size: 1.1875rem;
+      font-weight: 500;
+      color: var(--white);
+      letter-spacing: 0.03em;
+    }
+    .footer-brand-sub {
+      font-family: var(--ff-body);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-tagline {
+      font-family: var(--ff-body);
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.82;
+      max-width: 270px;
+      margin-top: 1.125rem;
+    }
+    .footer-phone {
+      color: var(--gold);
+      font-family: var(--ff-body);
+      font-size: 0.875rem;
+      font-weight: 400;
+      display: block;
+      margin-top: 1.25rem;
+      transition: color var(--transition);
+    }
+    .footer-phone:hover { color: var(--gold-light); }
+    .footer-col-label {
+      font-family: var(--ff-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.60);
+      margin-bottom: 1.25rem;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+    .footer-links a {
+      font-family: var(--ff-body);
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-copy {
+      font-family: var(--ff-body);
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.52);
+    }
+    .footer-legal {
+      display: flex;
+      gap: 1.75rem;
+    }
+    .footer-legal a {
+      font-family: var(--ff-body);
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.52);
+      transition: color var(--transition);
+    }
+    .footer-legal a:hover { color: rgba(255,255,255,0.8); }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────────────── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+    }
+    .d1  { animation-delay: 0.1s; }
+    .d2  { animation-delay: 0.25s; }
+    .d3  { animation-delay: 0.4s; }
+    .d4  { animation-delay: 0.55s; }
+    .d5  { animation-delay: 0.7s; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { aspect-ratio: 16/9; max-height: 320px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .location-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .trust-divider { display: none; }
+      .trust-item { padding: 0.5rem 1rem; }
+      .trust-inner { gap: 0.25rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+      .cta-btns { flex-direction: column; }
+      .cta-btns .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════ -->
+<nav id="navbar" class="transparent">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">CBB</div>
+      <div>
+        <div class="nav-logo-text-top">California Bespoke</div>
+        <div class="nav-logo-text-sub">Accounting</div>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#why-cbb" class="nav-link">Why CBB</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#location" class="nav-link">Location</a>
+      <a href="#contact" class="btn btn--gold">Book Appointment</a>
+    </div>
+
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#services"  class="mobile-nav-link" onclick="toggleMenu()">Services</a>
+  <a href="#about"     class="mobile-nav-link" onclick="toggleMenu()">About</a>
+  <a href="#why-cbb"   class="mobile-nav-link" onclick="toggleMenu()">Why CBB</a>
+  <a href="#faq"       class="mobile-nav-link" onclick="toggleMenu()">FAQ</a>
+  <a href="#location"  class="mobile-nav-link" onclick="toggleMenu()">Location</a>
+  <a href="#contact"   class="btn btn--gold" onclick="toggleMenu()" style="margin-top:1rem;">Book Appointment</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-watermark">CBB</div>
+
+  <!-- Decorative rings -->
+  <div class="hero-ring" style="width:600px;height:600px;bottom:-180px;right:-180px;"></div>
+  <div class="hero-ring" style="width:900px;height:900px;bottom:-320px;right:-320px;opacity:0.06;"></div>
+
+  <div class="container hero-content" style="padding-top:8rem;padding-bottom:5rem;">
+    <div style="max-width:660px;">
+      <div class="hero-eyebrow animate-in d1">
+        <span class="hero-eyebrow-line"></span>
+        <span class="eyebrow">Serving South Bay &amp; Greater Los Angeles Since 2007</span>
+      </div>
+      <h1 class="hero-h1 animate-in d2">
+        Big-Firm Expertise.<br>
+        <em>Built for Small Business.</em>
+      </h1>
+      <p class="hero-sub animate-in d3">
+        California Bespoke Accounting delivers institutional-grade bookkeeping, tax strategy, and CFO advisory — tailored precisely to the scale and ambitions of small businesses and nonprofits.
+      </p>
+      <div class="hero-ctas animate-in d4">
+        <a href="#contact" class="btn btn--gold">Book Free Consultation</a>
+        <a href="#services" class="btn btn--ghost">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     TRUST BAR
+════════════════════════════════════════════════════ -->
+<div id="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg class="trust-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      <span class="trust-text">Founded 2007</span>
+    </div>
+
+    <div class="trust-divider"></div>
+
+    <div class="trust-item">
+      <svg class="trust-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 12l2 2 4-4"/><path d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622C17.176 19.29 21 14.591 21 9a12.02 12.02 0 00-.382-3.016z"/>
+      </svg>
+      <span class="trust-text">Certified QuickBooks ProAdvisor</span>
+    </div>
+
+    <div class="trust-divider"></div>
+
+    <div class="trust-item">
+      <svg class="trust-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+      </svg>
+      <span class="trust-text">Private &amp; Non-Profit Clients</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════════════════ -->
+<section id="services" class="section section--cream">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">What We Do</div>
+      <h2 class="section-heading">Comprehensive Financial Services</h2>
+      <div class="gold-rule mx-auto"></div>
+      <p>From day-to-day bookkeeping to strategic financial planning — a full suite of services designed to give small businesses a decisive advantage.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Bookkeeping -->
+      <div class="service-card reveal" data-number="01">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/>
+        </svg>
+        <h3>Bookkeeping</h3>
+        <p>Accurate, timely financial records that give you a clear, confident picture of your business — month after month.</p>
+      </div>
+
+      <!-- Tax Services -->
+      <div class="service-card reveal" data-number="02" style="transition-delay:0.1s">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+        <h3>Tax Services</h3>
+        <p>Strategic tax planning and preparation to minimize liability and keep you fully compliant throughout the year.</p>
+      </div>
+
+      <!-- QuickBooks Consulting -->
+      <div class="service-card reveal" data-number="03" style="transition-delay:0.2s">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        <h3>QuickBooks Consulting</h3>
+        <p>Setup, training, and ongoing support from a Certified QuickBooks ProAdvisor — maximize your software investment.</p>
+      </div>
+
+      <!-- CFO Services -->
+      <div class="service-card reveal" data-number="04" style="transition-delay:0.05s">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+        <h3>CFO Services</h3>
+        <p>Fractional CFO advisory delivering the financial leadership and strategic insight that growing businesses need — at a fraction of the cost.</p>
+      </div>
+
+      <!-- Payroll -->
+      <div class="service-card reveal" data-number="05" style="transition-delay:0.15s">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <h3>Payroll</h3>
+        <p>Reliable, compliant payroll processing so your team gets paid accurately and on time — every time, without the administrative burden.</p>
+      </div>
+
+      <!-- Advisory -->
+      <div class="service-card reveal" data-number="06" style="transition-delay:0.25s">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+        </svg>
+        <h3>Advisory</h3>
+        <p>Financial consulting tailored to your growth goals, cash flow needs, and long-term vision — a true partner at the table.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     ABOUT / MISSION
+════════════════════════════════════════════════════ -->
+<section id="about" class="section section--white">
+  <div class="container">
+    <div class="about-grid">
+      <!-- Visual -->
+      <div class="reveal">
+        <div class="about-visual">
+          <div class="corner corner--tl"></div>
+          <div class="corner corner--br"></div>
+          <div class="about-visual-inner">
+            <div class="about-monogram">CBB</div>
+            <div class="about-divider-h"></div>
+            <div class="about-est">Est. 2007 · Hawthorne, CA</div>
+            <div class="about-quote">"Your financial partner, not just your bookkeeper."</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="about-content reveal" style="transition-delay:0.15s">
+        <div class="eyebrow">Our Mission</div>
+        <h2 class="section-heading">Small Businesses Deserve What Big Companies Have</h2>
+        <div class="gold-rule"></div>
+        <p>For too long, sophisticated financial management has been reserved for large corporations with deep pockets. At California Bespoke Accounting, we believe every small business owner deserves the same caliber of financial guidance — without the enterprise price tag.</p>
+        <p>Since 2007, we have built close, collaborative partnerships with business owners and nonprofit leaders across the South Bay and greater Los Angeles — bringing institutional rigor to enterprises of every size. We learn your business the way a true partner would.</p>
+        <a href="#contact" class="btn btn--navy">Book a Free Consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     WHY CHOOSE CBB
+════════════════════════════════════════════════════ -->
+<section id="why-cbb" class="section section--cream">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Why CBB</div>
+      <h2 class="section-heading">What Sets Us Apart</h2>
+      <div class="gold-rule mx-auto"></div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <h3>Bespoke Service</h3>
+        <p>No cookie-cutter packages. Every engagement is built around your specific business, industry, and goals.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.1s">
+        <h3>18+ Years of Experience</h3>
+        <p>Over 18 years serving South Bay businesses — we know California's complex tax landscape inside and out.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.2s">
+        <h3>Nonprofit Expertise</h3>
+        <p>We serve both private businesses and nonprofits, understanding the unique compliance and reporting requirements of each.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.05s">
+        <h3>QuickBooks Certified</h3>
+        <p>As a Certified QuickBooks ProAdvisor, we optimize your accounting software to work smarter, not harder.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.15s">
+        <h3>Proactive Communication</h3>
+        <p>We don't just process your numbers — we explain them. You'll always know exactly where your business stands.</p>
+      </div>
+      <div class="why-card reveal" style="transition-delay:0.25s">
+        <h3>Local &amp; Responsive</h3>
+        <p>Based in Hawthorne, we're your neighbors. Accessible, responsive, and invested in South Bay's success.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     FAQ
+════════════════════════════════════════════════════ -->
+<section id="faq" class="section section--white">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Questions</div>
+      <h2 class="section-heading">Frequently Asked Questions</h2>
+      <div class="gold-rule mx-auto"></div>
+    </div>
+
+    <div class="faq-list reveal">
+      <details open>
+        <summary>What types of businesses do you work with?</summary>
+        <div class="faq-answer">We work with a wide range of small and medium-sized businesses across diverse industries — retail shops, professional service firms, restaurants, contractors, healthcare providers — as well as 501(c)(3) nonprofit organizations. Whether you're a sole proprietor just starting out or an established business with 50+ employees, we tailor our services to fit your exact needs.</div>
+      </details>
+
+      <details>
+        <summary>How is California Bespoke different from a typical bookkeeper?</summary>
+        <div class="faq-answer">Most bookkeepers simply record transactions and hand you a spreadsheet. At California Bespoke, we act as your financial partner — proactively identifying opportunities to reduce taxes, improve cash flow, and strengthen financial controls. Our team brings CFO-level thinking to every engagement, giving you strategic insights alongside accurate books. We also specialize in QuickBooks optimization, so your systems work as hard as your team does.</div>
+      </details>
+
+      <details>
+        <summary>What does a free consultation include?</summary>
+        <div class="faq-answer">Your free consultation is a focused 30-minute conversation with our principal advisor — no sales pitch, no pressure. We'll review your current financial situation, understand your goals and pain points, and give you honest recommendations. If we're the right fit, we'll propose a custom engagement. If not, we'll point you in the right direction. Either way, you leave with valuable insights at no cost.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     LOCATION & AREAS SERVED
+════════════════════════════════════════════════════ -->
+<section id="location" class="section section--cream">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Where We Are</div>
+      <h2 class="section-heading">Serving South Bay &amp; Greater Los Angeles</h2>
+      <div class="gold-rule mx-auto"></div>
+    </div>
+
+    <div class="location-grid">
+      <div class="reveal">
+        <div class="map-wrap">
+          <iframe
+            src="https://maps.google.com/maps?q=Hawthorne,+CA+90250&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            allowfullscreen
+            loading="lazy"
+            title="California Bespoke Accounting — Hawthorne, CA">
+          </iframe>
+        </div>
+      </div>
+
+      <div class="location-info reveal" style="transition-delay:0.15s">
+        <h3>Based in Hawthorne, CA</h3>
+        <p>Our office is located in the heart of the South Bay, conveniently accessible to clients throughout Greater Los Angeles. We serve businesses in person and remotely across the region.</p>
+
+        <div class="areas-grid">
+          <div class="area-item"><div class="area-diamond"></div> Hawthorne</div>
+          <div class="area-item"><div class="area-diamond"></div> Torrance</div>
+          <div class="area-item"><div class="area-diamond"></div> El Segundo</div>
+          <div class="area-item"><div class="area-diamond"></div> Redondo Beach</div>
+          <div class="area-item"><div class="area-diamond"></div> Inglewood</div>
+          <div class="area-item"><div class="area-diamond"></div> Manhattan Beach</div>
+          <div class="area-item"><div class="area-diamond"></div> Gardena</div>
+          <div class="area-item"><div class="area-diamond"></div> Los Angeles</div>
+        </div>
+
+        <div class="location-remote">
+          <div class="location-remote-label">Remote Services Available</div>
+          <p>We serve clients statewide through secure remote bookkeeping, virtual CFO services, and cloud-based QuickBooks collaboration.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     CTA SECTION
+════════════════════════════════════════════════════ -->
+<section id="cta-section">
+  <div class="cta-inner reveal">
+    <div class="eyebrow">Get Started Today</div>
+    <h2 class="cta-h2">Book Your Free Consultation</h2>
+    <div class="gold-rule mx-auto"></div>
+    <p>Spend 30 minutes with our principal advisor. Walk away with a clear view of your financial health and a concrete roadmap — at absolutely no cost or obligation.</p>
+    <div class="cta-btns">
+      <a href="tel:3109854733" class="btn btn--gold">Call Now</a>
+      <a href="#contact" class="btn btn--ghost">Send a Message</a>
+    </div>
+    <a href="tel:3109854733" class="cta-phone">310-985-4733</a>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════════════ -->
+<section id="contact" class="section section--white">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Get In Touch</div>
+      <h2 class="section-heading">Contact Us</h2>
+      <div class="gold-rule mx-auto"></div>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Info -->
+      <div class="reveal">
+        <div class="contact-info-block">
+          <div class="contact-label">Phone</div>
+          <a href="tel:3109854733" class="contact-value">310-985-4733</a>
+        </div>
+        <div class="contact-info-block">
+          <div class="contact-label">Email</div>
+          <a href="mailto:info@cbbaccounting.com" class="contact-value" style="font-size:1.125rem;font-family:var(--ff-body);font-weight:400;">info@cbbaccounting.com</a>
+        </div>
+        <div class="contact-info-block">
+          <div class="contact-label">Location</div>
+          <div class="contact-value--sm">Hawthorne, CA 90250<br>South Bay, Los Angeles</div>
+        </div>
+        <div class="contact-info-block">
+          <div class="contact-label">Office Hours</div>
+          <div class="contact-hours">
+            Monday – Friday: 9:00am – 5:00pm<br>
+            Saturday: By Appointment<br>
+            Sunday: Closed
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="reveal" style="transition-delay:0.15s">
+        <form onsubmit="handleFormSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Jane" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Smith" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@yourcompany.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(310) 000-0000">
+          </div>
+          <div class="form-group">
+            <label for="service">Service Interest</label>
+            <select id="service" name="service">
+              <option value="">Select a service...</option>
+              <option>Bookkeeping</option>
+              <option>Tax Services</option>
+              <option>QuickBooks Consulting</option>
+              <option>CFO Services</option>
+              <option>Payroll</option>
+              <option>Advisory</option>
+              <option>Not sure — let's talk</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your business and what you're looking for..." required></textarea>
+          </div>
+          <div class="form-group" style="margin-bottom:0;">
+            <button type="submit" class="btn btn--navy" style="width:100%;justify-content:center;">Send Message</button>
+          </div>
+          <div id="form-success">
+            Thank you! We'll be in touch within one business day.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div>
+        <div style="display:flex;align-items:center;gap:0.875rem;margin-bottom:0;">
+          <div style="width:38px;height:38px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-weight:600;font-size:0.875rem;color:var(--navy-dark);letter-spacing:0.06em;flex-shrink:0;">CBB</div>
+          <div>
+            <div class="footer-brand-name">California Bespoke</div>
+            <div class="footer-brand-sub">Accounting</div>
+          </div>
+        </div>
+        <p class="footer-tagline">Big-firm expertise built for small business. Serving South Bay and Greater Los Angeles since 2007.</p>
+        <a href="tel:3109854733" class="footer-phone">310-985-4733</a>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <div class="footer-col-label">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Bookkeeping</a></li>
+          <li><a href="#services">Tax Services</a></li>
+          <li><a href="#services">QuickBooks Consulting</a></li>
+          <li><a href="#services">CFO Services</a></li>
+          <li><a href="#services">Payroll</a></li>
+          <li><a href="#services">Advisory</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <div class="footer-col-label">Company</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#why-cbb">Why CBB</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="footer-col-label">Contact</div>
+        <div style="font-family:var(--ff-body);font-size:0.875rem;font-weight:300;line-height:2;color:rgba(255,255,255,0.75);">
+          <div>Hawthorne, CA 90250</div>
+          <div><a href="tel:3109854733" style="color:rgba(255,255,255,0.75);transition:color 0.28s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">310-985-4733</a></div>
+          <div><a href="mailto:info@cbbaccounting.com" style="color:rgba(255,255,255,0.75);transition:color 0.28s;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='rgba(255,255,255,0.75)'">info@cbbaccounting.com</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 California Bespoke Bookkeeping LLC. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════════════ -->
+<script>
+  // ── Navbar scroll behavior ─────────────────────────
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 72) {
+      navbar.classList.remove('transparent');
+      navbar.classList.add('solid');
+    } else {
+      navbar.classList.remove('solid');
+      navbar.classList.add('transparent');
+    }
+  }, { passive: true });
+
+  // ── Mobile menu toggle ─────────────────────────────
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+    document.body.style.overflow =
+      document.getElementById('mobile-menu').classList.contains('open') ? 'hidden' : '';
+  }
+
+  // ── Scroll reveal ─────────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ── Contact form ───────────────────────────────────
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    document.getElementById('form-success').style.display = 'block';
+    e.target.reset();
+    e.target.querySelector('#form-success').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+</script>
+
+</body>
+</html>

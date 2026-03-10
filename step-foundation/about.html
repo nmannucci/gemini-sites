@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | STEP Foundation LA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a1f36;
+            --navy-light: #2d3555;
+            --orange: #ff6b35;
+            --orange-dark: #e55a28;
+            --cream: #fef9f3;
+            --cream-dark: #f5e6d3;
+            --gold: #ffc107;
+            --white: #ffffff;
+            --text-dark: #1a1f36;
+            --text-light: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0 2.5rem;
+            height: 72px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.75rem;
+            color: var(--navy);
+            text-decoration: none;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0.85rem;
+            border-radius: 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--navy);
+            background: rgba(26, 31, 54, 0.05);
+        }
+
+        .nav-phone {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            background: var(--orange);
+            padding: 0.55rem 1.25rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-phone:hover {
+            background: var(--orange-dark);
+            transform: translateY(-1px);
+        }
+
+        .nav-phone svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 5px;
+            background: none;
+            border: none;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 2.5px;
+            background: var(--navy);
+            transition: all 0.3s ease;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            padding: 10rem 0 5rem;
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 80% at 20% 40%, rgba(255, 107, 53, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 60% at 80% 70%, rgba(255, 193, 7, 0.08) 0%, transparent 50%);
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+
+        .page-hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--orange);
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .page-hero-label::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--orange);
+        }
+
+        .page-hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 7vw, 5rem);
+            color: var(--white);
+            line-height: 1;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-hero-title .highlight {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-hero-text {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        /* About Intro */
+        .about-intro {
+            padding: 7rem 0;
+            background: var(--white);
+            position: relative;
+        }
+
+        .about-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-intro-content {
+            position: relative;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--orange);
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--orange);
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--navy);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-text {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-text strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .about-intro-image {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(26, 31, 54, 0.12);
+        }
+
+        .about-intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 4/5;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        /* Values Section */
+        .values {
+            padding: 7rem 0;
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .values::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: var(--white);
+            border: 1px solid rgba(26, 31, 54, 0.06);
+            border-radius: 8px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--orange) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .value-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--orange), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 107, 53, 0.2);
+            box-shadow: 0 16px 40px rgba(26, 31, 54, 0.1);
+        }
+
+        .value-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .value-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--cream);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .value-card:hover .value-icon {
+            background: var(--orange);
+        }
+
+        .value-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--orange);
+            transition: fill 0.4s ease;
+        }
+
+        .value-card:hover .value-icon svg {
+            fill: var(--white);
+        }
+
+        .value-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            color: var(--navy);
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .value-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            position: relative;
+        }
+
+        /* Motto Banner */
+        .motto-banner {
+            padding: 5rem 0;
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .motto-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 100% at 30% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 80% at 70% 50%, rgba(255, 193, 7, 0.06) 0%, transparent 50%);
+        }
+
+        .motto-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.75rem, 4vw, 2.75rem);
+            color: var(--white);
+            letter-spacing: 2px;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.3;
+        }
+
+        .motto-text .accent {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Leadership Section */
+        .leadership {
+            padding: 7rem 0;
+            background: var(--white);
+            position: relative;
+        }
+
+        .leadership-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .leadership-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .leader-card {
+            background: var(--cream);
+            border: 1px solid rgba(26, 31, 54, 0.06);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .leader-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--orange), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(26, 31, 54, 0.1);
+        }
+
+        .leader-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .leader-avatar {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .leader-avatar .initials {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            color: rgba(255, 255, 255, 0.15);
+            letter-spacing: 4px;
+        }
+
+        .leader-body {
+            padding: 2rem;
+        }
+
+        .leader-role {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .leader-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--navy);
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .leader-quote {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--orange);
+        }
+
+        .leader-bio {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Nonprofit Banner */
+        .nonprofit-banner {
+            padding: 4rem 0;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .nonprofit-card {
+            background: var(--white);
+            border: 1px solid rgba(26, 31, 54, 0.06);
+            border-radius: 8px;
+            padding: 2.5rem 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 8px 30px rgba(26, 31, 54, 0.06);
+        }
+
+        .nonprofit-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--cream);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .nonprofit-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--gold);
+        }
+
+        .nonprofit-text {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        .nonprofit-text strong {
+            color: var(--navy);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 7rem 0;
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 50% 80% at 0% 50%, rgba(255, 107, 53, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse 40% 60% at 100% 60%, rgba(255, 193, 7, 0.08) 0%, transparent 50%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 6px;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-primary svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover svg {
+            transform: translateX(3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(180deg, #151831 0%, #0d0f1a 100%);
+            padding: 5rem 0 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.3), transparent);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand {
+            max-width: 320px;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.75rem;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo span {
+            color: var(--orange);
+        }
+
+        .footer-desc {
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-badge svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--gold);
+        }
+
+        .footer-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: var(--white);
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--orange);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--orange);
+            transform: translateX(4px);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-contact-item svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--orange);
+            flex-shrink: 0;
+        }
+
+        .footer-contact-item a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact-item a:hover {
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.85rem;
+        }
+
+        .footer-tagline {
+            color: var(--orange);
+            font-style: italic;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-intro-grid {
+                gap: 3rem;
+            }
+
+            .leadership-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-phone {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav {
+                padding: 0 1.25rem;
+            }
+
+            .page-hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .about-intro-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-intro-image {
+                max-width: 400px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nonprofit-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1.5rem;
+            }
+
+            .nonprofit-text {
+                text-align: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1.25rem;
+            }
+
+            .page-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">STEP<span>LA</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="#">Civic Duty</a></li>
+            <li><a href="#">STEP Sports</a></li>
+            <li><a href="#">Success Stories</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Sponsors</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <a href="tel:3235106897" class="nav-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            (323) 510-6897
+        </a>
+        <button class="mobile-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content animate-on-scroll">
+                <p class="page-hero-label">About Us</p>
+                <h1 class="page-hero-title">
+                    Preparation + Opportunity =
+                    <span class="highlight">Success</span>
+                </h1>
+                <p class="page-hero-text">
+                    The Strengthening The Empowerment Process Foundation is a federally recognized 501(c)(3) nonprofit organization created in 2015, founded by three African-American police officers to improve young people's lives.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Intro -->
+    <section class="about-intro">
+        <div class="container">
+            <div class="about-intro-grid">
+                <div class="about-intro-content">
+                    <p class="section-label animate-on-scroll">Who We Are</p>
+                    <h2 class="section-title animate-on-scroll">Founded to Make a Difference</h2>
+                    <p class="section-text animate-on-scroll">
+                        <strong>STEP Foundation</strong> was founded by three African-American police officers who saw a need in the community and decided to act. Our mission is to provide opportunities for financially challenged children to achieve their aspirations and realize their dreams.
+                    </p>
+                    <p class="section-text animate-on-scroll">
+                        We believe that <strong>experience is a great teacher</strong>, community is a great classroom, and life is a great school. STEP knows that nothing stays with a young person like the memories that come from applying lessons in real world situations and being involved in life changing circumstances that reveal positive results.
+                    </p>
+                    <p class="section-text animate-on-scroll">
+                        Our vision is to create <strong>quality, sustainable youth programs</strong> in underserved communities across Los Angeles, giving every young person the tools and mentorship they need to succeed.
+                    </p>
+                </div>
+                <div class="about-intro-image animate-on-scroll">
+                    <img src="assets/Step Found IMG 1.jpg" alt="STEP Foundation mentors and youth on the basketball court">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="values">
+        <div class="container">
+            <div class="values-header">
+                <p class="section-label animate-on-scroll">Our Core Values</p>
+                <h2 class="section-title animate-on-scroll">What Guides Us</h2>
+            </div>
+            <div class="values-grid">
+                <div class="value-card animate-on-scroll">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                    </div>
+                    <h3 class="value-title">Experience as Teacher</h3>
+                    <p class="value-text">Real-world experiences shape young minds. We create opportunities for youth to learn through hands-on involvement and meaningful challenges.</p>
+                </div>
+                <div class="value-card animate-on-scroll">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                    </div>
+                    <h3 class="value-title">Community as Classroom</h3>
+                    <p class="value-text">The neighborhood is where lessons come alive. We use community settings to teach teamwork, leadership, and civic responsibility.</p>
+                </div>
+                <div class="value-card animate-on-scroll">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    </div>
+                    <h3 class="value-title">Life as School</h3>
+                    <p class="value-text">Every moment is a chance to grow. We prepare youth for the real world with skills that extend far beyond the basketball court.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Motto Banner -->
+    <section class="motto-banner">
+        <div class="container">
+            <p class="motto-text animate-on-scroll">
+                College <span class="accent">"attendance"</span> is not a goal &mdash; college <span class="accent">"graduation"</span> is an expectation.
+            </p>
+        </div>
+    </section>
+
+    <!-- Leadership -->
+    <section class="leadership">
+        <div class="container">
+            <div class="leadership-header">
+                <p class="section-label animate-on-scroll">Our Leadership</p>
+                <h2 class="section-title animate-on-scroll">Meet the Founders</h2>
+                <p class="leadership-subtitle animate-on-scroll">Three dedicated leaders who turned their vision of community empowerment into action.</p>
+            </div>
+            <div class="leadership-grid">
+                <div class="leader-card animate-on-scroll">
+                    <div class="leader-avatar">
+                        <span class="initials">TF</span>
+                    </div>
+                    <div class="leader-body">
+                        <p class="leader-role">President</p>
+                        <h3 class="leader-name">Travis Fenderson, M.A.</h3>
+                        <p class="leader-quote">"People do more when someone else believes they can do more."</p>
+                        <p class="leader-bio">A husband, father, teacher, coach, and role model. Travis brings experience from high school and collegiate basketball, youth and community organizations, teaching, and a career in law enforcement.</p>
+                    </div>
+                </div>
+                <div class="leader-card animate-on-scroll">
+                    <div class="leader-avatar">
+                        <span class="initials">GM</span>
+                    </div>
+                    <div class="leader-body">
+                        <p class="leader-role">Vice President</p>
+                        <h3 class="leader-name">Geoffrey Meeks</h3>
+                        <p class="leader-quote">"The future is dependent upon the development of each community's future leaders."</p>
+                        <p class="leader-bio">A Los Angeles native, public school graduate, and college basketball scholarship recipient. Geoffrey is a husband, father, mentor, and leader with a career in law enforcement.</p>
+                    </div>
+                </div>
+                <div class="leader-card animate-on-scroll">
+                    <div class="leader-avatar">
+                        <span class="initials">JJ</span>
+                    </div>
+                    <div class="leader-body">
+                        <p class="leader-role">Secretary</p>
+                        <h3 class="leader-name">Jelani Janisse</h3>
+                        <p class="leader-quote">"The mentor-mentee relationship is a two way street &mdash; both lives develop one another."</p>
+                        <p class="leader-bio">Known as Coach "J," Jelani is a University of Kansas graduate, former youth counselor, father, husband, entrepreneur, and life coach specializing in personal development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nonprofit Banner -->
+    <section class="nonprofit-banner">
+        <div class="container">
+            <div class="nonprofit-card animate-on-scroll">
+                <div class="nonprofit-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </div>
+                <p class="nonprofit-text">
+                    <strong>STEP Foundation is a licensed 501(c)(3) organization</strong> recognized by both federal and state governments. All donations are tax deductible and proof of donation will be provided.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2 class="cta-title">Ready to Make a Difference?</h2>
+                <p class="cta-text">Whether you want to volunteer, mentor, donate, or enroll your child, we'd love to hear from you.</p>
+                <div class="cta-actions">
+                    <a href="index.html#contact" class="btn btn-primary">
+                        Get Involved
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="index.html" class="btn btn-secondary">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">STEP<span>LA</span></div>
+                    <p class="footer-desc">
+                        Mentor and provide opportunities for inner city youth to realize their dreams. Our goal is graduation, not mere attendance.
+                    </p>
+                    <div class="footer-badge">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                        </svg>
+                        501(c)(3) Nonprofit - All donations are tax-deductible
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">STEP Sports</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Programs</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Mentorship</a></li>
+                        <li><a href="#">Basketball</a></li>
+                        <li><a href="#">Community Service</a></li>
+                        <li><a href="#">Civic Duty</a></li>
+                        <li><a href="#">Sponsors</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Contact Us</h4>
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        <a href="tel:3235106897">(323) 510-6897</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <a href="mailto:contact@stepfoundationla.org">contact@stepfoundationla.org</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 STEP Foundation LA. All rights reserved.</p>
+                <p class="footer-tagline">"Graduation, not mere attendance"</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', () => {
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+            links.style.position = 'fixed';
+            links.style.top = '72px';
+            links.style.left = '0';
+            links.style.right = '0';
+            links.style.background = 'rgba(255,255,255,0.98)';
+            links.style.flexDirection = 'column';
+            links.style.padding = '1.5rem';
+            links.style.borderBottom = '1px solid rgba(0,0,0,0.06)';
+            links.style.zIndex = '999';
+        });
+    </script>
+</body>
+</html>

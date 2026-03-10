@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A&A Accounting | Tax Prep, Accounting & Payroll Services | Downey, CA</title>
+    <meta name="description" content="A&A Accounting in Downey, CA offers expert tax preparation, accounting, payroll, and FAFSA services. Over 20 years of experience serving individuals and businesses in the greater Los Angeles area.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,400;1,6..96,500;1,6..96,700&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #2A453B;
+            --green-light: #3A5F50;
+            --green-pale: #EEF3F0;
+            --white: #FFFFFF;
+            --black: #111111;
+            --text: #222222;
+            --text-mid: #555555;
+            --text-muted: #888888;
+            --border: #E0E0E0;
+            --border-dark: #CCCCCC;
+            --gold: #B8965A;
+            --gold-light: #D4B27A;
+            --serif: 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
+            --sans: 'Libre Franklin', 'Helvetica Neue', sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.7;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        .section-label {
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(30px, 4.5vw, 48px);
+            font-weight: 400;
+            color: var(--black);
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .section-title em {
+            font-style: italic;
+        }
+
+        .section-subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 480px;
+            line-height: 1.85;
+            font-weight: 300;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin: 24px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            height: 1px;
+            flex: 1;
+            max-width: 80px;
+            background: var(--border-dark);
+        }
+
+        .divider-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+
+        /* ═══════════════════════════════════════
+           NAVIGATION
+           ═══════════════════════════════════════ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .nav-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav.scrolled {
+            background: rgba(42, 69, 59, 0.97);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-logo span {
+            color: var(--gold-light);
+            font-style: italic;
+            font-weight: 400;
+            margin: 0 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--white); }
+
+        .nav-cta {
+            background: var(--white) !important;
+            color: var(--green) !important;
+            padding: 9px 22px !important;
+            font-weight: 700 !important;
+            transition: all 0.3s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-light) !important;
+            color: var(--black) !important;
+        }
+
+        .nav-mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .nav-mobile-toggle span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--white);
+        }
+
+        /* ═══════════════════════════════════════
+           HERO
+           ═══════════════════════════════════════ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                url('https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?w=1920&q=80&auto=format')
+                center center / cover no-repeat;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.65) 40%, rgba(0, 0, 0, 0.70) 100%);
+        }
+
+        .hero-frame {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 140px 56px 100px;
+            width: 100%;
+        }
+
+        .hero-text {
+            max-width: 620px;
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .hero-established {
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .hero-established::before {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: var(--gold-light);
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(40px, 6.5vw, 68px);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.08;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-light);
+        }
+
+        .hero-sub {
+            font-size: 16px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.9;
+            max-width: 460px;
+            margin-bottom: 40px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            color: var(--green);
+            padding: 15px 32px;
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            color: var(--black);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--white);
+            padding: 15px 32px;
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ─── Trust Bar ─── */
+        .trust-bar {
+            background: var(--green);
+            padding: 0;
+        }
+
+        .trust-bar-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .trust-bar-item {
+            padding: 28px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .trust-bar-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-bar-value {
+            font-family: var(--serif);
+            font-size: 26px;
+            font-weight: 500;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .trust-bar-label {
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            opacity: 0;
+            animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+        }
+
+        .hero-scroll-text {
+            font-family: var(--sans);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 32px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+            animation: scrollPulse 2.5s infinite;
+        }
+
+        /* ═══════════════════════════════════════
+           SERVICES
+           ═══════════════════════════════════════ */
+        .services {
+            padding: 110px 0;
+            background: var(--white);
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .services-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .service-card {
+            padding: 48px 36px;
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: default;
+            border: 1px solid var(--border);
+            margin: -0.5px;
+            background: var(--white);
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 36px;
+            right: 36px;
+            height: 2px;
+            background: var(--green);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::after { transform: scaleX(1); }
+
+        .service-card:hover {
+            background: var(--green);
+            border-color: var(--green);
+            z-index: 2;
+        }
+
+        .service-card:hover .service-icon { color: var(--gold-light); }
+        .service-card:hover .service-name { color: var(--white); }
+        .service-card:hover .service-desc { color: rgba(255, 255, 255, 0.5); }
+        .service-card:hover .service-link { color: var(--gold-light); }
+        .service-card:hover::after { background: var(--gold-light); }
+
+        .service-icon {
+            margin-bottom: 22px;
+            display: block;
+            color: var(--green);
+            transition: color 0.4s;
+        }
+
+        .service-name {
+            font-family: var(--serif);
+            font-size: 21px;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 10px;
+            transition: color 0.4s;
+        }
+
+        .service-desc {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            transition: color 0.4s;
+        }
+
+        .service-link {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--green);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .service-link svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover .service-link svg {
+            transform: translateX(4px);
+        }
+
+        /* ═══════════════════════════════════════
+           CREDENTIALS
+           ═══════════════════════════════════════ */
+        .credentials {
+            padding: 100px 0;
+            background: var(--green);
+            position: relative;
+        }
+
+        .credentials-inner {
+            position: relative;
+        }
+
+        .credentials .section-label { color: var(--gold-light); }
+
+        .credentials .section-title {
+            color: var(--white);
+            max-width: 540px;
+        }
+
+        .credentials .section-subtitle {
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 56px;
+        }
+
+        .cred-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .cred-card {
+            background: var(--green);
+            padding: 40px 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .cred-card:hover {
+            background: var(--green-light);
+        }
+
+        .cred-icon {
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .cred-value {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .cred-desc {
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.65;
+        }
+
+        /* ═══════════════════════════════════════
+           ABOUT
+           ═══════════════════════════════════════ */
+        .about {
+            padding: 110px 0;
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: center;
+        }
+
+        .about-visual-block {
+            background: var(--green);
+            padding: 52px 40px;
+            position: relative;
+        }
+
+        .about-visual-block::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            pointer-events: none;
+        }
+
+        .about-year {
+            font-family: var(--serif);
+            font-size: 130px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.04);
+            line-height: 1;
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            letter-spacing: -4px;
+        }
+
+        .about-visual-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-stat {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .about-stat:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .about-stat-number {
+            font-family: var(--serif);
+            font-size: 40px;
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.1;
+        }
+
+        .about-stat-text {
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 4px;
+        }
+
+        .about-text p {
+            margin-bottom: 18px;
+            font-size: 15px;
+            line-height: 1.9;
+            font-weight: 300;
+            color: var(--text-mid);
+        }
+
+        .about-text p:first-of-type::first-letter {
+            font-family: var(--serif);
+            font-size: 56px;
+            font-weight: 400;
+            color: var(--green);
+            float: left;
+            line-height: 1;
+            margin-right: 10px;
+            margin-top: 6px;
+        }
+
+        .about-signature {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-signature-name {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--black);
+            font-style: italic;
+        }
+
+        .about-signature-title {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ═══════════════════════════════════════
+           STEPS
+           ═══════════════════════════════════════ */
+        .steps {
+            padding: 110px 0;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+
+        .steps-header {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+
+        .steps-header .section-subtitle {
+            margin: 0 auto;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 0 36px;
+            position: relative;
+        }
+
+        .step-card:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 28px;
+            right: 0;
+            width: 1px;
+            height: 56px;
+            background: var(--border);
+        }
+
+        .step-number {
+            font-family: var(--serif);
+            font-size: 52px;
+            font-weight: 400;
+            color: var(--green);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .step-roman {
+            font-family: var(--sans);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 22px;
+            display: block;
+        }
+
+        .step-title {
+            font-family: var(--serif);
+            font-size: 21px;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 12px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 260px;
+            margin: 0 auto;
+        }
+
+        /* ═══════════════════════════════════════
+           AREAS
+           ═══════════════════════════════════════ */
+        .areas {
+            padding: 110px 0;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        .areas-map {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            aspect-ratio: 4/3;
+        }
+
+        .areas-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .areas-list p {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--text-mid);
+            line-height: 1.9;
+            margin-bottom: 24px;
+        }
+
+        .area-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .area-tag {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+
+        .area-tag:hover {
+            background: var(--green);
+            border-color: var(--green);
+            color: var(--white);
+        }
+
+        .areas-address {
+            background: var(--white);
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .areas-address-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 8px;
+        }
+
+        .areas-address p {
+            font-size: 14px;
+            color: var(--text-mid);
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* ═══════════════════════════════════════
+           FAQ
+           ═══════════════════════════════════════ */
+        .faq {
+            padding: 110px 0;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 72px;
+        }
+
+        .faq-sidebar {
+            position: sticky;
+            top: 110px;
+            align-self: start;
+        }
+
+        .faq-items {
+            list-style: none;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 22px 0;
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--black);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover { color: var(--green); }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .faq-toggle svg {
+            width: 14px;
+            height: 14px;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+
+        .faq-item.open .faq-toggle svg {
+            color: var(--green);
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .faq-answer-inner {
+            padding: 0 0 22px;
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.9;
+        }
+
+        /* ═══════════════════════════════════════
+           CTA / CONTACT
+           ═══════════════════════════════════════ */
+        .cta {
+            padding: 110px 0;
+            background: var(--green);
+            position: relative;
+        }
+
+        .cta-frame {
+            position: absolute;
+            inset: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            pointer-events: none;
+        }
+
+        .cta-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 580px;
+            margin: 0 auto 64px;
+        }
+
+        .cta .section-label { color: var(--gold-light); }
+
+        .cta .section-title { color: var(--white); }
+        .cta .section-title em { color: var(--gold-light); }
+
+        .cta .section-subtitle {
+            color: rgba(255, 255, 255, 0.45);
+            margin: 0 auto 36px;
+            text-align: center;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta .btn-primary {
+            background: var(--white);
+            color: var(--green);
+        }
+
+        .cta .btn-primary:hover {
+            background: var(--gold-light);
+            color: var(--black);
+        }
+
+        .cta .btn-secondary {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .cta .btn-secondary:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .cta-cards {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .cta-card {
+            background: var(--green);
+            padding: 32px 24px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .cta-card:hover { background: var(--green-light); }
+
+        .cta-card-icon { margin-bottom: 14px; }
+
+        .cta-card-title {
+            font-family: var(--sans);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+
+        .cta-card-value {
+            font-size: 14px;
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        .cta-card-value a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .cta-card-value a:hover { color: var(--gold-light); }
+
+        .cta-hours {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .cta-hours-title {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 14px;
+        }
+
+        .cta-hours-grid {
+            display: inline-grid;
+            grid-template-columns: auto auto;
+            gap: 4px 28px;
+            text-align: left;
+        }
+
+        .cta-hours-day {
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .cta-hours-time {
+            font-size: 13px;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════ */
+        .footer {
+            background: var(--black);
+            padding: 56px 0 28px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr auto;
+            gap: 56px;
+            margin-bottom: 44px;
+        }
+
+        .footer-logo {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .footer-logo span {
+            color: var(--gold-light);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.3);
+            line-height: 1.8;
+            margin-top: 14px;
+        }
+
+        .footer-links-section h4,
+        .footer-contact-section h4 {
+            font-family: var(--sans);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 18px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 36px;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--white); }
+
+        .footer-contact-section p,
+        .footer-contact-section a {
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+        }
+
+        .footer-contact-section a:hover { color: var(--white); }
+
+        .footer-bottom {
+            padding-top: 28px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover { color: rgba(255, 255, 255, 0.5); }
+
+        /* ═══════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════ */
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .hero-content { padding: 130px 40px 90px; }
+            .trust-bar-inner { grid-template-columns: repeat(2, 1fr); }
+            .about-grid { grid-template-columns: 1fr; gap: 44px; }
+            .cred-grid { grid-template-columns: repeat(2, 1fr); }
+            .faq-layout { grid-template-columns: 1fr; gap: 36px; }
+            .faq-sidebar { position: static; }
+            .areas-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-mobile-toggle { display: flex; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: rgba(42, 69, 59, 0.97);
+                padding: 20px 28px;
+                gap: 14px;
+            }
+            .hero-content { padding: 110px 28px 70px; }
+            .hero-frame { display: none; }
+            .services-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr; gap: 44px; }
+            .step-card:not(:last-child)::after { display: none; }
+            .cred-grid { grid-template-columns: 1fr; }
+            .cta-cards { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 36px; }
+            .hero-actions { flex-direction: column; align-items: flex-start; }
+            .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">A<span>&</span>A</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#steps">Process</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact" class="nav-cta">Get Started</a></li>
+            </ul>
+            <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-frame"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-established">
+                    <span>Est. 2007 &mdash; Downey, California</span>
+                </div>
+                <h1>Keep More of<br>What You <em>Earn</em></h1>
+                <p class="hero-sub">Stop leaving money on the table. A&A Accounting finds every deduction, maximizes every refund, and handles the financial complexity — so you can focus on building your life and business.</p>
+                <div class="hero-actions">
+                    <a href="tel:5629041210" class="btn-primary">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Call (562) 904-1210
+                    </a>
+                    <a href="#services" class="btn-secondary">Our Services</a>
+                </div>
+            </div>
+        </div>
+        <a href="#services" class="hero-scroll">
+            <span class="hero-scroll-text">Scroll</span>
+            <div class="hero-scroll-line"></div>
+        </a>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <div class="trust-bar-inner">
+            <div class="trust-bar-item">
+                <div class="trust-bar-value">20+</div>
+                <div class="trust-bar-label">Years Experience</div>
+            </div>
+            <div class="trust-bar-item">
+                <div class="trust-bar-value">5-Star</div>
+                <div class="trust-bar-label">Yelp Rating</div>
+            </div>
+            <div class="trust-bar-item">
+                <div class="trust-bar-value">Free</div>
+                <div class="trust-bar-label">E-File Included</div>
+            </div>
+            <div class="trust-bar-item">
+                <div class="trust-bar-value">Est. 2007</div>
+                <div class="trust-bar-label">Downey, CA</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-header reveal">
+                <div class="section-label">Our Services</div>
+                <h2 class="section-title">Financial Services <em>Tailored to You</em></h2>
+                <div class="divider"><div class="divider-dot"></div></div>
+                <p class="section-subtitle">From individual tax returns to corporate accounting, we bring precision and care to every engagement.</p>
+            </div>
+            <div class="services-grid reveal">
+                <div class="service-card">
+                    <span class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    </span>
+                    <h3 class="service-name">Tax Preparation</h3>
+                    <p class="service-desc">Personal and business tax filing with free e-file. We maximize your refund and ensure full compliance — fast.</p>
+                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </span>
+                    <h3 class="service-name">Accounting</h3>
+                    <p class="service-desc">Financial statements, AR/AP, cash management, and strategic financial planning for businesses of all sizes.</p>
+                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </span>
+                    <h3 class="service-name">Payroll</h3>
+                    <p class="service-desc">Full payroll processing and management. Accurate, on-time, every time — so your team always gets paid right.</p>
+                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 12 3 12 0v-5"></path></svg>
+                    </span>
+                    <h3 class="service-name">FAFSA Assistance</h3>
+                    <p class="service-desc">Navigate the financial aid process with expert guidance. We help families access the education funding they deserve.</p>
+                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </span>
+                    <h3 class="service-name">Business Setup</h3>
+                    <p class="service-desc">Starting a business? We handle entity formation, structure planning, and financial foundations to launch you right.</p>
+                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    </span>
+                    <h3 class="service-name">Bookkeeping</h3>
+                    <p class="service-desc">Clean, organized financial records maintained consistently. Know exactly where your money goes, every month.</p>
+                    <a href="#contact" class="service-link">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credentials -->
+    <section class="credentials">
+        <div class="container credentials-inner">
+            <div class="reveal">
+                <div class="section-label">Credentials</div>
+                <h2 class="section-title">Enterprise Experience, <em>Personal Touch</em></h2>
+                <p class="section-subtitle">Our founder managed million-dollar budgets for Hollywood's biggest studios. Now that expertise works for you.</p>
+            </div>
+            <div class="cred-grid reveal">
+                <div class="cred-card">
+                    <span class="cred-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4B27A" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 12 3 12 0v-5"></path></svg>
+                    </span>
+                    <div class="cred-value">MBA</div>
+                    <p class="cred-desc">Master of Business Administration in Accounting from Woodbury University</p>
+                </div>
+                <div class="cred-card">
+                    <span class="cred-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4B27A" stroke-width="1.5"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                    </span>
+                    <div class="cred-value">20+</div>
+                    <p class="cred-desc">Years of hands-on experience in financial accounting and tax preparation</p>
+                </div>
+                <div class="cred-card">
+                    <span class="cred-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4B27A" stroke-width="1.5"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+                    </span>
+                    <div class="cred-value">Disney</div>
+                    <p class="cred-desc">Former financial accountant at The Walt Disney Company</p>
+                </div>
+                <div class="cred-card">
+                    <span class="cred-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4B27A" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </span>
+                    <div class="cred-value">Lionsgate</div>
+                    <p class="cred-desc">Managed million-dollar budgets at Lionsgate Entertainment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-visual-block reveal">
+                    <div class="about-year">2007</div>
+                    <div class="about-visual-content">
+                        <div class="about-stat">
+                            <div class="about-stat-number">18+</div>
+                            <div class="about-stat-text">Years serving the Downey and greater LA community</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="about-stat-number">5-Star</div>
+                            <div class="about-stat-text">Rated on Yelp — clients call our service "impeccable"</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="about-stat-number">All Sizes</div>
+                            <div class="about-stat-text">From individual filers to large corporations</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text reveal">
+                    <div class="section-label">Our Story</div>
+                    <h2 class="section-title">Built on Trust, <em>Driven by Results</em></h2>
+                    <p>Founded in 2007, A&A Accounting was born from a simple belief: every individual and business deserves the same caliber of financial expertise that Fortune 500 companies enjoy. Our founder, Hrant Bedikian, brought years of corporate experience at Disney and Lionsgate to the streets of Downey — making elite financial services accessible to the community.</p>
+                    <p>Today, we serve clients ranging from first-time tax filers to established corporations across the greater Los Angeles area. Our approach is personal: we take the time to understand your financial picture, identify every opportunity, and deliver results that make a tangible difference in your bottom line.</p>
+                    <p>Our clients stay with us year after year because we treat their finances with the same care and precision we'd give our own. That's not just a philosophy — it's our promise.</p>
+                    <div class="about-signature">
+                        <div class="about-signature-name">Hrant Bedikian</div>
+                        <div class="about-signature-title">Founder & Principal Accountant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steps -->
+    <section class="steps" id="steps">
+        <div class="container">
+            <div class="steps-header reveal">
+                <div class="section-label">How It Works</div>
+                <h2 class="section-title">Three Steps to <em>Financial Clarity</em></h2>
+                <div class="divider"><div class="divider-dot"></div></div>
+                <p class="section-subtitle">Getting started is simple. We've streamlined our process so you can go from overwhelmed to organized with ease.</p>
+            </div>
+            <div class="steps-grid reveal">
+                <div class="step-card">
+                    <div class="step-number">I</div>
+                    <span class="step-roman">Step One</span>
+                    <h3 class="step-title">Book a Consultation</h3>
+                    <p class="step-desc">Call us or stop by our Downey office. We'll discuss your needs and determine the best services for your situation.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">II</div>
+                    <span class="step-roman">Step Two</span>
+                    <h3 class="step-title">Gather & Review</h3>
+                    <p class="step-desc">Bring your documents and we'll handle the rest. Our team reviews everything thoroughly, finding every opportunity.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">III</div>
+                    <span class="step-roman">Step Three</span>
+                    <h3 class="step-title">Relax & Get Paid</h3>
+                    <p class="step-desc">We file, optimize, and deliver. Whether it's a maximum refund or clean financials — you'll have total peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Areas Served -->
+    <section class="areas" id="areas">
+        <div class="container">
+            <div class="areas-grid">
+                <div class="reveal">
+                    <div class="section-label">Service Area</div>
+                    <h2 class="section-title">Proudly Serving <em>Greater Los Angeles</em></h2>
+                    <div class="areas-list">
+                        <p>Located in the heart of Downey, we serve individuals and businesses throughout the greater Los Angeles area and beyond. Walk-ins welcome during business hours.</p>
+                        <div class="area-tags">
+                            <span class="area-tag">Downey</span>
+                            <span class="area-tag">Norwalk</span>
+                            <span class="area-tag">Bellflower</span>
+                            <span class="area-tag">Paramount</span>
+                            <span class="area-tag">South Gate</span>
+                            <span class="area-tag">Whittier</span>
+                            <span class="area-tag">Lakewood</span>
+                            <span class="area-tag">Cerritos</span>
+                            <span class="area-tag">Pico Rivera</span>
+                            <span class="area-tag">Long Beach</span>
+                            <span class="area-tag">East LA</span>
+                            <span class="area-tag">Greater LA</span>
+                        </div>
+                        <div class="areas-address">
+                            <div class="areas-address-label">Our Office</div>
+                            <p>8141 2nd Street, Suite 215<br>Downey, CA 90241</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="areas-map reveal">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3316.8!2d-118.1317!3d33.9425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2cee13db1a895%3A0xf6f2c2f2fbf8c946!2s8141+2nd+St%2C+Downey%2C+CA+90241!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="A&A Accounting Office Location"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="faq-layout">
+                <div class="faq-sidebar reveal">
+                    <div class="section-label">FAQ</div>
+                    <h2 class="section-title">Questions? <em>We've Got Answers</em></h2>
+                    <p class="section-subtitle">Can't find what you're looking for? Give us a call at <strong>(562) 904-1210</strong> and we'll be happy to help.</p>
+                </div>
+                <ul class="faq-items reveal">
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            What documents do I need to bring for tax preparation?
+                            <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Bring your W-2s, 1099s, prior year tax returns, photo ID, Social Security cards, and any receipts for deductions. If you're a business owner, bring profit & loss statements and expense records. Don't worry if you're unsure — we'll walk you through everything during your consultation.</div></div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Do you handle both personal and business taxes?
+                            <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Yes. We prepare tax returns for individuals, sole proprietors, small and medium businesses, and large corporations. Whether you have a simple W-2 return or a complex multi-entity business filing, we have the experience to handle it.</div></div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Is e-filing included with your tax preparation service?
+                            <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Absolutely. Free e-filing is included with every tax preparation service. E-filing ensures your return is processed faster by the IRS, which means you'll receive your refund sooner.</div></div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Can you help with FAFSA applications?
+                            <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Yes, we offer FAFSA assistance to help families navigate the financial aid application process. We'll make sure your financial information is accurately represented to help maximize the aid your student qualifies for.</div></div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How often will I receive payroll reports?
+                            <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">We provide payroll reports on your preferred schedule — weekly, bi-weekly, or monthly. Our payroll service includes processing, tax withholding, and compliance reporting so you never miss a deadline.</div></div>
+                    </li>
+                    <li class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Do I need an appointment or do you accept walk-ins?
+                            <span class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">We welcome both appointments and walk-ins during our business hours. However, we recommend scheduling an appointment — especially during tax season — so we can give you our full, undivided attention.</div></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Contact -->
+    <section class="cta" id="contact">
+        <div class="cta-frame"></div>
+        <div class="container">
+            <div class="cta-inner reveal">
+                <div class="section-label">Get Started Today</div>
+                <h2 class="section-title">Ready to Take Control of Your <em>Finances?</em></h2>
+                <p class="section-subtitle">Whether you need tax prep, payroll, or full accounting support — we're here to help. Reach out today and let's get started.</p>
+                <div class="cta-actions">
+                    <a href="tel:5629041210" class="btn-primary">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Call Now
+                    </a>
+                    <a href="mailto:hbedikian@a2accounting.com" class="btn-secondary">Email Us</a>
+                </div>
+            </div>
+            <div class="cta-cards reveal">
+                <div class="cta-card">
+                    <div class="cta-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4B27A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <div class="cta-card-title">Telephone</div>
+                    <div class="cta-card-value"><a href="tel:5629041210">(562) 904-1210</a></div>
+                </div>
+                <div class="cta-card">
+                    <div class="cta-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4B27A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <div class="cta-card-title">Correspondence</div>
+                    <div class="cta-card-value"><a href="mailto:hbedikian@a2accounting.com">hbedikian@a2accounting.com</a></div>
+                </div>
+                <div class="cta-card">
+                    <div class="cta-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4B27A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="cta-card-title">Our Office</div>
+                    <div class="cta-card-value">8141 2nd St, Suite 215<br>Downey, CA 90241</div>
+                </div>
+            </div>
+            <div class="cta-hours reveal">
+                <div class="cta-hours-title">Business Hours</div>
+                <div class="cta-hours-grid">
+                    <span class="cta-hours-day">Monday – Thursday</span>
+                    <span class="cta-hours-time">9:00 AM – 6:00 PM</span>
+                    <span class="cta-hours-day">Friday</span>
+                    <span class="cta-hours-time">9:00 AM – 2:00 PM</span>
+                    <span class="cta-hours-day">Saturday – Sunday</span>
+                    <span class="cta-hours-time">Closed</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">A<span>&</span>A</a>
+                    <p>A trusted financial accounting services firm serving individuals and businesses in the greater Los Angeles area since 2007.</p>
+                </div>
+                <div class="footer-links-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services">Tax Preparation</a></li>
+                        <li><a href="#services">Accounting</a></li>
+                        <li><a href="#services">Payroll</a></li>
+                        <li><a href="#services">FAFSA</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#steps">How It Works</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact-section">
+                    <h4>Contact</h4>
+                    <a href="tel:5629041210">(562) 904-1210</a>
+                    <a href="mailto:hbedikian@a2accounting.com">hbedikian@a2accounting.com</a>
+                    <p>8141 2nd St, Suite 215<br>Downey, CA 90241</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copy">&copy; 2025 A&A Accounting. All rights reserved.</div>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        mobileToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('open'));
+        });
+
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const answer = item.querySelector('.faq-answer');
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('open');
+                    i.querySelector('.faq-answer').style.maxHeight = null;
+                    i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+                if (!isOpen) {
+                    item.classList.add('open');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+
+</body>
+</html>

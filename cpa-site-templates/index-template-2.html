@@ -1,0 +1,1628 @@
+<!--
+  ============================================================================
+  BUSINESS WEBSITE TEMPLATE — Configuration Guide
+  ============================================================================
+
+  Replace ALL {{PLACEHOLDER}} variables below with your business information.
+  Search for "{{" to find every placeholder in this file.
+
+  ─── BUSINESS IDENTITY ───
+  {{BUSINESS_NAME}}          Full business name (e.g. "Acme Bookkeeping")
+  {{BUSINESS_SHORT_NAME}}    Short/brand name (e.g. "Acme")
+  {{BUSINESS_INITIAL}}       Single letter for logo (e.g. "A")
+  {{BUSINESS_URL}}           Website URL (e.g. "https://acmebookkeeping.com")
+  {{BUSINESS_TAGLINE}}       Tagline / slogan
+  {{BUSINESS_DESCRIPTION}}   Meta description for SEO
+
+  ─── CONTACT INFO ───
+  {{BUSINESS_PHONE}}         Display phone (e.g. "(555) 123-4567")
+  {{BUSINESS_PHONE_TEL}}     Tel link phone (e.g. "+15551234567")
+  {{BUSINESS_EMAIL}}         Contact email address
+
+  ─── LOCATION ───
+  {{BUSINESS_ADDRESS}}       Street address (e.g. "123 Main St, Suite 100")
+  {{BUSINESS_CITY}}          City name
+  {{BUSINESS_STATE}}         State abbreviation (e.g. "CA")
+  {{BUSINESS_ZIP}}           ZIP / postal code
+  {{GEO_LATITUDE}}           Latitude coordinate
+  {{GEO_LONGITUDE}}          Longitude coordinate
+
+  ─── HISTORY ───
+  {{BUSINESS_FOUNDED_YEAR}}  Year founded (e.g. "2023")
+  {{BUSINESS_FOUNDED_DATE}}  Founded date for schema (e.g. "2023-05")
+  {{YEARS_IN_BUSINESS}}      Years in business display (e.g. "2+")
+  {{CURRENT_YEAR}}           Current copyright year
+
+  ─── TEAM & STATS ───
+  {{TEAM_SIZE}}              Number of team members (e.g. "13")
+  {{NUM_CITIES}}             Number of cities served (e.g. "6")
+  {{BBB_RATING}}             BBB rating letter (e.g. "A")
+  {{STAR_RATING}}            Star rating (e.g. "5.0")
+  {{REVIEW_COUNT}}           Number of reviews (e.g. "20")
+  {{OPERATING_DAYS}}         Operating days display (e.g. "Mon – Sat")
+  {{OPERATING_DAYS_SHORT}}   Short days display (e.g. "6d")
+  {{OPERATING_HOURS}}        Operating hours (e.g. "8:00 AM – 8:00 PM")
+  {{OPERATING_HOURS_OPEN}}   Schema open time (e.g. "08:00")
+  {{OPERATING_HOURS_CLOSE}}  Schema close time (e.g. "20:00")
+  {{OPERATING_DAYS_ARRAY}}   Schema days array (e.g. ["Monday","Tuesday",...])
+
+  ─── MEDIA ───
+  {{HERO_IMAGE_URL}}         Hero background image URL
+  {{HERO_IMAGE_ALT}}         Alt text for hero image
+  {{VIDEO_URL}}              YouTube embed URL
+  {{MAP_EMBED_URL}}          Google Maps embed URL
+
+  ─── SOCIAL & REVIEWS ───
+  {{FACEBOOK_URL}}           Facebook page URL
+  {{LINKEDIN_URL}}           LinkedIn company URL
+  {{PINTEREST_URL}}          Pinterest profile URL
+  {{GOOGLE_REVIEWS_URL}}     Google Reviews / Maps link
+
+  ─── CUSTOMIZABLE SECTIONS ───
+  Search for "CUSTOMIZE:" comments to find repeating content blocks
+  that need business-specific text:
+    - Services (6 items)
+    - Industries (8 items)
+    - Credential cards (6 items)
+    - Reviews (3 items)
+    - FAQ (8 items — both JS array and JSON-LD)
+    - Pricing tiers (3 tiers)
+    - Deliverables (6 items)
+    - Cities served
+    - Integrations (6 items)
+    - E-E-A-T section (4 pillars + prose)
+    - About section paragraphs
+    - Stats strip (4 stats)
+    - Ticker keywords
+  ============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{BUSINESS_NAME}} — Bookkeeping, Payroll &amp; Tax Support | {{BUSINESS_CITY}}</title>
+  <meta name="description" content="{{BUSINESS_DESCRIPTION}}">
+
+  <!-- E-E-A-T: Structured Data for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AccountingService",
+    "name": "{{BUSINESS_NAME}}",
+    "alternateName": "{{BUSINESS_SHORT_NAME}}",
+    "url": "{{BUSINESS_URL}}",
+    "logo": "{{BUSINESS_URL}}/logo.png",
+    "image": "{{BUSINESS_URL}}/office.jpg",
+    "description": "{{BUSINESS_DESCRIPTION}}",
+    "foundingDate": "{{BUSINESS_FOUNDED_DATE}}",
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "value": {{TEAM_SIZE}}
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{BUSINESS_ADDRESS}}",
+      "addressLocality": "{{BUSINESS_CITY}}",
+      "addressRegion": "{{BUSINESS_STATE}}",
+      "postalCode": "{{BUSINESS_ZIP}}",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": {{GEO_LATITUDE}},
+      "longitude": {{GEO_LONGITUDE}}
+    },
+    "telephone": "{{BUSINESS_PHONE_TEL}}",
+    "email": "{{BUSINESS_EMAIL}}",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": {{OPERATING_DAYS_ARRAY}},
+        "opens": "{{OPERATING_HOURS_OPEN}}",
+        "closes": "{{OPERATING_HOURS_CLOSE}}"
+      }
+    ],
+    "areaServed": [
+      <!-- CUSTOMIZE: Areas served — add/remove cities as needed -->
+      { "@type": "City", "name": "City 1", "containedInPlace": { "@type": "State", "name": "State Name" } },
+      { "@type": "City", "name": "City 2" },
+      { "@type": "City", "name": "City 3" },
+      { "@type": "City", "name": "City 4" },
+      { "@type": "City", "name": "City 5" },
+      { "@type": "City", "name": "City 6" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Bookkeeping & Financial Services",
+      "itemListElement": [
+        <!-- CUSTOMIZE: Service catalog — update names and descriptions -->
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Service 1 Name", "description": "Service 1 description for structured data." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Service 2 Name", "description": "Service 2 description for structured data." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Service 3 Name", "description": "Service 3 description for structured data." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Service 4 Name", "description": "Service 4 description for structured data." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Service 5 Name", "description": "Service 5 description for structured data." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Service 6 Name", "description": "Service 6 description for structured data." } }
+      ]
+    },
+    "sameAs": [
+      "{{FACEBOOK_URL}}",
+      "{{LINKEDIN_URL}}",
+      "{{PINTEREST_URL}}"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "{{STAR_RATING}}",
+      "reviewCount": "{{REVIEW_COUNT}}",
+      "bestRating": "5"
+    },
+    "review": [
+      <!-- CUSTOMIZE: Schema reviews — update with real client reviews -->
+      {
+        "@type": "Review",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Client Name" },
+        "reviewBody": "Placeholder review text. Replace with an actual client testimonial."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Client Name" },
+        "reviewBody": "Placeholder review text. Replace with an actual client testimonial."
+      }
+    ],
+    "knowsAbout": ["Bookkeeping", "Payroll Processing", "Tax Preparation", "QuickBooks", "Small Business Accounting", "Financial Reporting"],
+    "slogan": "{{BUSINESS_TAGLINE}}",
+    "priceRange": "$$"
+  }
+  </script>
+
+  <!-- E-E-A-T: FAQ Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      <!-- CUSTOMIZE: FAQ structured data — must match the JS FAQ array below -->
+      { "@type": "Question", "name": "What bookkeeping services do you offer?", "acceptedAnswer": { "@type": "Answer", "text": "Describe your bookkeeping services here. Include details about reconciliation, reporting, and platforms supported." } },
+      { "@type": "Question", "name": "How fast can you clean up messy books?", "acceptedAnswer": { "@type": "Answer", "text": "Describe your book cleanup timeline and process." } },
+      { "@type": "Question", "name": "Do you handle payroll processing?", "acceptedAnswer": { "@type": "Answer", "text": "Describe your payroll processing capabilities, platforms, and filing support." } },
+      { "@type": "Question", "name": "Do you offer free tax return preparation?", "acceptedAnswer": { "@type": "Answer", "text": "Describe your tax preparation offerings and any complimentary services for existing clients." } },
+      { "@type": "Question", "name": "What areas do you serve?", "acceptedAnswer": { "@type": "Answer", "text": "Describe the cities and regions you serve, and whether you offer remote services." } },
+      { "@type": "Question", "name": "What is Virtual CFO advisory?", "acceptedAnswer": { "@type": "Answer", "text": "Describe your Virtual CFO service including what is covered in each session." } },
+      { "@type": "Question", "name": "What are your hours of operation?", "acceptedAnswer": { "@type": "Answer", "text": "State your operating hours and days of the week." } },
+      { "@type": "Question", "name": "How do I get started?", "acceptedAnswer": { "@type": "Answer", "text": "Describe how new clients can get started — phone, email, or contact form." } }
+    ]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'canvas': '#f5f4f0',
+            'paper': '#ffffff',
+            'ink': '#111111',
+            'ink-2': '#555555',
+            'ink-3': '#999999',
+            'ink-4': '#cccccc',
+            'rule': 'rgba(0,0,0,0.1)',
+            'accent': '#2b7fff',
+            'accent-hover': '#1a6de8',
+          },
+          fontFamily: {
+            sans: ['Instrument Sans', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            editorial: ['Newsreader', 'Georgia', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes expandWidth { from { width: 0; } to { width: 100%; } }
+    @keyframes float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    @keyframes drift { 0%,100%{transform:translateX(0)} 50%{transform:translateX(6px)} }
+    @keyframes pulse-soft { 0%,100%{opacity:0.5} 50%{opacity:1} }
+    @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    .fade-up { animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; }
+    .fd1 { animation-delay: 0.1s; }
+    .fd2 { animation-delay: 0.25s; }
+    .fd3 { animation-delay: 0.4s; }
+    .fd4 { animation-delay: 0.55s; }
+    .fd5 { animation-delay: 0.7s; }
+    .float1 { animation: float1 5s ease-in-out infinite; }
+    .float2 { animation: float2 4s ease-in-out infinite; }
+    .drift { animation: drift 6s ease-in-out infinite; }
+    .pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
+    .ticker-track { animation: ticker 35s linear infinite; }
+
+    /* Section label */
+    .sect-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #999;
+    }
+
+    /* FAQ */
+    .faq-answer { max-height:0; opacity:0; overflow:hidden; transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease; }
+    .faq-answer.open { max-height:300px; opacity:1; }
+
+    /* Service row hover */
+    .svc-row { transition: all 0.35s ease; }
+    .svc-row:hover { padding-left: 12px; background: rgba(13,150,104,0.02); }
+    .svc-row:hover .svc-num { color: #2b7fff; }
+    .svc-row:hover .svc-title { color: #2b7fff; }
+
+    /* Credential card */
+    .cred-card { border-left: 2px solid transparent; transition: all 0.35s ease; }
+    .cred-card:hover { border-left-color: #2b7fff; padding-left: 28px; }
+
+    /* Review card */
+    .review-card { transition: all 0.45s cubic-bezier(0.16,1,0.3,1); }
+    .review-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.06); border-color: rgba(43,127,255,0.4); box-shadow: 0 24px 60px -12px rgba(43,127,255,0.15), 0 0 0 1px rgba(43,127,255,0.1); }
+    .review-card:hover .review-stars svg { transform: scale(1.15); }
+    .review-card .review-stars svg { transition: transform 0.3s ease; }
+
+    /* E-E-A-T pillar cards */
+    .eeat-card {
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+    .eeat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: #2b7fff;
+      transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .eeat-card:hover::before {
+      height: 100%;
+    }
+    .eeat-card:hover {
+      background: #ffffff;
+      transform: translateY(-6px);
+      box-shadow: 0 25px 60px -15px rgba(43, 127, 255, 0.12), 0 10px 20px -10px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(43, 127, 255, 0.08);
+    }
+    .eeat-card .eeat-icon-box {
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .eeat-card:hover .eeat-icon-box {
+      background: #2b7fff;
+      border-color: #2b7fff;
+      transform: scale(1.1);
+    }
+    .eeat-card:hover .eeat-icon-box svg {
+      color: white;
+    }
+    .eeat-card .eeat-num {
+      transition: all 0.4s ease;
+    }
+    .eeat-card:hover .eeat-num {
+      color: #2b7fff;
+      letter-spacing: 0.25em;
+    }
+    .eeat-card .eeat-check {
+      transition: all 0.35s ease;
+    }
+    .eeat-card:hover .eeat-check {
+      background: rgba(43, 127, 255, 0.08);
+      border-color: rgba(43, 127, 255, 0.25);
+    }
+
+    /* Trust badge hover */
+    .trust-badge {
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .trust-badge:hover {
+      transform: translateY(-6px);
+      background: #ffffff;
+      box-shadow: 0 20px 50px -15px rgba(43, 127, 255, 0.12), 0 0 0 1px rgba(43, 127, 255, 0.1);
+    }
+    .trust-badge .trust-icon {
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .trust-badge:hover .trust-icon {
+      border-color: #2b7fff;
+      transform: scale(1.1) rotate(3deg);
+      box-shadow: 0 0 0 4px rgba(43, 127, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-canvas text-ink">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="navbar">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16">
+      <div class="flex items-center justify-between h-20">
+        <a href="#" class="flex items-center gap-3">
+          <div class="w-7 h-7 bg-accent flex items-center justify-center">
+            <span class="font-sans font-bold text-white text-xs">{{BUSINESS_INITIAL}}</span>
+          </div>
+          <span class="font-sans font-semibold text-[15px] tracking-tight nav-text-main transition-colors duration-500" style="color: white;">{{BUSINESS_SHORT_NAME}}</span>
+        </a>
+        <div class="hidden md:flex items-center gap-10">
+          <a href="#services" class="nav-link text-[13px] transition-colors duration-500" style="color: rgba(255,255,255,0.7);">Services</a>
+          <a href="#credentials" class="nav-link text-[13px] transition-colors duration-500" style="color: rgba(255,255,255,0.7);">Why Us</a>
+          <a href="#pricing" class="nav-link text-[13px] transition-colors duration-500" style="color: rgba(255,255,255,0.7);">Pricing</a>
+          <a href="#about" class="nav-link text-[13px] transition-colors duration-500" style="color: rgba(255,255,255,0.7);">About</a>
+          <a href="#faq" class="nav-link text-[13px] transition-colors duration-500" style="color: rgba(255,255,255,0.7);">FAQ</a>
+          <a href="#contact" class="px-6 py-2.5 bg-accent text-white text-[13px] font-medium hover:bg-accent-hover transition-colors">Get Started</a>
+        </div>
+        <button class="md:hidden transition-colors duration-500" id="mobile-menu-btn" aria-label="Open menu" style="color: white;">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 9h16.5m-16.5 6.75h16.5"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="hidden md:hidden border-t border-rule bg-canvas/95 backdrop-blur-xl" id="mobile-menu">
+      <div class="max-w-[1400px] mx-auto px-8 py-8 flex flex-col gap-4">
+        <a href="#services" class="text-ink-2 text-sm hover:text-ink">Services</a>
+        <a href="#credentials" class="text-ink-2 text-sm hover:text-ink">Why Us</a>
+        <a href="#pricing" class="text-ink-2 text-sm hover:text-ink">Pricing</a>
+        <a href="#about" class="text-ink-2 text-sm hover:text-ink">About</a>
+        <a href="#faq" class="text-ink-2 text-sm hover:text-ink">FAQ</a>
+        <a href="#contact" class="mt-2 px-6 py-3 bg-ink text-white text-sm font-medium text-center">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center relative overflow-hidden">
+    <!-- Background image -->
+    <div class="absolute inset-0">
+      <img src="{{HERO_IMAGE_URL}}" alt="{{HERO_IMAGE_ALT}}" class="w-full h-full object-cover">
+    </div>
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/70 to-black/60"></div>
+
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16 w-full relative z-10 pb-12">
+      <div class="pt-32 lg:pt-36 pb-16 lg:pb-20">
+        <div class="fade-up">
+          <span class="sect-label !text-white/50">{{BUSINESS_CITY}} &mdash; Est. {{BUSINESS_FOUNDED_YEAR}}</span>
+        </div>
+
+        <h1 class="mt-10 font-sans font-bold text-[clamp(2.5rem,5.5vw,5rem)] text-white leading-[1.1] tracking-[-0.035em] fade-up fd1">
+          {{BUSINESS_TAGLINE}}<br><span class="font-editorial italic font-normal text-accent">Your Financials</span>
+        </h1>
+
+        <div class="mt-5 max-w-md fade-up fd2">
+          <p class="text-white/70 text-[17px] leading-[1.7]">
+            <!-- CUSTOMIZE: Hero subtitle paragraph -->
+            Precision bookkeeping, payroll, and tax preparation for growing businesses in your area.
+          </p>
+        </div>
+
+        <div class="mt-12 flex flex-wrap gap-4 fade-up fd3">
+          <a href="#contact" class="px-8 py-4 bg-accent text-white text-[13px] font-medium tracking-wide hover:bg-accent-hover transition-colors inline-flex items-center gap-3">
+            Book a Consultation
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+          <a href="#services" class="px-8 py-4 border border-white/25 text-white/80 text-[13px] font-medium hover:border-white/60 hover:text-white transition-all">
+            See Services
+          </a>
+        </div>
+
+        <div class="mt-10 flex items-center gap-12 fade-up fd4">
+          <div>
+            <span class="font-sans font-bold text-3xl text-white">{{BBB_RATING}}</span>
+            <span class="sect-label !text-white/40 ml-2">BBB Rating</span>
+          </div>
+          <div class="w-px h-6 bg-white/15"></div>
+          <div>
+            <span class="font-sans font-bold text-3xl text-white">{{TEAM_SIZE}}</span>
+            <span class="sect-label !text-white/40 ml-2">Team</span>
+          </div>
+          <div class="w-px h-6 bg-white/15"></div>
+          <div>
+            <span class="font-sans font-bold text-3xl text-white">{{NUM_CITIES}}</span>
+            <span class="sect-label !text-white/40 ml-2">Cities</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ticker -->
+      <!-- CUSTOMIZE: Ticker keywords — replace with your service/brand keywords -->
+      <div class="border-t border-white/10 overflow-hidden">
+        <div class="flex ticker-track" style="width:max-content">
+          <div class="flex items-center gap-16 py-4 shrink-0">
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">BOOKKEEPING</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">PAYROLL</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">TAX PREPARATION</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">VIRTUAL CFO</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">BOOK CLEANUP</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">QUICKBOOKS</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">INTEGRATION 1</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">INTEGRATION 2</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">{{BUSINESS_CITY}}</span>
+          </div>
+          <div class="flex items-center gap-16 py-4 shrink-0">
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">BOOKKEEPING</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">PAYROLL</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">TAX PREPARATION</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">VIRTUAL CFO</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">BOOK CLEANUP</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">QUICKBOOKS</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">INTEGRATION 1</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">INTEGRATION 2</span>
+            <span class="font-mono text-[10px] text-white/30 tracking-widest">{{BUSINESS_CITY}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-32 lg:py-44 bg-paper">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16">
+      <!-- Header -->
+      <div class="mb-20">
+        <span class="sect-label">01 &mdash; Services</span>
+        <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl lg:text-[3.5rem] text-ink tracking-tight leading-[1.05]">Full-stack financial ops.</h2>
+        <p class="mt-6 text-ink-2 text-[16px] leading-relaxed max-w-lg">Six core services covering every angle of your business finances.</p>
+      </div>
+
+      <!-- Services grid -->
+      <!-- CUSTOMIZE: Services — update titles and descriptions for each service -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 border-t border-rule pt-16">
+        <!-- CUSTOMIZE: Service 1 -->
+        <div class="svc-row cursor-default">
+          <span class="svc-num font-mono text-xs text-ink-4 transition-colors">01</span>
+          <h3 class="svc-title font-sans font-semibold text-lg text-ink transition-colors mt-4">Bookkeeping</h3>
+          <p class="mt-3 text-ink-2 text-sm leading-relaxed">Monthly reconciliation of bank transactions, credit cards, and payment platforms. AP/AR management and financial reporting.</p>
+        </div>
+        <!-- CUSTOMIZE: Service 2 -->
+        <div class="svc-row cursor-default">
+          <span class="svc-num font-mono text-xs text-ink-4 transition-colors">02</span>
+          <h3 class="svc-title font-sans font-semibold text-lg text-ink transition-colors mt-4">Payroll Processing</h3>
+          <p class="mt-3 text-ink-2 text-sm leading-relaxed">Federal/state filings, PTO tracking, flexible pay runs, W-2s and 1099s. Powered by leading payroll platforms.</p>
+        </div>
+        <!-- CUSTOMIZE: Service 3 -->
+        <div class="svc-row cursor-default">
+          <span class="svc-num font-mono text-xs text-ink-4 transition-colors">03</span>
+          <h3 class="svc-title font-sans font-semibold text-lg text-ink transition-colors mt-4">Tax Preparation</h3>
+          <p class="mt-3 text-ink-2 text-sm leading-relaxed">IRS and state returns, quarterly estimates, notice support, and audit assistance for small businesses.</p>
+        </div>
+        <!-- CUSTOMIZE: Service 4 -->
+        <div class="svc-row cursor-default">
+          <span class="svc-num font-mono text-xs text-ink-4 transition-colors">04</span>
+          <h3 class="svc-title font-sans font-semibold text-lg text-ink transition-colors mt-4">Virtual CFO</h3>
+          <p class="mt-3 text-ink-2 text-sm leading-relaxed">Monthly expert sessions analyzing profits, margins, budgets, forecasts, and tax strategies. Customized profit reporting.</p>
+        </div>
+        <!-- CUSTOMIZE: Service 5 -->
+        <div class="svc-row cursor-default">
+          <span class="svc-num font-mono text-xs text-ink-4 transition-colors">05</span>
+          <h3 class="svc-title font-sans font-semibold text-lg text-ink transition-colors mt-4">Book Cleanup</h3>
+          <p class="mt-3 text-ink-2 text-sm leading-relaxed">Messy books cleaned up fast. We reconcile records, fix misclassifications, and get you audit-ready.</p>
+        </div>
+        <!-- CUSTOMIZE: Service 6 -->
+        <div class="svc-row cursor-default">
+          <span class="svc-num font-mono text-xs text-ink-4 transition-colors">06</span>
+          <h3 class="svc-title font-sans font-semibold text-lg text-ink transition-colors mt-4">Special Projects</h3>
+          <p class="mt-3 text-ink-2 text-sm leading-relaxed">Accounting file cleanup, failed conversions, incorrect imports, and integration issues from system migrations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Integrations Strip -->
+  <!-- CUSTOMIZE: Integrations — replace with the platforms your business supports -->
+  <section class="bg-canvas border-t border-b border-rule">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16 py-14 lg:py-16">
+      <div class="flex flex-col md:flex-row items-center gap-8 md:gap-0">
+        <span class="sect-label shrink-0 md:mr-12">Integrations</span>
+        <div class="flex flex-wrap items-center justify-center md:justify-between gap-10 md:gap-6 w-full">
+          <!-- CUSTOMIZE: Integration 1 -->
+          <div class="flex items-center gap-2.5 text-ink-3 hover:text-ink transition-colors">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            <span class="font-sans font-medium text-[13px]">Platform 1</span>
+          </div>
+          <!-- CUSTOMIZE: Integration 2 -->
+          <div class="flex items-center gap-2.5 text-ink-3 hover:text-ink transition-colors">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H8v-2h4v2zm4-4H8v-2h8v2zm0-4H8V7h8v2z"/></svg>
+            <span class="font-sans font-medium text-[13px]">Platform 2</span>
+          </div>
+          <!-- CUSTOMIZE: Integration 3 -->
+          <div class="flex items-center gap-2.5 text-ink-3 hover:text-ink transition-colors">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
+            <span class="font-sans font-medium text-[13px]">Platform 3</span>
+          </div>
+          <!-- CUSTOMIZE: Integration 4 -->
+          <div class="flex items-center gap-2.5 text-ink-3 hover:text-ink transition-colors">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.65 3H5.35A2.35 2.35 0 003 5.35v13.3A2.35 2.35 0 005.35 21h13.3A2.35 2.35 0 0021 18.65V5.35A2.35 2.35 0 0018.65 3zM17 17H7v-2h10v2zm0-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            <span class="font-sans font-medium text-[13px]">Platform 4</span>
+          </div>
+          <!-- CUSTOMIZE: Integration 5 -->
+          <div class="flex items-center gap-2.5 text-ink-3 hover:text-ink transition-colors">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M20.067 8.478c.492.88.556 2.014.3 3.327-.74 3.806-3.276 5.12-6.514 5.12h-.5a.805.805 0 00-.794.68l-.04.22-.63 3.993-.032.17a.804.804 0 01-.794.679H8.44a.483.483 0 01-.477-.558L8.03 21.7h1.63l.503-3.186.005-.037a.805.805 0 01.793-.68h.5c3.238 0 5.774-1.314 6.514-5.12.15-.77.19-1.43.09-1.97z"/><path d="M18.438 7.822c-.263-.09-.534-.16-.81-.22a10.16 10.16 0 00-1.6-.12H11.3a.79.79 0 00-.78.67L9.47 14.56l-.03.18a.805.805 0 01.794-.68h1.654c3.242 0 5.78-1.317 6.52-5.127.022-.113.04-.223.055-.33a3.346 3.346 0 00-.025-.781z"/><path d="M10.52 8.15a.79.79 0 01.78-.67h4.728c.56 0 1.084.036 1.6.12.276.06.547.13.81.22.178.063.35.134.515.214.194-1.24-.002-2.084-.668-2.849C17.533 4.298 16.07 3.8 14.12 3.8H8.36a.805.805 0 00-.794.68L5.19 19.397a.483.483 0 00.477.558h3.48l.875-5.547.498-3.158z"/></svg>
+            <span class="font-sans font-medium text-[13px]">Platform 5</span>
+          </div>
+          <!-- CUSTOMIZE: Integration 6 -->
+          <div class="flex items-center gap-2.5 text-ink-3 hover:text-ink transition-colors">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+            <span class="font-sans font-medium text-[13px]">Platform 6</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials -->
+  <section id="credentials" class="bg-canvas">
+    <!-- Stats strip -->
+    <!-- CUSTOMIZE: Stats strip — update values and labels -->
+    <div class="border-t border-b border-rule">
+      <div class="max-w-[1400px] mx-auto px-8 lg:px-16">
+        <div class="grid grid-cols-2 md:grid-cols-4">
+          <div class="py-12 md:py-16 md:border-r border-rule text-center">
+            <span class="font-sans font-bold text-5xl md:text-6xl text-ink">{{YEARS_IN_BUSINESS}}</span>
+            <span class="block sect-label mt-3">Years in Business</span>
+          </div>
+          <div class="py-12 md:py-16 md:border-r border-rule text-center">
+            <span class="font-sans font-bold text-5xl md:text-6xl text-ink">{{TEAM_SIZE}}</span>
+            <span class="block sect-label mt-3">Team Members</span>
+          </div>
+          <div class="py-12 md:py-16 md:border-r border-rule text-center">
+            <span class="font-sans font-bold text-5xl md:text-6xl text-ink">{{NUM_CITIES}}</span>
+            <span class="block sect-label mt-3">Cities Served</span>
+          </div>
+          <div class="py-12 md:py-16 text-center">
+            <span class="font-sans font-bold text-5xl md:text-6xl text-ink">{{OPERATING_DAYS_SHORT}}</span>
+            <span class="block sect-label mt-3">{{OPERATING_DAYS}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Credential cards -->
+    <!-- CUSTOMIZE: Credential cards — update titles and descriptions -->
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16 py-16 lg:py-24">
+      <div class="mb-20">
+        <span class="sect-label">02 &mdash; Why Us</span>
+        <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl text-ink tracking-tight leading-[1.05]">Built different.</h2>
+        <p class="mt-6 text-ink-2 text-[16px] leading-relaxed max-w-lg">We combine reliability, speed, and coverage that most bookkeeping firms can't match.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
+          <!-- CUSTOMIZE: Credential 1 -->
+          <div class="cred-card pl-6 transition-all">
+            <h4 class="font-sans font-semibold text-ink">BBB {{BBB_RATING}} Rating</h4>
+            <p class="mt-2 text-ink-2 text-sm leading-relaxed">Better Business Bureau rated with zero complaints. Verified trust and accountability.</p>
+          </div>
+          <!-- CUSTOMIZE: Credential 2 -->
+          <div class="cred-card pl-6 transition-all">
+            <h4 class="font-sans font-semibold text-ink">Platform Integrations</h4>
+            <p class="mt-2 text-ink-2 text-sm leading-relaxed">Native integration with the platforms you already use. No forced migrations, no friction.</p>
+          </div>
+          <!-- CUSTOMIZE: Credential 3 -->
+          <div class="cred-card pl-6 transition-all">
+            <h4 class="font-sans font-semibold text-ink">Fast Book Cleanup</h4>
+            <p class="mt-2 text-ink-2 text-sm leading-relaxed">Messy books? Failed conversions? We clean them up fast — most projects done quickly.</p>
+          </div>
+          <!-- CUSTOMIZE: Credential 4 -->
+          <div class="cred-card pl-6 transition-all">
+            <h4 class="font-sans font-semibold text-ink">Regional Coverage</h4>
+            <p class="mt-2 text-ink-2 text-sm leading-relaxed">Multiple cities served by one dedicated team with full coverage.</p>
+          </div>
+          <!-- CUSTOMIZE: Credential 5 -->
+          <div class="cred-card pl-6 transition-all">
+            <h4 class="font-sans font-semibold text-ink">Extended Hours</h4>
+            <p class="mt-2 text-ink-2 text-sm leading-relaxed">Open {{OPERATING_HOURS}}, {{OPERATING_DAYS}}. We work around your schedule.</p>
+          </div>
+          <!-- CUSTOMIZE: Credential 6 -->
+          <div class="cred-card pl-6 transition-all">
+            <h4 class="font-sans font-semibold text-ink">Value-Added Services</h4>
+            <p class="mt-2 text-ink-2 text-sm leading-relaxed">Full-year clients may qualify for complimentary services. Ask us for details.</p>
+          </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Industries We Serve -->
+  <!-- CUSTOMIZE: Industries — update names and descriptions for each industry -->
+  <section class="py-32 lg:py-44 bg-paper border-t border-rule">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16">
+      <div class="mb-20">
+        <span class="sect-label">Industries</span>
+        <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl text-ink tracking-tight leading-[1.05]">Built for businesses<br><span class="font-editorial italic font-normal text-accent">like yours.</span></h2>
+        <p class="mt-6 text-ink-2 text-[16px] leading-relaxed max-w-lg">From retail storefronts to tech startups — we tailor our services to fit the way your business actually operates.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-0 border-t border-l border-rule">
+        <!-- CUSTOMIZE: Industry 1 -->
+        <div class="border-b border-r border-rule p-8 lg:p-10 group hover:bg-canvas transition-colors cursor-default">
+          <div class="w-10 h-10 border border-rule flex items-center justify-center mb-6 group-hover:border-accent/40 transition-colors">
+            <svg class="w-5 h-5 text-ink-3 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"/></svg>
+          </div>
+          <h4 class="font-sans font-semibold text-ink text-[15px]">Retail &amp; E-Commerce</h4>
+          <p class="mt-2 text-ink-3 text-xs leading-relaxed">Online stores, POS reconciliation</p>
+        </div>
+        <!-- CUSTOMIZE: Industry 2 -->
+        <div class="border-b border-r border-rule p-8 lg:p-10 group hover:bg-canvas transition-colors cursor-default">
+          <div class="w-10 h-10 border border-rule flex items-center justify-center mb-6 group-hover:border-accent/40 transition-colors">
+            <svg class="w-5 h-5 text-ink-3 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg>
+          </div>
+          <h4 class="font-sans font-semibold text-ink text-[15px]">Restaurants &amp; Food</h4>
+          <p class="mt-2 text-ink-3 text-xs leading-relaxed">Multi-location, inventory, tips</p>
+        </div>
+        <!-- CUSTOMIZE: Industry 3 -->
+        <div class="border-b border-r border-rule p-8 lg:p-10 group hover:bg-canvas transition-colors cursor-default">
+          <div class="w-10 h-10 border border-rule flex items-center justify-center mb-6 group-hover:border-accent/40 transition-colors">
+            <svg class="w-5 h-5 text-ink-3 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"/></svg>
+          </div>
+          <h4 class="font-sans font-semibold text-ink text-[15px]">Tech &amp; SaaS</h4>
+          <p class="mt-2 text-ink-3 text-xs leading-relaxed">MRR tracking, payment platforms, deferred revenue</p>
+        </div>
+        <!-- CUSTOMIZE: Industry 4 -->
+        <div class="border-b border-r border-rule p-8 lg:p-10 group hover:bg-canvas transition-colors cursor-default">
+          <div class="w-10 h-10 border border-rule flex items-center justify-center mb-6 group-hover:border-accent/40 transition-colors">
+            <svg class="w-5 h-5 text-ink-3 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.42 15.17l-5.66-5.66a8 8 0 1111.32 0l-5.66 5.66zm0 0l5.66 5.66m-5.66-5.66l-5.66 5.66M18 9a6 6 0 11-12 0 6 6 0 0112 0z"/></svg>
+          </div>
+          <h4 class="font-sans font-semibold text-ink text-[15px]">Professional Services</h4>
+          <p class="mt-2 text-ink-3 text-xs leading-relaxed">Law firms, consultants, agencies</p>
+        </div>
+        <!-- CUSTOMIZE: Industry 5 -->
+        <div class="border-b border-r border-rule p-8 lg:p-10 group hover:bg-canvas transition-colors cursor-default">
+          <div class="w-10 h-10 border border-rule flex items-center justify-center mb-6 group-hover:border-accent/40 transition-colors">
+            <svg class="w-5 h-5 text-ink-3 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819"/></svg>
+          </div>
+          <h4 class="font-sans font-semibold text-ink text-[15px]">Real Estate</h4>
+          <p class="mt-2 text-ink-3 text-xs leading-relaxed">Property mgmt, rental income, 1031s</p>
+        </div>
+        <!-- CUSTOMIZE: Industry 6 -->
+        <div class="border-b border-r border-rule p-8 lg:p-10 group hover:bg-canvas transition-colors cursor-default">
+          <div class="w-10 h-10 border border-rule flex items-center justify-center mb-6 group-hover:border-accent/40 transition-colors">
+            <svg class="w-5 h-5 text-ink-3 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+          </div>
+          <h4 class="font-sans font-semibold text-ink text-[15px]">Healthcare &amp; Wellness</h4>
+          <p class="mt-2 text-ink-3 text-xs leading-relaxed">Clinics, dental, fitness studios</p>
+        </div>
+        <!-- CUSTOMIZE: Industry 7 -->
+        <div class="border-b border-r border-rule p-8 lg:p-10 group hover:bg-canvas transition-colors cursor-default">
+          <div class="w-10 h-10 border border-rule flex items-center justify-center mb-6 group-hover:border-accent/40 transition-colors">
+            <svg class="w-5 h-5 text-ink-3 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+          </div>
+          <h4 class="font-sans font-semibold text-ink text-[15px]">Construction &amp; Trades</h4>
+          <p class="mt-2 text-ink-3 text-xs leading-relaxed">Job costing, contractors, lien tracking</p>
+        </div>
+        <!-- CUSTOMIZE: Industry 8 -->
+        <div class="border-b border-r border-rule p-8 lg:p-10 group hover:bg-canvas transition-colors cursor-default">
+          <div class="w-10 h-10 border border-rule flex items-center justify-center mb-6 group-hover:border-accent/40 transition-colors">
+            <svg class="w-5 h-5 text-ink-3 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+          </div>
+          <h4 class="font-sans font-semibold text-ink text-[15px]">Freelancers &amp; Creators</h4>
+          <p class="mt-2 text-ink-3 text-xs leading-relaxed">1099s, quarterly estimates, expenses</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="bg-accent relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+    </div>
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16 py-20 lg:py-24 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div>
+          <h2 class="font-sans font-bold text-3xl md:text-4xl text-white tracking-tight">Ready to get your books in order?</h2>
+          <p class="mt-3 text-white/70 text-[16px] max-w-lg">Schedule a free consultation and see how we can streamline your finances.</p>
+        </div>
+        <div class="flex flex-wrap gap-4 shrink-0">
+          <a href="#contact" class="px-8 py-4 bg-white text-accent text-[13px] font-semibold hover:bg-white/90 transition-colors inline-flex items-center gap-3">
+            Book a Consultation
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+          <a href="tel:{{BUSINESS_PHONE_TEL}}" class="px-8 py-4 border border-white/30 text-white text-[13px] font-medium hover:border-white/70 transition-colors inline-flex items-center gap-3">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+            {{BUSINESS_PHONE}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <!-- CUSTOMIZE: Reviews — update testimonial text, author names, and locations -->
+  <section class="py-32 lg:py-44 bg-ink relative overflow-hidden">
+    <!-- Decorative large quote mark -->
+    <div class="absolute top-12 left-8 lg:left-16 text-[20rem] leading-none font-editorial text-white/[0.03] select-none pointer-events-none">&ldquo;</div>
+
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16 relative z-10">
+      <div class="text-center mb-20">
+        <span class="font-mono text-[10px] tracking-[0.15em] uppercase text-white/40">What Clients Say</span>
+        <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl text-white tracking-tight">Don't take our word for it.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
+        <!-- CUSTOMIZE: Review 1 -->
+        <div class="border border-white/10 p-10 lg:p-12 group review-card">
+          <div class="flex gap-1 mb-8 review-stars">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="font-editorial italic text-white/90 text-xl leading-relaxed">"Placeholder testimonial quote. Replace with an actual client review highlighting specific value provided."</p>
+          <div class="mt-8 pt-6 border-t border-white/10">
+            <span class="font-sans font-medium text-white text-sm">Client Name / Business Type</span>
+            <span class="block font-mono text-[10px] text-white/30 tracking-widest uppercase mt-1">City, State</span>
+          </div>
+        </div>
+
+        <!-- CUSTOMIZE: Review 2 -->
+        <div class="border border-white/10 border-l-0 p-10 lg:p-12 group review-card">
+          <div class="flex gap-1 mb-8 review-stars">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="font-editorial italic text-white/90 text-xl leading-relaxed">"Placeholder testimonial quote. Replace with an actual client review about streamlining processes."</p>
+          <div class="mt-8 pt-6 border-t border-white/10">
+            <span class="font-sans font-medium text-white text-sm">Client Name / Business Type</span>
+            <span class="block font-mono text-[10px] text-white/30 tracking-widest uppercase mt-1">City, State</span>
+          </div>
+        </div>
+
+        <!-- CUSTOMIZE: Review 3 -->
+        <div class="border border-white/10 border-l-0 p-10 lg:p-12 group review-card">
+          <div class="flex gap-1 mb-8 review-stars">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="font-editorial italic text-white/90 text-xl leading-relaxed">"Placeholder testimonial quote. Replace with an actual client review about business impact."</p>
+          <div class="mt-8 pt-6 border-t border-white/10">
+            <span class="font-sans font-medium text-white text-sm">Client Name / Business Type</span>
+            <span class="block font-mono text-[10px] text-white/30 tracking-widest uppercase mt-1">City, State</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Reviews CTA -->
+      <div class="mt-16 text-center">
+        <a href="{{GOOGLE_REVIEWS_URL}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 border border-white/15 text-white/60 text-[13px] font-medium hover:border-accent hover:text-white transition-all">
+          See All Reviews on Google
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <!-- CUSTOMIZE: About section — update paragraphs and brand values -->
+  <section id="about" class="py-32 lg:py-44 bg-paper">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+        <div class="lg:col-span-5">
+          <span class="sect-label">03 &mdash; About</span>
+          <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl text-ink tracking-tight leading-[1.05]">
+            Built to help small businesses <span class="font-editorial italic font-normal text-accent">thrive.</span>
+          </h2>
+
+          <!-- Brand block -->
+          <div class="mt-16 bg-canvas border border-rule aspect-[4/3] flex flex-col items-center justify-center relative">
+            <div class="w-16 h-16 bg-accent flex items-center justify-center mb-5">
+              <span class="font-sans font-bold text-white text-2xl">{{BUSINESS_INITIAL}}</span>
+            </div>
+            <span class="font-sans font-semibold text-xl text-ink tracking-tight">{{BUSINESS_SHORT_NAME}}<span class="text-accent">.</span></span>
+            <span class="font-mono text-[10px] text-ink-3 tracking-[0.15em] uppercase mt-2">Bookkeeping &middot; Payroll &middot; Tax</span>
+            <!-- Corner marks -->
+            <div class="absolute top-3 left-3 w-5 h-5 border-t border-l border-accent/25"></div>
+            <div class="absolute top-3 right-3 w-5 h-5 border-t border-r border-accent/25"></div>
+            <div class="absolute bottom-3 left-3 w-5 h-5 border-b border-l border-accent/25"></div>
+            <div class="absolute bottom-3 right-3 w-5 h-5 border-b border-r border-accent/25"></div>
+            <!-- Founded chip -->
+            <div class="absolute -bottom-5 right-8 bg-paper border border-rule px-5 py-3 flex items-center gap-3">
+              <span class="font-sans font-bold text-2xl text-accent">{{BUSINESS_FOUNDED_YEAR}}</span>
+              <span class="font-mono text-[10px] text-ink-3 uppercase tracking-wider">Founded</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 lg:pt-16">
+          <!-- CUSTOMIZE: About paragraphs — replace with your business story -->
+          <p class="text-ink-2 text-[17px] leading-[1.8]">
+            {{BUSINESS_NAME}} was founded in {{BUSINESS_FOUNDED_DATE}} with a single mission: take the burden of financial record-keeping off small business owners so they can focus on what they do best — growing their business.
+          </p>
+          <p class="mt-6 text-ink-2 text-[17px] leading-[1.8]">
+            Based in {{BUSINESS_CITY}} and serving the surrounding region, our team of {{TEAM_SIZE}} handles everything from monthly reconciliations and payroll to tax prep and virtual CFO advisory. We match bank transactions across major payment platforms — delivering accurate reports you can rely on.
+          </p>
+          <p class="mt-6 text-ink-2 text-[17px] leading-[1.8]">
+            Whether you need ongoing bookkeeping, a one-time cleanup, or strategic financial guidance, we deliver professional, reliable service with extended hours and a personal touch.
+          </p>
+
+          <!-- CUSTOMIZE: About values/bullets -->
+          <div class="mt-12 grid grid-cols-2 gap-6">
+            <div class="flex items-center gap-3">
+              <div class="w-1 h-1 bg-accent shrink-0"></div>
+              <span class="text-ink-2 text-sm">Professional &amp; approachable</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-1 h-1 bg-accent shrink-0"></div>
+              <span class="text-ink-2 text-sm">Growth-oriented mindset</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-1 h-1 bg-accent shrink-0"></div>
+              <span class="text-ink-2 text-sm">Accurate &amp; compliant</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-1 h-1 bg-accent shrink-0"></div>
+              <span class="text-ink-2 text-sm">No-nonsense service</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- E-E-A-T: Experience, Expertise, Authoritativeness, Trustworthiness -->
+  <!-- CUSTOMIZE: E-E-A-T section — update bullet points and prose content -->
+  <section class="bg-canvas relative overflow-hidden border-t border-rule">
+    <!-- Subtle background texture -->
+    <div class="absolute inset-0 opacity-[0.35]" style="background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.04) 1px, transparent 0); background-size: 40px 40px;"></div>
+    <!-- Decorative glow -->
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/[0.04] rounded-full blur-[150px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/[0.03] rounded-full blur-[120px] translate-y-1/2 -translate-x-1/3 pointer-events-none"></div>
+
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16 py-32 lg:py-44 relative z-10">
+
+      <!-- Section header -->
+      <div class="mb-24 text-center">
+        <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-accent">Why Trust {{BUSINESS_SHORT_NAME}}</span>
+        <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl lg:text-[3.5rem] text-ink tracking-tight leading-[1.05]">Credentialed, experienced,<br><span class="font-editorial italic font-normal text-accent">and accountable.</span></h2>
+        <p class="mt-6 text-ink-2 text-[17px] leading-relaxed max-w-xl mx-auto">We don't just manage numbers — we bring verified credentials, hands-on industry experience, and a track record of trust that businesses rely on.</p>
+      </div>
+
+      <!-- Four E-E-A-T pillars -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+
+        <!-- EXPERIENCE -->
+        <!-- CUSTOMIZE: Experience pillar bullets -->
+        <div class="eeat-card bg-paper border border-rule p-10 lg:p-14 rounded-sm group cursor-default">
+          <div class="flex items-center gap-5 mb-8">
+            <div class="eeat-icon-box w-14 h-14 border border-rule flex items-center justify-center rounded-sm">
+              <svg class="w-7 h-7 text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <span class="eeat-num font-mono text-[10px] text-ink-4 tracking-[0.15em] uppercase transition-all">01</span>
+              <h3 class="font-sans font-bold text-[22px] text-ink">Experience</h3>
+            </div>
+          </div>
+          <p class="text-ink-2 text-[15px] leading-[1.8] mb-8">Our team brings decades of combined experience in small business accounting, having managed books for hundreds of businesses across multiple industries.</p>
+          <div class="space-y-4 border-t border-rule pt-7">
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Hands-on experience with businesses from solopreneurs to 50+ employee companies</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Managed complex multi-entity, multi-state financial operations</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Real-world cleanup of many sets of messy, backlogged, or incorrectly migrated books</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPERTISE -->
+        <!-- CUSTOMIZE: Expertise pillar bullets -->
+        <div class="eeat-card bg-paper border border-rule p-10 lg:p-14 rounded-sm group cursor-default">
+          <div class="flex items-center gap-5 mb-8">
+            <div class="eeat-icon-box w-14 h-14 border border-rule flex items-center justify-center rounded-sm">
+              <svg class="w-7 h-7 text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/></svg>
+            </div>
+            <div>
+              <span class="eeat-num font-mono text-[10px] text-ink-4 tracking-[0.15em] uppercase transition-all">02</span>
+              <h3 class="font-sans font-bold text-[22px] text-ink">Expertise</h3>
+            </div>
+          </div>
+          <p class="text-ink-2 text-[15px] leading-[1.8] mb-8">Our staff holds professional certifications and maintains ongoing education in tax law, payroll compliance, and accounting standards — ensuring your books meet current federal and state requirements.</p>
+          <div class="space-y-4 border-t border-rule pt-7">
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Certified professionals on staff</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Deep knowledge of IRS regulations and state tax/payroll requirements</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Proficient in leading accounting and payroll platforms</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTHORITATIVENESS -->
+        <!-- CUSTOMIZE: Authoritativeness pillar bullets -->
+        <div class="eeat-card bg-paper border border-rule p-10 lg:p-14 rounded-sm group cursor-default">
+          <div class="flex items-center gap-5 mb-8">
+            <div class="eeat-icon-box w-14 h-14 border border-rule flex items-center justify-center rounded-sm">
+              <svg class="w-7 h-7 text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0016.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.003 6.003 0 01-4.52-1.649 6.003 6.003 0 01-4.52 1.649"/></svg>
+            </div>
+            <div>
+              <span class="eeat-num font-mono text-[10px] text-ink-4 tracking-[0.15em] uppercase transition-all">03</span>
+              <h3 class="font-sans font-bold text-[22px] text-ink">Authoritativeness</h3>
+            </div>
+          </div>
+          <p class="text-ink-2 text-[15px] leading-[1.8] mb-8">{{BUSINESS_NAME}} is a recognized and accredited business entity. Our reputation is built on verified third-party endorsements and professional affiliations.</p>
+          <div class="space-y-4 border-t border-rule pt-7">
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Better Business Bureau <strong class="text-ink">{{BBB_RATING}} Rating</strong> with zero complaints filed</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Verified Google Business Profile with <strong class="text-ink">{{STAR_RATING}}-star reviews</strong></span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Registered with state and local business authorities</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRUSTWORTHINESS -->
+        <!-- CUSTOMIZE: Trustworthiness pillar bullets -->
+        <div class="eeat-card bg-paper border border-rule p-10 lg:p-14 rounded-sm group cursor-default">
+          <div class="flex items-center gap-5 mb-8">
+            <div class="eeat-icon-box w-14 h-14 border border-rule flex items-center justify-center rounded-sm">
+              <svg class="w-7 h-7 text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            </div>
+            <div>
+              <span class="eeat-num font-mono text-[10px] text-ink-4 tracking-[0.15em] uppercase transition-all">04</span>
+              <h3 class="font-sans font-bold text-[22px] text-ink">Trustworthiness</h3>
+            </div>
+          </div>
+          <p class="text-ink-2 text-[15px] leading-[1.8] mb-8">Your financial data is sensitive. We treat it that way — with secure systems, clear communication, transparent pricing, and a commitment to accuracy that protects your business.</p>
+          <div class="space-y-4 border-t border-rule pt-7">
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Secure data handling — encrypted connections, no third-party data sharing</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Transparent, quote-based pricing — no hidden fees, no surprise charges</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="eeat-check w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 rounded-sm">
+                <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-ink-2 text-sm leading-relaxed">Direct contact with your assigned bookkeeper — no call centers or ticket systems</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Trust badges row -->
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-5 lg:gap-6">
+        <div class="trust-badge bg-paper border border-rule p-8 lg:p-10 text-center rounded-sm cursor-default">
+          <div class="trust-icon w-16 h-16 mx-auto border border-rule flex items-center justify-center mb-5 rounded-sm">
+            <span class="font-sans font-bold text-3xl text-accent">{{BBB_RATING}}</span>
+          </div>
+          <span class="font-sans font-semibold text-ink text-sm block">BBB {{BBB_RATING}} Rating</span>
+          <span class="text-ink-3 text-xs mt-1 block">Zero complaints</span>
+        </div>
+        <div class="trust-badge bg-paper border border-rule p-8 lg:p-10 text-center rounded-sm cursor-default">
+          <div class="trust-icon w-16 h-16 mx-auto border border-rule flex items-center justify-center mb-5 rounded-sm">
+            <svg class="w-8 h-8 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <span class="font-sans font-semibold text-ink text-sm block">{{STAR_RATING}}-Star Reviews</span>
+          <span class="text-ink-3 text-xs mt-1 block">Google verified</span>
+        </div>
+        <div class="trust-badge bg-paper border border-rule p-8 lg:p-10 text-center rounded-sm cursor-default">
+          <div class="trust-icon w-16 h-16 mx-auto border border-rule flex items-center justify-center mb-5 rounded-sm">
+            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          </div>
+          <span class="font-sans font-semibold text-ink text-sm block">Secure &amp; Encrypted</span>
+          <span class="text-ink-3 text-xs mt-1 block">Data protection</span>
+        </div>
+        <div class="trust-badge bg-paper border border-rule p-8 lg:p-10 text-center rounded-sm cursor-default">
+          <div class="trust-icon w-16 h-16 mx-auto border border-rule flex items-center justify-center mb-5 rounded-sm">
+            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <span class="font-sans font-semibold text-ink text-sm block">Est. {{BUSINESS_FOUNDED_DATE}}</span>
+          <span class="text-ink-3 text-xs mt-1 block">{{BUSINESS_CITY}}, {{BUSINESS_STATE}}</span>
+        </div>
+      </div>
+
+      <!-- E-E-A-T content prose (SEO-rich copy) -->
+      <!-- CUSTOMIZE: E-E-A-T prose paragraphs — update with your business specifics -->
+      <div class="mt-24 max-w-3xl border-l-2 border-accent/30 pl-8 lg:pl-12">
+        <h3 class="font-sans font-semibold text-xl text-ink mb-6">About Our Team &amp; Qualifications</h3>
+        <div class="text-ink-2 text-[15px] leading-[1.9] space-y-5">
+          <p>{{BUSINESS_NAME}} is a {{BUSINESS_CITY}}-based bookkeeping and financial services firm founded in {{BUSINESS_FOUNDED_DATE}}. Our team of {{TEAM_SIZE}} professionals serves small businesses across {{NUM_CITIES}} cities — providing monthly bookkeeping, payroll processing, tax preparation, virtual CFO advisory, book cleanup, and specialized accounting projects.</p>
+          <p>Our bookkeepers are certified professionals with deep experience in GAAP-compliant financial reporting. We work directly with leading accounting and payment platforms to ensure seamless reconciliation and accurate categorization of every transaction.</p>
+          <p>We hold a Better Business Bureau {{BBB_RATING}} rating with zero complaints, maintain a verified Google Business Profile with {{STAR_RATING}}-star client reviews, and are registered with state and local business authorities. Our office is located at {{BUSINESS_ADDRESS}}, {{BUSINESS_CITY}}, {{BUSINESS_STATE}} {{BUSINESS_ZIP}}.</p>
+          <p>Every client is assigned a dedicated bookkeeper who serves as their primary point of contact — no call centers, no rotating staff. We operate {{OPERATING_DAYS}}, {{OPERATING_HOURS}}, offering extended hours designed around the schedules of busy business owners. Our pricing is transparent and quote-based, with no hidden fees or long-term contracts required.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3-Step Process -->
+  <section class="bg-ink text-white">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16 py-32 lg:py-44">
+      <div class="text-center mb-24">
+        <span class="font-mono text-[10px] tracking-[0.15em] uppercase text-white/40">04 &mdash; How It Works</span>
+        <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl text-white tracking-tight">Three steps. Zero stress.</h2>
+        <p class="mt-4 text-white/45 text-[17px] max-w-lg mx-auto">Getting started is simple. We handle the complexity.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 relative">
+        <div class="hidden md:block absolute top-8 left-[16.6%] right-[16.6%] h-px bg-white/10"></div>
+
+        <div class="relative z-10 text-center group px-8 pb-12 md:pb-0">
+          <div class="w-16 h-16 mx-auto border border-white/15 flex items-center justify-center mb-10 group-hover:border-accent/50 transition-colors">
+            <span class="font-mono text-sm text-accent">01</span>
+          </div>
+          <h3 class="font-sans font-semibold text-xl text-white mb-4">Free Consultation</h3>
+          <p class="text-white/45 text-sm leading-relaxed max-w-xs mx-auto">Tell us about your business, your books, and your goals. We'll assess and map a path forward.</p>
+        </div>
+
+        <div class="relative z-10 text-center group px-8 pb-12 md:pb-0 border-t md:border-t-0 md:border-l md:border-r border-white/5 pt-12 md:pt-0">
+          <div class="w-16 h-16 mx-auto border border-white/15 flex items-center justify-center mb-10 group-hover:border-accent/50 transition-colors">
+            <span class="font-mono text-sm text-accent">02</span>
+          </div>
+          <h3 class="font-sans font-semibold text-xl text-white mb-4">Custom Plan</h3>
+          <p class="text-white/45 text-sm leading-relaxed max-w-xs mx-auto">We build a tailored service package — bookkeeping, payroll, tax prep, or a full financial overhaul.</p>
+        </div>
+
+        <div class="relative z-10 text-center group px-8 border-t md:border-t-0 border-white/5 pt-12 md:pt-0">
+          <div class="w-16 h-16 mx-auto border border-white/15 flex items-center justify-center mb-10 group-hover:border-accent/50 transition-colors">
+            <span class="font-mono text-sm text-accent">03</span>
+          </div>
+          <h3 class="font-sans font-semibold text-xl text-white mb-4">Ongoing Support</h3>
+          <p class="text-white/45 text-sm leading-relaxed max-w-xs mx-auto">We execute and maintain your finances month after month — accurate reports, on-time filings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You Get / Deliverables -->
+  <!-- CUSTOMIZE: Deliverables — update titles and descriptions -->
+  <section class="py-32 lg:py-44 bg-paper border-t border-rule">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+        <div class="lg:col-span-5">
+          <span class="sect-label">What You Get</span>
+          <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl text-ink tracking-tight leading-[1.05]">Monthly deliverables,<br><span class="font-editorial italic font-normal text-accent">no surprises.</span></h2>
+          <p class="mt-6 text-ink-2 text-[16px] leading-relaxed max-w-sm">Every client receives a consistent set of reports and financial outputs each month.</p>
+          <a href="#contact" class="mt-10 inline-flex items-center gap-2 text-accent text-[13px] font-medium hover:gap-3 transition-all">
+            See what a sample month looks like
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+        </div>
+        <div class="lg:col-span-7">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border border-rule">
+            <!-- CUSTOMIZE: Deliverable 1 -->
+            <div class="p-8 border-b md:border-r border-rule">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-2 h-2 bg-accent"></div>
+                <span class="font-sans font-semibold text-ink text-[15px]">Profit &amp; Loss Statement</span>
+              </div>
+              <p class="text-ink-3 text-sm leading-relaxed pl-5">Revenue, expenses, and net income — clear breakdown every month.</p>
+            </div>
+            <!-- CUSTOMIZE: Deliverable 2 -->
+            <div class="p-8 border-b border-rule">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-2 h-2 bg-accent"></div>
+                <span class="font-sans font-semibold text-ink text-[15px]">Balance Sheet</span>
+              </div>
+              <p class="text-ink-3 text-sm leading-relaxed pl-5">Assets, liabilities, and equity snapshot — always up to date.</p>
+            </div>
+            <!-- CUSTOMIZE: Deliverable 3 -->
+            <div class="p-8 border-b md:border-r border-rule">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-2 h-2 bg-accent"></div>
+                <span class="font-sans font-semibold text-ink text-[15px]">Bank Reconciliation</span>
+              </div>
+              <p class="text-ink-3 text-sm leading-relaxed pl-5">Every transaction matched and verified against your bank feeds.</p>
+            </div>
+            <!-- CUSTOMIZE: Deliverable 4 -->
+            <div class="p-8 border-b border-rule">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-2 h-2 bg-accent"></div>
+                <span class="font-sans font-semibold text-ink text-[15px]">Cash Flow Report</span>
+              </div>
+              <p class="text-ink-3 text-sm leading-relaxed pl-5">Where your cash is coming from and where it's going — at a glance.</p>
+            </div>
+            <!-- CUSTOMIZE: Deliverable 5 -->
+            <div class="p-8 md:border-r border-b md:border-b-0 border-rule">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-2 h-2 bg-accent"></div>
+                <span class="font-sans font-semibold text-ink text-[15px]">AP / AR Aging</span>
+              </div>
+              <p class="text-ink-3 text-sm leading-relaxed pl-5">Track what you owe and what's owed to you with aging summaries.</p>
+            </div>
+            <!-- CUSTOMIZE: Deliverable 6 -->
+            <div class="p-8">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-2 h-2 bg-accent"></div>
+                <span class="font-sans font-semibold text-ink text-[15px]">General Ledger</span>
+              </div>
+              <p class="text-ink-3 text-sm leading-relaxed pl-5">Full journal of every categorized transaction — audit-ready.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video / Promo Section -->
+  <section class="bg-ink">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16 py-32 lg:py-44">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+        <div class="lg:col-span-5">
+          <span class="font-mono text-[10px] tracking-[0.15em] uppercase text-white/40">See Us in Action</span>
+          <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl text-white tracking-tight leading-[1.05]">Real service,<br>real results.</h2>
+          <p class="mt-6 text-white/50 text-[16px] leading-relaxed max-w-sm">Watch how we help small businesses stay organized, compliant, and confident in their finances.</p>
+          <div class="mt-10 flex flex-col gap-5">
+            <div class="flex items-center gap-4">
+              <div class="w-8 h-8 border border-white/15 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-white/60 text-sm">Monthly reports delivered on time, every time</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-8 h-8 border border-white/15 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-white/60 text-sm">Dedicated bookkeeper assigned to your account</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-8 h-8 border border-white/15 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              </div>
+              <span class="text-white/60 text-sm">Direct line to your team — no call centers</span>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-7">
+          <div class="border border-white/10 p-1.5 relative group">
+            <div class="aspect-video bg-black/40 relative overflow-hidden">
+              <iframe width="100%" height="100%" src="{{VIDEO_URL}}" title="{{BUSINESS_NAME}} Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="absolute inset-0 w-full h-full"></iframe>
+            </div>
+            <div class="absolute -bottom-4 -right-4 bg-accent px-5 py-2.5">
+              <span class="font-mono text-[10px] text-white tracking-widest uppercase">Watch Now</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas Served -->
+  <!-- CUSTOMIZE: Areas served — update cities list -->
+  <section class="py-32 lg:py-44 bg-paper">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+        <div class="lg:col-span-5">
+          <span class="sect-label">05 &mdash; Coverage</span>
+          <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl text-ink tracking-tight leading-[1.05]">Serving the<br>region.</h2>
+          <p class="mt-6 text-ink-2 text-[16px] leading-relaxed max-w-sm">Based in {{BUSINESS_CITY}} with coverage across {{NUM_CITIES}} major cities.</p>
+
+          <div class="mt-14">
+            <span class="sect-label">Office</span>
+            <div class="mt-4 border border-rule p-6">
+              <p class="text-ink text-sm font-medium">{{BUSINESS_ADDRESS}}</p>
+              <p class="text-ink-2 text-sm mt-1">{{BUSINESS_CITY}}, {{BUSINESS_STATE}} {{BUSINESS_ZIP}}</p>
+            </div>
+          </div>
+
+          <div class="mt-10">
+            <span class="sect-label">Cities Served</span>
+            <!-- CUSTOMIZE: Cities served tags -->
+            <div class="mt-4 flex flex-wrap gap-3">
+              <span class="px-4 py-2 border border-rule text-ink-2 text-[13px] hover:border-accent hover:text-accent transition-colors cursor-default">City 1</span>
+              <span class="px-4 py-2 border border-rule text-ink-2 text-[13px] hover:border-accent hover:text-accent transition-colors cursor-default">City 2</span>
+              <span class="px-4 py-2 border border-rule text-ink-2 text-[13px] hover:border-accent hover:text-accent transition-colors cursor-default">City 3</span>
+              <span class="px-4 py-2 border border-rule text-ink-2 text-[13px] hover:border-accent hover:text-accent transition-colors cursor-default">City 4</span>
+              <span class="px-4 py-2 border border-rule text-ink-2 text-[13px] hover:border-accent hover:text-accent transition-colors cursor-default">City 5</span>
+              <span class="px-4 py-2 border border-rule text-ink-2 text-[13px] hover:border-accent hover:text-accent transition-colors cursor-default">City 6</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="border border-rule p-1.5">
+            <iframe src="{{MAP_EMBED_URL}}" width="100%" height="440" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="{{BUSINESS_NAME}} office location"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-32 lg:py-44 bg-canvas border-t border-rule">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+        <div class="lg:col-span-4">
+          <span class="sect-label">06 &mdash; FAQ</span>
+          <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl text-ink tracking-tight leading-[1.05]">Questions?<br>Answers.</h2>
+        </div>
+        <div class="lg:col-span-8">
+          <div id="faq-list" class="border-t border-rule"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <!-- CUSTOMIZE: Pricing tiers — update tier names, features, and descriptions -->
+  <section id="pricing" class="py-32 lg:py-44 bg-canvas border-t border-rule">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16">
+      <div class="text-center mb-20">
+        <span class="sect-label">Pricing</span>
+        <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl text-ink tracking-tight">Transparent, flexible plans.</h2>
+        <p class="mt-4 text-ink-2 text-[16px] max-w-lg mx-auto">Every business is different. We build a plan around what you actually need — no bloated packages, no hidden fees.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-rule">
+        <!-- CUSTOMIZE: Pricing Tier 1 (Starter) -->
+        <div class="p-10 lg:p-12 border-b md:border-b-0 md:border-r border-rule bg-paper">
+          <span class="font-mono text-[10px] text-ink-3 tracking-[0.15em] uppercase">Starter</span>
+          <h3 class="mt-4 font-sans font-bold text-3xl text-ink">Essential</h3>
+          <p class="mt-3 text-ink-3 text-sm leading-relaxed">For solo operators and freelancers with straightforward books.</p>
+          <div class="mt-8 pt-8 border-t border-rule">
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-ink-2 text-sm">Monthly bookkeeping</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-ink-2 text-sm">Bank reconciliation</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-ink-2 text-sm">P&amp;L + Balance Sheet</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-ink-2 text-sm">Email support</span>
+              </li>
+            </ul>
+          </div>
+          <a href="#contact" class="mt-10 block w-full px-6 py-4 border border-rule text-ink text-[13px] font-medium text-center hover:border-accent hover:text-accent transition-colors">
+            Request a Quote
+          </a>
+        </div>
+
+        <!-- CUSTOMIZE: Pricing Tier 2 (Growth — featured) -->
+        <div class="p-10 lg:p-12 border-b md:border-b-0 md:border-r border-rule bg-ink text-white relative">
+          <div class="absolute top-0 left-0 right-0 h-1 bg-accent"></div>
+          <span class="font-mono text-[10px] text-accent tracking-[0.15em] uppercase">Most Popular</span>
+          <h3 class="mt-4 font-sans font-bold text-3xl text-white">Growth</h3>
+          <p class="mt-3 text-white/45 text-sm leading-relaxed">For growing businesses that need bookkeeping + payroll.</p>
+          <div class="mt-8 pt-8 border-t border-white/10">
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-white/70 text-sm">Everything in Essential</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-white/70 text-sm">Payroll processing</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-white/70 text-sm">AP / AR management</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-white/70 text-sm">Quarterly tax estimates</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-white/70 text-sm">Dedicated bookkeeper</span>
+              </li>
+            </ul>
+          </div>
+          <a href="#contact" class="mt-10 block w-full px-6 py-4 bg-accent text-white text-[13px] font-medium text-center hover:bg-accent-hover transition-colors">
+            Request a Quote
+          </a>
+        </div>
+
+        <!-- CUSTOMIZE: Pricing Tier 3 (Full Service) -->
+        <div class="p-10 lg:p-12 bg-paper">
+          <span class="font-mono text-[10px] text-ink-3 tracking-[0.15em] uppercase">Complete</span>
+          <h3 class="mt-4 font-sans font-bold text-3xl text-ink">Full Service</h3>
+          <p class="mt-3 text-ink-3 text-sm leading-relaxed">For businesses that want total financial management and CFO advisory.</p>
+          <div class="mt-8 pt-8 border-t border-rule">
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-ink-2 text-sm">Everything in Growth</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-ink-2 text-sm">Business tax return prep</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-ink-2 text-sm">Virtual CFO sessions</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-ink-2 text-sm">Budgets, forecasts, strategy</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                <span class="text-ink-2 text-sm">Priority phone + email support</span>
+              </li>
+            </ul>
+          </div>
+          <a href="#contact" class="mt-10 block w-full px-6 py-4 border border-rule text-ink text-[13px] font-medium text-center hover:border-accent hover:text-accent transition-colors">
+            Request a Quote
+          </a>
+        </div>
+      </div>
+
+      <p class="mt-8 text-center text-ink-3 text-xs">All plans are custom-quoted based on transaction volume, entity type, and scope. No long-term contracts required.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-32 lg:py-44 bg-paper border-t border-rule">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+        <div class="lg:col-span-5">
+          <span class="sect-label">07 &mdash; Contact</span>
+          <h2 class="mt-6 font-sans font-bold text-4xl md:text-5xl text-ink tracking-tight leading-[1.05]">Ready to take<br>control?</h2>
+          <p class="mt-6 text-ink-2 text-[17px] leading-relaxed max-w-md">
+            Schedule a free consultation. Let us handle the numbers so you can focus on growing your business.
+          </p>
+
+          <div class="mt-14 space-y-8">
+            <div>
+              <span class="sect-label block mb-2">Phone</span>
+              <a href="tel:{{BUSINESS_PHONE_TEL}}" class="text-ink font-medium hover:text-accent transition-colors">{{BUSINESS_PHONE}}</a>
+            </div>
+            <div>
+              <span class="sect-label block mb-2">Email</span>
+              <a href="mailto:{{BUSINESS_EMAIL}}" class="text-ink font-medium hover:text-accent transition-colors">{{BUSINESS_EMAIL}}</a>
+            </div>
+            <div>
+              <span class="sect-label block mb-2">Hours</span>
+              <span class="text-ink font-medium">{{OPERATING_DAYS}}: {{OPERATING_HOURS}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="bg-canvas border border-rule p-10 md:p-14">
+            <h3 class="font-sans font-semibold text-xl text-ink mb-8">Send a message</h3>
+            <form id="contact-form" class="space-y-5">
+              <input type="text" name="name" placeholder="Full Name" required class="w-full px-5 py-4 bg-paper border border-rule text-sm text-ink placeholder:text-ink-4 focus:outline-none focus:border-accent transition-colors font-sans">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <input type="email" name="email" placeholder="Email" required class="w-full px-5 py-4 bg-paper border border-rule text-sm text-ink placeholder:text-ink-4 focus:outline-none focus:border-accent transition-colors font-sans">
+                <input type="tel" name="phone" placeholder="Phone" class="w-full px-5 py-4 bg-paper border border-rule text-sm text-ink placeholder:text-ink-4 focus:outline-none focus:border-accent transition-colors font-sans">
+              </div>
+              <!-- CUSTOMIZE: Service options in dropdown -->
+              <select name="service" class="w-full px-5 py-4 bg-paper border border-rule text-sm text-ink-4 focus:outline-none focus:border-accent transition-colors font-sans">
+                <option value="">Select a Service</option>
+                <option value="bookkeeping">Bookkeeping</option>
+                <option value="payroll">Payroll Processing</option>
+                <option value="tax">Tax Preparation</option>
+                <option value="cfo">Virtual CFO</option>
+                <option value="cleanup">Book Cleanup</option>
+                <option value="special">Special Projects</option>
+                <option value="other">Other</option>
+              </select>
+              <textarea name="message" rows="5" placeholder="How can we help?" class="w-full px-5 py-4 bg-paper border border-rule text-sm text-ink placeholder:text-ink-4 focus:outline-none focus:border-accent transition-colors resize-none font-sans"></textarea>
+              <button type="submit" class="w-full px-8 py-4 bg-ink text-white text-[13px] font-medium tracking-wide hover:bg-accent transition-colors">
+                Send Message
+                <svg class="w-4 h-4 inline-block ml-2 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-ink text-white border-t border-white/5">
+    <div class="max-w-[1400px] mx-auto px-8 lg:px-16 py-20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-7 h-7 bg-accent flex items-center justify-center">
+              <span class="font-sans font-bold text-white text-xs">{{BUSINESS_INITIAL}}</span>
+            </div>
+            <span class="font-sans font-semibold text-[15px] text-white">{{BUSINESS_SHORT_NAME}}</span>
+          </div>
+          <p class="text-white/35 text-sm leading-relaxed max-w-xs">
+            Bookkeeping, payroll, and tax support for small businesses across the {{BUSINESS_CITY}} area.
+          </p>
+        </div>
+        <div>
+          <span class="font-mono text-[10px] text-accent tracking-[0.15em] uppercase block mb-6">Services</span>
+          <!-- CUSTOMIZE: Footer services links -->
+          <ul class="space-y-3 text-sm">
+            <li><a href="#services" class="text-white/35 hover:text-white transition-colors">Bookkeeping</a></li>
+            <li><a href="#services" class="text-white/35 hover:text-white transition-colors">Payroll Processing</a></li>
+            <li><a href="#services" class="text-white/35 hover:text-white transition-colors">Tax Preparation</a></li>
+            <li><a href="#services" class="text-white/35 hover:text-white transition-colors">Virtual CFO</a></li>
+            <li><a href="#services" class="text-white/35 hover:text-white transition-colors">Book Cleanup</a></li>
+            <li><a href="#services" class="text-white/35 hover:text-white transition-colors">Special Projects</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="font-mono text-[10px] text-accent tracking-[0.15em] uppercase block mb-6">Office</span>
+          <div class="text-white/35 text-sm space-y-2">
+            <p>{{BUSINESS_ADDRESS}}</p>
+            <p>{{BUSINESS_CITY}}, {{BUSINESS_STATE}} {{BUSINESS_ZIP}}</p>
+            <a href="tel:{{BUSINESS_PHONE_TEL}}" class="block hover:text-white transition-colors mt-4">{{BUSINESS_PHONE}}</a>
+            <p class="mt-4">{{OPERATING_DAYS}}: {{OPERATING_HOURS}}</p>
+          </div>
+        </div>
+        <div>
+          <span class="font-mono text-[10px] text-accent tracking-[0.15em] uppercase block mb-6">Connect</span>
+          <div class="text-sm space-y-3">
+            <a href="mailto:{{BUSINESS_EMAIL}}" class="block text-white/35 hover:text-white transition-colors">{{BUSINESS_EMAIL}}</a>
+            <a href="{{FACEBOOK_URL}}" target="_blank" rel="noopener noreferrer" class="block text-white/35 hover:text-white transition-colors">Facebook</a>
+            <a href="{{LINKEDIN_URL}}" target="_blank" rel="noopener noreferrer" class="block text-white/35 hover:text-white transition-colors">LinkedIn</a>
+            <a href="{{PINTEREST_URL}}" target="_blank" rel="noopener noreferrer" class="block text-white/35 hover:text-white transition-colors">Pinterest</a>
+            <a href="{{GOOGLE_REVIEWS_URL}}" target="_blank" rel="noopener noreferrer" class="block text-white/35 hover:text-white transition-colors">Google Reviews</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-white/25 text-xs">&copy; {{CURRENT_YEAR}} {{BUSINESS_NAME}}. All rights reserved.</p>
+        <div class="flex gap-8">
+          <a href="#" class="text-white/25 text-xs hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="text-white/25 text-xs hover:text-white transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // CUSTOMIZE: FAQ array — update questions and answers
+    // These should match the FAQ structured data in the head section
+    const faqs = [
+      { question: "What bookkeeping services do you offer?", answer: "Describe your bookkeeping services here. Include details about reconciliation, reporting, and platforms supported." },
+      { question: "How fast can you clean up messy books?", answer: "Describe your book cleanup timeline and process." },
+      { question: "Do you handle payroll processing?", answer: "Describe your payroll processing capabilities, platforms, and filing support." },
+      { question: "Do you offer free tax return preparation?", answer: "Describe your tax preparation offerings and any complimentary services for existing clients." },
+      { question: "What areas do you serve?", answer: "Describe the cities and regions you serve, and whether you offer remote services." },
+      { question: "What is Virtual CFO advisory?", answer: "Describe your Virtual CFO service including what is covered in each session." },
+      { question: "What are your hours of operation?", answer: "State your operating hours and days of the week." },
+      { question: "How do I get started?", answer: "Describe how new clients can get started — phone, email, or contact form." }
+    ];
+
+    const faqList = document.getElementById('faq-list');
+    faqs.forEach((faq, i) => {
+      const item = document.createElement('div');
+      item.className = 'border-b border-rule';
+      item.innerHTML = `
+        <button class="w-full py-7 flex items-start justify-between text-left group faq-btn">
+          <div class="flex items-start gap-5 pr-8">
+            <span class="font-mono text-xs text-ink-4 mt-0.5 shrink-0">0${i+1}</span>
+            <span class="font-sans font-medium text-ink group-hover:text-accent transition-colors text-[15px]">${faq.question}</span>
+          </div>
+          <div class="w-6 h-6 border border-rule flex items-center justify-center shrink-0 mt-0.5 group-hover:border-accent/30 transition-colors">
+            <svg class="w-3 h-3 text-ink-3 transition-transform duration-500 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer">
+          <p class="text-ink-2 text-sm leading-relaxed pb-7 pl-[52px] pr-12">${faq.answer}</p>
+        </div>
+      `;
+      faqList.appendChild(item);
+    });
+
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+        const chevron = this.querySelector('.faq-chevron');
+        const isOpen = answer.classList.contains('open');
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('rotate-180'));
+        if (!isOpen) { answer.classList.add('open'); chevron.classList.add('rotate-180'); }
+      });
+    });
+
+    const navbar = document.getElementById('navbar');
+    const navTextMain = navbar.querySelector('.nav-text-main');
+    const navLinks = navbar.querySelectorAll('.nav-link');
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        navbar.style.background = 'rgba(245,244,240,0.92)';
+        navbar.style.backdropFilter = 'blur(20px)';
+        navbar.style.borderBottom = '1px solid rgba(0,0,0,0.08)';
+        navTextMain.style.color = '#111';
+        navLinks.forEach(l => l.style.color = '#555');
+        mobileBtn.style.color = '#111';
+      } else {
+        navbar.style.background = 'transparent';
+        navbar.style.backdropFilter = 'none';
+        navbar.style.borderBottom = '1px solid transparent';
+        navTextMain.style.color = 'white';
+        navLinks.forEach(l => l.style.color = 'rgba(255,255,255,0.7)');
+        mobileBtn.style.color = 'white';
+      }
+    });
+
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+    document.getElementById('mobile-menu').querySelectorAll('a').forEach(l => l.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden')));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior:'smooth', block:'start' });
+      });
+    });
+
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      const orig = btn.innerHTML;
+      btn.textContent = 'Sending...';
+      btn.style.opacity = '0.6';
+      setTimeout(() => {
+        btn.innerHTML = 'Message Sent \u2713';
+        btn.style.opacity = '1';
+        setTimeout(() => { btn.innerHTML = orig; this.reset(); }, 2500);
+      }, 1200);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mannucci Associates - Hero Concept</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        'law-navy': '#0f172a',
+                        'law-gold': '#d4af37',
+                        'law-cream': '#f9f8f4',
+                        'law-charcoal': '#1c1c1c',
+                    },
+                    backgroundImage: {
+                        'grain': "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTvibulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%220.05%22/%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Utilities */
+        .text-balance { text-wrap: balance; }
+        
+        /* Reveal Animations */
+        @keyframes revealUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes revealImage {
+            from { clip-path: inset(0 100% 0 0); transform: scale(1.1); }
+            to { clip-path: inset(0 0 0 0); transform: scale(1); }
+        }
+
+        @keyframes lineGrow {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .animate-reveal {
+            animation: revealUp 1s cubic-bezier(0.2, 0.65, 0.3, 0.9) forwards;
+            opacity: 0;
+        }
+
+        .animate-image {
+            animation: revealImage 1.4s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+
+        .animate-line {
+            animation: lineGrow 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-700 { animation-delay: 0.7s; }
+
+        /* Subtle Smooth Scroll */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-law-cream text-law-charcoal font-sans antialiased selection:bg-law-gold selection:text-white overflow-x-hidden">
+
+    <!-- Navigation (Simplified for Demo) -->
+    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference text-white">
+        <div class="text-xl font-serif font-bold tracking-widest uppercase">Mannucci</div>
+        <div class="hidden md:flex gap-8 text-xs font-medium tracking-[0.2em] uppercase">
+            <a href="#" class="hover:text-law-gold transition-colors">Practice Areas</a>
+            <a href="#" class="hover:text-law-gold transition-colors">The Firm</a>
+            <a href="#" class="hover:text-law-gold transition-colors">Journal</a>
+        </div>
+        <a href="#" class="hidden md:block text-xs font-medium tracking-[0.2em] uppercase border-b border-white/50 hover:border-law-gold hover:text-law-gold transition-all pb-1">Contact</a>
+    </nav>
+
+    <!-- Main Hero Section -->
+    <main class="relative min-h-screen flex items-center justify-center pt-20 pb-10 px-6 md:px-12 lg:px-24">
+        
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-law-cream pointer-events-none -z-20"></div>
+        <div class="absolute inset-0 bg-grain opacity-60 pointer-events-none -z-10 mix-blend-multiply"></div>
+
+        <!-- Layout Grid -->
+        <div class="w-full max-w-[1600px] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            
+            <!-- Left Column: Typography & Content -->
+            <div class="lg:col-span-7 flex flex-col justify-center relative z-10">
+                
+                <!-- Decorative Top Line -->
+                <div class="h-px bg-law-gold mb-8 animate-line origin-left"></div>
+
+                <!-- Eyebrow -->
+                <div class="overflow-hidden mb-4">
+                    <p class="font-sans text-xs md:text-sm font-bold tracking-[0.3em] uppercase text-law-gold animate-reveal delay-100">
+                        Est. 2003 &mdash; Pasadena, California
+                    </p>
+                </div>
+
+                <!-- Main Headline -->
+                <h1 class="font-serif text-6xl md:text-8xl lg:text-[7.5rem] leading-[0.9] text-law-navy mb-8 -ml-1">
+                    <span class="block overflow-hidden">
+                        <span class="block animate-reveal delay-200">Guardians of</span>
+                    </span>
+                    <span class="block overflow-hidden relative">
+                        <span class="block animate-reveal delay-300 italic text-law-gold pr-4">Legacy</span>
+                    </span>
+                    <span class="block overflow-hidden">
+                        <span class="block animate-reveal delay-500">&amp; Enterprise.</span>
+                    </span>
+                </h1>
+
+                <!-- Body Copy -->
+                <div class="lg:max-w-md ml-2 md:ml-4">
+                    <p class="text-law-charcoal/80 text-lg md:text-xl font-light leading-relaxed animate-reveal delay-700 text-balance">
+                        Sophisticated legal counsel for the defining moments of your life and business. We navigate complexity so you can build with confidence.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="mt-10 flex flex-wrap gap-6 animate-reveal delay-700">
+                        <a href="#" class="group relative px-8 py-4 bg-law-navy text-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                            <span class="relative z-10 flex items-center gap-4 font-medium tracking-widest text-xs uppercase">
+                                Schedule Consultation
+                                <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </span>
+                            <div class="absolute inset-0 bg-law-charcoal transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></div>
+                        </a>
+                        
+                        <a href="#" class="group flex items-center gap-3 px-6 py-4 border border-law-navy/20 hover:border-law-navy transition-all duration-300 text-law-navy">
+                            <span class="font-medium tracking-widest text-xs uppercase">Our Expertise</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Visual Imagery -->
+            <div class="lg:col-span-5 relative h-[50vh] lg:h-[80vh] w-full">
+                <!-- Abstract shape under image -->
+                <div class="absolute -top-10 -right-10 w-2/3 h-2/3 bg-law-gold/10 rounded-full blur-3xl animate-reveal delay-500"></div>
+
+                <div class="relative h-full w-full overflow-hidden">
+                    <!-- Image Wrapper -->
+                    <div class="absolute inset-0 bg-law-navy transition-transform duration-[1.5s] ease-out animate-image">
+                         <!-- Placeholder for High-End Architecture/Office Shot -->
+                         <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
+                              alt="Modern Architecture" 
+                              class="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal hover:opacity-100 transition-all duration-700 scale-105 hover:scale-100">
+                    </div>
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute bottom-8 left-0 lg:-left-12 bg-white/90 backdrop-blur p-6 shadow-2xl max-w-[240px] border-l-4 border-law-gold animate-reveal delay-[900ms]">
+                        <p class="font-serif text-2xl text-law-navy italic mb-2">"Excellence in every detail."</p>
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-px bg-law-charcoal/20"></div>
+                            <span class="text-[10px] font-bold tracking-widest uppercase text-law-charcoal/60">Client Review</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Detail -->
+        <div class="absolute bottom-8 left-0 w-full px-6 md:px-24 flex justify-between items-end text-law-charcoal/40 text-[10px] font-bold tracking-[0.2em] uppercase animate-reveal delay-[1000ms]">
+            <div class="hidden md:block">Based in Pasadena</div>
+            <div class="flex gap-8">
+                <span>SCROLL</span>
+                <div class="w-px h-8 bg-law-charcoal/20 mx-auto"></div>
+            </div>
+            <div class="hidden md:block">Serving Southern California</div>
+        </div>
+
+    </main>
+
+</body>
+</html>

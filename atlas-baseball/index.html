@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atlas Baseball Academy — Phoenix, Arizona</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ──────────────────────────────────────────────── */
+    :root {
+      --blue-deep:  #003087;
+      --blue-mid:   #0a4aa8;
+      --blue-light: #1565c0;
+      --gold:       #EFB21E;
+      --gold-light: #f9d55a;
+      --red:        #C8102E;
+      --red-dark:   #a00d25;
+      --white:      #ffffff;
+      --off-white:  #f4f6fa;
+      --gray:       #8fa8cc;
+
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-ui:      'Barlow Condensed', sans-serif;
+      --font-body:    'Barlow', sans-serif;
+    }
+
+    /* ── RESET ───────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--blue-deep); color: var(--white); overflow-x: hidden; }
+    img  { display: block; max-width: 100%; }
+    a    { text-decoration: none; color: inherit; }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+    .reveal-delay-4 { transition-delay: 0.5s; }
+
+    /* ══════════════════════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      background: rgba(0, 30, 87, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(239, 178, 30, 0.15);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo-icon {
+      width: 40px;
+      height: 40px;
+      position: relative;
+    }
+
+    /* CSS Diamond Logo */
+    .nav-logo-diamond {
+      width: 28px;
+      height: 28px;
+      border: 2.5px solid var(--gold);
+      transform: rotate(45deg);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+    }
+    .nav-logo-diamond::before {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      background: var(--gold);
+      opacity: 0.25;
+    }
+
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1;
+    }
+    .nav-logo-text span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      background: var(--gold);
+      padding: 10px 24px;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover {
+      background: var(--gold-light);
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--blue-deep);
+      overflow: hidden;
+      padding-top: 68px;
+    }
+
+    /* Noise texture overlay */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Gold diagonal stripe */
+    .hero-stripe {
+      position: absolute;
+      top: 0;
+      left: -10%;
+      width: 55%;
+      height: 6px;
+      background: var(--gold);
+      transform: skewX(-20deg);
+      z-index: 2;
+    }
+
+    /* Baseball diamond watermark */
+    .hero-diamond-bg {
+      position: absolute;
+      right: -80px;
+      top: 50%;
+      transform: translateY(-52%) rotate(45deg);
+      width: 520px;
+      height: 520px;
+      border: 2px solid rgba(239, 178, 30, 0.18);
+      z-index: 3;
+      pointer-events: none;
+    }
+    .hero-diamond-bg::before {
+      content: '';
+      position: absolute;
+      inset: 40px;
+      border: 2px solid rgba(239, 178, 30, 0.05);
+    }
+    .hero-diamond-bg::after {
+      content: '';
+      position: absolute;
+      inset: 80px;
+      border: 2px solid rgba(239, 178, 30, 0.04);
+    }
+
+    /* Second decorative diamond, larger */
+    .hero-diamond-bg-2 {
+      position: absolute;
+      right: -200px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+      width: 720px;
+      height: 720px;
+      border: 1px solid rgba(239, 178, 30, 0.07);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* Hero split layout */
+    .hero-inner {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 56% 44%;
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 40px 80px;
+    }
+
+    /* Image column */
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      filter: saturate(0.7);
+    }
+
+    /* Left fade — blends image into navy content area */
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        var(--blue-deep) 0%,
+        rgba(0, 30, 100, 0.55) 35%,
+        rgba(0, 30, 100, 0.1) 100%
+      );
+      z-index: 1;
+    }
+
+    /* Blue tint to integrate with theme */
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 20, 80, 0.4);
+      mix-blend-mode: multiply;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .hero-headline .line-1 { font-size: clamp(80px, 11vw, 148px); }
+    .hero-headline .line-2 {
+      font-size: clamp(80px, 11vw, 148px);
+      color: var(--red);
+      -webkit-text-stroke: 0px;
+    }
+    .hero-headline .line-3 { font-size: clamp(80px, 11vw, 148px); }
+
+    .hero-sub {
+      font-family: var(--font-ui);
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 400;
+      color: var(--gray);
+      letter-spacing: 0.03em;
+      max-width: 540px;
+      margin-bottom: 44px;
+      line-height: 1.5;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: var(--font-ui);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--red);
+      padding: 16px 36px;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      font-family: var(--font-ui);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.35);
+      padding: 14px 34px;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-ghost:hover {
+      border-color: var(--white);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* ── STATS BAR ───────────────────────────────────────────── */
+    .stats-bar {
+      position: relative;
+      z-index: 4;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: rgba(0, 20, 70, 0.85);
+      border-top: 1px solid rgba(239, 178, 30, 0.2);
+      backdrop-filter: blur(8px);
+    }
+
+    .stat-item {
+      padding: 28px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.6s ease;
+      transform-origin: left;
+    }
+    .stat-item:hover::before { transform: scaleX(1); }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 48px;
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+    .stat-suffix {
+      color: var(--gold);
+    }
+
+    .stat-label {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 6px;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════════════════════════ */
+    #about {
+      background: var(--off-white);
+      color: #111827;
+      padding: 0;
+    }
+
+    .about-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 700px;
+    }
+
+    /* Sticky left column */
+    .about-left {
+      padding: 100px 64px 100px 80px;
+      position: sticky;
+      top: 68px;
+      height: fit-content;
+    }
+
+    .section-label {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .about-headline {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5vw, 68px);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--blue-deep);
+      margin-bottom: 40px;
+    }
+
+    .coach-quote {
+      border-left: 4px solid var(--gold);
+      padding: 20px 24px;
+      background: rgba(0, 48, 135, 0.05);
+      border-radius: 0 4px 4px 0;
+    }
+    .coach-quote p {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-style: italic;
+      color: #374151;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .coach-attribution {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+    }
+
+    /* Scrolling right column */
+    .about-right {
+      padding: 100px 80px 100px 64px;
+      border-left: 1px solid rgba(0, 48, 135, 0.1);
+    }
+
+    .about-right p {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.8;
+      color: #374151;
+      margin-bottom: 28px;
+    }
+
+    /* Photo placeholder */
+    .about-photo {
+      margin: 32px 0;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      background: var(--blue-mid);
+      aspect-ratio: 16 / 9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-inner {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 50%, var(--blue-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Baseball seams decoration inside placeholder */
+    .photo-inner::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 3px solid rgba(255,255,255,0.06);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+    }
+    .photo-inner::after {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border: 3px solid rgba(239, 178, 30, 0.12);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      translate: -50% -50%;
+    }
+
+    .photo-placeholder-text {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.25);
+      z-index: 1;
+    }
+
+    .photo-caption {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--red);
+      padding: 5px 12px;
+      z-index: 2;
+    }
+
+    /* ── PILLARS ─────────────────────────────────────────────── */
+    .about-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .pillar {
+      padding: 48px 40px;
+      background: var(--off-white);
+      border-top: 1px solid rgba(0, 48, 135, 0.12);
+      border-right: 1px solid rgba(0, 48, 135, 0.12);
+      cursor: default;
+      transition: background 0.3s ease, color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar:last-child { border-right: none; }
+
+    .pillar::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 40px; height: 3px;
+      background: var(--gold);
+      transition: width 0.4s ease;
+    }
+
+    .pillar:hover { background: var(--blue-deep); }
+    .pillar:hover .pillar-number,
+    .pillar:hover .pillar-title,
+    .pillar:hover .pillar-desc { color: var(--white); }
+    .pillar:hover::after { width: 100%; background: var(--red); }
+
+    .pillar-number {
+      font-family: var(--font-display);
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: var(--red);
+      margin-bottom: 16px;
+      transition: color 0.3s;
+    }
+
+    .pillar-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 0.03em;
+      color: var(--blue-deep);
+      line-height: 1.1;
+      margin-bottom: 14px;
+      transition: color 0.3s;
+    }
+
+    .pillar-desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.7;
+      color: #6b7280;
+      transition: color 0.3s;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       PROGRAMS
+    ══════════════════════════════════════════════════════════ */
+    #programs {
+      background: var(--blue-deep);
+      padding: 120px 80px;
+      position: relative;
+    }
+
+    /* Diagonal clip-path top divider from about section */
+    #programs::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 0; right: 0;
+      height: 120px;
+      background: var(--blue-deep);
+      clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    }
+
+    .programs-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .programs-label {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .programs-headline {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 6vw, 80px);
+      letter-spacing: 0.02em;
+      line-height: 0.95;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .programs-sub {
+      font-family: var(--font-ui);
+      font-size: 18px;
+      color: var(--gray);
+      letter-spacing: 0.03em;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* ── CARDS GRID ──────────────────────────────────────────── */
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .program-card {
+      background: var(--blue-mid);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+    .program-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+    }
+
+    /* Featured card */
+    .program-card.featured {
+      border: 2px solid var(--gold);
+      background: var(--blue-light);
+      transform: scale(1.02);
+    }
+    .program-card.featured:hover {
+      transform: scale(1.02) translateY(-8px);
+    }
+
+    /* Most Popular ribbon */
+    .ribbon {
+      position: absolute;
+      top: 20px;
+      right: -30px;
+      background: var(--gold);
+      color: var(--blue-deep);
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 40px;
+      transform: rotate(45deg);
+      transform-origin: center;
+      width: 140px;
+      text-align: center;
+      z-index: 5;
+    }
+
+    .card-top {
+      padding: 36px 32px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .card-age {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 36px;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .card-subtitle {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      color: var(--gray);
+      letter-spacing: 0.05em;
+    }
+
+    .card-accent-line {
+      height: 3px;
+      background: var(--red);
+      margin-top: 20px;
+      width: 48px;
+    }
+    .featured .card-accent-line {
+      background: var(--gold);
+      width: 64px;
+    }
+
+    .card-body {
+      padding: 28px 32px;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .card-features li {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .card-features li::before {
+      content: '→';
+      color: var(--red);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .featured .card-features li::before {
+      color: var(--gold);
+    }
+
+    .card-session {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    .card-session span {
+      color: var(--white);
+    }
+
+    .card-cta {
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 14px;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+    .card-cta:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.5);
+    }
+    .featured .card-cta {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--blue-deep);
+    }
+    .featured .card-cta:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+    }
+
+    /* Tryout badge */
+    .tryout-badge {
+      display: inline-block;
+      font-family: var(--font-ui);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--red);
+      padding: 3px 10px;
+      margin-top: 10px;
+    }
+
+    /* ══════════════════════════════════════════════════════════
+       FOOTER (minimal)
+    ══════════════════════════════════════════════════════════ */
+    footer {
+      background: #001540;
+      padding: 40px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(239, 178, 30, 0.15);
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      color: var(--white);
+    }
+    .footer-brand span { color: var(--gold); }
+
+    .footer-legal {
+      font-family: var(--font-ui);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════ NAV ══════════════ -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-icon" aria-hidden="true">
+        <div class="nav-logo-diamond"></div>
+      </div>
+      <div class="nav-logo-text">ATLAS <span>BASEBALL</span></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#programs">Coaches</a></li>
+      <li><a href="#programs">Alumni</a></li>
+    </ul>
+
+    <a href="#programs" class="nav-cta">Enroll Now</a>
+  </nav>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section id="hero">
+    <div class="hero-stripe" aria-hidden="true"></div>
+    <div class="hero-diamond-bg" aria-hidden="true"></div>
+    <div class="hero-diamond-bg-2" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-eyebrow reveal">Phoenix, Arizona &nbsp;·&nbsp; Est. 2012</p>
+
+        <h1 class="hero-headline reveal reveal-delay-1" aria-label="Atlas Baseball Academy">
+          <span class="line-1">ATLAS</span><br>
+          <span class="line-2">BASEBALL</span><br>
+          <span class="line-3">ACADEMY</span>
+        </h1>
+
+        <p class="hero-sub reveal reveal-delay-2">
+          Where Phoenix's best young athletes are forged into champions — mind, arm, and character.
+        </p>
+
+        <div class="hero-ctas reveal reveal-delay-3">
+          <a href="#programs" class="btn-primary">Explore Programs</a>
+          <a href="#about" class="btn-ghost">Our Story</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1566479179817-2fb9ce00de48?w=900&q=85&auto=format&fit=crop"
+          alt="Baseball pitcher in mid-windup"
+        />
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-number">
+          <span class="count" data-target="500">0</span><span class="stat-suffix">+</span>
+        </div>
+        <div class="stat-label">Athletes Trained</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">
+          <span class="count" data-target="14">0</span>
+        </div>
+        <div class="stat-label">Years Coaching</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">
+          <span class="count" data-target="12">0</span>
+        </div>
+        <div class="stat-label">State Championships</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">
+          <span class="count" data-target="93">0</span><span class="stat-suffix">%</span>
+        </div>
+        <div class="stat-label">College Placement Rate</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ ABOUT ══════════════ -->
+  <section id="about">
+    <div class="about-main">
+
+      <!-- Left: sticky -->
+      <div class="about-left">
+        <div class="section-label reveal">About the Academy</div>
+
+        <h2 class="about-headline reveal reveal-delay-1">
+          BUILT ON<br>GRIT &amp;<br>GREATNESS
+        </h2>
+
+        <div class="coach-quote reveal reveal-delay-2">
+          <p>"I've trained athletes who went on to play Division I, got signed to pro deals, and became coaches themselves. What they all had in common wasn't raw talent — it was the willingness to do the work when nobody was watching."</p>
+          <div class="coach-attribution">— Coach Marcus Webb, Founder &amp; Head Coach</div>
+        </div>
+      </div>
+
+      <!-- Right: scrolling -->
+      <div class="about-right">
+        <p class="reveal">
+          Atlas Baseball Academy was born in 2012 from a simple belief: great coaching changes lives. Founder Marcus Webb — a former AAA pitcher who spent nine seasons in professional baseball — returned to Phoenix with one mission: build the program he wished had existed when he was coming up.
+        </p>
+        <p class="reveal reveal-delay-1">
+          From a single practice field and twelve players, Atlas has grown into the most respected youth baseball organization in the Southwest. Our athletes train year-round with the same discipline and intensity as the professionals, developing not just baseball IQ but the mental toughness that defines elite competitors.
+        </p>
+
+        <div class="about-photo reveal reveal-delay-2">
+          <div class="photo-inner">
+            <div class="photo-placeholder-text">ATLAS BASEBALL · PHOENIX AZ</div>
+          </div>
+          <div class="photo-caption">Coach Webb, Atlas Field — 2023</div>
+        </div>
+
+        <p class="reveal">
+          Fourteen years and twelve state championships later, Atlas athletes are competing at every level of the game. Our 93% college placement rate speaks to what happens when genuine coaching meets genuine commitment. But our proudest statistic isn't a number — it's the character of the men our boys become.
+        </p>
+      </div>
+    </div>
+
+    <!-- Pillars -->
+    <div class="about-pillars">
+      <div class="pillar reveal">
+        <div class="pillar-number">01</div>
+        <div class="pillar-title">SKILL DEVELOPMENT</div>
+        <p class="pillar-desc">Position-specific coaching, film study, and progressive drills that build the technical foundation every elite prospect needs.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-1">
+        <div class="pillar-number">02</div>
+        <div class="pillar-title">MENTAL TOUGHNESS</div>
+        <p class="pillar-desc">High-pressure simulations, adversity training, and sports psychology sessions that prepare athletes for the big moment.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-2">
+        <div class="pillar-number">03</div>
+        <div class="pillar-title">BROTHERHOOD</div>
+        <p class="pillar-desc">A culture of accountability, respect, and brotherhood that extends far beyond graduation and onto every field these men ever play.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PROGRAMS ══════════════ -->
+  <section id="programs">
+    <div class="programs-header">
+      <div class="programs-label reveal">Training Programs</div>
+      <h2 class="programs-headline reveal reveal-delay-1">CHOOSE YOUR PATH</h2>
+      <p class="programs-sub reveal reveal-delay-2">Three tiers. One mission. Find the program that matches where you are — and take you where you want to go.</p>
+    </div>
+
+    <div class="programs-grid">
+
+      <!-- Card 1: Rookie Squad -->
+      <div class="program-card reveal">
+        <div class="card-top">
+          <div class="card-age">Ages 8–10</div>
+          <div class="card-title">ROOKIE SQUAD</div>
+          <div class="card-subtitle">Building the Foundation</div>
+          <div class="card-accent-line"></div>
+        </div>
+        <div class="card-body">
+          <ul class="card-features">
+            <li>Fundamentals of throwing, catching &amp; hitting</li>
+            <li>Coordination &amp; athletic development</li>
+            <li>Introduction to game rules &amp; strategy</li>
+            <li>Team drills and scrimmage play</li>
+            <li>Parent progress updates every 4 weeks</li>
+          </ul>
+          <div class="card-session">Sessions: <span>Spring &amp; Fall</span></div>
+          <a href="#" class="card-cta">Apply Now</a>
+        </div>
+      </div>
+
+      <!-- Card 2: Junior Elite (featured) -->
+      <div class="program-card featured reveal reveal-delay-1">
+        <div class="ribbon">Most Popular</div>
+        <div class="card-top">
+          <div class="card-age">Ages 11–14</div>
+          <div class="card-title">JUNIOR ELITE</div>
+          <div class="card-subtitle">Serious Development</div>
+          <div class="card-accent-line"></div>
+        </div>
+        <div class="card-body">
+          <ul class="card-features">
+            <li>Position-specific skill tracks</li>
+            <li>Weekly film review sessions</li>
+            <li>Advanced pitching &amp; hitting mechanics</li>
+            <li>Mental performance coaching</li>
+            <li>Showcase &amp; tournament participation</li>
+            <li>College recruiting preparation</li>
+          </ul>
+          <div class="card-session">Sessions: <span>Year-Round</span></div>
+          <a href="#" class="card-cta">Apply Now</a>
+        </div>
+      </div>
+
+      <!-- Card 3: Varsity Select -->
+      <div class="program-card reveal reveal-delay-2">
+        <div class="card-top">
+          <div class="card-age">Ages 15–18</div>
+          <div class="card-title">VARSITY SELECT</div>
+          <div class="card-subtitle">Elite Prospect Training</div>
+          <div class="card-accent-line"></div>
+        </div>
+        <div class="card-body">
+          <ul class="card-features">
+            <li>Pro-style training protocols</li>
+            <li>Individual college recruiting strategy</li>
+            <li>Velocity &amp; exit speed optimization</li>
+            <li>National showcase representation</li>
+            <li>Direct coach connections &amp; referrals</li>
+          </ul>
+          <div class="card-session">Sessions: <span>Year-Round</span></div>
+          <div class="tryout-badge">Tryout-Based Enrollment</div>
+          <br><br>
+          <a href="#" class="card-cta">Request Tryout</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <div class="footer-brand">ATLAS <span>BASEBALL</span> ACADEMY</div>
+    <div class="footer-legal">© 2026 Atlas Baseball Academy · Phoenix, Arizona</div>
+  </footer>
+
+  <!-- ══════════════ JS ══════════════ -->
+  <script>
+    /* ── Scroll Reveal ─────────────────────────────── */
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    /* ── Count-Up Animation ────────────────────────── */
+    function animateCount(el) {
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1600;
+      const start = performance.now();
+
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = target;
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    // Trigger count-up when stats bar enters view
+    const statsBar = document.querySelector('.stats-bar');
+    let counted = false;
+
+    const statsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !counted) {
+            counted = true;
+            document.querySelectorAll('.count').forEach(animateCount);
+            statsObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    statsObserver.observe(statsBar);
+
+    /* ── Trigger hero reveals immediately ─────────── */
+    // Hero elements are already in viewport on load
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.querySelectorAll('#hero .reveal').forEach(el => {
+          el.classList.add('visible');
+        });
+      }, 100);
+    });
+  </script>
+</body>
+</html>

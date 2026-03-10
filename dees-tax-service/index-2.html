@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dees Professional Tax Service - Tax Accountant | Los Angeles</title>
+  <meta name="description" content="Expert tax preparation in Gardena, CA. Personalized service, maximum returns, and a free consultation. 10% off for new clients.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-navy': '#0f1a2b',
+            'brand-ivory': '#faf8f4',
+            'brand-gold': '#c9a227',
+            'brand-slate': '#3d4f63',
+          },
+          fontFamily: {
+            serif: ['DM Serif Display', 'Georgia', 'serif'],
+            sans: ['Outfit', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* Noise texture overlay */
+    .noise-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Scroll-triggered animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Hero initial animations (not scroll-triggered) */
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-animate {
+      opacity: 0;
+      animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .hero-delay-1 { animation-delay: 0.2s; }
+    .hero-delay-2 { animation-delay: 0.4s; }
+    .hero-delay-3 { animation-delay: 0.6s; }
+
+    /* Service card shimmer on hover */
+    .service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(201,162,39,0.04) 50%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .service-card:hover::after {
+      opacity: 1;
+    }
+
+    /* Gold gradient text */
+    .gold-gradient {
+      background: linear-gradient(135deg, #c9a227 0%, #e8d48b 50%, #c9a227 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AccountingService",
+    "name": "Dees Professional Tax Service",
+    "description": "Tax accountant providing guidance and assistance for tax filing per IRS regulations",
+    "url": "https://dees-professional-tax-service.ueniweb.com/",
+    "telephone": "+19013144108",
+    "email": "deondriabland@icloud.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "1425 W 145th Street",
+      "addressLocality": "Gardena",
+      "addressRegion": "CA",
+      "postalCode": "90247",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 33.9006831,
+      "longitude": -118.301376
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00",
+        "closes": "19:30"
+      }
+    ],
+    "priceRange": "$"
+  }
+  </script>
+</head>
+<body class="bg-brand-ivory min-h-screen antialiased font-sans">
+
+  <!-- ======================================== -->
+  <!-- 1. NAVIGATION                            -->
+  <!-- ======================================== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="flex items-center justify-between py-5 lg:py-6">
+        <a href="#" class="flex items-center gap-2 relative z-10">
+          <span class="font-serif text-2xl text-white tracking-wide">Dees <span class="gold-gradient">Tax</span></span>
+        </a>
+        <div class="hidden md:flex items-center gap-10">
+          <a href="#services" class="text-white/60 text-[13px] tracking-[0.15em] uppercase hover:text-brand-gold transition-colors duration-300 font-light">Services</a>
+          <a href="#about" class="text-white/60 text-[13px] tracking-[0.15em] uppercase hover:text-brand-gold transition-colors duration-300 font-light">About</a>
+          <a href="#process" class="text-white/60 text-[13px] tracking-[0.15em] uppercase hover:text-brand-gold transition-colors duration-300 font-light">Process</a>
+          <a href="#areas" class="text-white/60 text-[13px] tracking-[0.15em] uppercase hover:text-brand-gold transition-colors duration-300 font-light">Areas</a>
+          <a href="#faq" class="text-white/60 text-[13px] tracking-[0.15em] uppercase hover:text-brand-gold transition-colors duration-300 font-light">FAQ</a>
+          <a href="#contact" class="px-7 py-2.5 bg-brand-gold text-brand-navy text-[13px] tracking-[0.15em] uppercase hover:bg-white transition-colors duration-300 font-medium">Contact</a>
+        </div>
+        <button class="md:hidden text-white relative z-10" id="mobile-menu-btn" aria-label="Open menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="menu-icon-open"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          <svg class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="menu-icon-close"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="hidden md:hidden bg-brand-navy/98 backdrop-blur-lg border-t border-white/5" id="mobile-menu">
+      <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col gap-5">
+        <a href="#services" class="text-white/60 text-sm tracking-[0.15em] uppercase hover:text-brand-gold transition-colors font-light">Services</a>
+        <a href="#about" class="text-white/60 text-sm tracking-[0.15em] uppercase hover:text-brand-gold transition-colors font-light">About</a>
+        <a href="#process" class="text-white/60 text-sm tracking-[0.15em] uppercase hover:text-brand-gold transition-colors font-light">Process</a>
+        <a href="#areas" class="text-white/60 text-sm tracking-[0.15em] uppercase hover:text-brand-gold transition-colors font-light">Areas</a>
+        <a href="#faq" class="text-white/60 text-sm tracking-[0.15em] uppercase hover:text-brand-gold transition-colors font-light">FAQ</a>
+        <a href="#contact" class="mt-2 px-8 py-3 bg-brand-gold text-brand-navy text-sm tracking-[0.15em] uppercase hover:bg-white transition-colors duration-300 text-center font-medium">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======================================== -->
+  <!-- 2. HERO                                  -->
+  <!-- ======================================== -->
+  <section class="relative min-h-screen flex items-center overflow-hidden noise-overlay">
+    <img
+      src="https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?q=80&w=2832&auto=format&fit=crop"
+      alt="Los Angeles skyline at dusk"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 w-full pt-24 pb-40">
+      <div class="max-w-3xl">
+        <p class="text-brand-gold/90 text-xs tracking-[0.3em] uppercase mb-8 hero-animate hero-delay-1 font-light">
+          <span class="inline-block w-8 h-px bg-brand-gold/50 align-middle mr-3"></span>Gardena, California &bull; Serving Greater Los Angeles
+        </p>
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.08] mb-8 hero-animate hero-delay-2">
+          Expert Tax<br>Preparation.<br>
+          <span class="italic gold-gradient">Maximum Returns.</span>
+        </h1>
+        <p class="text-white/50 font-light text-lg md:text-xl max-w-xl leading-relaxed mb-12 hero-animate hero-delay-3">
+          Personalized tax services that save you time and money. Whether you need a simple review or a full financial plan, I'll get it right the first time.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 hero-animate hero-delay-3">
+          <a href="#contact" class="px-10 py-4 bg-brand-gold text-brand-navy text-xs tracking-[0.2em] uppercase hover:bg-white transition-colors duration-300 text-center font-medium">
+            Free Consultation
+          </a>
+          <a href="#services" class="px-10 py-4 border border-white/20 text-white text-xs tracking-[0.2em] uppercase hover:bg-white/10 hover:border-white/40 transition-all duration-300 text-center font-light">
+            View Services
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom trust bar -->
+    <div class="absolute bottom-0 left-0 right-0 z-10 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
+          <div class="py-5 md:py-6 pr-6 md:pr-0 md:text-center">
+            <span class="font-serif text-2xl md:text-3xl text-brand-gold">5+</span>
+            <span class="text-white/30 text-xs tracking-wider uppercase ml-2 font-light">Years</span>
+          </div>
+          <div class="py-5 md:py-6 pl-6 md:pl-0 md:text-center">
+            <span class="font-serif text-2xl md:text-3xl text-brand-gold">10%</span>
+            <span class="text-white/30 text-xs tracking-wider uppercase ml-2 font-light">New Client Discount</span>
+          </div>
+          <div class="py-5 md:py-6 pr-6 md:pr-0 md:text-center">
+            <span class="font-serif text-2xl md:text-3xl text-brand-gold">Free</span>
+            <span class="text-white/30 text-xs tracking-wider uppercase ml-2 font-light">Consultation</span>
+          </div>
+          <div class="py-5 md:py-6 pl-6 md:pl-0 md:text-center">
+            <span class="font-serif text-2xl md:text-3xl text-brand-gold">4</span>
+            <span class="text-white/30 text-xs tracking-wider uppercase ml-2 font-light">Core Services</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================== -->
+  <!-- 3. SERVICES GRID                         -->
+  <!-- ======================================== -->
+  <section id="services" class="py-28 md:py-36 bg-brand-ivory relative noise-overlay">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gap-6">
+        <div class="max-w-lg">
+          <p class="text-brand-gold text-xs tracking-[0.3em] uppercase mb-4 reveal font-light">What I Offer</p>
+          <h2 class="font-serif text-4xl md:text-5xl text-brand-navy leading-tight reveal reveal-delay-1">My Services</h2>
+        </div>
+        <p class="text-brand-slate text-sm leading-relaxed max-w-sm reveal reveal-delay-2 font-light">Comprehensive financial solutions tailored to your specific needs, from tax preparation to retirement planning.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+        <!-- Tax Preparation -->
+        <div class="service-card group relative p-8 lg:p-10 bg-white border border-brand-navy/5 hover:border-brand-gold/30 transition-all duration-500 overflow-hidden reveal">
+          <div class="absolute top-0 left-0 w-0.5 h-0 bg-brand-gold group-hover:h-full transition-all duration-700 ease-out"></div>
+          <div class="flex items-start justify-between mb-6">
+            <svg class="w-10 h-10 text-brand-navy/20 group-hover:text-brand-gold transition-colors duration-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+            <span class="text-brand-slate/40 text-xs tracking-wider uppercase font-light">POQ</span>
+          </div>
+          <h3 class="font-serif text-2xl text-brand-navy mb-3 group-hover:text-brand-gold transition-colors duration-300">Tax Preparation</h3>
+          <p class="text-brand-slate text-sm leading-relaxed font-light">Full tax filing and preparation services. I know the ins and outs of the system and will maximize every deduction available to you.</p>
+          <div class="mt-8 flex items-center gap-2 text-brand-gold text-xs tracking-widest uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 font-medium">
+            Learn More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Retirement & Wealth Building -->
+        <div class="service-card group relative p-8 lg:p-10 bg-white border border-brand-navy/5 hover:border-brand-gold/30 transition-all duration-500 overflow-hidden reveal reveal-delay-1">
+          <div class="absolute top-0 left-0 w-0.5 h-0 bg-brand-gold group-hover:h-full transition-all duration-700 ease-out"></div>
+          <div class="flex items-start justify-between mb-6">
+            <svg class="w-10 h-10 text-brand-navy/20 group-hover:text-brand-gold transition-colors duration-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-brand-slate/40 text-xs tracking-wider uppercase font-light">$75</span>
+          </div>
+          <h3 class="font-serif text-2xl text-brand-navy mb-3 group-hover:text-brand-gold transition-colors duration-300">Retirement &amp; Wealth Building</h3>
+          <p class="text-brand-slate text-sm leading-relaxed font-light">Strategic financial planning for your future. Whether it's your child's education or your retirement, I'll help you build lasting wealth.</p>
+          <div class="mt-8 flex items-center gap-2 text-brand-gold text-xs tracking-widest uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 font-medium">
+            Learn More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Stock Investment -->
+        <div class="service-card group relative p-8 lg:p-10 bg-white border border-brand-navy/5 hover:border-brand-gold/30 transition-all duration-500 overflow-hidden reveal reveal-delay-2">
+          <div class="absolute top-0 left-0 w-0.5 h-0 bg-brand-gold group-hover:h-full transition-all duration-700 ease-out"></div>
+          <div class="flex items-start justify-between mb-6">
+            <svg class="w-10 h-10 text-brand-navy/20 group-hover:text-brand-gold transition-colors duration-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"/></svg>
+            <span class="text-brand-slate/40 text-xs tracking-wider uppercase font-light">$75</span>
+          </div>
+          <h3 class="font-serif text-2xl text-brand-navy mb-3 group-hover:text-brand-gold transition-colors duration-300">Stock Investment</h3>
+          <p class="text-brand-slate text-sm leading-relaxed font-light">Tax guidance for your stock portfolio. Navigate capital gains, losses, and investment income with confidence.</p>
+          <div class="mt-8 flex items-center gap-2 text-brand-gold text-xs tracking-widest uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 font-medium">
+            Learn More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Bookkeeping -->
+        <div class="service-card group relative p-8 lg:p-10 bg-white border border-brand-navy/5 hover:border-brand-gold/30 transition-all duration-500 overflow-hidden reveal reveal-delay-3">
+          <div class="absolute top-0 left-0 w-0.5 h-0 bg-brand-gold group-hover:h-full transition-all duration-700 ease-out"></div>
+          <div class="flex items-start justify-between mb-6">
+            <svg class="w-10 h-10 text-brand-navy/20 group-hover:text-brand-gold transition-colors duration-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            <span class="text-brand-slate/40 text-xs tracking-wider uppercase font-light">Custom</span>
+          </div>
+          <h3 class="font-serif text-2xl text-brand-navy mb-3 group-hover:text-brand-gold transition-colors duration-300">Bookkeeping</h3>
+          <p class="text-brand-slate text-sm leading-relaxed font-light">Keep your business finances organized and accurate. From daily transactions to financial reporting, I handle the details so you can focus on growth.</p>
+          <div class="mt-8 flex items-center gap-2 text-brand-gold text-xs tracking-widest uppercase opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 font-medium">
+            Learn More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================== -->
+  <!-- 4. ABOUT SECTION                         -->
+  <!-- ======================================== -->
+  <section id="about" class="py-28 md:py-36 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+
+        <!-- Left: Image placeholder (asymmetric) -->
+        <div class="lg:col-span-5 relative reveal">
+          <div class="aspect-[3/4] bg-brand-navy relative overflow-hidden">
+            <img src="assets/Dees Tax Image.jpg" alt="Deondria Bland - Dees Professional Tax Service" class="absolute inset-0 w-full h-full object-cover object-top" />
+          </div>
+          <!-- Corner accents -->
+          <div class="absolute -top-4 -right-4 w-20 h-20 border-t-2 border-r-2 border-brand-gold/30"></div>
+          <div class="absolute -bottom-4 -left-4 w-20 h-20 border-b-2 border-l-2 border-brand-gold/30"></div>
+          <!-- Floating stat card -->
+          <div class="absolute -bottom-6 -right-6 lg:-right-10 bg-brand-gold px-8 py-6">
+            <span class="font-serif text-4xl text-brand-navy block">5+</span>
+            <span class="text-brand-navy/60 text-xs tracking-widest uppercase font-light">Years Serving LA</span>
+          </div>
+        </div>
+
+        <!-- Right: Bio text (takes more space for asymmetry) -->
+        <div class="lg:col-span-7 lg:pl-4">
+          <p class="text-brand-gold text-xs tracking-[0.3em] uppercase mb-5 reveal font-light">
+            <span class="inline-block w-8 h-px bg-brand-gold/50 align-middle mr-3"></span>About Me
+          </p>
+          <h2 class="font-serif text-4xl md:text-5xl text-brand-navy mb-10 leading-tight reveal reveal-delay-1">
+            A Tax Professional Who<br>Puts <span class="italic gold-gradient">You</span> First.
+          </h2>
+          <div class="space-y-6 mb-12">
+            <p class="text-brand-slate text-[15px] leading-[1.8] font-light reveal reveal-delay-2">
+              At Dees Professional Tax Service, I understand what is important to you. When looking for tax assistance, it's always best to have the proper resources and a team used to getting the best return for you and your estate. Whether you simply need a financial expert in Los Angeles to review your work or need help implementing a plan from start to finish, I am the right person to guide you.
+            </p>
+            <p class="text-brand-slate text-[15px] leading-[1.8] font-light reveal reveal-delay-3">
+              Perhaps most importantly, I know that getting the most out of your work is a major priority. Why work for less? Not only am I efficient and effective; I also know the ins and the outs of the system and am usually capable of saving you more money than you thought possible. Whether your company needs more capital for better equipment, or you want to start saving for your child's education or you simply need some time away on a beach, you'll save more with Dees Professional Tax Service.
+            </p>
+            <p class="text-brand-slate text-[15px] leading-[1.8] font-light reveal reveal-delay-4">
+              I understand that you value your time, and no one wants to spend their time filing taxes. That's why I make filing your taxes easy and effortless by minimising the time you need to spend worrying about them. I pride myself on getting everything right the first time, so you never need to worry.
+            </p>
+          </div>
+          <a href="#contact" class="reveal reveal-delay-4 inline-flex items-center gap-3 text-brand-navy text-xs tracking-[0.15em] uppercase border-b border-brand-navy/20 pb-1.5 hover:border-brand-gold hover:text-brand-gold transition-colors duration-300 font-medium">
+            Get In Touch <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================== -->
+  <!-- 5. THREE STEPS TO GET STARTED            -->
+  <!-- ======================================== -->
+  <section id="process" class="py-28 md:py-36 bg-brand-navy text-white relative noise-overlay overflow-hidden">
+    <!-- Atmospheric gradient blobs -->
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/5 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/3 rounded-full blur-[100px] -translate-x-1/3 translate-y-1/3"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div class="text-center mb-16 md:mb-24">
+        <p class="text-brand-gold/80 text-xs tracking-[0.3em] uppercase mb-5 reveal font-light">How It Works</p>
+        <h2 class="font-serif text-4xl md:text-5xl mb-6 reveal reveal-delay-1">Three Steps to Get Started</h2>
+        <p class="text-white/30 font-light max-w-xl mx-auto reveal reveal-delay-2">Filing your taxes should be easy and effortless. Here's how I make that happen.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 relative">
+        <!-- Connector Line -->
+        <div class="hidden md:block absolute top-16 left-[16.67%] right-[16.67%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+        <div class="relative z-10 text-center reveal">
+          <div class="w-[120px] h-[120px] mx-auto border border-white/10 rounded-full flex items-center justify-center mb-10 relative group hover:border-brand-gold/40 transition-colors duration-500">
+            <div class="absolute inset-0 rounded-full bg-brand-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <span class="font-serif text-4xl gold-gradient">01</span>
+          </div>
+          <h3 class="font-serif text-2xl mb-4">Free Consultation</h3>
+          <p class="text-white/35 font-light text-sm leading-relaxed max-w-xs mx-auto">
+            Get in touch and we'll discuss your situation. I'll understand your needs and explain exactly how I can help — no cost, no obligation.
+          </p>
+        </div>
+
+        <div class="relative z-10 text-center reveal reveal-delay-1">
+          <div class="w-[120px] h-[120px] mx-auto border border-white/10 rounded-full flex items-center justify-center mb-10 relative group hover:border-brand-gold/40 transition-colors duration-500">
+            <div class="absolute inset-0 rounded-full bg-brand-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <span class="font-serif text-4xl gold-gradient">02</span>
+          </div>
+          <h3 class="font-serif text-2xl mb-4">Personalized Plan</h3>
+          <p class="text-white/35 font-light text-sm leading-relaxed max-w-xs mx-auto">
+            Whether you need a simple review or start-to-finish implementation, I'll build a plan tailored to maximize your savings.
+          </p>
+        </div>
+
+        <div class="relative z-10 text-center reveal reveal-delay-2">
+          <div class="w-[120px] h-[120px] mx-auto border border-white/10 rounded-full flex items-center justify-center mb-10 relative group hover:border-brand-gold/40 transition-colors duration-500">
+            <div class="absolute inset-0 rounded-full bg-brand-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <span class="font-serif text-4xl gold-gradient">03</span>
+          </div>
+          <h3 class="font-serif text-2xl mb-4">File &amp; Save</h3>
+          <p class="text-white/35 font-light text-sm leading-relaxed max-w-xs mx-auto">
+            I handle the filing, getting everything right the first time. You save more money than you thought possible and reclaim your time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================== -->
+  <!-- 6. AREAS SERVED                          -->
+  <!-- ======================================== -->
+  <section id="areas" class="py-28 md:py-36 bg-brand-ivory relative noise-overlay">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+      <div class="text-center mb-16 md:mb-20">
+        <p class="text-brand-gold text-xs tracking-[0.3em] uppercase mb-5 reveal font-light">Service Area</p>
+        <h2 class="font-serif text-4xl md:text-5xl text-brand-navy mb-6 reveal reveal-delay-1">Areas We Serve</h2>
+        <p class="text-brand-slate font-light max-w-xl mx-auto reveal reveal-delay-2">Proudly serving individuals and small businesses across the greater Los Angeles area from our Gardena office.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+        <!-- Left: Area tags -->
+        <div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 reveal reveal-delay-3">
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Gardena</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Torrance</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Hawthorne</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Inglewood</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Carson</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Compton</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Lomita</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Lawndale</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">South Los Angeles</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Redondo Beach</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Manhattan Beach</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Hermosa Beach</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">El Segundo</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Wilmington</span>
+            </div>
+            <div class="group bg-white border border-brand-navy/5 hover:border-brand-gold/30 px-5 py-4 text-center transition-all duration-300 hover:-translate-y-0.5">
+              <span class="text-brand-navy text-sm font-light group-hover:text-brand-gold transition-colors">Harbor City</span>
+            </div>
+          </div>
+          <p class="text-brand-slate/50 text-sm mt-6 font-light">Located at 1425 W 145th Street, Gardena, CA 90247 &mdash; conveniently accessible from across the South Bay and greater LA.</p>
+        </div>
+
+        <!-- Right: Google Maps Embed -->
+        <div class="reveal reveal-delay-4">
+          <div class="w-full h-full min-h-[400px] border border-brand-navy/5 bg-white">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.7!2d-118.301376!3d33.9006831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2b53be12d0d07%3A0x2db27a16ff8d2d8d!2s1425%20W%20145th%20St%2C%20Gardena%2C%20CA%2090247!5e0!3m2!1sen!1sus!4v1700000000000!5m2!1sen!1sus"
+              width="100%"
+              height="100%"
+              style="border:0; min-height:400px;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Dees Professional Tax Service location - Gardena, CA">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================== -->
+  <!-- 7. FAQ SECTION                           -->
+  <!-- ======================================== -->
+  <section id="faq" class="py-28 md:py-36 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-16 md:mb-20">
+          <p class="text-brand-gold text-xs tracking-[0.3em] uppercase mb-5 reveal font-light">Common Questions</p>
+          <h2 class="font-serif text-4xl md:text-5xl text-brand-navy reveal reveal-delay-1">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="border-t border-brand-navy/10 reveal reveal-delay-2" id="faq-list">
+          <!-- FAQ items rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================== -->
+  <!-- 8. CTA / CONTACT CARD                    -->
+  <!-- ======================================== -->
+  <section id="contact" class="py-20 md:py-28 bg-brand-ivory">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="bg-brand-navy relative overflow-hidden noise-overlay">
+        <!-- Atmospheric effects -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/8 rounded-full blur-[150px] translate-x-1/3 -translate-y-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-brand-gold/5 rounded-full blur-[100px] -translate-x-1/4 translate-y-1/4"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 relative z-10">
+          <!-- Left: CTA + Contact Info -->
+          <div class="p-10 md:p-16 lg:p-20 flex flex-col justify-center">
+            <h2 class="font-serif text-4xl md:text-5xl text-white mb-6 reveal leading-tight">Ready to maximize<br>your return?</h2>
+            <p class="text-white/40 font-light text-base mb-10 max-w-md reveal reveal-delay-1">
+              Schedule your free consultation and find out how much you could save. First-time clients get <span class="text-brand-gold font-medium">10% off</span> all services.
+            </p>
+            <div class="flex flex-col gap-5 reveal reveal-delay-2">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center text-brand-gold flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+                </div>
+                <div>
+                  <span class="block text-white/25 text-xs uppercase tracking-wider font-light mb-0.5">Phone</span>
+                  <a href="tel:+19013144108" class="text-white/70 text-sm hover:text-brand-gold transition-colors font-light">(901) 314-4108</a>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center text-brand-gold flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                </div>
+                <div>
+                  <span class="block text-white/25 text-xs uppercase tracking-wider font-light mb-0.5">Email</span>
+                  <a href="mailto:deondriabland@icloud.com" class="text-white/70 text-sm hover:text-brand-gold transition-colors font-light">deondriabland@icloud.com</a>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center text-brand-gold flex-shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                </div>
+                <div>
+                  <span class="block text-white/25 text-xs uppercase tracking-wider font-light mb-0.5">Address</span>
+                  <span class="text-white/70 text-sm font-light">1425 W 145th Street, Gardena, CA 90247</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Contact Form -->
+          <div class="bg-white p-10 md:p-16 lg:p-20">
+            <h3 class="font-serif text-2xl text-brand-navy mb-2">Send a Message</h3>
+            <p class="text-brand-slate text-sm font-light mb-8">I'll get back to you within one business day.</p>
+            <form id="contact-form" class="space-y-5">
+              <div>
+                <input type="text" name="name" placeholder="Full Name" required class="w-full px-4 py-3.5 border border-brand-navy/10 text-sm text-brand-navy placeholder:text-brand-slate/40 focus:outline-none focus:border-brand-gold transition-colors bg-brand-ivory/50 font-light">
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <input type="email" name="email" placeholder="Email Address" required class="w-full px-4 py-3.5 border border-brand-navy/10 text-sm text-brand-navy placeholder:text-brand-slate/40 focus:outline-none focus:border-brand-gold transition-colors bg-brand-ivory/50 font-light">
+                <input type="tel" name="phone" placeholder="Phone Number" class="w-full px-4 py-3.5 border border-brand-navy/10 text-sm text-brand-navy placeholder:text-brand-slate/40 focus:outline-none focus:border-brand-gold transition-colors bg-brand-ivory/50 font-light">
+              </div>
+              <div>
+                <select name="service" class="w-full px-4 py-3.5 border border-brand-navy/10 text-sm text-brand-slate/40 focus:outline-none focus:border-brand-gold transition-colors bg-brand-ivory/50 font-light">
+                  <option value="">Select a Service</option>
+                  <option value="tax-prep">Tax Preparation</option>
+                  <option value="retirement">Retirement &amp; Wealth Building</option>
+                  <option value="stock">Stock Investment</option>
+                  <option value="bookkeeping">Bookkeeping</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <textarea name="message" rows="4" placeholder="Tell me about your tax situation..." class="w-full px-4 py-3.5 border border-brand-navy/10 text-sm text-brand-navy placeholder:text-brand-slate/40 focus:outline-none focus:border-brand-gold transition-colors resize-none bg-brand-ivory/50 font-light"></textarea>
+              </div>
+              <button type="submit" class="w-full px-10 py-4 bg-brand-gold text-brand-navy text-xs tracking-[0.2em] uppercase hover:bg-brand-navy hover:text-white transition-colors duration-300 font-medium">
+                Request Free Consultation
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================== -->
+  <!-- 9. FOOTER                                -->
+  <!-- ======================================== -->
+  <footer class="bg-brand-navy text-white pt-20 pb-8 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+        <!-- Brand -->
+        <div>
+          <span class="font-serif text-2xl text-white tracking-wide mb-6 block">Dees <span class="gold-gradient">Tax</span></span>
+          <p class="text-white/30 text-sm leading-relaxed font-light">
+            Expert tax preparation and financial services serving the Los Angeles area from Gardena, California.
+          </p>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="font-serif text-lg mb-6">Services</h4>
+          <ul class="space-y-3 text-white/30 text-sm font-light">
+            <li><a href="#services" class="hover:text-brand-gold transition-colors">Tax Preparation</a></li>
+            <li><a href="#services" class="hover:text-brand-gold transition-colors">Retirement &amp; Wealth Building</a></li>
+            <li><a href="#services" class="hover:text-brand-gold transition-colors">Stock Investment</a></li>
+            <li><a href="#services" class="hover:text-brand-gold transition-colors">Bookkeeping</a></li>
+          </ul>
+        </div>
+
+        <!-- Location & Hours -->
+        <div>
+          <h4 class="font-serif text-lg mb-6">Location &amp; Hours</h4>
+          <div class="text-white/30 text-sm font-light space-y-2">
+            <p>1425 W 145th Street</p>
+            <p>Gardena, CA 90247</p>
+          </div>
+          <div class="text-white/30 text-sm font-light space-y-2 mt-6">
+            <p>Mon &ndash; Fri: 9:00 AM &ndash; 7:30 PM</p>
+            <p>Sat &ndash; Sun: Closed</p>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="font-serif text-lg mb-6">Contact</h4>
+          <div class="text-white/30 text-sm font-light space-y-3">
+            <a href="tel:+19013144108" class="block hover:text-brand-gold transition-colors">(901) 314-4108</a>
+            <a href="mailto:deondriabland@icloud.com" class="block hover:text-brand-gold transition-colors">deondriabland@icloud.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-white/20 text-xs font-light">&copy; 2026 Dees Professional Tax Service. All rights reserved.</p>
+        <div class="flex gap-8">
+          <a href="#" class="text-white/20 text-xs hover:text-brand-gold transition-colors font-light">Privacy Policy</a>
+          <a href="#" class="text-white/20 text-xs hover:text-brand-gold transition-colors font-light">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================== -->
+  <!-- SCRIPTS                                  -->
+  <!-- ======================================== -->
+  <script>
+    // ---- IntersectionObserver for scroll-triggered reveals ----
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ---- FAQ Accordion ----
+    const faqs = [
+      {
+        question: "What documents should I bring to my appointment?",
+        answer: "Please bring your W-2s, 1099 forms, prior year tax return, a valid photo ID, Social Security cards for you and any dependents, and any receipts for deductions you'd like to claim. If you're a business owner, bring your profit and loss statement and business expense records."
+      },
+      {
+        question: "What types of tax returns do you prepare?",
+        answer: "I prepare individual tax returns, small business returns, returns involving stock investments and capital gains, and more. Whether your tax situation is simple or complex, I have the experience to handle it accurately and get you the best possible return."
+      },
+      {
+        question: "How long does it take to file my return?",
+        answer: "Most individual returns are completed within one appointment. More complex returns may require a follow-up, but I pride myself on getting everything right the first time so you don't have to worry about delays or revisions."
+      },
+      {
+        question: "How much do your services cost?",
+        answer: "Tax preparation pricing is based on the complexity of your return and is provided after your free consultation. Retirement and wealth-building services start at $75, as do stock investment services. First-time clients receive a 10% discount."
+      },
+      {
+        question: "Do you offer a discount for new clients?",
+        answer: "Yes! All first-time clients receive 10% off their services. This is my way of building a lasting relationship — once you see the results, I'm confident you'll be back year after year."
+      },
+      {
+        question: "Is the initial consultation really free?",
+        answer: "Absolutely. The consultation is completely free with no obligation. We'll discuss your tax situation, what documents you'll need, and how I can help you maximize your return. It's a great way to see if we're the right fit."
+      }
+    ];
+
+    const faqList = document.getElementById('faq-list');
+    faqs.forEach((faq, index) => {
+      const item = document.createElement('div');
+      item.className = 'border-b border-brand-navy/10';
+      item.innerHTML = `
+        <button class="w-full py-7 flex items-center justify-between text-left group faq-btn" data-index="${index}">
+          <span class="font-serif text-lg md:text-xl text-brand-navy group-hover:text-brand-gold transition-colors duration-300 pr-8">${faq.question}</span>
+          <svg class="w-5 h-5 text-brand-slate/30 transition-transform duration-500 flex-shrink-0 faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="overflow-hidden transition-all duration-500 max-h-0 opacity-0 faq-answer">
+          <p class="text-brand-slate text-sm leading-relaxed font-light pr-8 pb-7">${faq.answer}</p>
+        </div>
+      `;
+      faqList.appendChild(item);
+    });
+
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+        const chevron = this.querySelector('.faq-chevron');
+        const isOpen = answer.classList.contains('max-h-96');
+
+        // Close all
+        document.querySelectorAll('.faq-answer').forEach(a => {
+          a.classList.remove('max-h-96', 'opacity-100');
+          a.classList.add('max-h-0', 'opacity-0');
+        });
+        document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('rotate-180'));
+
+        // Toggle current
+        if (!isOpen) {
+          answer.classList.remove('max-h-0', 'opacity-0');
+          answer.classList.add('max-h-96', 'opacity-100');
+          chevron.classList.add('rotate-180');
+        }
+      });
+    });
+
+    // ---- Navbar scroll behavior ----
+    const navbar = document.getElementById('navbar');
+    let lastScrollY = 0;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        navbar.classList.add('bg-brand-navy/95', 'backdrop-blur-lg', 'shadow-2xl');
+        navbar.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+      } else {
+        navbar.classList.remove('bg-brand-navy/95', 'backdrop-blur-lg', 'shadow-2xl');
+        navbar.style.borderBottom = 'none';
+      }
+      lastScrollY = window.scrollY;
+    });
+
+    // ---- Mobile menu toggle ----
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    mobileBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      menuIconOpen.classList.toggle('hidden');
+      menuIconClose.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+      });
+    });
+
+    // ---- Smooth scroll for anchor links ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ---- Form submission feedback ----
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      btn.textContent = 'Message Sent — Thank You!';
+      btn.classList.add('bg-brand-navy', 'text-white');
+      btn.classList.remove('bg-brand-gold', 'text-brand-navy');
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.classList.remove('bg-brand-navy', 'text-white');
+        btn.classList.add('bg-brand-gold', 'text-brand-navy');
+        btn.disabled = false;
+        this.reset();
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>

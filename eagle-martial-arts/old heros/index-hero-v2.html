@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eagle Martial Arts | Taekwondo in La Jolla, CA</title>
+
+  <!-- Fonts: Oswald (display) + Barlow (body — clear, readable) + Noto Serif JP (kanji accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600&family=Noto+Serif+JP:wght@300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --bg:      #f5f1ea;
+      --surface: #ffffff;
+      --border:  #e2dbd0;
+      --ink:     #1a1916;
+      --muted:   #6b6560;
+      --light:   #9b958e;
+      --red:     #b8201a;
+      --red-dk:  #9c1914;
+      --red-bg:  rgba(184, 32, 26, 0.07);
+
+      --ff-disp: 'Oswald', sans-serif;
+      --ff-body: 'Barlow', sans-serif;
+      --ff-jp:   'Noto Serif JP', serif;
+
+      --ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-sm: 0 1px 3px rgba(26,25,22,0.08), 0 1px 2px rgba(26,25,22,0.06);
+      --shadow-md: 0 4px 16px rgba(26,25,22,0.10), 0 2px 6px rgba(26,25,22,0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--ff-body);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 64px;
+      background: transparent;
+    }
+
+    nav::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-disp);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--ff-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: #fff; }
+
+    .nav-cta {
+      font-family: var(--ff-disp);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--red);
+      padding: 0.55rem 1.4rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .nav-cta:hover { background: var(--red-dk); }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+
+    /* Left — text column */
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 5rem 3rem 6rem 6rem;
+      width: 100%;
+      max-width: 720px;
+      margin-left: 115px;
+      background: transparent;
+    }
+
+    /* Eyebrow label */
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.5s var(--ease-snap) 0.1s forwards;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .hero-eyebrow span {
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* Main headline */
+    .hero-headline {
+      font-family: var(--ff-disp);
+      font-weight: 700;
+      font-size: clamp(3.5rem, 6vw, 6.5rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-headline .line {
+      display: block;
+      overflow: hidden;
+    }
+
+    .hero-headline .line span {
+      display: block;
+      opacity: 0;
+      transform: translateY(100%);
+      animation: slideUp 0.65s var(--ease-snap) forwards;
+    }
+
+    .hero-headline .line:nth-child(1) span { animation-delay: 0.2s; }
+    .hero-headline .line:nth-child(2) span { animation-delay: 0.3s; }
+    .hero-headline .line:nth-child(3) span { animation-delay: 0.4s; color: var(--red); }
+    .hero-headline .line:nth-child(4) span { animation-delay: 0.5s; }
+
+    .hero-sub {
+      font-family: var(--ff-body);
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.5s var(--ease-snap) 0.6s forwards;
+    }
+
+    /* CTA row */
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      opacity: 0;
+      animation: fadeUp 0.5s var(--ease-snap) 0.7s forwards;
+    }
+
+    .btn-primary {
+      font-family: var(--ff-disp);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--red);
+      padding: 0.9rem 2rem;
+      border-radius: 3px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.15s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dk);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      font-family: var(--ff-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.15s;
+    }
+
+    .btn-ghost::after {
+      content: '→';
+      transition: transform 0.2s;
+    }
+
+    .btn-ghost:hover { color: #fff; }
+    .btn-ghost:hover::after { transform: translateX(3px); }
+
+    /* Stats row */
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      opacity: 0;
+      animation: fadeUp 0.5s var(--ease-snap) 0.8s forwards;
+    }
+
+    .hero-stat-num {
+      font-family: var(--ff-disp);
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .hero-stat-num sup {
+      font-size: 0.8rem;
+      color: var(--red);
+    }
+
+    .hero-stat-label {
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* Right — full-bleed image */
+    .hero-right {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-img-wrap {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0;
+      animation: imgReveal 1s var(--ease-snap) 0.1s forwards;
+    }
+
+    @keyframes imgReveal {
+      from { opacity: 0; transform: scale(1.04); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* Dark overlay */
+    .hero-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.58);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Free trial badge — clean, no spinning */
+    .hero-badge {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      z-index: 5;
+      background: var(--red);
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      animation: fadeUp 0.5s var(--ease-snap) 1s forwards;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.15s;
+    }
+
+    .hero-badge:hover {
+      transform: translateY(-3px);
+      background: var(--red-dk);
+    }
+
+    .hero-badge-line1 {
+      font-family: var(--ff-body);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .hero-badge-line2 {
+      font-family: var(--ff-disp);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .hero-badge-line3 {
+      font-family: var(--ff-body);
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* Scrolling ticker at bottom of hero */
+    .hero-ticker {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: var(--red);
+      overflow: hidden;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 26s linear infinite;
+    }
+
+    .ticker-item {
+      font-family: var(--ff-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.95);
+      padding: 0 2rem;
+      flex-shrink: 0;
+    }
+
+    .ticker-sep {
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ─── SERVICES ───────────────────────────────────────────── */
+    .services {
+      background: var(--bg);
+      padding: 7rem 0 8rem;
+      position: relative;
+    }
+
+    .services-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    /* Section header */
+    .section-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: end;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.875rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .section-label span {
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .section-title {
+      font-family: var(--ff-disp);
+      font-weight: 700;
+      font-size: clamp(2.75rem, 4.5vw, 5rem);
+      line-height: 0.93;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .section-title em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .section-desc {
+      font-family: var(--ff-body);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 360px;
+      align-self: end;
+      padding-bottom: 0.25rem;
+    }
+
+    /* Services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2.25rem 1.75rem 2rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+    }
+
+    .service-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      border-color: rgba(184, 32, 26, 0.25);
+    }
+
+    /* Top red accent bar */
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--red);
+      border-radius: 6px 6px 0 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--ease-snap);
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    /* Kanji numeral — subtle, decorative only */
+    .service-kanji {
+      font-family: var(--ff-jp);
+      font-size: 4.5rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      pointer-events: none;
+      user-select: none;
+      transition: color 0.3s;
+    }
+
+    .service-card:hover .service-kanji { color: rgba(184, 32, 26, 0.12); }
+
+    /* Age tag */
+    .service-age {
+      font-family: var(--ff-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      background: var(--red-bg);
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 3px;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-name {
+      font-family: var(--ff-disp);
+      font-weight: 700;
+      font-size: 1.6rem;
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.875rem;
+    }
+
+    .service-desc {
+      font-family: var(--ff-body);
+      font-size: 0.925rem;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--muted);
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Skill bullets */
+    .service-skills {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .service-skills li {
+      font-family: var(--ff-body);
+      font-size: 0.825rem;
+      font-weight: 400;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .service-skills li::before {
+      content: '';
+      width: 14px;
+      height: 1.5px;
+      background: var(--red);
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .service-link {
+      font-family: var(--ff-body);
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--red);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: auto;
+      transition: gap 0.2s;
+    }
+
+    .service-link::after {
+      content: '→';
+      transition: transform 0.2s;
+    }
+
+    .service-card:hover .service-link::after { transform: translateX(3px); }
+
+    /* Bottom CTA strip */
+    .services-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .services-cta-text {
+      font-family: var(--ff-disp);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+      text-transform: uppercase;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .services-cta-text span { color: var(--red); }
+
+    .services-cta-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .services-phone {
+      font-family: var(--ff-body);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .services-phone:hover { color: var(--ink); }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────────── */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(100%); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s var(--ease-snap), transform 0.6s var(--ease-snap);
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-left { padding: 3rem 2rem 6rem; max-width: 100%; }
+      .hero-badge { bottom: 5rem; right: 1.5rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .section-header { grid-template-columns: 1fr; gap: 1.25rem; }
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .services-inner { padding: 0 1.5rem; }
+      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+      .services-cta { flex-direction: column; gap: 2rem; align-items: flex-start; }
+      .services-cta-right { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════ NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Eagle<span>.</span>MA</a>
+    <ul class="nav-links">
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#free-trial" class="nav-cta">Free Trial</a>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════ HERO -->
+  <section class="hero">
+
+    <!-- Left — text -->
+    <div class="hero-left">
+
+      <div class="hero-eyebrow">
+        <span>La Jolla, CA &nbsp;·&nbsp; Est. 2006</span>
+      </div>
+
+      <h1 class="hero-headline">
+        <span class="line"><span>Forge</span></span>
+        <span class="line"><span>Your</span></span>
+        <span class="line"><span>Spirit.</span></span>
+        <span class="line"><span>Master</span></span>
+      </h1>
+
+      <p class="hero-sub">
+        World-class Taekwondo instruction for ages 3 to adult. Over 40 years of teaching excellence under Master Sam — 6th Degree Black Belt, World Taekwondo Federation.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#free-trial" class="btn-primary">Claim Free Week</a>
+        <a href="#programs" class="btn-ghost">View Programs</a>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">300<sup>+</sup></div>
+          <div class="hero-stat-label">Black Belts Trained</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">40<sup>+</sup></div>
+          <div class="hero-stat-label">Years Teaching</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">5.0<sup>★</sup></div>
+          <div class="hero-stat-label">Google Rating</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right — image -->
+    <div class="hero-right">
+      <div class="hero-img-wrap">
+        <img src="assets/EMA - Post.jpg" alt="Eagle Martial Arts — Taekwondo training in La Jolla" />
+      </div>
+
+      <div class="hero-badge">
+        <span class="hero-badge-line1">1 Week</span>
+        <span class="hero-badge-line2">FREE</span>
+        <span class="hero-badge-line3">No Commitment</span>
+      </div>
+    </div>
+
+    <!-- Ticker -->
+    <div class="hero-ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span class="ticker-item">Taekwondo <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">Self-Defense <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">Discipline <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">Confidence <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">Character <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">World Taekwondo Federation <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">La Jolla, CA <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">Ages 3 to Adult <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">Taekwondo <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">Self-Defense <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">Discipline <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">Confidence <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">Character <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">World Taekwondo Federation <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">La Jolla, CA <span class="ticker-sep">·</span></span>
+        <span class="ticker-item">Ages 3 to Adult <span class="ticker-sep">·</span></span>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ═══════════════════════════════════════ SERVICES -->
+  <section class="services" id="programs">
+    <div class="services-inner">
+
+      <div class="section-header reveal">
+        <div>
+          <div class="section-label">
+            <span>Programs &amp; Classes</span>
+          </div>
+          <h2 class="section-title">
+            Find Your<br/><em>Path.</em>
+          </h2>
+        </div>
+        <p class="section-desc">
+          Every student has a unique journey. Our programs are designed to meet you exactly where you are — and take you further than you thought possible.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal reveal-delay-1">
+          <span class="service-kanji" aria-hidden="true">一</span>
+          <span class="service-age">Ages 3–5</span>
+          <h3 class="service-name">Little<br/>Ninjas</h3>
+          <p class="service-desc">Our youngest students discover the joy of movement, listening, and self-control in a playful, nurturing environment built just for them.</p>
+          <ul class="service-skills">
+            <li>Basic kicks &amp; stances</li>
+            <li>Focus &amp; listening</li>
+            <li>Respect &amp; courtesy</li>
+            <li>Motor coordination</li>
+          </ul>
+          <a href="#contact" class="service-link">Enroll Now</a>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <span class="service-kanji" aria-hidden="true">二</span>
+          <span class="service-age">Ages 6–12</span>
+          <h3 class="service-name">Kids<br/>Martial Arts</h3>
+          <p class="service-desc">Build character, confidence, and real skills. Our kids program channels energy into discipline and achievement — on and off the mat.</p>
+          <ul class="service-skills">
+            <li>Taekwondo forms (poomsae)</li>
+            <li>Sparring fundamentals</li>
+            <li>Self-esteem building</li>
+            <li>Belt progression</li>
+          </ul>
+          <a href="#contact" class="service-link">Enroll Now</a>
+        </div>
+
+        <div class="service-card reveal reveal-delay-3">
+          <span class="service-kanji" aria-hidden="true">三</span>
+          <span class="service-age">Ages 13–17</span>
+          <h3 class="service-name">Teen<br/>Warriors</h3>
+          <p class="service-desc">Teens face unique pressures. Martial arts gives them an outlet, a community, and the mental fortitude to thrive in school and beyond.</p>
+          <ul class="service-skills">
+            <li>Advanced techniques</li>
+            <li>Competition training</li>
+            <li>Leadership development</li>
+            <li>Anti-bullying skills</li>
+          </ul>
+          <a href="#contact" class="service-link">Enroll Now</a>
+        </div>
+
+        <div class="service-card reveal reveal-delay-4">
+          <span class="service-kanji" aria-hidden="true">四</span>
+          <span class="service-age">Ages 15+</span>
+          <h3 class="service-name">Adult<br/>Taekwondo</h3>
+          <p class="service-desc">Train alongside like-minded adults. Get fit, learn real self-defense, and pursue black belt mastery under a 6th Degree certified master.</p>
+          <ul class="service-skills">
+            <li>Full Taekwondo curriculum</li>
+            <li>Practical self-defense</li>
+            <li>Physical conditioning</li>
+            <li>Black belt pathway</li>
+          </ul>
+          <a href="#contact" class="service-link">Enroll Now</a>
+        </div>
+
+      </div>
+
+      <div class="services-cta reveal">
+        <div class="services-cta-text">
+          Start with<br/><span>1 Free Week.</span>
+        </div>
+        <div class="services-cta-right">
+          <a href="tel:8583610961" class="services-phone">(858) 361-0961</a>
+          <a href="#free-trial" class="btn-primary">Claim Your Trial</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

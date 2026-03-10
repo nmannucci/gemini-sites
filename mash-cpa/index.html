@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mashCPA — Denis Mashkov, CPA | Pasadena Tax & Accounting</title>
+  <meta name="description" content="mashCPA provides expert individual tax preparation, small business accounting, tax planning, bookkeeping, and payroll services in Pasadena, Montrose, and the greater Los Angeles area.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AccountingService",
+    "name": "mashCPA",
+    "description": "Professional CPA and accounting services including tax preparation, small business accounting, tax planning, bookkeeping, and payroll.",
+    "url": "https://www.mashcpa.com",
+    "telephone": "(818) 561-8901",
+    "email": "info@mashCPA.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "260 S. Los Robles Suite 318",
+      "addressLocality": "Pasadena",
+      "addressRegion": "CA",
+      "postalCode": "91101",
+      "addressCountry": "US"
+    },
+    "founder": { "@type": "Person", "name": "Denis Mashkov", "jobTitle": "CPA" },
+    "areaServed": ["Pasadena", "Montrose", "Glendale", "La Cañada Flintridge", "Los Angeles"]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --charcoal: #1a1f1c;
+      --carbon: #f7f5f0;
+      --graphite: #e8e4dc;
+      --slate: #6b7c71;
+      --mist: #5a6860;
+      --parchment: #1a1f1c;
+      --cream: #faf8f4;
+      --teal: #2d6a4f;
+      --teal-dim: rgba(45, 106, 79, 0.1);
+      --rule: rgba(0,0,0,0.05);
+      --rule-strong: rgba(0,0,0,0.1);
+      --serif: 'DM Serif Display', Georgia, serif;
+      --mono: 'JetBrains Mono', 'Courier New', monospace;
+      --sans: 'Libre Franklin', 'Helvetica Neue', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: #faf8f4;
+      color: var(--parchment);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ---- Utility ---- */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 4rem); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+    /* ---- Ledger lines background ---- */
+    .ledger-bg {
+      background-image:
+        repeating-linear-gradient(0deg, var(--rule) 0px, var(--rule) 1px, transparent 1px, transparent 60px);
+      background-size: 100% 60px;
+    }
+
+    /* ---- Animations ---- */
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes revealLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideRule {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    @keyframes countPulse {
+      0%, 100% { opacity: 0.06; }
+      50% { opacity: 0.1; }
+    }
+    @keyframes tickerScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .reveal { opacity: 0; animation: revealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .reveal-left { opacity: 0; animation: revealLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.2s; }
+    .d3 { animation-delay: 0.35s; }
+    .d4 { animation-delay: 0.5s; }
+    .d5 { animation-delay: 0.65s; }
+
+    /* ---- Nav ---- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: background 0.4s, backdrop-filter 0.4s, box-shadow 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(250,248,244,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 var(--rule-strong);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 0;
+    }
+    .nav-logo {
+      font-family: var(--mono); font-weight: 500; font-size: 1.25rem;
+      color: var(--parchment); text-decoration: none; letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-link {
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--mist); text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+      background: var(--teal); transition: width 0.3s;
+    }
+    .nav-link:hover { color: var(--teal); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-cta {
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: #faf8f4; background: var(--teal);
+      padding: 0.75rem 1.75rem; text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .nav-cta:hover { background: #1a3a2a; transform: translateY(-1px); }
+
+    /* Mobile menu */
+    .mobile-toggle {
+      display: none; background: none; border: none; cursor: pointer; padding: 0.5rem;
+    }
+    .mobile-toggle svg { width: 24px; height: 24px; stroke: var(--parchment); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(250,248,244,0.98); z-index: 99;
+      flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--serif); font-size: 2rem; color: var(--charcoal);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--teal); }
+    .mobile-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: none; cursor: pointer; padding: 0.5rem;
+    }
+    .mobile-close svg { width: 28px; height: 28px; stroke: var(--charcoal); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+    }
+
+    /* ---- Hero ---- */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 0 6rem; position: relative; overflow: hidden;
+    }
+    .hero-img {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center 40%;
+      pointer-events: none; z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.55);
+      pointer-events: none; z-index: 1;
+    }
+    .hero-bg-number {
+      position: absolute; top: 50%; right: -5%; transform: translateY(-50%);
+      font-family: var(--mono); font-weight: 600; font-size: clamp(20rem, 40vw, 50rem);
+      color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.06);
+      line-height: 0.8; pointer-events: none; user-select: none;
+      animation: countPulse 6s ease-in-out infinite; z-index: 2;
+    }
+    .hero-rule {
+      width: 100%; height: 1px; background: rgba(255,255,255,0.2);
+      margin-bottom: 3rem; transform-origin: left;
+      animation: slideRule 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+      transform: scaleX(0);
+    }
+    .hero-label {
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase; color: #52b788;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(3rem, 7vw, 6.5rem); line-height: 1.05;
+      color: #faf8f4; max-width: 900px;
+      margin-bottom: 2rem;
+    }
+    .hero h1 em {
+      font-style: italic; color: #52b788;
+      display: inline-block; position: relative;
+    }
+    .hero-sub {
+      font-family: var(--sans); font-size: 1.125rem; font-weight: 300;
+      color: rgba(255,255,255,0.7); max-width: 540px; line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+    .hero-actions { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--teal); color: #faf8f4;
+      padding: 1rem 2.25rem; text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .btn-primary:hover { background: #1a3a2a; transform: translateY(-2px); }
+    .btn-secondary {
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 400;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: transparent; color: #faf8f4;
+      padding: 1rem 2.25rem; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: border-color 0.3s, color 0.3s, transform 0.2s;
+    }
+    .btn-secondary:hover { border-color: #52b788; color: #52b788; transform: translateY(-2px); }
+
+    /* ---- Ticker ---- */
+    .ticker-wrap {
+      border-top: 1px solid var(--rule-strong);
+      border-bottom: 1px solid var(--rule-strong);
+      overflow: hidden; padding: 1.25rem 0;
+      background: #f0ede5;
+    }
+    .ticker {
+      display: flex; gap: 4rem;
+      animation: tickerScroll 30s linear infinite;
+      width: max-content;
+    }
+    .ticker-item {
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--slate); white-space: nowrap;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .ticker-dot { width: 4px; height: 4px; background: var(--teal); border-radius: 50%; flex-shrink: 0; }
+
+    /* ---- Services ---- */
+    .services { padding: 8rem 0; position: relative; }
+    .section-header {
+      display: grid; grid-template-columns: 1fr auto; align-items: end;
+      gap: 2rem; margin-bottom: 4rem;
+    }
+    .section-number {
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 400;
+      color: var(--teal); letter-spacing: 0.15em;
+    }
+    .section-title {
+      font-family: var(--serif); font-size: clamp(2.25rem, 4vw, 3.5rem);
+      font-weight: 400; color: var(--parchment); line-height: 1.15;
+    }
+    .section-desc {
+      font-family: var(--sans); font-size: 1rem; font-weight: 300;
+      color: var(--mist); max-width: 480px; line-height: 1.7;
+    }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1px; background: var(--rule-strong);
+      border: 1px solid var(--rule-strong);
+    }
+    .service-card {
+      background: #faf8f4; padding: 2.5rem;
+      position: relative; overflow: hidden;
+      transition: background 0.5s;
+      cursor: default;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 0; height: 2px;
+      background: var(--teal); transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .service-card:hover { background: #f0ede5; }
+    .service-card:hover::before { width: 100%; }
+    .service-num {
+      font-family: var(--mono); font-size: 0.65rem; font-weight: 400;
+      color: var(--slate); letter-spacing: 0.15em; margin-bottom: 1.5rem;
+      transition: color 0.3s;
+    }
+    .service-card:hover .service-num { color: var(--teal); }
+    .service-name {
+      font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
+      color: var(--parchment); margin-bottom: 1rem;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .service-card:hover .service-name { transform: translateX(8px); }
+    .service-desc {
+      font-family: var(--sans); font-size: 0.875rem; font-weight: 300;
+      color: var(--mist); line-height: 1.7;
+    }
+    .service-arrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--teal);
+      margin-top: 1.5rem; opacity: 0; transform: translateY(8px);
+      transition: opacity 0.4s, transform 0.4s;
+    }
+    .service-card:hover .service-arrow { opacity: 1; transform: translateY(0); }
+    .service-arrow svg { width: 14px; height: 14px; }
+
+    /* ---- Stats ---- */
+    .stats {
+      padding: 5rem 0;
+      border-top: 1px solid var(--rule-strong);
+      border-bottom: 1px solid var(--rule-strong);
+      background: var(--teal);
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    }
+    .stat {
+      text-align: center; padding: 2rem 1rem;
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .stat:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 20%; height: 60%;
+      width: 1px; background: var(--rule-strong);
+    }
+    .stat:hover { transform: translateY(-4px); }
+    .stat:not(:last-child)::after { background: rgba(255,255,255,0.2); }
+    .stat-value {
+      font-family: var(--mono); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 600;
+      color: #faf8f4; line-height: 1;
+      transition: color 0.3s;
+    }
+    .stat:hover .stat-value { color: #fff; }
+    .stat-label {
+      font-family: var(--mono); font-size: 0.6rem; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.7); margin-top: 0.75rem;
+    }
+
+    /* ---- Trust ---- */
+    .trust { padding: 8rem 0; }
+    .trust-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--rule-strong);
+      margin-top: 4rem;
+    }
+    .trust-card {
+      background: #faf8f4; padding: 2.5rem;
+      position: relative; overflow: hidden;
+      transition: background 0.4s;
+    }
+    .trust-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+      background: var(--teal); transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .trust-card:hover { background: #f0ede5; }
+    .trust-card:hover::after { width: 100%; }
+    .trust-icon {
+      width: 32px; height: 32px; margin-bottom: 1.25rem;
+      color: var(--teal); opacity: 0.7;
+      transition: opacity 0.3s, transform 0.4s;
+    }
+    .trust-card:hover .trust-icon { opacity: 1; transform: rotate(-8deg) scale(1.1); }
+    .trust-name {
+      font-family: var(--serif); font-size: 1.15rem; color: var(--parchment);
+      margin-bottom: 0.75rem;
+      transition: color 0.3s;
+    }
+    .trust-card:hover .trust-name { color: var(--teal); }
+    .trust-text {
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
+      color: var(--mist); line-height: 1.7;
+    }
+
+    /* ---- About ---- */
+    .about { padding: 8rem 0; background: var(--graphite); position: relative; overflow: hidden; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    }
+    .about-visual {
+      position: relative; aspect-ratio: 4/5;
+    }
+    .about-box {
+      width: 100%; height: 100%; background: #faf8f4;
+      border: 1px solid var(--rule-strong);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .about-box-logo {
+      font-family: var(--mono); font-size: 3rem; font-weight: 600;
+      color: var(--parchment); letter-spacing: -0.03em;
+    }
+    .about-box-logo span { color: var(--teal); }
+    .about-box-sub {
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--slate); margin-top: 0.5rem;
+    }
+    .about-corner-tl, .about-corner-br {
+      position: absolute; width: 60px; height: 60px;
+    }
+    .about-corner-tl {
+      top: -12px; right: -12px;
+      border-top: 1px solid var(--teal); border-right: 1px solid var(--teal);
+      opacity: 0.4;
+    }
+    .about-corner-br {
+      bottom: -12px; left: -12px;
+      border-bottom: 1px solid var(--teal); border-left: 1px solid var(--teal);
+      opacity: 0.4;
+    }
+    .about-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--teal); padding: 1.5rem 2rem;
+    }
+    .about-badge-city {
+      font-family: var(--mono); font-size: 1.1rem; font-weight: 600;
+      color: #faf8f4; letter-spacing: -0.01em;
+    }
+    .about-badge-state {
+      font-family: var(--mono); font-size: 0.55rem; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); margin-top: 0.25rem;
+    }
+    .about-content .section-number { margin-bottom: 1rem; }
+    .about-name {
+      font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--parchment); margin-bottom: 2rem; line-height: 1.15;
+    }
+    .about-text {
+      font-family: var(--sans); font-size: 0.95rem; font-weight: 300;
+      color: var(--mist); line-height: 1.8; margin-bottom: 1.25rem;
+    }
+    .about-meta {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      margin-top: 2.5rem; padding-top: 2.5rem;
+      border-top: 1px solid var(--rule-strong);
+    }
+    .about-meta-title {
+      font-family: var(--serif); font-size: 1.05rem; color: var(--parchment);
+    }
+    .about-meta-sub {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--slate); margin-top: 0.25rem;
+    }
+    .about-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--teal); text-decoration: none;
+      margin-top: 2rem; padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .about-link:hover { border-color: var(--teal); }
+    .about-link svg { width: 12px; height: 12px; }
+
+    /* ---- Process ---- */
+    .process { padding: 8rem 0; position: relative; }
+    .process-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; margin-top: 4rem; position: relative;
+    }
+    .process-line {
+      position: absolute; top: 40px; left: 0; right: 0; height: 1px;
+      background: var(--rule-strong);
+    }
+    .process-step {
+      text-align: center; padding: 0 2rem; position: relative; z-index: 1;
+    }
+    .process-circle {
+      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 2rem;
+      border: 1px solid var(--rule-strong); background: #faf8f4;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.4s;
+    }
+    .process-step:hover .process-circle { border-color: var(--teal); }
+    .process-num {
+      font-family: var(--mono); font-size: 1.25rem; font-weight: 600;
+      color: var(--teal);
+    }
+    .process-title {
+      font-family: var(--serif); font-size: 1.5rem; color: var(--parchment);
+      margin-bottom: 0.75rem;
+    }
+    .process-desc {
+      font-family: var(--sans); font-size: 0.875rem; font-weight: 300;
+      color: var(--mist); line-height: 1.7;
+    }
+
+    /* ---- Areas ---- */
+    .areas {
+      padding: 8rem 0; background: var(--graphite);
+      border-top: 1px solid var(--rule-strong);
+      border-bottom: 1px solid var(--rule-strong);
+    }
+    .areas-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+      margin-top: 4rem;
+    }
+    .areas-office-label {
+      font-family: var(--serif); font-size: 1.25rem; color: var(--parchment);
+      margin-bottom: 1.25rem;
+    }
+    .areas-address {
+      display: flex; align-items: start; gap: 0.75rem;
+      font-family: var(--sans); font-size: 0.9rem; font-weight: 300;
+      color: var(--mist); line-height: 1.6;
+    }
+    .areas-dot {
+      width: 6px; height: 6px; background: var(--teal); border-radius: 50%;
+      margin-top: 0.5rem; flex-shrink: 0;
+    }
+    .areas-tags-label {
+      font-family: var(--serif); font-size: 1.25rem; color: var(--parchment);
+      margin-bottom: 1.25rem;
+    }
+    .areas-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .area-tag {
+      font-family: var(--mono); font-size: 0.65rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--mist); padding: 0.5rem 1rem;
+      border: 1px solid var(--rule-strong);
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .area-tag:hover { border-color: var(--teal); color: var(--teal); }
+    .areas-map-placeholder {
+      background: #faf8f4; border: 1px solid var(--rule-strong);
+      height: 400px; display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .areas-map-placeholder svg {
+      width: 48px; height: 48px; color: var(--rule-strong);
+      transition: color 0.5s;
+    }
+    .areas-map-placeholder:hover svg { color: var(--teal); opacity: 0.4; }
+
+    /* ---- FAQ ---- */
+    .faq { padding: 8rem 0; }
+    .faq-list { margin-top: 4rem; max-width: 800px; }
+    .faq-item { border-bottom: 1px solid var(--rule-strong); }
+    .faq-btn {
+      width: 100%; padding: 2rem 0; display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem;
+      background: none; border: none; cursor: pointer; text-align: left;
+    }
+    .faq-question {
+      font-family: var(--serif); font-size: 1.15rem; color: var(--parchment);
+      transition: color 0.3s;
+    }
+    .faq-btn:hover .faq-question { color: var(--teal); }
+    .faq-chevron {
+      width: 16px; height: 16px; flex-shrink: 0;
+      stroke: var(--slate); transition: transform 0.4s, stroke 0.3s;
+    }
+    .faq-btn:hover .faq-chevron { stroke: var(--teal); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; opacity: 1; }
+    .faq-answer-text {
+      font-family: var(--sans); font-size: 0.9rem; font-weight: 300;
+      color: var(--mist); line-height: 1.8; padding-bottom: 2rem;
+    }
+
+    /* ---- Contact ---- */
+    .contact { padding: 6rem 0; background: var(--graphite); }
+    .contact-box {
+      background: #faf8f4; border: 1px solid var(--rule-strong);
+      padding: clamp(2.5rem, 5vw, 5rem);
+      position: relative; overflow: hidden;
+    }
+    .contact-box::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, var(--teal-dim), transparent 70%);
+      transform: translate(30%, -30%); pointer-events: none;
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      position: relative; z-index: 1;
+    }
+    .contact-heading {
+      font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.75rem);
+      color: var(--parchment); line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .contact-sub {
+      font-family: var(--sans); font-size: 1rem; font-weight: 300;
+      color: var(--mist); line-height: 1.7; margin-bottom: 2.5rem;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-row {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .contact-icon-wrap {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--teal-dim); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon-wrap svg { width: 16px; height: 16px; color: var(--teal); }
+    .contact-label {
+      font-family: var(--mono); font-size: 0.55rem; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate);
+    }
+    .contact-value {
+      font-family: var(--sans); font-size: 0.9rem; color: var(--parchment);
+    }
+    .contact-value a {
+      color: var(--parchment); text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contact-value a:hover { color: var(--teal); }
+    .contact-address {
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
+      color: var(--mist); margin-top: 1rem;
+    }
+
+    .contact-form-wrap {
+      background: var(--teal); padding: clamp(2rem, 4vw, 3rem);
+    }
+    .contact-form-title {
+      font-family: var(--serif); font-size: 1.5rem; color: #faf8f4;
+      margin-bottom: 1.75rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 0.85rem 1rem;
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 400;
+      color: var(--charcoal); background: white;
+      border: 1px solid rgba(28,28,30,0.12);
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: rgba(28,28,30,0.35);
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: #1a3a2a;
+    }
+    .form-textarea { resize: none; min-height: 100px; }
+    .form-submit {
+      width: 100%; padding: 1rem;
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      background: #1a3a2a; color: #faf8f4;
+      border: none; cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover { background: var(--charcoal); color: #faf8f4; transform: translateY(-1px); }
+    .form-submit.sent { background: #1a3a2a; color: #faf8f4; }
+
+    /* ---- Footer ---- */
+    .footer {
+      background: var(--charcoal); padding: 5rem 0 3rem;
+      border-top: none;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 4rem;
+    }
+    .footer-logo {
+      font-family: var(--mono); font-size: 1.25rem; font-weight: 500;
+      color: #f2efe9; margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .footer-logo span { color: #52b788; }
+    .footer-blurb {
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
+      color: #8e9e93; line-height: 1.7;
+    }
+    .footer-heading {
+      font-family: var(--serif); font-size: 1rem; color: #f2efe9;
+      margin-bottom: 1.25rem;
+    }
+    .footer-list { list-style: none; }
+    .footer-list li { margin-bottom: 0.75rem; }
+    .footer-list a {
+      font-family: var(--sans); font-size: 0.8rem; font-weight: 300;
+      color: #8e9e93; text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-list a:hover { color: #52b788; }
+    .footer-contact-text {
+      font-family: var(--sans); font-size: 0.8rem; font-weight: 300;
+      color: #8e9e93; line-height: 1.7;
+    }
+    .footer-contact-text a {
+      color: #8e9e93; text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-contact-text a:hover { color: #52b788; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy {
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+      color: #6b7c71;
+    }
+    .footer-legal { display: flex; gap: 2rem; }
+    .footer-legal a {
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+      color: #6b7c71; text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-legal a:hover { color: #52b788; }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 1024px) {
+      .about-grid, .areas-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-visual { max-width: 400px; margin: 0 auto 3rem; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .section-header { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat:nth-child(2)::after { display: none; }
+      .process-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .process-line { display: none; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; }
+      .hero h1 { font-size: clamp(2.5rem, 8vw, 4rem); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">mash<span>CPA</span></a>
+        <div class="nav-links">
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#about" class="nav-link">About</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+          <a href="#contact" class="nav-cta">Contact</a>
+        </div>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Open menu">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero ledger-bg">
+    <img src="https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?w=1600&q=80" alt="Los Angeles cityscape at golden hour" class="hero-img" loading="eager">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-bg-number" aria-hidden="true">10<br>40</div>
+    <div class="container" style="position:relative;z-index:3;">
+      <div class="hero-rule"></div>
+      <div class="hero-label reveal d1">Montrose &amp; Pasadena, CA</div>
+      <h1 class="reveal d2">Your numbers,<br>handled with <em>precision</em></h1>
+      <p class="hero-sub reveal d3">
+        Personalized tax preparation, accounting, and financial guidance for individuals and small businesses — delivered with care by Denis Mashkov, CPA.
+      </p>
+      <div class="hero-actions reveal d4">
+        <a href="#contact" class="btn-primary">Book Consultation</a>
+        <a href="#services" class="btn-secondary">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ticker -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker" id="ticker">
+      <span class="ticker-item"><span class="ticker-dot"></span>Tax Preparation</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Small Business Accounting</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Tax Planning</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Bookkeeping</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Payroll Services</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Pasadena, CA</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>(818) 561-8901</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Tax Preparation</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Small Business Accounting</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Tax Planning</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Bookkeeping</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Payroll Services</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>Pasadena, CA</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>(818) 561-8901</span>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-number">01 — Services</div>
+          <h2 class="section-title">What we do</h2>
+        </div>
+        <p class="section-desc">Comprehensive financial solutions — from personal tax returns to full-service small business accounting.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-num">001</div>
+          <h3 class="service-name">Individual Tax Preparation</h3>
+          <p class="service-desc">Accurate, thorough personal tax returns filed on time. We maximize your deductions and credits while keeping you fully compliant with federal and state requirements.</p>
+          <div class="service-arrow">Learn more <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+        </div>
+        <div class="service-card">
+          <div class="service-num">002</div>
+          <h3 class="service-name">Small Business Accounting</h3>
+          <p class="service-desc">Complete accounting solutions for small businesses — from entity formation and financial statements to quarterly filings and year-end reporting.</p>
+          <div class="service-arrow">Learn more <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+        </div>
+        <div class="service-card">
+          <div class="service-num">003</div>
+          <h3 class="service-name">Tax Planning</h3>
+          <p class="service-desc">Proactive strategies to minimize your tax burden year-round. We analyze your financial situation and create a forward-looking plan to keep more money in your pocket.</p>
+          <div class="service-arrow">Learn more <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+        </div>
+        <div class="service-card">
+          <div class="service-num">004</div>
+          <h3 class="service-name">Bookkeeping</h3>
+          <p class="service-desc">Reliable, organized bookkeeping so your financial records are always up to date. We handle categorization, reconciliation, and monthly reporting so you can focus on your business.</p>
+          <div class="service-arrow">Learn more <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+        </div>
+        <div class="service-card">
+          <div class="service-num">005</div>
+          <h3 class="service-name">Payroll Services</h3>
+          <p class="service-desc">Timely, accurate payroll processing including tax withholdings, direct deposits, W-2s, and compliance with federal and California employment regulations.</p>
+          <div class="service-arrow">Learn more <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-value">500+</div>
+          <div class="stat-label">Clients Served</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Core Services</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Client-Focused</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">CPA</div>
+          <div class="stat-label">Licensed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <section class="trust">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-number">02 — Why Us</div>
+          <h2 class="section-title">Personalized service.<br>Real results.</h2>
+        </div>
+        <p class="section-desc">mashCPA combines professional expertise with a genuine commitment to every client's financial well-being.</p>
+      </div>
+
+      <div class="trust-grid">
+        <div class="trust-card">
+          <svg class="trust-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172"/></svg>
+          <h4 class="trust-name">Licensed CPA</h4>
+          <p class="trust-text">Denis Mashkov holds an active Certified Public Accountant license, maintaining rigorous continuing education and professional standards.</p>
+        </div>
+        <div class="trust-card">
+          <svg class="trust-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+          <h4 class="trust-name">Personalized Attention</h4>
+          <p class="trust-text">Every client works directly with Denis — no hand-offs, no runaround. You get dedicated, one-on-one service from an experienced CPA who knows your situation.</p>
+        </div>
+        <div class="trust-card">
+          <svg class="trust-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          <h4 class="trust-name">Accuracy Guaranteed</h4>
+          <p class="trust-text">Meticulous attention to detail on every return and financial report. We double-check our work so you can file with confidence and peace of mind.</p>
+        </div>
+        <div class="trust-card">
+          <svg class="trust-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <h4 class="trust-name">Responsive Communication</h4>
+          <p class="trust-text">Your calls and emails are returned promptly. We believe clear, timely communication is essential to a great client experience.</p>
+        </div>
+        <div class="trust-card">
+          <svg class="trust-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18v-.008zm-12 0h.008v.008H6v-.008z"/></svg>
+          <h4 class="trust-name">Transparent Pricing</h4>
+          <p class="trust-text">No hidden fees or surprise charges. We provide clear, upfront pricing so you always know exactly what to expect before we begin.</p>
+        </div>
+        <div class="trust-card">
+          <svg class="trust-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          <h4 class="trust-name">Local Expertise</h4>
+          <p class="trust-text">Based in the Pasadena and Montrose community, we understand the unique needs of local individuals and small businesses throughout the LA area.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="about-box">
+            <div class="about-box-logo">mash<span>CPA</span></div>
+            <div class="about-box-sub">Est. Pasadena</div>
+          </div>
+          <div class="about-corner-tl"></div>
+          <div class="about-corner-br"></div>
+          <div class="about-badge">
+            <div class="about-badge-city">Pasadena</div>
+            <div class="about-badge-state">California</div>
+          </div>
+        </div>
+        <div class="about-content">
+          <div class="section-number">03 — About</div>
+          <h2 class="about-name">Denis Mashkov, CPA</h2>
+          <p class="about-text">
+            Denis Mashkov founded mashCPA with a straightforward mission: deliver expert financial services with the personal attention that large firms simply can't provide. Based in the Montrose and Pasadena area, Denis works closely with each client to understand their unique financial picture.
+          </p>
+          <p class="about-text">
+            Whether you're an individual navigating a complex tax situation or a small business owner looking for reliable accounting support, Denis brings the expertise and dedication to get the job done right. His approach is clear, practical, and always focused on your best financial outcome.
+          </p>
+          <p class="about-text">
+            At mashCPA, you're never just a number. You're a valued client who deserves professional, trustworthy guidance — and that's exactly what you'll get.
+          </p>
+          <div class="about-meta">
+            <div>
+              <div class="about-meta-title">Denis Mashkov, CPA</div>
+              <div class="about-meta-sub">Founder &amp; Principal</div>
+            </div>
+            <div>
+              <div class="about-meta-title">Montrose, CA</div>
+              <div class="about-meta-sub">Serving Greater Los Angeles</div>
+            </div>
+          </div>
+          <a href="mailto:info@mashCPA.com" class="about-link">
+            Get in touch <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process ledger-bg">
+    <div class="container">
+      <div class="section-header" style="justify-content:center;text-align:center;">
+        <div>
+          <div class="section-number">04 — Process</div>
+          <h2 class="section-title">How it works</h2>
+          <p class="section-desc" style="margin:1rem auto 0;text-align:center;">Getting started with mashCPA is simple. We handle the complexity so you don't have to.</p>
+        </div>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-line"></div>
+        <div class="process-step">
+          <div class="process-circle"><span class="process-num">01</span></div>
+          <h3 class="process-title">Free Consultation</h3>
+          <p class="process-desc">Call or email to schedule a no-obligation consultation. We'll discuss your situation and how mashCPA can help.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-circle"><span class="process-num">02</span></div>
+          <h3 class="process-title">Tailored Plan</h3>
+          <p class="process-desc">We create a customized approach — whether it's tax preparation, ongoing bookkeeping, or a full accounting package.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-circle"><span class="process-num">03</span></div>
+          <h3 class="process-title">Ongoing Support</h3>
+          <p class="process-desc">We execute with precision and stay available year-round. Your finances are always in expert hands.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas -->
+  <section class="areas">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-number">05 — Location</div>
+          <h2 class="section-title">Proudly serving<br>Greater Los Angeles</h2>
+        </div>
+        <p class="section-desc">Located in Pasadena with deep roots in the Montrose community.</p>
+      </div>
+
+      <div class="areas-grid">
+        <div>
+          <div class="areas-office-label">Office</div>
+          <div class="areas-address">
+            <span class="areas-dot"></span>
+            <div>
+              <strong style="font-weight:500;color:var(--parchment);">Pasadena</strong><br>
+              260 S. Los Robles Suite 318
+            </div>
+          </div>
+          <div style="margin-top:3rem;">
+            <div class="areas-tags-label">Areas we serve</div>
+            <div class="areas-tags">
+              <span class="area-tag">Pasadena</span>
+              <span class="area-tag">Montrose</span>
+              <span class="area-tag">Glendale</span>
+              <span class="area-tag">La Cañada Flintridge</span>
+              <span class="area-tag">Altadena</span>
+              <span class="area-tag">Eagle Rock</span>
+              <span class="area-tag">Los Angeles</span>
+              <span class="area-tag">Burbank</span>
+            </div>
+          </div>
+        </div>
+        <div class="areas-map-placeholder">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-number">06 — FAQ</div>
+          <h2 class="section-title">Common questions</h2>
+        </div>
+      </div>
+      <div class="faq-list" id="faq-list"></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-box">
+        <div class="contact-grid">
+          <div>
+            <h2 class="contact-heading">Ready to take control of your finances?</h2>
+            <p class="contact-sub">Schedule a free consultation with Denis Mashkov, CPA. Let's talk about how mashCPA can simplify your financial life.</p>
+            <div class="contact-info">
+              <div class="contact-row">
+                <div class="contact-icon-wrap">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+                </div>
+                <div>
+                  <div class="contact-label">Phone</div>
+                  <div class="contact-value"><a href="tel:8185618901">(818) 561-8901</a></div>
+                </div>
+              </div>
+              <div class="contact-row">
+                <div class="contact-icon-wrap">
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                </div>
+                <div>
+                  <div class="contact-label">Email</div>
+                  <div class="contact-value"><a href="mailto:info@mashCPA.com">info@mashCPA.com</a></div>
+                </div>
+              </div>
+            </div>
+            <p class="contact-address">260 S. Los Robles Suite 318, Pasadena, CA 91101</p>
+          </div>
+
+          <div class="contact-form-wrap">
+            <h3 class="contact-form-title">Send us a message</h3>
+            <form id="contact-form">
+              <div class="form-group">
+                <input type="text" name="name" placeholder="Full Name" required class="form-input">
+              </div>
+              <div class="form-group form-row">
+                <input type="email" name="email" placeholder="Email Address" required class="form-input">
+                <input type="tel" name="phone" placeholder="Phone Number" class="form-input">
+              </div>
+              <div class="form-group">
+                <select name="service" class="form-select form-input">
+                  <option value="">Select a Service</option>
+                  <option value="individual-tax">Individual Tax Preparation</option>
+                  <option value="business-accounting">Small Business Accounting</option>
+                  <option value="tax-planning">Tax Planning</option>
+                  <option value="bookkeeping">Bookkeeping</option>
+                  <option value="payroll">Payroll Services</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <textarea name="message" placeholder="How can we help you?" class="form-textarea"></textarea>
+              </div>
+              <button type="submit" class="form-submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">mash<span>CPA</span></div>
+          <p class="footer-blurb">Professional CPA and accounting services in Pasadena and Montrose, CA. Personalized attention, expert results.</p>
+        </div>
+        <div>
+          <h4 class="footer-heading">Services</h4>
+          <ul class="footer-list">
+            <li><a href="#services">Individual Tax Preparation</a></li>
+            <li><a href="#services">Small Business Accounting</a></li>
+            <li><a href="#services">Tax Planning</a></li>
+            <li><a href="#services">Bookkeeping</a></li>
+            <li><a href="#services">Payroll Services</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Office</h4>
+          <div class="footer-contact-text">
+            <p>260 S. Los Robles Suite 318</p>
+            <p>Pasadena, CA 91101</p>
+            <a href="tel:8185618901" class="block hover:text-brand-gold transition-colors mt-3">(818) 561-8901</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Contact</h4>
+          <div class="footer-contact-text">
+            <p><a href="mailto:info@mashCPA.com">info@mashCPA.com</a></p>
+            <p><a href="tel:8185618901">(818) 561-8901</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 mashCPA. All rights reserved.</span>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ
+    const faqs = [
+      { q: "What types of tax returns do you prepare?", a: "We prepare individual federal and California state tax returns, including complex situations such as self-employment income, rental properties, investment income, and multi-state filings. We also handle small business returns for sole proprietors, partnerships, S-corps, and LLCs." },
+      { q: "Do you work with small businesses year-round?", a: "Yes. While many clients come to us for tax season, we provide year-round accounting, bookkeeping, and payroll services. Having a CPA who understands your business throughout the year leads to better tax outcomes and fewer surprises." },
+      { q: "How is mashCPA different from a large accounting firm?", a: "At mashCPA, you work directly with Denis Mashkov, CPA — not a rotating team of junior associates. You get personalized attention, faster response times, and a CPA who truly knows your financial situation inside and out." },
+      { q: "What does your bookkeeping service include?", a: "Our bookkeeping service includes transaction categorization, bank and credit card reconciliation, monthly financial statements, and year-end preparation. We work with popular platforms like QuickBooks and can tailor our service to fit your workflow." },
+      { q: "Can you help me with tax planning, not just preparation?", a: "Tax planning is one of our core services. We help clients develop proactive strategies to minimize their tax liability throughout the year — including estimated tax payments, retirement contributions, business deductions, and entity structuring." },
+      { q: "How do I get started with mashCPA?", a: "Getting started is easy. Call us at (818) 561-8901 or email info@mashCPA.com to schedule a free consultation. We'll discuss your needs, answer your questions, and outline how we can help — with no obligation." },
+      { q: "Do you handle payroll for small businesses?", a: "Yes. We provide full payroll processing services, including calculating withholdings, issuing paychecks or direct deposits, filing payroll tax returns, and preparing year-end W-2s and 1099s. We ensure compliance with federal and California employment regulations." },
+      { q: "Where is your office located?", a: "Our office is at 260 S. Los Robles Suite 318, Pasadena, CA 91101. We serve clients throughout the Pasadena, Montrose, Glendale, La Cañada Flintridge, and greater Los Angeles area. We also work with clients remotely when convenient." }
+    ];
+
+    const faqList = document.getElementById('faq-list');
+    faqs.forEach((faq, i) => {
+      const item = document.createElement('div');
+      item.className = 'faq-item';
+      item.innerHTML = `
+        <button class="faq-btn" data-i="${i}">
+          <span class="faq-question">${faq.q}</span>
+          <svg class="faq-chevron" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-text">${faq.a}</p>
+        </div>`;
+      faqList.appendChild(item);
+    });
+
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const item = this.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 80);
+    });
+
+    // Mobile menu
+    const mobileMenu = document.getElementById('mobile-menu');
+    document.getElementById('mobile-toggle').addEventListener('click', () => mobileMenu.classList.add('open'));
+    document.getElementById('mobile-close').addEventListener('click', () => mobileMenu.classList.remove('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Form
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.form-submit');
+      btn.textContent = 'Message Sent';
+      btn.classList.add('sent');
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.classList.remove('sent');
+        this.reset();
+      }, 3000);
+    });
+
+    // Scroll reveal (IntersectionObserver)
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -60px 0px' };
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.service-card, .trust-card, .stat, .process-step, .area-tag, .faq-item').forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = `opacity 0.7s ${i * 0.06}s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s ${i * 0.06}s cubic-bezier(0.16, 1, 0.3, 1)`;
+      revealObserver.observe(el);
+    });
+  </script>
+
+</body>
+</html>

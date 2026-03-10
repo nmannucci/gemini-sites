@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Better Baseball Training | It's Just Better.</title>
+  <meta name="description" content="BBT is a sports performance platform developing youth baseball players socially, physically and mentally. Private lessons, academy memberships, and travel baseball in Rocklin & El Dorado Hills, CA." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Barlow+Condensed:wght@300;400;600;700;900&family=Anton&family=Teko:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --yellow:  #F5C518;
+      --yellow2: #FFDA44;
+      --black:   #000000;
+      --black2:  #0a0a0a;
+      --black3:  #111111;
+      --white:   #FFFFFF;
+      --gray:    #888888;
+      --gray2:   #333333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ─── NAVIGATION ────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: rgba(0,0,0,0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(245,197,24,0.15);
+    }
+
+    .nav-logo {
+      height: 44px;
+      width: auto;
+      opacity: 0;
+      animation: fadeIn 0.6s 0.2s ease forwards;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      opacity: 0;
+      animation: fadeIn 0.6s 0.4s ease forwards;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--yellow); }
+
+    .nav-cta {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--yellow);
+      border: none;
+      padding: 10px 22px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      opacity: 0;
+      animation: fadeIn 0.6s 0.6s ease forwards;
+    }
+
+    .nav-cta:hover {
+      background: var(--yellow2);
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 680px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    /* ── LEFT PANEL — black + headline ── */
+    .hero-left {
+      position: relative;
+      z-index: 2;
+      width: 52%;
+      height: 100%;
+      background: var(--black);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 64px 80px 72px;
+      clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
+      flex-shrink: 0;
+    }
+
+    /* ── RIGHT PANEL — photo ── */
+    .hero-right {
+      position: absolute;
+      top: 0; right: 0;
+      width: 58%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      animation: heroZoom 14s ease-out forwards;
+    }
+
+    @keyframes heroZoom {
+      from { transform: scale(1.06); }
+      to   { transform: scale(1.0); }
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 40%);
+      z-index: 1;
+    }
+
+    /* ── Yellow diagonal stripe along the cut ── */
+    .hero-stripe {
+      position: absolute;
+      top: 0;
+      left: calc(52% - 28px);
+      width: 18px;
+      height: 110%;
+      background: var(--yellow);
+      transform: skewX(-7deg);
+      transform-origin: top left;
+      z-index: 10;
+      opacity: 0;
+      animation: stripeReveal 0.6s 1.1s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+
+    @keyframes stripeReveal {
+      from { opacity: 0; transform: skewX(-7deg) scaleY(0); transform-origin: top; }
+      to   { opacity: 1; transform: skewX(-7deg) scaleY(1); transform-origin: top; }
+    }
+
+    /* ── Hero left content ── */
+    .hero-logo-mark {
+      width: 72px;
+      height: auto;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.3s ease forwards;
+      filter: drop-shadow(0 0 20px rgba(245,197,24,0.25));
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.5s ease forwards;
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--yellow);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .hero-badge-text {
+      font-family: 'Teko', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+
+    .hero-headline {
+      font-family: 'Anton', sans-serif;
+      line-height: 1.0;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .hero-headline .line1 {
+      display: block;
+      font-size: clamp(72px, 9.5vw, 148px);
+      color: var(--white);
+      opacity: 0;
+      animation: slideRight 0.7s 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+
+    .hero-headline .line2 {
+      display: block;
+      font-size: clamp(72px, 9.5vw, 148px);
+      color: var(--yellow);
+      opacity: 0;
+      animation: slideRight 0.7s 0.88s cubic-bezier(0.16,1,0.3,1) forwards;
+      text-shadow: 4px 4px 0px rgba(0,0,0,0.6), 0 0 60px rgba(245,197,24,0.15);
+    }
+
+    @keyframes slideRight {
+      from { opacity: 0; transform: translateX(-40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .hero-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.5);
+      max-width: 380px;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--yellow);
+      padding-left: 16px;
+      opacity: 0;
+      animation: fadeUp 0.6s 1.1s ease forwards;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s 1.25s ease forwards;
+    }
+
+    .btn-primary {
+      font-family: 'Teko', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--yellow);
+      padding: 13px 36px;
+      text-decoration: none;
+      transform: skewX(-8deg);
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+      border: none;
+    }
+
+    .btn-primary span { display: block; transform: skewX(8deg); }
+
+    .btn-primary:hover {
+      background: var(--yellow2);
+      transform: skewX(-8deg) translateY(-3px);
+      box-shadow: 6px 8px 0 rgba(0,0,0,0.5);
+    }
+
+    .btn-outline {
+      font-family: 'Teko', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.25);
+      padding: 13px 36px;
+      text-decoration: none;
+      transform: skewX(-8deg);
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .btn-outline span { display: block; transform: skewX(8deg); }
+
+    .btn-outline:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      transform: skewX(-8deg) translateY(-3px);
+    }
+
+    /* ── Stats ticker ── */
+    .hero-ticker {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 20;
+      height: 64px;
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 0.5s 1.6s ease forwards;
+    }
+
+    .ticker-track {
+      display: flex;
+      align-items: center;
+      animation: tickerScroll 28s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes tickerScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 40px;
+      border-right: 2px solid rgba(0,0,0,0.12);
+    }
+
+    .ticker-num {
+      font-family: 'Anton', sans-serif;
+      font-size: 28px;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .ticker-label {
+      font-family: 'Teko', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.6);
+    }
+
+    .ticker-diamond {
+      font-family: 'Anton', sans-serif;
+      font-size: 10px;
+      color: rgba(0,0,0,0.3);
+      padding: 0 20px;
+    }
+
+    /* ─── SERVICES SECTION ───────────────────────────────────── */
+    .services {
+      position: relative;
+      background: var(--black2);
+      padding: 0 0 100px;
+      overflow: hidden;
+    }
+
+    /* Big watermark logo in background */
+    .services-watermark {
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 550px;
+      height: auto;
+      opacity: 0.03;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Top yellow bar */
+    .services-topbar {
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--yellow) 60%, transparent);
+    }
+
+    /* Section header */
+    .services-header {
+      padding: 80px 72px 60px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .services-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .services-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(60px, 7vw, 100px);
+      line-height: 0.9;
+      color: var(--white);
+    }
+
+    .services-title em {
+      font-style: normal;
+      color: var(--yellow);
+    }
+
+    .services-desc {
+      max-width: 380px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.02em;
+      text-align: right;
+      padding-bottom: 8px;
+    }
+
+    /* ── Primary service cards ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      padding: 0 72px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .service-card {
+      background: var(--black3);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s ease, background 0.3s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1);
+      cursor: default;
+    }
+
+    .service-card:hover {
+      border-bottom-color: var(--yellow);
+      background: #1a1a1a;
+      transform: translateY(-10px);
+    }
+
+    /* Image wrapper with diagonal clip */
+    .service-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+    }
+
+    .service-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease;
+      filter: grayscale(70%) contrast(1.1) brightness(0.85);
+    }
+
+    .service-card:hover .service-card-img {
+      transform: scale(1.08);
+      filter: grayscale(0%) contrast(1.0) brightness(1.0);
+    }
+
+    /* Card content area */
+    .service-card-body {
+      padding: 20px 20px 24px;
+      position: relative;
+    }
+
+    /* Large faded number — top-right */
+    .service-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      color: var(--yellow);
+      opacity: 0.15;
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      line-height: 1;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .service-card:hover .service-number {
+      opacity: 1;
+    }
+
+    .service-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .service-card:hover .service-name {
+      color: var(--yellow);
+    }
+
+    .service-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    /* "Learn More" link */
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .service-link svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .service-card:hover .service-link {
+      color: var(--yellow);
+    }
+
+    .service-card:hover .service-link svg {
+      transform: translateX(5px);
+    }
+
+    /* ── Divider ── */
+    .services-divider {
+      height: 1px;
+      margin: 60px 72px 0;
+      background: linear-gradient(to right, var(--yellow), rgba(245,197,24,0.2), transparent);
+    }
+
+    /* ── Academy membership banner ── */
+    .membership-banner {
+      margin: 48px 72px 0;
+      position: relative;
+      background: var(--black3);
+      border: 1px solid rgba(245,197,24,0.2);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+      padding: 52px 64px;
+      overflow: hidden;
+      transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease;
+    }
+
+    .membership-banner:hover {
+      border-color: rgba(245,197,24,0.55);
+      background: #151515;
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(245,197,24,0.15);
+    }
+
+    /* Decorative corner glow — expands on hover */
+    .membership-banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(225deg, rgba(245,197,24,0.12) 0%, transparent 60%);
+      transition: opacity 0.4s ease, width 0.4s ease, height 0.4s ease;
+      opacity: 1;
+    }
+
+    .membership-banner:hover::before {
+      width: 200px;
+      height: 200px;
+      opacity: 1;
+      background: linear-gradient(225deg, rgba(245,197,24,0.22) 0%, transparent 60%);
+    }
+
+    /* Yellow left accent bar — grows taller on hover */
+    .membership-banner::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 40%;
+      background: var(--yellow);
+      transition: height 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease;
+      border-radius: 0 2px 2px 0;
+    }
+
+    .membership-banner:hover::after {
+      height: 100%;
+      box-shadow: 2px 0 16px rgba(245,197,24,0.4);
+    }
+
+    .membership-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 10px;
+    }
+
+    .membership-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .membership-classes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 4px;
+    }
+
+    .membership-class {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .membership-class::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--yellow);
+    }
+
+    .membership-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+
+    .membership-pricing {
+      display: flex;
+      gap: 32px;
+    }
+
+    .price-item {
+      text-align: center;
+    }
+
+    .price-location {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 4px;
+    }
+
+    .price-amount {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: var(--yellow);
+      line-height: 1;
+    }
+
+    .price-period {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 2px;
+    }
+
+    .price-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.1);
+      align-self: stretch;
+    }
+
+    .membership-cta {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--yellow);
+      padding: 14px 32px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      white-space: nowrap;
+    }
+
+    .membership-cta:hover {
+      background: var(--yellow2);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245,197,24,0.3);
+    }
+
+    /* Ages badge */
+    .membership-ages {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 6px 14px;
+    }
+
+    /* ─── KEYFRAMES ─────────────────────────────────────────── */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SCROLL ANIMATIONS ─────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ─── MOBILE RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 1200px) {
+      .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 40px;
+      }
+      .services-header { padding: 60px 40px 40px; }
+      .services-divider { margin: 40px 40px 0; }
+      .membership-banner { margin: 40px 40px 0; }
+    }
+
+    @media (max-width: 800px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+
+      .hero { flex-direction: column; height: auto; min-height: 100vh; }
+      .hero-left {
+        width: 100%;
+        clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%);
+        padding: 110px 32px 80px;
+      }
+      .hero-right { position: relative; width: 100%; height: 260px; top: auto; right: auto; }
+      .hero-stripe { display: none; }
+      .hero-ticker { position: relative; bottom: auto; }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 24px;
+        gap: 12px;
+      }
+
+      .services-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 50px 24px 36px;
+        gap: 20px;
+      }
+      .services-desc { text-align: left; max-width: 100%; }
+      .services-divider { margin: 36px 24px 0; }
+
+      .membership-banner {
+        grid-template-columns: 1fr;
+        margin: 36px 24px 0;
+        padding: 40px 36px;
+        gap: 28px;
+      }
+      .membership-right {
+        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+      }
+      .membership-pricing { gap: 20px; }
+    }
+
+    @media (max-width: 500px) {
+      .services-grid { grid-template-columns: 1fr; padding: 0 24px; }
+      .hero-stats { gap: 24px; }
+      .hero-stat-num { font-size: 30px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAVIGATION ───────────────────────────────────────────── -->
+  <nav>
+    <img src="assets/images/logo-bbt.png" alt="Better Baseball Training" class="nav-logo" />
+    <ul class="nav-links">
+      <li><a href="#">Coaches</a></li>
+      <li><a href="#">Facilities</a></li>
+      <li><a href="#">Lessons</a></li>
+      <li><a href="#">Memberships</a></li>
+    </ul>
+    <a href="https://app.acuityscheduling.com/schedule.php?owner=19350065" class="nav-cta" target="_blank" rel="noopener">Book Now</a>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────────── -->
+  <section class="hero">
+
+    <!-- Left: black panel -->
+    <div class="hero-left">
+      <img src="assets/images/logo-american-b-white.png" alt="BBT" class="hero-logo-mark" />
+
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span class="hero-badge-text">Rocklin &amp; El Dorado Hills, CA</span>
+      </div>
+
+      <h1 class="hero-headline">
+        <span class="line1">It's Just</span>
+        <span class="line2">Better.</span>
+      </h1>
+
+      <p class="hero-sub">
+        We are more than baseball. Developing youth to their full potential — socially, physically, and mentally. Private lessons, academy memberships, and travel baseball for ages 8–14U.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="https://app.acuityscheduling.com/schedule.php?owner=19350065" class="btn-primary" target="_blank" rel="noopener">
+          <span>Book a Lesson</span>
+        </a>
+        <a href="mailto:trainwithbbt@gmail.com" class="btn-outline">
+          <span>Join the Academy</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Yellow diagonal stripe -->
+    <div class="hero-stripe"></div>
+
+    <!-- Right: facility photo -->
+    <div class="hero-right">
+      <img src="assets/images/team-photo-1.jpg" alt="BBT team group photo" />
+    </div>
+
+    <!-- Bottom stats ticker -->
+    <div class="hero-ticker">
+      <div class="ticker-track">
+        <div class="ticker-item"><span class="ticker-num">2</span><span class="ticker-label">Elite Locations</span></div>
+        <span class="ticker-diamond">◆</span>
+        <div class="ticker-item"><span class="ticker-num">15+</span><span class="ticker-label">Expert Coaches</span></div>
+        <span class="ticker-diamond">◆</span>
+        <div class="ticker-item"><span class="ticker-num">11</span><span class="ticker-label">Travel Teams</span></div>
+        <span class="ticker-diamond">◆</span>
+        <div class="ticker-item"><span class="ticker-num">9–14U</span><span class="ticker-label">Age Groups</span></div>
+        <span class="ticker-diamond">◆</span>
+        <div class="ticker-item"><span class="ticker-num">3,000+</span><span class="ticker-label">Sq Ft of Turf</span></div>
+        <span class="ticker-diamond">◆</span>
+        <div class="ticker-item"><span class="ticker-num">5</span><span class="ticker-label">Training Disciplines</span></div>
+        <span class="ticker-diamond">◆</span>
+        <!-- Duplicate for seamless loop -->
+        <div class="ticker-item"><span class="ticker-num">2</span><span class="ticker-label">Elite Locations</span></div>
+        <span class="ticker-diamond">◆</span>
+        <div class="ticker-item"><span class="ticker-num">15+</span><span class="ticker-label">Expert Coaches</span></div>
+        <span class="ticker-diamond">◆</span>
+        <div class="ticker-item"><span class="ticker-num">11</span><span class="ticker-label">Travel Teams</span></div>
+        <span class="ticker-diamond">◆</span>
+        <div class="ticker-item"><span class="ticker-num">9–14U</span><span class="ticker-label">Age Groups</span></div>
+        <span class="ticker-diamond">◆</span>
+        <div class="ticker-item"><span class="ticker-num">3,000+</span><span class="ticker-label">Sq Ft of Turf</span></div>
+        <span class="ticker-diamond">◆</span>
+        <div class="ticker-item"><span class="ticker-num">5</span><span class="ticker-label">Training Disciplines</span></div>
+        <span class="ticker-diamond">◆</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── SERVICES ──────────────────────────────────────────────── -->
+  <section class="services">
+    <div class="services-topbar"></div>
+
+    <!-- Watermark logo background -->
+    <img
+      src="assets/images/logo-bbt.png"
+      alt=""
+      class="services-watermark"
+      aria-hidden="true"
+    />
+
+    <!-- Section header -->
+    <div class="services-header reveal">
+      <div>
+        <span class="services-label">What We Do</span>
+        <h2 class="services-title">Train.<br><em>Develop.</em><br>Win.</h2>
+      </div>
+      <p class="services-desc">
+        BBT offers private and group instruction across every discipline of the game —
+        from hitting mechanics to baseball IQ. We are committed to providing safe,
+        reliable training for kids of all ages.
+      </p>
+    </div>
+
+    <!-- Service cards -->
+    <div class="services-grid">
+
+      <!-- Hitting -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-image-wrapper">
+          <img src="assets/images/facility-img-1.jpg" alt="Hitting training at BBT batting cages" class="service-card-img" />
+        </div>
+        <div class="service-card-body">
+          <div class="service-number">01</div>
+          <h3 class="service-name">Hitting</h3>
+          <p class="service-text">Mechanics, timing, and plate discipline for every level. Private and group sessions in our batting cages.</p>
+          <a href="https://app.acuityscheduling.com/schedule.php?owner=19350065" target="_blank" class="service-link">
+            Book a Session
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Pitching -->
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-image-wrapper">
+          <img src="assets/images/team-photo-1.jpg" alt="BBT team at pitching training" class="service-card-img" style="object-position: center top;" />
+        </div>
+        <div class="service-card-body">
+          <div class="service-number">02</div>
+          <h3 class="service-name">Pitching</h3>
+          <p class="service-text">Arm mechanics, velocity development, and pitch sequencing coached by college and pro alumni.</p>
+          <a href="https://app.acuityscheduling.com/schedule.php?owner=19350065" target="_blank" class="service-link">
+            Book a Session
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- INF / OF -->
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-image-wrapper">
+          <img src="assets/images/team-photo-3.jpg" alt="BBT division champions — infield and outfield training" class="service-card-img" style="object-position: center 20%;" />
+        </div>
+        <div class="service-card-body">
+          <div class="service-number">03</div>
+          <h3 class="service-name">INF / OF</h3>
+          <p class="service-text">Footwork, range, throws, and positioning — infield and outfield fundamentals for all positions.</p>
+          <a href="https://app.acuityscheduling.com/schedule.php?owner=19350065" target="_blank" class="service-link">
+            Book a Session
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Catching -->
+      <div class="service-card reveal reveal-delay-4">
+        <div class="service-image-wrapper">
+          <img src="assets/images/facility-img-4.jpg" alt="Youth catchers training in full gear at BBT" class="service-card-img" style="object-position: center 30%;" />
+        </div>
+        <div class="service-card-body">
+          <div class="service-number">04</div>
+          <h3 class="service-name">Catching</h3>
+          <p class="service-text">Receiving, blocking, framing, and pop times. Full position-specific development with experienced coaches.</p>
+          <a href="https://app.acuityscheduling.com/schedule.php?owner=19350065" target="_blank" class="service-link">
+            Book a Session
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Speed & Agility -->
+      <div class="service-card reveal reveal-delay-5">
+        <div class="service-image-wrapper">
+          <img src="assets/images/facility-edh-3.jpg" alt="Athletes training speed and agility at BBT workout facility" class="service-card-img" />
+        </div>
+        <div class="service-card-body">
+          <div class="service-number">05</div>
+          <h3 class="service-name">Speed &amp; Agility</h3>
+          <p class="service-text">First-step quickness, baserunning technique, and base stealing — complete athletic performance training.</p>
+          <a href="https://app.acuityscheduling.com/schedule.php?owner=19350065" target="_blank" class="service-link">
+            Book a Session
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="services-divider reveal"></div>
+
+    <!-- Academy membership banner -->
+    <div class="membership-banner reveal">
+      <div>
+        <p class="membership-label">Academy Membership · Ages 8–14U</p>
+        <h3 class="membership-title">Unlimited Academy Access</h3>
+        <div class="membership-classes">
+          <span class="membership-class">Hitting</span>
+          <span class="membership-class">Pitching</span>
+          <span class="membership-class">INF / OF</span>
+          <span class="membership-class">Catchers</span>
+          <span class="membership-class">Baseball IQ</span>
+          <span class="membership-class">Baserunning</span>
+          <span class="membership-class">Basestealing</span>
+          <span class="membership-class">Speed &amp; Agility</span>
+          <span class="membership-class">Lifting</span>
+        </div>
+      </div>
+
+      <div class="membership-right">
+        <div class="membership-pricing">
+          <div class="price-item">
+            <div class="price-location">Rocklin</div>
+            <div class="price-amount">$250</div>
+            <div class="price-period">/ month</div>
+          </div>
+          <div class="price-divider"></div>
+          <div class="price-item">
+            <div class="price-location">El Dorado Hills</div>
+            <div class="price-amount">$299</div>
+            <div class="price-period">/ month</div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:12px;">
+          <a href="mailto:trainwithbbt@gmail.com" class="membership-cta">
+            Get Started
+          </a>
+          <span class="membership-ages">Ages 8–14U · Unlimited Access</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── SCROLL REVEAL SCRIPT ──────────────────────────────────── -->
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
