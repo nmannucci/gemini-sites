@@ -13,10 +13,14 @@
 - Services Overview (5-column card grid, numbered cards, membership banner)
 - Academy Membership Details (2-column pricing + Product schema JSON-LD)
 - Coaches Preview (4-card grid: Jon Peters, Bruce Carmichael, Kris Krise, Gabe Emmett + JP quote banner)
+- Why BBT section
+- Facilities section
+- FAQ section (with FAQPage JSON-LD)
+- Footer (with Organization JSON-LD)
 
 ### What's Left
-- Why BBT section, Facilities, FAQ, CTA/Contact, Footer
-- Structured data (LocalBusiness x2, Organization, FAQPage, BreadcrumbList)
+- CTA/Contact section
+- Structured data (LocalBusiness x2, BreadcrumbList)
 - Technical SEO (robots.txt, sitemap, llms.txt, OG tags, canonical URL)
 
 ### Design System
