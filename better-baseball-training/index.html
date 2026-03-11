@@ -1477,7 +1477,6 @@
     .faq-item {
       background: var(--black2);
       border: 1px solid rgba(255,255,255,0.08);
-      padding: 32px 40px;
       transition: border-color 0.3s ease;
     }
 
@@ -1485,23 +1484,82 @@
       border-color: var(--cyan);
     }
 
-    .faq-q {
+    .faq-item summary {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 28px;
       color: var(--white);
-      margin-bottom: 12px;
       letter-spacing: 0.03em;
+      padding: 32px 40px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      user-select: none;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { display: none; }
+
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .faq-icon::before,
+    .faq-icon::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      background: var(--cyan);
+      border-radius: 1px;
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-icon::before {
+      width: 18px;
+      height: 2px;
+    }
+
+    .faq-icon::after {
+      width: 2px;
+      height: 18px;
+    }
+
+    .faq-item[open] .faq-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .faq-a-wrap {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s ease;
+    }
+
+    .faq-item[open] .faq-a-wrap {
+      grid-template-rows: 1fr;
     }
 
     .faq-a {
+      overflow: hidden;
+    }
+
+    .faq-a-inner {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 300;
       font-size: 17px;
       line-height: 1.6;
       color: rgba(255,255,255,0.6);
+      padding: 0 40px 32px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 20px;
     }
 
-    .faq-a strong {
+    .faq-a-inner strong {
       color: var(--white);
       font-weight: 500;
     }
@@ -1804,7 +1862,8 @@
       .facilities-grid { grid-template-columns: 1fr; gap: 32px; }
       
       .faq { padding: 60px 24px; }
-      .faq-item { padding: 24px; }
+      .faq-item summary { padding: 24px; }
+      .faq-a-inner { padding: 0 24px 24px; }
       
 
       
@@ -2301,46 +2360,46 @@
       </div>
 
       <div class="faq-list">
-        
+
         <!-- Q1 -->
-        <article class="faq-item reveal reveal-delay-1">
-          <h3 class="faq-q">What ages does Better Baseball Training serve?</h3>
-          <div class="faq-a">
+        <details class="faq-item reveal reveal-delay-1">
+          <summary>What ages does Better Baseball Training serve? <span class="faq-icon"></span></summary>
+          <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">
             <p>BBT provides elite baseball training, academy memberships, and travel teams for youth baseball players ages <strong>8 to 14U</strong>.</p>
-          </div>
-        </article>
+          </div></div></div>
+        </details>
 
         <!-- Q2 -->
-        <article class="faq-item reveal reveal-delay-2">
-          <h3 class="faq-q">Where is Better Baseball Training located?</h3>
-          <div class="faq-a">
+        <details class="faq-item reveal reveal-delay-2">
+          <summary>Where is Better Baseball Training located? <span class="faq-icon"></span></summary>
+          <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">
             <p>We have two indoor training facilities with full turf and batting cages in the Sacramento area: <strong>Rocklin</strong> (4283 Duluth Ave) and <strong>El Dorado Hills</strong> (4990 Hillsdale Dr, Suite 400).</p>
-          </div>
-        </article>
+          </div></div></div>
+        </details>
 
         <!-- Q3 -->
-        <article class="faq-item reveal reveal-delay-3">
-          <h3 class="faq-q">How much does baseball academy membership cost?</h3>
-          <div class="faq-a">
+        <details class="faq-item reveal reveal-delay-3">
+          <summary>How much does baseball academy membership cost? <span class="faq-icon"></span></summary>
+          <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">
             <p>Our Academy Membership provides unlimited access to classes and training. Pricing is <strong>$250/month in Rocklin</strong> and <strong>$299/month in El Dorado Hills</strong>.</p>
-          </div>
-        </article>
+          </div></div></div>
+        </details>
 
         <!-- Q4 -->
-        <article class="faq-item reveal reveal-delay-4">
-          <h3 class="faq-q">Do you offer private baseball lessons?</h3>
-          <div class="faq-a">
+        <details class="faq-item reveal reveal-delay-4">
+          <summary>Do you offer private baseball lessons? <span class="faq-icon"></span></summary>
+          <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">
             <p><strong>Yes.</strong> We offer both private and group instruction for hitting, pitching, infield/outfield, catching, and speed & agility. All lessons are coached by our staff of college and pro alumni.</p>
-          </div>
-        </article>
+          </div></div></div>
+        </details>
 
         <!-- Q5 -->
-        <article class="faq-item reveal reveal-delay-5">
-          <h3 class="faq-q">Does BBT have travel baseball teams?</h3>
-          <div class="faq-a">
+        <details class="faq-item reveal reveal-delay-5">
+          <summary>Does BBT have travel baseball teams? <span class="faq-icon"></span></summary>
+          <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">
             <p><strong>Yes.</strong> Better Baseball Training fields 11+ highly competitive youth travel baseball teams across multiple divisions (Black and Gray) from ages 9U through 14U.</p>
-          </div>
-        </article>
+          </div></div></div>
+        </details>
 
       </div>
     </div>
@@ -2570,6 +2629,7 @@
 
     reveals.forEach(el => observer.observe(el));
   </script>
+
 
 </body>
 </html>
