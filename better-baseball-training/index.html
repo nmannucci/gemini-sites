@@ -881,6 +881,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
+      margin-top: 16px;
       margin-bottom: 40px;
     }
 
@@ -1193,7 +1194,7 @@
 
     .coach-img-wrapper {
       width: 100%;
-      aspect-ratio: 4/5;
+      aspect-ratio: 3/4;
       overflow: hidden;
       position: relative;
       background: #1a1a1a;
@@ -1297,6 +1298,32 @@
     .coach-cred strong {
       color: var(--yellow);
       font-weight: 600;
+    }
+
+    .coach-quote {
+      margin-top: 16px;
+      padding: 16px;
+      background: rgba(0, 174, 239, 0.05);
+      border-left: 3px solid var(--cyan);
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 24px;
+    }
+    .coach-quote strong {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .coach-quote p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.5;
     }
 
     /* ── Meet All Coaches CTA row ── */
@@ -2712,7 +2739,7 @@
 
 
 
-  <!-- ── COACHES ─────────────────────────────────────────────── -->
+  <!-- ── COACHES ───────────────────────────────────────────── -->
   <section id="coaches" class="coaches" aria-labelledby="coaches-heading">
 
     <div class="coaches-header reveal">
@@ -2734,12 +2761,52 @@
           <h3 class="coach-name">Jon Peters</h3>
           <div class="coach-role">Player Development</div>
           <p class="coach-bio">Founded BBT with one goal: build better players and better people. Jon oversees all player development programming across both facilities and has spent years studying hitting, pitching development, and athletic performance from youth to collegiate level.</p>
+          <div class="coach-quote">
+            <strong>Favorite part of coaching</strong>
+            <p>"Watching the boys achieve their goals, nothing better in this thing than seeing all their hard work lead to success!"</p>
+          </div>
           <p class="coach-cred">"The pinnacle of youth development"</p>
         </div>
       </div>
 
-      <!-- Bruce Carmichael — Cubs -->
+      <!-- Cesar Tamayo — Rocklin GM -->
       <div class="coach-card reveal reveal-delay-2">
+        <div class="coach-img-wrapper">
+          <img src="assets/images/cesar-tamayo.jpeg" alt="Cesar Tamayo, Rocklin GM at Better Baseball Training" class="coach-img" />
+          <span class="coach-badge coach-badge-pro" style="background:var(--cyan);color:black;">Rocklin GM</span>
+        </div>
+        <div class="coach-info">
+          <h3 class="coach-name">Cesar Tamayo</h3>
+          <div class="coach-role">Rocklin GM</div>
+          <p class="coach-bio">Southern California native. La Sierra High School ('14), Mt. San Jacinto College, Marymount University (BA), and Jessup University (MS in Kinesiology). With BBT since 2021 and served as Asst Coach with the Lincoln Potters in 2022 and 2023.</p>
+          <div class="coach-quote">
+            <strong>Favorite part of coaching</strong>
+            <p>"Being able to teach the kids the game I love."</p>
+          </div>
+          <p class="coach-cred"><strong>Jessup University (MS)</strong> · Marymount University</p>
+        </div>
+      </div>
+
+      <!-- Trey Furrey — EDH GM -->
+      <div class="coach-card reveal reveal-delay-3">
+        <div class="coach-img-wrapper">
+          <img src="assets/images/trey-furrey.jpeg" alt="Trey Furrey, El Dorado Hills GM at Better Baseball Training" class="coach-img" />
+          <span class="coach-badge coach-badge-pro" style="background:var(--cyan);color:black;">EDH GM</span>
+        </div>
+        <div class="coach-info">
+          <h3 class="coach-name">Trey Furrey</h3>
+          <div class="coach-role">El Dorado Hills GM</div>
+          <p class="coach-bio">Folsom native, Folsom High ('18). Folsom Lake College All-American ('20). Transferred to Oklahoma Baptist and Jessup University where he was named GSAC Player of the Year and earned All-America Honors.</p>
+          <div class="coach-quote">
+            <strong>Favorite part of coaching</strong>
+            <p>"Seeing the kids continuing to learn and grow and be able to take what they've learned and apply it to their game."</p>
+          </div>
+          <p class="coach-cred"><strong>Jessup University</strong> · GSAC Player of the Year</p>
+        </div>
+      </div>
+
+      <!-- Bruce Carmichael — Cubs -->
+      <div class="coach-card reveal reveal-delay-4">
         <div class="coach-img-wrapper">
           <img src="assets/images/bruce-carmichael.PNG" alt="Bruce Carmichael, coach at Better Baseball Training" class="coach-img" />
           <span class="coach-badge coach-badge-pro">Pro Alumni</span>
@@ -2747,64 +2814,37 @@
         <div class="coach-info">
           <h3 class="coach-name">Bruce Carmichael</h3>
           <div class="coach-role">13U Gray Head Coach</div>
-          <p class="coach-bio">Bruce played with the Chicago Cubs organization for 3 years after earning a full baseball scholarship at Santa Clara University. He has coached at the college and high school levels and has been involved with baseball clinics and baseball academies over the past 35 years. The National High School Association also named Bruce ‘Western States Assistant Baseball Coach of the Year’ in 1998. Bruce was the General Manager for the Dusty Baker Baseball Camps for 35 years.</p>
+          <p class="coach-bio">Drafted by the Chicago Cubs Organization and played 3 years after earning a full baseball scholarship at Santa Clara University. 35+ years coaching at the college and high school levels. Named 'Western States Assistant Baseball Coach of the Year' in 1998.</p>
           <p class="coach-cred"><strong>Chicago Cubs</strong> · Santa Clara University</p>
         </div>
       </div>
 
-      <!-- Logan Coe -->
-      <div class="coach-card reveal reveal-delay-3">
-        <div class="coach-img-wrapper">
-          <img src="assets/images/logan-coe.PNG" alt="Logan Coe" class="coach-img" style="object-position: center top;" />
-          <span class="coach-badge coach-badge-pro">College Alumni</span>
-        </div>
-        <div class="coach-info">
-          <h3 class="coach-name">Logan Coe</h3>
-          <div class="coach-role">Coach</div>
-          <p class="coach-bio">Graduated from Buhach Colony HS in 2016. Played JUCO ball at Modesto, and went on to Oklahoma Baptist and Jessup University. Favorite part of coaching is passing down game knowledge and seeing the kids grow and develop.</p>
-          <p class="coach-cred"><strong>Jessup University</strong> · Oklahoma Baptist</p>
-        </div>
-      </div>
 
-      <!-- Jackson Doherty -->
-      <div class="coach-card reveal reveal-delay-4">
-        <div class="coach-img-wrapper">
-          <img src="assets/images/jackson-doherty.PNG" alt="Jackson Doherty" class="coach-img" style="object-position: center 15%;" />
-          <span class="coach-badge coach-badge-pro">College Alumni</span>
-        </div>
-        <div class="coach-info">
-          <h3 class="coach-name">Jackson Doherty</h3>
-          <div class="coach-role">Coach</div>
-          <p class="coach-bio">2017 Olathe East Highschool. 2 years at Coffeyville Community College, 3 years at Benedictine College, graduated with BA in Mechanical Engineering. He works for Louisville Slugger Innovations as a Senior R&D Testing Engineer. My favorite part about coaching is watching kids play to their full potential.</p>
-          <p class="coach-cred"><strong>Benedictine College</strong> · Coffeyville CC</p>
-        </div>
-      </div>
-
-      <!-- Bryce Petrilla -->
+      <!-- Gabe Emmett — Dodgers -->
       <div class="coach-card reveal reveal-delay-5">
         <div class="coach-img-wrapper">
-          <img src="assets/images/bryce-pertrilla.PNG" alt="Bryce Petrilla" class="coach-img" style="object-position: center top;" />
-          <span class="coach-badge coach-badge-pro">College Alumni</span>
+          <img src="assets/images/gabe-emmett.jpeg" alt="Gabe Emmett, pitching coach at Better Baseball Training" class="coach-img" />
+          <span class="coach-badge coach-badge-pro">Pro Alumni</span>
         </div>
         <div class="coach-info">
-          <h3 class="coach-name">Bryce Petrilla</h3>
-          <div class="coach-role">Coach</div>
-          <p class="coach-bio">2019 Rocklin high, Folsom lake college 21-22, Oregon Tech 22-23, Jessup university 23-25. Favorite part of coaching is being able to teach kids not only the game of baseball but prepare them and develop them into the best men they can be.</p>
-          <p class="coach-cred"><strong>Jessup University</strong> · Oregon Tech</p>
+          <h3 class="coach-name">Gabe Emmett</h3>
+          <div class="coach-role">Pitching Lessons</div>
+          <p class="coach-bio">Vista del Lago HS ('19), Folsom Lake College, drafted by the LA Dodgers in 2021. Pitched with the ACL Dodgers and Rancho Cucamonga Quakes. Named California League Pitcher of the Month (June 2023). Tops out 96–98 mph.</p>
+          <p class="coach-cred"><strong>Los Angeles Dodgers</strong> · Folsom Lake College</p>
         </div>
       </div>
 
-      <!-- Justin Watari -->
+      <!-- Jean Machi — World Series Champion -->
       <div class="coach-card reveal reveal-delay-6">
         <div class="coach-img-wrapper">
-          <img src="assets/images/justin-watari.PNG" alt="Justin Watari" class="coach-img" style="object-position: center 10%;" />
-          <span class="coach-badge coach-badge-pro">College Alumni</span>
+          <img src="assets/images/jean-machi.jpeg" alt="Jean Machi, World Series Champion pitching coach at Better Baseball Training" class="coach-img" />
+          <span class="coach-badge coach-badge-pro">Pro Alumni</span>
         </div>
         <div class="coach-info">
-          <h3 class="coach-name">Justin Watari</h3>
-          <div class="coach-role">Coach</div>
-          <p class="coach-bio">Graduated from Woodcreek HS in 2016, went on to play and graduate at the University of New Mexico. When asked what he loves most about coaching: Helping the athletes develop both physically and mentally to compete at the next age group/level.</p>
-          <p class="coach-cred"><strong>University of New Mexico</strong> · Woodcreek HS</p>
+          <h3 class="coach-name">Jean Machi</h3>
+          <div class="coach-role">Pitching Lessons</div>
+          <p class="coach-bio">Former Big Leaguer &amp; 2014 World Series Champion with the SF Giants. Pitched in the big leagues from 2012–2017 with the Mariners, Red Sox, and Giants. Lifetime ERA of 3.38. Now providing pitching lessons at the EDH location.</p>
+          <p class="coach-cred"><strong>SF Giants · World Series Champion</strong></p>
         </div>
       </div>
 
@@ -3074,20 +3114,32 @@
       
       <!-- Left Content -->
       <div class="academy-content">
-        <h2 id="academy-membership-heading">Academy Membership — Ages 8-14U</h2>
+        <h2 id="academy-membership-heading">Unlimited Access Academy Membership</h2>
+        <div style="font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.08em; color: var(--cyan); margin-top: 6px; margin-bottom: 12px;">Ages 8–14U</div>
         <p>
           Gain an edge on the competition with unlimited access to premium instruction and state-of-the-art facilities. 
           Our Academy Memberships empower dedicated youth players to train year-round with professional-level guidance.
         </p>
-        
+
+        <!-- Pricing per location -->
+        <div style="margin-top: 28px; display: flex; gap: 24px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 160px; padding: 20px; border: 1px solid rgba(255, 242, 0, 0.25); border-radius: 6px; background: rgba(255, 242, 0, 0.04); box-shadow: 0 0 20px rgba(255, 242, 0, 0.06);">
+            <div style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px;">Rocklin</div>
+            <div style="font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--yellow); line-height: 1;">$250<span style="font-size: 18px; color: rgba(255,255,255,0.5); font-family: 'Inter', sans-serif; font-weight: 300;">/mo</span></div>
+          </div>
+          <div style="flex: 1; min-width: 160px; padding: 20px; border: 1px solid rgba(255, 242, 0, 0.25); border-radius: 6px; background: rgba(255, 242, 0, 0.04); box-shadow: 0 0 20px rgba(255, 242, 0, 0.06);">
+            <div style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 8px;">El Dorado Hills</div>
+            <div style="font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--yellow); line-height: 1;">$299<span style="font-size: 18px; color: rgba(255,255,255,0.5); font-family: 'Inter', sans-serif; font-weight: 300;">/mo</span></div>
+          </div>
+        </div>
+
+        <h4 style="margin-top: 28px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan);">What's Included</h4>
         <ul class="academy-includes">
           <li>Hitting</li>
           <li>Pitching</li>
           <li>INF / OF</li>
           <li>Catchers</li>
           <li>Baseball IQ</li>
-          <li>Baserunning</li>
-          <li>Basestealing</li>
         </ul>
 
       </div>
