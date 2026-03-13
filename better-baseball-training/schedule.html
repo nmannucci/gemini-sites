@@ -2458,7 +2458,16 @@
   </section>
 
   <!-- ── SCHEDULE IFRAME ──────────────────────────────────────── -->
-  <section class="schedule" style="padding: 0px 72px 100px; background: var(--black2); position: relative;">
+  <style>
+    .schedule-section { padding: 0px 72px 100px; background: var(--black2); position: relative; }
+    @media (max-width: 800px) {
+      .schedule-section { padding: 0px 12px 60px; }
+    }
+    @media (max-width: 500px) {
+      .schedule-section { padding: 0px 8px 40px; }
+    }
+  </style>
+  <section class="schedule-section">
     <div style="max-width: 1200px; margin: 0 auto;">
       <!-- Calendar Schedule -->
       <div style="overflow:scroll;-webkit-overflow-scrolling:touch;">
