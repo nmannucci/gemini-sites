@@ -1066,6 +1066,30 @@
       letter-spacing: 0.03em;
       margin-bottom: 16px;
       flex-grow: 1;
+      max-height: 120px;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .coach-bio.expanded {
+      max-height: 600px;
+    }
+
+    .read-more-btn {
+      background: none;
+      border: none;
+      color: var(--cyan);
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      display: none;
+    }
+
+    .read-more-btn:hover {
+      text-decoration: underline;
     }
 
     .coach-cred {
@@ -2055,13 +2079,16 @@
   <nav>
     <img src="assets/brand-assets/BBT Logo 2.jpeg" alt="Better Baseball Training" class="nav-logo" />
     <ul class="nav-links">
-      <li><a href="index-copy.html#hero">Home</a></li>
-      <li><a href="index-copy.html#lessons">Lessons</a></li>
+      <li><a href="index.html#hero">Home</a></li>
+      <li><a href="index.html#lessons">Lessons</a></li>
       <li><a href="coaches.html">Coaches</a></li>
-      <li><a href="index-copy.html#facilities">Facilities</a></li>
-      <li><a href="index-copy.html#memberships">Memberships</a></li>
+      <li><a href="index.html#facilities">Facilities</a></li>
+      <li><a href="index.html#memberships">Memberships</a></li>
     </ul>
-    <a href="#" class="nav-cta">Book Now</a>
+    <div style="display: flex; gap: 10px; opacity: 0; animation: fadeIn 0.6s 0.6s ease forwards;">
+      <a href="tel:9164655551" class="nav-cta" style="background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25); opacity: 1; animation: none;">Call Us</a>
+      <a href="#" class="nav-cta" style="opacity: 1; animation: none;">Book Now</a>
+    </div>
   </nav>
 
   <!-- ── PAGE HERO ───────────────────────────────────────────── -->
@@ -2087,7 +2114,8 @@
         <div class="coach-info">
           <h3 class="coach-name">Jon Peters</h3>
           <div class="coach-role">Owner / Player Development</div>
-          <p class="coach-bio">Founded BBT with one goal: build better players and better people. Jon oversees all player development programming across both facilities and has spent years studying hitting, pitching development, and athletic performance from youth to collegiate level. Chino High School (2007). Mt San Antonio College (09-10) where he earned All conference honors. Chico State (‘11-‘13) where he studied physical education and earned his BA in Kinesiology (‘14). JP began coaching at Folsom Lake College from (2014-2020) and again in 2024-2025. He served as an assistant coach for the Lincoln Potters (2015-2019), Assoc HC (2019-2022) and Head Coach (2022-2023), and was named Head Coach of the CCL NORTH All-Star Team. He has coached over 25 players selected in the MLB draft or signed to free agent contracts.</p>
+          <p class="coach-bio">Founded BBT with one goal: build better players and better people. Jon oversees all player development programming across both facilities and has spent years studying hitting, pitching development, and athletic performance from youth to collegiate level. Chino High School (2007). Mt San Antonio College (09-10) where he earned All conference honors. Chico State (‘11-’13) where he studied physical education and earned his BA in Kinesiology (‘14). JP began coaching at Folsom Lake College from (2014-2020) and again in 2024-2025. He served as an assistant coach for the Lincoln Potters (2015-2019), Assoc HC (2019-2022) and Head Coach (2022-2023), and was named Head Coach of the CCL NORTH All-Star Team. He has coached over 25 players selected in the MLB draft or signed to free agent contracts.</p>
+          <button class="read-more-btn">Read More</button>
           <div class="coach-quote">
             <strong>Favorite part of coaching</strong>
             <p>"Watching the boys achieve their goals, nothing better in this thing than seeing all their hard work lead to success!"</p>
@@ -2105,6 +2133,7 @@
           <h3 class="coach-name">Bruce Carmichael</h3>
           <div class="coach-role">13U Gray Head Coach</div>
           <p class="coach-bio">Drafted by the Chicago Cubs Organization and played 3 years after earning a full baseball scholarship at Santa Clara University. Bruce has coached at the college and high school levels over the past 35 years. In 1998, he was named 'Western States Assistant Baseball Coach of the Year' by the National High School Association. He also served as the General Manager for the Dusty Baker Baseball Camps for 30 years.</p>
+          <button class="read-more-btn">Read More</button>
           <p class="coach-cred"><strong>Chicago Cubs</strong> · Santa Clara University</p>
         </div>
       </div>
@@ -2118,6 +2147,7 @@
           <h3 class="coach-name">Logan Coe</h3>
           <div class="coach-role">Coach</div>
           <p class="coach-bio">Graduated from Buhach Colony HS in 2016. Played JUCO ball at Modesto, and went on to play at Oklahoma Baptist and Jessup University.</p>
+          <button class="read-more-btn">Read More</button>
           <div class="coach-quote">
             <strong>Favorite part of coaching</strong>
             <p>"Passing down game knowledge and seeing the kids grow and develop."</p>
@@ -2135,6 +2165,7 @@
           <h3 class="coach-name">Jackson Doherty</h3>
           <div class="coach-role">Coach</div>
           <p class="coach-bio">2017 Olathe East Highschool graduate. Played 2 years at Coffeyville Community College and 3 years at Benedictine College, graduating with a BA in Mechanical Engineering. He currently works for Louisville Slugger Innovations as a Senior R&D Testing Engineer.</p>
+          <button class="read-more-btn">Read More</button>
           <div class="coach-quote">
             <strong>Favorite part of coaching</strong>
             <p>"Watching kids play to their full potential."</p>
@@ -2152,6 +2183,7 @@
           <h3 class="coach-name">Bryce Petrilla</h3>
           <div class="coach-role">Coach</div>
           <p class="coach-bio">2019 Rocklin High graduate. Played at Folsom Lake College ('21-'22), Oregon Tech ('22-'23), and Jessup University ('23-'25).</p>
+          <button class="read-more-btn">Read More</button>
           <div class="coach-quote">
             <strong>Favorite part of coaching</strong>
             <p>"Being able to teach kids not only the game of baseball but prepare them and develop them into the best men they can be."</p>
@@ -2169,6 +2201,7 @@
           <h3 class="coach-name">Justin Watari</h3>
           <div class="coach-role">Coach</div>
           <p class="coach-bio">Graduated from Woodcreek HS in 2016. Went on to play and graduate at the University of New Mexico.</p>
+          <button class="read-more-btn">Read More</button>
           <div class="coach-quote">
             <strong>Favorite part of coaching</strong>
             <p>"Helping the athletes develop both physically and mentally to compete at the next age group and level."</p>
@@ -2186,6 +2219,7 @@
           <h3 class="coach-name">Kris Krise</h3>
           <div class="coach-role">12U Black Head Coach</div>
           <p class="coach-bio">2002 Crescenta Valley High School graduate. Played at UC Irvine, COC, and Chico State before being drafted in the 12th Round of the 2005 MLB Draft by the Los Angeles Dodgers.</p>
+          <button class="read-more-btn">Read More</button>
           <div class="coach-quote">
             <strong>Favorite part of coaching</strong>
             <p>"The opportunity to positively influence young lives, fostering growth, confidence, and a love of the game. We get to shape not just athletic ability, but also character and valuable life skills through teamwork, communication, and discipline."</p>
@@ -2203,6 +2237,7 @@
           <h3 class="coach-name">Mike Quintal</h3>
           <div class="coach-role">Coach</div>
           <p class="coach-bio">2001 Archbishop Mitty graduate. Played collegiately at SCU, SJCC, and Cal Poly Pomona.</p>
+          <button class="read-more-btn">Read More</button>
           <div class="coach-quote">
             <strong>Favorite part of coaching</strong>
             <p>"The love for the game and much of the person I am was only b/c of the great coaches I had. My favorite part now is having the ability to be that transformative influence... Coaching isn't about me. It's all about the impact I can make on each kid as they grow into a man."</p>
@@ -2397,6 +2432,19 @@
 
         startInterval();
       }
+
+      // Read More toggle for coach bios
+      document.querySelectorAll('.coach-bio').forEach(bio => {
+        const btn = bio.nextElementSibling;
+        if (!btn || !btn.classList.contains('read-more-btn')) return;
+        if (bio.scrollHeight > bio.clientHeight) {
+          btn.style.display = 'block';
+        }
+        btn.addEventListener('click', () => {
+          bio.classList.toggle('expanded');
+          btn.textContent = bio.classList.contains('expanded') ? 'Show Less' : 'Read More';
+        });
+      });
 
       // Gallery Expand Toggle
       const expandBtn = document.getElementById('galleryExpandBtn');
