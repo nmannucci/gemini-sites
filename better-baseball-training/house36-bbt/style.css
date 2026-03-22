@@ -1033,6 +1033,7 @@ nav {
   background: var(--black);
   border-top: 1px solid rgba(255,255,255,0.05);
   position: relative;
+  scroll-margin-top: 110px;
 }
 
 .academy-container {
@@ -2290,6 +2291,7 @@ nav {
   padding: 100px 72px;
   background: var(--black2);
   position: relative;
+  scroll-margin-top: 110px;
 }
 
 .facilities-header {
@@ -3005,6 +3007,10 @@ footer {
 
 .page-template-page-coaches .page-title {
   margin-bottom: 14px;
+}
+
+.page-template-page-coaches .page-title-accent {
+  color: var(--yellow);
 }
 
 .page-template-page-coaches .page-desc {
@@ -4424,6 +4430,52 @@ footer {
 .ls-answer-card .bk-card__inline-link,
 .coach-summary-card .bk-card__inline-link {
   margin-top: 14px;
+}
+
+.facility-info .bk-card__inline-link {
+  color: var(--yellow);
+}
+
+.facility-info .bk-card__inline-link::after {
+  content: '›';
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 16px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.facility-info .bk-card__inline-link:hover,
+.facility-info .bk-card__inline-link:focus-visible {
+  color: var(--cyan);
+}
+
+.facility-info .bk-card__inline-link:hover::after,
+.facility-info .bk-card__inline-link:focus-visible::after {
+  transform: translateX(4px);
+}
+
+.answer-card .bk-card__inline-link {
+  color: var(--yellow);
+}
+
+.answer-card .bk-card__inline-link::after {
+  content: '›';
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 16px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.answer-card .bk-card__inline-link:hover,
+.answer-card .bk-card__inline-link:focus-visible {
+  color: var(--cyan);
+}
+
+.answer-card .bk-card__inline-link:hover::after,
+.answer-card .bk-card__inline-link:focus-visible::after {
+  transform: translateX(4px);
 }
 
 .coaches-page-summary {

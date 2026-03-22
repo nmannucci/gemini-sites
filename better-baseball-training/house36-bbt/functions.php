@@ -1233,7 +1233,7 @@ function house36_bbt_primary_menu_fallback($args) {
         array('Schedule', house36_bbt_schedule_url()),
         array('Coaches', house36_bbt_coaches_url()),
         array('Facilities', house36_bbt_home_section_url('facilities')),
-        array('Memberships', house36_bbt_home_section_url('memberships')),
+        array('Memberships', house36_bbt_booking_url()),
     );
 
     $menu = '<ul class="' . esc_attr($args['menu_class'] ?? 'menu') . '">';
@@ -1277,6 +1277,15 @@ function house36_bbt_primary_menu_fallback($args) {
 function house36_bbt_primary_menu_add_lessons_submenu($items, $args) {
     if (($args->theme_location ?? '') !== 'primary' || empty($items) || ! is_array($items)) {
         return $items;
+    }
+
+    foreach ($items as $item) {
+        $title = strtolower(trim(wp_strip_all_tags((string) ($item->title ?? ''))));
+        $url = (string) ($item->url ?? '');
+
+        if ($title === 'memberships' || $url === house36_bbt_home_section_url('memberships')) {
+            $item->url = house36_bbt_booking_url();
+        }
     }
 
     $lesson_parent = null;

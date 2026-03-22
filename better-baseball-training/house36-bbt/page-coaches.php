@@ -5,7 +5,7 @@ Template Post Type: page
 */
 
 $coaches_page = get_queried_object();
-$coaches_title = 'Baseball Coaches in Rocklin & El Dorado Hills';
+$coaches_title = 'Baseball Coaches in <span class="page-title-accent" style="color:var(--yellow);">Rocklin &amp; El Dorado Hills</span>';
 $coaches_description = 'Meet the Better Baseball Training staff serving Rocklin and El Dorado Hills, including former professional players, college alumni, and player-development leaders.';
 $coach_entities = house36_bbt_coaches_data();
 
