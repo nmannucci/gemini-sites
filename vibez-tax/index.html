@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibez Tax & Advocate Service — Tax Preparation & Real Advocacy | Los Angeles</title>
+  <meta name="description" content="Where tax preparation meets real advocacy. 8 years experience, 5,000+ clients served, 100% audit success rate. Century City, Los Angeles & nationwide virtual services.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-navy': '#1a2332',
+            'brand-cream': '#f5f0e8',
+            'brand-gold': '#b8952e',
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-600 { animation-delay: 0.6s; }
+    html { scroll-behavior: smooth; }
+
+    /* Gold gradient text */
+    .gold-gradient {
+      background: linear-gradient(135deg, #b8952e 0%, #e8d48b 50%, #b8952e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AccountingService",
+    "name": "Vibez Tax & Advocate Service",
+    "description": "Where tax preparation meets real advocacy. Tax prep, IRS representation, audit support, and financial planning for individuals and businesses.",
+    "url": "https://vibeztax.com",
+    "telephone": "+18774282214",
+    "email": "tax@vibeztax.com",
+    "founder": {
+      "@type": "Person",
+      "name": "Sasche Whiting"
+    },
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "11150 W Olympic Blvd",
+        "addressLocality": "Los Angeles",
+        "addressRegion": "CA",
+        "postalCode": "90064",
+        "addressCountry": "US"
+      },
+      {
+        "@type": "PostalAddress",
+        "streetAddress": "701 W Redondo Beach Blvd. Suite #1044",
+        "addressLocality": "Gardena",
+        "addressRegion": "CA",
+        "postalCode": "90247",
+        "addressCountry": "US"
+      }
+    ],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 34.0432,
+      "longitude": -118.4435
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "10:00",
+        "closes": "19:30"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Sunday",
+        "opens": "11:00",
+        "closes": "15:30"
+      }
+    ],
+    "sameAs": ["https://instagram.com/vibeztax"],
+    "priceRange": "$$"
+  }
+  </script>
+</head>
+<body class="bg-brand-cream min-h-screen antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="navbar">
+    <div class="container mx-auto px-6 lg:px-12">
+      <div class="flex items-center justify-between py-6">
+        <a href="#" class="flex items-center gap-3">
+          <span class="font-serif font-semibold text-2xl text-white tracking-wide" id="nav-logo">Vibez <span class="text-brand-gold">Tax</span></span>
+        </a>
+        <div class="hidden md:flex items-center gap-10">
+          <a href="#services" class="text-white/70 text-sm tracking-widest uppercase hover:text-brand-gold transition-colors font-sans">Services</a>
+          <a href="#about" class="text-white/70 text-sm tracking-widest uppercase hover:text-brand-gold transition-colors font-sans">About</a>
+          <a href="#contact" class="px-8 py-3 bg-brand-gold text-brand-navy text-sm tracking-[0.2em] uppercase hover:bg-white transition-colors duration-300 font-sans">Contact</a>
+        </div>
+        <button class="md:hidden text-white" id="mobile-menu-btn" aria-label="Open menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="hidden md:hidden bg-brand-navy/95 backdrop-blur-sm border-t border-white/10" id="mobile-menu">
+      <div class="container mx-auto px-6 py-8 flex flex-col gap-6">
+        <a href="#services" class="text-white/70 text-sm tracking-widest uppercase hover:text-brand-gold transition-colors font-sans">Services</a>
+        <a href="#about" class="text-white/70 text-sm tracking-widest uppercase hover:text-brand-gold transition-colors font-sans">About</a>
+        <a href="#contact" class="px-8 py-3 bg-brand-gold text-brand-navy text-sm tracking-[0.2em] uppercase hover:bg-white transition-colors duration-300 font-sans text-center">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <img
+      src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?q=80&w=2940&auto=format&fit=crop"
+      alt="Los Angeles Century City skyline"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-black/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40"></div>
+
+    <div class="container mx-auto px-6 lg:px-12 relative z-10 max-w-4xl text-center flex flex-col items-center">
+      <div>
+        <p class="text-brand-gold text-xs tracking-[0.3em] uppercase mb-8 fade-in-up">Los Angeles, California &bull; Virtual Services Nationwide</p>
+        <h1 class="font-serif font-semibold text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-8 fade-in-up delay-200">
+          Tax Preparation Meets<br>
+          <span class="italic gold-gradient">Real Advocacy.</span>
+        </h1>
+        <p class="text-white/70 font-sans font-normal text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-12 fade-in-up delay-400">
+          Helping families and businesses keep more of what they earn. 8 years of experience, 5,000+ clients served, and a 100% audit success rate.
+        </p>
+        <div class="flex flex-col md:flex-row gap-6 justify-center fade-in-up delay-600">
+          <a href="#contact" class="px-10 py-4 bg-brand-gold text-brand-navy text-xs tracking-[0.2em] uppercase hover:bg-white transition-colors duration-300 text-center font-sans">
+            Book Free Consultation
+          </a>
+          <a href="#services" class="px-10 py-4 border border-white/30 text-white text-xs tracking-[0.2em] uppercase hover:bg-white/10 transition-colors duration-300 text-center font-sans">
+            View Services
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section id="services" class="py-32 bg-white">
+    <div class="container mx-auto px-6 lg:px-12">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+        <div class="max-w-xl">
+          <h2 class="font-serif font-semibold text-4xl md:text-5xl text-brand-navy mb-6">Our Services</h2>
+          <p class="font-sans text-brand-navy font-normal">Comprehensive tax and advocacy solutions — from individual filing to IRS representation and year-round business planning.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-l border-brand-navy/5">
+
+        <!-- Tax Preparation -->
+        <div class="group p-8 border border-brand-navy/5 hover:border-brand-gold/30 hover:bg-white transition-all duration-500 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-0 bg-brand-gold group-hover:h-full transition-all duration-500"></div>
+          <svg class="w-8 h-8 text-brand-navy/40 group-hover:text-brand-gold transition-colors mb-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+          <h3 class="font-serif font-semibold text-2xl text-brand-navy mb-4 group-hover:translate-x-2 transition-transform duration-500">Tax Preparation</h3>
+          <p class="font-sans text-brand-navy text-sm leading-relaxed font-normal">Full filing for individuals and families. We maximize every deduction and credit available to ensure you keep more of what you earn.</p>
+          <div class="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 text-brand-gold text-xs tracking-widest uppercase font-sans">
+            Learn More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- IRS Representation -->
+        <div class="group p-8 border border-brand-navy/5 hover:border-brand-gold/30 hover:bg-white transition-all duration-500 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-0 bg-brand-gold group-hover:h-full transition-all duration-500"></div>
+          <svg class="w-8 h-8 text-brand-navy/40 group-hover:text-brand-gold transition-colors mb-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          <h3 class="font-serif font-semibold text-2xl text-brand-navy mb-4 group-hover:translate-x-2 transition-transform duration-500">IRS Representation</h3>
+          <p class="font-sans text-brand-navy text-sm leading-relaxed font-normal">Audit support, tax notice handling, and past-due resolution. We advocate on your behalf so you never face the IRS alone.</p>
+          <div class="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 text-brand-gold text-xs tracking-widest uppercase font-sans">
+            Learn More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Tax Planning & Strategy -->
+        <div class="group p-8 border border-brand-navy/5 hover:border-brand-gold/30 hover:bg-white transition-all duration-500 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-0 bg-brand-gold group-hover:h-full transition-all duration-500"></div>
+          <svg class="w-8 h-8 text-brand-navy/40 group-hover:text-brand-gold transition-colors mb-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"/></svg>
+          <h3 class="font-serif font-semibold text-2xl text-brand-navy mb-4 group-hover:translate-x-2 transition-transform duration-500">Tax Planning &amp; Strategy</h3>
+          <p class="font-sans text-brand-navy text-sm leading-relaxed font-normal">Year-round proactive planning for businesses and individuals. Strategic moves throughout the year to minimize your tax burden.</p>
+          <div class="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 text-brand-gold text-xs tracking-widest uppercase font-sans">
+            Learn More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- EITC & Credit Maximization -->
+        <div class="group p-8 border border-brand-navy/5 hover:border-brand-gold/30 hover:bg-white transition-all duration-500 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-0 bg-brand-gold group-hover:h-full transition-all duration-500"></div>
+          <svg class="w-8 h-8 text-brand-navy/40 group-hover:text-brand-gold transition-colors mb-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <h3 class="font-serif font-semibold text-2xl text-brand-navy mb-4 group-hover:translate-x-2 transition-transform duration-500">EITC &amp; Credit Maximization</h3>
+          <p class="font-sans text-brand-navy text-sm leading-relaxed font-normal">Earned Income Tax Credit, Child Tax Credit, and every eligible credit claimed. We leave no money on the table for your family.</p>
+          <div class="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 text-brand-gold text-xs tracking-widest uppercase font-sans">
+            Learn More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Financial Audits -->
+        <div class="group p-8 border border-brand-navy/5 hover:border-brand-gold/30 hover:bg-white transition-all duration-500 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-0 bg-brand-gold group-hover:h-full transition-all duration-500"></div>
+          <svg class="w-8 h-8 text-brand-navy/40 group-hover:text-brand-gold transition-colors mb-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"/></svg>
+          <h3 class="font-serif font-semibold text-2xl text-brand-navy mb-4 group-hover:translate-x-2 transition-transform duration-500">Financial Audits</h3>
+          <p class="font-sans text-brand-navy text-sm leading-relaxed font-normal">Comprehensive audit services to ensure your financial records are accurate, compliant, and optimized for growth.</p>
+          <div class="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 text-brand-gold text-xs tracking-widest uppercase font-sans">
+            Learn More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Small Business Tax Services -->
+        <div class="group p-8 border border-brand-navy/5 hover:border-brand-gold/30 hover:bg-white transition-all duration-500 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-1 h-0 bg-brand-gold group-hover:h-full transition-all duration-500"></div>
+          <svg class="w-8 h-8 text-brand-navy/40 group-hover:text-brand-gold transition-colors mb-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21"/></svg>
+          <h3 class="font-serif font-semibold text-2xl text-brand-navy mb-4 group-hover:translate-x-2 transition-transform duration-500">Small Business Tax Services</h3>
+          <p class="font-sans text-brand-navy text-sm leading-relaxed font-normal">Entrepreneur-focused tax strategy, quarterly filings, and year-round planning to help your business thrive and stay compliant.</p>
+          <div class="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center gap-2 text-brand-gold text-xs tracking-widest uppercase font-sans">
+            Learn More <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Areas Served / Map -->
+  <section id="about" class="py-32 bg-brand-cream border-y border-brand-navy/5">
+    <div class="container mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+        <div>
+          <p class="text-brand-gold text-xs tracking-[0.3em] uppercase mb-6">Our Reach</p>
+          <h2 class="font-serif font-semibold text-4xl md:text-5xl text-brand-navy mb-8 leading-tight">Serving Los Angeles &amp;<br>Clients Nationwide</h2>
+          <p class="font-sans text-brand-navy font-normal leading-relaxed mb-12 max-w-lg">
+            From our Century City office on Olympic Blvd, we provide expert tax preparation, IRS advocacy, and financial planning to individuals and businesses across Los Angeles — and virtually to clients nationwide.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <p class="font-serif font-semibold text-xl text-brand-navy mb-4">Office Location</p>
+              <ul class="space-y-4 font-sans text-brand-navy font-normal">
+                <li class="flex items-start gap-3">
+                  <span class="w-1.5 h-1.5 bg-brand-gold rounded-full mt-2 flex-shrink-0"></span>
+                  <div>
+                    <span class="block font-medium">Century City</span>
+                    <span class="text-sm text-brand-navy/60">11150 W Olympic Blvd, Los Angeles, CA 90064</span>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-1.5 h-1.5 bg-brand-gold rounded-full mt-2 flex-shrink-0"></span>
+                  <div>
+                    <span class="block font-medium">Mailing Address</span>
+                    <span class="text-sm text-brand-navy/60">701 W Redondo Beach Blvd. Suite #1044, Gardena, CA 90247</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-serif font-semibold text-xl text-brand-navy mb-4">Also Serving</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 border border-brand-navy/15 text-brand-navy text-xs rounded-full">Los Angeles</span>
+                <span class="px-3 py-1 border border-brand-navy/15 text-brand-navy text-xs rounded-full">Century City</span>
+                <span class="px-3 py-1 border border-brand-navy/15 text-brand-navy text-xs rounded-full">Gardena</span>
+                <span class="px-3 py-1 border border-brand-navy/15 text-brand-navy text-xs rounded-full">West LA</span>
+                <span class="px-3 py-1 border border-brand-navy/15 text-brand-navy text-xs rounded-full">Culver City</span>
+                <span class="px-3 py-1 border border-brand-navy/15 text-brand-navy text-xs rounded-full">Inglewood</span>
+                <span class="px-3 py-1 border border-brand-navy/15 text-brand-navy text-xs rounded-full">South Bay</span>
+                <span class="px-3 py-1 border border-brand-gold/40 text-brand-gold text-xs rounded-full font-medium">Nationwide (Virtual)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 shadow-xl">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3306.8!2d-118.4435!3d34.0432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bb8c1e1d9e1b%3A0x1234567890abcdef!2s11150%20W%20Olympic%20Blvd%2C%20Los%20Angeles%2C%20CA%2090064!5e0!3m2!1sen!1sus!4v1700000000000"
+            width="100%"
+            height="400"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Vibez Tax & Advocate Service location map"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nav scroll behavior + mobile menu -->
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    const navLogo = document.getElementById('nav-logo');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        navbar.classList.add('bg-brand-navy/95', 'backdrop-blur-sm', 'shadow-lg');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-brand-navy/95', 'backdrop-blur-sm', 'shadow-lg');
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
+
+</body>
+</html>

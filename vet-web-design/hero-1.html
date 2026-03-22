@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vet Web Design | Hero 4 – Web Design & Marketing for Veterinary Practices</title>
+    <!-- Friendly, bouncy serif paired with a very clean sans-serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette: White, Orange, Blue Paradise */
+            --paper-white: #FFFFFF;      /* Clean white background */
+            --primary-orange: #FF6B35;   /* Warm, joyful orange */
+            --primary-blue: #2563EB;     /* Trustworthy, vibrant blue */
+            --soft-blue: #E0E7FF;        /* Very light blue for soft contrast areas */
+            --dark-blue: #0F172A;        /* Deep slate blue for high-contrast text */
+            
+            --border-heavy: 4px solid var(--primary-blue);
+            --shadow-pop: 6px 6px 0px var(--primary-blue);
+            --shadow-hover: 2px 2px 0px var(--primary-blue);
+            --border-radius-pill: 100px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--paper-white);
+            color: var(--dark-blue);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            /* Fun polka dot background pattern */
+            background-image: radial-gradient(var(--soft-blue) 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+
+        /* Ambient animated clouds */
+        .cloud {
+            position: absolute;
+            background: var(--paper-white);
+            border-radius: 100px;
+            z-index: 0;
+            filter: drop-shadow(0px 8px 12px rgba(37, 99, 235, 0.08));
+            border: 2px solid var(--soft-blue);
+        }
+        
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: var(--paper-white);
+            border-radius: 50%;
+            border-top: 2px solid var(--soft-blue);
+        }
+
+        .cloud-1 {
+            width: 140px; height: 50px;
+            top: 15%; left: 10%;
+            animation: float-clouds 45s linear infinite;
+        }
+        .cloud-1::before { width: 60px; height: 60px; top: -30px; left: 20px; }
+        .cloud-1::after { width: 80px; height: 80px; top: -40px; right: 20px; }
+
+        .cloud-2 {
+            width: 180px; height: 60px;
+            top: 10%; right: 40%;
+            animation: float-clouds 60s linear infinite reverse;
+            transform: scale(0.8);
+        }
+        .cloud-2::before { width: 70px; height: 70px; top: -40px; left: 30px; }
+        .cloud-2::after { width: 90px; height: 90px; top: -50px; right: 30px; }
+
+        .cloud-3 {
+            width: 120px; height: 40px;
+            bottom: 30%; left: 45%;
+            animation: float-clouds 30s linear infinite;
+            transform: scale(0.6);
+        }
+        .cloud-3::before { width: 50px; height: 50px; top: -20px; left: 15px; }
+        .cloud-3::after { width: 60px; height: 60px; top: -30px; right: 15px; }
+
+        @keyframes float-clouds {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(80px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Nav Layout */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            font-style: italic;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            background: white;
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.05);
+            border: 2px solid var(--soft-blue);
+        }
+
+        .nav-links a {
+            color: var(--dark-blue);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-orange);
+            transform: translateY(-2px);
+        }
+
+        .btn-nav {
+            background: var(--paper-white);
+            color: var(--primary-blue);
+            padding: 0.8rem 2rem;
+            border-radius: 100px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: var(--border-heavy);
+            box-shadow: var(--shadow-pop);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .btn-nav:hover {
+            transform: translate(2px, 2px);
+            box-shadow: var(--shadow-hover);
+            background: var(--soft-blue);
+        }
+
+        /* Hero Container - 2 Column Layout */
+        .hero {
+            position: relative;
+            padding: 10rem 5% 5rem;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+            z-index: 10;
+        }
+
+        /* Left Side Content */
+        .hero-content {
+            z-index: 2;
+        }
+
+        /* Whimsical typography styling */
+        .pre-headline {
+            background: var(--primary-orange);
+            color: var(--paper-white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 2rem;
+            border: 3px solid var(--primary-blue);
+            box-shadow: 4px 4px 0px var(--primary-blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transform: rotate(-2deg);
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(3rem, 5vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            max-width: none;
+            font-style: italic;
+        }
+
+        h1 .highlight {
+            color: var(--primary-orange);
+            display: inline-block;
+            transform: rotate(2deg);
+            font-style: normal;
+            position: relative;
+        }
+
+        p.hero-sub {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--dark-blue);
+            max-width: 600px;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            background: var(--paper-white);
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            border: 3px solid var(--primary-blue);
+            box-shadow: 6px 6px 0px var(--soft-blue);
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-orange);
+            color: var(--paper-white);
+            padding: 1.25rem 3rem;
+            border-radius: 100px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: var(--border-heavy);
+            box-shadow: 6px 6px 0px var(--primary-blue);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .btn-primary::after {
+            /* Cute shine effect */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0));
+            transform: skewX(-20deg);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 4px 4px 0px var(--primary-blue);
+        }
+
+        .btn-primary:active {
+            transform: translate(6px, 6px);
+            box-shadow: 0 0px 0px;
+        }
+
+        .btn-primary:hover::after {
+            left: 150%;
+        }
+
+        .trust-metrics {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: var(--paper-white);
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            border: 2px solid var(--primary-blue);
+            width: fit-content;
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .metric-icon {
+            font-size: 1.5rem;
+        }
+
+        .metric-text {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--primary-blue);
+        }
+        
+        .metric-text span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--dark-blue);
+            font-weight: 500;
+        }
+
+        /* Right Side Visual - Dog Image in Playful Frame */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .image-frame {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 4/5;
+            background: var(--soft-blue);
+            border-radius: 200px 200px 30px 30px;
+            border: var(--border-heavy);
+            box-shadow: 15px 15px 0px var(--primary-blue);
+            overflow: hidden;
+            z-index: 2;
+            transform: rotate(3deg);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .image-frame:hover {
+            transform: rotate(0deg) translateY(-10px);
+        }
+
+        .dog-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            background-color: #ffdacc; /* Fallback color */
+        }
+
+        /* Floating stickers / decorative elements applied around the image */
+        .decoration {
+            position: absolute;
+            z-index: 5;
+            animation: bob 4s ease-in-out infinite;
+        }
+
+        .dec-bone {
+            top: 10%;
+            left: -5%;
+            font-size: 3.5rem;
+            transform: rotate(-30deg);
+            filter: drop-shadow(4px 4px 0px var(--primary-blue));
+            animation-delay: 0.5s;
+        }
+
+        .dec-sparkle {
+            top: 50%;
+            right: -10%;
+            font-size: 3rem;
+            animation: twinkle 3s infinite;
+        }
+
+        .dec-badge {
+            bottom: 10%;
+            left: -15%;
+            background: var(--primary-orange);
+            color: var(--paper-white);
+            font-family: 'Fraunces', serif;
+            font-weight: 800;
+            font-style: italic;
+            font-size: 1.2rem;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            border: 3px solid var(--primary-blue);
+            box-shadow: 6px 6px 0px var(--primary-blue);
+            transform: rotate(-10deg);
+            animation-delay: 1s;
+        }
+
+        .dec-paw {
+            bottom: -5%;
+            right: 15%;
+            font-size: 4rem;
+            transform: rotate(20deg);
+            filter: drop-shadow(4px 4px 0px var(--primary-blue));
+            animation-delay: 1.5s;
+        }
+
+        @keyframes bob {
+            0%, 100% { margin-top: 0; }
+            50% { margin-top: -15px; }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1) rotate(15deg); }
+            50% { opacity: 0.4; transform: scale(0.8) rotate(0deg); }
+        }
+
+        /* Responsive — Tablet */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 9rem;
+                text-align: center;
+                gap: 3rem;
+            }
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            h1 { font-size: clamp(2.4rem, 5vw, 3.5rem); }
+            .nav-links { display: none; }
+            .image-frame { transform: rotate(0); box-shadow: 10px 10px 0px var(--primary-blue); max-width: 450px; }
+            .hero-visual { padding: 2rem 2rem 2rem 2rem; }
+            .cta-container { justify-content: center; }
+            .dec-bone { left: 5%; }
+            .dec-badge { left: 5%; bottom: 5%; }
+            .dec-sparkle { right: 0; }
+            .dec-paw { right: 10%; }
+            p.hero-sub { max-width: 500px; }
+            .trust-metrics { gap: 1.5rem; }
+        }
+
+        /* Responsive — Mobile */
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem 4%;
+            }
+            .logo { font-size: 1.6rem; }
+            .btn-nav {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+                box-shadow: 3px 3px 0px var(--primary-blue);
+            }
+            .hero {
+                padding: 7rem 4% 3rem;
+                gap: 2.5rem;
+                min-height: auto;
+            }
+            h1 { font-size: clamp(2.4rem, 9vw, 3.2rem); }
+            .pre-headline {
+                font-size: 0.85rem;
+                padding: 0.5rem 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+            p.hero-sub {
+                font-size: 1.05rem;
+                padding: 1.2rem 1.5rem;
+                max-width: 100%;
+            }
+            .btn-primary {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                box-shadow: 4px 4px 0px var(--primary-blue);
+            }
+            .trust-metrics {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                padding: 1rem;
+            }
+            .trust-metrics .metric:last-child {
+                border-left: none;
+                padding-left: 0;
+                border-top: 2px solid var(--soft-blue);
+                padding-top: 1rem;
+            }
+            .image-frame {
+                max-width: 320px;
+                box-shadow: 8px 8px 0px var(--primary-blue);
+            }
+            .hero-visual { padding: 1rem; }
+            .decoration { display: none; }
+            .cloud { display: none; }
+        }
+
+        /* ===================== */
+        /* SERVICES SECTION      */
+        /* ===================== */
+
+        .services-section {
+            position: relative;
+            padding: 6rem 5% 7rem;
+            z-index: 10;
+        }
+
+        .services-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .services-label {
+            background: var(--primary-blue);
+            color: var(--paper-white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            border: 3px solid var(--dark-blue);
+            box-shadow: 4px 4px 0px var(--dark-blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transform: rotate(1.5deg);
+            text-transform: uppercase;
+            margin-bottom: 1.75rem;
+        }
+
+        .services-heading {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.4rem, 4.5vw, 4rem);
+            font-weight: 900;
+            font-style: italic;
+            color: var(--dark-blue);
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+        }
+
+        .services-heading .highlight-orange {
+            color: var(--primary-orange);
+            display: inline-block;
+            transform: rotate(-2deg);
+            font-style: normal;
+        }
+
+        .services-subtext {
+            font-size: 1.15rem;
+            color: var(--dark-blue);
+            font-weight: 500;
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.6;
+            opacity: 0.75;
+        }
+
+        /* Services grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .service-card {
+            background: var(--paper-white);
+            border: 4px solid var(--primary-blue);
+            border-radius: 24px;
+            padding: 2.25rem 2rem;
+            box-shadow: 8px 8px 0px var(--primary-blue);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Alternating slight rotations for sticker feel */
+        .service-card:nth-child(odd) {
+            transform: rotate(-1.5deg);
+        }
+        .service-card:nth-child(even) {
+            transform: rotate(1.5deg);
+        }
+
+        .service-card:hover {
+            transform: rotate(0deg) translate(4px, 4px) !important;
+            box-shadow: 4px 4px 0px var(--primary-blue);
+        }
+
+        /* Colorful top accent strip */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: var(--primary-orange);
+            border-radius: 24px 24px 0 0;
+        }
+
+        .service-card:nth-child(even)::before {
+            background: var(--primary-blue);
+        }
+
+        .service-card:nth-child(3n)::before {
+            background: var(--dark-blue);
+        }
+
+        .service-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(3px 3px 0px rgba(37, 99, 235, 0.25));
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .service-card:hover .service-emoji {
+            transform: scale(1.05) rotate(-2.5deg);
+        }
+
+        .service-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.55rem;
+            font-weight: 800;
+            font-style: italic;
+            color: var(--primary-blue);
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: var(--dark-blue);
+            line-height: 1.6;
+            font-weight: 500;
+            opacity: 0.8;
+            margin-bottom: 1.25rem;
+        }
+
+        .service-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--soft-blue);
+            color: var(--primary-blue);
+            font-weight: 800;
+            font-size: 0.8rem;
+            padding: 0.35rem 0.9rem;
+            border-radius: 100px;
+            border: 2px solid var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .service-tag-orange {
+            background: #FFF0E8;
+            color: var(--primary-orange);
+            border-color: var(--primary-orange);
+        }
+
+        /* Bottom CTA row */
+        .services-cta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .services-cta-note {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+            opacity: 0.6;
+        }
+
+        /* Responsive — Services Tablet */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Responsive — Services Mobile */
+        @media (max-width: 640px) {
+            .services-section {
+                padding: 4rem 4% 5rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .service-card:nth-child(odd),
+            .service-card:nth-child(even) {
+                transform: rotate(0deg);
+            }
+            .service-card:hover {
+                transform: translate(3px, 3px) !important;
+            }
+            .services-heading {
+                font-size: clamp(2rem, 8vw, 2.8rem);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Clouds -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+
+    <nav>
+        <div class="logo">
+            🐾 Pawsome
+        </div>
+        <div class="nav-links">
+            <a href="#">Our Work</a>
+            <a href="#">Services</a>
+            <a href="#">About Us</a>
+        </div>
+        <button class="btn-nav">Free Consultation</button>
+    </nav>
+
+    <section class="hero">
+        <!-- Left Side: Text Content -->
+        <div class="hero-content">
+            <div class="pre-headline">
+                🎉 The #1 Agency for Veterinary Practices
+            </div>
+
+            <h1>Websites & Marketing Built for <span class="highlight">Pet Lovers</span></h1>
+
+            <p class="hero-sub">
+                We help veterinary clinics, animal hospitals, and pet care practices grow with stunning websites, local SEO, and marketing that fills your appointment book.
+            </p>
+            
+            <div class="cta-container">
+                <button class="btn-primary">Get Your Free Mockup 🎾</button>
+            </div>
+
+            <div class="trust-metrics">
+                <div class="metric">
+                    <div class="metric-icon">⭐</div>
+                    <div class="metric-text">
+                        5.0 Rating
+                        <span>Vet Clinics Served</span>
+                    </div>
+                </div>
+                <div class="metric" style="border-left: 2px solid var(--soft-blue); padding-left: 1.5rem;">
+                    <div class="metric-icon">⚡</div>
+                    <div class="metric-text">
+                        Vet-Only
+                        <span>Design & Marketing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Visual & Dog Image -->
+        <div class="hero-visual">
+            <div class="decoration dec-bone">🦴</div>
+            <div class="decoration dec-sparkle">✨</div>
+            <div class="decoration dec-paw">🐾</div>
+            <div class="decoration dec-badge">Good Boy<br>Approved!</div>
+            
+            <div class="image-frame">
+                <!-- Gorgeous, happy dog image -->
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=800" alt="Happy smiling dog looking up" class="dog-image">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===================== -->
+    <!-- SERVICES SECTION      -->
+    <!-- ===================== -->
+    <section class="services-section">
+        <div class="services-inner">
+
+            <!-- Section Header -->
+            <div class="services-header">
+                <div class="services-label">🐾 Our Services</div>
+                <h2 class="services-heading">
+                    Everything Your Clinic Needs<br>to <span class="highlight-orange">Thrive Online</span>
+                </h2>
+                <p class="services-subtext">
+                    From a gorgeous website to a fully stacked marketing engine — we handle it all so you can focus on what matters most: the animals. 🐶🐱
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="services-grid">
+
+                <!-- Card 1: Web Design -->
+                <div class="service-card">
+                    <span class="service-emoji">🎨</span>
+                    <h3>Custom Web Design</h3>
+                    <p>Stunning, mobile-first websites built specifically for vet clinics. Online booking, staff bios, service pages — all the good stuff.</p>
+                    <div class="service-tag">⭐ Most Popular</div>
+                </div>
+
+                <!-- Card 2: Local SEO -->
+                <div class="service-card">
+                    <span class="service-emoji">📍</span>
+                    <h3>Local SEO</h3>
+                    <p>Dominate Google Maps and the local pack. We make sure every pet owner in your zip code finds you first — not your competitor.</p>
+                    <div class="service-tag">🔥 High ROI</div>
+                </div>
+
+                <!-- Card 3: Google Ads -->
+                <div class="service-card">
+                    <span class="service-emoji">🎯</span>
+                    <h3>Google Ads</h3>
+                    <p>Fill your appointment book fast with targeted pay-per-click campaigns dialed in for veterinary keywords that convert.</p>
+                    <div class="service-tag service-tag-orange">⚡ Fast Results</div>
+                </div>
+
+                <!-- Card 4: Social Media -->
+                <div class="service-card">
+                    <span class="service-emoji">📱</span>
+                    <h3>Social Media</h3>
+                    <p>We create and manage content that makes pet owners stop the scroll. Cute patient photos, educational posts, and promos that grow your following.</p>
+                    <div class="service-tag">🐕 Pet-Friendly</div>
+                </div>
+
+                <!-- Card 5: Content & Copywriting -->
+                <div class="service-card">
+                    <span class="service-emoji">✍️</span>
+                    <h3>Content & Copy</h3>
+                    <p>Blogs, website copy, and email newsletters written by people who actually understand veterinary medicine — and good writing.</p>
+                    <div class="service-tag service-tag-orange">📝 Done-for-You</div>
+                </div>
+
+                <!-- Card 6: Email Marketing -->
+                <div class="service-card">
+                    <span class="service-emoji">📧</span>
+                    <h3>Email Marketing</h3>
+                    <p>Automated campaigns that bring lapsed clients back, remind pet owners about annual checkups, and keep your clinic top of mind.</p>
+                    <div class="service-tag">💌 Automated</div>
+                </div>
+
+            </div>
+
+            <!-- Section CTA -->
+            <div class="services-cta">
+                <button class="btn-primary">Get a Free Strategy Call 🐾</button>
+                <span class="services-cta-note">No commitment. Just a good conversation.</span>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>

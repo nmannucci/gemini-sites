@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vet Web Design | Hero 1 (Lighter & Playful)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Using highly expressive Bricolage Grotesque paired with a clean geometric body font -->
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800;12..96,900&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --paper-white: #FFFCF7;     /* Warm, friendly off-white base */
+            --pop-orange: #FF6B35;      /* Vibrant tangerine */
+            --pop-purple: #7B2CBF;      /* Deep royal purple */
+            --pop-yellow: #FFD166;      /* Cheerful sunshine yellow */
+            --pop-mint: #06D6A0;        /* Fresh mint green */
+            --charcoal: #2D3142;        /* Soft black for text */
+            
+            --border-heavy: 4px solid var(--charcoal);
+            --shadow-pop: 6px 6px 0px var(--charcoal);
+            --shadow-hover: 2px 2px 0px var(--charcoal);
+            --border-radius-pill: 100px;
+            --border-radius-card: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--paper-white);
+            color: var(--charcoal);
+            overflow-x: hidden;
+            min-height: 100vh;
+            /* Subtle paper texture overlay could go here via a base64 noise background */
+            background-image: radial-gradient(var(--pop-yellow) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-repeat: repeat;
+        }
+
+        /* Nav */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--charcoal);
+            text-transform: uppercase;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--pop-mint);
+            border: var(--border-heavy);
+            border-radius: 50% 50% 0 50%;
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+            transform: rotate(-15deg);
+            box-shadow: var(--shadow-pop);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            background: white;
+            padding: 0.5rem 2rem;
+            border-radius: var(--border-radius-pill);
+            border: var(--border-heavy);
+            box-shadow: var(--shadow-pop);
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--pop-orange);
+            transform: translateY(-2px);
+        }
+
+        .nav-cta {
+            background: var(--pop-purple);
+            border: var(--border-heavy);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-pill);
+            font-weight: 800;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-pop);
+            text-transform: uppercase;
+        }
+
+        .nav-cta:hover {
+            transform: translate(4px, 4px);
+            box-shadow: var(--shadow-hover);
+            background: var(--pop-orange);
+        }
+
+        /* Hero Container */
+        .hero {
+            position: relative;
+            padding: 10rem 5% 5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            z-index: 10;
+        }
+
+        /* Abstract Organic Blobs (CSS shapes instead of generic circles) */
+        .shape-blob {
+            position: absolute;
+            z-index: -1;
+            border: var(--border-heavy);
+            box-shadow: var(--shadow-pop);
+        }
+
+        .blob-1 {
+            width: 300px;
+            height: 250px;
+            background: var(--pop-purple);
+            top: 15%;
+            left: 5%;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morph 8s ease-in-out infinite alternate;
+            opacity: 0.8;
+            transform: rotate(-10deg);
+        }
+
+        .blob-2 {
+            width: 250px;
+            height: 250px;
+            background: var(--pop-orange);
+            bottom: 15%;
+            right: 8%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: morph 10s ease-in-out infinite alternate-reverse;
+            opacity: 0.8;
+            transform: rotate(15deg);
+        }
+
+        @keyframes morph {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        /* Text Content */
+        .hero-content {
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--pop-yellow);
+            color: var(--charcoal);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius-pill);
+            font-weight: 800;
+            font-size: 1rem;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            border: 3px solid var(--charcoal);
+            box-shadow: 4px 4px 0px var(--charcoal);
+            transform: rotate(-3deg);
+        }
+
+        .hero h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(3.5rem, 7vw, 6.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 2rem;
+            letter-spacing: -2px;
+            text-shadow: 2px 2px 0px white, 4px 4px 0px var(--pop-mint);
+            position: relative;
+        }
+
+        .hero h1 span.highlight {
+            color: var(--paper-white);
+            -webkit-text-stroke: 3px var(--charcoal);
+            display: inline-block;
+            position: relative;
+            transform: rotate(2deg);
+        }
+        
+        .hero h1 span.highlight::before {
+            content: '';
+            position: absolute;
+            inset: -4px -12px;
+            background: var(--charcoal);
+            z-index: -1;
+            border-radius: 12px;
+            transform: rotate(-2deg);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--charcoal);
+            line-height: 1.6;
+            margin-bottom: 3.5rem;
+            max-width: 650px;
+            font-weight: 600;
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            border: 3px solid var(--charcoal);
+            box-shadow: 8px 8px 0px var(--pop-yellow);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+
+        .btn-primary {
+            background: var(--pop-orange);
+            color: white;
+            border: var(--border-heavy);
+            padding: 1.25rem 3rem;
+            border-radius: var(--border-radius-pill);
+            font-size: 1.2rem;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: var(--shadow-pop);
+            transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .btn-primary:hover {
+            transform: translate(4px, 4px);
+            box-shadow: var(--shadow-hover);
+            background: var(--pop-mint);
+            color: var(--charcoal);
+        }
+
+        .btn-secondary {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            border: var(--border-heavy);
+            color: var(--charcoal);
+            padding: 0.75rem 2rem 0.75rem 0.75rem;
+            border-radius: var(--border-radius-pill);
+            font-size: 1.1rem;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: var(--shadow-pop);
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            transform: translate(4px, 4px);
+            box-shadow: var(--shadow-hover);
+            background: var(--pop-yellow);
+        }
+
+        .play-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--pop-purple);
+            border: 3px solid var(--charcoal);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+        }
+
+        /* Abstract UI Mockup Layout below text */
+        .visual-cards-container {
+            width: 100%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .ui-card {
+            background: white;
+            border: var(--border-heavy);
+            border-radius: var(--border-radius-card);
+            padding: 2rem;
+            box-shadow: 10px 10px 0px rgba(45, 49, 66, 0.1);
+            position: relative;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+        
+        .ui-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-1 { border-bottom: 8px solid var(--pop-mint); transform: rotate(-2deg); }
+        .card-2 { border-bottom: 8px solid var(--pop-purple); top: -20px; box-shadow: 12px 12px 0px var(--charcoal); background: var(--pop-yellow); z-index: 5;}
+        .card-3 { border-bottom: 8px solid var(--pop-orange); transform: rotate(3deg); }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--paper-white);
+            border: 3px solid var(--charcoal);
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 4px 4px 0px var(--charcoal);
+        }
+
+        .card-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* Floating stickers/accents */
+        .sticker {
+            position: absolute;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 900;
+            color: var(--charcoal);
+            border: 3px solid var(--charcoal);
+            padding: 0.5rem 1rem;
+            box-shadow: 4px 4px 0px var(--charcoal);
+            z-index: 20;
+        }
+
+        .sticker-1 {
+            background: var(--pop-mint);
+            border-radius: 12px;
+            top: -25px;
+            right: -20px;
+            transform: rotate(15deg);
+            font-size: 1.2rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .sticker-2 {
+            background: white;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            bottom: -30px;
+            left: -30px;
+            transform: rotate(-10deg);
+            font-size: 1.5rem;
+            animation: float 5s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(10deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero { padding-top: 8rem; }
+            .hero h1 { font-size: 4rem; }
+            .nav-links { display: none; }
+            .visual-cards-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .card-1, .card-2, .card-3 { transform: none; top: 0; box-shadow: 8px 8px 0px var(--charcoal); }
+            .blob-1, .blob-2 { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="shape-blob blob-1"></div>
+    <div class="shape-blob blob-2"></div>
+
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">🐾</div>
+            HappyVets
+        </div>
+        <div class="nav-links">
+            <a href="#">Portfolio</a>
+            <a href="#">Services</a>
+            <a href="#">Pricing</a>
+            <a href="#">Our Packs</a>
+        </div>
+        <button class="nav-cta">Book a Call ✨</button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">
+                👋 Stop boring your clients
+            </div>
+            
+            <h1>Websites with <br>serious <span class="highlight">Bite & Bark</span></h1>
+            
+            <p>We build highly expressive, lightning-fast interfaces for veterinary clinics that want to absolutely ditch the sterile medical look and show off their true personality.</p>
+            
+            <div class="cta-group">
+                <button class="btn-primary">Unleash Your Site</button>
+                <button class="btn-secondary">
+                    <div class="play-icon">▶</div>
+                    See the magic
+                </button>
+            </div>
+
+            <div class="visual-cards-container">
+                <div class="ui-card card-1">
+                    <div class="card-icon">🚀</div>
+                    <h3 class="card-title">Insanely Fast</h3>
+                    <p class="card-text">Lighning-fast load times guarantee your pet-parents stick around to book that appointment.</p>
+                </div>
+                
+                <div class="ui-card card-2">
+                    <div class="sticker sticker-1">100% Custom</div>
+                    <div class="card-icon" style="background:var(--pop-mint); color:var(--charcoal)">🎨</div>
+                    <h3 class="card-title">Zero Templates</h3>
+                    <p class="card-text">We don't do cookie-cutter. Your clinic gets a hyper-custom, expressive digital home.</p>
+                    <div class="sticker sticker-2">Woof!</div>
+                </div>
+
+                <div class="ui-card card-3">
+                    <div class="card-icon">📅</div>
+                    <h3 class="card-title">More Bookings</h3>
+                    <p class="card-text">A website built for one purpose: turning casual scrollers into loyal long-term patients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
