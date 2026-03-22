@@ -40,6 +40,7 @@ if (! defined('ABSPATH')) {
   </nav>
 
   <div class="mobile-menu">
+    <button class="mobile-menu-close" aria-label="<?php esc_attr_e('Close menu', 'house36-bbt'); ?>" type="button">X</button>
     <?php
     wp_nav_menu(
         array(

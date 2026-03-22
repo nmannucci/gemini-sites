@@ -1,75 +1,85 @@
 <?php
 get_header();
 
+$faq_items = array(
+    array(
+        'question'    => 'Where can I get baseball lessons in Rocklin and El Dorado Hills?',
+        'answer_html' => 'Better Baseball Training offers private and group <strong>baseball lessons in Rocklin and El Dorado Hills</strong> for hitting, pitching, infield/outfield, catching, and baseball IQ. Families can train at <strong>4283 Duluth Ave in Rocklin</strong> or <strong>4990 Hillsdale Dr, Suite 400 in El Dorado Hills</strong>.',
+        'answer_text' => 'Better Baseball Training offers private and group baseball lessons in Rocklin and El Dorado Hills for hitting, pitching, infield/outfield, catching, and baseball IQ. Families can train at 4283 Duluth Ave in Rocklin or 4990 Hillsdale Dr, Suite 400 in El Dorado Hills.',
+    ),
+    array(
+        'question'    => 'Who teaches pitching lessons at Better Baseball Training?',
+        'answer_html' => 'Pitching lessons at BBT include instruction from <strong>Jean Machi</strong>, <strong>Gabe Emmett</strong>, and the broader player-development staff. Families can review the coaching staff page and use the form to find the best pitching coach based on age, goals, and location.',
+        'answer_text' => 'Pitching lessons at BBT include instruction from Jean Machi, Gabe Emmett, and the broader player-development staff. Families can review the coaching staff page and use the form to find the best pitching coach based on age, goals, and location.',
+    ),
+    array(
+        'question'    => 'What ages does Better Baseball Training serve?',
+        'answer_html' => 'BBT\'s core lesson and academy programming is built for <strong>players ages 8-14U</strong>. Families can choose private lessons, unlimited academy memberships, and travel baseball development based on the athlete\'s current stage and goals.',
+        'answer_text' => 'BBT\'s core lesson and academy programming is built for players ages 8-14U. Families can choose private lessons, unlimited academy memberships, and travel baseball development based on the athlete\'s current stage and goals.',
+    ),
+    array(
+        'question'    => 'What is the difference between academy membership, private lessons, and travel baseball?',
+        'answer_html' => '<strong>Private lessons</strong> focus on skill-specific instruction, <strong>academy membership</strong> gives athletes unlimited access to recurring classes, and <strong>travel baseball</strong> provides team-based competition for rostered players. BBT helps families choose the right path based on development goals and schedule.',
+        'answer_text' => 'Private lessons focus on skill-specific instruction, academy membership gives athletes unlimited access to recurring classes, and travel baseball provides team-based competition for rostered players. BBT helps families choose the right path based on development goals and schedule.',
+    ),
+);
+
 $faq_schema = array(
     '@context'   => 'https://schema.org',
     '@type'      => 'FAQPage',
-    'mainEntity' => array(
-        array(
-            '@type'          => 'Question',
-            'name'           => 'What ages does Better Baseball Training serve?',
-            'acceptedAnswer' => array(
-                '@type' => 'Answer',
-                'text'  => 'BBT provides elite baseball training, academy memberships, and travel teams for youth baseball players ages 8 to 14U.',
-            ),
-        ),
-        array(
-            '@type'          => 'Question',
-            'name'           => 'Where is Better Baseball Training located?',
-            'acceptedAnswer' => array(
-                '@type' => 'Answer',
-                'text'  => 'We have two indoor training facilities with full turf and batting cages in the Sacramento area: Rocklin (4283 Duluth Ave) and El Dorado Hills (4990 Hillsdale Dr, Suite 400).',
-            ),
-        ),
-        array(
-            '@type'          => 'Question',
-            'name'           => 'How much does baseball academy membership cost?',
-            'acceptedAnswer' => array(
-                '@type' => 'Answer',
-                'text'  => 'Our Academy Membership provides unlimited access to classes and training. Pricing is $250/month in Rocklin and $299/month in El Dorado Hills.',
-            ),
-        ),
-        array(
-            '@type'          => 'Question',
-            'name'           => 'Do you offer private baseball lessons?',
-            'acceptedAnswer' => array(
-                '@type' => 'Answer',
-                'text'  => 'Yes. We offer both private and group instruction for hitting, pitching, infield/outfield, and catching. All lessons are coached by our staff of college and pro alumni.',
-            ),
-        ),
-        array(
-            '@type'          => 'Question',
-            'name'           => 'Does BBT have travel baseball teams?',
-            'acceptedAnswer' => array(
-                '@type' => 'Answer',
-                'text'  => 'Yes. Better Baseball Training fields 11+ highly competitive youth travel baseball teams across multiple divisions (Black and Gray) from ages 9U through 14U.',
-            ),
-        ),
+    'mainEntity' => array_map(
+        static function ($item) {
+            return array(
+                '@type'          => 'Question',
+                'name'           => $item['question'],
+                'acceptedAnswer' => array(
+                    '@type' => 'Answer',
+                    'text'  => $item['answer_text'],
+                ),
+            );
+        },
+        $faq_items
     ),
 );
+
+$homepage_schema = array(
+    '@context'    => 'https://schema.org',
+    '@type'       => 'WebPage',
+    '@id'         => home_url('/#homepage'),
+    'url'         => home_url('/'),
+    'name'        => 'Youth Baseball Lessons in Rocklin & El Dorado Hills',
+    'description' => house36_bbt_home_meta_description(),
+    'about'       => array(
+        '@id' => home_url('/#organization'),
+    ),
+);
+
+$locations = house36_bbt_locations_data();
 
 $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
 ?>
 
 <main id="main-content">
-<section id="hero" class="hero">
+<section
+  id="hero"
+  class="hero"
+  style="--hero-bg-image: url('<?php echo esc_url(house36_bbt_asset('optimized/hero-slideshow-1-720.webp')); ?>');"
+>
   <div class="hero-left">
     <?php echo house36_bbt_logo('hero-logo-mark', 'brand-assets/BBT Logo 1-no bg.png', false); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
-      <span class="hero-badge-text">Rocklin &amp; El Dorado Hills, CA</span>
+      <span class="hero-badge-text">Better Baseball Training</span>
     </div>
 
-    <div class="hero-brand"><?php bloginfo('name'); ?></div>
-
-    <h1 class="hero-headline">
-      <span class="line1">It's Just</span>
-      <span class="line2">Better.</span>
+    <h1 class="hero-headline hero-headline--compact">
+      <span class="line1">Youth Baseball Training</span>
+      <span class="line2">Rocklin &amp; El Dorado Hills</span>
     </h1>
 
     <p class="hero-sub">
-      We are more than baseball. Developing youth to their full potential, socially, physically, and mentally. Private lessons, academy memberships, and travel baseball for ages 8-14U.
+      Private hitting, pitching, fielding, catching, and baseball IQ training for players ages 8-14U, plus academy memberships and travel baseball development across Rocklin and El Dorado Hills.
     </p>
 
     <div class="hero-ctas">
@@ -84,11 +94,11 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
 
   <div class="hero-right">
     <div class="hero-slideshow">
-      <img class="hero-slide active" src="<?php echo esc_url(house36_bbt_asset_variant_url('images/hero-slideshow-1.PNG', 720)); ?>" srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/hero-slideshow-1.PNG', array(720, 960, 1320))); ?>" sizes="100vw" alt="BBT hero slide 1" width="1320" height="774" fetchpriority="high" decoding="async" />
-      <img class="hero-slide" src="<?php echo esc_attr($lazy_pixel); ?>" data-src="<?php echo esc_url(house36_bbt_asset_variant_url('images/hero-slideshow-2.PNG', 720)); ?>" data-srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/hero-slideshow-2.PNG', array(720, 960, 1320))); ?>" sizes="100vw" alt="BBT hero slide 2" width="1299" height="697" loading="lazy" decoding="async" />
-      <img class="hero-slide" src="<?php echo esc_attr($lazy_pixel); ?>" data-src="<?php echo esc_url(house36_bbt_asset_variant_url('images/hero-slideshow-3.PNG', 720)); ?>" data-srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/hero-slideshow-3.PNG', array(720, 960, 1320))); ?>" sizes="100vw" alt="BBT hero slide 3" width="1320" height="843" loading="lazy" decoding="async" />
-      <img class="hero-slide cover" src="<?php echo esc_attr($lazy_pixel); ?>" data-src="<?php echo esc_url(house36_bbt_asset_variant_url('images/hero-slideshow-4.PNG', 720)); ?>" data-srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/hero-slideshow-4.PNG', array(720, 960, 1320))); ?>" sizes="100vw" alt="BBT hero slide 4" width="1320" height="833" loading="lazy" decoding="async" />
-      <img class="hero-slide cover" src="<?php echo esc_attr($lazy_pixel); ?>" data-src="<?php echo esc_url(house36_bbt_asset_variant_url('images/hero-slideshow-5.PNG', 720)); ?>" data-srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/hero-slideshow-5.PNG', array(720, 960, 1320))); ?>" sizes="100vw" alt="BBT hero slide 5" width="1320" height="832" loading="lazy" decoding="async" />
+      <img class="hero-slide active" src="<?php echo esc_url(house36_bbt_asset_variant_url('images/hero-slideshow-1.PNG', 720)); ?>" srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/hero-slideshow-1.PNG', array(720, 960, 1320))); ?>" sizes="100vw" alt="Better Baseball Training travel team players after a tournament win" width="1320" height="774" fetchpriority="high" decoding="async" />
+      <img class="hero-slide" src="<?php echo esc_attr($lazy_pixel); ?>" data-src="<?php echo esc_url(house36_bbt_asset_variant_url('images/hero-slideshow-2.PNG', 720)); ?>" data-srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/hero-slideshow-2.PNG', array(720, 960, 1320))); ?>" sizes="100vw" alt="Youth baseball players training inside Better Baseball Training" width="1299" height="697" loading="lazy" decoding="async" />
+      <img class="hero-slide" src="<?php echo esc_attr($lazy_pixel); ?>" data-src="<?php echo esc_url(house36_bbt_asset_variant_url('images/hero-slideshow-3.PNG', 720)); ?>" data-srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/hero-slideshow-3.PNG', array(720, 960, 1320))); ?>" sizes="100vw" alt="Better Baseball Training players with medals after a tournament" width="1320" height="843" loading="lazy" decoding="async" />
+      <img class="hero-slide cover" src="<?php echo esc_attr($lazy_pixel); ?>" data-src="<?php echo esc_url(house36_bbt_asset_variant_url('images/hero-slideshow-4.PNG', 720)); ?>" data-srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/hero-slideshow-4.PNG', array(720, 960, 1320))); ?>" sizes="100vw" alt="Youth baseball lesson inside Better Baseball Training facility" width="1320" height="833" loading="lazy" decoding="async" />
+      <img class="hero-slide cover" src="<?php echo esc_attr($lazy_pixel); ?>" data-src="<?php echo esc_url(house36_bbt_asset_variant_url('images/hero-slideshow-5.PNG', 720)); ?>" data-srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/hero-slideshow-5.PNG', array(720, 960, 1320))); ?>" sizes="100vw" alt="Better Baseball Training player showing a championship ring" width="1320" height="832" loading="lazy" decoding="async" />
     </div>
     <div class="hero-nav">
       <button class="hero-nav-btn prev" aria-label="Previous Slide" type="button">
@@ -107,31 +117,31 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
     </div>
   </div>
 
-  <div class="hero-ticker">
+  <div class="hero-ticker" aria-label="Better Baseball Training By The Numbers">
     <div class="ticker-track">
       <div class="ticker-item"><span class="ticker-num">2</span><span class="ticker-label">Locations: Rocklin &amp; El Dorado Hills</span></div>
       <span class="ticker-diamond">◆</span>
-      <div class="ticker-item"><span class="ticker-num"></span><span class="ticker-label">Dedicated outdoor fields</span></div>
+      <div class="ticker-item"><span class="ticker-num"></span><span class="ticker-label">Private + Group Lessons</span></div>
       <span class="ticker-diamond">◆</span>
-      <div class="ticker-item"><span class="ticker-num">20+</span><span class="ticker-label">Expert Coaches</span></div>
+      <div class="ticker-item"><span class="ticker-num"></span><span class="ticker-label">Former Pro + College Staff</span></div>
       <span class="ticker-diamond">◆</span>
       <div class="ticker-item"><span class="ticker-num">5+</span><span class="ticker-label">Training Disciplines</span></div>
       <span class="ticker-diamond">◆</span>
       <div class="ticker-item"><span class="ticker-num">9-14U</span><span class="ticker-label">Youth Teams</span></div>
       <span class="ticker-diamond">◆</span>
-      <div class="ticker-item"><span class="ticker-num">15-17U</span><span class="ticker-label">High School Teams</span></div>
+      <div class="ticker-item"><span class="ticker-num"></span><span class="ticker-label">Academy Memberships</span></div>
       <span class="ticker-diamond">◆</span>
       <div class="ticker-item"><span class="ticker-num">2</span><span class="ticker-label">Locations: Rocklin &amp; El Dorado Hills</span></div>
       <span class="ticker-diamond">◆</span>
-      <div class="ticker-item"><span class="ticker-num"></span><span class="ticker-label">Dedicated outdoor fields</span></div>
+      <div class="ticker-item"><span class="ticker-num"></span><span class="ticker-label">Private + Group Lessons</span></div>
       <span class="ticker-diamond">◆</span>
-      <div class="ticker-item"><span class="ticker-num">20+</span><span class="ticker-label">Expert Coaches</span></div>
+      <div class="ticker-item"><span class="ticker-num"></span><span class="ticker-label">Former Pro + College Staff</span></div>
       <span class="ticker-diamond">◆</span>
       <div class="ticker-item"><span class="ticker-num">5+</span><span class="ticker-label">Training Disciplines</span></div>
       <span class="ticker-diamond">◆</span>
       <div class="ticker-item"><span class="ticker-num">9-14U</span><span class="ticker-label">Youth Teams</span></div>
       <span class="ticker-diamond">◆</span>
-      <div class="ticker-item"><span class="ticker-num">15-17U</span><span class="ticker-label">High School Teams</span></div>
+      <div class="ticker-item"><span class="ticker-num"></span><span class="ticker-label">Academy Memberships</span></div>
       <span class="ticker-diamond">◆</span>
     </div>
   </div>
@@ -160,7 +170,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">01</div>
         <h3 class="service-name">Hitting</h3>
         <p class="service-text">Mechanics, timing, situational hitting and plate discipline for every level. Private and group training available.</p>
-        <a href="<?php echo esc_url(house36_bbt_lesson_url('hitting')); ?>" class="service-link">
+        <a href="<?php echo esc_url(house36_bbt_lesson_url('hitting')); ?>" class="service-link" aria-label="Learn more about Hitting Lessons">
           Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -177,7 +187,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">02</div>
         <h3 class="service-name">Pitching</h3>
         <p class="service-text">Mechanics, arm care, velocity development, and pitch sequencing coached by college and pro alumni.</p>
-        <a href="<?php echo esc_url(house36_bbt_lesson_url('pitching')); ?>" class="service-link">
+        <a href="<?php echo esc_url(house36_bbt_lesson_url('pitching')); ?>" class="service-link" aria-label="Learn more about Pitching Lessons">
           Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -192,9 +202,9 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
       </div>
       <div class="service-card-body">
         <div class="service-number">03</div>
-        <h3 class="service-name">INF / OF</h3>
+        <h3 class="service-name">Infield / Outfield</h3>
         <p class="service-text">Footwork, positioning and in-game understanding, infield and outfield fundamentals for all positions.</p>
-        <a href="<?php echo esc_url(house36_bbt_lesson_url('infield-outfield')); ?>" class="service-link">
+        <a href="<?php echo esc_url(house36_bbt_lesson_url('infield-outfield')); ?>" class="service-link" aria-label="Learn more about Infield and Outfield Lessons">
           Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -211,7 +221,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">04</div>
         <h3 class="service-name">Catching</h3>
         <p class="service-text">Receiving, blocking, footwork and game managing. Full position-specific development with experienced coaches.</p>
-        <a href="<?php echo esc_url(house36_bbt_lesson_url('catching')); ?>" class="service-link">
+        <a href="<?php echo esc_url(house36_bbt_lesson_url('catching')); ?>" class="service-link" aria-label="Learn more about Catching Lessons">
           Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -228,7 +238,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">05</div>
         <h3 class="service-name">Baseball IQ</h3>
         <p class="service-text">Baseball is often described as a thinking person’s game, where each pitch, swing, and defensive move requires thoughtful decision-making and preparation.</p>
-        <a href="<?php echo esc_url(house36_bbt_lesson_url('baseball-iq')); ?>" class="service-link">
+        <a href="<?php echo esc_url(house36_bbt_lesson_url('baseball-iq')); ?>" class="service-link" aria-label="Learn more about Baseball IQ Training">
           Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -247,7 +257,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
       <div class="membership-classes">
         <span class="membership-class">Hitting</span>
         <span class="membership-class">Pitching</span>
-        <span class="membership-class">INF / OF</span>
+        <span class="membership-class">Infield / Outfield</span>
         <span class="membership-class">Catchers</span>
         <span class="membership-class">Baseball IQ</span>
         <span class="membership-class">Baserunning</span>
@@ -278,9 +288,44 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
   </div>
 </section>
 
+<section class="answer-strip" aria-labelledby="answer-strip-heading">
+  <div class="answer-strip__inner reveal">
+    <div class="answer-strip__header">
+      <span class="services-label">Parents Ask</span>
+      <h2 id="answer-strip-heading" class="answer-strip__title">Straight Answers for Baseball Families in Rocklin and El Dorado Hills</h2>
+    </div>
+
+    <div class="answer-strip__grid">
+      <article class="answer-card reveal reveal-delay-1">
+        <h3>Where can I get baseball lessons in Rocklin?</h3>
+        <p>BBT offers private and group baseball lessons in Rocklin at 4283 Duluth Ave, with additional programming in El Dorado Hills for families who want more schedule flexibility.</p>
+        <a href="<?php echo esc_url($locations['rocklin']['location_url']); ?>" class="bk-card__inline-link">See Rocklin training details</a>
+      </article>
+
+      <article class="answer-card reveal reveal-delay-2">
+        <h3>Who teaches pitching lessons at BBT?</h3>
+        <p>Pitching lessons can include Jean Machi, Gabe Emmett, and the broader BBT development staff depending on the athlete's age, goals, and preferred location.</p>
+        <a href="<?php echo esc_url(house36_bbt_coaches_url()); ?>" class="bk-card__inline-link">Review the coaching staff</a>
+      </article>
+
+      <article class="answer-card reveal reveal-delay-3">
+        <h3>What ages does BBT serve?</h3>
+        <p>BBT's core lessons and academy memberships are built for players ages 8-14U, with development paths that include private lessons, group classes, and travel teams.</p>
+        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="bk-card__inline-link">Start with the player form</a>
+      </article>
+
+      <article class="answer-card reveal reveal-delay-4">
+        <h3>What should we choose first?</h3>
+        <p>Private lessons are best for targeted skill work, academy memberships fit athletes who want recurring reps, and travel teams are for rostered players ready for team competition.</p>
+        <a href="<?php echo esc_url(house36_bbt_schedule_url()); ?>" class="bk-card__inline-link">Compare with the schedule</a>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section id="coaches" class="coaches" aria-labelledby="coaches-heading">
   <div class="coaches-header reveal">
-    <h2 id="coaches-heading" class="coaches-title">Our Coaching <em>Staff</em></h2>
+    <h2 id="coaches-heading" class="coaches-title">Baseball <em>Coaches</em> in Rocklin &amp; El Dorado Hills</h2>
     <a href="<?php echo esc_url(house36_bbt_coaches_url()); ?>" class="btn-outline"><span>Meet All Coaches</span></a>
   </div>
 
@@ -432,24 +477,24 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
   <div class="why-bbt-container reveal">
     <div class="why-bbt-header">
       <h2 id="why-bbt-heading">Why BBT? Because Your Kid Deserves <em>Better.</em></h2>
-      <p>Most youth baseball academies are run by well-meaning dads with a cage in their garage. BBT is different. We've assembled a full coaching staff, including professional baseball alumni and college players from organizations like the Chicago Cubs, Los Angeles Dodgers, UC Davis, Cal Poly, and the University of New Mexico.</p>
+      <p>BBT brings together former professional players, college alumni, private lessons, academy classes, and travel baseball development so families can build a clear long-term plan instead of piecing training together from multiple places.</p>
     </div>
 
     <div class="why-bbt-grid">
       <div class="why-stat-card reveal reveal-delay-1">
-        <div class="why-stat-num">3</div>
-        <h3 class="why-stat-title">Pro Alumni On Staff</h3>
-        <p class="why-stat-desc">Your kid is coached by former Chicago Cubs and LA Dodgers players, not parent volunteers. Bruce Carmichael, Kris Krise, and Gabe Emmett bring real professional experience to every session.</p>
+        <div class="why-stat-num">2</div>
+        <h3 class="why-stat-title">Indoor Training Facilities</h3>
+        <p class="why-stat-desc">Train in Rocklin or El Dorado Hills with indoor turf, batting lanes, and year-round access to baseball development.</p>
       </div>
       <div class="why-stat-card reveal reveal-delay-2">
-        <div class="why-stat-num">17</div>
-        <h3 class="why-stat-title">Coaches, 10+ Programs</h3>
-        <p class="why-stat-desc">Every BBT coach played college ball or higher. This is not weekend clinic instruction. It's real development with a real coaching pipeline.</p>
+        <div class="why-stat-num">5</div>
+        <h3 class="why-stat-title">Core Lesson Categories</h3>
+        <p class="why-stat-desc">Families can choose hitting, pitching, infield/outfield, catching, and baseball IQ training based on the athlete's needs.</p>
       </div>
       <div class="why-stat-card reveal reveal-delay-3">
-        <div class="why-stat-num">11+</div>
-        <h3 class="why-stat-title">Travel Teams, 2 Facilities</h3>
-        <p class="why-stat-desc">Year-round competitive schedules from 9U through 14U across Black and Gray divisions with two indoor facilities in Rocklin and El Dorado Hills.</p>
+        <div class="why-stat-num">8-14U</div>
+        <h3 class="why-stat-title">Core Development Window</h3>
+        <p class="why-stat-desc">BBT's lesson and academy programming is built for youth players who need consistent instruction, confidence, and game-ready development.</p>
       </div>
     </div>
   </div>
@@ -503,12 +548,12 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
 
 <section id="facilities" class="facilities" aria-labelledby="facilities-heading">
   <div class="facilities-header reveal">
-    <h2 id="facilities-heading">Two Indoor <em>Training Facilities</em></h2>
-    <p>Over 3,000+ sq ft of turf, professional-grade batting cages, netting, and fully-equipped weight rooms across two premier locations.</p>
+    <h2 id="facilities-heading">Baseball Training Facilities in <em>Rocklin &amp; El Dorado Hills</em></h2>
+    <p>Indoor turf space, batting cages, netting, and structured player-development environments across two Sacramento-area training locations.</p>
   </div>
 
   <div class="facilities-grid">
-    <div class="facility-card reveal reveal-delay-1">
+    <div id="rocklin-training" class="facility-card reveal reveal-delay-1">
       <div class="facility-gallery">
         <img src="<?php echo esc_url(house36_bbt_asset_variant_url('images/facility-img-1.jpg', 900)); ?>" srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/facility-img-1.jpg', array(320, 900))); ?>" sizes="(max-width: 800px) 100vw, 50vw" alt="Rocklin facility batting cages" class="facility-main-img" loading="lazy" decoding="async" width="905" height="679" />
         <div class="facility-thumbnails">
@@ -520,10 +565,12 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
       <div class="facility-info">
         <h3>Rocklin Basecamp</h3>
         <address>4283 Duluth Ave<br>Rocklin, CA 95765</address>
+        <p>Rocklin is a core hub for private baseball lessons, academy classes, and travel-team development for families in Rocklin, Roseville, Granite Bay, and nearby communities.</p>
+        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="bk-card__inline-link">Book training in Rocklin</a>
       </div>
     </div>
 
-    <div class="facility-card reveal reveal-delay-2">
+    <div id="el-dorado-hills-training" class="facility-card reveal reveal-delay-2">
       <div class="facility-gallery">
         <img src="<?php echo esc_url(house36_bbt_asset_variant_url('images/IMG_0607.jpg', 960)); ?>" srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/IMG_0607.jpg', array(320, 960))); ?>" sizes="(max-width: 800px) 100vw, 50vw" alt="El Dorado Hills brand new turf facility" class="facility-main-img" loading="lazy" decoding="async" width="5712" height="4284" />
         <div class="facility-thumbnails">
@@ -534,7 +581,9 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
       </div>
       <div class="facility-info">
         <h3>El Dorado Hills (EDH)</h3>
-        <address>4990 Hillsdale Dr, Suite 400<br>El Dorado Hills, CA</address>
+        <address>4990 Hillsdale Dr, Suite 400<br>El Dorado Hills, CA 95762</address>
+        <p>El Dorado Hills gives families in EDH, Folsom, and surrounding areas access to indoor baseball lessons, academy programming, and pitching instruction close to home.</p>
+        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="bk-card__inline-link">Book training in El Dorado Hills</a>
       </div>
     </div>
   </div>
@@ -547,29 +596,18 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
     </div>
 
     <div class="faq-list">
-      <details class="faq-item reveal reveal-delay-1">
-        <summary>What ages does Better Baseball Training serve? <span class="faq-icon"></span></summary>
-        <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner"><p>BBT provides elite baseball training, academy memberships, and travel teams for youth baseball players ages <strong>8 to 14U</strong>.</p></div></div></div>
+      <?php foreach ($faq_items as $index => $item) : ?>
+      <details class="faq-item reveal reveal-delay-<?php echo esc_attr((string) ($index + 1)); ?>">
+        <summary><?php echo esc_html($item['question']); ?> <span class="faq-icon"></span></summary>
+        <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner"><p><?php echo wp_kses_post($item['answer_html']); ?></p></div></div></div>
       </details>
-      <details class="faq-item reveal reveal-delay-2">
-        <summary>Where is Better Baseball Training located? <span class="faq-icon"></span></summary>
-        <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner"><p>We have two indoor training facilities with full turf and batting cages in the Sacramento area: <strong>Rocklin</strong> (4283 Duluth Ave) and <strong>El Dorado Hills</strong> (4990 Hillsdale Dr, Suite 400).</p></div></div></div>
-      </details>
-      <details class="faq-item reveal reveal-delay-3">
-        <summary>How much does baseball academy membership cost? <span class="faq-icon"></span></summary>
-        <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner"><p>Our Academy Membership provides unlimited access to classes and training. Pricing is <strong>$250/month in Rocklin</strong> and <strong>$299/month in El Dorado Hills</strong>.</p></div></div></div>
-      </details>
-      <details class="faq-item reveal reveal-delay-4">
-        <summary>Do you offer private baseball lessons? <span class="faq-icon"></span></summary>
-        <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner"><p><strong>Yes.</strong> We offer both private and group instruction for hitting, pitching, infield/outfield, and catching. All lessons are coached by our staff of college and pro alumni.</p></div></div></div>
-      </details>
-      <details class="faq-item reveal reveal-delay-5">
-        <summary>Does BBT have travel baseball teams? <span class="faq-icon"></span></summary>
-        <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner"><p><strong>Yes.</strong> Better Baseball Training fields 11+ highly competitive youth travel baseball teams across multiple divisions from ages 9U through 14U.</p></div></div></div>
-      </details>
+      <?php endforeach; ?>
     </div>
   </div>
 
+  <script type="application/ld+json">
+    <?php echo wp_json_encode($homepage_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); ?>
+  </script>
   <script type="application/ld+json">
     <?php echo wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); ?>
   </script>
@@ -599,7 +637,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
       <ul class="academy-includes">
         <li>Hitting</li>
         <li>Pitching</li>
-        <li>INF / OF</li>
+        <li>Infield / Outfield</li>
         <li>Catchers</li>
         <li>Baseball IQ</li>
       </ul>

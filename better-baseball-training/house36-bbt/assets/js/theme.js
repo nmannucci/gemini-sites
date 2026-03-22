@@ -158,6 +158,7 @@
   function initMobileMenu() {
     var hamburger = document.querySelector('.hamburger');
     var mobileMenu = document.querySelector('.mobile-menu');
+    var closeButton = mobileMenu ? mobileMenu.querySelector('.mobile-menu-close') : null;
     var mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('.mobile-menu-links a') : [];
     var submenuParents = mobileMenu ? mobileMenu.querySelectorAll('.mobile-menu-links .menu-item-has-children') : [];
 
@@ -197,6 +198,12 @@
       document.body.style.overflow = mobileMenu.classList.contains('is-active') ? 'hidden' : '';
     });
 
+    if (closeButton) {
+      closeButton.addEventListener('click', function () {
+        closeMenu();
+      });
+    }
+
     submenuParents.forEach(function (parent) {
       var trigger = parent.querySelector('a');
       var submenu = parent.querySelector('.sub-menu');
@@ -206,6 +213,13 @@
       }
 
       trigger.setAttribute('aria-expanded', 'false');
+      trigger.addEventListener('click', function (event) {
+        event.preventDefault();
+        closeSubmenus();
+        parent.classList.add('is-submenu-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        mobileMenu.classList.add('is-submenu-active');
+      });
 
       if (!submenu.querySelector('.mobile-submenu-back')) {
         var backItem = document.createElement('li');
@@ -228,30 +242,19 @@
     });
 
     mobileLinks.forEach(function (link) {
-      link.addEventListener('click', function (event) {
-        var parentItem = link.parentElement;
-        var siblingSubmenu = link.nextElementSibling;
+      var siblingSubmenu = link.nextElementSibling;
 
-        if (
-          parentItem &&
-          parentItem.classList.contains('menu-item-has-children') &&
-          siblingSubmenu &&
-          siblingSubmenu.classList.contains('sub-menu')
-        ) {
-          event.preventDefault();
-          closeSubmenus();
-          parentItem.classList.add('is-submenu-open');
-          link.setAttribute('aria-expanded', 'true');
-          mobileMenu.classList.add('is-submenu-active');
-          return;
-        }
+      if (siblingSubmenu && siblingSubmenu.classList.contains('sub-menu')) {
+        return;
+      }
 
+      link.addEventListener('click', function () {
         closeMenu();
       });
     });
 
     mobileMenu.addEventListener('click', function (event) {
-      if (event.target === mobileMenu) {
+      if (!event.target.closest('a, button')) {
         closeMenu();
       }
     });

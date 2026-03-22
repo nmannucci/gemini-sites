@@ -30,6 +30,7 @@
 - When theme files are updated, prefer running the LocalWP sync yourself from Codex instead of asking the user to copy/paste commands manually.
 - If sandbox permissions prevent writing to the LocalWP site, request escalation and then complete the sync yourself.
 - When mentioning commands for LocalWP theme updates, treat `/Users/nico/Local Sites/better-baseball-training-1/app/public` as the shell location.
+- Important: in the Codex shell for this project, WP-CLI is not available, so `wp cache flush` will not work here. From Codex, sync the theme with `rsync` and then tell the user cache flushing would need to happen in the LocalWP site shell if needed.
 
 ## Source Theme Location
 
@@ -58,6 +59,7 @@ wp theme path house36-bbt --dir
 - If any file inside `house36-bbt/` changes, always sync the updated source theme into the LocalWP install yourself before closing out, unless the user explicitly says not to.
 - After syncing, tell the user that the LocalWP copy was updated and include any important testing note if needed.
 - Default sync command:
+- LocalWP site shell version, when WP-CLI is available:
 
 ```bash
 THEME_PATH=$(wp theme path house36-bbt --dir)
@@ -68,13 +70,10 @@ wp cache flush
 ```
 
 - Preferred direct execution flow from Codex for this project:
+- Preferred Codex shell flow for this machine:
 
 ```bash
-cd "/Users/nico/Local Sites/better-baseball-training-1/app/public"
-THEME_PATH=$(wp theme path house36-bbt --dir)
-mkdir -p "$THEME_PATH"
-rsync -a "/Users/nico/Gemini/gemini-sites/better-baseball-training/house36-bbt/" "$THEME_PATH/"
-wp cache flush
+rsync -a "/Users/nico/Gemini/gemini-sites/better-baseball-training/house36-bbt/" "/Users/nico/Local Sites/better-baseball-training-1/app/public/wp-content/themes/house36-bbt/"
 ```
 
 - This is the default command unless the user specifically asks for a smaller file-by-file sync.

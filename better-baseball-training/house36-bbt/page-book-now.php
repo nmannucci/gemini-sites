@@ -9,8 +9,8 @@ get_header();
   <section class="bk-hero reveal">
     <div class="bk-hero__inner">
       <div class="bk-hero__kicker">Better Baseball Training</div>
-      <h1 class="bk-hero__title">Book Training for Your <em>Ballplayer</em></h1>
-      <p class="bk-hero__copy">Fill out the player interest form below and our staff will help you choose the right lesson, membership, or next step for your athlete.</p>
+      <h1 class="bk-hero__title">Book Baseball Lessons and Training in <em>Rocklin &amp; El Dorado Hills</em></h1>
+      <p class="bk-hero__copy">Fill out the player interest form below and BBT will help you choose the right lesson, academy membership, coach, and location for your athlete.</p>
     </div>
   </section>
 
@@ -21,7 +21,7 @@ get_header();
           <div class="cta-box-eyebrow">Player Interest Form</div>
           <div class="cta-box-badge">Ages 8–14U</div>
         </div>
-        <h2 class="cta-box-headline">Fill Out the Form Below to <em>Get Started</em></h2>
+        <h2 class="cta-box-headline">Tell Us About Your Athlete and <em>Get Started</em></h2>
         <div class="forminator-shell">
           <?php echo house36_bbt_render_training_form(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </div>
@@ -44,7 +44,7 @@ get_header();
             <strong>$299<em>/mo</em></strong>
           </div>
         </div>
-        <p class="bk-card__copy">Ages 8-14U. Built for athletes who want consistent reps, structured development, and professional coaching.</p>
+        <p class="bk-card__copy">Ages 8-14U. Built for athletes who want consistent reps, structured development, and a clear year-round baseball training plan.</p>
       </article>
 
       <article class="bk-card">
@@ -76,6 +76,7 @@ get_header();
           <span>4990 Hillsdale Dr, Suite 400</span>
           <span>El Dorado Hills, CA 95762</span>
         </div>
+        <a href="<?php echo esc_url(house36_bbt_coaches_url()); ?>" class="bk-card__inline-link">Meet the coaching staff</a>
       </article>
     </div>
   </section>
