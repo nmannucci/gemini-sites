@@ -25,7 +25,11 @@
 - The user opens the site in LocalWP and can use:
   - normal browser preview for visual QA
   - **Open Site Shell** for WP-CLI commands
-- When giving commands for LocalWP theme updates, always tell the user to run them in the **LocalWP site shell**, not the normal Mac Terminal.
+- LocalWP site shell / WordPress root for this project is:
+  `/Users/nico/Local Sites/better-baseball-training-1/app/public`
+- When theme files are updated, prefer running the LocalWP sync yourself from Codex instead of asking the user to copy/paste commands manually.
+- If sandbox permissions prevent writing to the LocalWP site, request escalation and then complete the sync yourself.
+- When mentioning commands for LocalWP theme updates, treat `/Users/nico/Local Sites/better-baseball-training-1/app/public` as the shell location.
 
 ## Source Theme Location
 
@@ -44,14 +48,30 @@
 wp theme path house36-bbt --dir
 ```
 
+- Known installed LocalWP site root for this project:
+  `/Users/nico/Local Sites/better-baseball-training-1/app/public`
+- Typical installed theme target on this machine:
+  `/Users/nico/Local Sites/better-baseball-training-1/app/public/wp-content/themes/house36-bbt`
+
 ## Required Close-Out After Theme Edits
 
-- If any file inside `house36-bbt/` changes, always end the task by giving the user the LocalWP site shell command needed to sync the updated source theme into the LocalWP install.
+- If any file inside `house36-bbt/` changes, always sync the updated source theme into the LocalWP install yourself before closing out, unless the user explicitly says not to.
+- After syncing, tell the user that the LocalWP copy was updated and include any important testing note if needed.
 - Default sync command:
 
 ```bash
 THEME_PATH=$(wp theme path house36-bbt --dir)
 
+mkdir -p "$THEME_PATH"
+rsync -a "/Users/nico/Gemini/gemini-sites/better-baseball-training/house36-bbt/" "$THEME_PATH/"
+wp cache flush
+```
+
+- Preferred direct execution flow from Codex for this project:
+
+```bash
+cd "/Users/nico/Local Sites/better-baseball-training-1/app/public"
+THEME_PATH=$(wp theme path house36-bbt --dir)
 mkdir -p "$THEME_PATH"
 rsync -a "/Users/nico/Gemini/gemini-sites/better-baseball-training/house36-bbt/" "$THEME_PATH/"
 wp cache flush
@@ -95,10 +115,23 @@ wp cache flush
 
 - Whenever theme files are updated, include:
   - a short summary of what changed
-  - the LocalWP site shell command to sync the theme
+  - confirmation that the LocalWP theme copy was synced, or a brief note if permission/escalation blocked the sync
   - any important testing or follow-up note if needed
 
 - Do not assume the user remembers the LocalWP sync process.
 - Be explicit about where commands should be run:
   - **Mac Terminal** for Lighthouse CLI or general local tooling
   - **LocalWP site shell** for WP-CLI and theme sync commands
+
+## Forminator Notes
+
+- This project uses Forminator for the homepage lead form.
+- Form rendering is wired through the source theme, not page-builder-only styling.
+- Prefer styling Forminator forms in:
+  `/Users/nico/Gemini/gemini-sites/better-baseball-training/house36-bbt/style.css`
+  so the design lives in the source theme and survives workflow syncs.
+- Important: Forminator select fields in non-basic designs use a Select2-style UI, not just native `<select>` elements.
+- When dropdown text or dropdown menu colors need styling, target both:
+  - the native select selectors
+  - the Select2 / Forminator dropdown selectors such as `.select2-container`, `.select2-selection--single`, `.select2-dropdown.forminator-select-dropdown`, and `.select2-results__option`
+- If a Forminator dropdown looks correct closed but wrong when opened, or vice versa, assume the Select2 layer needs CSS updates.

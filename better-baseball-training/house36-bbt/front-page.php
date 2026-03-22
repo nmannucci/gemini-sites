@@ -160,8 +160,8 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">01</div>
         <h3 class="service-name">Hitting</h3>
         <p class="service-text">Mechanics, timing, situational hitting and plate discipline for every level. Private and group training available.</p>
-        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="service-link">
-          Book Now
+        <a href="<?php echo esc_url(house36_bbt_lesson_url('hitting')); ?>" class="service-link">
+          Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
@@ -177,8 +177,8 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">02</div>
         <h3 class="service-name">Pitching</h3>
         <p class="service-text">Mechanics, arm care, velocity development, and pitch sequencing coached by college and pro alumni.</p>
-        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="service-link">
-          Book Now
+        <a href="<?php echo esc_url(house36_bbt_lesson_url('pitching')); ?>" class="service-link">
+          Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
@@ -194,8 +194,8 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">03</div>
         <h3 class="service-name">INF / OF</h3>
         <p class="service-text">Footwork, positioning and in-game understanding, infield and outfield fundamentals for all positions.</p>
-        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="service-link">
-          Book Now
+        <a href="<?php echo esc_url(house36_bbt_lesson_url('infield-outfield')); ?>" class="service-link">
+          Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
@@ -211,8 +211,8 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">04</div>
         <h3 class="service-name">Catching</h3>
         <p class="service-text">Receiving, blocking, footwork and game managing. Full position-specific development with experienced coaches.</p>
-        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="service-link">
-          Book Now
+        <a href="<?php echo esc_url(house36_bbt_lesson_url('catching')); ?>" class="service-link">
+          Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
@@ -228,7 +228,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">05</div>
         <h3 class="service-name">Baseball IQ</h3>
         <p class="service-text">Baseball is often described as a thinking person’s game, where each pitch, swing, and defensive move requires thoughtful decision-making and preparation.</p>
-        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="service-link">
+        <a href="<?php echo esc_url(house36_bbt_lesson_url('baseball-iq')); ?>" class="service-link">
           Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -372,6 +372,40 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="coach-role">Pitching Lessons</div>
         <p class="coach-bio">Former big leaguer and 2014 World Series Champion with the SF Giants. Pitched in the big leagues from 2012-2017 with the Mariners, Red Sox, and Giants. Lifetime ERA of 3.38. Now providing pitching lessons at the EDH location.</p>
         <p class="coach-cred"><strong>SF Giants · World Series Champion</strong></p>
+      </div>
+    </div>
+
+    <div class="coach-card reveal reveal-delay-1">
+      <div class="coach-img-wrapper">
+        <img src="<?php echo esc_url(house36_bbt_asset('images/kris-krise.jpeg')); ?>" alt="Kris Krise, former Dodgers draft pick and coach at Better Baseball Training" class="coach-img" loading="lazy" decoding="async" width="1200" height="1500" />
+        <span class="coach-badge coach-badge-pro">Pro Alumni</span>
+      </div>
+      <div class="coach-info">
+        <h3 class="coach-name">Kris Krise</h3>
+        <div class="coach-role">12U Black Head Coach</div>
+        <p class="coach-bio">Former 12th-round Los Angeles Dodgers draft pick who played at UC Irvine, COC, and Chico State. Brings pro-level experience and a strong player-development lens to every session.</p>
+        <div class="coach-quote">
+          <strong>Favorite part of coaching</strong>
+          <p>"The opportunity to positively influence young lives, fostering growth, confidence, and a love of the game."</p>
+        </div>
+        <p class="coach-cred"><strong>Los Angeles Dodgers</strong> · Chico State · UC Irvine</p>
+      </div>
+    </div>
+
+    <div class="coach-card reveal reveal-delay-2">
+      <div class="coach-img-wrapper">
+        <img src="<?php echo esc_url(house36_bbt_asset('images/logan-coe.PNG')); ?>" alt="Logan Coe, coach at Better Baseball Training" class="coach-img" loading="lazy" decoding="async" width="1200" height="1500" />
+        <span class="coach-badge coach-badge-pro" style="background:var(--cyan);color:black;">College Alumni</span>
+      </div>
+      <div class="coach-info">
+        <h3 class="coach-name">Logan Coe</h3>
+        <div class="coach-role">Coach</div>
+        <p class="coach-bio">Buhach Colony High School graduate who played JUCO ball at Modesto before continuing at Oklahoma Baptist and Jessup University. Focused on helping athletes grow through detailed, high-energy instruction.</p>
+        <div class="coach-quote">
+          <strong>Favorite part of coaching</strong>
+          <p>"Passing down game knowledge and seeing the kids grow and develop."</p>
+        </div>
+        <p class="coach-cred"><strong>Jessup University</strong> · Oklahoma Baptist</p>
       </div>
     </div>
   </div>
@@ -571,21 +605,30 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
       </ul>
     </div>
 
-    <div class="cta-box wpforms-cta-box">
-      <div class="cta-box-eyebrow">Book a Lesson</div>
-      <h3 class="cta-box-headline">Ready to Get <em>Started?</em></h3>
-      <p class="cta-box-sub">Use our booking form to request training info, ask questions, and find the best fit for your athlete.</p>
-      <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="membership-cta" target="_blank" rel="noreferrer">
-        Book Now
-      </a>
-      <a href="tel:9164655551" class="cta-box-phone">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        916-465-5551
-      </a>
+    <div id="bbt-form" class="cta-box forminator-cta-box">
+      <div class="cta-box-topline">
+        <div class="cta-box-eyebrow">Start With a Game Plan</div>
+        <div class="cta-box-badge">Ages 8-14U</div>
+      </div>
+      <h3 class="cta-box-headline">Fill Out the Form Below to <em>Get Started</em></h3>
+
+      <div class="forminator-shell">
+        <?php echo house36_bbt_render_training_form(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+      </div>
+
+      <div class="cta-box-support">
+        <a href="tel:9164655551" class="cta-box-phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          916-465-5551
+        </a>
+        <a href="<?php echo esc_url(house36_bbt_schedule_url()); ?>" class="cta-box-secondary-link">
+          View Schedule
+        </a>
+      </div>
       <div class="cta-box-trust">
         <span class="cta-box-trust-item">Pro Coaching Staff</span>
-        <span class="cta-box-trust-item">Ages 8-14U</span>
-        <span class="cta-box-trust-item">2 Locations</span>
+        <span class="cta-box-trust-item">2 Sacramento-Area Locations</span>
+        <span class="cta-box-trust-item">Private + Group Options</span>
       </div>
     </div>
   </div>
