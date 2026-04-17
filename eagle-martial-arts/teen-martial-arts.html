@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teen Martial Arts La Jolla | Taekwondo For Ages 13+</title>
+  <meta name="description" content="Teen Martial Arts at Eagle Martial Arts in La Jolla helps ages 13+ build confidence, discipline, focus, and real self-defense through structured Taekwondo classes.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://lajollamartialarts.com/teen-martial-arts">
+  <meta property="og:title" content="Teen Martial Arts La Jolla | Taekwondo For Ages 13+">
+  <meta property="og:description" content="Taekwondo classes in La Jolla for teens that build focus, confidence, discipline, and real self-defense skills in a positive, respectful environment.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lajollamartialarts.com/teen-martial-arts">
+  <meta property="og:image" content="https://lajollamartialarts.com/assets/EMA%20-%20Post%206.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Teen Martial Arts La Jolla | Taekwondo For Ages 13+">
+  <meta name="twitter:description" content="Teen Taekwondo in La Jolla for ages 13+ with confidence-building coaching, structured classes, and a free trial week.">
+  <meta name="twitter:image" content="https://lajollamartialarts.com/assets/EMA%20-%20Post%206.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="program-page.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .hero-copy {
+      max-width: 820px;
+    }
+
+    .hero-title {
+      font-size: clamp(3.75rem, 8vw, 6.4rem);
+    }
+
+    .hero-subtitle {
+      padding: 0.95rem 1.25rem;
+      font-size: 0.95rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-details {
+      margin-top: 2.65rem;
+    }
+
+    .hero-benefits {
+      gap: 1rem;
+    }
+
+    .hero-benefits li {
+      grid-template-columns: 20px minmax(0, 1fr);
+      column-gap: 1rem;
+    }
+
+    .hero-benefits strong {
+      font-size: 1.18rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.98);
+      text-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    .hero-benefits span {
+      display: none;
+    }
+
+    .hero-actions {
+      margin-top: 3.4rem;
+      gap: 1.1rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 1.1rem 1.95rem;
+      font-size: 0.9rem;
+    }
+
+    .section-title .program-highlight {
+      color: var(--blood-red);
+      -webkit-text-stroke: 0;
+    }
+
+    .schedule-section {
+      overflow: hidden;
+    }
+
+    .schedule-head {
+      margin-bottom: 2rem;
+    }
+
+    .schedule-board {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(245, 245, 240, 0.94));
+      border: 1px solid rgba(20, 20, 20, 0.08);
+      box-shadow: 0 24px 60px rgba(10, 10, 10, 0.1);
+      padding: 1rem;
+    }
+
+    .schedule-board-scroll {
+      overflow-x: auto;
+    }
+
+    .schedule-grid {
+      min-width: 980px;
+      display: grid;
+      grid-template-columns: 180px repeat(7, minmax(112px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .schedule-corner,
+    .schedule-day,
+    .schedule-time,
+    .schedule-slot {
+      min-height: 104px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .schedule-corner,
+    .schedule-day {
+      min-height: 72px;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .schedule-corner {
+      background: #ecebe7;
+      color: var(--dark-text);
+    }
+
+    .schedule-day {
+      background: var(--blood-red);
+      color: var(--bone-white);
+    }
+
+    .schedule-time {
+      background: #ecebe7;
+      color: var(--dark-text);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .schedule-slot {
+      position: relative;
+      background: rgba(234, 234, 229, 0.6);
+      border: 1px solid rgba(20, 20, 20, 0.05);
+      color: var(--dark-text);
+    }
+
+    .schedule-slot strong {
+      display: block;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.35rem;
+      line-height: 1;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .schedule-slot span {
+      display: block;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: rgba(26, 26, 26, 0.78);
+    }
+
+    .schedule-slot--live {
+      background: linear-gradient(180deg, #f5c4c6, #e89598);
+      border-color: rgba(185, 18, 27, 0.2);
+    }
+
+    .schedule-slot--closed {
+      background:
+        linear-gradient(135deg, rgba(20, 20, 20, 0.025) 25%, transparent 25%, transparent 50%, rgba(20, 20, 20, 0.025) 50%, rgba(20, 20, 20, 0.025) 75%, transparent 75%, transparent),
+        #f1f1ed;
+      background-size: 20px 20px;
+      color: rgba(26, 26, 26, 0.52);
+    }
+
+    .schedule-slot--closed strong {
+      margin-bottom: 0;
+      font-size: 1.15rem;
+    }
+
+    .schedule-mobile {
+      display: none;
+      margin-top: 1.25rem;
+      gap: 1rem;
+    }
+
+    .schedule-mobile-card {
+      background: #ffffff;
+      border: 1px solid rgba(20, 20, 20, 0.08);
+      box-shadow: 0 14px 28px rgba(10, 10, 10, 0.07);
+      padding: 1rem;
+      color: var(--dark-text);
+    }
+
+    .schedule-mobile-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .schedule-mobile-day {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .schedule-mobile-time {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blood-red);
+    }
+
+    .schedule-mobile-card strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 1rem;
+    }
+
+    .schedule-mobile-card p {
+      color: var(--muted-text);
+      line-height: 1.6;
+    }
+
+    .schedule-mobile-card--live {
+      border-left: 4px solid var(--blood-red);
+    }
+
+    .schedule-mobile-card--off {
+      border-left: 4px solid #d4d4d8;
+    }
+
+    @media (max-width: 760px) {
+      .schedule-board-scroll {
+        display: none;
+      }
+
+      .schedule-mobile {
+        display: grid;
+      }
+    }
+
+    /* ---------- Photo strip ---------- */
+    .photo-strip {
+      padding: 0;
+      background: var(--dark-text, #141414);
+    }
+
+    .photo-strip-inner {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+    }
+
+    .photo-strip figure {
+      position: relative;
+      margin: 0;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+    }
+
+    .photo-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.15) contrast(1.05);
+      transition: transform 0.8s ease, filter 0.6s ease;
+    }
+
+    .photo-strip figure:hover img {
+      transform: scale(1.06);
+      filter: grayscale(0) contrast(1.05);
+    }
+
+    .photo-strip figcaption {
+      position: absolute;
+      left: 1rem;
+      bottom: 0.85rem;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bone-white, #fdfbf5);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+      padding: 0.2rem 0.55rem;
+      border-left: 3px solid var(--blood-red, #b9121b);
+    }
+
+    @media (max-width: 900px) {
+      .photo-strip-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .photo-strip figure:nth-child(5) { display: none; }
+    }
+
+    /* ---------- Split spotlight ---------- */
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .spotlight-media {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      box-shadow: 0 30px 70px rgba(10, 10, 10, 0.35);
+    }
+
+    .spotlight-media::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      pointer-events: none;
+    }
+
+    .spotlight-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .spotlight-tag {
+      position: absolute;
+      top: 1.2rem;
+      left: -0.6rem;
+      background: var(--blood-red, #b9121b);
+      color: var(--bone-white, #fdfbf5);
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: 0.18em;
+      padding: 0.55rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .spotlight-copy h2 { margin-bottom: 1rem; }
+
+    .spotlight-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .spotlight-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 0.75rem;
+      align-items: start;
+      font-size: 1.02rem;
+      line-height: 1.55;
+    }
+
+    .spotlight-list li::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      margin-top: 0.45rem;
+      background: var(--blood-red, #b9121b);
+      transform: rotate(45deg);
+    }
+
+    @media (max-width: 860px) {
+      .spotlight-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://lajollamartialarts.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Programs",
+          "item": "https://lajollamartialarts.com/#programs"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Teen Martial Arts",
+          "item": "https://lajollamartialarts.com/teen-martial-arts"
+        }
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can martial arts help with respect issues at home?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Respect is a core value in our school. Every student learns to respect their instructors, their classmates, and their parents, and those habits carry straight into how they behave at home."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can martial arts improve poor judgment in teens?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Classes ask teens to learn a lesson and then apply it to decisions in real time. Over weeks and months, that practice builds calmer, more deliberate decision-making under pressure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will training reduce careless decisions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We teach teenagers the value of respect, discipline, and judgment. They learn that knee-jerk decisions are often not the right ones, and that pausing to think is a strength, not a weakness."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does martial arts help teens who are being bullied?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Teens who train in martial arts learn to carry themselves with strength and confidence. That presence alone makes them less likely to be targeted, and they gain real self-defense skills if a situation ever escalates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if my teen would rather play video games?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They might push back at first, but martial arts classes are fun, social, and physical. Most teens also think martial arts is genuinely cool, and that is often enough to get them through the first few classes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why commit if my teen quits everything they start?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Teens who want to excel in martial arts have to make a commitment to continued study. Our instructors encourage persistence and teach them that they cannot reach their goals if they give up when things get hard."
+          }
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="logo font-display">La Jolla <span>Martial Arts</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a href="index.html#programs" class="nav-dropdown-toggle">Programs</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="little-ninjas.html">Little Ninjas</a></li>
+          <li><a href="kids-martial-arts.html">Kids Martial Arts</a></li>
+          <li><a href="teen-martial-arts.html">Teen Martial Arts</a></li>
+          <li><a href="adult-martial-arts.html">Adult Classes</a></li>
+        </ul>
+      </li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#reviews">Reviews</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Free Trial</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-menu" id="mobileMenu" data-open="false">
+      <a href="index.html">Home</a>
+      <a href="little-ninjas.html">Little Ninjas</a>
+      <a href="kids-martial-arts.html">Kids Martial Arts</a>
+      <a href="teen-martial-arts.html">Teen Martial Arts</a>
+      <a href="adult-martial-arts.html">Adult Classes</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="mobile-menu-cta">Free Trial</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-media">
+      <img src="assets/EMA - Post 6.jpg" alt="Teen martial arts students training at Eagle Martial Arts in La Jolla">
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="hero-title font-display">
+          <span>Our Teen</span>
+          <span>Martial Arts Program</span>
+        </h1>
+        <p class="hero-subtitle">For Ages 13+</p>
+
+        <div class="hero-details" aria-label="Program overview">
+          <ul class="hero-benefits">
+            <li>
+              <strong>Builds real confidence and self-defense</strong>
+            </li>
+            <li>
+              <strong>Channels teen energy into discipline and focus</strong>
+            </li>
+            <li>
+              <strong>Teaches respect, judgment, and self-control</strong>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Claim Free Week</a>
+          <a href="#faq" class="btn-secondary">View FAQ</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section section-light" id="proof">
+      <div class="section-inner">
+        <p class="section-label">Trust Proof</p>
+        <h2 class="section-title font-display">
+          Why Families Choose <span class="program-highlight">Teen Martial Arts</span>
+        </h2>
+        <p class="section-intro">
+          Parents usually are not looking for just another after-school activity. They want a place that can meet
+          their teen where they are and help them grow into a more confident, disciplined, and respectful version
+          of themselves. This program is built for teens who need structure, self-defense, and a real outlet for
+          the energy and intensity of adolescence.
+        </p>
+
+        <div class="proof-bar">
+          <article class="proof-card">
+            <strong>40+</strong>
+            <span>Years of teaching experience from Master Sam</span>
+          </article>
+          <article class="proof-card">
+            <strong>300+</strong>
+            <span>Black belts trained over a long teaching career</span>
+          </article>
+          <article class="proof-card">
+            <strong>4.8<span class="proof-star" aria-hidden="true">★</span></strong>
+            <span>Rated across 39 Google reviews — one of La Jolla's most-loved martial arts schools</span>
+          </article>
+          <article class="proof-card">
+            <strong>13+</strong>
+            <span>Age-appropriate classes for teens and young adults</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-strip" aria-label="Training moments">
+      <div class="photo-strip-inner">
+        <figure>
+          <img src="assets/EMA - Post.jpg" alt="Teen martial arts students training at Eagle Martial Arts">
+          <figcaption>Focus</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/EMA - Post 2.jpg" alt="Teens practicing Taekwondo drills">
+          <figcaption>Discipline</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/EMA - Post 6.jpg" alt="Master Sam instructing a teen student">
+          <figcaption>Mastery</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/EMA - Post 12.jpg" alt="Belt ceremony at the dojo">
+          <figcaption>Growth</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/IMG_8330-5592456.webp" alt="Teen student demonstrating a technique">
+          <figcaption>Respect</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="benefits">
+      <div class="section-inner">
+        <p class="section-label">Benefits</p>
+        <h2 class="section-title font-display">
+          What <span class="program-highlight">Teen Martial Arts</span> Is Built To Develop
+        </h2>
+        <p class="section-intro">
+          Martial arts is a holistic approach to health and wellness and one of the best tools teens can use
+          to build self-discipline and real self-defense. Every class is designed to help teens grow mentally
+          and physically in a way that feels clear, challenging, and age-appropriate.
+        </p>
+
+        <div class="benefits-grid">
+          <article class="benefit-card">
+            <h3 class="font-display">A Real After-School Outlet</h3>
+            <p>Martial arts is a perfect after-school activity for teens. Classes give them a structured place to burn energy, challenge themselves, and decompress from the pressure of school, social life, and screens.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">Fitness And Physical Health</h3>
+            <p>Training improves muscle strength, balance, flexibility, and cognitive function. Teens leave class more coordinated, more conditioned, and better equipped to handle the physical demands of everyday life.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">Higher Self-Esteem And Self-Respect</h3>
+            <p>Teens develop higher self-esteem, more self-respect, and better self-awareness through regular training. Small wins on the mat add up to a steadier, more grounded sense of who they are.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">Leadership And Social Skills</h3>
+            <p>Classes help teens develop leadership qualities and stronger social interaction. Working alongside classmates of all ages teaches them how to lead, listen, and show up for other people.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">A No-Bullying Environment</h3>
+            <p>Our dojo is a place where there is no bullying, only friendships and respect for all people. Teens train in an environment that feels safe, supportive, and free of the social dynamics they deal with elsewhere.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">Art, Not Violence</h3>
+            <p>We teach students to avoid unnecessary conflicts and reserve fights for grave situations. Our experienced instructors emphasize the art, not violence, so teens learn power and restraint at the same time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="spotlight">
+      <div class="section-inner">
+        <div class="spotlight-grid">
+          <div class="spotlight-media">
+            <span class="spotlight-tag">Inside The Dojo</span>
+            <img src="assets/Eagle_martial_arts_classes_2-9552290.webp" alt="Teen Martial Arts class in session at Eagle Martial Arts">
+          </div>
+          <div class="spotlight-copy">
+            <p class="section-label">A Closer Look</p>
+            <h2 class="section-title font-display">
+              Step Onto <span class="program-highlight">The Mat</span>
+            </h2>
+            <p class="section-intro">
+              Teen Martial Arts runs as a combined Teen &amp; Adult class, which gives teens something most
+              programs do not: a room full of classmates both younger and older than them, all training seriously.
+              Master Sam runs the floor with a calm, direct style that earns respect without being harsh.
+            </p>
+            <ul class="spotlight-list">
+              <li>Mixed-age Teen &amp; Adult training so teens learn from role models, not just peers</li>
+              <li>Beginners are welcomed in their very first class, no experience needed</li>
+              <li>A clear belt progression teens can see, earn, and feel proud of</li>
+              <li>A no-bullying culture parents notice in how their teen carries themselves</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light schedule-section" id="schedule">
+      <div class="section-inner">
+        <div class="schedule-head">
+          <div>
+            <p class="section-label">Schedule</p>
+            <h2 class="section-title font-display">
+              See The Weekly Rhythm For <span class="program-highlight">Teen Martial Arts</span>
+            </h2>
+            <p class="section-intro">
+              Teen Martial Arts runs as a combined Teen &amp; Adult class Monday through Thursday in the evening.
+              Friday, Saturday, and Sunday are closed for this program.
+            </p>
+          </div>
+        </div>
+
+        <div class="schedule-board">
+          <div class="schedule-board-scroll">
+            <div class="schedule-grid" role="table" aria-label="Teen Martial Arts weekly schedule">
+              <div class="schedule-corner" role="columnheader">Time</div>
+              <div class="schedule-day" role="columnheader">Mon</div>
+              <div class="schedule-day" role="columnheader">Tue</div>
+              <div class="schedule-day" role="columnheader">Wed</div>
+              <div class="schedule-day" role="columnheader">Thu</div>
+              <div class="schedule-day" role="columnheader">Fri</div>
+              <div class="schedule-day" role="columnheader">Sat</div>
+              <div class="schedule-day" role="columnheader">Sun</div>
+
+              <div class="schedule-time" role="rowheader">5:15pm - 6:15pm</div>
+              <div class="schedule-slot schedule-slot--live" role="cell">
+                <div>
+                  <strong>Teen &amp; Adult</strong>
+                  <span>Ages 13+</span>
+                </div>
+              </div>
+              <div class="schedule-slot schedule-slot--live" role="cell">
+                <div>
+                  <strong>Teen &amp; Adult</strong>
+                  <span>Ages 13+</span>
+                </div>
+              </div>
+              <div class="schedule-slot schedule-slot--live" role="cell">
+                <div>
+                  <strong>Teen &amp; Adult</strong>
+                  <span>Ages 13+</span>
+                </div>
+              </div>
+              <div class="schedule-slot schedule-slot--live" role="cell">
+                <div>
+                  <strong>Teen &amp; Adult</strong>
+                  <span>Ages 13+</span>
+                </div>
+              </div>
+              <div class="schedule-slot schedule-slot--closed" role="cell">
+                <div>
+                  <strong>Closed</strong>
+                </div>
+              </div>
+              <div class="schedule-slot schedule-slot--closed" role="cell">
+                <div>
+                  <strong>Closed</strong>
+                </div>
+              </div>
+              <div class="schedule-slot schedule-slot--closed" role="cell">
+                <div>
+                  <strong>Closed</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="schedule-mobile" aria-label="Teen Martial Arts mobile schedule preview">
+            <article class="schedule-mobile-card schedule-mobile-card--live">
+              <div class="schedule-mobile-top">
+                <span class="schedule-mobile-day">Mon-Thu</span>
+                <span class="schedule-mobile-time">5:15pm - 6:15pm</span>
+              </div>
+              <strong>Teen &amp; Adult Martial Arts</strong>
+              <p>Combined Teen &amp; Adult class for ages 13+.</p>
+            </article>
+
+            <article class="schedule-mobile-card schedule-mobile-card--off">
+              <div class="schedule-mobile-top">
+                <span class="schedule-mobile-day">Fri - Sun</span>
+                <span class="schedule-mobile-time">Closed</span>
+              </div>
+              <strong>Closed</strong>
+              <p>No Teen Martial Arts classes are scheduled Friday, Saturday, or Sunday.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="reviews">
+      <div class="section-inner">
+        <div class="reviews-head">
+          <div>
+            <p class="section-label">Reviews</p>
+            <h2 class="section-title font-display">
+              What People Notice In <span class="program-highlight">Teen Martial Arts</span>
+            </h2>
+          </div>
+          <div class="rating-chip">
+            <strong>★★★★★</strong>
+            <span>Confidence, respect, and strong mentorship</span>
+          </div>
+        </div>
+
+        <div class="reviews-grid">
+          <article class="review-card">
+            <span class="review-kicker">18-Year-Old Student</span>
+            <h3>A Class With All Kinds Of People</h3>
+            <p>"I'm 18 but the class has a huge variety of classmates both younger and older than me who are so much fun to talk and workout with."</p>
+          </article>
+          <article class="review-card">
+            <span class="review-kicker">Parent Feedback</span>
+            <h3>Role Models, Not Just Instructors</h3>
+            <p>"Not only are they great instructors, they are amazing role models for our children." Families notice the difference in how their teens carry themselves after a few months of training.</p>
+          </article>
+          <article class="review-card">
+            <span class="review-kicker">Long-Term Parent Feedback</span>
+            <h3>Discipline And Focus Grow Over Time</h3>
+            <p>Families describe a "dramatic increase in their discipline and focus" over months of consistent training, and point to Master Sam as a steady, respectful presence their teens respond to.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="faq">
+      <div class="section-inner">
+        <p class="section-label">FAQ</p>
+        <h2 class="section-title font-display">
+          Questions About <span class="program-highlight">Teen Martial Arts</span>
+        </h2>
+        <p class="section-intro">
+          These answers are built around the questions parents of teens ask most often: respect, judgment,
+          bullying, motivation, and whether martial arts is the right fit for a teen who needs structure,
+          confidence, or a better outlet.
+        </p>
+
+        <div class="faq-list">
+          <article class="faq-item open">
+            <button class="faq-question" type="button" aria-expanded="true">
+              <span>Can martial arts help with respect issues at home?</span>
+              <i data-lucide="minus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Respect is a core value in our school. Every student learns to respect their instructors, their classmates, and their parents, and those habits carry straight into how they behave at home.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Can martial arts improve poor judgment in teens?</span>
+              <i data-lucide="plus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Yes. Classes ask teens to learn a lesson and then apply it to decisions in real time. Over weeks and months, that practice builds calmer, more deliberate decision-making under pressure.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Will training reduce careless decisions?</span>
+              <i data-lucide="plus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">We teach teenagers the value of respect, discipline, and judgment. They learn that knee-jerk decisions are often not the right ones, and that pausing to think is a strength, not a weakness.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>How does martial arts help teens who are being bullied?</span>
+              <i data-lucide="plus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Teens who train in martial arts learn to carry themselves with strength and confidence. That presence alone makes them less likely to be targeted, and they gain real self-defense skills if a situation ever escalates.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>What if my teen would rather play video games?</span>
+              <i data-lucide="plus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">They might push back at first, but martial arts classes are fun, social, and physical. Most teens also think martial arts is genuinely cool, and that is often enough to get them through the first few classes.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Why commit if my teen quits everything they start?</span>
+              <i data-lucide="plus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Teens who want to excel in martial arts have to make a commitment to continued study. Our instructors encourage persistence and teach them that they cannot reach their goals if they give up when things get hard.</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="contact">
+      <div class="section-inner">
+        <div class="cta-layout">
+          <div class="cta-panel">
+            <p class="section-label">Get Started</p>
+            <h2 class="section-title font-display">Try A Free Week Of Teen Martial Arts</h2>
+            <p>Visit our La Jolla school, meet the team, and see how your teen responds to a more structured, confidence-building kind of training. We will help you figure out if this program and schedule feel like the right fit.</p>
+
+            <ul class="cta-highlights">
+              <li>Tour the school and get a feel for the class environment</li>
+              <li>Meet Master Sam and ask about confidence, respect, and beginner fit</li>
+              <li>Start with a low-pressure free week before making any long-term decision</li>
+            </ul>
+          </div>
+
+          <div class="get-started-form-container">
+            <form class="get-started-form" data-form-type="TeenMartialArtsForm" action="#" method="POST">
+              <div class="get-started-form-header">
+                <span class="offer-badge">Limited Time Offer</span>
+                <h3 class="font-display">1 Week Free Classes</h3>
+                <p>Experience world-class Taekwondo training with no commitment.</p>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="first-name">First Name</label>
+                  <input id="first-name" name="firstName" type="text" class="form-input" placeholder="John" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="last-name">Last Name</label>
+                  <input id="last-name" name="lastName" type="text" class="form-input" placeholder="Smith" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input id="email" name="email" type="email" class="form-input" placeholder="john@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone Number</label>
+                <input id="phone" name="phone" type="tel" class="form-input" placeholder="(858) 555-0123" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="program-interest">Program Interest</label>
+                <select id="program-interest" name="program" class="form-select" required>
+                  <option value="" disabled>Select a program</option>
+                  <option value="little-ninjas">Little Ninjas (Ages 3-6)</option>
+                  <option value="kids">Kids Martial Arts (Ages 7-12)</option>
+                  <option value="teens" selected>Teen Martial Arts (Ages 13+)</option>
+                  <option value="adults">Adult Classes (15+)</option>
+                </select>
+              </div>
+
+              <button class="form-submit" type="submit">Claim Your Free Week</button>
+
+              <div class="form-divider">
+                <span>or</span>
+              </div>
+
+              <a href="tel:8583610961" class="btn-call">
+                <i data-lucide="phone"></i>
+                Call (858) 361-0961
+              </a>
+
+              <p class="form-disclaimer">
+                By submitting, you agree to receive emails and texts about your trial.
+                We respect your privacy and will never share your information.
+              </p>
+            </form>
+
+            <div class="contact-info-bottom">
+              <div class="contact-item-bottom">
+                <i data-lucide="map-pin"></i>
+                <p>7438 Girard Ave, La Jolla, CA 92037</p>
+              </div>
+              <div class="contact-item-bottom">
+                <i data-lucide="clock"></i>
+                <p>Mon-Thu: 3:00pm-6:30pm | Sat: 10:00am-1:00pm</p>
+              </div>
+              <div class="contact-item-bottom">
+                <i data-lucide="mail"></i>
+                <p>Samhadaf@gmail.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-copy">
+        <a href="index.html" class="logo font-display">La Jolla <span>Martial Arts</span></a>
+        <p>7438 Girard Ave, La Jolla, CA 92037 • <a href="tel:8583610961">(858) 361-0961</a> • <a href="mailto:Samhadaf@gmail.com">Samhadaf@gmail.com</a></p>
+        <p>© <span id="footer-year">2026</span> La Jolla Martial Arts. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Free Trial</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="program-template.js"></script>
+</body>
+</html>
