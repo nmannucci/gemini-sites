@@ -17,7 +17,7 @@
 
   <style>
     :root {
-      --blood-red: #B91C1C;
+      --blood-red: #22B6E6;
       --deep-black: #0A0A0A;
       --bone-white: #F5F5F0;
       --steel-gray: #3A3A3A;
@@ -48,11 +48,33 @@
       transition: all 0.3s ease;
     }
     .logo {
-      font-size: 1.2rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--dark-text); text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      height: 56px;
+      text-decoration: none;
+      color: var(--dark-text);
     }
-    .logo span { color: var(--blood-red); }
+
+    .logo-wordmark {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .logo-wordmark em {
+      font-style: normal;
+      color: var(--blood-red);
+    }
+
+    .logo img {
+      height: 100%;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links > li { position: relative; }
     .nav-links a {
@@ -91,7 +113,7 @@
       font-size: 0.78rem; letter-spacing: 0.12em;
       white-space: nowrap;
     }
-    .nav-dropdown-menu a:hover { background: rgba(185,28,28,0.06); }
+    .nav-dropdown-menu a:hover { background: rgba(34, 182, 230,0.06); }
     .nav-cta {
       padding: 0.55rem 1.2rem; background: var(--blood-red);
       color: var(--bone-white); font-weight: 700;
@@ -99,7 +121,7 @@
       font-size: 0.75rem; border: none; cursor: pointer;
       transition: all 0.3s ease; text-decoration: none;
     }
-    .nav-cta:hover { background: #991B1B; }
+    .nav-cta:hover { background: #0E8FBF; }
 
     /* CONTACT HERO */
     .contact-hero {
@@ -179,8 +201,8 @@
     .contact-facts .icon-wrap {
       width: 36px; height: 36px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(185,28,28,0.15);
-      border: 1px solid rgba(185,28,28,0.45);
+      background: rgba(34, 182, 230,0.15);
+      border: 1px solid rgba(34, 182, 230,0.45);
       color: var(--blood-red);
     }
     .contact-facts .icon-wrap svg { width: 16px; height: 16px; }
@@ -273,7 +295,7 @@
       border: none; cursor: pointer;
       transition: all 0.3s ease; margin-top: 0.5rem;
     }
-    .form-submit:hover { background: #991B1B; transform: translateY(-2px); }
+    .form-submit:hover { background: #0E8FBF; transform: translateY(-2px); }
 
     .form-disclaimer {
       font-size: 0.65rem; color: #888;
@@ -290,11 +312,15 @@
       max-width: 1400px; margin: 0 auto;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .footer-logo {
-      font-size: 1.25rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
+    .footer-logo img {
+      height: 72px;
+      width: 72px;
+      display: block;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 50%;
+      padding: 6px;
     }
-    .footer-logo span { color: var(--blood-red); }
     .footer-info { text-align: center; }
     .footer-info p { font-size: 0.8rem; color: #6B6B6B; }
     .footer-info a { color: var(--bone-white); text-decoration: none; }
@@ -330,7 +356,7 @@
 
     @media (max-width: 640px) {
       .nav { padding: 0.6rem 1.25rem; }
-      .logo { font-size: 1rem; }
+      .logo { height: 44px; gap: 0.5rem; } .logo-wordmark { font-size: 0.85rem; }
       .nav-cta { padding: 0.75rem 1rem; font-size: 0.7rem; }
       .contact-hero { padding: 6rem 1.25rem 2.5rem; }
       .contact-title { font-size: clamp(2rem, 9vw, 2.75rem); line-height: 1.05; }
@@ -341,7 +367,7 @@
       .contact-facts li { grid-template-columns: 32px 1fr; }
       .contact-facts .icon-wrap { width: 32px; height: 32px; }
       .nav { padding: 0.5rem 1rem; }
-      .logo { font-size: 0.9rem; letter-spacing: 0.08em; }
+      .logo { height: 38px; gap: 0.4rem; } .logo-wordmark { display: none; }
       .nav-cta { padding: 0.6rem 0.85rem; font-size: 0.65rem; }
       .contact-hero { padding: 5.5rem 1rem 2rem; }
       .contact-form { padding: 1.25rem 1rem; }
@@ -356,8 +382,8 @@
     .mobile-menu { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-top: 1px solid rgba(0,0,0,0.08); box-shadow: 0 12px 30px rgba(0,0,0,0.12); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease; display: flex; flex-direction: column; padding: 0.25rem 0 0.75rem; z-index: 999; }
     .mobile-menu[data-open="true"] { opacity: 1; visibility: visible; transform: translateY(0); }
     .mobile-menu a { padding: 0.9rem 1.5rem; color: var(--dark-text, #1a1a1a); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,0.05); }
-    .mobile-menu a:hover { color: var(--blood-red, #B91C1C); }
-    .mobile-menu-cta { background: var(--blood-red, #B91C1C); color: #fff !important; margin: 0.75rem 1.5rem 0; text-align: center; border-bottom: none !important; padding: 0.95rem 1.5rem !important; }
+    .mobile-menu a:hover { color: var(--blood-red, #22B6E6); }
+    .mobile-menu-cta { background: var(--blood-red, #22B6E6); color: #fff !important; margin: 0.75rem 1.5rem 0; text-align: center; border-bottom: none !important; padding: 0.95rem 1.5rem !important; }
     @media (max-width: 960px) {
       .nav-toggle { display: flex; }
       .nav-cta { margin-left: auto; }
@@ -366,7 +392,7 @@
 </head>
 <body>
   <nav class="nav" id="nav">
-    <a href="index.html" class="logo font-display">La Jolla <span>Martial Arts</span></a>
+    <a href="index.html" class="logo" aria-label="La Jolla Martial Arts home"><img src="assets/La-Jolla-Martial-Arts-LOGO-white.png" alt=""><span class="logo-wordmark font-display">La Jolla <em>Martial Arts</em></span></a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li class="nav-dropdown">
@@ -379,7 +405,6 @@
         </ul>
       </li>
       <li><a href="schedule.html">Schedule</a></li>
-      <li><a href="about.html">About</a></li>
       <li><a href="index.html#reviews">Reviews</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -394,7 +419,6 @@
       <a href="teen-martial-arts.html">Teen Martial Arts</a>
       <a href="adult-martial-arts.html">Adult Classes</a>
       <a href="schedule.html">Schedule</a>
-      <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
       <a href="#contact-form" class="mobile-menu-cta">Free Trial</a>
     </div>
@@ -422,7 +446,7 @@
             <span class="icon-wrap"><i data-lucide="map-pin"></i></span>
             <div>
               <strong>Visit</strong>
-              <p>7438 Girard Ave, La Jolla, CA 92037</p>
+              <p>7680 Girard Ave, Basement, La Jolla, CA 92037</p>
             </div>
           </li>
           <li>
@@ -436,7 +460,7 @@
             <span class="icon-wrap"><i data-lucide="mail"></i></span>
             <div>
               <strong>Email</strong>
-              <a href="mailto:Samhadaf@gmail.com">Samhadaf@gmail.com</a>
+              <a href="mailto:ljbullyproof@gmail.com">ljbullyproof@gmail.com</a>
             </div>
           </li>
           <li>
@@ -506,12 +530,12 @@
 
   <footer class="footer">
     <div class="footer-content">
-      <div class="footer-logo font-display">La Jolla <span>Martial Arts</span></div>
+      <div class="footer-logo"><img src="assets/La-Jolla-Martial-Arts-LOGO-white.png" alt="La Jolla Martial Arts"></div>
       <div class="footer-info">
         <p>
-          7438 Girard Ave, La Jolla, CA 92037 ·
+          7680 Girard Ave, Basement, La Jolla, CA 92037 ·
           <a href="tel:8583610961">(858) 361-0961</a> ·
-          <a href="mailto:Samhadaf@gmail.com">Samhadaf@gmail.com</a>
+          <a href="mailto:ljbullyproof@gmail.com">ljbullyproof@gmail.com</a>
         </p>
         <p style="margin-top: 0.5rem;">© 2026 La Jolla Martial Arts. All rights reserved.</p>
       </div>
