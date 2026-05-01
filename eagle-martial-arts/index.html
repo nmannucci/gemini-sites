@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>La Jolla Martial Arts | Learn Taekwondo Martial Arts in La Jolla, California</title>
-  <meta name="description" content="La Jolla Martial Arts offers world-class Taekwondo training for all ages. Build discipline, confidence, and self-defense skills with Master Sam's 40+ years of experience.">
+  <meta name="description" content="La Jolla Martial Arts offers world-class Taekwondo training for all ages. Build discipline, confidence, and self-defense skills in the heart of La Jolla.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
-      --blood-red: #B91C1C;
+      --blood-red: #22B6E6;
       --deep-black: #0A0A0A;
       --bone-white: #F5F5F0;
       --steel-gray: #3A3A3A;
@@ -68,15 +68,32 @@
     }
 
     .logo {
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      height: 56px;
+      text-decoration: none;
       color: var(--dark-text);
     }
 
-    .logo span {
+    .logo-wordmark {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .logo-wordmark em {
+      font-style: normal;
       color: var(--blood-red);
+    }
+
+    .logo img {
+      height: 100%;
+      width: auto;
+      display: block;
+      object-fit: contain;
     }
 
     .nav-links {
@@ -156,7 +173,7 @@
     }
 
     .nav-dropdown-menu a:hover {
-      background: rgba(185, 28, 28, 0.06);
+      background: rgba(34, 182, 230, 0.06);
     }
 
     .nav-cta {
@@ -174,7 +191,7 @@
     }
 
     .nav-cta:hover {
-      background: #991B1B;
+      background: #0E8FBF;
     }
 
     /* ============================================
@@ -483,7 +500,7 @@
     }
 
     .form-submit:hover {
-      background: #991B1B;
+      background: #0E8FBF;
       transform: translateY(-2px);
     }
 
@@ -1503,15 +1520,14 @@
       align-items: center;
     }
 
-    .footer-logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .footer-logo span {
-      color: var(--blood-red);
+    .footer-logo img {
+      height: 72px;
+      width: 72px;
+      display: block;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 50%;
+      padding: 6px;
     }
 
     .footer-info {
@@ -1712,9 +1728,7 @@
         padding: 0.6rem 1.25rem;
       }
 
-      .logo {
-        font-size: 1rem;
-      }
+      .logo { height: 44px; gap: 0.5rem; } .logo-wordmark { font-size: 0.85rem; }
 
       .nav-cta {
         padding: 0.75rem 1rem;
@@ -1825,10 +1839,7 @@
         padding: 0.55rem 1rem;
       }
 
-      .logo {
-        font-size: 0.9rem;
-        letter-spacing: 0.08em;
-      }
+      .logo { height: 38px; gap: 0.4rem; } .logo-wordmark { display: none; }
 
       .nav-cta {
         padding: 0.65rem 0.85rem;
@@ -1937,9 +1948,9 @@
       font-weight: 600;
       border-bottom: 1px solid rgba(0,0,0,0.05);
     }
-    .mobile-menu a:hover { color: var(--blood-red, #B91C1C); }
+    .mobile-menu a:hover { color: var(--blood-red, #22B6E6); }
     .mobile-menu-cta {
-      background: var(--blood-red, #B91C1C);
+      background: var(--blood-red, #22B6E6);
       color: #fff !important;
       margin: 0.75rem 1.5rem 0;
       text-align: center;
@@ -1956,7 +1967,7 @@
 <body>
   <!-- Navigation -->
   <nav class="nav" id="nav">
-    <a href="index.html" class="logo font-display">La Jolla <span>Martial Arts</span></a>
+    <a href="index.html" class="logo" aria-label="La Jolla Martial Arts home"><img src="assets/La-Jolla-Martial-Arts-LOGO-white.png" alt=""><span class="logo-wordmark font-display">La Jolla <em>Martial Arts</em></span></a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li class="nav-dropdown">
@@ -1969,7 +1980,6 @@
         </ul>
       </li>
       <li><a href="schedule.html">Schedule</a></li>
-      <li><a href="about.html">About</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -1984,7 +1994,6 @@
       <a href="teen-martial-arts.html">Teen Martial Arts</a>
       <a href="adult-martial-arts.html">Adult Classes</a>
       <a href="schedule.html">Schedule</a>
-      <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
       <a href="contact.html" class="mobile-menu-cta">Free Trial</a>
     </div>
@@ -2317,24 +2326,6 @@
     </div>
   </section>
 
-  <!-- About Section -->
-  <section class="section about" id="about">
-    <div class="about__container">
-      <div class="about__image">
-        <img src="assets/EMA - Cover Page.jpg" alt="Master Sam Hadaf, 6th Degree Black Belt">
-      </div>
-      <div class="about__content">
-        <div class="about__eyebrow">Meet The Founder</div>
-        <h2 class="about__title font-display">Master <em>Sam Hadaf</em></h2>
-        <div class="about__desc">
-          <p>With over 40 years of martial arts experience, Master Sam is a 6th Degree Certified Black Belt Master from the World Taekwondo Federation. He has proudly trained over 300 black belts around the world.</p>
-          <p>His philosophy extends far beyond physical techniques. He believes martial arts is a vehicle for <strong>building unshakeable character, discipline, and mental resilience</strong> that transforms every aspect of a student's life.</p>
-        </div>
-        <a href="#get-started" class="btn-primary">Read Full Bio</a>
-      </div>
-    </div>
-  </section>
-
   <!-- Reviews Section -->
   <section class="section reviews" id="reviews">
     <div class="reviews-header">
@@ -2352,14 +2343,57 @@
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">
-          "This is an amazing program. Master Sam is amazing with kids and has helped
-          both my boys with their confidence and self discipline."
+          "Master Sam and his sons are 'the best'. We've brought our daughter here since
+          he opened the dojo. Her confidence, balance, focus — all the things you are
+          looking for in a martial arts education — have grown substantially. As soon as
+          our son was ready we started him too, and we have seen the same results. We
+          regularly use Master Sam as an example when we talk to our kids about behavior.
+          The proper mix of encouragement and firmness — Master Sam and his sons are
+          fantastic."
+        </p>
+        <div class="review-author">
+          <div class="review-author-avatar">L</div>
+          <div class="review-author-info">
+            <h5>Long-Time Parent</h5>
+            <p>Google Review</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">
+          "Master Sam is a passionate instructor who treats each student as a personal
+          reflection of himself. Training is extremely individualized — each student is
+          analyzed and given unique instruction based on their strengths and weaknesses
+          so they can achieve their full potential. Whether it's strength, stamina,
+          flexibility, or confidence, training here will prepare you for whatever
+          challenges you may face in life — in the classroom, in the workplace, or on
+          the street. Highly recommended to all ages, genders, and experience levels."
+        </p>
+        <div class="review-author">
+          <div class="review-author-avatar">A</div>
+          <div class="review-author-info">
+            <h5>Adult Student</h5>
+            <p>Google Review</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">
+          "I simply can't say enough wonderful things about Master Sam and Instructor
+          Adnon. We've had both our kids in this dojo for several years and we have
+          noticed a dramatic increase in their discipline and focus. Not only are they
+          great instructors, they are amazing role models for our children. I'm so happy
+          we chose to bring our kids here!"
         </p>
         <div class="review-author">
           <div class="review-author-avatar">P</div>
           <div class="review-author-info">
             <h5>Parent of Two</h5>
-            <p>Verified Review</p>
+            <p>Google Review</p>
           </div>
         </div>
       </div>
@@ -2367,15 +2401,17 @@
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">
-          "We have been taking our kids to La Jolla Martial Arts for five years now.
-          He's not only a great coach for martial arts, he teaches the kids respect,
-          integrity and discipline."
+          "We have been taking our kids to this dojo for five years now. He's not only
+          a great coach for martial arts — he teaches the kids respect, integrity and
+          discipline. Our boys have grown so much in their Taekwondo training, and the
+          values they pick up here carry into school and home. We couldn't ask for a
+          better place to raise martial artists."
         </p>
         <div class="review-author">
           <div class="review-author-avatar">L</div>
           <div class="review-author-info">
-            <h5>Long-time Member</h5>
-            <p>5 Years Training</p>
+            <h5>Long-Time Member</h5>
+            <p>Google Review · 5 Years</p>
           </div>
         </div>
       </div>
@@ -2383,15 +2419,34 @@
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">
-          "My son has been attending classes here for 3 years. Martial Arts has given
-          him confidence in a way no other sport has. Master Sam strikes a good balance
-          of positivity and discipline."
+          "My daughter and I visited this week and we were extremely impressed. Master
+          Sam runs a terrific program and is great with children — focusing on discipline
+          and respect in addition to the Tae Kwon Do curriculum. Very experienced and
+          knowledgeable, and a gracious host during our recent visit. Pilsung, Sir!"
         </p>
         <div class="review-author">
-          <div class="review-author-avatar">M</div>
+          <div class="review-author-avatar">V</div>
+          <div class="review-author-info">
+            <h5>Visiting Parent</h5>
+            <p>Google Review</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">
+          "My son has been attending Taekwondo classes here for 3 years. Martial arts
+          has given him confidence in a way no other sport has. Master Sam strikes a
+          good balance of positivity and discipline — pushing the kids to earn each
+          stripe and belt while keeping it fun. Watching my son test for his belt is
+          one of the proudest things I've experienced as a parent."
+        </p>
+        <div class="review-author">
+          <div class="review-author-avatar">P</div>
           <div class="review-author-info">
             <h5>Proud Parent</h5>
-            <p>3 Years Training</p>
+            <p>Google Review · 3 Years</p>
           </div>
         </div>
       </div>
@@ -2464,7 +2519,7 @@
           <div class="step">
             <div class="step-number font-display">2</div>
             <div class="step-content">
-              <h4>Meet Master Sam</h4>
+              <h4>Tour the Dojo</h4>
               <p>
                 Tour our facility, meet our instructors, and find the right program for
                 you or your child. We'll answer all your questions.
@@ -2545,7 +2600,7 @@
         <div class="contact-info-bottom">
           <div class="contact-item-bottom">
             <i data-lucide="map-pin"></i>
-            <p>7438 Girard Ave, La Jolla, CA 92037</p>
+            <p>7680 Girard Ave, Basement, La Jolla, CA 92037</p>
           </div>
           <div class="contact-item-bottom">
             <i data-lucide="clock"></i>
@@ -2553,7 +2608,7 @@
           </div>
           <div class="contact-item-bottom">
             <i data-lucide="mail"></i>
-            <p>Samhadaf@gmail.com</p>
+            <p>ljbullyproof@gmail.com</p>
           </div>
         </div>
       </div>
@@ -2563,12 +2618,12 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
-      <div class="footer-logo font-display">La Jolla <span>Martial Arts</span></div>
+      <div class="footer-logo"><img src="assets/La-Jolla-Martial-Arts-LOGO-white.png" alt="La Jolla Martial Arts"></div>
       <div class="footer-info">
         <p>
-          7438 Girard Ave, La Jolla, CA 92037 •
+          7680 Girard Ave, Basement, La Jolla, CA 92037 •
           <a href="tel:8583610961">(858) 361-0961</a> •
-          <a href="mailto:Samhadaf@gmail.com">Samhadaf@gmail.com</a>
+          <a href="mailto:ljbullyproof@gmail.com">ljbullyproof@gmail.com</a>
         </p>
         <p style="margin-top: 0.5rem;">© 2024 La Jolla Martial Arts. All rights reserved.</p>
       </div>
