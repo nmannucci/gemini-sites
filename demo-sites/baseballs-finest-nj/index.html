@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baseball's Finest NJ — Diamond Cut Hero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --primary: #001d59;
+      --primary-container: #003087;
+      --surface: #f9f9f9;
+      --surface-low: #f3f3f3;
+      --surface-lowest: #ffffff;
+      --secondary: #5e5e5e;
+      --on-surface: #1a1c1c;
+      --accent: #003087;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--surface);
+      color: var(--on-surface);
+      overflow-x: hidden;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* ─── NAV ─── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      background: var(--surface);
+      animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-100%); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .nav-logo img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+
+    .nav-cta {
+      background: var(--primary) !important;
+      color: #ffffff !important;
+      padding: 0.7rem 1.5rem;
+      border-radius: 0px;
+      font-weight: 800 !important;
+      transition: background 0.3s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--primary-container) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 870px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Full background image */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      opacity: 0.9;
+      animation: zoomIn 1.5s ease-out;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(0,29,89,0.85) 0%,
+        rgba(0,29,89,0.5) 50%,
+        transparent 100%
+      );
+      z-index: 2;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(1.1); }
+      to { transform: scale(1); }
+    }
+
+    /* Content overlay */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      padding: 0 4rem;
+      max-width: 750px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--primary-container);
+      color: #ffffff;
+      padding: 0.35rem 1rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      animation: fadeRight 0.6s ease-out 0.3s both;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.75rem, 5vw, 4.25rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+      margin-bottom: 1.75rem;
+      animation: fadeRight 0.6s ease-out 0.5s both;
+    }
+
+    .hero-description {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      animation: fadeRight 0.6s ease-out 0.7s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      animation: fadeRight 0.6s ease-out 0.9s both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 0px;
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: var(--primary);
+      padding: 1rem 2.5rem;
+    }
+
+    .btn-primary:hover {
+      background: var(--surface-low);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #ffffff;
+      border: 2px solid #ffffff;
+      padding: 1rem 2.5rem;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ─── STATS STRIP ─── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      animation: fadeUp 0.6s ease-out 1.2s both;
+    }
+
+    .stats-item {
+      padding: 2rem 2rem;
+      background: rgba(0,29,89,0.92);
+      backdrop-filter: blur(12px);
+      transition: background 0.3s;
+    }
+
+    .stats-item:hover {
+      background: rgba(0,48,135,0.92);
+    }
+
+    .stats-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .stats-number .accent { color: rgba(255,255,255,0.5); }
+
+    .stats-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.3rem;
+    }
+
+    @keyframes fadeRight {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .pinstripe-pattern {
+      background-image: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,29,89,0.03) 40px, rgba(0,29,89,0.03) 41px);
+    }
+
+    /* ─── PROGRAMS SECTION ─── */
+    .programs {
+      padding: 6rem 3rem;
+      background: var(--surface-low);
+    }
+
+    .programs-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+      gap: 2rem;
+    }
+
+    .programs-header-left {
+      max-width: 600px;
+    }
+
+    .programs-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      color: var(--primary);
+      line-height: 0.95;
+      margin-bottom: 1rem;
+    }
+
+    .programs-subtitle {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--secondary);
+    }
+
+    .programs-view-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--primary);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+
+    .program-card {
+      position: relative;
+      background: var(--surface-lowest);
+      transition: all 0.5s ease;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .program-card:hover {
+      background: var(--primary);
+      box-shadow: 0 24px 48px -12px rgba(0, 29, 89, 0.12);
+    }
+
+    .program-card-img {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .program-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .program-card:hover .program-card-img img {
+      transform: scale(1.05);
+    }
+
+    .program-card-body {
+      padding: 1.5rem 1.75rem 2rem;
+    }
+
+    .program-icon {
+      font-size: 2.25rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      transition: color 0.5s;
+    }
+
+    .program-card:hover .program-icon {
+      color: #ffffff;
+    }
+
+    .program-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--primary);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.75rem;
+      line-height: 1.1;
+      transition: color 0.5s;
+    }
+
+    .program-card:hover .program-name {
+      color: #ffffff;
+    }
+
+    .program-desc {
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      transition: color 0.5s;
+    }
+
+    .program-card:hover .program-desc {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .program-link {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--primary);
+      border-bottom: 1px solid var(--primary);
+      padding-bottom: 0.2rem;
+      transition: color 0.5s, border-color 0.5s;
+    }
+
+    .program-card:hover .program-link {
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+
+    /* Bottom row — 2 wide cards */
+    .programs-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .program-card-wide {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      padding: 2.5rem 2.5rem;
+      background: var(--primary);
+      color: #ffffff;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .program-card-wide:last-child {
+      background: var(--primary-container);
+    }
+
+    .program-card-wide:hover {
+      filter: brightness(1.15);
+    }
+
+    .program-card-wide .program-wide-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: rgba(255,255,255,0.1);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .program-card-wide-content {
+      flex: 1;
+    }
+
+    .program-card-wide .program-wide-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+
+    .program-card-wide .program-wide-desc {
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 1rem;
+    }
+
+    .program-card-wide .program-wide-link {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      padding-bottom: 0.2rem;
+    }
+
+    /* ─── ALL RISE CAMP ─── */
+    .camp {
+      padding: 6rem 3rem 6rem 4rem;
+      background: var(--primary);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .camp-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      opacity: 0.2;
+    }
+
+    .camp-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .camp-content {
+      position: relative;
+      z-index: 2;
+      max-width: 650px;
+    }
+
+    .camp-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 0.95;
+      margin-bottom: 1rem;
+    }
+
+    .camp-tagline {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 2.5rem;
+    }
+
+    .camp-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .camp-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .camp-detail-icon {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--primary-container);
+      padding: 0.5rem 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .camp-detail-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .camp-detail-value {
+      font-size: 1.1rem;
+      margin-top: 0.2rem;
+    }
+
+    .btn-white {
+      background: #ffffff;
+      color: var(--primary);
+      font-weight: 800;
+      padding: 1rem 2.5rem;
+    }
+
+    .btn-white:hover {
+      background: var(--surface-low);
+    }
+
+    /* ─── COACHES ─── */
+    .coaches {
+      padding: 6rem 4rem;
+      background: var(--surface-low);
+    }
+
+    .coaches-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .coaches-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .coaches-subtitle {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    .coaches-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .coach-card {
+      cursor: pointer;
+    }
+
+    .coach-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      background: var(--surface);
+    }
+
+    .coach-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: filter 0.5s ease;
+    }
+
+    .coach-card:hover .coach-photo img {
+      filter: grayscale(0%);
+    }
+
+    .coach-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    .coach-role {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-top: 0.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .coach-bio {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--secondary);
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials {
+      padding: 6rem 4rem;
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .testimonials-inner {
+      display: flex;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .testimonials-left {
+      flex: 0 0 33%;
+    }
+
+    .testimonials-left .quote-icon {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6rem;
+      line-height: 1;
+      color: rgba(255,255,255,0.15);
+      margin-bottom: 1rem;
+    }
+
+    .testimonials-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      line-height: 0.95;
+      margin-bottom: 1rem;
+    }
+
+    .testimonials-subtitle {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+    }
+
+    .testimonials-right {
+      flex: 1;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      padding: 3rem;
+      position: relative;
+    }
+
+    .testimonial-stars {
+      position: absolute;
+      top: -1rem;
+      right: -1rem;
+      background: #ffffff;
+      color: var(--primary);
+      padding: 0.75rem;
+      display: flex;
+      gap: 0.15rem;
+      font-size: 0.75rem;
+      box-shadow: 0 24px 48px -12px rgba(0, 29, 89, 0.3);
+    }
+
+    .testimonial-text {
+      font-size: 1.25rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      overflow: hidden;
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonial-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      color: #ffffff;
+    }
+
+    .testimonial-role {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ─── CONTACT ─── */
+    .contact {
+      padding: 6rem 4rem;
+      background: #e8e8e8;
+    }
+
+    .contact-card {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      box-shadow: 0 24px 48px -12px rgba(0, 29, 89, 0.08);
+      overflow: hidden;
+    }
+
+    .contact-info {
+      flex: 0 0 35%;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 3rem;
+    }
+
+    .contact-info-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .contact-detail-icon {
+      font-size: 0.65rem;
+      background: var(--primary-container);
+      padding: 0.4rem 0.5rem;
+    }
+
+    .contact-form {
+      flex: 1;
+      background: var(--surface-lowest);
+      padding: 3rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid rgba(0,29,89,0.1);
+      background: transparent;
+      padding: 0.6rem 0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--on-surface);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-select {
+      cursor: pointer;
+      -webkit-appearance: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-container);
+    }
+
+    /* ─── RESULTS BANNER ─── */
+    .results {
+      padding: 5rem 4rem;
+      background: var(--surface-lowest);
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .results-item {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      position: relative;
+    }
+
+    .results-item::after {
+      content: '';
+      position: absolute;
+      top: 25%;
+      right: 0;
+      height: 50%;
+      width: 1px;
+      background: rgba(0,29,89,0.08);
+    }
+
+    .results-item:last-child::after {
+      display: none;
+    }
+
+    .results-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 6vw, 5rem);
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .results-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .results-desc {
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: var(--secondary);
+      max-width: 200px;
+      margin: 0 auto;
+    }
+
+    /* ─── NJ TRIBE ─── */
+    .tribe {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tribe-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .tribe-content {
+      padding: 5rem 4rem;
+      background: var(--primary);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .tribe-badge {
+      display: inline-block;
+      background: var(--primary-container);
+      color: #ffffff;
+      padding: 0.35rem 1rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      align-self: flex-start;
+    }
+
+    .tribe-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 0.95;
+      margin-bottom: 1.25rem;
+    }
+
+    .tribe-desc {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+
+    .tribe-stats {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tribe-stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .tribe-stat-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.25rem;
+    }
+
+    .tribe-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .tribe-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ─── EXPANDED TESTIMONIALS ─── */
+    .reviews {
+      padding: 6rem 4rem;
+      background: var(--surface-low);
+    }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .reviews-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .reviews-subtitle {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    .reviews-google {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .reviews-google-stars {
+      color: var(--primary);
+      font-size: 1rem;
+      letter-spacing: 0.1rem;
+    }
+
+    .reviews-google-text {
+      font-size: 0.8rem;
+      color: var(--secondary);
+      font-weight: 600;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: var(--surface-lowest);
+      padding: 2.25rem;
+      position: relative;
+      transition: box-shadow 0.3s;
+    }
+
+    .review-card:hover {
+      box-shadow: 0 24px 48px -12px rgba(0, 29, 89, 0.08);
+    }
+
+    .review-stars {
+      color: var(--primary);
+      font-size: 0.85rem;
+      letter-spacing: 0.1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .review-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--on-surface);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .review-avatar {
+      width: 40px;
+      height: 40px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .review-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .review-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .review-role {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 4rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.1em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 900px) {
+      .hero {
+        height: auto;
+        min-height: 100vh;
+      }
+      .hero-content {
+        padding: 7rem 1.5rem 10rem;
+      }
+      .hero-bg::after {
+        background: linear-gradient(
+          to bottom,
+          rgba(0,29,89,0.9) 0%,
+          rgba(0,29,89,0.6) 60%,
+          rgba(0,29,89,0.4) 100%
+        );
+      }
+      .hero-title { font-size: clamp(2rem, 7vw, 3rem); }
+      .nav-links { display: none; }
+      .nav { padding: 1rem 1.5rem; }
+      .stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .programs { padding: 3rem 1.5rem; }
+      .programs-header { flex-direction: column; align-items: flex-start; }
+      .programs-grid {
+        grid-template-columns: 1fr;
+      }
+      .program-card {
+        border-right: none;
+      }
+      .programs-bottom {
+        grid-template-columns: 1fr;
+      }
+      .camp { padding: 3rem 1.5rem; }
+      .camp-bg { display: none; }
+      .coaches { padding: 3rem 1.5rem; }
+      .coaches-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .results { padding: 3rem 1.5rem; }
+      .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .results-item::after { display: none; }
+      .tribe-inner {
+        grid-template-columns: 1fr;
+      }
+      .tribe-content { padding: 3rem 1.5rem; }
+      .tribe-images {
+        grid-template-columns: 1fr 1fr;
+        height: 300px;
+      }
+      .reviews { padding: 3rem 1.5rem; }
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+      .testimonials { padding: 3rem 1.5rem; }
+      .testimonials-inner {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .testimonials-left { flex: none; }
+      .testimonial-text { font-size: 1rem; }
+      .contact { padding: 3rem 1.5rem; }
+      .contact-card {
+        flex-direction: column;
+      }
+      .contact-info { flex: none; }
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .footer {
+        padding: 2.5rem 1.5rem;
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2018/07/BFLogo.jpg?fit=1021%2C371&ssl=1" alt="Baseball's Finest NJ">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Lessons</a></li>
+      <li><a href="#">Programs</a></li>
+      <li><a href="#">Coaches</a></li>
+      <li><a href="#">NJ Tribe</a></li>
+      <li><a href="#">Facility</a></li>
+      <li><a href="#" class="nav-cta">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="margin-top: 76px;">
+    <div class="hero-bg">
+      <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/06/JudgeTeamPhoto.jpg?resize=1400%2C900&ssl=1" alt="Baseball's Finest Team with Aaron Judge">
+    </div>
+
+    <div class="hero-content">
+      <span class="hero-badge">Cedar Grove, New Jersey</span>
+      <h1 class="hero-title">
+        Northern New Jersey's 5-Star Baseball &amp; Softball Training Complex
+      </h1>
+      <p class="hero-description">
+        Professional coaches with pro playing experience delivering year-round instruction for every level. Reach your goals. Exceed your potential.
+      </p>
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-primary">
+          View Programs
+        </a>
+        <a href="#" class="btn btn-ghost">
+          Take a Tour
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stats-item">
+      <div class="stats-number">5.0<span class="accent"> &#9733;</span></div>
+      <div class="stats-label">Google Rating</div>
+    </div>
+    <div class="stats-item">
+      <div class="stats-number">88<span class="accent">+</span></div>
+      <div class="stats-label">5-Star Reviews</div>
+    </div>
+    <div class="stats-item">
+      <div class="stats-number">8<span class="accent">x</span></div>
+      <div class="stats-label">Championships</div>
+    </div>
+    <div class="stats-item">
+      <div class="stats-number">PRO</div>
+      <div class="stats-label">Coaching Staff</div>
+    </div>
+  </div>
+
+  <!-- PROGRAMS -->
+  <section class="programs pinstripe-pattern">
+    <div class="programs-header">
+      <div class="programs-header-left">
+        <h2 class="programs-title">World-Class Instruction</h2>
+        <p class="programs-subtitle">Our systematic approach to player development combines professional experience with time-honored fundamentals to create the complete athlete.</p>
+      </div>
+      <a href="#" class="programs-view-all">View All Specialties <span class="material-symbols-outlined" style="font-size:1rem">trending_flat</span></a>
+    </div>
+
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-card-img">
+          <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/09/271959891_1342401462870799_7634520471013978570_n.jpg?resize=600%2C400&ssl=1" alt="Hitting Mechanics">
+        </div>
+        <div class="program-card-body">
+          <span class="material-symbols-outlined program-icon">sports_baseball</span>
+          <div class="program-name">Hitting Mechanics</div>
+          <p class="program-desc">Swing path analysis, bat speed development, and explosive power generation with video breakdown.</p>
+          <a href="#" class="program-link">Learn More</a>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="program-card-img">
+          <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/09/311229004_10160191814288556_3236274858659927469_n.jpg?resize=600%2C750&ssl=1" alt="Pitching Lab">
+        </div>
+        <div class="program-card-body">
+          <span class="material-symbols-outlined program-icon">biotech</span>
+          <div class="program-name">Pitching Lab</div>
+          <p class="program-desc">Velocity building, command refinement, and complete arsenal development with Coach Marcotte.</p>
+          <a href="#" class="program-link">Learn More</a>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="program-card-img">
+          <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/09/image_6483441-1.jpg?resize=600%2C557&ssl=1" alt="Defensive Mastery">
+        </div>
+        <div class="program-card-body">
+          <span class="material-symbols-outlined program-icon">shield</span>
+          <div class="program-name">Defensive Mastery</div>
+          <p class="program-desc">Elite footwork, glove-to-hand transitions, and situational awareness for every position.</p>
+          <a href="#" class="program-link">Learn More</a>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="program-card-img">
+          <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/07/8Champs2023words.jpg?resize=600%2C480&ssl=1" alt="Catching Clinic">
+        </div>
+        <div class="program-card-body">
+          <span class="material-symbols-outlined program-icon">sports_handball</span>
+          <div class="program-name">Catching Clinic</div>
+          <p class="program-desc">The art of framing, blocking, and commanding the field from behind the dish.</p>
+          <a href="#" class="program-link">Learn More</a>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="program-card-img">
+          <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2019/09/SoftballTraining-1019x1024.jpg?resize=600%2C604&ssl=1" alt="Softball Training">
+        </div>
+        <div class="program-card-body">
+          <span class="material-symbols-outlined program-icon">fitness_center</span>
+          <div class="program-name">Softball Training</div>
+          <p class="program-desc">Whole-body approach with dynamic strength training integrated into pitching and hitting instruction.</p>
+          <a href="#" class="program-link">Learn More</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="programs-bottom">
+      <div class="program-card-wide">
+        <div class="program-wide-number">06</div>
+        <div class="program-card-wide-content">
+          <div class="program-wide-name">Summer Camps &amp; Clinics</div>
+          <p class="program-wide-desc">Multi-day camps covering all aspects of the game. Catching clinics, hitting &amp; defense intensives, and the Rookie Program for younger players just getting started.</p>
+          <a href="#" class="program-wide-link">View Camps &rarr;</a>
+        </div>
+      </div>
+      <div class="program-card-wide">
+        <div class="program-wide-number">07</div>
+        <div class="program-card-wide-content">
+          <div class="program-wide-name">Team Winter Training</div>
+          <p class="program-wide-desc">Full team off-season development at our indoor facility. Customized programs for rec, travel, and high school teams to prepare for the spring season.</p>
+          <a href="#" class="program-wide-link">Learn More &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NJ TRIBE CLUB BASEBALL -->
+  <section class="tribe">
+    <div class="tribe-inner">
+      <div class="tribe-content">
+        <span class="tribe-badge">Club Baseball</span>
+        <h2 class="tribe-title">HOME OF<br>NJ TRIBE BASEBALL</h2>
+        <p class="tribe-desc">Dedicated to personal and player skill development, focusing on building better individuals both on and off the field. With our 5,000 sq ft indoor training complex and professional coaching, players have the advantage of enhancing skills and honing their abilities.</p>
+        <div class="tribe-stats">
+          <div>
+            <div class="tribe-stat-number">8x</div>
+            <div class="tribe-stat-label">Champions</div>
+          </div>
+          <div>
+            <div class="tribe-stat-number">7-13</div>
+            <div class="tribe-stat-label">Ages</div>
+          </div>
+          <div>
+            <div class="tribe-stat-number">Year</div>
+            <div class="tribe-stat-label">Round</div>
+          </div>
+        </div>
+        <a href="#" class="btn btn-white">Register for Tryouts</a>
+      </div>
+      <div class="tribe-images">
+        <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/07/8Champs2023words.jpg?resize=750%2C600&ssl=1" alt="NJ Tribe Championships">
+        <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2022/04/image_6483441-3.jpg?resize=750%2C500&ssl=1" alt="NJ Tribe Team">
+        <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2024/09/image_6483441-10-1.jpg?resize=750%2C1000&ssl=1" alt="NJ Tribe Player">
+        <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2022/04/image_6487327-4.jpg?resize=750%2C563&ssl=1" alt="NJ Tribe Action">
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS BANNER -->
+  <section class="results">
+    <div class="results-grid">
+      <div class="results-item">
+        <div class="results-number">8x</div>
+        <div class="results-label">Championships</div>
+        <p class="results-desc">NJ Tribe teams have captured 8 championship titles across multiple age divisions</p>
+      </div>
+      <div class="results-item">
+        <div class="results-number">500+</div>
+        <div class="results-label">Athletes Trained</div>
+        <p class="results-desc">Hundreds of players developed from youth recreation to high school varsity</p>
+      </div>
+      <div class="results-item">
+        <div class="results-number">11yr</div>
+        <div class="results-label">Pro Experience</div>
+        <p class="results-desc">Coaching staff with over a decade of professional playing careers</p>
+      </div>
+      <div class="results-item">
+        <div class="results-number">5,000</div>
+        <div class="results-label">Sq Ft Facility</div>
+        <p class="results-desc">Indoor training complex with cages, turf, and professional-grade equipment</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL RISE CAMP -->
+  <section class="camp">
+    <div class="camp-bg">
+      <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/06/JudgeTeamPhoto.jpg?resize=1400%2C900&ssl=1" alt="All Rise Summer Camp with Aaron Judge">
+    </div>
+    <div class="camp-content">
+      <h2 class="camp-title">ALL RISE<br>SUMMER CAMP</h2>
+      <p class="camp-tagline">Featuring Major League Insight</p>
+      <div class="camp-details">
+        <div class="camp-detail">
+          <span class="camp-detail-icon">DATE</span>
+          <div>
+            <div class="camp-detail-label">When</div>
+            <div class="camp-detail-value">Summer 2026</div>
+          </div>
+        </div>
+        <div class="camp-detail">
+          <span class="camp-detail-icon">LOCATION</span>
+          <div>
+            <div class="camp-detail-label">Where</div>
+            <div class="camp-detail-value">216 Little Falls Road, Cedar Grove, NJ</div>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="btn btn-white">Secure Your Spot</a>
+    </div>
+  </section>
+
+  <!-- COACHING STAFF -->
+  <section class="coaches">
+    <div class="coaches-header">
+      <h2 class="coaches-title">THE ELITE COUNCIL</h2>
+      <p class="coaches-subtitle">Our Professional Coaching Staff</p>
+    </div>
+    <div class="coaches-grid">
+      <div class="coach-card">
+        <div class="coach-photo">
+          <img src="https://www.baseballsfinestnj.com/wp-content/uploads/2022/04/BFFInal-scaled.jpg" alt="Craig Conway">
+        </div>
+        <div class="coach-name">Craig Conway</div>
+        <div class="coach-role">Lead Baseball Instructor &amp; Owner</div>
+        <p class="coach-bio">Former NJ Jackals player, still holding career records for doubles and triples. Owned and operated by Craig, he knows what it takes to be successful at every level.</p>
+      </div>
+      <div class="coach-card">
+        <div class="coach-photo">
+          <img src="http://www.baseballsfinestnj.com/wp-content/uploads/2018/10/TrevorSquare.jpg" alt="Trevor Marcotte">
+        </div>
+        <div class="coach-name">Trevor Marcotte</div>
+        <div class="coach-role">Head Pitching Instructor</div>
+        <p class="coach-bio">11-year career in professional baseball with over 500 career innings pitched. Expert in both starting and relief pitching development.</p>
+      </div>
+      <div class="coach-card">
+        <div class="coach-photo">
+          <img src="https://www.baseballsfinestnj.com/wp-content/uploads/2023/02/JenBell3.jpg" alt="Jen Bell">
+        </div>
+        <div class="coach-name">Jen Bell</div>
+        <div class="coach-role">Director of Softball Operations</div>
+        <p class="coach-bio">Over 25 years as a player and coach. Takes a whole-body approach with dynamic strength training integrated into her pitching and hitting instruction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPANDED TESTIMONIALS -->
+  <section class="reviews">
+    <div class="reviews-header">
+      <h2 class="reviews-title">WHAT PARENTS ARE SAYING</h2>
+      <p class="reviews-subtitle">Real Results From Real Families</p>
+      <div class="reviews-google">
+        <span class="reviews-google-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+        <span class="reviews-google-text">5.0 rating &bull; 88+ reviews on Google</span>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <p class="review-text">&ldquo;Our 9 year old son had his first private lesson with Craig, and within 20 minutes he completely corrected his swing. By the end of the lesson, he was crushing every pitch. Nothing compared to his session with Craig.&rdquo;</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/07/ChIJ08Aj2SMBw4kRRL4dsTxu9-Y_809bb6d59b3b0e49ecadecca237af641.jpg?resize=50%2C50&ssl=1" alt="Glenn F.">
+          </div>
+          <div>
+            <div class="review-name">Glenn F.</div>
+            <div class="review-role">Parent &bull; Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <p class="review-text">&ldquo;The facility is fantastic. Coach Chuck is outstanding &mdash; he has been working with my son on catching and hitting. The results were immediate. He takes his time, keeps it fun and engaging, and provides drills that can be carried through at home.&rdquo;</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/07/ChIJ08Aj2SMBw4kRRL4dsTxu9-Y_94917f2b68b9de2e2060462d13257f04.jpg?resize=50%2C50&ssl=1" alt="Chris C.">
+          </div>
+          <div>
+            <div class="review-name">Chris C.</div>
+            <div class="review-role">Parent &bull; 3 Years Training</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <p class="review-text">&ldquo;In the short time that Savannah has been working with Craig she has improved so much and gained so much confidence. He films her, provides concrete evidence of what's working, and helps her pinpoint what needs improvement.&rdquo;</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/07/ChIJ08Aj2SMBw4kRRL4dsTxu9-Y_73bf6f07f7bfa64b7d74728e4601170a.jpg?resize=50%2C50&ssl=1" alt="Tricia C.">
+          </div>
+          <div>
+            <div class="review-name">Tricia C.</div>
+            <div class="review-role">Parent &bull; Softball Player</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <p class="review-text">&ldquo;These guys really do an excellent job. I've seen a noticeable improvement in his bat speed and power. They've cleaned up the small things in his mechanics. Your kids are in good hands with these guys.&rdquo;</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/07/ChIJ08Aj2SMBw4kRRL4dsTxu9-Y_9018430398cf3c55364cebabb858e67d.jpg?resize=50%2C50&ssl=1" alt="David F.">
+          </div>
+          <div>
+            <div class="review-name">David F.</div>
+            <div class="review-role">Parent &bull; Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <p class="review-text">&ldquo;Craig knows the game. Period. Inside and out. We noticed our HS aged son developing bad habits in his swing. Craig corrected him and later that week our son dominated at a National Showcase. The knowledge is unmatched.&rdquo;</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="https://www.baseballsfinestnj.com/wp-content/uploads/2018/12/48380863_590340544743565_1058486100164608_o1.jpg" alt="Kelly">
+          </div>
+          <div>
+            <div class="review-name">Kelly</div>
+            <div class="review-role">Parent &bull; HS Player</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+        <p class="review-text">&ldquo;We've been going to Coach Craig for over two years now. Both boys absolutely love going! Craig is so knowledgeable and patient &mdash; makes them laugh and have fun, all while learning every step of the way.&rdquo;</p>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="https://i0.wp.com/www.baseballsfinestnj.com/wp-content/uploads/2023/07/ChIJ08Aj2SMBw4kRRL4dsTxu9-Y_9ab4e32fa27254230d898476bf2acad2.jpg?resize=50%2C50&ssl=1" alt="Robbie V.">
+          </div>
+          <div>
+            <div class="review-name">Robbie V.</div>
+            <div class="review-role">Parent &bull; 2+ Years</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="contact-card">
+      <div class="contact-info">
+        <h2 class="contact-info-title">READY TO<br>LEVEL UP?</h2>
+        <p class="contact-info-desc">Start your journey toward elite performance today. We'll get back to you within 24 hours.</p>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">EMAIL</span>
+          baseballsfinestnj@gmail.com
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">PHONE</span>
+          201-410-5067
+        </div>
+        <div class="contact-detail">
+          <span class="contact-detail-icon">VISIT</span>
+          216 Little Falls Rd #11-12, Cedar Grove, NJ
+        </div>
+      </div>
+      <div class="contact-form">
+        <form>
+          <div class="form-row">
+            <div>
+              <label class="form-label">Athlete Name</label>
+              <input type="text" class="form-input" placeholder="First Last">
+            </div>
+            <div>
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" placeholder="email@example.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Area of Interest</label>
+            <select class="form-select">
+              <option>Private Lessons</option>
+              <option>Hitting Program</option>
+              <option>Pitching Program</option>
+              <option>Group Training</option>
+              <option>Summer Camps</option>
+              <option>Softball Instruction</option>
+              <option>Team Winter Training</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tell Us About Your Goals</label>
+            <textarea class="form-textarea" placeholder="What are you working toward?"></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">BASEBALL'S FINEST NJ</div>
+    <ul class="footer-links">
+      <li><a href="#">Lessons</a></li>
+      <li><a href="#">Programs</a></li>
+      <li><a href="#">Coaches</a></li>
+      <li><a href="#">NJ Tribe</a></li>
+      <li><a href="#">Facility</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="footer-copy">&copy; 2026 Baseball's Finest NJ. All Rights Reserved.</div>
+  </footer>
+
+</body>
+</html>

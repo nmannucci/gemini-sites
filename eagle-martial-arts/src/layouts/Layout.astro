@@ -1,0 +1,103 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  programPageCss?: boolean;
+  bodyClass?: string;
+}
+
+const {
+  title = 'La Jolla Martial Arts | Learn Taekwondo Martial Arts in La Jolla, California',
+  description = "La Jolla Martial Arts offers world-class Taekwondo training for all ages. Build discipline, confidence, and self-defense skills at our family-owned dojo with 40+ years of teaching experience.",
+  canonical,
+  ogImage = '/assets/EMA%20-%20Post.jpg',
+  ogType = 'website',
+  programPageCss = false,
+  bodyClass,
+} = Astro.props;
+
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'https://lajollamartialarts.com').toString();
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={new URL(ogImage, Astro.site ?? 'https://lajollamartialarts.com').toString()} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(ogImage, Astro.site ?? 'https://lajollamartialarts.com').toString()} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  {programPageCss && <link rel="stylesheet" href="/program-page.css" />}
+  <script is:inline src="https://unpkg.com/lucide@latest"></script>
+
+  <slot name="head" />
+</head>
+<body class={bodyClass}>
+  <Nav />
+  <slot />
+  <Footer />
+
+  <script is:inline>
+    // Initialize Lucide icons
+    if (window.lucide) lucide.createIcons();
+
+    // Scroll behavior for nav
+    const nav = document.getElementById('nav');
+    if (nav) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      });
+    }
+  </script>
+  <script is:inline>
+    (function () {
+      var t = document.querySelector('.nav-toggle');
+      var m = document.getElementById('mobileMenu');
+      if (!t || !m) return;
+      t.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = t.getAttribute('aria-expanded') === 'true';
+        t.setAttribute('aria-expanded', String(!open));
+        m.setAttribute('data-open', String(!open));
+      });
+      m.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          t.setAttribute('aria-expanded', 'false');
+          m.setAttribute('data-open', 'false');
+        });
+      });
+      document.addEventListener('click', function (e) {
+        if (!t.contains(e.target) && !m.contains(e.target) && m.getAttribute('data-open') === 'true') {
+          t.setAttribute('aria-expanded', 'false');
+          m.setAttribute('data-open', 'false');
+        }
+      });
+    })();
+  </script>
+
+  <slot name="scripts" />
+</body>
+</html>

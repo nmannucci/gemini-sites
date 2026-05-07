@@ -1,0 +1,51 @@
+/*
+ * Tailwind v4 — utilities + theme only.
+ *
+ * Preflight (Tailwind's base reset) is intentionally NOT imported. The site
+ * uses its own custom resets and typography (see each page's <style is:global>),
+ * and pulling in Preflight would override those styles in unexpected ways.
+ *
+ * If you ever want Preflight back, replace the two imports below with:
+ *   @import "tailwindcss";
+ */
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* ============================================================
+   Brand logo sizing — overrides the legacy text-logo styles.
+   Applied site-wide so per-page CSS doesn't need to know about it.
+============================================================ */
+.nav .logo {
+  display: inline-flex;
+  align-items: center;
+  height: 56px;
+  padding: 0;
+}
+.nav .logo img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-height: 56px;
+  object-fit: contain;
+}
+
+.footer .footer-logo {
+  display: inline-flex;
+  align-items: center;
+}
+.footer .footer-logo img {
+  display: block;
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .nav .logo,
+  .nav .logo img {
+    height: 44px;
+    max-height: 44px;
+  }
+}

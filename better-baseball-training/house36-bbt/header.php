@@ -13,6 +13,15 @@ if (! defined('ABSPATH')) {
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
   <a class="skip-link screen-reader-text" href="#main-content"><?php esc_html_e('Skip to main content', 'house36-bbt'); ?></a>
+  <a class="tryouts-banner" href="<?php echo esc_url(home_url('/#tryouts')); ?>" aria-label="<?php esc_attr_e('BBT Black Team Tryouts — see details', 'house36-bbt'); ?>">
+    <span class="tryouts-banner-dot" aria-hidden="true"></span>
+    <span class="tryouts-banner-text">
+      <strong>BBT Black Team Tryouts</strong>
+      <span class="tryouts-banner-divider" aria-hidden="true">·</span>
+      <span class="tryouts-banner-meta">Wed May 27 · Folsom Lake College</span>
+      <span class="tryouts-banner-link">See Details</span>
+    </span>
+  </a>
   <nav aria-label="<?php esc_attr_e('Primary navigation', 'house36-bbt'); ?>">
     <button class="hamburger" aria-label="<?php esc_attr_e('Open menu', 'house36-bbt'); ?>" type="button">
       <span class="hamburger-box">
@@ -34,7 +43,7 @@ if (! defined('ABSPATH')) {
     ?>
 
     <div class="nav-actions">
-      <a href="tel:9164655551" class="nav-cta nav-cta--ghost"><?php esc_html_e('Call Us', 'house36-bbt'); ?></a>
+      <a href="<?php echo esc_url(house36_bbt_contact_phone_href()); ?>" class="nav-cta nav-cta--ghost"><?php esc_html_e('Call Us', 'house36-bbt'); ?></a>
       <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="nav-cta"><?php esc_html_e('Book Now', 'house36-bbt'); ?></a>
     </div>
   </nav>

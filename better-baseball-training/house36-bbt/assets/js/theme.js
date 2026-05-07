@@ -184,6 +184,7 @@
       closeSubmenus();
       hamburger.classList.remove('is-active');
       mobileMenu.classList.remove('is-active');
+      document.body.classList.remove('mobile-menu-open');
       document.body.style.overflow = '';
     }
 
@@ -195,6 +196,7 @@
         closeSubmenus();
       }
 
+      document.body.classList.toggle('mobile-menu-open', mobileMenu.classList.contains('is-active'));
       document.body.style.overflow = mobileMenu.classList.contains('is-active') ? 'hidden' : '';
     });
 

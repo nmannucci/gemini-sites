@@ -38,6 +38,11 @@ function house36_bbt_setup() {
 }
 add_action('after_setup_theme', 'house36_bbt_setup');
 
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('admin_print_scripts', 'print_emoji_detection_script');
+remove_action('wp_print_styles', 'print_emoji_styles');
+remove_action('admin_print_styles', 'print_emoji_styles');
+
 function house36_bbt_enqueue_assets() {
     $theme = wp_get_theme();
     $version = $theme->get('Version') ?: null;
@@ -68,6 +73,22 @@ function house36_bbt_enqueue_assets() {
     );
 }
 add_action('wp_enqueue_scripts', 'house36_bbt_enqueue_assets');
+
+function house36_bbt_cleanup_core_assets() {
+    if (is_admin() || ! house36_bbt_is_focus_page()) {
+        return;
+    }
+
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
+    wp_dequeue_style('classic-theme-styles');
+    wp_dequeue_style('global-styles');
+
+    if (! is_user_logged_in()) {
+        wp_deregister_style('dashicons');
+    }
+}
+add_action('wp_enqueue_scripts', 'house36_bbt_cleanup_core_assets', 20);
 
 function house36_bbt_style_loader_tag($html, $handle, $href, $media) {
     if ('house36-bbt-fonts' !== $handle) {
@@ -118,6 +139,14 @@ function house36_bbt_asset_dimensions($path = '') {
         'images/bruce-carmichael.PNG'        => array(1288, 1460),
         'images/gabe-emmett.jpeg'            => array(1050, 1118),
         'images/jean-machi.jpeg'             => array(1320, 2603),
+        'images/kris-krise.jpeg'             => array(1320, 1832),
+        'images/logan-coe.PNG'               => array(1320, 1262),
+        'images/nolan-theibay.jpeg'          => array(742, 1240),
+        'images/quinten-hall.jpeg'           => array(1320, 1358),
+        'images/jackson-doherty.PNG'         => array(1320, 1144),
+        'images/bryce-pertrilla.PNG'         => array(1320, 1790),
+        'images/justin-watari.PNG'           => array(1320, 1280),
+        'images/team-photo-1.jpg'            => array(800, 600),
         'images/service-hitting-1.PNG'       => array(1320, 743),
         'images/service-pitching-2.PNG'      => array(1320, 753),
         'images/service-inf.ouf-3.PNG'       => array(1320, 722),
@@ -169,6 +198,36 @@ function house36_bbt_asset_srcset($path, $widths) {
     return implode(', ', $srcset);
 }
 
+function house36_bbt_contact_data() {
+    return array(
+        'phone'      => '916-465-5551',
+        'phone_href' => '9164655551',
+        'email'      => 'trainwithbbt@gmail.com',
+    );
+}
+
+function house36_bbt_contact_phone() {
+    $contact = house36_bbt_contact_data();
+
+    return $contact['phone'];
+}
+
+function house36_bbt_contact_phone_href() {
+    $contact = house36_bbt_contact_data();
+
+    return 'tel:' . $contact['phone_href'];
+}
+
+function house36_bbt_contact_email() {
+    $contact = house36_bbt_contact_data();
+
+    return $contact['email'];
+}
+
+function house36_bbt_contact_email_href() {
+    return 'mailto:' . house36_bbt_contact_email();
+}
+
 function house36_bbt_home_section_url($section = '') {
     $section = ltrim((string) $section, '#');
 
@@ -189,12 +248,45 @@ function house36_bbt_get_page_url($path, $fallback = '') {
     return home_url('/' . trim((string) $path, '/') . '/');
 }
 
+function house36_bbt_is_local_environment() {
+    return 'local' === wp_get_environment_type();
+}
+
+function house36_bbt_virtual_route_fallback_url($page, $extra = array()) {
+    $args = array_merge(
+        array(
+            'house36_bbt_page' => $page,
+        ),
+        $extra
+    );
+
+    return add_query_arg($args, home_url('/'));
+}
+
 function house36_bbt_schedule_url() {
     return house36_bbt_get_page_url('schedule', 'schedule');
 }
 
 function house36_bbt_coaches_url() {
     return house36_bbt_get_page_url('coaches', 'coaches');
+}
+
+function house36_bbt_privacy_policy_slug() {
+    return 'privacy-policy';
+}
+
+function house36_bbt_privacy_policy_url() {
+    if (! house36_bbt_is_local_environment()) {
+        return home_url('/' . house36_bbt_privacy_policy_slug() . '/');
+    }
+
+    $privacy_url = get_privacy_policy_url();
+
+    if ($privacy_url) {
+        return $privacy_url;
+    }
+
+    return house36_bbt_get_page_url(house36_bbt_privacy_policy_slug(), house36_bbt_privacy_policy_slug());
 }
 
 function house36_bbt_lessons_base_slug() {
@@ -205,9 +297,9 @@ function house36_bbt_lessons_data() {
     return array(
         'hitting'          => array(
             'label'            => 'Hitting',
-            'headline'         => 'Hitting Lessons That Build More Confident, Game-Ready Hitters',
-            'subheadline'      => 'Whether your athlete needs cleaner mechanics, better timing, or more confidence in the box, Better Baseball Training gives them focused instruction and a clear plan for better at-bats.',
-            'overview'         => 'Our hitting lessons are built for players who need more than random reps. We help athletes build swings they can trust, develop a stronger approach at the plate, and carry more confidence into games.',
+            'headline'         => 'Hitting Lessons in Rocklin & El Dorado Hills',
+            'subheadline'      => 'Whether your athlete needs cleaner mechanics, better timing, or more confidence in the box, Better Baseball Training gives Sacramento-area players focused instruction and a clear plan for better at-bats.',
+            'overview'         => 'Our hitting lessons in Rocklin and El Dorado Hills are built for players who need more than random reps. We help athletes build swings they can trust, develop a stronger approach at the plate, and carry more confidence into games.',
             'section_title'    => 'What This Lesson Helps Build',
             'focus_items'      => array(
                 'More consistent contact and better quality at-bats',
@@ -219,13 +311,13 @@ function house36_bbt_lessons_data() {
             'image'            => 'images/service-hitting-1.PNG',
             'image_alt'        => 'Hitting lesson at Better Baseball Training',
             'image_widths'     => array(640, 960),
-            'meta_description' => 'Hitting lessons at Better Baseball Training in Rocklin and El Dorado Hills. Help your athlete build a more confident swing, better timing, and stronger game performance at the plate.',
+            'meta_description' => 'Hitting lessons in Rocklin and El Dorado Hills for youth baseball players. Build a more confident swing, better timing, and stronger at-bats at BBT.',
         ),
         'pitching'         => array(
             'label'            => 'Pitching',
-            'headline'         => 'Pitching Lessons That Improve Command, Confidence, and Development',
-            'subheadline'      => 'If your athlete needs better mechanics, more command, or a clearer plan on the mound, BBT provides focused coaching that supports both performance and long-term development.',
-            'overview'         => 'Our pitching lessons help players throw with more intent, better control, and greater confidence under pressure. We focus on building healthy, repeatable movement patterns so athletes can compete now and keep improving over time.',
+            'headline'         => 'Pitching Lessons in Rocklin & El Dorado Hills',
+            'subheadline'      => 'If your athlete needs better mechanics, more command, or a clearer plan on the mound, BBT provides Sacramento-area pitching coaching that supports both performance and long-term development.',
+            'overview'         => 'Our pitching lessons in Rocklin and El Dorado Hills help players throw with more intent, better control, and greater confidence under pressure. We focus on building healthy, repeatable movement patterns so athletes can compete now and keep improving over time.',
             'section_title'    => 'What This Lesson Helps Build',
             'focus_items'      => array(
                 'More repeatable mechanics and better command',
@@ -237,13 +329,13 @@ function house36_bbt_lessons_data() {
             'image'            => 'images/service-pitching-2.PNG',
             'image_alt'        => 'Pitching lesson at Better Baseball Training',
             'image_widths'     => array(640, 960),
-            'meta_description' => 'Pitching lessons at Better Baseball Training in Rocklin and El Dorado Hills. Help your athlete improve command, mechanics, arm care, and confidence on the mound.',
+            'meta_description' => 'Pitching lessons in Rocklin and El Dorado Hills for youth players. Improve command, mechanics, arm care, and mound confidence at Better Baseball Training.',
         ),
         'infield-outfield' => array(
             'label'            => 'Infield / Outfield',
-            'headline'         => 'Defensive Lessons That Help Players Move Better and Think Faster',
-            'subheadline'      => 'For players who need better footwork, cleaner reads, and more confidence on defense, BBT delivers instruction that helps the game slow down and performance speed up.',
-            'overview'         => 'Our infield and outfield lessons help athletes become more dependable defenders. Players learn how to move with purpose, react faster, and make better decisions so they can play with more confidence when the ball is hit their way.',
+            'headline'         => 'Infield & Outfield Lessons in Rocklin & El Dorado Hills',
+            'subheadline'      => 'For Sacramento-area players who need better footwork, cleaner reads, and more confidence on defense, BBT delivers instruction that helps the game slow down and performance speed up.',
+            'overview'         => 'Our infield and outfield lessons in Rocklin and El Dorado Hills help athletes become more dependable defenders. Players learn how to move with purpose, react faster, and make better decisions so they can play with more confidence when the ball is hit their way.',
             'section_title'    => 'What This Lesson Helps Build',
             'focus_items'      => array(
                 'Cleaner footwork and faster first-step reactions',
@@ -255,13 +347,13 @@ function house36_bbt_lessons_data() {
             'image'            => 'images/service-inf.ouf-3.PNG',
             'image_alt'        => 'Infield and outfield lesson at Better Baseball Training',
             'image_widths'     => array(640, 960),
-            'meta_description' => 'Infield and outfield lessons at Better Baseball Training in Rocklin and El Dorado Hills. Help your athlete improve footwork, reads, positioning, and defensive confidence.',
+            'meta_description' => 'Infield and outfield lessons in Rocklin and El Dorado Hills. Help your youth baseball player improve footwork, reads, positioning, and defensive confidence.',
         ),
         'catching'         => array(
             'label'            => 'Catching',
-            'headline'         => 'Catching Lessons for Players Ready to Lead Behind the Plate',
-            'subheadline'      => 'If your athlete wants to become more reliable, more confident, and more complete as a catcher, BBT offers position-specific coaching built around real game demands.',
-            'overview'         => 'Our catching lessons help players grow into stronger leaders behind the plate. Athletes work on the technical details of the position while building the confidence, communication, and consistency that coaches and parents want to see in games.',
+            'headline'         => 'Catching Lessons in Rocklin & El Dorado Hills',
+            'subheadline'      => 'If your athlete wants to become more reliable, more confident, and more complete as a catcher, BBT offers Sacramento-area position-specific coaching built around real game demands.',
+            'overview'         => 'Our catching lessons in Rocklin and El Dorado Hills help players grow into stronger leaders behind the plate. Athletes work on the technical details of the position while building the confidence, communication, and consistency that coaches and parents want to see in games.',
             'section_title'    => 'What This Lesson Helps Build',
             'focus_items'      => array(
                 'More reliable receiving, blocking, and recovery',
@@ -273,13 +365,13 @@ function house36_bbt_lessons_data() {
             'image'            => 'images/service-catching-4.PNG',
             'image_alt'        => 'Catching lesson at Better Baseball Training',
             'image_widths'     => array(640, 960),
-            'meta_description' => 'Catching lessons at Better Baseball Training in Rocklin and El Dorado Hills. Help your athlete improve receiving, blocking, footwork, and leadership behind the plate.',
+            'meta_description' => 'Catching lessons in Rocklin and El Dorado Hills for youth baseball players. Improve receiving, blocking, footwork, and leadership behind the plate.',
         ),
         'baseball-iq'      => array(
             'label'            => 'Baseball IQ',
-            'headline'         => 'Baseball IQ Training That Helps Players Make Better In-Game Decisions',
-            'subheadline'      => 'For athletes who need the game to slow down, BBT teaches the awareness, preparation, and decision-making that turn raw ability into smarter play.',
-            'overview'         => 'Our baseball IQ lessons help players become more prepared, more confident, and more dependable in real game situations. Athletes learn how to recognize what is happening faster and make better decisions when it matters most.',
+            'headline'         => 'Baseball IQ Training in Rocklin & El Dorado Hills',
+            'subheadline'      => 'For Sacramento-area athletes who need the game to slow down, BBT teaches the awareness, preparation, and decision-making that turn raw ability into smarter play.',
+            'overview'         => 'Our baseball IQ lessons in Rocklin and El Dorado Hills help players become more prepared, more confident, and more dependable in real game situations. Athletes learn how to recognize what is happening faster and make better decisions when it matters most.',
             'section_title'    => 'What This Lesson Helps Build',
             'focus_items'      => array(
                 'Stronger situational awareness and preparation habits',
@@ -291,7 +383,7 @@ function house36_bbt_lessons_data() {
             'image'            => 'images/service-baseball.iq-5.PNG',
             'image_alt'        => 'Baseball IQ lesson at Better Baseball Training',
             'image_widths'     => array(640, 960),
-            'meta_description' => 'Baseball IQ lessons at Better Baseball Training in Rocklin and El Dorado Hills. Help your athlete improve game awareness, decision-making, and confidence in live situations.',
+            'meta_description' => 'Baseball IQ training in Rocklin and El Dorado Hills for youth players. Improve game awareness, decision-making, and confidence in live situations.',
         ),
     );
 }
@@ -345,6 +437,15 @@ function house36_bbt_lesson_url($slug) {
         return home_url('/');
     }
 
+    if (house36_bbt_is_local_environment()) {
+        return house36_bbt_virtual_route_fallback_url(
+            house36_bbt_lessons_base_slug(),
+            array(
+                'house36_bbt_lesson' => $slug,
+            )
+        );
+    }
+
     return home_url('/' . trim(house36_bbt_lessons_base_slug(), '/') . '/' . $slug . '/');
 }
 
@@ -353,7 +454,272 @@ function house36_bbt_booking_slug() {
 }
 
 function house36_bbt_booking_url() {
+    if (house36_bbt_is_local_environment()) {
+        return house36_bbt_virtual_route_fallback_url(house36_bbt_booking_slug());
+    }
+
     return house36_bbt_get_page_url(house36_bbt_booking_slug(), house36_bbt_booking_slug());
+}
+
+function house36_bbt_seo_pages_data() {
+    return array(
+        'baseball-lessons-rocklin' => array(
+            'label'            => 'Baseball Lessons Rocklin',
+            'title'            => 'Baseball Lessons in Rocklin',
+            'meta_title'       => 'Baseball Lessons Rocklin | Youth Baseball Training | ' . get_bloginfo('name'),
+            'meta_description' => 'Baseball lessons in Rocklin at Better Baseball Training. Private and group youth baseball training for ages 8-14U at 4283 Duluth Ave.',
+            'kicker'           => 'Rocklin Baseball Lessons',
+            'headline'         => 'Baseball Lessons in Rocklin for Youth Players',
+            'subheadline'      => 'Private lessons, group training, academy classes, and player development for Rocklin, Roseville, Granite Bay, and nearby baseball families.',
+            'meta_items'       => array('4283 Duluth Ave', 'Ages 8-14U', 'Private + Group'),
+            'image'            => 'images/facility-img-1.jpg',
+            'image_alt'        => 'Rocklin batting cages and training space at Better Baseball Training',
+            'intro_label'      => 'Rocklin Training Hub',
+            'intro_title'      => 'A Better First Step for Baseball Training in Rocklin',
+            'intro_copy'       => 'BBT Rocklin gives youth players a place to work on hitting, pitching, infield/outfield, catching, baseball IQ, baserunning, and confidence with coaches who can build a clear development plan.',
+            'focus_items'      => array(
+                'Private baseball lessons for targeted skill work',
+                'Academy membership options for consistent weekly development',
+                'Indoor turf, batting cages, and training spaces built for year-round reps',
+                'A path from individual instruction into group training and team development',
+            ),
+            'detail_cards'     => array(
+                array('label' => 'Location', 'title' => 'Rocklin Basecamp', 'copy' => 'Training is available at 4283 Duluth Ave in Rocklin, close to Roseville, Granite Bay, Loomis, and nearby Placer County communities.'),
+                array('label' => 'Lesson Focus', 'title' => 'Hitting, Pitching, Defense, Catching, Baseball IQ', 'copy' => 'Families can start with one skill focus or ask the BBT staff to recommend the best path based on age, goals, and schedule.'),
+                array('label' => 'Best Fit', 'title' => 'Players Ages 8-14U', 'copy' => 'The core BBT lesson and academy model is built for youth players who need better reps, better instruction, and more confidence in games.'),
+            ),
+            'faq_items'        => array(
+                array('question' => 'Where are baseball lessons in Rocklin offered?', 'answer' => 'BBT offers baseball lessons in Rocklin at 4283 Duluth Ave, with private and group options for youth players.'),
+                array('question' => 'What can players work on in Rocklin lessons?', 'answer' => 'Players can work on hitting, pitching, infield/outfield, catching, baseball IQ, baserunning, and basestealing.'),
+                array('question' => 'Are Rocklin lessons private or group training?', 'answer' => 'BBT offers both private lessons and group academy training, depending on the player\'s goals and the family\'s schedule.'),
+            ),
+            'service_type'     => 'Youth baseball lessons',
+            'schema_locations' => array('rocklin'),
+            'related_links'    => array('hitting', 'pitching', 'baseball-academy', 'travel-baseball', 'book-now'),
+            'cta_label'        => 'Book Rocklin Baseball Lessons',
+        ),
+        'baseball-lessons-el-dorado-hills' => array(
+            'label'            => 'Baseball Lessons El Dorado Hills',
+            'title'            => 'Baseball Lessons in El Dorado Hills',
+            'meta_title'       => 'Baseball Lessons El Dorado Hills | Youth Training | ' . get_bloginfo('name'),
+            'meta_description' => 'Baseball lessons in El Dorado Hills at Better Baseball Training. Youth hitting, pitching, catching, defense, and academy training near Folsom.',
+            'kicker'           => 'El Dorado Hills Baseball Lessons',
+            'headline'         => 'Baseball Lessons in El Dorado Hills for Ages 8-14U',
+            'subheadline'      => 'Structured youth baseball instruction for EDH and Folsom families who want more than disconnected reps or one-off cage time.',
+            'meta_items'       => array('4990 Hillsdale Dr', 'Near Folsom', 'Academy + Lessons'),
+            'image'            => 'images/IMG_0607.jpg',
+            'image_alt'        => 'El Dorado Hills indoor baseball training facility at Better Baseball Training',
+            'intro_label'      => 'EDH Development Facility',
+            'intro_title'      => 'A Complete Training Option for El Dorado Hills Families',
+            'intro_copy'       => 'The El Dorado Hills facility gives players access to private lessons, academy programming, pitching instruction, and position-specific development close to home.',
+            'focus_items'      => array(
+                'Private baseball lessons for specific skill needs',
+                'Academy training for players who need recurring structure',
+                'Pitching instruction with former professional experience available on staff',
+                'A clear development path for EDH, Folsom, and surrounding families',
+            ),
+            'detail_cards'     => array(
+                array('label' => 'Location', 'title' => 'El Dorado Hills Facility', 'copy' => 'Training is available at 4990 Hillsdale Dr, Suite 400 in El Dorado Hills for families around EDH, Folsom, Cameron Park, and nearby areas.'),
+                array('label' => 'Program Fit', 'title' => 'Lessons, Academy, and Player Development', 'copy' => 'BBT helps families choose between skill-specific private lessons and recurring academy training based on where the athlete is now.'),
+                array('label' => 'Coaching Depth', 'title' => 'Former Pro and College Backgrounds', 'copy' => 'The staff includes coaches with professional, college, academy, and travel baseball experience across multiple player-development needs.'),
+            ),
+            'faq_items'        => array(
+                array('question' => 'Where is BBT in El Dorado Hills?', 'answer' => 'The El Dorado Hills facility is at 4990 Hillsdale Dr, Suite 400, El Dorado Hills, CA 95762.'),
+                array('question' => 'Do EDH lessons include pitching and hitting?', 'answer' => 'Yes. BBT offers hitting, pitching, catching, infield/outfield, baseball IQ, and related youth baseball training.'),
+                array('question' => 'Is the EDH academy different from private lessons?', 'answer' => 'Private lessons focus on targeted skill work, while academy membership gives players recurring access to structured group training.'),
+            ),
+            'service_type'     => 'Youth baseball lessons',
+            'schema_locations' => array('el-dorado-hills'),
+            'related_links'    => array('pitching', 'hitting', 'baseball-academy', 'book-now', 'schedule'),
+            'cta_label'        => 'Book EDH Baseball Lessons',
+        ),
+        'baseball-academy' => array(
+            'label'            => 'Baseball Academy',
+            'title'            => 'Youth Baseball Academy',
+            'meta_title'       => 'Baseball Academy Sacramento Area | Rocklin & EDH | ' . get_bloginfo('name'),
+            'meta_description' => 'Youth baseball academy memberships in Rocklin and El Dorado Hills for ages 8-14U. Unlimited access training from Better Baseball Training.',
+            'kicker'           => 'Youth Baseball Academy',
+            'headline'         => 'Baseball Academy Memberships for Consistent Player Development',
+            'subheadline'      => 'Unlimited academy access for youth players who need recurring instruction, better structure, and a development path that goes beyond one lesson.',
+            'meta_items'       => array('Rocklin $250/mo', 'EDH $299/mo', 'Ages 8-14U'),
+            'image'            => 'images/hero-slideshow-4.PNG',
+            'image_alt'        => 'Youth baseball player training inside Better Baseball Training academy',
+            'intro_label'      => 'Academy Membership',
+            'intro_title'      => 'Built for Players Who Need More Than Occasional Lessons',
+            'intro_copy'       => 'Academy membership gives dedicated youth players consistent access to skill development across hitting, pitching, catching, defense, baseball IQ, and game-readiness.',
+            'focus_items'      => array(
+                'Rocklin academy membership at $250/month',
+                'El Dorado Hills academy membership at $299/month',
+                'Recurring training for players ages 8-14U',
+                'A bridge between private lessons, team goals, and long-term development',
+            ),
+            'detail_cards'     => array(
+                array('label' => 'Rocklin', 'title' => '$250/month', 'copy' => 'Rocklin academy access gives families a recurring training option at the Duluth Ave facility.'),
+                array('label' => 'El Dorado Hills', 'title' => '$299/month', 'copy' => 'EDH academy access gives families structured training at the Hillsdale Dr facility near Folsom.'),
+                array('label' => 'Development Path', 'title' => 'Lessons + Academy + Teams', 'copy' => 'BBT can help families decide when a player should use private lessons, academy classes, or team-based development.'),
+            ),
+            'faq_items'        => array(
+                array('question' => 'How much is BBT academy membership?', 'answer' => 'Rocklin academy membership is $250 per month and El Dorado Hills academy membership is $299 per month.'),
+                array('question' => 'Who is academy membership for?', 'answer' => 'Academy membership is built for youth players ages 8-14U who need consistent reps and structured development.'),
+                array('question' => 'What skills does the academy cover?', 'answer' => 'Academy training can support hitting, pitching, infield/outfield, catching, baseball IQ, and broader player development.'),
+            ),
+            'service_type'     => 'Youth baseball academy membership',
+            'schema_locations' => array('rocklin', 'el-dorado-hills'),
+            'related_links'    => array('baseball-lessons-rocklin', 'baseball-lessons-el-dorado-hills', 'hitting', 'pitching', 'book-now'),
+            'cta_label'        => 'Ask About Academy Membership',
+        ),
+        'travel-baseball' => array(
+            'label'            => 'Travel Baseball',
+            'title'            => 'Travel Baseball Development',
+            'meta_title'       => 'Travel Baseball Sacramento Area | Youth Development | ' . get_bloginfo('name'),
+            'meta_description' => 'Travel baseball development in the Sacramento area for youth players ages 8-14U. Better Baseball Training helps players prepare for team competition.',
+            'kicker'           => 'Travel Baseball Development',
+            'headline'         => 'Travel Baseball Development for Sacramento-Area Youth Players',
+            'subheadline'      => 'Training, academy structure, and team-based development for players who are ready to grow toward more competitive baseball.',
+            'meta_items'       => array('Ages 8-14U', 'Sacramento Area', 'Development First'),
+            'image'            => 'images/hero-slideshow-2.PNG',
+            'image_alt'        => 'Better Baseball Training travel baseball team celebrating after a tournament',
+            'intro_label'      => 'Team Readiness',
+            'intro_title'      => 'Prepare for Travel Baseball Without Skipping Development',
+            'intro_copy'       => 'BBT focuses on the development work that helps youth players become better prepared for team competition: skill execution, baseball IQ, confidence, and consistent training habits.',
+            'focus_items'      => array(
+                'Player development for ages 8-14U',
+                'Training support for families exploring travel baseball teams near Sacramento',
+                'A path that connects private lessons, academy work, and team expectations',
+                'Guidance for players who need more confidence before higher-commitment competition',
+            ),
+            'detail_cards'     => array(
+                array('label' => 'Development', 'title' => 'Skill Work Before Team Pressure', 'copy' => 'Players can build hitting, pitching, defense, catching, and baseball IQ before or during a travel baseball season.'),
+                array('label' => 'Readiness', 'title' => 'Know the Next Step', 'copy' => 'Families can use BBT to understand whether a player needs private lessons, academy reps, or a team-development conversation.'),
+                array('label' => 'Local Fit', 'title' => 'Rocklin + El Dorado Hills', 'copy' => 'Two facilities give Sacramento-area families a local training base for development around team schedules.'),
+            ),
+            'faq_items'        => array(
+                array('question' => 'Does BBT support travel baseball development?', 'answer' => 'Yes. BBT supports youth players with lessons, academy training, and player development that can prepare athletes for travel baseball.'),
+                array('question' => 'What age group is this built around?', 'answer' => 'BBT core programming is built around ages 8-14U. Families should use the inquiry form to ask about current team or development options.'),
+                array('question' => 'Is this a tournament directory?', 'answer' => 'No. This page is focused on player development and readiness, not listing Sacramento travel baseball tournaments.'),
+            ),
+            'service_type'     => 'Travel baseball development',
+            'schema_locations' => array('rocklin', 'el-dorado-hills'),
+            'related_links'    => array('baseball-academy', 'baseball-lessons-rocklin', 'baseball-lessons-el-dorado-hills', 'baseball-iq', 'book-now'),
+            'cta_label'        => 'Ask About Travel Baseball Development',
+        ),
+        'batting-cages-rocklin' => array(
+            'label'            => 'Rocklin Batting Cages',
+            'title'            => 'Rocklin Batting Cages',
+            'meta_title'       => 'Rocklin Batting Cages | Youth Baseball Training | ' . get_bloginfo('name'),
+            'meta_description' => 'Rocklin batting cages and indoor baseball training spaces at Better Baseball Training. Built for structured lessons, academy reps, and youth development.',
+            'kicker'           => 'Rocklin Batting Cages',
+            'headline'         => 'Rocklin Batting Cages for Structured Baseball Training',
+            'subheadline'      => 'Indoor cage and turf spaces that support hitting lessons, academy training, and player-development reps at BBT Rocklin.',
+            'meta_items'       => array('Rocklin Facility', 'Training-Focused Cages', 'Youth Development'),
+            'image'            => 'images/facility-img-1.jpg',
+            'image_alt'        => 'Batting cages inside Better Baseball Training Rocklin facility',
+            'intro_label'      => 'Facility + Training',
+            'intro_title'      => 'Cage Work Connected to Coaching',
+            'intro_copy'       => 'BBT uses batting cages and indoor facility space as part of a structured development environment. Families should contact the team for current availability and the best training option for their player.',
+            'focus_items'      => array(
+                'Batting cage space connected to hitting development',
+                'Indoor turf and netting for year-round training environments',
+                'Private lessons and academy reps instead of disconnected random swings',
+                'Rocklin location access for families in Roseville, Granite Bay, and nearby areas',
+            ),
+            'detail_cards'     => array(
+                array('label' => 'Important', 'title' => 'Training-First Facility', 'copy' => 'This page does not promise generic drop-in cage rental. Use the form or phone number to ask what is currently available.'),
+                array('label' => 'Best Use', 'title' => 'Hitting Lessons and Academy Reps', 'copy' => 'The cages support skill development, swing confidence, timing, and better practice habits.'),
+                array('label' => 'Location', 'title' => '4283 Duluth Ave', 'copy' => 'The Rocklin facility serves families from Rocklin, Roseville, Granite Bay, Loomis, and surrounding communities.'),
+            ),
+            'faq_items'        => array(
+                array('question' => 'Does BBT have batting cages in Rocklin?', 'answer' => 'Yes. The Rocklin facility includes batting cage space used as part of BBT training and player-development programming.'),
+                array('question' => 'Can I rent a cage for drop-in use?', 'answer' => 'BBT should be contacted directly for current cage availability. The facility is positioned around structured lessons, academy reps, and youth baseball training.'),
+                array('question' => 'Can my player take hitting lessons at the Rocklin cages?', 'answer' => 'Yes. BBT offers hitting lessons and training options that use the Rocklin facility environment.'),
+            ),
+            'service_type'     => 'Indoor batting cage training',
+            'schema_locations' => array('rocklin'),
+            'related_links'    => array('hitting', 'baseball-lessons-rocklin', 'baseball-academy', 'book-now', 'schedule'),
+            'cta_label'        => 'Ask About Rocklin Cage Training',
+        ),
+    );
+}
+
+function house36_bbt_get_seo_page($slug) {
+    $pages = house36_bbt_seo_pages_data();
+    $slug = sanitize_title((string) $slug);
+
+    if (! isset($pages[$slug]) || ! is_array($pages[$slug])) {
+        return null;
+    }
+
+    return array_merge(
+        $pages[$slug],
+        array(
+            'slug'          => $slug,
+            'template_type' => $pages[$slug]['template_type'] ?? 'seo-landing',
+            'schema_type'   => $pages[$slug]['schema_type'] ?? 'Service',
+            'url'           => house36_bbt_seo_page_url($slug),
+        )
+    );
+}
+
+function house36_bbt_seo_page_slugs() {
+    return array_keys(house36_bbt_seo_pages_data());
+}
+
+function house36_bbt_seo_page_url($slug) {
+    $slug = sanitize_title((string) $slug);
+    $pages = house36_bbt_seo_pages_data();
+
+    if (! isset($pages[$slug])) {
+        return home_url('/');
+    }
+
+    return home_url('/' . trim($slug, '/') . '/');
+}
+
+function house36_bbt_related_link_items($keys) {
+    $items = array();
+
+    foreach ((array) $keys as $key) {
+        $key = sanitize_title((string) $key);
+        $lesson = house36_bbt_get_lesson($key);
+        $seo_page = house36_bbt_get_seo_page($key);
+
+        if ($lesson) {
+            $items[] = array(
+                'label' => sprintf('%s Lessons', $lesson['title']),
+                'url'   => house36_bbt_lesson_url($lesson['slug']),
+            );
+        } elseif ($seo_page) {
+            $items[] = array(
+                'label' => $seo_page['title'],
+                'url'   => $seo_page['url'],
+            );
+        } elseif ('book-now' === $key) {
+            $items[] = array(
+                'label' => __('Book Now', 'house36-bbt'),
+                'url'   => house36_bbt_booking_url(),
+            );
+        } elseif ('schedule' === $key) {
+            $items[] = array(
+                'label' => __('Training Schedule', 'house36-bbt'),
+                'url'   => house36_bbt_schedule_url(),
+            );
+        } elseif ('coaches' === $key) {
+            $items[] = array(
+                'label' => __('Meet the Coaches', 'house36-bbt'),
+                'url'   => house36_bbt_coaches_url(),
+            );
+        }
+    }
+
+    return $items;
+}
+
+function house36_bbt_get_current_seo_page() {
+    return house36_bbt_get_seo_page(get_query_var('house36_bbt_page'));
+}
+
+function house36_bbt_is_seo_landing_page() {
+    return (bool) house36_bbt_get_current_seo_page();
 }
 
 function house36_bbt_is_lessons_page() {
@@ -368,6 +734,10 @@ function house36_bbt_is_booking_page() {
     return get_query_var('house36_bbt_page') === house36_bbt_booking_slug();
 }
 
+function house36_bbt_is_privacy_policy_page() {
+    return get_query_var('house36_bbt_page') === house36_bbt_privacy_policy_slug() || is_page(house36_bbt_privacy_policy_slug());
+}
+
 function house36_bbt_is_coaches_page() {
     return is_page('coaches') || is_page_template('page-coaches.php');
 }
@@ -377,7 +747,7 @@ function house36_bbt_is_schedule_page() {
 }
 
 function house36_bbt_is_focus_page() {
-    return is_front_page() || house36_bbt_is_lessons_page() || house36_bbt_is_booking_page() || house36_bbt_is_coaches_page() || house36_bbt_is_schedule_page();
+    return is_front_page() || house36_bbt_is_booking_page() || house36_bbt_is_lessons_page() || house36_bbt_is_seo_landing_page() || house36_bbt_is_coaches_page() || house36_bbt_is_schedule_page() || house36_bbt_is_privacy_policy_page();
 }
 
 function house36_bbt_locations_data() {
@@ -387,7 +757,7 @@ function house36_bbt_locations_data() {
             'full_name'       => 'Better Baseball Training - Rocklin',
             'address_line'    => '4283 Duluth Ave',
             'city_state_zip'  => 'Rocklin, CA 95765',
-            'location_url'    => house36_bbt_home_section_url('rocklin-training'),
+            'location_url'    => house36_bbt_seo_page_url('baseball-lessons-rocklin'),
             'summary'         => 'Rocklin serves families looking for private lessons, academy training, and travel baseball development in Placer County.',
         ),
         'el-dorado-hills' => array(
@@ -395,7 +765,7 @@ function house36_bbt_locations_data() {
             'full_name'       => 'Better Baseball Training - El Dorado Hills',
             'address_line'    => '4990 Hillsdale Dr, Suite 400',
             'city_state_zip'  => 'El Dorado Hills, CA 95762',
-            'location_url'    => house36_bbt_home_section_url('el-dorado-hills-training'),
+            'location_url'    => house36_bbt_seo_page_url('baseball-lessons-el-dorado-hills'),
             'summary'         => 'El Dorado Hills offers indoor baseball lessons, academy classes, and player development for families across EDH, Folsom, and surrounding communities.',
         ),
     );
@@ -718,8 +1088,19 @@ function house36_bbt_lesson_related_coaches($slug) {
     return $related;
 }
 
+function house36_bbt_training_focus_labels() {
+    return array_values(
+        array_map(
+            static function ($lesson) {
+                return $lesson['label'];
+            },
+            house36_bbt_lessons_data()
+        )
+    );
+}
+
 function house36_bbt_home_meta_title() {
-    return 'Youth Baseball Lessons in Rocklin & El Dorado Hills | ' . get_bloginfo('name');
+    return 'Youth Baseball Training | Rocklin & El Dorado Hills | ' . get_bloginfo('name');
 }
 
 function house36_bbt_home_meta_description() {
@@ -727,8 +1108,8 @@ function house36_bbt_home_meta_description() {
 }
 
 function house36_bbt_current_page_name() {
-    if (is_front_page()) {
-        return 'Youth Baseball Lessons in Rocklin & El Dorado Hills';
+    if (house36_bbt_is_privacy_policy_page()) {
+        return 'Privacy Policy';
     }
 
     if (house36_bbt_is_booking_page()) {
@@ -743,10 +1124,20 @@ function house36_bbt_current_page_name() {
         return 'Baseball Training Schedule in Rocklin & El Dorado Hills';
     }
 
+    $seo_page = house36_bbt_get_current_seo_page();
+
+    if ($seo_page) {
+        return $seo_page['title'];
+    }
+
     $lesson = house36_bbt_get_current_lesson();
 
     if ($lesson) {
         return sprintf('%s Lessons in Rocklin & El Dorado Hills', $lesson['title']);
+    }
+
+    if (is_front_page()) {
+        return 'Youth Baseball Training in Rocklin & El Dorado Hills';
     }
 
     if (is_singular()) {
@@ -757,6 +1148,12 @@ function house36_bbt_current_page_name() {
 }
 
 function house36_bbt_current_canonical_url() {
+    $seo_page = house36_bbt_get_current_seo_page();
+
+    if ($seo_page) {
+        return $seo_page['url'];
+    }
+
     if (house36_bbt_is_lessons_page()) {
         $lesson = house36_bbt_get_current_lesson();
 
@@ -765,6 +1162,10 @@ function house36_bbt_current_canonical_url() {
 
     if (house36_bbt_is_booking_page()) {
         return house36_bbt_booking_url();
+    }
+
+    if (house36_bbt_is_privacy_policy_page()) {
+        return house36_bbt_privacy_policy_url();
     }
 
     if (house36_bbt_is_coaches_page()) {
@@ -787,14 +1188,18 @@ function house36_bbt_current_canonical_url() {
 }
 
 function house36_bbt_current_meta_description() {
-    if (is_front_page()) {
-        return house36_bbt_home_meta_description();
+    if (house36_bbt_is_privacy_policy_page()) {
+        return 'Read the Better Baseball Training privacy policy for information about the data collected through this website, booking requests, and communication forms.';
     }
 
     $override = house36_bbt_get_meta_description();
 
     if ($override) {
         return $override;
+    }
+
+    if (is_front_page()) {
+        return house36_bbt_home_meta_description();
     }
 
     if (is_singular()) {
@@ -816,26 +1221,342 @@ function house36_bbt_current_webpage_schema() {
     }
 
     return array(
-        '@context'    => 'https://schema.org',
-        '@type'       => 'WebPage',
-        '@id'         => untrailingslashit($canonical) . '#webpage',
-        'url'         => $canonical,
-        'name'        => house36_bbt_current_page_name(),
-        'description' => house36_bbt_current_meta_description(),
-        'isPartOf'    => array(
+        '@context'     => 'https://schema.org',
+        '@type'        => 'WebPage',
+        '@id'          => untrailingslashit($canonical) . '#webpage',
+        'url'          => $canonical,
+        'name'         => house36_bbt_current_page_name(),
+        'description'  => house36_bbt_current_meta_description(),
+        'dateModified' => gmdate('c'),
+        'isPartOf'     => array(
             '@id' => home_url('/#website'),
         ),
-        'about'       => array(
+        'about'        => array(
             '@id' => home_url('/#organization'),
         ),
     );
 }
 
+function house36_bbt_current_breadcrumb_schema() {
+    $items = array(
+        array(
+            '@type'    => 'ListItem',
+            'position' => 1,
+            'name'     => 'Home',
+            'item'     => home_url('/'),
+        ),
+    );
+
+    $position = 2;
+
+    if (house36_bbt_is_lessons_page()) {
+        $lesson = house36_bbt_get_current_lesson();
+
+        if (! $lesson) {
+            return null;
+        }
+
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => $position++,
+            'name'     => 'Lessons',
+            'item'     => house36_bbt_home_section_url('lessons'),
+        );
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => $position,
+            'name'     => sprintf('%s Lessons', $lesson['title']),
+            'item'     => house36_bbt_lesson_url($lesson['slug']),
+        );
+    } elseif (house36_bbt_is_coaches_page()) {
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => $position,
+            'name'     => 'Our Coaches',
+            'item'     => house36_bbt_coaches_url(),
+        );
+    } elseif (house36_bbt_is_schedule_page()) {
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => $position,
+            'name'     => 'Academy Schedule',
+            'item'     => house36_bbt_schedule_url(),
+        );
+    } elseif (house36_bbt_is_booking_page()) {
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => $position,
+            'name'     => 'Book Now',
+            'item'     => house36_bbt_booking_url(),
+        );
+    } elseif (house36_bbt_is_seo_landing_page()) {
+        $seo_page = house36_bbt_get_current_seo_page();
+
+        if (! $seo_page) {
+            return null;
+        }
+
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => $position,
+            'name'     => $seo_page['title'],
+            'item'     => $seo_page['url'],
+        );
+    } elseif (house36_bbt_is_privacy_policy_page()) {
+        $items[] = array(
+            '@type'    => 'ListItem',
+            'position' => $position,
+            'name'     => 'Privacy Policy',
+            'item'     => house36_bbt_privacy_policy_url(),
+        );
+    } elseif (is_front_page()) {
+        return array(
+            '@context'        => 'https://schema.org',
+            '@type'           => 'BreadcrumbList',
+            'itemListElement' => $items,
+        );
+    } else {
+        return null;
+    }
+
+    return array(
+        '@context'        => 'https://schema.org',
+        '@type'           => 'BreadcrumbList',
+        'itemListElement' => $items,
+    );
+}
+
+function house36_bbt_get_object_id_by_path($path, $post_type) {
+    $object = get_page_by_path(trim((string) $path, '/'), OBJECT, $post_type);
+
+    return $object instanceof WP_Post ? (int) $object->ID : 0;
+}
+
+function house36_bbt_placeholder_page_ids() {
+    $ids = array_filter(
+        array(
+            house36_bbt_get_object_id_by_path('sample-page', 'page'),
+        )
+    );
+
+    return array_values(array_map('absint', $ids));
+}
+
+function house36_bbt_placeholder_post_ids() {
+    $ids = array_filter(
+        array(
+            house36_bbt_get_object_id_by_path('hello-world', 'post'),
+        )
+    );
+
+    return array_values(array_map('absint', $ids));
+}
+
+function house36_bbt_is_placeholder_post_surface() {
+    return is_singular('post') && in_array((int) get_queried_object_id(), house36_bbt_placeholder_post_ids(), true);
+}
+
+function house36_bbt_has_real_blog_content() {
+    static $has_real_blog_content = null;
+
+    if (null !== $has_real_blog_content) {
+        return $has_real_blog_content;
+    }
+
+    $query = new WP_Query(
+        array(
+            'post_type'              => 'post',
+            'post_status'            => 'publish',
+            'posts_per_page'         => 1,
+            'fields'                 => 'ids',
+            'no_found_rows'          => true,
+            'post__not_in'           => house36_bbt_placeholder_post_ids(),
+            'ignore_sticky_posts'    => true,
+            'update_post_meta_cache' => false,
+            'update_post_term_cache' => false,
+        )
+    );
+
+    $has_real_blog_content = ! empty($query->posts);
+
+    return $has_real_blog_content;
+}
+
+function house36_bbt_redirect_legacy_urls() {
+    if (is_admin() || wp_doing_ajax()) {
+        return;
+    }
+
+    $request_path = isset($_SERVER['REQUEST_URI']) ? wp_parse_url(wp_unslash((string) $_SERVER['REQUEST_URI']), PHP_URL_PATH) : '';
+    $request_path = trim((string) $request_path, '/');
+
+    $legacy_redirects = array(
+        'copy-of-camp-registration' => home_url('/'),
+    );
+
+    if (isset($legacy_redirects[$request_path])) {
+        wp_redirect($legacy_redirects[$request_path], 301);
+        exit;
+    }
+}
+add_action('template_redirect', 'house36_bbt_redirect_legacy_urls', 0);
+
+function house36_bbt_redirect_placeholder_content() {
+    if (is_admin() || wp_doing_ajax()) {
+        return;
+    }
+
+    if (house36_bbt_is_placeholder_page_surface() || house36_bbt_is_placeholder_post_surface()) {
+        wp_redirect(home_url('/'), 301);
+        exit;
+    }
+
+    if (! house36_bbt_has_real_blog_content() && (is_author() || is_category() || is_tag())) {
+        wp_redirect(home_url('/'), 301);
+        exit;
+    }
+}
+add_action('template_redirect', 'house36_bbt_redirect_placeholder_content', 5);
+
+function house36_bbt_is_placeholder_page_surface() {
+    return is_page() && in_array((int) get_queried_object_id(), house36_bbt_placeholder_page_ids(), true);
+}
+
+function house36_bbt_should_noindex_current_request() {
+    if (house36_bbt_is_focus_page()) {
+        return false;
+    }
+
+    if (house36_bbt_is_placeholder_page_surface() || house36_bbt_is_placeholder_post_surface()) {
+        return true;
+    }
+
+    if (house36_bbt_has_real_blog_content()) {
+        return false;
+    }
+
+    return is_home() || is_singular('post') || is_category() || is_tag() || is_author();
+}
+
+function house36_bbt_wp_robots($robots) {
+    if (house36_bbt_is_focus_page()) {
+        unset(
+            $robots['noindex'],
+            $robots['nofollow'],
+            $robots['noarchive'],
+            $robots['nosnippet'],
+            $robots['noimageindex']
+        );
+
+        $robots['follow'] = true;
+        $robots['max-image-preview'] = 'large';
+
+        return $robots;
+    }
+
+    if (! house36_bbt_should_noindex_current_request()) {
+        return $robots;
+    }
+
+    $robots['noindex'] = true;
+    $robots['follow'] = true;
+
+    return $robots;
+}
+add_filter('wp_robots', 'house36_bbt_wp_robots', 9999);
+
+function house36_bbt_rank_math_robots($robots) {
+    if (house36_bbt_is_focus_page()) {
+        return array('index', 'follow', 'max-image-preview:large');
+    }
+
+    if (house36_bbt_should_noindex_current_request()) {
+        return array('noindex', 'follow', 'max-image-preview:large');
+    }
+
+    return $robots;
+}
+add_filter('rank_math/frontend/robots', 'house36_bbt_rank_math_robots', 9999);
+
+function house36_bbt_filter_posts_sitemap_query_args($args, $post_type) {
+    if ('page' === $post_type) {
+        $placeholder_pages = house36_bbt_placeholder_page_ids();
+
+        if ($placeholder_pages) {
+            $args['post__not_in'] = array_values(
+                array_unique(
+                    array_merge($args['post__not_in'] ?? array(), $placeholder_pages)
+                )
+            );
+        }
+    }
+
+    if ('post' === $post_type) {
+        if (! house36_bbt_has_real_blog_content()) {
+            $args['post__in'] = array(0);
+
+            return $args;
+        }
+
+        $placeholder_posts = house36_bbt_placeholder_post_ids();
+
+        if ($placeholder_posts) {
+            $args['post__not_in'] = array_values(
+                array_unique(
+                    array_merge($args['post__not_in'] ?? array(), $placeholder_posts)
+                )
+            );
+        }
+    }
+
+    return $args;
+}
+add_filter('wp_sitemaps_posts_query_args', 'house36_bbt_filter_posts_sitemap_query_args', 10, 2);
+
+function house36_bbt_filter_sitemap_provider($provider, $name) {
+    if (! house36_bbt_has_real_blog_content() && 'users' === $name) {
+        return false;
+    }
+
+    return $provider;
+}
+add_filter('wp_sitemaps_add_provider', 'house36_bbt_filter_sitemap_provider', 10, 2);
+
+function house36_bbt_filter_taxonomy_sitemaps($taxonomies) {
+    if (house36_bbt_has_real_blog_content()) {
+        return $taxonomies;
+    }
+
+    unset($taxonomies['category'], $taxonomies['post_tag']);
+
+    return $taxonomies;
+}
+add_filter('wp_sitemaps_taxonomies', 'house36_bbt_filter_taxonomy_sitemaps');
+add_filter('wp_sitemaps_enabled', '__return_false');
+
 function house36_bbt_virtual_sitemap_url() {
     return home_url('/training-sitemap.xml');
 }
 
+function house36_bbt_virtual_sitemap_slug() {
+    return 'training-sitemap.xml';
+}
+
+function house36_bbt_virtual_sitemap_aliases() {
+    return array(
+        house36_bbt_virtual_sitemap_slug(),
+        'sitemap_index.xml',
+        'wp-sitemap.xml',
+    );
+}
+
+function house36_bbt_llms_txt_slug() {
+    return 'llms.txt';
+}
+
 function house36_bbt_add_query_vars($vars) {
+    $vars[] = 'house36_bbt_page';
+    $vars[] = 'house36_bbt_lesson';
     $vars[] = 'house36_bbt_llms_txt';
     $vars[] = 'house36_bbt_training_sitemap';
     return $vars;
@@ -847,21 +1568,35 @@ function house36_bbt_register_virtual_pages() {
     add_rewrite_tag('%house36_bbt_lesson%', '([^&]+)');
 
     add_rewrite_rule(
-        '^llms\.txt$',
+        '^' . preg_quote(house36_bbt_llms_txt_slug(), '/') . '$',
         'index.php?house36_bbt_llms_txt=1',
         'top'
     );
-    add_rewrite_rule(
-        '^training-sitemap\.xml$',
-        'index.php?house36_bbt_training_sitemap=1',
-        'top'
-    );
+    foreach (house36_bbt_virtual_sitemap_aliases() as $sitemap_slug) {
+        add_rewrite_rule(
+            '^' . preg_quote($sitemap_slug, '/') . '$',
+            'index.php?house36_bbt_training_sitemap=1',
+            'top'
+        );
+    }
 
     add_rewrite_rule(
         '^' . preg_quote(house36_bbt_booking_slug(), '/') . '/?$',
         'index.php?house36_bbt_page=' . house36_bbt_booking_slug(),
         'top'
     );
+    add_rewrite_rule(
+        '^' . preg_quote(house36_bbt_privacy_policy_slug(), '/') . '/?$',
+        'index.php?house36_bbt_page=' . house36_bbt_privacy_policy_slug(),
+        'top'
+    );
+    foreach (house36_bbt_seo_page_slugs() as $seo_slug) {
+        add_rewrite_rule(
+            '^' . preg_quote($seo_slug, '/') . '/?$',
+            'index.php?house36_bbt_page=' . $seo_slug,
+            'top'
+        );
+    }
     add_rewrite_rule(
         '^' . preg_quote(house36_bbt_lessons_base_slug(), '/') . '/([^/]+)/?$',
         'index.php?house36_bbt_page=' . house36_bbt_lessons_base_slug() . '&house36_bbt_lesson=$matches[1]',
@@ -870,95 +1605,260 @@ function house36_bbt_register_virtual_pages() {
 }
 add_action('init', 'house36_bbt_register_virtual_pages');
 
-function house36_bbt_serve_llms_txt() {
-    if (get_query_var('house36_bbt_llms_txt')) {
-        header('Content-Type: text/plain; charset=utf-8');
+function house36_bbt_capture_virtual_request($wp) {
+    $page = '';
+    $lesson = '';
+    $llms_txt = false;
+    $training_sitemap = false;
 
-        $locations = house36_bbt_locations_data();
-        $coaches = house36_bbt_coaches_data();
-        $lesson_links = array();
+    if (isset($_GET['house36_bbt_page'])) {
+        $page = sanitize_title(wp_unslash((string) $_GET['house36_bbt_page']));
+    }
 
-        foreach (house36_bbt_lessons_data() as $slug => $lesson) {
-            $lesson_links[] = sprintf(
-                '- %s: %s',
-                $lesson['label'],
-                house36_bbt_lesson_url($slug)
-            );
+    if (isset($_GET['house36_bbt_lesson'])) {
+        $lesson = sanitize_title(wp_unslash((string) $_GET['house36_bbt_lesson']));
+    }
+
+    if (isset($_GET['house36_bbt_llms_txt'])) {
+        $llms_txt = (bool) absint($_GET['house36_bbt_llms_txt']);
+    }
+
+    if (isset($_GET['house36_bbt_training_sitemap'])) {
+        $training_sitemap = (bool) absint($_GET['house36_bbt_training_sitemap']);
+    }
+
+    if ($page === '') {
+        $request_path = isset($_SERVER['REQUEST_URI']) ? wp_parse_url(wp_unslash((string) $_SERVER['REQUEST_URI']), PHP_URL_PATH) : '';
+        $request_path = trim((string) $request_path, '/');
+
+        if ($request_path === house36_bbt_booking_slug()) {
+            $page = house36_bbt_booking_slug();
+        } elseif ($request_path === house36_bbt_privacy_policy_slug()) {
+            $page = house36_bbt_privacy_policy_slug();
+        } elseif (in_array($request_path, house36_bbt_seo_page_slugs(), true)) {
+            $page = $request_path;
+        } elseif ($request_path === house36_bbt_llms_txt_slug()) {
+            $llms_txt = true;
+        } elseif (in_array($request_path, house36_bbt_virtual_sitemap_aliases(), true)) {
+            $training_sitemap = true;
+        } elseif (preg_match('#^' . preg_quote(house36_bbt_lessons_base_slug(), '#') . '/([^/]+)/?$#', $request_path, $matches)) {
+            $page = house36_bbt_lessons_base_slug();
+            $lesson = sanitize_title($matches[1]);
         }
+    }
 
-        echo "# Better Baseball Training\n\n";
-        echo "Better Baseball Training provides youth baseball lessons, academy memberships, and travel baseball development in Rocklin and El Dorado Hills, California.\n\n";
-        echo "## Core Facts\n";
-        echo "- Website: " . home_url('/') . "\n";
-        echo "- Coaches page: " . house36_bbt_coaches_url() . "\n";
-        echo "- Schedule page: " . house36_bbt_schedule_url() . "\n";
-        echo "- Booking page: " . house36_bbt_booking_url() . "\n";
-        echo "- Training sitemap: " . house36_bbt_virtual_sitemap_url() . "\n";
-        echo "- Ages served: 8-14U for academy memberships and core lesson programming\n";
-        echo "- Services: private lessons, group lessons, academy memberships, travel baseball teams\n";
-        echo "- Lesson categories: hitting, pitching, infield/outfield, catching, baseball IQ\n";
-        echo "- Academy pricing: \$250/month in Rocklin and \$299/month in El Dorado Hills\n\n";
+    if ($page !== '') {
+        $wp->query_vars['house36_bbt_page'] = $page;
+    }
 
-        echo "## Locations\n";
-        foreach ($locations as $location) {
-            echo sprintf(
-                "- %s: %s, %s (%s)\n",
-                $location['full_name'],
-                $location['address_line'],
-                $location['city_state_zip'],
-                $location['location_url']
-            );
-        }
-        echo "\n";
+    if ($lesson !== '') {
+        $wp->query_vars['house36_bbt_lesson'] = $lesson;
+    }
 
-        echo "## Lesson URLs\n";
-        echo implode("\n", $lesson_links) . "\n\n";
+    if ($llms_txt) {
+        $wp->query_vars['house36_bbt_llms_txt'] = 1;
+    }
 
-        echo "## Coaches\n";
-        foreach (array('jon-peters', 'cesar-tamayo', 'trey-furrey', 'jean-machi', 'gabe-emmett', 'kris-krise') as $coach_key) {
-            if (! isset($coaches[$coach_key])) {
-                continue;
-            }
-
-            $coach = $coaches[$coach_key];
-            echo sprintf(
-                "- %s: %s. Locations: %s. Coach profile: %s#%s\n",
-                $coach['name'],
-                $coach['job_title'],
-                implode(', ', $coach['locations']),
-                house36_bbt_coaches_url(),
-                $coach['anchor']
-            );
-        }
-        echo "\n";
-
-        echo "## Contact\n";
-        echo "- Phone: 916-465-5551\n";
-        echo "- Email: trainwithbbt@gmail.com\n";
-
-        exit;
+    if ($training_sitemap) {
+        $wp->query_vars['house36_bbt_training_sitemap'] = 1;
     }
 }
-add_action('template_redirect', 'house36_bbt_serve_llms_txt', 1);
+add_action('parse_request', 'house36_bbt_capture_virtual_request', 0);
 
-function house36_bbt_serve_training_sitemap() {
-    if (! get_query_var('house36_bbt_training_sitemap')) {
-        return;
+function house36_bbt_is_virtual_request_candidate() {
+    $requested_page = isset($_GET['house36_bbt_page']) ? sanitize_title(wp_unslash((string) $_GET['house36_bbt_page'])) : '';
+    $requested_llms_txt = isset($_GET['house36_bbt_llms_txt']) ? (bool) absint($_GET['house36_bbt_llms_txt']) : false;
+    $requested_training_sitemap = isset($_GET['house36_bbt_training_sitemap']) ? (bool) absint($_GET['house36_bbt_training_sitemap']) : false;
+
+    if (in_array($requested_page, array_merge(array(house36_bbt_booking_slug(), house36_bbt_lessons_base_slug(), house36_bbt_privacy_policy_slug()), house36_bbt_seo_page_slugs()), true)) {
+        return true;
     }
 
-    header('Content-Type: application/xml; charset=utf-8');
+    if ($requested_llms_txt || $requested_training_sitemap) {
+        return true;
+    }
 
+    $request_path = isset($_SERVER['REQUEST_URI']) ? wp_parse_url(wp_unslash((string) $_SERVER['REQUEST_URI']), PHP_URL_PATH) : '';
+    $request_path = trim((string) $request_path, '/');
+
+    if (
+        $request_path === house36_bbt_booking_slug()
+        || $request_path === house36_bbt_privacy_policy_slug()
+        || in_array($request_path, house36_bbt_seo_page_slugs(), true)
+        || $request_path === house36_bbt_llms_txt_slug()
+        || in_array($request_path, house36_bbt_virtual_sitemap_aliases(), true)
+    ) {
+        return true;
+    }
+
+    return (bool) preg_match('#^' . preg_quote(house36_bbt_lessons_base_slug(), '#') . '/[^/]+/?$#', $request_path);
+}
+
+function house36_bbt_disable_canonical_redirect_for_virtual_routes($redirect_url, $requested_url) {
+    if (house36_bbt_is_virtual_request_candidate()) {
+        return false;
+    }
+
+    return $redirect_url;
+}
+add_filter('redirect_canonical', 'house36_bbt_disable_canonical_redirect_for_virtual_routes', 10, 2);
+
+function house36_bbt_prevent_virtual_routes_from_404($preempt, $wp_query) {
+    if (! house36_bbt_is_virtual_request_candidate()) {
+        return $preempt;
+    }
+
+    $wp_query->is_404 = false;
+    $wp_query->is_page = true;
+    $wp_query->is_singular = true;
+
+    return true;
+}
+add_filter('pre_handle_404', 'house36_bbt_prevent_virtual_routes_from_404', 10, 2);
+
+function house36_bbt_training_sitemap_urls() {
     $urls = array(
+        home_url('/'),
         house36_bbt_booking_url(),
         house36_bbt_coaches_url(),
         house36_bbt_schedule_url(),
+        house36_bbt_privacy_policy_url(),
     );
 
     foreach (house36_bbt_lessons_data() as $slug => $lesson) {
         $urls[] = house36_bbt_lesson_url($slug);
     }
 
-    $urls = array_unique(array_filter($urls));
+    foreach (house36_bbt_seo_page_slugs() as $slug) {
+        $urls[] = house36_bbt_seo_page_url($slug);
+    }
+
+    return array_values(array_unique(array_filter($urls)));
+}
+
+function house36_bbt_request_path() {
+    $request_path = isset($_SERVER['REQUEST_URI']) ? wp_parse_url(wp_unslash((string) $_SERVER['REQUEST_URI']), PHP_URL_PATH) : '';
+
+    return trim((string) $request_path, '/');
+}
+
+function house36_bbt_should_serve_llms_txt_request() {
+    if (get_query_var('house36_bbt_llms_txt')) {
+        return true;
+    }
+
+    if (isset($_GET['house36_bbt_llms_txt']) && absint($_GET['house36_bbt_llms_txt'])) {
+        return true;
+    }
+
+    return house36_bbt_request_path() === house36_bbt_llms_txt_slug();
+}
+
+function house36_bbt_should_serve_training_sitemap_request() {
+    if (get_query_var('house36_bbt_training_sitemap')) {
+        return true;
+    }
+
+    if (isset($_GET['house36_bbt_training_sitemap']) && absint($_GET['house36_bbt_training_sitemap'])) {
+        return true;
+    }
+
+    return in_array(house36_bbt_request_path(), house36_bbt_virtual_sitemap_aliases(), true);
+}
+
+function house36_bbt_serve_llms_txt() {
+    if (! house36_bbt_should_serve_llms_txt_request()) {
+        return;
+    }
+
+    header('Content-Type: text/plain; charset=utf-8');
+
+    $locations = house36_bbt_locations_data();
+    $coaches = house36_bbt_coaches_data();
+    $lesson_links = array();
+    $seo_page_links = array();
+
+    foreach (house36_bbt_lessons_data() as $slug => $lesson) {
+        $lesson_links[] = sprintf(
+            '- %s: %s',
+            $lesson['label'],
+            house36_bbt_lesson_url($slug)
+        );
+    }
+
+    foreach (house36_bbt_seo_pages_data() as $slug => $page) {
+        $seo_page_links[] = sprintf(
+            '- %s: %s',
+            $page['title'],
+            house36_bbt_seo_page_url($slug)
+        );
+    }
+
+    echo "# Better Baseball Training\n\n";
+    echo "Better Baseball Training provides youth baseball lessons, academy memberships, and travel baseball development in Rocklin and El Dorado Hills, California.\n\n";
+    echo "## Core Facts\n";
+    echo "- Website: " . home_url('/') . "\n";
+    echo "- Coaches page: " . house36_bbt_coaches_url() . "\n";
+    echo "- Schedule page: " . house36_bbt_schedule_url() . "\n";
+    echo "- Booking page: " . house36_bbt_booking_url() . "\n";
+    echo "- Training sitemap: " . house36_bbt_virtual_sitemap_url() . "\n";
+    echo "- Ages served: 8-14U for academy memberships and core lesson programming\n";
+    echo "- Services: private lessons, group lessons, academy memberships, travel baseball teams\n";
+    echo "- Lesson categories: hitting, pitching, infield/outfield, catching, baseball IQ\n";
+    echo "- Academy pricing: \$250/month in Rocklin and \$299/month in El Dorado Hills\n\n";
+
+    echo "## Locations\n";
+    foreach ($locations as $location) {
+        echo sprintf(
+            "- %s: %s, %s (%s)\n",
+            $location['full_name'],
+            $location['address_line'],
+            $location['city_state_zip'],
+            $location['location_url']
+        );
+    }
+    echo "\n";
+
+    echo "## Lesson URLs\n";
+    echo implode("\n", $lesson_links) . "\n\n";
+
+    echo "## Local SEO Landing Pages\n";
+    echo implode("\n", $seo_page_links) . "\n\n";
+
+    echo "## Coaches\n";
+    foreach (array('jon-peters', 'cesar-tamayo', 'trey-furrey', 'jean-machi', 'gabe-emmett', 'kris-krise') as $coach_key) {
+        if (! isset($coaches[$coach_key])) {
+            continue;
+        }
+
+        $coach = $coaches[$coach_key];
+        echo sprintf(
+            "- %s: %s. Locations: %s. Coach profile: %s#%s\n",
+            $coach['name'],
+            $coach['job_title'],
+            implode(', ', $coach['locations']),
+            house36_bbt_coaches_url(),
+            $coach['anchor']
+        );
+    }
+    echo "\n";
+
+    echo "## Contact\n";
+    echo '- Phone: ' . house36_bbt_contact_phone() . "\n";
+    echo '- Email: ' . house36_bbt_contact_email() . "\n";
+
+    exit;
+}
+add_action('template_redirect', 'house36_bbt_serve_llms_txt', 1);
+
+function house36_bbt_serve_training_sitemap() {
+    if (! house36_bbt_should_serve_training_sitemap_request()) {
+        return;
+    }
+
+    header('Content-Type: application/xml; charset=utf-8');
+
+    $urls = house36_bbt_training_sitemap_urls();
     $lastmod = gmdate('c');
 
     echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -976,8 +1876,23 @@ function house36_bbt_serve_training_sitemap() {
 }
 add_action('template_redirect', 'house36_bbt_serve_training_sitemap', 1);
 
+function house36_bbt_serve_text_routes_early() {
+    if (is_admin() || wp_doing_ajax() || (defined('REST_REQUEST') && REST_REQUEST)) {
+        return;
+    }
+
+    if (house36_bbt_should_serve_llms_txt_request()) {
+        house36_bbt_serve_llms_txt();
+    }
+
+    if (house36_bbt_should_serve_training_sitemap_request()) {
+        house36_bbt_serve_training_sitemap();
+    }
+}
+add_action('parse_request', 'house36_bbt_serve_text_routes_early', 1);
+
 function house36_bbt_maybe_flush_virtual_pages() {
-    $version = '2026-03-21-llm-seo-foundation';
+    $version = '2026-05-01-dataforseo-seo-pages-v1';
 
     if (get_option('house36_bbt_virtual_page_version') === $version) {
         return;
@@ -996,6 +1911,18 @@ function house36_bbt_virtual_page_template($template) {
         return $virtual_template ?: $template;
     }
 
+    if (house36_bbt_is_privacy_policy_page()) {
+        $virtual_template = locate_template('page-privacy-policy.php');
+
+        return $virtual_template ?: $template;
+    }
+
+    if (house36_bbt_is_seo_landing_page()) {
+        $virtual_template = locate_template('page-seo-landing.php');
+
+        return $virtual_template ?: $template;
+    }
+
     if (! house36_bbt_is_lessons_page()) {
         return $template;
     }
@@ -1007,7 +1934,7 @@ function house36_bbt_virtual_page_template($template) {
 add_filter('template_include', 'house36_bbt_virtual_page_template');
 
 function house36_bbt_virtual_page_flags() {
-    if (! house36_bbt_is_booking_page() && ! house36_bbt_is_lessons_page()) {
+    if (! house36_bbt_is_booking_page() && ! house36_bbt_is_lessons_page() && ! house36_bbt_is_seo_landing_page() && ! house36_bbt_is_privacy_policy_page()) {
         return;
     }
 
@@ -1020,13 +1947,57 @@ function house36_bbt_virtual_page_flags() {
 }
 add_action('template_redirect', 'house36_bbt_virtual_page_flags');
 
+function house36_bbt_render_virtual_routes_early() {
+    if (is_admin() || wp_doing_ajax() || (defined('REST_REQUEST') && REST_REQUEST)) {
+        return;
+    }
+
+    $template = '';
+
+    if (house36_bbt_is_booking_page()) {
+        $template = locate_template('page-book-now.php');
+    } elseif (house36_bbt_is_lessons_page()) {
+        $template = locate_template('page-lesson.php');
+    } elseif (house36_bbt_is_seo_landing_page()) {
+        $template = locate_template('page-seo-landing.php');
+    } elseif (house36_bbt_is_privacy_policy_page()) {
+        $template = locate_template('page-privacy-policy.php');
+    }
+
+    if (! $template) {
+        return;
+    }
+
+    global $wp_query;
+
+    $wp_query->is_404 = false;
+    $wp_query->is_page = true;
+    $wp_query->is_singular = true;
+
+    status_header(200);
+    include $template;
+    exit;
+}
+add_action('template_redirect', 'house36_bbt_render_virtual_routes_early', 0);
+
+function house36_bbt_cleanup_virtual_route_headers() {
+    if (! house36_bbt_is_booking_page() && ! house36_bbt_is_lessons_page() && ! house36_bbt_is_seo_landing_page() && ! house36_bbt_is_privacy_policy_page()) {
+        return;
+    }
+
+    remove_action('template_redirect', 'redirect_canonical');
+    remove_action('template_redirect', 'rest_output_link_header', 11);
+    remove_action('template_redirect', 'wp_shortlink_header', 11);
+}
+add_action('template_redirect', 'house36_bbt_cleanup_virtual_route_headers', 1);
+
 function house36_bbt_virtual_page_title($title) {
-    if (is_front_page()) {
-        return house36_bbt_home_meta_title();
+    if (house36_bbt_is_privacy_policy_page()) {
+        return 'Privacy Policy | ' . get_bloginfo('name');
     }
 
     if (house36_bbt_is_booking_page()) {
-        return 'Book Baseball Lessons in Rocklin & El Dorado Hills | ' . get_bloginfo('name');
+        return 'Book Baseball Lessons | Rocklin & El Dorado Hills | ' . get_bloginfo('name');
     }
 
     if (house36_bbt_is_coaches_page()) {
@@ -1034,18 +2005,28 @@ function house36_bbt_virtual_page_title($title) {
     }
 
     if (house36_bbt_is_schedule_page()) {
-        return 'Baseball Training Schedule in Rocklin & El Dorado Hills | ' . get_bloginfo('name');
+        return 'Baseball Schedule | Rocklin & El Dorado Hills | ' . get_bloginfo('name');
+    }
+
+    $seo_page = house36_bbt_get_current_seo_page();
+
+    if ($seo_page) {
+        return $seo_page['meta_title'];
     }
 
     $lesson = house36_bbt_get_current_lesson();
 
     if (! $lesson) {
+        if (is_front_page()) {
+            return house36_bbt_home_meta_title();
+        }
+
         return $title;
     }
 
     return sprintf(
-        '%s in Rocklin & El Dorado Hills | %s',
-        $lesson['headline'],
+        '%s Lessons | Rocklin & El Dorado Hills | %s',
+        $lesson['title'],
         get_bloginfo('name')
     );
 }
@@ -1055,6 +2036,23 @@ function house36_bbt_virtual_page_body_class($classes) {
     if (house36_bbt_is_booking_page()) {
         $classes[] = 'page-template-book-now';
         $classes[] = 'page-book-now';
+
+        return $classes;
+    }
+
+    if (house36_bbt_is_privacy_policy_page()) {
+        $classes[] = 'page-template-privacy-policy';
+        $classes[] = 'page-privacy-policy';
+
+        return $classes;
+    }
+
+    $seo_page = house36_bbt_get_current_seo_page();
+
+    if ($seo_page) {
+        $classes[] = 'page-template-seo-landing';
+        $classes[] = 'page-seo-landing';
+        $classes[] = 'page-seo-' . sanitize_html_class($seo_page['slug']);
 
         return $classes;
     }
@@ -1071,6 +2069,38 @@ function house36_bbt_virtual_page_body_class($classes) {
 }
 add_filter('body_class', 'house36_bbt_virtual_page_body_class');
 
+function house36_bbt_maybe_redirect_legacy_requests() {
+    if (is_admin() || wp_doing_ajax() || (defined('REST_REQUEST') && REST_REQUEST)) {
+        return;
+    }
+
+    $request_uri = isset($_SERVER['REQUEST_URI']) ? wp_unslash((string) $_SERVER['REQUEST_URI']) : '';
+    $request_path = trim((string) wp_parse_url($request_uri, PHP_URL_PATH), '/');
+
+    $legacy_redirects = array(
+        'copy-of-camp-registration' => house36_bbt_booking_url(),
+        'copy-of-rancho'            => house36_bbt_home_section_url('facilities'),
+        'sample-page'              => home_url('/'),
+        'hello-world'              => home_url('/'),
+    );
+
+    if ($request_path && isset($legacy_redirects[$request_path])) {
+        wp_safe_redirect($legacy_redirects[$request_path], 301);
+        exit;
+    }
+
+    if (! house36_bbt_has_real_blog_content() && (is_home() || is_singular('post') || is_category() || is_tag() || is_author())) {
+        wp_safe_redirect(home_url('/'), 301);
+        exit;
+    }
+
+    if (house36_bbt_is_placeholder_page_surface() || house36_bbt_is_placeholder_post_surface()) {
+        wp_safe_redirect(home_url('/'), 301);
+        exit;
+    }
+}
+add_action('template_redirect', 'house36_bbt_maybe_redirect_legacy_requests', 0);
+
 function house36_bbt_virtual_page_meta_description($description) {
     if (is_front_page()) {
         return house36_bbt_home_meta_description();
@@ -1086,6 +2116,12 @@ function house36_bbt_virtual_page_meta_description($description) {
 
     if (house36_bbt_is_schedule_page()) {
         return 'View the Better Baseball Training academy schedule for Rocklin and El Dorado Hills, including current class times and youth baseball training options.';
+    }
+
+    $seo_page = house36_bbt_get_current_seo_page();
+
+    if ($seo_page) {
+        return $seo_page['meta_description'];
     }
 
     $lesson = house36_bbt_get_current_lesson();
@@ -1117,8 +2153,6 @@ function house36_bbt_render_training_form() {
 
             $form_html = preg_replace('/name="current_url"\s+value="[^"]*"/', 'name="current_url" value="' . $canonical . '"', $form_html);
             $form_html = preg_replace('/name="referer_url"\s+value="[^"]*"/', 'name="referer_url" value="' . $canonical . '"', $form_html);
-            $form_html = str_replace(home_url('/hello-world/'), $canonical, $form_html);
-            $form_html = str_replace(home_url('/hello-world'), $canonical, $form_html);
         }
 
         return $form_html;
@@ -1134,8 +2168,13 @@ function house36_bbt_render_training_form() {
         <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="membership-cta" target="_blank" rel="noreferrer">
           <?php esc_html_e('Use Current Booking Link', 'house36-bbt'); ?>
         </a>
-        <a href="tel:9164655551" class="cta-box-secondary-link">
-          <?php esc_html_e('Call 916-465-5551', 'house36-bbt'); ?>
+        <a href="<?php echo esc_url(house36_bbt_contact_phone_href()); ?>" class="cta-box-secondary-link">
+          <?php
+          printf(
+              esc_html__('Call %s', 'house36-bbt'),
+              esc_html(house36_bbt_contact_phone())
+          );
+          ?>
         </a>
       </div>
     </div>
@@ -1151,7 +2190,7 @@ function house36_bbt_logo($class = 'nav-logo', $fallback_asset = 'brand-assets/B
 
     $is_footer = (false !== strpos((string) $class, 'footer'));
     $loading = $is_footer ? 'lazy' : 'eager';
-    $fetchpriority = $is_footer ? 'low' : 'high';
+    $fetchpriority = $is_footer ? 'low' : 'auto';
 
     if ($should_use_custom_logo) {
         $logo_id = get_theme_mod('custom_logo');
@@ -1226,14 +2265,34 @@ function house36_bbt_logo($class = 'nav-logo', $fallback_asset = 'brand-assets/B
     );
 }
 
+function house36_bbt_coach_img($asset_path, $alt, $class = 'coach-img') {
+    $widths     = array(480, 768);
+    $src        = house36_bbt_asset_variant_url($asset_path, $widths[0]) ?: house36_bbt_asset($asset_path);
+    $srcset     = house36_bbt_asset_srcset($asset_path, $widths);
+    $dimensions = house36_bbt_asset_dimensions($asset_path);
+
+    return sprintf(
+        '<img src="%1$s"%2$s sizes="(max-width: 768px) 100vw, 480px" alt="%3$s" class="%4$s" loading="lazy" decoding="async"%5$s />',
+        esc_url($src),
+        $srcset ? sprintf(' srcset="%s"', esc_attr($srcset)) : '',
+        esc_attr($alt),
+        esc_attr($class),
+        $dimensions
+            ? sprintf(' width="%d" height="%d"', absint($dimensions[0]), absint($dimensions[1]))
+            : ''
+    );
+}
+
 function house36_bbt_primary_menu_fallback($args) {
     $items = array(
         array('Home', house36_bbt_home_section_url('hero')),
         array('Lessons', house36_bbt_home_section_url('lessons')),
+        array('Academy', house36_bbt_seo_page_url('baseball-academy')),
+        array('Travel Baseball', house36_bbt_seo_page_url('travel-baseball')),
         array('Schedule', house36_bbt_schedule_url()),
         array('Coaches', house36_bbt_coaches_url()),
         array('Facilities', house36_bbt_home_section_url('facilities')),
-        array('Memberships', house36_bbt_booking_url()),
+        array('Book Now', house36_bbt_booking_url()),
     );
 
     $menu = '<ul class="' . esc_attr($args['menu_class'] ?? 'menu') . '">';
@@ -1283,8 +2342,16 @@ function house36_bbt_primary_menu_add_lessons_submenu($items, $args) {
         $title = strtolower(trim(wp_strip_all_tags((string) ($item->title ?? ''))));
         $url = (string) ($item->url ?? '');
 
+        $fragment = wp_parse_url($url, PHP_URL_FRAGMENT);
+        $host = wp_parse_url($url, PHP_URL_HOST);
+
+        if ($fragment && in_array($host, array('betterbaseballtraining.com', 'www.betterbaseballtraining.com'), true)) {
+            $item->url = house36_bbt_home_section_url($fragment);
+        }
+
         if ($title === 'memberships' || $url === house36_bbt_home_section_url('memberships')) {
-            $item->url = house36_bbt_booking_url();
+            $item->title = 'Academy';
+            $item->url = house36_bbt_seo_page_url('baseball-academy');
         }
     }
 
@@ -1304,45 +2371,99 @@ function house36_bbt_primary_menu_add_lessons_submenu($items, $args) {
         }
     }
 
-    if (! $lesson_parent) {
-        return $items;
-    }
+    if ($lesson_parent) {
+        $has_lesson_submenu = false;
 
-    foreach ($items as $item) {
-        if ((int) ($item->menu_item_parent ?? 0) === (int) $lesson_parent->ID) {
-            return $items;
+        foreach ($items as $item) {
+            if ((int) ($item->menu_item_parent ?? 0) === (int) $lesson_parent->ID) {
+                $has_lesson_submenu = true;
+                break;
+            }
+        }
+
+        if (! $has_lesson_submenu) {
+            $lesson_parent->classes = is_array($lesson_parent->classes ?? null) ? $lesson_parent->classes : array();
+            $lesson_parent->classes[] = 'menu-item-has-children';
+
+            $next_id = -1000;
+
+            foreach (house36_bbt_lessons_menu_items() as $position => $lesson_item) {
+                $submenu_item = (object) array(
+                    'ID'                    => $next_id - $position,
+                    'db_id'                 => 0,
+                    'menu_item_parent'      => (string) $lesson_parent->ID,
+                    'object_id'             => 0,
+                    'object'                => 'custom',
+                    'type'                  => 'custom',
+                    'type_label'            => __('Custom Link', 'house36-bbt'),
+                    'title'                 => $lesson_item['title'],
+                    'url'                   => $lesson_item['url'],
+                    'target'                => '',
+                    'attr_title'            => '',
+                    'description'           => '',
+                    'classes'               => array('lesson-submenu-item'),
+                    'xfn'                   => '',
+                    'status'                => 'publish',
+                    'menu_order'            => 100 + $position,
+                    'current'               => false,
+                    'current_item_ancestor' => false,
+                    'current_item_parent'   => false,
+                );
+
+                $items[] = $submenu_item;
+            }
         }
     }
 
-    $lesson_parent->classes = is_array($lesson_parent->classes ?? null) ? $lesson_parent->classes : array();
-    $lesson_parent->classes[] = 'menu-item-has-children';
+    $existing_top_level_urls = array();
+    $existing_top_level_titles = array();
 
-    $next_id = -1000;
+    foreach ($items as $item) {
+        if (! empty($item->menu_item_parent)) {
+            continue;
+        }
 
-    foreach (house36_bbt_lessons_menu_items() as $position => $lesson_item) {
-        $submenu_item = (object) array(
-            'ID'                    => $next_id - $position,
+        $existing_top_level_urls[] = untrailingslashit((string) ($item->url ?? ''));
+        $existing_top_level_titles[] = strtolower(trim(wp_strip_all_tags((string) ($item->title ?? ''))));
+    }
+
+    $extra_items = array(
+        array(
+            'title' => __('Academy', 'house36-bbt'),
+            'url'   => house36_bbt_seo_page_url('baseball-academy'),
+        ),
+        array(
+            'title' => __('Travel Baseball', 'house36-bbt'),
+            'url'   => house36_bbt_seo_page_url('travel-baseball'),
+        ),
+    );
+
+    foreach ($extra_items as $position => $extra_item) {
+        if (in_array(untrailingslashit($extra_item['url']), $existing_top_level_urls, true) || in_array(strtolower($extra_item['title']), $existing_top_level_titles, true)) {
+            continue;
+        }
+
+        $items[] = (object) array(
+            'ID'                    => -2000 - $position,
             'db_id'                 => 0,
-            'menu_item_parent'      => (string) $lesson_parent->ID,
+            'menu_item_parent'      => '0',
             'object_id'             => 0,
             'object'                => 'custom',
             'type'                  => 'custom',
             'type_label'            => __('Custom Link', 'house36-bbt'),
-            'title'                 => $lesson_item['title'],
-            'url'                   => $lesson_item['url'],
+            'title'                 => $extra_item['title'],
+            'url'                   => $extra_item['url'],
             'target'                => '',
             'attr_title'            => '',
             'description'           => '',
-            'classes'               => array('lesson-submenu-item'),
+            'classes'               => array('seo-menu-item'),
             'xfn'                   => '',
             'status'                => 'publish',
-            'menu_order'            => 100 + $position,
+            'menu_order'            => 200 + $position,
             'current'               => false,
             'current_item_ancestor' => false,
             'current_item_parent'   => false,
         );
-
-        $items[] = $submenu_item;
     }
 
     return $items;
@@ -1430,13 +2551,57 @@ function house36_bbt_cleanup_focus_page_head() {
 }
 add_action('wp', 'house36_bbt_cleanup_focus_page_head');
 
+function house36_bbt_current_og_image_url() {
+    $seo_page = house36_bbt_get_current_seo_page();
+
+    if ($seo_page && ! empty($seo_page['image'])) {
+        $variant = house36_bbt_asset_variant_url($seo_page['image'], 960);
+
+        return $variant ?: house36_bbt_asset($seo_page['image']);
+    }
+
+    $lesson = house36_bbt_get_current_lesson();
+
+    if ($lesson) {
+        $variant = house36_bbt_asset_variant_url($lesson['image'], 960);
+
+        return $variant ?: house36_bbt_asset($lesson['image']);
+    }
+
+    if (house36_bbt_is_coaches_page()) {
+        return house36_bbt_asset('images/team-photo-1.jpg');
+    }
+
+    return house36_bbt_asset_variant_url('images/hero-slideshow-1.PNG', 960) ?: house36_bbt_asset('images/hero-slideshow-1.PNG');
+}
+
 function house36_bbt_print_focus_page_meta_tags() {
     if (! house36_bbt_is_focus_page() || defined('RANK_MATH_VERSION')) {
         return;
     }
+
+    $canonical   = house36_bbt_current_canonical_url();
+    $title       = house36_bbt_virtual_page_title('');
+    $description = house36_bbt_current_meta_description();
+    $og_image    = house36_bbt_current_og_image_url();
+    $site_name   = get_bloginfo('name');
     ?>
-<link rel="canonical" href="<?php echo esc_url(house36_bbt_current_canonical_url()); ?>" />
-<meta name="description" content="<?php echo esc_attr(house36_bbt_current_meta_description()); ?>" />
+<link rel="canonical" href="<?php echo esc_url($canonical); ?>" />
+<meta name="description" content="<?php echo esc_attr($description); ?>" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="<?php echo esc_attr($site_name); ?>" />
+<meta property="og:title" content="<?php echo esc_attr($title); ?>" />
+<meta property="og:description" content="<?php echo esc_attr($description); ?>" />
+<meta property="og:url" content="<?php echo esc_url($canonical); ?>" />
+<?php if ($og_image) : ?>
+<meta property="og:image" content="<?php echo esc_url($og_image); ?>" />
+<?php endif; ?>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<?php echo esc_attr($title); ?>" />
+<meta name="twitter:description" content="<?php echo esc_attr($description); ?>" />
+<?php if ($og_image) : ?>
+<meta name="twitter:image" content="<?php echo esc_url($og_image); ?>" />
+<?php endif; ?>
     <?php
 }
 add_action('wp_head', 'house36_bbt_print_focus_page_meta_tags', 1);
@@ -1457,21 +2622,8 @@ function house36_bbt_append_training_sitemap_to_robots($output, $public) {
 add_filter('robots_txt', 'house36_bbt_append_training_sitemap_to_robots', 10, 2);
 
 add_action('rank_math/sitemap/page_content', function() {
-    $virtual_urls = array(
-        house36_bbt_schedule_url(),
-        house36_bbt_coaches_url(),
-        house36_bbt_booking_url(),
-    );
-
-    $lessons = house36_bbt_lessons_data();
-    if (is_array($lessons)) {
-        foreach ($lessons as $slug => $lesson) {
-            $virtual_urls[] = house36_bbt_lesson_url($slug);
-        }
-    }
-
     $now = date('c');
-    foreach (array_unique($virtual_urls) as $url) {
+    foreach (house36_bbt_training_sitemap_urls() as $url) {
         if (trim((string) $url) !== '' && trim((string) $url) !== home_url('/')) {
             echo "\n<url>\n\t<loc>" . esc_url((string) $url) . "</loc>\n\t<lastmod>" . esc_html($now) . "</lastmod>\n</url>\n";
         }

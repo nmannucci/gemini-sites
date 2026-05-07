@@ -42,20 +42,6 @@ $faq_schema = array(
     ),
 );
 
-$homepage_schema = array(
-    '@context'    => 'https://schema.org',
-    '@type'       => 'WebPage',
-    '@id'         => home_url('/#homepage'),
-    'url'         => home_url('/'),
-    'name'        => 'Youth Baseball Lessons in Rocklin & El Dorado Hills',
-    'description' => house36_bbt_home_meta_description(),
-    'about'       => array(
-        '@id' => home_url('/#organization'),
-    ),
-);
-
-$locations = house36_bbt_locations_data();
-
 $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
 ?>
 
@@ -147,6 +133,88 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
   </div>
 </section>
 
+<?php $tryouts_form_url = 'https://docs.google.com/forms/d/e/1FAIpQLSc5vQu8WiUW35hnJNaiHUTDqSHC7eGiTGU1AVtMeNIC08ykpA/viewform'; ?>
+<section id="tryouts" class="tryouts" aria-labelledby="tryouts-heading">
+  <div class="tryouts-bg" aria-hidden="true">
+    <span class="tryouts-bg-grid"></span>
+    <span class="tryouts-bg-glow tryouts-bg-glow--pink"></span>
+    <span class="tryouts-bg-glow tryouts-bg-glow--cyan"></span>
+  </div>
+
+  <div class="tryouts-container">
+    <div class="tryouts-eyebrow reveal">
+      <span class="tryouts-eyebrow-dot"></span>
+      <span>Now Open · BBT Tryouts</span>
+    </div>
+
+    <div class="tryouts-grid">
+      <div class="tryouts-content reveal">
+        <h2 id="tryouts-heading" class="tryouts-title">
+          <span class="tryouts-title-line">BBT Black Team</span>
+          <span class="tryouts-title-line"><em>Tryouts</em></span>
+          <span class="tryouts-title-season">26 / 27 Season</span>
+        </h2>
+
+        <p class="tryouts-lede">
+          BBT Black is forming regionally competitive teams for the 26-27 season with an emphasis on development at the highest level and learning to play the game the right way. Players come from all over the Sacramento region.
+        </p>
+
+        <div class="tryouts-callout">
+          <span class="tryouts-callout-pill">Required</span>
+          <p>You must sign up via the Google Form — <strong>click the “Sign Up — Required to Tryout” button below or click the poster</strong> to open the form.</p>
+        </div>
+
+        <div class="tryouts-callout tryouts-callout--note">
+          <span class="tryouts-callout-pill">Note</span>
+          <p>All current BBT Players <strong>(Gray &amp; Black)</strong> are required to try out to continue in the program.</p>
+        </div>
+
+        <div class="tryouts-details">
+          <div class="tryouts-detail">
+            <div class="tryouts-detail-num">01</div>
+            <div>
+              <h3>Gray Team Identification</h3>
+              <p>This tryout will also identify GRAY team players for the organization. Not every age group will field a Gray team — we only build teams when we have the right coach in place to lead them.</p>
+            </div>
+          </div>
+          <div class="tryouts-detail">
+            <div class="tryouts-detail-num">02</div>
+            <div>
+              <h3>Black Team Commitment</h3>
+              <p>All Black teams will have <strong>(1) required weekly team practice at Folsom Lake College</strong>, plus (1) team indoor session and additional hitting, fielding, and pitching work through the BBT Academy.</p>
+            </div>
+          </div>
+          <div class="tryouts-detail">
+            <div class="tryouts-detail-num">03</div>
+            <div>
+              <h3>Gray Team Commitment</h3>
+              <p>All Gray teams will have 1–2 outdoor workouts weekly with academy access for extra catching, hitting, fielding, and pitching work.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tryouts-cta-row">
+          <a href="<?php echo esc_url($tryouts_form_url); ?>" target="_blank" rel="noopener" class="btn-primary tryouts-cta-primary">
+            <span>Sign Up — Required to Tryout</span>
+          </a>
+          <a href="tel:9095442434" class="tryouts-cta-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Questions? Call JP — (909) 544-2434</span>
+          </a>
+        </div>
+      </div>
+
+      <a href="<?php echo esc_url($tryouts_form_url); ?>" target="_blank" rel="noopener" class="tryouts-poster reveal reveal-delay-2" aria-label="Sign up for BBT Black Team tryouts (opens Google Form)">
+        <img src="<?php echo esc_url(house36_bbt_asset('images/bbt-black-tryouts.png')); ?>" alt="BBT Black Team Tryouts 26-27 Season poster — Folsom Lake College Baseball Field, Wednesday May 27th, 9U-11U 6-7:45 PM, 12-14U 7:15-9 PM" loading="lazy" decoding="async" width="1545" height="1999" />
+        <span class="tryouts-poster-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <span>Tap to register</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section id="lessons" class="services">
   <div class="services-topbar"></div>
   <img src="<?php echo esc_url(house36_bbt_asset_variant_url('brand-assets/BBT Logo 2.jpeg', 160) ?: house36_bbt_asset_variant_url('brand-assets/BBT Logo 2.jpeg', 320) ?: house36_bbt_asset('brand-assets/BBT Logo 2.jpeg')); ?>" srcset="<?php echo esc_attr(house36_bbt_asset_srcset('brand-assets/BBT Logo 2.jpeg', array(160, 320))); ?>" sizes="160px" alt="" class="services-watermark" aria-hidden="true" loading="lazy" decoding="async" fetchpriority="low" width="695" height="606" />
@@ -162,7 +230,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
   </div>
 
   <div class="services-grid">
-    <div class="service-card reveal reveal-delay-1">
+    <a href="<?php echo esc_url(house36_bbt_lesson_url('hitting')); ?>" class="service-card reveal reveal-delay-1" aria-label="Learn more about Hitting Lessons">
       <div class="service-image-wrapper">
         <img src="<?php echo esc_url(house36_bbt_asset_variant_url('images/service-hitting-1.PNG', 640)); ?>" srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/service-hitting-1.PNG', array(640, 960))); ?>" sizes="(max-width: 800px) 50vw, (max-width: 1200px) 33vw, 280px" alt="Hitting training at BBT" class="service-card-img" loading="lazy" decoding="async" width="1320" height="743" />
       </div>
@@ -170,16 +238,16 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">01</div>
         <h3 class="service-name">Hitting</h3>
         <p class="service-text">Mechanics, timing, situational hitting and plate discipline for every level. Private and group training available.</p>
-        <a href="<?php echo esc_url(house36_bbt_lesson_url('hitting')); ?>" class="service-link" aria-label="Learn more about Hitting Lessons">
+        <span class="service-link">
           Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
-        </a>
+        </span>
       </div>
-    </div>
+    </a>
 
-    <div class="service-card reveal reveal-delay-2">
+    <a href="<?php echo esc_url(house36_bbt_lesson_url('pitching')); ?>" class="service-card reveal reveal-delay-2" aria-label="Learn more about Pitching Lessons">
       <div class="service-image-wrapper">
         <img src="<?php echo esc_url(house36_bbt_asset_variant_url('images/service-pitching-2.PNG', 640)); ?>" srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/service-pitching-2.PNG', array(640, 960))); ?>" sizes="(max-width: 800px) 50vw, (max-width: 1200px) 33vw, 280px" alt="Pitching training at BBT" class="service-card-img" style="object-position:center top;" loading="lazy" decoding="async" width="1320" height="753" />
       </div>
@@ -187,16 +255,16 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">02</div>
         <h3 class="service-name">Pitching</h3>
         <p class="service-text">Mechanics, arm care, velocity development, and pitch sequencing coached by college and pro alumni.</p>
-        <a href="<?php echo esc_url(house36_bbt_lesson_url('pitching')); ?>" class="service-link" aria-label="Learn more about Pitching Lessons">
+        <span class="service-link">
           Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
-        </a>
+        </span>
       </div>
-    </div>
+    </a>
 
-    <div class="service-card reveal reveal-delay-3">
+    <a href="<?php echo esc_url(house36_bbt_lesson_url('infield-outfield')); ?>" class="service-card reveal reveal-delay-3" aria-label="Learn more about Infield and Outfield Lessons">
       <div class="service-image-wrapper">
         <img src="<?php echo esc_url(house36_bbt_asset_variant_url('images/service-inf.ouf-3.PNG', 640)); ?>" srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/service-inf.ouf-3.PNG', array(640, 960))); ?>" sizes="(max-width: 800px) 50vw, (max-width: 1200px) 33vw, 280px" alt="Infield and outfield training at BBT" class="service-card-img" style="object-position:center 20%;" loading="lazy" decoding="async" width="1320" height="722" />
       </div>
@@ -204,16 +272,16 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">03</div>
         <h3 class="service-name">Infield / Outfield</h3>
         <p class="service-text">Footwork, positioning and in-game understanding, infield and outfield fundamentals for all positions.</p>
-        <a href="<?php echo esc_url(house36_bbt_lesson_url('infield-outfield')); ?>" class="service-link" aria-label="Learn more about Infield and Outfield Lessons">
+        <span class="service-link">
           Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
-        </a>
+        </span>
       </div>
-    </div>
+    </a>
 
-    <div class="service-card reveal reveal-delay-4">
+    <a href="<?php echo esc_url(house36_bbt_lesson_url('catching')); ?>" class="service-card reveal reveal-delay-4" aria-label="Learn more about Catching Lessons">
       <div class="service-image-wrapper">
         <img src="<?php echo esc_url(house36_bbt_asset_variant_url('images/service-catching-4.PNG', 640)); ?>" srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/service-catching-4.PNG', array(640, 960))); ?>" sizes="(max-width: 800px) 50vw, (max-width: 1200px) 33vw, 280px" alt="Catching training at BBT" class="service-card-img" style="object-position:center 30%;" loading="lazy" decoding="async" width="1210" height="842" />
       </div>
@@ -221,16 +289,16 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">04</div>
         <h3 class="service-name">Catching</h3>
         <p class="service-text">Receiving, blocking, footwork and game managing. Full position-specific development with experienced coaches.</p>
-        <a href="<?php echo esc_url(house36_bbt_lesson_url('catching')); ?>" class="service-link" aria-label="Learn more about Catching Lessons">
+        <span class="service-link">
           Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
-        </a>
+        </span>
       </div>
-    </div>
+    </a>
 
-    <div class="service-card reveal reveal-delay-5">
+    <a href="<?php echo esc_url(house36_bbt_lesson_url('baseball-iq')); ?>" class="service-card reveal reveal-delay-5" aria-label="Learn more about Baseball IQ Training">
       <div class="service-image-wrapper">
         <img src="<?php echo esc_url(house36_bbt_asset_variant_url('images/service-baseball.iq-5.PNG', 640)); ?>" srcset="<?php echo esc_attr(house36_bbt_asset_srcset('images/service-baseball.iq-5.PNG', array(640, 960))); ?>" sizes="(max-width: 800px) 50vw, (max-width: 1200px) 33vw, 280px" alt="Baseball IQ training at BBT" class="service-card-img" loading="lazy" decoding="async" width="1320" height="1054" />
       </div>
@@ -238,14 +306,14 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <div class="service-number">05</div>
         <h3 class="service-name">Baseball IQ</h3>
         <p class="service-text">Baseball is often described as a thinking person’s game, where each pitch, swing, and defensive move requires thoughtful decision-making and preparation.</p>
-        <a href="<?php echo esc_url(house36_bbt_lesson_url('baseball-iq')); ?>" class="service-link" aria-label="Learn more about Baseball IQ Training">
+        <span class="service-link">
           Learn More
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
-        </a>
+        </span>
       </div>
-    </div>
+    </a>
   </div>
 
   <div class="services-divider reveal"></div>
@@ -281,7 +349,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
       </div>
 
       <div style="display:flex; flex-direction:column; align-items:flex-end; gap:12px;">
-        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="membership-cta">Get Started</a>
+        <a href="<?php echo esc_url(house36_bbt_seo_page_url('baseball-academy')); ?>" class="membership-cta">Explore Academy</a>
         <span class="membership-ages">Ages 8-14U · Unlimited Access</span>
       </div>
     </div>
@@ -299,7 +367,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
       <article class="answer-card reveal reveal-delay-1">
         <h3>Where can I get baseball lessons in Rocklin?</h3>
         <p>BBT offers private and group baseball lessons in Rocklin at 4283 Duluth Ave, with additional programming in El Dorado Hills for families who want more schedule flexibility.</p>
-        <a href="<?php echo esc_url($locations['rocklin']['location_url']); ?>" class="bk-card__inline-link">See Rocklin training details</a>
+        <a href="<?php echo esc_url(house36_bbt_seo_page_url('baseball-lessons-rocklin')); ?>" class="bk-card__inline-link">See Rocklin lessons</a>
       </article>
 
       <article class="answer-card reveal reveal-delay-2">
@@ -311,13 +379,13 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
       <article class="answer-card reveal reveal-delay-3">
         <h3>What ages does BBT serve?</h3>
         <p>BBT's core lessons and academy memberships are built for players ages 8-14U, with development paths that include private lessons, group classes, and travel teams.</p>
-        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="bk-card__inline-link">Start with the player form</a>
+        <a href="<?php echo esc_url(house36_bbt_seo_page_url('baseball-academy')); ?>" class="bk-card__inline-link">Explore the academy</a>
       </article>
 
       <article class="answer-card reveal reveal-delay-4">
         <h3>What should we choose first?</h3>
         <p>Private lessons are best for targeted skill work, academy memberships fit athletes who want recurring reps, and travel teams are for rostered players ready for team competition.</p>
-        <a href="<?php echo esc_url(house36_bbt_schedule_url()); ?>" class="bk-card__inline-link">Compare with the schedule</a>
+        <a href="<?php echo esc_url(house36_bbt_seo_page_url('travel-baseball')); ?>" class="bk-card__inline-link">Explore travel development</a>
       </article>
     </div>
   </div>
@@ -566,7 +634,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <h3>Rocklin Basecamp</h3>
         <address>4283 Duluth Ave<br>Rocklin, CA 95765</address>
         <p>Rocklin is a core hub for private baseball lessons, academy classes, and travel-team development for families in Rocklin, Roseville, Granite Bay, and nearby communities.</p>
-        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="bk-card__inline-link">Book training in Rocklin</a>
+        <a href="<?php echo esc_url(house36_bbt_seo_page_url('baseball-lessons-rocklin')); ?>" class="bk-card__inline-link">View Rocklin lessons</a>
       </div>
     </div>
 
@@ -583,7 +651,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
         <h3>El Dorado Hills (EDH)</h3>
         <address>4990 Hillsdale Dr, Suite 400<br>El Dorado Hills, CA 95762</address>
         <p>El Dorado Hills gives families in EDH, Folsom, and surrounding areas access to indoor baseball lessons, academy programming, and pitching instruction close to home.</p>
-        <a href="<?php echo esc_url(house36_bbt_booking_url()); ?>" class="bk-card__inline-link">Book training in El Dorado Hills</a>
+        <a href="<?php echo esc_url(house36_bbt_seo_page_url('baseball-lessons-el-dorado-hills')); ?>" class="bk-card__inline-link">View EDH lessons</a>
       </div>
     </div>
   </div>
@@ -605,9 +673,6 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
     </div>
   </div>
 
-  <script type="application/ld+json">
-    <?php echo wp_json_encode($homepage_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); ?>
-  </script>
   <script type="application/ld+json">
     <?php echo wp_json_encode($faq_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT); ?>
   </script>
@@ -655,12 +720,12 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
       </div>
 
       <div class="cta-box-support">
-        <a href="tel:9164655551" class="cta-box-phone">
+        <a href="<?php echo esc_url(house36_bbt_contact_phone_href()); ?>" class="cta-box-phone">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          916-465-5551
+          <?php echo esc_html(house36_bbt_contact_phone()); ?>
         </a>
-        <a href="<?php echo esc_url(house36_bbt_schedule_url()); ?>" class="cta-box-secondary-link">
-          View Schedule
+        <a href="<?php echo esc_url(house36_bbt_seo_page_url('baseball-academy')); ?>" class="cta-box-secondary-link">
+          View Academy
         </a>
       </div>
       <div class="cta-box-trust">

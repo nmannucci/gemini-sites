@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PINSTRIPE ACADEMY | Northern New Jersey's Elite Baseball Training</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Public+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-surface-variant": "#444652",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#464747",
+                        "secondary-container": "#e0dfdf",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "background": "#f9f9f9",
+                        "primary-fixed": "#dbe1ff",
+                        "outline-variant": "#c4c6d4",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#390b00",
+                        "surface-tint": "#3959b0",
+                        "inverse-primary": "#b4c5ff",
+                        "primary": "#001d59",
+                        "on-surface": "#1a1c1c",
+                        "secondary": "#5e5e5e",
+                        "on-primary-fixed": "#00174b",
+                        "tertiary-fixed": "#ffdbd0",
+                        "on-primary-container": "#7f9df8",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "inverse-surface": "#2f3131",
+                        "on-secondary-container": "#626363",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-dim": "#dadada",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-bright": "#f9f9f9",
+                        "tertiary-fixed-dim": "#ffb59d",
+                        "tertiary-container": "#691c00",
+                        "on-tertiary-fixed-variant": "#7e2b0d",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#440f00",
+                        "on-primary-fixed-variant": "#1c4197",
+                        "on-tertiary-container": "#f1815c",
+                        "on-error": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "outline": "#747683",
+                        "surface-container-highest": "#e2e2e2",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface": "#f9f9f9",
+                        "primary-container": "#003087",
+                        "on-background": "#1a1c1c",
+                        "secondary-fixed": "#e3e2e2"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader"],
+                        "body": ["Public Sans"],
+                        "label": ["Public Sans"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .pinstripe-pattern {
+            background-image: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0, 29, 89, 0.03) 40px, rgba(0, 29, 89, 0.03) 41px);
+        }
+        .text-shadow-elite {
+            text-shadow: 0 2px 4px rgba(0, 29, 89, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-white">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 bg-[#f9f9f9] dark:bg-[#1a1c1c]">
+<div class="text-2xl font-black text-[#001d59] dark:text-[#f3f3f3] uppercase tracking-tighter">
+            PINSTRIPE ACADEMY
+        </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-[#5e5e5e] dark:text-[#dadada] font-medium font-public-sans uppercase tracking-[0.05em] text-[0.75rem] hover:text-[#001d59] dark:hover:text-white transition-colors duration-300" href="#">PROGRAMS</a>
+<a class="text-[#5e5e5e] dark:text-[#dadada] font-medium font-public-sans uppercase tracking-[0.05em] text-[0.75rem] hover:text-[#001d59] dark:hover:text-white transition-colors duration-300" href="#">FACILITY</a>
+<a class="text-[#5e5e5e] dark:text-[#dadada] font-medium font-public-sans uppercase tracking-[0.05em] text-[0.75rem] hover:text-[#001d59] dark:hover:text-white transition-colors duration-300" href="#">TRAINING</a>
+<a class="text-[#5e5e5e] dark:text-[#dadada] font-medium font-public-sans uppercase tracking-[0.05em] text-[0.75rem] hover:text-[#001d59] dark:hover:text-white transition-colors duration-300" href="#">HISTORY</a>
+<a class="text-[#5e5e5e] dark:text-[#dadada] font-medium font-public-sans uppercase tracking-[0.05em] text-[0.75rem] hover:text-[#001d59] dark:hover:text-white transition-colors duration-300" href="#">ENROLL</a>
+</div>
+<button class="bg-primary text-white px-6 py-3 font-label text-[0.75rem] tracking-widest uppercase font-bold hover:bg-primary-container transition-all active:opacity-80">
+            RESERVE A CAGE
+        </button>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative h-[870px] flex items-center overflow-hidden bg-surface">
+<div class="absolute inset-0 z-0">
+<img alt="Baseball facility" class="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPHV9QOGYqs8OBTQcGtZROpwQMiRqyLzbIyxd03P1WlfXzkWENq-ExI7l5u1RlWqGG5id3baYWetQaoXdZYIfRZLwMEus2xarPuv3gxdLlqZvom--q2Gx6JU1Fa7Gudg-tQdO7FF8vNd35RJyCk34bsPmLz3pc_XXy6yUWa4aiwapOGdSmfJdoMsu6DmiNqqn4iRKpnpCTr1Fud0oGruOD-LcbsGGYAuO6W7zJ4GqMIwQjJymQcWxDl3d_-Od6JB2mN9kDHvYSBBeO"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent"></div>
+</div>
+<div class="container mx-auto px-6 md:px-12 relative z-10">
+<div class="max-w-3xl">
+<span class="inline-block bg-primary-container text-white px-4 py-1 font-label text-[0.65rem] tracking-[0.2em] uppercase mb-6">ESTABLISHED TRADITION</span>
+<h1 class="font-headline text-5xl md:text-6xl text-white italic font-black leading-tight tracking-tighter mb-8">
+                        Northern New Jersey's 5-Star Baseball &amp; Softball Training Complex
+                    </h1>
+<p class="text-white/80 text-xl font-body max-w-xl mb-10 leading-relaxed">
+                        Precision coaching, professional-grade technology, and the relentless pursuit of excellence in every swing.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-white text-primary px-10 py-4 font-label text-sm tracking-widest uppercase font-black hover:bg-surface-container-low transition-colors">
+                            VIEW PROGRAMS
+                        </button>
+<button class="border-2 border-white text-white px-10 py-4 font-label text-sm tracking-widest uppercase font-black hover:bg-white/10 transition-colors">
+                            TAKE A TOUR
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Training Programs -->
+<section class="py-32 bg-surface-container-low pinstripe-pattern" id="programs">
+<div class="container mx-auto px-6 md:px-12">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div class="max-w-2xl">
+<h2 class="font-headline text-4xl md:text-5xl text-primary italic font-bold mb-6">World-Class Instruction</h2>
+<p class="text-secondary text-lg font-body">Our systematic approach to player development combines advanced metrics with time-honored fundamentals to create the complete athlete.</p>
+</div>
+<div class="font-label text-xs uppercase tracking-widest font-bold text-primary flex items-center gap-2 cursor-pointer">
+                        VIEW ALL SPECIALTIES <span class="material-symbols-outlined">trending_flat</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-0">
+<!-- Hitting Mechanics -->
+<div class="group bg-surface-container-lowest p-10 border-r border-b border-outline-variant/30 hover:bg-primary transition-all duration-500 cursor-pointer">
+<span class="material-symbols-outlined text-4xl mb-8 text-primary group-hover:text-white">sports_baseball</span>
+<h3 class="font-headline text-2xl font-bold italic mb-4 text-primary group-hover:text-white">Hitting Mechanics</h3>
+<p class="text-secondary text-sm leading-relaxed mb-8 group-hover:text-white/80">Revolutionary swing path analysis and explosive power generation techniques.</p>
+<a class="inline-block font-label text-[0.65rem] uppercase font-bold tracking-widest text-primary border-b border-primary pb-1 group-hover:text-white group-hover:border-white" href="#">LEARN MORE</a>
+</div>
+<!-- Pitching Lab -->
+<div class="group bg-surface-container-lowest p-10 border-r border-b border-outline-variant/30 hover:bg-primary transition-all duration-500 cursor-pointer">
+<span class="material-symbols-outlined text-4xl mb-8 text-primary group-hover:text-white">biotech</span>
+<h3 class="font-headline text-2xl font-bold italic mb-4 text-primary group-hover:text-white">Pitching Lab</h3>
+<p class="text-secondary text-sm leading-relaxed mb-8 group-hover:text-white/80">Biomechanical optimization for velocity, command, and long-term arm health.</p>
+<a class="inline-block font-label text-[0.65rem] uppercase font-bold tracking-widest text-primary border-b border-primary pb-1 group-hover:text-white group-hover:border-white" href="#">LEARN MORE</a>
+</div>
+<!-- Defensive Mastery -->
+<div class="group bg-surface-container-lowest p-10 border-r border-b border-outline-variant/30 hover:bg-primary transition-all duration-500 cursor-pointer">
+<span class="material-symbols-outlined text-4xl mb-8 text-primary group-hover:text-white">shield</span>
+<h3 class="font-headline text-2xl font-bold italic mb-4 text-primary group-hover:text-white">Defensive Mastery</h3>
+<p class="text-secondary text-sm leading-relaxed mb-8 group-hover:text-white/80">Elite footwork, glove-to-hand transitions, and situational awareness training.</p>
+<a class="inline-block font-label text-[0.65rem] uppercase font-bold tracking-widest text-primary border-b border-primary pb-1 group-hover:text-white group-hover:border-white" href="#">LEARN MORE</a>
+</div>
+<!-- Catching Clinic -->
+<div class="group bg-surface-container-lowest p-10 border-r border-b border-outline-variant/30 hover:bg-primary transition-all duration-500 cursor-pointer">
+<span class="material-symbols-outlined text-4xl mb-8 text-primary group-hover:text-white">sports_handball</span>
+<h3 class="font-headline text-2xl font-bold italic mb-4 text-primary group-hover:text-white">Catching Clinic</h3>
+<p class="text-secondary text-sm leading-relaxed mb-8 group-hover:text-white/80">The art of framing, blocking, and commanding the field from behind the dish.</p>
+<a class="inline-block font-label text-[0.65rem] uppercase font-bold tracking-widest text-primary border-b border-primary pb-1 group-hover:text-white group-hover:border-white" href="#">LEARN MORE</a>
+</div>
+<!-- Strength & Conditioning -->
+<div class="group bg-surface-container-lowest p-10 border-b border-outline-variant/30 hover:bg-primary transition-all duration-500 cursor-pointer">
+<span class="material-symbols-outlined text-4xl mb-8 text-primary group-hover:text-white">fitness_center</span>
+<h3 class="font-headline text-2xl font-bold italic mb-4 text-primary group-hover:text-white">Strength &amp; Conditioning</h3>
+<p class="text-secondary text-sm leading-relaxed mb-8 group-hover:text-white/80">Baseball-specific athletic development to build durability and explosive output.</p>
+<a class="inline-block font-label text-[0.65rem] uppercase font-bold tracking-widest text-primary border-b border-primary pb-1 group-hover:text-white group-hover:border-white" href="#">LEARN MORE</a>
+</div>
+</div>
+</div>
+</section>
+<!-- All Rise Camp -->
+<section class="py-24 bg-primary text-white overflow-hidden relative">
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-20 hidden lg:block">
+<img alt="Stadium lights" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcYMHq7SRQNQLcsfn73_ew9cXQ8D0RuJAuQw912jWSpIUGoiUyc6F6RUrnWxBoM_pVlTj5UCQYe781_XXj9oDFWxI7-uZsDDIxUq9geYWDv85Ty24Wk4MEomIAjzkc7y0Dfq_3jRgz5x97RCcLp5nFv7Qb4mtH2LGyGRVQsjzR9HgSyX8pVgVOVq9Me8mCITjtRQCJpXPWfL6DjTRtbmcEZktHZjotmTLizI1iQ9HF1g4EDs0_35BsLFHhcrYP_u6eyHAGrSbi3ej0"/>
+</div>
+<div class="container mx-auto px-6 md:px-12 relative z-10">
+<div class="max-w-2xl">
+<h2 class="font-headline text-5xl md:text-7xl italic font-black mb-8 leading-none tracking-tighter">ALL RISE CAMP</h2>
+<p class="font-headline text-2xl italic mb-8 text-white/90">Featuring Major League Insight</p>
+<div class="space-y-6 mb-12">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-white">calendar_today</span>
+<div>
+<p class="font-bold uppercase tracking-widest text-xs">DATES</p>
+<p class="text-xl">July 15 - July 18, 2024</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-white">location_on</span>
+<div>
+<p class="font-bold uppercase tracking-widest text-xs">LOCATION</p>
+<p class="text-xl">Pinstripe Main Complex, NJ</p>
+</div>
+</div>
+</div>
+<button class="bg-white text-primary px-12 py-5 font-label text-sm tracking-widest uppercase font-black hover:bg-surface-container-low transition-all">
+                        SECURE YOUR SPOT
+                    </button>
+</div>
+</div>
+</section>
+<!-- The Elite Council -->
+<section class="py-24 bg-surface-container-low">
+<div class="container mx-auto px-6 md:px-12">
+<div class="text-center mb-20">
+<h2 class="font-headline text-4xl md:text-5xl text-primary italic font-bold mb-6">The Elite Council</h2>
+<p class="text-secondary font-label text-sm uppercase tracking-[0.2em]">Our Professional Coaching Staff</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<!-- Coach 1 -->
+<div class="group">
+<div class="aspect-[4/5] overflow-hidden mb-6 bg-surface-dim relative">
+<img alt="Coach Mike" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALykXUg2fOvbvnvXp78Z8UOyDvoSBdku0xb3ATmSdEHYHsHkhl6Fr4dqdRBazWXLll4ox754sHQJpeVWkKoXoAobndGTXNYhA3bbmDBVa1rTZYAWauo0F4xnGhOKj7XOW5HnToPfpqAw6EI9Gur-SkC9p7jIX_NvAVw0VP3wVe5YawenemPvF4yQHC6aa3UW1bfVb5bPecbqFVUMIrlcI6XgHAcE_hnBAcuUwQcR6MydSL9gQrkybHP1ip4eOdNhQkGNkHU_OoMScv"/>
+</div>
+<h3 class="font-headline text-2xl italic font-bold text-primary">Mike DiNapoli</h3>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mt-1 mb-4">Director of Player Development</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">12 years professional experience. Specialized in biomechanical swing analysis and collegiate recruitment strategy.</p>
+</div>
+<!-- Coach 2 -->
+<div class="group">
+<div class="aspect-[4/5] overflow-hidden mb-6 bg-surface-dim relative">
+<img alt="Coach Chris" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIujwwatzMkakpoJm70pxGpgW0Qf99dPTtBBpLjLIlveWpHsT7TUs1qEO6xrD7bluzdLuLIDOdBEWtk1D69kiBocsvUFYEYlhmjZXlWKiRDsgjSjvYTbHZh4C2i_1066tKrfHeHGUYM7xbWh-OSqQaU61-gdRJM1ON7cpcbQp1Tv6JrdkoSKZwMPDlu6pFghL6a8HSX7_qlp6cIZYQ4RdS88SPr5iXkB4zTmp6Al6Iebz65di1nhbroGRkeBg4oSoBjMD-Pg17Tlw6"/>
+</div>
+<h3 class="font-headline text-2xl italic font-bold text-primary">Chris Miller</h3>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mt-1 mb-4">Head Pitching Strategist</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">Former All-American. Master of the Rapsodo data environment and velocity transition protocols.</p>
+</div>
+<!-- Coach 3 -->
+<div class="group">
+<div class="aspect-[4/5] overflow-hidden mb-6 bg-surface-dim relative">
+<img alt="Coach Sarah" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgvA3zx63oQ15i9VNarWjv267F7qyH7y5ErtAvfC4LiZcbXqMUSG_BmhVbeHVFep4ul5maeTuvlpcT_crB_PL7FUH17mET9H--fRrPJ5WGHrr_xNd6Degwd3V-NfP21q2wSdZzTeW6PgKCnczVeBQbdGPuxUmJqejdSsoKdnAO56dAuYq6AkFR3mjAyutp2gSKXAa1uGbvN3sdjp2-LGZpvhnxQ3mYFuqvtnrCRG9TdBJRhDF82ACnWXMYq3fLlhuRRKpCk-YpjLLS"/>
+</div>
+<h3 class="font-headline text-2xl italic font-bold text-primary">Sarah Jenkins</h3>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mt-1 mb-4">Director of Softball Operations</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">3x Division I MVP. Revolutionizing the power-slapping and defensive agility curriculum in the tri-state area.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Voices of Our Athletes (Updated Section) -->
+<section class="py-24 bg-primary text-white overflow-hidden">
+<div class="container mx-auto px-6 md:px-12 relative">
+<div class="flex flex-col md:flex-row items-center gap-16">
+<div class="w-full md:w-1/3">
+<span class="material-symbols-outlined text-7xl mb-6 text-white" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<h2 class="font-headline font-black text-5xl leading-none italic tracking-tighter mb-6 uppercase">Voices of Our <span class="text-white">Athletes.</span></h2>
+<p class="text-white/60 font-body font-medium">Real results from our elite training facility.</p>
+</div>
+<div class="w-full md:w-2/3">
+<div class="bg-white/5 backdrop-blur-md p-12 rounded-none border border-white/10 relative">
+<div class="absolute -top-4 -right-4 bg-white text-primary p-4 rounded-none shadow-lg">
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="font-headline text-2xl md:text-3xl leading-relaxed italic mb-8 text-white/90">
+                                "The level of technical detail at Pinstripe is unmatched. They don't just teach you how to hit; they teach you why your mechanics work."
+                            </p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full flex items-center justify-center font-black text-lg font-headline bg-white text-primary">JS</div>
+<div>
+<h4 class="font-headline font-bold italic text-lg">Jason T.</h4>
+<p class="text-white/50 text-[0.65rem] font-label font-bold uppercase tracking-[0.2em]">D1 Prospect</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Ready to Level Up? (Contact) -->
+<section class="py-24 bg-surface-container-high">
+<div class="container mx-auto px-6 md:px-12">
+<div class="max-w-4xl mx-auto bg-white shadow-2xl overflow-hidden flex flex-col md:flex-row">
+<div class="md:w-1/3 bg-primary p-12 text-white">
+<h2 class="font-headline text-3xl italic font-bold mb-6">Ready to Level Up?</h2>
+<p class="font-body text-white/70 mb-10">Start your journey toward elite performance today. Our advisors will contact you within 24 hours.</p>
+<div class="space-y-4">
+<p class="flex items-center gap-3 text-xs tracking-widest uppercase font-bold"><span class="material-symbols-outlined text-sm">mail</span> contact@pinstripe.com</p>
+<p class="flex items-center gap-3 text-xs tracking-widest uppercase font-bold"><span class="material-symbols-outlined text-sm">phone</span> 201-555-0199</p>
+</div>
+</div>
+<div class="md:w-2/3 p-12">
+<form class="space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="relative">
+<label class="font-label text-[0.6rem] uppercase tracking-widest text-secondary block mb-1">ATHLETE NAME</label>
+<input class="w-full border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all px-0 py-2 placeholder:text-surface-dim" placeholder="First Last" type="text"/>
+</div>
+<div class="relative">
+<label class="font-label text-[0.6rem] uppercase tracking-widest text-secondary block mb-1">EMAIL ADDRESS</label>
+<input class="w-full border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all px-0 py-2 placeholder:text-surface-dim" placeholder="email@example.com" type="email"/>
+</div>
+</div>
+<div class="relative">
+<label class="font-label text-[0.6rem] uppercase tracking-widest text-secondary block mb-1">PRIMARY AREA OF INTEREST</label>
+<select class="w-full border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all px-0 py-2">
+<option>Elite Hitting Lab</option>
+<option>Pitching Vault</option>
+<option>Infield Mastery</option>
+<option>Softball Excellence</option>
+</select>
+</div>
+<div class="relative">
+<label class="font-label text-[0.6rem] uppercase tracking-widest text-secondary block mb-1">TELL US ABOUT YOUR GOALS</label>
+<textarea class="w-full border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all px-0 py-2 placeholder:text-surface-dim" placeholder="What are you working toward?" rows="3"></textarea>
+</div>
+<button class="w-full bg-primary text-white py-4 font-label text-sm tracking-widest uppercase font-black hover:bg-primary-container transition-all">
+                                SEND TRANSMISSION
+                            </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8 bg-[#001d59] dark:bg-[#000d26]">
+<div class="text-lg font-bold text-white font-public-sans uppercase tracking-widest">
+            THE PINSTRIPE TRADITION
+        </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-[#dadada] font-public-sans uppercase tracking-[0.05em] text-[0.75rem] hover:underline decoration-2 underline-offset-4 transition-all duration-200" href="#">PRIVACY POLICY</a>
+<a class="text-[#dadada] font-public-sans uppercase tracking-[0.05em] text-[0.75rem] hover:underline decoration-2 underline-offset-4 transition-all duration-200" href="#">TERMS OF SERVICE</a>
+<a class="text-[#dadada] font-public-sans uppercase tracking-[0.05em] text-[0.75rem] hover:underline decoration-2 underline-offset-4 transition-all duration-200" href="#">COACHING STAFF</a>
+<a class="text-[#dadada] font-public-sans uppercase tracking-[0.05em] text-[0.75rem] hover:underline decoration-2 underline-offset-4 transition-all duration-200" href="#">CONTACT</a>
+</div>
+<div class="text-[#f9f9f9] font-public-sans uppercase tracking-[0.05em] text-[0.75rem] text-center md:text-right">
+            © 2024 THE PINSTRIPE TRADITION. ARCHITECTURAL AUTHORITY IN ATHLETICS.
+        </div>
+</footer>
+</body></html>
