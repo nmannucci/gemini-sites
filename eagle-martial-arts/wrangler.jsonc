@@ -1,0 +1,8 @@
+{
+  "name": "la-jolla-martial-arts",
+  "compatibility_date": "2026-05-12",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
