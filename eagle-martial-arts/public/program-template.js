@@ -44,42 +44,10 @@ function setupNav() {
   });
 }
 
-function setupMobileMenu() {
-  const toggle = document.querySelector(".nav-toggle");
-  const menu = document.getElementById("mobileMenu");
-  if (!toggle || !menu) return;
-
-  toggle.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const open = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", String(!open));
-    menu.setAttribute("data-open", String(!open));
-  });
-
-  menu.querySelectorAll("a").forEach((a) => {
-    a.addEventListener("click", () => {
-      toggle.setAttribute("aria-expanded", "false");
-      menu.setAttribute("data-open", "false");
-    });
-  });
-
-  document.addEventListener("click", (e) => {
-    if (
-      !toggle.contains(e.target) &&
-      !menu.contains(e.target) &&
-      menu.getAttribute("data-open") === "true"
-    ) {
-      toggle.setAttribute("aria-expanded", "false");
-      menu.setAttribute("data-open", "false");
-    }
-  });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   lucide.createIcons();
   setupFaq();
   setupNav();
-  setupMobileMenu();
 
   const year = document.getElementById("footer-year");
   if (year) {
