@@ -1,8 +1,21 @@
 {
   "name": "la-jolla-martial-arts",
   "compatibility_date": "2026-05-12",
+  "main": "src/worker.ts",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page"
-  }
+  },
+  "vars": {
+    "LEAD_NOTIFY_TO": "ljbullyproof@gmail.com,nmannucci1@gmail.com",
+    "LEAD_NOTIFY_FROM": "La Jolla Martial Arts <leads@lajollatkd.com>"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "lj-ma-leads",
+      "database_id": "fcde83f7-e70f-4239-b5d0-390847eb0ff1"
+    }
+  ]
 }

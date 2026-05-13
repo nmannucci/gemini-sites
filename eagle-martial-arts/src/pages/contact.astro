@@ -267,6 +267,49 @@ import Layout from '../layouts/Layout.astro';
       transition: all 0.3s ease; margin-top: 0.5rem;
     }
     .form-submit:hover { background: #1A9DBE; transform: translateY(-2px); }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .form-error {
+      display: none;
+      margin-top: 0.85rem;
+      padding: 0.7rem 0.85rem;
+      background: rgba(220, 50, 50, 0.08);
+      border-left: 3px solid #DC3232;
+      color: #8a1f1f;
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+    .form-error.is-visible { display: block; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 1rem 0 0.5rem;
+    }
+    .form-success.is-visible { display: block; }
+    .form-success .check {
+      width: 56px; height: 56px; margin: 0 auto 1rem;
+      border-radius: 50%;
+      background: rgba(41,190,226,0.12);
+      border: 1.5px solid var(--blood-red);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blood-red);
+    }
+    .form-success h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--dark-text);
+      margin-bottom: 0.5rem;
+    }
+    .form-success p {
+      font-size: 0.92rem;
+      color: var(--muted-text);
+      line-height: 1.55;
+      max-width: 360px;
+      margin: 0 auto;
+    }
 
     .form-disclaimer {
       font-size: 0.65rem; color: #888;
@@ -409,7 +452,17 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div class="contact-form-wrap" id="contact-form">
-        <form class="contact-form" action="#" method="POST">
+        <form class="contact-form" id="lead-form" action="/api/lead" method="POST" novalidate>
+          <input type="hidden" name="source" value="contact-page">
+          <div class="form-success" id="lead-success" aria-live="polite">
+            <div class="check" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Message Sent</h3>
+            <p>Thanks — we got it. Our team will reach out within one business day to get you scheduled for your free week.</p>
+          </div>
+
+          <div id="lead-form-fields">
           <span class="form-badge">Response Within 1 Business Day</span>
           <h2 class="form-title font-display">Send Us a Message</h2>
           <p class="form-subtitle">Tell us a little about you — we'll take it from there.</p>
@@ -439,10 +492,9 @@ import Layout from '../layouts/Layout.astro';
             <label class="form-label" for="program">Program Interest</label>
             <select id="program" name="program" class="form-select">
               <option value="" disabled selected>Select a program</option>
-              <option value="little-ninjas">Little Ninjas (Ages 3-5)</option>
-              <option value="kids">Kids Martial Arts</option>
-              <option value="teens">Teen Martial Arts</option>
-              <option value="adults">Adult Classes (15+)</option>
+              <option value="little-ninjas">Little Ninjas (Ages 3–6)</option>
+              <option value="kids">Kids Martial Arts (Ages 7–12)</option>
+              <option value="teen-adult">Teen &amp; Adult (Ages 13+)</option>
               <option value="general">General Question</option>
             </select>
           </div>
@@ -452,12 +504,15 @@ import Layout from '../layouts/Layout.astro';
             <textarea id="message" name="message" class="form-textarea" placeholder="How can we help?" required></textarea>
           </div>
 
-          <button type="submit" class="form-submit">Send Message</button>
+          <button type="submit" class="form-submit" id="lead-submit">Send Message</button>
+
+          <div class="form-error" id="lead-error" role="alert"></div>
 
           <p class="form-disclaimer">
             By submitting, you agree to receive emails and texts from La Jolla Martial Arts.
             We respect your privacy and will never share your information.
           </p>
+          </div>
         </form>
       </div>
     </div>
@@ -466,6 +521,61 @@ import Layout from '../layouts/Layout.astro';
   <Fragment slot="scripts">
 <script is:inline>
     lucide.createIcons();
+
+    (function () {
+      const form = document.getElementById('lead-form');
+      if (!form) return;
+      const submitBtn = document.getElementById('lead-submit');
+      const errorBox = document.getElementById('lead-error');
+      const successBox = document.getElementById('lead-success');
+      const fields = document.getElementById('lead-form-fields');
+
+      function showError(msg) {
+        errorBox.textContent = msg;
+        errorBox.classList.add('is-visible');
+      }
+      function clearError() {
+        errorBox.textContent = '';
+        errorBox.classList.remove('is-visible');
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        clearError();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const data = Object.fromEntries(new FormData(form).entries());
+
+        submitBtn.disabled = true;
+        const originalLabel = submitBtn.textContent;
+        submitBtn.textContent = 'Sending…';
+
+        try {
+          const res = await fetch('/api/lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          const payload = await res.json().catch(function () { return {}; });
+
+          if (!res.ok || !payload.ok) {
+            throw new Error(payload.error || 'Something went wrong. Please try again or call (858) 361-0961.');
+          }
+
+          fields.style.display = 'none';
+          successBox.classList.add('is-visible');
+          successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (err) {
+          showError(err.message || 'Network error. Please try again.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+        }
+      });
+    })();
   </script>
   </Fragment>
 </Layout>

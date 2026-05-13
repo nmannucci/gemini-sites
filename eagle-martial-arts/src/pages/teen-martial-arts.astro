@@ -758,7 +758,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
 
           <div class="get-started-form-container">
-            <form class="get-started-form" data-form-type="TeenMartialArtsForm" action="#" method="POST">
+            <form class="get-started-form" data-form-type="TeenMartialArtsForm" action="/api/lead" method="POST" novalidate data-lead-form data-lead-source="teen-martial-arts-page">
               <div class="get-started-form-header">
                 <span class="offer-badge">Limited Time Offer</span>
                 <h3 class="font-display">1 Week Free Classes</h3>
@@ -790,10 +790,9 @@ import Layout from '../layouts/Layout.astro';
                 <label class="form-label" for="program-interest">Program Interest</label>
                 <select id="program-interest" name="program" class="form-select" required>
                   <option value="" disabled>Select a program</option>
-                  <option value="little-ninjas">Little Ninjas (Ages 3-6)</option>
-                  <option value="kids">Kids Martial Arts (Ages 7-12)</option>
-                  <option value="teens" selected>Teen Martial Arts (Ages 13+)</option>
-                  <option value="adults">Adult Classes (15+)</option>
+                  <option value="little-ninjas">Little Ninjas (Ages 3–6)</option>
+                  <option value="kids">Kids Martial Arts (Ages 7–12)</option>
+                  <option value="teen-adult" selected>Teen &amp; Adult (Ages 13+)</option>
                 </select>
               </div>
 
