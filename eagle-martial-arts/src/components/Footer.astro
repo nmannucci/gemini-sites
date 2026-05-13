@@ -8,9 +8,11 @@ const year = new Date().getFullYear();
       <img src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" />
     </div>
     <div class="footer-info">
-      <p>
-        7680 Girard Ave, Basement, La Jolla, CA 92037 •
-        <a href="tel:8583610961">(858) 361-0961</a> •
+      <p class="footer-contact">
+        <span>7680 Girard Ave, Basement, La Jolla, CA 92037</span>
+        <span class="footer-sep" aria-hidden="true">•</span>
+        <a href="tel:8583610961">(858) 361-0961</a>
+        <span class="footer-sep" aria-hidden="true">•</span>
         <a href="mailto:LJBULLYPROOF@GMAIL.COM">LJBULLYPROOF@GMAIL.COM</a>
       </p>
       <p class="footer-copyright">© {year} La Jolla Martial Arts. All rights reserved.</p>
@@ -85,18 +87,41 @@ const year = new Date().getFullYear();
 
   @media (max-width: 768px) {
     footer.site-footer {
-      padding: 1.75rem 1.25rem 2rem;
+      padding: 2.25rem 1.5rem 2.5rem;
     }
     footer.site-footer .footer-content {
       flex-direction: column;
-      gap: 1.1rem;
+      gap: 1.75rem;
       text-align: center;
     }
     footer.site-footer .footer-logo img {
-      height: 52px;
+      height: 56px;
+    }
+    footer.site-footer .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
     }
     footer.site-footer .footer-info p {
-      font-size: 0.78rem;
+      font-size: 0.82rem;
+      line-height: 1.65;
+    }
+    footer.site-footer .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    footer.site-footer .footer-sep {
+      display: none;
+    }
+    footer.site-footer .footer-copyright {
+      margin-top: 0;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: #6B6B6B;
+    }
+    footer.site-footer .footer-social {
+      gap: 0.9rem;
     }
   }
 </style>
