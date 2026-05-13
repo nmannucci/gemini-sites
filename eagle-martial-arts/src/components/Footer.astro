@@ -2,7 +2,7 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer">
+<footer class="footer site-footer">
   <div class="footer-content">
     <div class="footer-logo">
       <img src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" />
@@ -13,7 +13,7 @@ const year = new Date().getFullYear();
         <a href="tel:8583610961">(858) 361-0961</a> •
         <a href="mailto:LJBULLYPROOF@GMAIL.COM">LJBULLYPROOF@GMAIL.COM</a>
       </p>
-      <p style="margin-top: 0.5rem;">© {year} La Jolla Martial Arts. All rights reserved.</p>
+      <p class="footer-copyright">© {year} La Jolla Martial Arts. All rights reserved.</p>
     </div>
     <div class="footer-social">
       <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
@@ -25,3 +25,78 @@ const year = new Date().getFullYear();
     </div>
   </div>
 </footer>
+
+<style is:global>
+  footer.site-footer {
+    background: #141414;
+    padding: 2.5rem 4rem;
+    border-top: 1px solid #3a3a3a;
+  }
+  footer.site-footer .footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  footer.site-footer .footer-logo {
+    display: inline-flex;
+    align-items: center;
+  }
+  footer.site-footer .footer-logo img {
+    display: block;
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+  }
+  footer.site-footer .footer-info {
+    text-align: center;
+    flex: 1;
+  }
+  footer.site-footer .footer-info p {
+    font-size: 0.8rem;
+    color: #6B6B6B;
+    line-height: 1.6;
+  }
+  footer.site-footer .footer-info a {
+    color: #f5f5f0;
+    text-decoration: none;
+  }
+  footer.site-footer .footer-info a:hover { color: #29BEE2; }
+  footer.site-footer .footer-copyright { margin-top: 0.5rem; }
+  footer.site-footer .footer-social {
+    display: flex;
+    gap: 0.75rem;
+  }
+  footer.site-footer .footer-social a {
+    width: 40px;
+    height: 40px;
+    background: #3a3a3a;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #f5f5f0;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+  footer.site-footer .footer-social a:hover { background: #29BEE2; }
+  footer.site-footer .footer-social svg { width: 18px; height: 18px; }
+
+  @media (max-width: 768px) {
+    footer.site-footer {
+      padding: 1.75rem 1.25rem 2rem;
+    }
+    footer.site-footer .footer-content {
+      flex-direction: column;
+      gap: 1.1rem;
+      text-align: center;
+    }
+    footer.site-footer .footer-logo img {
+      height: 52px;
+    }
+    footer.site-footer .footer-info p {
+      font-size: 0.78rem;
+    }
+  }
+</style>
