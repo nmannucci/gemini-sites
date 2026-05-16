@@ -580,6 +580,11 @@ import Layout from '../layouts/Layout.astro';
           fields.style.display = 'none';
           successBox.classList.add('is-visible');
           successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          // Google Ads: Submit lead form conversion
+          if (typeof gtag === 'function') {
+            gtag('event', 'conversion', { 'send_to': 'AW-18166558698/waUoCJyf_a0cEOrfvtZD' });
+          }
         } catch (err) {
           showError(err.message || 'Network error. Please try again.');
           submitBtn.disabled = false;
