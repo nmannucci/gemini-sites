@@ -46,7 +46,6 @@ const INTEREST_LABELS: Record<string, string> = {
 const LOCATION_LABELS: Record<string, string> = {
   rocklin: 'Rocklin',
   'el-dorado-hills': 'El Dorado Hills',
-  either: 'Either Location',
 };
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -82,6 +81,10 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
   if (!firstName || !lastName || !email || !phone || !playerName || !playerDob || !areaFocus || !interest || !location) {
     return json({ error: 'Missing required fields' }, 400);
+  }
+
+  if (!(areaFocus in PROGRAM_LABELS) || !(interest in INTEREST_LABELS) || !(location in LOCATION_LABELS)) {
+    return json({ error: 'Invalid form selection' }, 400);
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
