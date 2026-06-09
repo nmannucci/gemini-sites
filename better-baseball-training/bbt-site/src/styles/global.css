@@ -1704,27 +1704,28 @@ nav {
 .forminator-shell .lead-form {
   position: relative;
   display: grid;
-  gap: 14px;
+  gap: 12px;
 }
 
 .forminator-shell .lead-form__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 44px;
+  column-gap: 28px;
+  row-gap: 16px;
 }
 
 .forminator-shell .lead-form__field {
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 8px;
 }
 
 .forminator-shell .lead-form__field label {
   margin: 0 !important;
   font-family: 'DM Mono', monospace;
-  font-size: 14px !important;
+  font-size: 12px !important;
   font-weight: 500 !important;
-  letter-spacing: 0.22em !important;
+  letter-spacing: 0.18em !important;
   line-height: 1.15;
   text-transform: uppercase;
   color: var(--cyan) !important;
@@ -1736,30 +1737,32 @@ nav {
 
 .forminator-shell .lead-form input,
 .forminator-shell .lead-form select {
-  min-height: 66px;
+  min-height: 54px;
   border: 2px solid rgba(255, 255, 255, 0.16) !important;
   background: rgba(13, 13, 13, 0.78) !important;
   color: var(--white) !important;
-  font-size: 24px !important;
+  font-size: 18px !important;
   line-height: 1.2 !important;
-  padding: 17px 26px !important;
+  padding: 12px 18px !important;
   box-shadow: none !important;
 }
 
 .forminator-shell .lead-form input::placeholder {
-  color: rgba(255, 255, 255, 0.92) !important;
+  color: rgba(255, 255, 255, 0.76) !important;
 }
 
 .forminator-shell .lead-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 44px !important;
   color: rgba(255, 255, 255, 0.58) !important;
-  background-color: rgba(13, 13, 13, 0.84) !important;
-  background-image:
-    linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, 0.52) 50%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.52) 50%, transparent 50%) !important;
-  background-position:
-    calc(100% - 34px) calc(50% - 3px),
-    calc(100% - 24px) calc(50% - 3px) !important;
-  background-size: 10px 10px, 10px 10px !important;
+  font-size: 16px !important;
+  background-color: #0d0d0d !important;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7.5l5 5 5-5' fill='none' stroke='%23f2f2f2' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 18px center !important;
+  background-size: 18px 18px !important;
+  color-scheme: dark;
 }
 
 .forminator-shell .lead-form select:valid {
@@ -1778,14 +1781,22 @@ nav {
   transform: none;
 }
 
+.forminator-shell .lead-form select:focus {
+  background-color: #111a1d !important;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7.5l5 5 5-5' fill='none' stroke='%23f2f2f2' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 18px center !important;
+  background-size: 18px 18px !important;
+}
+
 .forminator-shell .lead-form button[type='submit'] {
-  min-height: 82px;
-  margin-top: 7px !important;
-  padding: 22px 28px !important;
-  font-size: 31px !important;
-  letter-spacing: 0.22em !important;
+  min-height: 64px;
+  margin-top: 6px !important;
+  padding: 15px 22px !important;
+  font-size: 25px !important;
+  letter-spacing: 0.18em !important;
   box-shadow: none;
-  clip-path: polygon(15px 0%, 100% 0%, calc(100% - 18px) 100%, 0% 100%);
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%);
 }
 
 .forminator-shell .lead-form button[type='submit'] span {
@@ -6749,19 +6760,24 @@ footer {
 
   .forminator-shell .lead-form input,
   .forminator-shell .lead-form select {
-    min-height: 58px;
-    font-size: 18px !important;
-    padding: 14px 18px !important;
+    min-height: 50px;
+    font-size: 16px !important;
+    padding: 11px 15px !important;
+  }
+
+  .forminator-shell .lead-form select {
+    padding-right: 42px !important;
+    background-position: right 15px center !important;
   }
 
   .forminator-shell .lead-form__field label {
-    font-size: 11px !important;
-    letter-spacing: 0.18em !important;
+    font-size: 10px !important;
+    letter-spacing: 0.16em !important;
   }
 
   .forminator-shell .lead-form button[type='submit'] {
-    min-height: 68px;
-    font-size: 24px !important;
+    min-height: 58px;
+    font-size: 22px !important;
   }
 
   .forminator-shell .bk-form__row {
