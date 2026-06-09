@@ -1,0 +1,16 @@
+{
+  "name": "bbt-site",
+  "compatibility_date": "2026-05-12",
+  "pages_build_output_dir": "./dist",
+  "vars": {
+    "LEAD_NOTIFY_TO": "nmannucci1@gmail.com",
+    "LEAD_NOTIFY_FROM": "Better Baseball Training <onboarding@resend.dev>"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "bbt-leads",
+      "database_id": "e4b35f56-eaba-44c6-9238-446b77023c6c"
+    }
+  ]
+}

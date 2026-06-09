@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { contact } from '../data/contact';
+import { privacyPolicyUrl } from '../data/urls';
+
+const SITE = 'https://betterbaseballtraining.com';
+
+// PHP: date_i18n('F j, Y') — current date at render time.
+const effectiveDate = new Date().toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const title = 'Privacy Policy | Better Baseball Training';
+const description =
+  'Read the Better Baseball Training privacy policy for information about the data collected through this website, booking requests, and communication forms.';
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${SITE}${privacyPolicyUrl()}#webpage`,
+  url: `${SITE}${privacyPolicyUrl()}`,
+  name: 'Privacy Policy',
+  description,
+  isPartOf: { '@id': `${SITE}/#website` },
+  about: { '@id': `${SITE}/#organization` },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+    { '@type': 'ListItem', position: 2, name: 'Privacy Policy', item: `${SITE}${privacyPolicyUrl()}` },
+  ],
+};
+---
+
+<Layout title={title} description={description} pageSchema={[webPageSchema, breadcrumbSchema]}>
+  <main id="main-content" class="default-page">
+    <div class="default-page__inner">
+      <article class="entry-card">
+        <div class="default-page__eyebrow">Legal</div>
+        <h1 class="default-page__title">Privacy Policy</h1>
+        <p class="default-page__copy">
+          Effective date: {effectiveDate}. This page explains how Better Baseball Training may collect and use information submitted through this website.
+        </p>
+
+        <div class="entry-content">
+          <p>Better Baseball Training uses this site to share program information, accept player interest requests, and help families choose the right next step for baseball lessons, academy memberships, and related services.</p>
+
+          <h2>Information We May Collect</h2>
+          <p>When you use the forms on this site, BBT may receive information such as a player name, parent or guardian contact details, age, lesson interests, preferred location, and any additional details you choose to share.</p>
+
+          <h2>How Information May Be Used</h2>
+          <ul>
+            <li>To respond to player interest and booking requests</li>
+            <li>To recommend the right lesson, class, or location</li>
+            <li>To follow up about scheduling, programs, or requested services</li>
+            <li>To improve the website experience and understand which pages families use most</li>
+          </ul>
+
+          <h2>Third-Party Tools</h2>
+          <p>Some services linked from this website, such as scheduling tools, waiver forms, embedded calendars, or social media platforms, are operated by third parties. Those services may collect information under their own terms and privacy policies.</p>
+
+          <h2>Cookies And Site Data</h2>
+          <p>This website may use cookies, embedded content, server logs, or basic analytics tools to help the site function properly and to understand website activity. You can adjust cookie settings through your browser.</p>
+
+          <h2>Sharing Of Information</h2>
+          <p>BBT does not use this page to promise any specific legal treatment of data beyond what is necessary to operate the site and respond to inquiries. Information may be shared with service providers only when needed to run website forms, scheduling, communication, or hosting infrastructure.</p>
+
+          <h2>Contact</h2>
+          <p>
+            If you have questions about this privacy policy, contact Better Baseball Training at {contact.phone} or {contact.email}.
+          </p>
+        </div>
+      </article>
+    </div>
+  </main>
+</Layout>

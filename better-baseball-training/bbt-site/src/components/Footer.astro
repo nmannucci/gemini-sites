@@ -1,0 +1,222 @@
+---
+// Ported 1:1 from house36-bbt/footer.php
+import { contact } from '../data/contact';
+import {
+  lessonUrl,
+  seoPageUrl,
+  scheduleUrl,
+  coachesUrl,
+  bookingUrl,
+  privacyPolicyUrl,
+  homeSectionUrl,
+} from '../data/urls';
+
+const SITE = 'https://betterbaseballtraining.com';
+const year = new Date().getFullYear();
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${SITE}/#organization`,
+    name: 'Better Baseball Training',
+    url: `${SITE}/`,
+    logo: `${SITE}/assets/images/logo-bbt.png`,
+    email: contact.email,
+    telephone: contact.phone,
+    sameAs: [
+      'https://www.facebook.com/betterbaseballtraining1',
+      'https://www.instagram.com/trainbetterbaseball/',
+      'https://twitter.com/Betterbaseball1',
+    ],
+    founder: { '@type': 'Person', name: 'Jon Peters' },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: contact.phone,
+      email: contact.email,
+      contactType: 'customer service',
+      areaServed: 'US',
+    },
+    areaServed: ['Rocklin', 'El Dorado Hills', 'Roseville', 'Folsom', 'Granite Bay', 'Sacramento'],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE}/#website`,
+    name: 'Better Baseball Training',
+    url: `${SITE}/`,
+    publisher: { '@id': `${SITE}/#organization` },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'SportsActivityLocation'],
+    '@id': `${SITE}/#rocklin-location`,
+    name: 'Better Baseball Training - Rocklin',
+    image: `${SITE}/assets/images/facility-img-1.jpg`,
+    url: `${SITE}${seoPageUrl('baseball-lessons-rocklin')}`,
+    telephone: contact.phone,
+    email: contact.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '4283 Duluth Ave',
+      addressLocality: 'Rocklin',
+      addressRegion: 'CA',
+      postalCode: '95765',
+      addressCountry: 'US',
+    },
+    parentOrganization: { '@id': `${SITE}/#organization` },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'SportsActivityLocation'],
+    '@id': `${SITE}/#edh-location`,
+    name: 'Better Baseball Training - El Dorado Hills',
+    image: `${SITE}/assets/images/IMG_0607.jpg`,
+    url: `${SITE}${seoPageUrl('baseball-lessons-el-dorado-hills')}`,
+    telephone: contact.phone,
+    email: contact.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '4990 Hillsdale Dr, Suite 400',
+      addressLocality: 'El Dorado Hills',
+      addressRegion: 'CA',
+      postalCode: '95762',
+      addressCountry: 'US',
+    },
+    parentOrganization: { '@id': `${SITE}/#organization` },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SiteNavigationElement',
+    name: [
+      'Home',
+      'Hitting Lessons',
+      'Pitching Lessons',
+      'Infield / Outfield Lessons',
+      'Catching Lessons',
+      'Baseball IQ Training',
+      'Baseball Lessons Rocklin',
+      'Baseball Lessons El Dorado Hills',
+      'Baseball Academy',
+      'Travel Baseball',
+      'Rocklin Batting Cages',
+      'Academy Schedule',
+      'Our Coaches',
+      'Book A Session',
+    ],
+    url: [
+      `${SITE}/`,
+      `${SITE}${lessonUrl('hitting')}`,
+      `${SITE}${lessonUrl('pitching')}`,
+      `${SITE}${lessonUrl('infield-outfield')}`,
+      `${SITE}${lessonUrl('catching')}`,
+      `${SITE}${lessonUrl('baseball-iq')}`,
+      `${SITE}${seoPageUrl('baseball-lessons-rocklin')}`,
+      `${SITE}${seoPageUrl('baseball-lessons-el-dorado-hills')}`,
+      `${SITE}${seoPageUrl('baseball-academy')}`,
+      `${SITE}${seoPageUrl('travel-baseball')}`,
+      `${SITE}${seoPageUrl('batting-cages-rocklin')}`,
+      `${SITE}${scheduleUrl()}`,
+      `${SITE}${coachesUrl()}`,
+      `${SITE}${bookingUrl()}`,
+    ],
+  },
+];
+---
+
+<footer>
+  <div class="footer-container reveal">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo-link" rel="home" aria-label="Go to homepage">
+        <img
+          src="/assets/brand-assets/BBT Logo 2.jpeg"
+          alt="Better Baseball Training"
+          class="footer-logo"
+          loading="lazy"
+          decoding="async"
+          fetchpriority="low"
+        />
+      </a>
+      <p class="footer-desc">Better Baseball Training is a youth sports performance platform developing players socially, physically, and mentally. Serving ages 8-14U with private lessons, academy memberships, and travel teams.</p>
+      <div class="footer-brand-contact">
+        <a href={contact.phoneHref} class="footer-brand-phone">{contact.phone}</a>
+        <a href={contact.emailHref} class="footer-brand-email">{contact.email}</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/betterbaseballtraining1" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+        <a href="https://www.instagram.com/trainbetterbaseball/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="https://twitter.com/Betterbaseball1" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-contact">
+      <h3 class="footer-title">Training</h3>
+      <ul class="footer-links">
+        <li><a href={lessonUrl('hitting')}>Hitting Lessons</a></li>
+        <li><a href={lessonUrl('pitching')}>Pitching Lessons</a></li>
+        <li><a href={lessonUrl('infield-outfield')}>Infield / Outfield</a></li>
+        <li><a href={lessonUrl('catching')}>Catching</a></li>
+        <li><a href={lessonUrl('baseball-iq')}>Baseball IQ</a></li>
+        <li><a href={seoPageUrl('baseball-lessons-rocklin')}>Baseball Lessons Rocklin</a></li>
+        <li><a href={seoPageUrl('baseball-lessons-el-dorado-hills')}>Baseball Lessons EDH</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h3 class="footer-title">About BBT</h3>
+      <ul class="footer-links">
+        <li><a href={seoPageUrl('baseball-academy')}>Baseball Academy</a></li>
+        <li><a href={seoPageUrl('travel-baseball')}>Travel Baseball</a></li>
+        <li><a href={seoPageUrl('batting-cages-rocklin')}>Rocklin Batting Cages</a></li>
+        <li><a href={scheduleUrl()}>Academy Schedule</a></li>
+        <li><a href={coachesUrl()}>Meet The Coaches</a></li>
+        <li><a href={homeSectionUrl('facilities')}>Our Facilities</a></li>
+        <li><a href={bookingUrl()}>Book A Session</a></li>
+        <li><a href={privacyPolicyUrl()}>Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h3 class="footer-title">Locations</h3>
+      <address>
+        <strong>Rocklin Basecamp</strong>
+        4283 Duluth Ave<br>
+        Rocklin, CA 95765<br>
+        <a href={seoPageUrl('baseball-lessons-rocklin')}>View Rocklin lessons</a><br>
+        <a href={contact.phoneHref}>{contact.phone}</a>
+      </address>
+      <address>
+        <strong>El Dorado Hills (EDH)</strong>
+        4990 Hillsdale Dr, Suite 400<br>
+        El Dorado Hills, CA 95762<br>
+        <a href={seoPageUrl('baseball-lessons-el-dorado-hills')}>View EDH lessons</a><br>
+        <a href={contact.phoneHref}>{contact.phone}</a>
+      </address>
+      <address>
+        <strong>Phone</strong>
+        <a href={contact.phoneHref}>{contact.phone}</a>
+      </address>
+      <address>
+        <strong>Email</strong>
+        <a href={contact.emailHref}>{contact.email}</a>
+      </address>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">
+      &copy; {year} Better Baseball Training. All Rights Reserved.
+    </div>
+    <div class="footer-service-area">
+      Proudly Serving: Rocklin, El Dorado Hills, Sacramento, Granite Bay, Folsom, Roseville
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</footer>

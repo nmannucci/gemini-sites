@@ -1,0 +1,21 @@
+.claude/
+.firecrawl/
+.vercel
+
+# Astro
+node_modules/
+dist/
+.astro/
+
+# Wrangler
+.wrangler/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Env
+.env
+.env.*
+!.env.example

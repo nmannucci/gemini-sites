@@ -1,0 +1,700 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { seoPages } from '../data/seoPages';
+import { lessons } from '../data/lessons';
+import {
+  lessonUrl,
+  seoPageUrl,
+  scheduleUrl,
+  bookingUrl,
+  coachesUrl,
+} from '../data/urls';
+import { contact } from '../data/contact';
+import { locations } from '../data/locations';
+
+const SITE = 'https://betterbaseballtraining.com';
+
+export function getStaticPaths() {
+  return seoPages.map((page) => ({ params: { seoPage: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props;
+
+const pageUrl = `${SITE}${seoPageUrl(page.slug)}`;
+
+// related_link_items(): lesson -> "{Label} Lessons"; seo -> title; book-now/schedule/coaches keywords.
+const lessonBySlug = new Map(lessons.map((l) => [l.slug, l]));
+const seoBySlug = new Map(seoPages.map((p) => [p.slug, p]));
+
+interface RelatedLink {
+  label: string;
+  url: string;
+}
+
+const relatedLinks: RelatedLink[] = (page.related_links ?? [])
+  .map((key): RelatedLink | null => {
+    const lesson = lessonBySlug.get(key);
+    if (lesson) return { label: `${lesson.label} Lessons`, url: lessonUrl(lesson.slug) };
+    const seo = seoBySlug.get(key);
+    if (seo) return { label: seo.title, url: seoPageUrl(seo.slug) };
+    if (key === 'book-now') return { label: 'Book Now', url: bookingUrl() };
+    if (key === 'schedule') return { label: 'Training Schedule', url: scheduleUrl() };
+    if (key === 'coaches') return { label: 'Meet the Coaches', url: coachesUrl() };
+    return null;
+  })
+  .filter((x): x is RelatedLink => x !== null);
+
+// area served from schema_locations
+const locationByKey = new Map(locations.map((l) => [l.key, l]));
+const schemaLocationIds: Record<string, string> = {
+  rocklin: `${SITE}/#rocklin-location`,
+  'el-dorado-hills': `${SITE}/#edh-location`,
+};
+
+const areaServed: Array<{ '@type': string; name: string }> = [];
+const availableAtOrFrom: Array<{ '@id': string }> = [];
+for (const key of page.schema_locations ?? []) {
+  if (schemaLocationIds[key]) availableAtOrFrom.push({ '@id': schemaLocationIds[key] });
+  const loc = locationByKey.get(key);
+  if (loc) areaServed.push({ '@type': 'City', name: loc.name });
+}
+
+const serviceSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${pageUrl}#service`,
+  name: page.title,
+  serviceType: page.service_type ?? page.title,
+  description: page.meta_description,
+  url: pageUrl,
+  provider: { '@id': `${SITE}/#organization` },
+  audience: { '@type': 'PeopleAudience', suggestedMinAge: 8, suggestedMaxAge: 14 },
+};
+if (areaServed.length) serviceSchema.areaServed = areaServed;
+if (availableAtOrFrom.length) serviceSchema.availableAtOrFrom = availableAtOrFrom;
+
+const faqItems = page.faq_items ?? [];
+const faqSchema =
+  faqItems.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqItems.map((item) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: { '@type': 'Answer', text: item.answer },
+        })),
+      }
+    : null;
+
+const storyPageSlugs = [
+  'baseball-lessons-rocklin',
+  'baseball-lessons-el-dorado-hills',
+  'baseball-academy',
+  'travel-baseball',
+];
+const isStoryPage = storyPageSlugs.includes(page.slug);
+
+interface GalleryItem {
+  image: string;
+  alt: string;
+  label: string;
+}
+
+const storyGalleryMap: Record<string, GalleryItem[]> = {
+  'baseball-lessons-rocklin': [
+    { image: '/assets/images/facility-img-1.jpg', alt: 'Rocklin batting cages and training space at Better Baseball Training', label: 'Rocklin Facility' },
+    { image: '/assets/images/service-hitting-1.PNG', alt: 'Hitting lesson reps at Better Baseball Training Rocklin', label: 'Hitting Lessons' },
+    { image: '/assets/images/service-pitching-2.PNG', alt: 'Pitching instruction at Better Baseball Training Rocklin', label: 'Pitching Work' },
+    { image: '/assets/images/team-photo-1.jpg', alt: 'Better Baseball Training youth baseball team in Rocklin', label: 'Game Confidence' },
+  ],
+  'baseball-lessons-el-dorado-hills': [
+    { image: '/assets/images/IMG_0607.jpg', alt: 'El Dorado Hills indoor baseball training facility at Better Baseball Training', label: 'EDH Facility' },
+    { image: '/assets/images/service-pitching-2.PNG', alt: 'Pitching lesson work at Better Baseball Training El Dorado Hills', label: 'Pitching Lessons' },
+    { image: '/assets/images/service-catching-4.PNG', alt: 'Catching instruction at Better Baseball Training El Dorado Hills', label: 'Catching Development' },
+    { image: '/assets/images/hero-slideshow-4.PNG', alt: 'Youth baseball player training at Better Baseball Training', label: 'Player Development' },
+  ],
+  'baseball-academy': [
+    { image: '/assets/images/hero-slideshow-4.PNG', alt: 'Youth baseball academy training at Better Baseball Training', label: 'Academy Reps' },
+    { image: '/assets/images/service-hitting-1.PNG', alt: 'Hitting development inside Better Baseball Training academy', label: 'Hitting Development' },
+    { image: '/assets/images/service-pitching-2.PNG', alt: 'Pitching work at Better Baseball Training academy', label: 'Pitching Work' },
+    { image: '/assets/images/IMG_0607.jpg', alt: 'El Dorado Hills training facility at Better Baseball Training', label: 'EDH Facility' },
+  ],
+  'travel-baseball': [
+    { image: '/assets/images/hero-slideshow-2.PNG', alt: 'Better Baseball Training youth players preparing for competitive baseball', label: 'Team Development' },
+    { image: '/assets/images/team-photo-1.jpg', alt: 'Better Baseball Training youth baseball team photo', label: 'Tournament Confidence' },
+    { image: '/assets/images/hero-slideshow-3.PNG', alt: 'Better Baseball Training players after competition', label: 'Competitive Moments' },
+    { image: '/assets/images/team-photo-4.jpg', alt: 'Better Baseball Training players and coaches during travel baseball development', label: 'Player Growth' },
+  ],
+};
+
+const storySnapshotsMap: Record<string, Array<{ label: string; value: string }>> = {
+  'baseball-lessons-rocklin': [
+    { label: 'Location', value: 'Rocklin' },
+    { label: 'Address', value: '4283 Duluth Ave' },
+    { label: 'Best Fit', value: 'Ages 8-14U' },
+    { label: 'Format', value: 'Private + Group' },
+  ],
+  'baseball-lessons-el-dorado-hills': [
+    { label: 'Location', value: 'El Dorado Hills' },
+    { label: 'Address', value: '4990 Hillsdale Dr' },
+    { label: 'Best Fit', value: 'Ages 8-14U' },
+    { label: 'Format', value: 'Academy + Lessons' },
+  ],
+  'baseball-academy': [
+    { label: 'Rocklin', value: '$250/mo' },
+    { label: 'EDH', value: '$299/mo' },
+    { label: 'Best Fit', value: 'Ages 8-14U' },
+    { label: 'Format', value: 'Unlimited Access' },
+  ],
+  'travel-baseball': [
+    { label: 'Best Fit', value: 'Ages 8-14U' },
+    { label: 'Area', value: 'Sacramento' },
+    { label: 'Focus', value: 'Development First' },
+    { label: 'Path', value: 'Lessons + Academy' },
+  ],
+};
+
+const storyStepsMap: Record<string, Array<{ label: string; title: string; copy: string }>> = {
+  'baseball-lessons-rocklin': [
+    { label: 'Assess', title: 'Start With the Player', copy: 'Coaches look at age, goals, confidence, and current skill needs before recommending the right first lesson.' },
+    { label: 'Focus', title: 'Pick the Skill Path', copy: 'Families can begin with hitting, pitching, catching, defense, baseball IQ, or a broader player-development plan.' },
+    { label: 'Train', title: 'Use the Facility for Real Reps', copy: 'Rocklin gives players indoor space for cage work, turf work, and guided reps that can stay consistent year-round.' },
+    { label: 'Plan', title: 'Choose the Next Step', copy: 'BBT helps families decide whether the next move is another lesson, academy training, or a team-development path.' },
+  ],
+  'baseball-lessons-el-dorado-hills': [
+    { label: 'Assess', title: 'Start With the Player', copy: 'BBT starts by understanding what the athlete needs now, from mechanics and confidence to game awareness.' },
+    { label: 'Match', title: 'Choose the Right Coach', copy: 'Families can connect with coaches across hitting, pitching, catching, defense, baseball IQ, and player development.' },
+    { label: 'Develop', title: 'Build a Training Rhythm', copy: 'EDH lessons can stand alone or connect into academy training for players who need more consistent structure.' },
+    { label: 'Grow', title: 'Keep the Path Clear', copy: 'The goal is simple: give families a stronger read on what the player should work on next and why it matters.' },
+  ],
+  'baseball-academy': [
+    { label: 'Assess', title: 'Start With the Player', copy: 'Coaches look at age, skill level, confidence, and goals before recommending the right academy rhythm.' },
+    { label: 'Rhythm', title: 'Build Weekly Reps', copy: 'Membership gives players a consistent place to train instead of waiting for occasional private lessons to create progress.' },
+    { label: 'Develop', title: 'Stack Skill Work', copy: 'Players rotate through hitting, pitching, catching, defense, and baseball IQ work based on what they need next.' },
+    { label: 'Review', title: 'Choose the Next Step', copy: 'Families get clearer direction on when to add lessons, team development, or a more competitive baseball path.' },
+  ],
+  'travel-baseball': [
+    { label: 'Build', title: 'Clean Up the Base', copy: 'Players need reliable skills first, so BBT starts with the swing, arm, glove, and decision-making habits that travel baseball exposes.' },
+    { label: 'Speed', title: 'Train Closer to Game Pace', copy: 'Coaches connect mechanics to timing, pressure, communication, and the faster decisions players face against stronger competition.' },
+    { label: 'Role', title: 'Find the Player Fit', copy: 'Training helps families understand where the athlete can contribute now and what has to improve for the next roster.' },
+    { label: 'Path', title: 'Plan the Next Move', copy: 'The goal is readiness, not a vague tournament promise, with lessons and academy work supporting long-term player growth.' },
+  ],
+};
+
+const storyNoteMap: Record<string, string> = {
+  'baseball-lessons-rocklin': 'A local training base for private lessons, group reps, and a clearer development plan.',
+  'baseball-lessons-el-dorado-hills': 'A complete EDH training option for lessons, academy work, and position-specific development.',
+  'baseball-academy': 'Consistent reps that turn occasional progress into a real training rhythm.',
+  'travel-baseball': 'Training that prepares players for the speed of stronger baseball.',
+};
+
+const storyProcessHeadingMap: Record<string, string> = {
+  'baseball-lessons-rocklin': 'A Clear Path From First Lesson to Better Game Reps',
+  'baseball-lessons-el-dorado-hills': 'A Lesson Path Built Around the Player',
+  'baseball-academy': 'A Weekly System for Player Development',
+  'travel-baseball': 'A Clearer Path Toward Competitive Baseball',
+};
+
+const storyProcessCopyMap: Record<string, string> = {
+  'baseball-lessons-rocklin': 'Rocklin lessons are built to help families move from scattered reps to a plan the athlete can actually follow.',
+  'baseball-lessons-el-dorado-hills': 'EDH lessons give families a nearby training option with enough structure to connect skill work to long-term growth.',
+  'baseball-academy': 'Academy membership works best when players need frequent, guided reps and families want a clearer development plan.',
+  'travel-baseball': 'The page is built around readiness: what a player needs to handle tougher competition, communicate better, and keep developing.',
+};
+
+const storyLocationHeadingMap: Record<string, string> = {
+  'baseball-lessons-rocklin': 'Rocklin Training With a Full BBT Path Behind It',
+  'baseball-lessons-el-dorado-hills': 'EDH Lessons Connected to the Bigger Training System',
+  'baseball-academy': 'Two Facilities, One Development Standard',
+  'travel-baseball': 'Built Around the Player Before the Roster',
+};
+
+const storyLocationCopyMap: Record<string, string> = {
+  'baseball-lessons-rocklin': 'The Rocklin facility gives players a consistent place for lesson work while still connecting families to academy training, coaches, and team-development options when the athlete is ready.',
+  'baseball-lessons-el-dorado-hills': 'The El Dorado Hills facility gives families a local place to start with lessons, then build toward academy training, coach matching, or more competitive baseball when it fits.',
+  'baseball-academy': 'Families can train in Rocklin or El Dorado Hills while keeping the same development philosophy: consistent reps, specific feedback, and a next step that fits the athlete.',
+  'travel-baseball': 'BBT uses lessons, academy training, and coach feedback to help players understand what competitive baseball asks of them before families chase the next team label.',
+};
+
+const storyGallery: GalleryItem[] =
+  storyGalleryMap[page.slug] ?? [
+    { image: page.image, alt: page.image_alt, label: page.title },
+    { image: '/assets/images/facility-img-1.jpg', alt: 'Better Baseball Training indoor facility', label: 'Facility' },
+    { image: '/assets/images/hero-slideshow-4.PNG', alt: 'Youth baseball training inside Better Baseball Training', label: 'Training' },
+    { image: '/assets/images/team-photo-1.jpg', alt: 'Better Baseball Training youth team', label: 'Team' },
+  ];
+const storySnapshots = storySnapshotsMap[page.slug] ?? [];
+const storySteps = storyStepsMap[page.slug] ?? [];
+const storyNote =
+  storyNoteMap[page.slug] ??
+  'Focused reps, coach feedback, and a clear next step for players who want training to show up in games.';
+const storyProcessHeading =
+  storyProcessHeadingMap[page.slug] ?? 'A Clear Path From First Rep to Game Rep';
+const storyProcessCopy =
+  storyProcessCopyMap[page.slug] ??
+  'Each training path is designed to give families more clarity, not just more swings, throws, or drills.';
+const storyLocationHeading =
+  storyLocationHeadingMap[page.slug] ?? 'Matched to the Player, Not a Generic Training Slot';
+const storyLocationCopy =
+  storyLocationCopyMap[page.slug] ??
+  'BBT uses the player inquiry form to understand the athlete first, then helps families choose the right coach, location, and training rhythm.';
+const storyHeroBackground = storyGallery[0]?.image ?? page.image;
+const storyPanelItem = storyGallery[3] ?? storyGallery[0];
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: page.title,
+  description: page.meta_description,
+  dateModified: new Date().toISOString(),
+  isPartOf: { '@id': `${SITE}/#website` },
+  about: { '@id': `${SITE}/#organization` },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+    { '@type': 'ListItem', position: 2, name: page.title, item: pageUrl },
+  ],
+};
+
+const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchema ? [faqSchema] : [])];
+---
+
+<Layout
+  title={page.meta_title}
+  description={page.meta_description}
+  canonical={pageUrl}
+  pageSchema={pageSchema}
+>
+  {isStoryPage ? (
+    <main id="main-content" class="seo-landing-page seo-story-page ls-page">
+      <section
+        class="ls-picture-hero seo-picture-hero reveal"
+        style={`--lesson-hero-bg: url('${storyHeroBackground}');`}
+      >
+        <div class="ls-picture-hero__inner">
+          <div class="ls-picture-hero__copy">
+            <div class="ls-hero__kicker">{page.kicker}</div>
+            <h1 class="ls-hero__title">{page.headline}</h1>
+            <p class="ls-hero__copy">{page.subheadline}</p>
+            {page.meta_items && page.meta_items.length > 0 && (
+              <div class="ls-hero__meta" aria-label="Program details">
+                {page.meta_items.map((item) => (
+                  <span>{item}</span>
+                ))}
+              </div>
+            )}
+            <div class="ls-hero__actions">
+              <a href="#seo-story-form" class="membership-cta">Start the Player Form</a>
+              <a href={scheduleUrl()} class="cta-box-secondary-link">View Schedule</a>
+            </div>
+          </div>
+          <div class="ls-picture-hero__panel" aria-label="Program quick facts">
+            <span>{storyGallery[0]?.label ?? page.title}</span>
+            <strong>{page.title}</strong>
+            <p>{page.intro_copy}</p>
+          </div>
+        </div>
+      </section>
+
+      {storySnapshots.length > 0 && (
+        <section class="ls-snapshot reveal" aria-label="Program snapshot">
+          {storySnapshots.map((snapshot) => (
+            <div class="ls-snapshot__item">
+              <span>{snapshot.label}</span>
+              <strong>{snapshot.value}</strong>
+            </div>
+          ))}
+        </section>
+      )}
+
+      <section class="ls-overview ls-overview--story">
+        <div class="ls-overview__inner reveal">
+          <div class="ls-overview__content">
+            <div class="ls-section-label">{page.intro_label}</div>
+            <h2 class="ls-section-title">{page.intro_title}</h2>
+            <p class="ls-overview__text">{page.intro_copy}</p>
+
+            {page.focus_items && page.focus_items.length > 0 && (
+              <ul class="ls-focus-list">
+                {page.focus_items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <div class="ls-photo-panel">
+            <figure>
+              <img
+                src={storyPanelItem.image}
+                sizes="(max-width: 768px) 100vw, 42vw"
+                alt={storyPanelItem.alt}
+                class="ls-photo-panel__img"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>{storyPanelItem.label ?? page.title}</figcaption>
+            </figure>
+            <div class="ls-photo-panel__note">
+              <span>BBT Flow</span>
+              <strong>{storyNote}</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {storySteps.length > 0 && (
+        <section class="ls-process reveal" aria-labelledby="seo-story-process-heading">
+          <div class="ls-process__header">
+            <div class="ls-section-label">Training Flow</div>
+            <h2 id="seo-story-process-heading" class="ls-section-title">{storyProcessHeading}</h2>
+            <p>{storyProcessCopy}</p>
+          </div>
+          <div class="ls-process__grid">
+            {storySteps.map((step, index) => (
+              <article class="ls-process-card">
+                <span class="ls-process-card__number">{String(index + 1).padStart(2, '0')}</span>
+                <div class="ls-process-card__label">{step.label}</div>
+                <h3>{step.title}</h3>
+                <p>{step.copy}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section class="ls-photo-strip reveal" aria-label="Program photo gallery">
+        {storyGallery.map((galleryItem, index) => (
+          <figure class={`ls-photo-strip__item ${index === 0 ? 'ls-photo-strip__item--wide' : ''}`}>
+            <img
+              src={galleryItem.image}
+              sizes="(max-width: 768px) 100vw, 42vw"
+              alt={galleryItem.alt}
+              class="ls-photo-strip__img"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>{galleryItem.label}</figcaption>
+          </figure>
+        ))}
+      </section>
+
+      {page.detail_cards && page.detail_cards.length > 0 && (
+        <section class="seo-detail-section ls-cards reveal" aria-labelledby="seo-detail-heading">
+          <div class="seo-section-heading">
+            <div class="ls-section-label">Program Details</div>
+            <h2 id="seo-detail-heading" class="ls-section-title">What Families Should Know</h2>
+          </div>
+          <div class="ls-cards__inner seo-detail-grid">
+            {page.detail_cards.map((card) => (
+              <article class="bk-card">
+                <div class="bk-card__eyebrow">{card.label ?? 'Detail'}</div>
+                <h3 class="bk-card__title">{card.title ?? ''}</h3>
+                <p class="bk-card__copy">{card.copy ?? ''}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section class="ls-coach-location reveal" aria-labelledby="seo-story-location-heading">
+        <div class="ls-coach-location__content">
+          <div class="ls-section-label">Coach + Facility Fit</div>
+          <h2 id="seo-story-location-heading" class="ls-section-title">{storyLocationHeading}</h2>
+          <p>{storyLocationCopy}</p>
+          <div class="ls-coach-pills" aria-label="Related training paths">
+            <a href={lessonUrl('hitting')}>Hitting Lessons</a>
+            <a href={lessonUrl('pitching')}>Pitching Lessons</a>
+            <a href={lessonUrl('baseball-iq')}>Baseball IQ</a>
+            <a href={coachesUrl()}>Meet the Coaches</a>
+          </div>
+        </div>
+        <div class="ls-location-cards">
+          <article>
+            <span>Rocklin</span>
+            <strong>4283 Duluth Ave</strong>
+            <a href={seoPageUrl('baseball-lessons-rocklin')}>View Rocklin lessons</a>
+          </article>
+          <article>
+            <span>El Dorado Hills</span>
+            <strong>4990 Hillsdale Dr, Suite 400</strong>
+            <a href={seoPageUrl('baseball-lessons-el-dorado-hills')}>View EDH lessons</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="seo-story-form" class="ls-form-section">
+        <div class="ls-form-section__inner reveal">
+          <div class="cta-box forminator-cta-box ls-form-card">
+            <div class="cta-box-topline">
+              <div class="cta-box-eyebrow">Parent Inquiry Form</div>
+              <div class="cta-box-badge">Ages 8-14U</div>
+            </div>
+            <h2 class="cta-box-headline">{page.cta_label}</h2>
+            <p class="ls-form-copy">Tell us about your athlete and the BBT team will help you choose the right lesson, academy, facility, or development next step.</p>
+            <div class="forminator-shell">
+              <form action="/api/lead" method="POST" novalidate data-lead-form data-lead-source={page.slug}>
+                <input type="hidden" name="source" value={page.slug} />
+                <div class="form-row">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" name="firstName" required />
+                </div>
+                <div class="form-row">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" required />
+                </div>
+                <div class="form-row">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+                <div class="form-row">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" />
+                </div>
+                <div class="form-row">
+                  <label for="program">Program of Interest</label>
+                  <select id="program" name="program">
+                    <option value="hitting">Hitting Lessons</option>
+                    <option value="pitching">Pitching Lessons</option>
+                    <option value="infield-outfield">Infield / Outfield Lessons</option>
+                    <option value="catching">Catching Lessons</option>
+                    <option value="baseball-iq">Baseball IQ Training</option>
+                    <option value="academy">Academy Membership</option>
+                    <option value="travel">Travel Baseball</option>
+                    <option value="general">General Question</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {faqItems.length > 0 && (
+        <section class="ls-answer-strip reveal" aria-labelledby="seo-faq-heading">
+          <div class="ls-answer-strip__inner">
+            <div class="ls-section-label">Parents Ask</div>
+            <h2 id="seo-faq-heading" class="ls-section-title">Answers About {page.title}</h2>
+            <div class="ls-answer-grid">
+              {faqItems.map((item) => (
+                <article class="ls-answer-card">
+                  <h3>{item.question}</h3>
+                  <p>{item.answer}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section class="ls-cards seo-related-section reveal" aria-labelledby="seo-related-heading">
+        <div class="seo-section-heading">
+          <div class="ls-section-label">Next Steps</div>
+          <h2 id="seo-related-heading" class="ls-section-title">Explore Related Training</h2>
+        </div>
+        <div class="ls-cards__inner">
+          {relatedLinks.map((link) => (
+            <article class="bk-card">
+              <div class="bk-card__eyebrow">Related Page</div>
+              <h3 class="bk-card__title">{link.label}</h3>
+              <a href={link.url} class="bk-card__inline-link">View {link.label}</a>
+            </article>
+          ))}
+
+          <article class="bk-card">
+            <div class="bk-card__eyebrow">Contact Better Baseball Training</div>
+            <h3 class="bk-card__title">Talk With Our Team</h3>
+            <p class="bk-card__copy">Reach out if you want help choosing the best coach, location, or training path for your ballplayer.</p>
+            <div class="bk-card__links">
+              <div class="bk-card__contact-row">
+                <span class="bk-card__contact-label">Phone</span>
+                <a href={contact.phoneHref}>{contact.phone}</a>
+              </div>
+              <div class="bk-card__contact-row">
+                <span class="bk-card__contact-label">Email</span>
+                <a href={contact.emailHref}>{contact.email}</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  ) : (
+    <main id="main-content" class="seo-landing-page ls-page">
+      <section class="ls-hero reveal">
+        <div class="ls-hero__inner">
+          <div class="ls-hero__kicker">{page.kicker}</div>
+          <h1 class="ls-hero__title">{page.headline}</h1>
+          <p class="ls-hero__copy">{page.subheadline}</p>
+          {page.meta_items && page.meta_items.length > 0 && (
+            <div class="ls-hero__meta" aria-label="Page details">
+              {page.meta_items.map((item) => (
+                <span>{item}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section class="ls-overview">
+        <div class="ls-overview__inner reveal">
+          <div class="ls-overview__media">
+            <img
+              src={page.image}
+              sizes="(max-width: 768px) 100vw, (max-width: 1180px) 50vw, 540px"
+              alt={page.image_alt}
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+
+          <div class="ls-overview__content">
+            <div class="ls-section-label">{page.intro_label}</div>
+            <h2 class="ls-section-title">{page.intro_title}</h2>
+            <p class="ls-overview__text">{page.intro_copy}</p>
+
+            {page.focus_items && page.focus_items.length > 0 && (
+              <ul class="ls-focus-list">
+                {page.focus_items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {page.detail_cards && page.detail_cards.length > 0 && (
+        <section class="seo-detail-section ls-cards reveal" aria-labelledby="seo-detail-heading">
+          <div class="seo-section-heading">
+            <div class="ls-section-label">Program Details</div>
+            <h2 id="seo-detail-heading" class="ls-section-title">What Families Should Know</h2>
+          </div>
+          <div class="ls-cards__inner seo-detail-grid">
+            {page.detail_cards.map((card) => (
+              <article class="bk-card">
+                <div class="bk-card__eyebrow">{card.label ?? 'Detail'}</div>
+                <h3 class="bk-card__title">{card.title ?? ''}</h3>
+                <p class="bk-card__copy">{card.copy ?? ''}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {faqItems.length > 0 && (
+        <section class="ls-answer-strip reveal" aria-labelledby="seo-faq-heading">
+          <div class="ls-answer-strip__inner">
+            <div class="ls-section-label">Parents Ask</div>
+            <h2 id="seo-faq-heading" class="ls-section-title">Answers About {page.title}</h2>
+            <div class="ls-answer-grid">
+              {faqItems.map((item) => (
+                <article class="ls-answer-card">
+                  <h3>{item.question}</h3>
+                  <p>{item.answer}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section class="ls-form-section">
+        <div class="ls-form-section__inner reveal">
+          <div class="cta-box forminator-cta-box ls-form-card">
+            <div class="cta-box-topline">
+              <div class="cta-box-eyebrow">Parent Inquiry Form</div>
+              <div class="cta-box-badge">Ages 8-14U</div>
+            </div>
+            <h2 class="cta-box-headline">{page.cta_label}</h2>
+            <p class="ls-form-copy">Tell us about your athlete and the BBT team will help you choose the right lesson, academy, facility, or development next step.</p>
+            <div class="forminator-shell">
+              <form action="/api/lead" method="POST" novalidate data-lead-form data-lead-source={page.slug}>
+                <input type="hidden" name="source" value={page.slug} />
+                <div class="form-row">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" name="firstName" required />
+                </div>
+                <div class="form-row">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" required />
+                </div>
+                <div class="form-row">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required />
+                </div>
+                <div class="form-row">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" />
+                </div>
+                <div class="form-row">
+                  <label for="program">Program of Interest</label>
+                  <select id="program" name="program">
+                    <option value="hitting">Hitting Lessons</option>
+                    <option value="pitching">Pitching Lessons</option>
+                    <option value="infield-outfield">Infield / Outfield Lessons</option>
+                    <option value="catching">Catching Lessons</option>
+                    <option value="baseball-iq">Baseball IQ Training</option>
+                    <option value="academy">Academy Membership</option>
+                    <option value="travel">Travel Baseball</option>
+                    <option value="general">General Question</option>
+                  </select>
+                </div>
+                <div class="form-row">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="ls-cards seo-related-section reveal" aria-labelledby="seo-related-heading">
+        <div class="seo-section-heading">
+          <div class="ls-section-label">Next Steps</div>
+          <h2 id="seo-related-heading" class="ls-section-title">Explore Related Training</h2>
+        </div>
+        <div class="ls-cards__inner">
+          {relatedLinks.map((link) => (
+            <article class="bk-card">
+              <div class="bk-card__eyebrow">Related Page</div>
+              <h3 class="bk-card__title">{link.label}</h3>
+              <a href={link.url} class="bk-card__inline-link">View {link.label}</a>
+            </article>
+          ))}
+
+          <article class="bk-card">
+            <div class="bk-card__eyebrow">Contact Better Baseball Training</div>
+            <h3 class="bk-card__title">Talk With Our Team</h3>
+            <p class="bk-card__copy">Reach out if you want help choosing the best coach, location, or training path for your ballplayer.</p>
+            <div class="bk-card__links">
+              <div class="bk-card__contact-row">
+                <span class="bk-card__contact-label">Phone</span>
+                <a href={contact.phoneHref}>{contact.phone}</a>
+              </div>
+              <div class="bk-card__contact-row">
+                <span class="bk-card__contact-label">Email</span>
+                <a href={contact.emailHref}>{contact.email}</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  )}
+</Layout>

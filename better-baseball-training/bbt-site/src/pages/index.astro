@@ -1,0 +1,908 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {
+  lessonUrl,
+  seoPageUrl,
+  bookingUrl,
+  scheduleUrl,
+  coachesUrl,
+} from '../data/urls';
+import { contact } from '../data/contact';
+
+const SITE = 'https://betterbaseballtraining.com';
+
+const tryoutsFormUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSc5vQu8WiUW35hnJNaiHUTDqSHC7eGiTGU1AVtMeNIC08ykpA/viewform';
+
+const lazyPixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
+
+const faqItems = [
+  {
+    question: 'Where can I get baseball lessons in Rocklin and El Dorado Hills?',
+    answerHtml:
+      'Better Baseball Training offers private and group <strong>baseball lessons in Rocklin and El Dorado Hills</strong> for hitting, pitching, infield/outfield, catching, and baseball IQ. Families can train at <strong>4283 Duluth Ave in Rocklin</strong> or <strong>4990 Hillsdale Dr, Suite 400 in El Dorado Hills</strong>.',
+    answerText:
+      'Better Baseball Training offers private and group baseball lessons in Rocklin and El Dorado Hills for hitting, pitching, infield/outfield, catching, and baseball IQ. Families can train at 4283 Duluth Ave in Rocklin or 4990 Hillsdale Dr, Suite 400 in El Dorado Hills.',
+  },
+  {
+    question: 'Who teaches pitching lessons at Better Baseball Training?',
+    answerHtml:
+      'Pitching lessons at BBT include instruction from <strong>Jean Machi</strong>, <strong>Gabe Emmett</strong>, and the broader player-development staff. Families can review the coaching staff page and use the form to find the best pitching coach based on age, goals, and location.',
+    answerText:
+      'Pitching lessons at BBT include instruction from Jean Machi, Gabe Emmett, and the broader player-development staff. Families can review the coaching staff page and use the form to find the best pitching coach based on age, goals, and location.',
+  },
+  {
+    question: 'What ages does Better Baseball Training serve?',
+    answerHtml:
+      "BBT's core lesson and academy programming is built for <strong>players ages 8-14U</strong>. Families can choose private lessons, unlimited academy memberships, and travel baseball development based on the athlete's current stage and goals.",
+    answerText:
+      "BBT's core lesson and academy programming is built for players ages 8-14U. Families can choose private lessons, unlimited academy memberships, and travel baseball development based on the athlete's current stage and goals.",
+  },
+  {
+    question:
+      'What is the difference between academy membership, private lessons, and travel baseball?',
+    answerHtml:
+      '<strong>Private lessons</strong> focus on skill-specific instruction, <strong>academy membership</strong> gives athletes unlimited access to recurring classes, and <strong>travel baseball</strong> provides team-based competition for rostered players. BBT helps families choose the right path based on development goals and schedule.',
+    answerText:
+      'Private lessons focus on skill-specific instruction, academy membership gives athletes unlimited access to recurring classes, and travel baseball provides team-based competition for rostered players. BBT helps families choose the right path based on development goals and schedule.',
+  },
+];
+
+const pageTitle =
+  'Better Baseball Training | Youth Baseball Lessons in Rocklin & El Dorado Hills';
+const metaDescription =
+  'Private baseball lessons, academy memberships, pitching, hitting, and travel baseball in Rocklin and El Dorado Hills for players ages 8-14U.';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answerText,
+    },
+  })),
+};
+
+const webpageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${SITE}/#webpage`,
+  url: `${SITE}/`,
+  name: 'Youth Baseball Training in Rocklin & El Dorado Hills',
+  description: metaDescription,
+  dateModified: new Date().toISOString(),
+  isPartOf: { '@id': `${SITE}/#website` },
+  about: { '@id': `${SITE}/#organization` },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: `${SITE}/`,
+    },
+  ],
+};
+
+const pageSchema = [webpageSchema, breadcrumbSchema, faqSchema];
+
+const heroSlides = [
+  {
+    n: 1,
+    alt: 'Better Baseball Training travel team players after a tournament win',
+    width: 1320,
+    height: 774,
+    active: true,
+  },
+  {
+    n: 2,
+    alt: 'Youth baseball players training inside Better Baseball Training',
+    width: 1299,
+    height: 697,
+  },
+  {
+    n: 3,
+    alt: 'Better Baseball Training players with medals after a tournament',
+    width: 1320,
+    height: 843,
+  },
+  {
+    n: 4,
+    alt: 'Youth baseball lesson inside Better Baseball Training facility',
+    width: 1320,
+    height: 833,
+    cover: true,
+  },
+  {
+    n: 5,
+    alt: 'Better Baseball Training player showing a championship ring',
+    width: 1320,
+    height: 832,
+    cover: true,
+  },
+];
+
+const heroVariant = (n: number, w: number) =>
+  `/assets/optimized/hero-slideshow-${n}-${w}.webp`;
+const heroSrcset = (n: number) =>
+  [720, 960, 1320].map((w) => `${heroVariant(n, w)} ${w}w`).join(', ');
+
+const tickerItems = [
+  { num: '2', label: 'Locations: Rocklin & El Dorado Hills' },
+  { num: '', label: 'Private + Group Lessons' },
+  { num: '', label: 'Former Pro + College Staff' },
+  { num: '5+', label: 'Training Disciplines' },
+  { num: '9-14U', label: 'Youth Teams' },
+  { num: '', label: 'Academy Memberships' },
+];
+const tickerLoop = [...tickerItems, ...tickerItems];
+
+const services = [
+  {
+    slug: 'hitting',
+    num: '01',
+    name: 'Hitting',
+    img: 'service-hitting-1',
+    imgExt: 'PNG',
+    width: 1320,
+    height: 743,
+    alt: 'Hitting training at BBT',
+    style: undefined,
+    delay: 1,
+    aria: 'Learn more about Hitting Lessons',
+    text: 'Mechanics, timing, situational hitting and plate discipline for every level. Private and group training available.',
+  },
+  {
+    slug: 'pitching',
+    num: '02',
+    name: 'Pitching',
+    img: 'service-pitching-2',
+    imgExt: 'PNG',
+    width: 1320,
+    height: 753,
+    alt: 'Pitching training at BBT',
+    style: 'object-position:center top;',
+    delay: 2,
+    aria: 'Learn more about Pitching Lessons',
+    text: 'Mechanics, arm care, velocity development, and pitch sequencing coached by college and pro alumni.',
+  },
+  {
+    slug: 'infield-outfield',
+    num: '03',
+    name: 'Infield / Outfield',
+    img: 'service-inf.ouf-3',
+    imgExt: 'PNG',
+    width: 1320,
+    height: 722,
+    alt: 'Infield and outfield training at BBT',
+    style: 'object-position:center 20%;',
+    delay: 3,
+    aria: 'Learn more about Infield and Outfield Lessons',
+    text: 'Footwork, positioning and in-game understanding, infield and outfield fundamentals for all positions.',
+  },
+  {
+    slug: 'catching',
+    num: '04',
+    name: 'Catching',
+    img: 'service-catching-4',
+    imgExt: 'PNG',
+    width: 1210,
+    height: 842,
+    alt: 'Catching training at BBT',
+    style: 'object-position:center 30%;',
+    delay: 4,
+    aria: 'Learn more about Catching Lessons',
+    text: 'Receiving, blocking, footwork and game managing. Full position-specific development with experienced coaches.',
+  },
+  {
+    slug: 'baseball-iq',
+    num: '05',
+    name: 'Baseball IQ',
+    img: 'service-baseball.iq-5',
+    imgExt: 'PNG',
+    width: 1320,
+    height: 1054,
+    alt: 'Baseball IQ training at BBT',
+    style: undefined,
+    delay: 5,
+    aria: 'Learn more about Baseball IQ Training',
+    text: 'Baseball is often described as a thinking person’s game, where each pitch, swing, and defensive move requires thoughtful decision-making and preparation.',
+  },
+];
+
+const serviceVariant = (img: string, w: number) =>
+  `/assets/optimized/${img}-${w}.webp`;
+const serviceSrcset = (img: string) =>
+  [640, 960].map((w) => `${serviceVariant(img, w)} ${w}w`).join(', ');
+
+const programOptions = [
+  { value: 'hitting', label: 'Hitting Lessons' },
+  { value: 'pitching', label: 'Pitching Lessons' },
+  { value: 'infield-outfield', label: 'Infield / Outfield Lessons' },
+  { value: 'catching', label: 'Catching Lessons' },
+  { value: 'baseball-iq', label: 'Baseball IQ Training' },
+  { value: 'academy', label: 'Academy Membership' },
+  { value: 'travel', label: 'Travel Baseball' },
+  { value: 'general', label: 'General Question' },
+];
+---
+
+<Layout title={pageTitle} description={metaDescription} pageSchema={pageSchema}>
+<main id="main-content">
+<section
+  id="hero"
+  class="hero"
+  style="--hero-bg-image: url('/assets/optimized/hero-slideshow-1-720.webp');"
+>
+  <div class="hero-left">
+    <img
+      src="/assets/optimized/BBT Logo 1-no bg-320.webp"
+      srcset="/assets/optimized/BBT Logo 1-no bg-160.webp 160w, /assets/optimized/BBT Logo 1-no bg-320.webp 320w"
+      sizes="140px"
+      alt="Better Baseball Training"
+      class="hero-logo-mark"
+      loading="eager"
+      decoding="async"
+      fetchpriority="auto"
+    />
+
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      <span class="hero-badge-text">Better Baseball Training</span>
+    </div>
+
+    <h1 class="hero-headline hero-headline--compact">
+      <span class="line1">Youth Baseball Training</span>
+      <span class="line2">Rocklin &amp; El Dorado Hills</span>
+    </h1>
+
+    <p class="hero-sub">
+      Private hitting, pitching, fielding, catching, and baseball IQ training for players ages 8-14U, plus academy memberships and travel baseball development across Rocklin and El Dorado Hills.
+    </p>
+
+    <div class="hero-ctas">
+      <a href={bookingUrl()} class="btn-primary">
+        <span>Book a Lesson</span>
+      </a>
+      <a href={scheduleUrl()} class="btn-outline">
+        <span>See Our Schedule</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-slideshow">
+      {heroSlides.map((slide) =>
+        slide.active ? (
+          <img
+            class="hero-slide active"
+            src={heroVariant(slide.n, 720)}
+            srcset={heroSrcset(slide.n)}
+            sizes="100vw"
+            alt={slide.alt}
+            width={slide.width}
+            height={slide.height}
+            fetchpriority="high"
+            decoding="async"
+          />
+        ) : (
+          <img
+            class={`hero-slide${slide.cover ? ' cover' : ''}`}
+            src={lazyPixel}
+            data-src={heroVariant(slide.n, 720)}
+            data-srcset={heroSrcset(slide.n)}
+            sizes="100vw"
+            alt={slide.alt}
+            width={slide.width}
+            height={slide.height}
+            loading="lazy"
+            decoding="async"
+          />
+        )
+      )}
+    </div>
+    <div class="hero-nav">
+      <button class="hero-nav-btn prev" aria-label="Previous Slide" type="button">
+        <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+      </button>
+      <div class="hero-nav-dots">
+        <button class="hero-nav-dot active" aria-label="Go to slide 1" type="button"></button>
+        <button class="hero-nav-dot" aria-label="Go to slide 2" type="button"></button>
+        <button class="hero-nav-dot" aria-label="Go to slide 3" type="button"></button>
+        <button class="hero-nav-dot" aria-label="Go to slide 4" type="button"></button>
+        <button class="hero-nav-dot" aria-label="Go to slide 5" type="button"></button>
+      </div>
+      <button class="hero-nav-btn next" aria-label="Next Slide" type="button">
+        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="hero-ticker" aria-label="Better Baseball Training By The Numbers">
+    <div class="ticker-track">
+      {tickerLoop.map((item) => (
+        <>
+          <div class="ticker-item"><span class="ticker-num">{item.num}</span><span class="ticker-label">{item.label}</span></div>
+          <span class="ticker-diamond">◆</span>
+        </>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="tryouts" class="tryouts" aria-labelledby="tryouts-heading">
+  <div class="tryouts-bg" aria-hidden="true">
+    <span class="tryouts-bg-grid"></span>
+    <span class="tryouts-bg-glow tryouts-bg-glow--pink"></span>
+    <span class="tryouts-bg-glow tryouts-bg-glow--cyan"></span>
+  </div>
+
+  <div class="tryouts-container">
+    <div class="tryouts-eyebrow reveal">
+      <span class="tryouts-eyebrow-dot"></span>
+      <span>Now Open · BBT Tryouts</span>
+    </div>
+
+    <div class="tryouts-grid">
+      <div class="tryouts-content reveal">
+        <h2 id="tryouts-heading" class="tryouts-title">
+          <span class="tryouts-title-line">BBT Black Team</span>
+          <span class="tryouts-title-line"><em>Tryouts</em></span>
+          <span class="tryouts-title-season">26 / 27 Season</span>
+        </h2>
+
+        <p class="tryouts-lede">
+          BBT Black is forming regionally competitive teams for the 26-27 season with an emphasis on development at the highest level and learning to play the game the right way. Players come from all over the Sacramento region.
+        </p>
+
+        <div class="tryouts-callout">
+          <span class="tryouts-callout-pill">Required</span>
+          <p>You must sign up via the Google Form — <strong>click the “Sign Up — Required to Tryout” button below or click the poster</strong> to open the form.</p>
+        </div>
+
+        <div class="tryouts-callout tryouts-callout--note">
+          <span class="tryouts-callout-pill">Note</span>
+          <p>All current BBT Players <strong>(Gray &amp; Black)</strong> are required to try out to continue in the program.</p>
+        </div>
+
+        <div class="tryouts-details">
+          <div class="tryouts-detail">
+            <div class="tryouts-detail-num">01</div>
+            <div>
+              <h3>Gray Team Identification</h3>
+              <p>This tryout will also identify GRAY team players for the organization. Not every age group will field a Gray team — we only build teams when we have the right coach in place to lead them.</p>
+            </div>
+          </div>
+          <div class="tryouts-detail">
+            <div class="tryouts-detail-num">02</div>
+            <div>
+              <h3>Black Team Commitment</h3>
+              <p>All Black teams will have <strong>(1) required weekly team practice at Folsom Lake College</strong>, plus (1) team indoor session and additional hitting, fielding, and pitching work through the BBT Academy.</p>
+            </div>
+          </div>
+          <div class="tryouts-detail">
+            <div class="tryouts-detail-num">03</div>
+            <div>
+              <h3>Gray Team Commitment</h3>
+              <p>All Gray teams will have 1–2 outdoor workouts weekly with academy access for extra catching, hitting, fielding, and pitching work.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tryouts-cta-row">
+          <a href={tryoutsFormUrl} target="_blank" rel="noopener" class="btn-primary tryouts-cta-primary">
+            <span>Sign Up — Required to Tryout</span>
+          </a>
+          <a href="tel:9095442434" class="tryouts-cta-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Questions? Call JP — (909) 544-2434</span>
+          </a>
+        </div>
+      </div>
+
+      <a href={tryoutsFormUrl} target="_blank" rel="noopener" class="tryouts-poster reveal reveal-delay-2" aria-label="Sign up for BBT Black Team tryouts (opens Google Form)">
+        <img src="/assets/images/bbt-black-tryouts.png" alt="BBT Black Team Tryouts 26-27 Season poster — Folsom Lake College Baseball Field, Wednesday May 27th, 9U-11U 6-7:45 PM, 12-14U 7:15-9 PM" loading="lazy" decoding="async" width="1545" height="1999" />
+        <span class="tryouts-poster-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <span>Tap to register</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="lessons" class="services">
+  <div class="services-topbar"></div>
+  <img src="/assets/optimized/BBT Logo 2-160.webp" srcset="/assets/optimized/BBT Logo 2-160.webp 160w, /assets/optimized/BBT Logo 2-320.webp 320w" sizes="160px" alt="" class="services-watermark" aria-hidden="true" loading="lazy" decoding="async" fetchpriority="low" width="695" height="606" />
+
+  <div class="services-header reveal">
+    <div>
+      <span class="services-label">What We Do</span>
+      <h2 class="services-title">Train.<br><em>Develop.</em><br>Win.</h2>
+    </div>
+    <p class="services-desc">
+      BBT offers private and group instruction across every discipline of the game, from hitting mechanics to baseball IQ. We are committed to providing safe, reliable training for kids of all ages.
+    </p>
+  </div>
+
+  <div class="services-grid">
+    {services.map((s) => (
+      <a href={lessonUrl(s.slug)} class={`service-card reveal reveal-delay-${s.delay}`} aria-label={s.aria}>
+        <div class="service-image-wrapper">
+          <img src={serviceVariant(s.img, 640)} srcset={serviceSrcset(s.img)} sizes="(max-width: 800px) 50vw, (max-width: 1200px) 33vw, 280px" alt={s.alt} class="service-card-img" style={s.style} loading="lazy" decoding="async" width={s.width} height={s.height} />
+        </div>
+        <div class="service-card-body">
+          <div class="service-number">{s.num}</div>
+          <h3 class="service-name">{s.name}</h3>
+          <p class="service-text">{s.text}</p>
+          <span class="service-link">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <div class="services-divider reveal"></div>
+
+  <div class="membership-banner reveal">
+    <div>
+      <p class="membership-label">Academy Membership · Ages 8-14U</p>
+      <h3 class="membership-title">Unlimited Academy Access</h3>
+      <div class="membership-classes">
+        <span class="membership-class">Hitting</span>
+        <span class="membership-class">Pitching</span>
+        <span class="membership-class">Infield / Outfield</span>
+        <span class="membership-class">Catchers</span>
+        <span class="membership-class">Baseball IQ</span>
+        <span class="membership-class">Baserunning</span>
+        <span class="membership-class">Basestealing</span>
+      </div>
+    </div>
+
+    <div class="membership-right">
+      <div class="membership-pricing">
+        <div class="price-item">
+          <div class="price-location">Rocklin</div>
+          <div class="price-amount">$250</div>
+          <div class="price-period">/ month</div>
+        </div>
+        <div class="price-divider"></div>
+        <div class="price-item">
+          <div class="price-location">El Dorado Hills</div>
+          <div class="price-amount">$299</div>
+          <div class="price-period">/ month</div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:12px;">
+        <a href={seoPageUrl('baseball-academy')} class="membership-cta">Explore Academy</a>
+        <span class="membership-ages">Ages 8-14U · Unlimited Access</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="answer-strip" aria-labelledby="answer-strip-heading">
+  <div class="answer-strip__inner reveal">
+    <div class="answer-strip__header">
+      <span class="services-label">Parents Ask</span>
+      <h2 id="answer-strip-heading" class="answer-strip__title">Straight Answers for Baseball Families in Rocklin and El Dorado Hills</h2>
+    </div>
+
+    <div class="answer-strip__grid">
+      <article class="answer-card reveal reveal-delay-1">
+        <h3>Where can I get baseball lessons in Rocklin?</h3>
+        <p>BBT offers private and group baseball lessons in Rocklin at 4283 Duluth Ave, with additional programming in El Dorado Hills for families who want more schedule flexibility.</p>
+        <a href={seoPageUrl('baseball-lessons-rocklin')} class="bk-card__inline-link">See Rocklin lessons</a>
+      </article>
+
+      <article class="answer-card reveal reveal-delay-2">
+        <h3>Who teaches pitching lessons at BBT?</h3>
+        <p>Pitching lessons can include Jean Machi, Gabe Emmett, and the broader BBT development staff depending on the athlete's age, goals, and preferred location.</p>
+        <a href={coachesUrl()} class="bk-card__inline-link">Review the coaching staff</a>
+      </article>
+
+      <article class="answer-card reveal reveal-delay-3">
+        <h3>What ages does BBT serve?</h3>
+        <p>BBT's core lessons and academy memberships are built for players ages 8-14U, with development paths that include private lessons, group classes, and travel teams.</p>
+        <a href={seoPageUrl('baseball-academy')} class="bk-card__inline-link">Explore the academy</a>
+      </article>
+
+      <article class="answer-card reveal reveal-delay-4">
+        <h3>What should we choose first?</h3>
+        <p>Private lessons are best for targeted skill work, academy memberships fit athletes who want recurring reps, and travel teams are for rostered players ready for team competition.</p>
+        <a href={seoPageUrl('travel-baseball')} class="bk-card__inline-link">Explore travel development</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="coaches" class="coaches" aria-labelledby="coaches-heading">
+  <div class="coaches-header reveal">
+    <h2 id="coaches-heading" class="coaches-title">Baseball <em>Coaches</em> in Rocklin &amp; El Dorado Hills</h2>
+    <a href={coachesUrl()} class="btn-outline"><span>Meet All Coaches</span></a>
+  </div>
+
+  <div class="coaches-grid">
+    <div class="coach-card reveal reveal-delay-1">
+      <div class="coach-img-wrapper">
+        <img src="/assets/optimized/coach-jon-peters-480.webp" srcset="/assets/optimized/coach-jon-peters-480.webp 480w, /assets/optimized/coach-jon-peters-768.webp 768w" sizes="(max-width: 800px) 50vw, 33vw" alt="Jon Peters, owner and head of player development at Better Baseball Training in Rocklin CA" class="coach-img" loading="lazy" decoding="async" width="400" height="500" />
+        <span class="coach-badge coach-badge-owner">Owner</span>
+      </div>
+      <div class="coach-info">
+        <h3 class="coach-name">Jon Peters</h3>
+        <div class="coach-role">Player Development</div>
+        <p class="coach-bio">Founded BBT with one goal: build better players and better people. Jon oversees all player development programming across both facilities and has spent years studying hitting, pitching development, and athletic performance from youth to collegiate level.</p>
+        <div class="coach-quote">
+          <strong>Favorite part of coaching</strong>
+          <p>"Watching the boys achieve their goals, nothing better in this thing than seeing all their hard work lead to success!"</p>
+        </div>
+        <p class="coach-cred">"The pinnacle of youth development"</p>
+      </div>
+    </div>
+
+    <div class="coach-card reveal reveal-delay-2">
+      <div class="coach-img-wrapper">
+        <img src="/assets/optimized/cesar-tamayo-480.webp" srcset="/assets/optimized/cesar-tamayo-480.webp 480w, /assets/optimized/cesar-tamayo-768.webp 768w" sizes="(max-width: 800px) 50vw, 33vw" alt="Cesar Tamayo, Rocklin GM at Better Baseball Training" class="coach-img" loading="lazy" decoding="async" width="1320" height="977" />
+        <span class="coach-badge coach-badge-pro" style="background:var(--cyan);color:black;">Rocklin GM</span>
+      </div>
+      <div class="coach-info">
+        <h3 class="coach-name">Cesar Tamayo</h3>
+        <div class="coach-role">Rocklin GM</div>
+        <p class="coach-bio">Southern California native. La Sierra High School ('14), Mt. San Jacinto College, Marymount University (BA), and Jessup University (MS in Kinesiology). With BBT since 2021 and served as assistant coach with the Lincoln Potters in 2022 and 2023.</p>
+        <div class="coach-quote">
+          <strong>Favorite part of coaching</strong>
+          <p>"Being able to teach the kids the game I love."</p>
+        </div>
+        <p class="coach-cred"><strong>Jessup University (MS)</strong> · Marymount University</p>
+      </div>
+    </div>
+
+    <div class="coach-card reveal reveal-delay-3">
+      <div class="coach-img-wrapper">
+        <img src="/assets/optimized/trey-furrey-480.webp" srcset="/assets/optimized/trey-furrey-480.webp 480w, /assets/optimized/trey-furrey-768.webp 768w" sizes="(max-width: 800px) 50vw, 33vw" alt="Trey Furrey, El Dorado Hills GM at Better Baseball Training" class="coach-img" loading="lazy" decoding="async" width="1125" height="1289" />
+        <span class="coach-badge coach-badge-pro" style="background:var(--cyan);color:black;">EDH GM</span>
+      </div>
+      <div class="coach-info">
+        <h3 class="coach-name">Trey Furrey</h3>
+        <div class="coach-role">El Dorado Hills GM</div>
+        <p class="coach-bio">Folsom native, Folsom High ('18). Folsom Lake College All-American ('20). Transferred to Oklahoma Baptist and Jessup University where he was named GSAC Player of the Year and earned All-America honors.</p>
+        <div class="coach-quote">
+          <strong>Favorite part of coaching</strong>
+          <p>"Seeing the kids continuing to learn and grow and be able to take what they've learned and apply it to their game."</p>
+        </div>
+        <p class="coach-cred"><strong>Jessup University</strong> · GSAC Player of the Year</p>
+      </div>
+    </div>
+
+    <div class="coach-card reveal reveal-delay-4">
+      <div class="coach-img-wrapper">
+        <img src="/assets/optimized/bruce-carmichael-480.webp" srcset="/assets/optimized/bruce-carmichael-480.webp 480w, /assets/optimized/bruce-carmichael-768.webp 768w" sizes="(max-width: 800px) 50vw, 33vw" alt="Bruce Carmichael, coach at Better Baseball Training" class="coach-img" loading="lazy" decoding="async" width="1288" height="1460" />
+        <span class="coach-badge coach-badge-pro">Pro Alumni</span>
+      </div>
+      <div class="coach-info">
+        <h3 class="coach-name">Bruce Carmichael</h3>
+        <div class="coach-role">13U Gray Head Coach</div>
+        <p class="coach-bio">Drafted by the Chicago Cubs Organization and played 3 years after earning a full baseball scholarship at Santa Clara University. 35+ years coaching at the college and high school levels. Named Western States Assistant Baseball Coach of the Year in 1998.</p>
+        <p class="coach-cred"><strong>Chicago Cubs</strong> · Santa Clara University</p>
+      </div>
+    </div>
+
+    <div class="coach-card reveal reveal-delay-5">
+      <div class="coach-img-wrapper">
+        <img src="/assets/optimized/gabe-emmett-480.webp" srcset="/assets/optimized/gabe-emmett-480.webp 480w, /assets/optimized/gabe-emmett-768.webp 768w" sizes="(max-width: 800px) 50vw, 33vw" alt="Gabe Emmett, pitching coach at Better Baseball Training" class="coach-img" loading="lazy" decoding="async" width="1050" height="1118" />
+        <span class="coach-badge coach-badge-pro">Pro Alumni</span>
+      </div>
+      <div class="coach-info">
+        <h3 class="coach-name">Gabe Emmett</h3>
+        <div class="coach-role">Pitching Lessons</div>
+        <p class="coach-bio">Vista del Lago HS ('19), Folsom Lake College, drafted by the LA Dodgers in 2021. Pitched with the ACL Dodgers and Rancho Cucamonga Quakes. Named California League Pitcher of the Month in June 2023. Tops out 96-98 mph.</p>
+        <p class="coach-cred"><strong>Los Angeles Dodgers</strong> · Folsom Lake College</p>
+      </div>
+    </div>
+
+    <div class="coach-card reveal reveal-delay-6">
+      <div class="coach-img-wrapper">
+        <img src="/assets/optimized/jean-machi-480.webp" srcset="/assets/optimized/jean-machi-480.webp 480w, /assets/optimized/jean-machi-768.webp 768w" sizes="(max-width: 800px) 50vw, 33vw" alt="Jean Machi, World Series Champion pitching coach at Better Baseball Training" class="coach-img" loading="lazy" decoding="async" width="1320" height="2603" />
+        <span class="coach-badge coach-badge-pro">Pro Alumni</span>
+      </div>
+      <div class="coach-info">
+        <h3 class="coach-name">Jean Machi</h3>
+        <div class="coach-role">Pitching Lessons</div>
+        <p class="coach-bio">Former big leaguer and 2014 World Series Champion with the SF Giants. Pitched in the big leagues from 2012-2017 with the Mariners, Red Sox, and Giants. Lifetime ERA of 3.38. Now providing pitching lessons at the EDH location.</p>
+        <p class="coach-cred"><strong>SF Giants · World Series Champion</strong></p>
+      </div>
+    </div>
+
+    <div class="coach-card reveal reveal-delay-1">
+      <div class="coach-img-wrapper">
+        <img src="/assets/images/kris-krise.jpeg" alt="Kris Krise, former Dodgers draft pick and coach at Better Baseball Training" class="coach-img" loading="lazy" decoding="async" width="1200" height="1500" />
+        <span class="coach-badge coach-badge-pro">Pro Alumni</span>
+      </div>
+      <div class="coach-info">
+        <h3 class="coach-name">Kris Krise</h3>
+        <div class="coach-role">12U Black Head Coach</div>
+        <p class="coach-bio">Former 12th-round Los Angeles Dodgers draft pick who played at UC Irvine, COC, and Chico State. Brings pro-level experience and a strong player-development lens to every session.</p>
+        <div class="coach-quote">
+          <strong>Favorite part of coaching</strong>
+          <p>"The opportunity to positively influence young lives, fostering growth, confidence, and a love of the game."</p>
+        </div>
+        <p class="coach-cred"><strong>Los Angeles Dodgers</strong> · Chico State · UC Irvine</p>
+      </div>
+    </div>
+
+    <div class="coach-card reveal reveal-delay-2">
+      <div class="coach-img-wrapper">
+        <img src="/assets/images/logan-coe.PNG" alt="Logan Coe, coach at Better Baseball Training" class="coach-img" loading="lazy" decoding="async" width="1200" height="1500" />
+        <span class="coach-badge coach-badge-pro" style="background:var(--cyan);color:black;">College Alumni</span>
+      </div>
+      <div class="coach-info">
+        <h3 class="coach-name">Logan Coe</h3>
+        <div class="coach-role">Coach</div>
+        <p class="coach-bio">Buhach Colony High School graduate who played JUCO ball at Modesto before continuing at Oklahoma Baptist and Jessup University. Focused on helping athletes grow through detailed, high-energy instruction.</p>
+        <div class="coach-quote">
+          <strong>Favorite part of coaching</strong>
+          <p>"Passing down game knowledge and seeing the kids grow and develop."</p>
+        </div>
+        <p class="coach-cred"><strong>Jessup University</strong> · Oklahoma Baptist</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="coaches-cta-row reveal">
+    <a href={coachesUrl()} class="btn-primary"><span>Meet All Coaches</span></a>
+  </div>
+
+  <div class="coaches-quote reveal">
+    <img src="/assets/optimized/coach-jon-peters-480.webp" srcset="/assets/optimized/coach-jon-peters-480.webp 480w, /assets/optimized/coach-jon-peters-768.webp 768w" sizes="96px" alt="Jon Peters" class="coaches-quote-photo" loading="lazy" decoding="async" width="400" height="500" />
+    <div class="coaches-quote-body">
+      <blockquote>
+        "It doesn't matter if you're coaching tee-ball or coaching at the college level, I'm a firm believer that a coach can be one of the most influential people in a young player's life. At Better Baseball, we aim to be the pinnacle of youth development."
+      </blockquote>
+      <div class="coaches-quote-footer">
+        <img src="/assets/images/jp-signature-white.png" alt="Jon Peters signature" class="coaches-quote-sig" loading="lazy" decoding="async" width="91" height="72" />
+        <span class="coaches-quote-meta">Jon Peters — Owner / Player Development</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-bbt" aria-labelledby="why-bbt-heading">
+  <div class="why-bbt-container reveal">
+    <div class="why-bbt-header">
+      <h2 id="why-bbt-heading">Why BBT? Because Your Kid Deserves <em>Better.</em></h2>
+      <p>BBT brings together former professional players, college alumni, private lessons, academy classes, and travel baseball development so families can build a clear long-term plan instead of piecing training together from multiple places.</p>
+    </div>
+
+    <div class="why-bbt-grid">
+      <div class="why-stat-card reveal reveal-delay-1">
+        <div class="why-stat-num">2</div>
+        <h3 class="why-stat-title">Indoor Training Facilities</h3>
+        <p class="why-stat-desc">Train in Rocklin or El Dorado Hills with indoor turf, batting lanes, and year-round access to baseball development.</p>
+      </div>
+      <div class="why-stat-card reveal reveal-delay-2">
+        <div class="why-stat-num">5</div>
+        <h3 class="why-stat-title">Core Lesson Categories</h3>
+        <p class="why-stat-desc">Families can choose hitting, pitching, infield/outfield, catching, and baseball IQ training based on the athlete's needs.</p>
+      </div>
+      <div class="why-stat-card reveal reveal-delay-3">
+        <div class="why-stat-num">8-14U</div>
+        <h3 class="why-stat-title">Core Development Window</h3>
+        <p class="why-stat-desc">BBT's lesson and academy programming is built for youth players who need consistent instruction, confidence, and game-ready development.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" aria-labelledby="gallery-heading">
+  <div class="gallery-header reveal">
+    <h2 id="gallery-heading">Inside <em>BBT</em></h2>
+    <p>Training days, championship wins, and everything in between. See what it's like to be part of the BBT family.</p>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item gallery-item--wide reveal reveal-delay-1" style="aspect-ratio:16/9;">
+      <img src="/assets/optimized/hero-slideshow-1-720.webp" srcset="/assets/optimized/hero-slideshow-1-720.webp 720w, /assets/optimized/hero-slideshow-1-960.webp 960w, /assets/optimized/hero-slideshow-1-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 66vw" alt="BBT division champions" style="object-position:center top;" loading="lazy" decoding="async" width="1320" height="774" />
+      <span class="gallery-caption">Division Champions</span>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2" style="aspect-ratio:4/5;">
+      <img src="/assets/optimized/facility-img-4-320.webp" srcset="/assets/optimized/facility-img-4-320.webp 320w, /assets/optimized/facility-img-4-900.webp 900w" sizes="(max-width: 800px) 50vw, 25vw" alt="Catching gear and equipment at BBT" style="object-position:center 30%;" loading="lazy" decoding="async" width="905" height="679" />
+      <span class="gallery-caption">Catchers Clinic</span>
+    </div>
+    <div class="gallery-item reveal reveal-delay-3" style="aspect-ratio:4/5;">
+      <img src="/assets/optimized/hero-slideshow-3-720.webp" srcset="/assets/optimized/hero-slideshow-3-720.webp 720w, /assets/optimized/hero-slideshow-3-960.webp 960w, /assets/optimized/hero-slideshow-3-1320.webp 1320w" sizes="(max-width: 800px) 50vw, 25vw" alt="BBT players posing with medals" style="object-position:center top;" loading="lazy" decoding="async" width="1320" height="843" />
+      <span class="gallery-caption">Hardware</span>
+    </div>
+    <div class="gallery-item gallery-item--wide reveal reveal-delay-4" style="aspect-ratio:16/9;">
+      <img src="/assets/optimized/IMG_0609-960.webp" srcset="/assets/optimized/IMG_0609-320.webp 320w, /assets/optimized/IMG_0609-960.webp 960w" sizes="(max-width: 800px) 100vw, 66vw" alt="BBT indoor training facility with batting cages" loading="lazy" decoding="async" width="5712" height="4284" />
+      <span class="gallery-caption">Training Facility</span>
+    </div>
+    <div class="gallery-item reveal reveal-delay-5" style="aspect-ratio:3/2;">
+      <img src="/assets/optimized/hero-slideshow-5-720.webp" srcset="/assets/optimized/hero-slideshow-5-720.webp 720w, /assets/optimized/hero-slideshow-5-960.webp 960w, /assets/optimized/hero-slideshow-5-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 33vw" alt="BBT player holding championship ring" style="object-position:center 30%;" loading="lazy" decoding="async" width="1320" height="832" />
+      <span class="gallery-caption">Championship Rings</span>
+    </div>
+    <div class="gallery-item reveal reveal-delay-1" style="aspect-ratio:3/2;">
+      <img src="/assets/optimized/service-hitting-1-640.webp" srcset="/assets/optimized/service-hitting-1-640.webp 640w, /assets/optimized/service-hitting-1-960.webp 960w" sizes="(max-width: 800px) 100vw, 33vw" alt="Player hitting in batting cages" loading="lazy" decoding="async" width="1320" height="743" />
+      <span class="gallery-caption">Batting Cages</span>
+    </div>
+    <div class="gallery-item reveal reveal-delay-2" style="aspect-ratio:3/2;">
+      <img src="/assets/optimized/hero-slideshow-2-720.webp" srcset="/assets/optimized/hero-slideshow-2-720.webp 720w, /assets/optimized/hero-slideshow-2-960.webp 960w, /assets/optimized/hero-slideshow-2-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 33vw" alt="BBT team celebrating with banner" style="object-position:center 20%;" loading="lazy" decoding="async" width="1299" height="697" />
+      <span class="gallery-caption">Tournament Winners</span>
+    </div>
+    <div class="gallery-item gallery-item--wide reveal reveal-delay-3" style="aspect-ratio:16/9;">
+      <img src="/assets/optimized/hero-slideshow-4-720.webp" srcset="/assets/optimized/hero-slideshow-4-720.webp 720w, /assets/optimized/hero-slideshow-4-960.webp 960w, /assets/optimized/hero-slideshow-4-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 66vw" alt="BBT players celebrating a win" loading="lazy" decoding="async" width="1320" height="833" />
+      <span class="gallery-caption">The BBT Family</span>
+    </div>
+  </div>
+
+  <div class="gallery-expand-row reveal">
+    <button id="galleryExpandBtn" class="btn-outline" type="button"><span>View More Photos</span></button>
+  </div>
+</section>
+
+<section id="facilities" class="facilities" aria-labelledby="facilities-heading">
+  <div class="facilities-header reveal">
+    <h2 id="facilities-heading">Baseball Training Facilities in <em>Rocklin &amp; El Dorado Hills</em></h2>
+    <p>Indoor turf space, batting cages, netting, and structured player-development environments across two Sacramento-area training locations.</p>
+  </div>
+
+  <div class="facilities-grid">
+    <div id="rocklin-training" class="facility-card reveal reveal-delay-1">
+      <div class="facility-gallery">
+        <img src="/assets/optimized/facility-img-1-900.webp" srcset="/assets/optimized/facility-img-1-320.webp 320w, /assets/optimized/facility-img-1-900.webp 900w" sizes="(max-width: 800px) 100vw, 50vw" alt="Rocklin facility batting cages" class="facility-main-img" loading="lazy" decoding="async" width="905" height="679" />
+        <div class="facility-thumbnails">
+          <img src="/assets/optimized/facility-img-2-320.webp" alt="Rocklin turf area" loading="lazy" decoding="async" width="679" height="679" />
+          <img src="/assets/optimized/facility-img-3-320.webp" alt="Rocklin training equipment" loading="lazy" decoding="async" width="905" height="679" />
+          <img src="/assets/optimized/facility-img-4-320.webp" alt="Rocklin catchers area" loading="lazy" decoding="async" width="905" height="679" />
+        </div>
+      </div>
+      <div class="facility-info">
+        <h3>Rocklin Basecamp</h3>
+        <address>4283 Duluth Ave<br>Rocklin, CA 95765</address>
+        <p>Rocklin is a core hub for private baseball lessons, academy classes, and travel-team development for families in Rocklin, Roseville, Granite Bay, and nearby communities.</p>
+        <a href={seoPageUrl('baseball-lessons-rocklin')} class="bk-card__inline-link">View Rocklin lessons</a>
+      </div>
+    </div>
+
+    <div id="el-dorado-hills-training" class="facility-card reveal reveal-delay-2">
+      <div class="facility-gallery">
+        <img src="/assets/optimized/IMG_0607-960.webp" srcset="/assets/optimized/IMG_0607-320.webp 320w, /assets/optimized/IMG_0607-960.webp 960w" sizes="(max-width: 800px) 100vw, 50vw" alt="El Dorado Hills brand new turf facility" class="facility-main-img" loading="lazy" decoding="async" width="5712" height="4284" />
+        <div class="facility-thumbnails">
+          <img src="/assets/optimized/IMG_0609-320.webp" alt="EDH facility batting lanes" loading="lazy" decoding="async" width="5712" height="4284" />
+          <img src="/assets/optimized/IMG_0604-320.webp" alt="EDH turf area" loading="lazy" decoding="async" width="5712" height="4284" />
+          <img src="/assets/optimized/IMG_0605-320.webp" alt="EDH facility details" loading="lazy" decoding="async" width="5712" height="4284" />
+        </div>
+      </div>
+      <div class="facility-info">
+        <h3>El Dorado Hills (EDH)</h3>
+        <address>4990 Hillsdale Dr, Suite 400<br>El Dorado Hills, CA 95762</address>
+        <p>El Dorado Hills gives families in EDH, Folsom, and surrounding areas access to indoor baseball lessons, academy programming, and pitching instruction close to home.</p>
+        <a href={seoPageUrl('baseball-lessons-el-dorado-hills')} class="bk-card__inline-link">View EDH lessons</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" aria-labelledby="faq-heading">
+  <div class="faq-container reveal">
+    <div class="faq-header">
+      <h2 id="faq-heading">Frequently Asked <em>Questions</em></h2>
+    </div>
+
+    <div class="faq-list">
+      {faqItems.map((item, index) => (
+        <details class={`faq-item reveal reveal-delay-${index + 1}`}>
+          <summary>{item.question} <span class="faq-icon"></span></summary>
+          <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner"><p set:html={item.answerHtml}></p></div></div></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="memberships" class="academy-details" aria-labelledby="academy-membership-heading">
+  <div class="academy-container reveal">
+    <div class="academy-content">
+      <h2 id="academy-membership-heading">Unlimited Access Academy Membership</h2>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.08em;color:var(--cyan);margin-top:6px;margin-bottom:12px;">Ages 8-14U</div>
+      <p>
+        Gain an edge on the competition with unlimited access to premium instruction and state-of-the-art facilities. Our Academy Memberships empower dedicated youth players to train year-round with professional-level guidance.
+      </p>
+
+      <div style="margin-top:28px;display:flex;gap:24px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:160px;padding:20px;border:1px solid rgba(255, 242, 0, 0.25);border-radius:6px;background:rgba(255, 242, 0, 0.04);box-shadow:0 0 20px rgba(255, 242, 0, 0.06);">
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;">Rocklin</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--yellow);line-height:1;">$250<span style="font-size:18px;color:rgba(255,255,255,0.5);font-family:'Inter',sans-serif;font-weight:300;">/mo</span></div>
+        </div>
+        <div style="flex:1;min-width:160px;padding:20px;border:1px solid rgba(255, 242, 0, 0.25);border-radius:6px;background:rgba(255, 242, 0, 0.04);box-shadow:0 0 20px rgba(255, 242, 0, 0.06);">
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;">El Dorado Hills</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--yellow);line-height:1;">$299<span style="font-size:18px;color:rgba(255,255,255,0.5);font-family:'Inter',sans-serif;font-weight:300;">/mo</span></div>
+        </div>
+      </div>
+
+      <h3 class="academy-subheading">What's Included</h3>
+      <ul class="academy-includes">
+        <li>Hitting</li>
+        <li>Pitching</li>
+        <li>Infield / Outfield</li>
+        <li>Catchers</li>
+        <li>Baseball IQ</li>
+      </ul>
+    </div>
+
+    <div id="bbt-form" class="cta-box forminator-cta-box">
+      <div class="cta-box-topline">
+        <div class="cta-box-eyebrow">Start With a Game Plan</div>
+        <div class="cta-box-badge">Ages 8-14U</div>
+      </div>
+      <h3 class="cta-box-headline">Fill Out the Form Below to <em>Get Started</em></h3>
+
+      <div class="forminator-shell">
+        <form class="bk-form training-form" action="/api/lead" method="POST" novalidate data-lead-form data-lead-source="home">
+          <input type="hidden" name="source" value="home" />
+          <div class="bk-form__row">
+            <div class="bk-form__field">
+              <label for="lead-first-name">First Name</label>
+              <input type="text" id="lead-first-name" name="firstName" autocomplete="given-name" required />
+            </div>
+            <div class="bk-form__field">
+              <label for="lead-last-name">Last Name</label>
+              <input type="text" id="lead-last-name" name="lastName" autocomplete="family-name" required />
+            </div>
+          </div>
+          <div class="bk-form__row">
+            <div class="bk-form__field">
+              <label for="lead-email">Email</label>
+              <input type="email" id="lead-email" name="email" autocomplete="email" required />
+            </div>
+            <div class="bk-form__field">
+              <label for="lead-phone">Phone</label>
+              <input type="tel" id="lead-phone" name="phone" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="bk-form__field">
+            <label for="lead-program">Program of Interest</label>
+            <select id="lead-program" name="program">
+              {programOptions.map((opt) => (
+                <option value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+          <div class="bk-form__field">
+            <label for="lead-message">Message</label>
+            <textarea id="lead-message" name="message" rows="4"></textarea>
+          </div>
+          <button type="submit" class="form-submit btn-primary"><span>Get Started</span></button>
+        </form>
+      </div>
+
+      <div class="cta-box-support">
+        <a href={contact.phoneHref} class="cta-box-phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          {contact.phone}
+        </a>
+        <a href={seoPageUrl('baseball-academy')} class="cta-box-secondary-link">
+          View Academy
+        </a>
+      </div>
+      <div class="cta-box-trust">
+        <span class="cta-box-trust-item">Pro Coaching Staff</span>
+        <span class="cta-box-trust-item">2 Sacramento-Area Locations</span>
+        <span class="cta-box-trust-item">Private + Group Options</span>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+</Layout>

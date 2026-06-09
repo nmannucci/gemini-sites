@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Page Not Found | Better Baseball Training';
+const description =
+  'That page does not exist yet, but the next pitch is still live.';
+---
+
+<Layout title={title} description={description}>
+<main id="main-content" class="default-page default-page--centered">
+  <div class="default-page__inner">
+    <p class="default-page__eyebrow">404</p>
+    <h1 class="default-page__title">Page Not Found</h1>
+    <p class="default-page__copy">That page does not exist yet, but the next pitch is still live.</p>
+    <a href="/" class="btn-primary"><span>Back Home</span></a>
+  </div>
+</main>
+</Layout>

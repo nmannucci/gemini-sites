@@ -1,0 +1,141 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+  bodyClass?: string;
+  pageSchema?: unknown;
+}
+
+const {
+  title = 'Better Baseball Training | Youth Baseball Lessons in Rocklin & El Dorado Hills',
+  description = 'Better Baseball Training develops youth players socially, physically, and mentally through private lessons, academy memberships, and travel baseball in Rocklin and El Dorado Hills.',
+  canonical,
+  ogImage = '/assets/images/team-photo-1.jpg',
+  ogType = 'website',
+  bodyClass,
+  pageSchema,
+} = Astro.props;
+
+const site = Astro.site ?? 'https://betterbaseballtraining.com';
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site).toString();
+const ogImageUrl = new URL(ogImage, site).toString();
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href={canonicalUrl} />
+
+  <link rel="icon" type="image/png" href="/assets/images/logo-bbt.png" />
+  <link rel="apple-touch-icon" href="/assets/images/logo-bbt.png" />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:site_name" content="Better Baseball Training" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500&family=Teko:wght@500;600&display=swap" rel="stylesheet" />
+
+  {pageSchema && <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />}
+  <slot name="head" />
+</head>
+<body class={bodyClass}>
+  <Nav />
+  <slot />
+  <Footer />
+
+  <script is:inline src="/scripts/theme.js"></script>
+
+  <script is:inline>
+    (function () {
+      var forms = document.querySelectorAll('form[data-lead-form]');
+      if (!forms.length) return;
+
+      var SUCCESS_HTML =
+        '<div style="text-align:center;padding:2.25rem 1rem 1.5rem;">' +
+          '<div style="width:60px;height:60px;margin:0 auto 1.1rem;border-radius:50%;background:rgba(20,110,200,0.12);border:1.5px solid #1463c8;display:flex;align-items:center;justify-content:center;color:#1463c8;">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
+          '</div>' +
+          '<h3 style="font-family:\'Bebas Neue\',sans-serif;font-size:1.9rem;text-transform:uppercase;letter-spacing:0.02em;color:#1a1a1a;margin:0 0 0.55rem;">You\'re All Set</h3>' +
+          '<p style="font-size:0.95rem;color:#5A5A5A;line-height:1.55;max-width:380px;margin:0 auto;">Thanks — we got your request. Our team will reach out within one business day to get your athlete scheduled.</p>' +
+        '</div>';
+
+      forms.forEach(function (form) {
+        if (form.dataset.leadBound === '1') return;
+        form.dataset.leadBound = '1';
+
+        var submitBtn = form.querySelector('button[type="submit"], .form-submit');
+        var originalLabel = submitBtn ? submitBtn.textContent : '';
+
+        var errorBox = document.createElement('div');
+        errorBox.setAttribute('role', 'alert');
+        errorBox.style.cssText = 'display:none;margin-top:0.85rem;padding:0.7rem 0.85rem;background:rgba(220,50,50,0.08);border-left:3px solid #DC3232;color:#8a1f1f;font-size:0.8rem;line-height:1.45;';
+        if (submitBtn && submitBtn.parentNode) {
+          submitBtn.parentNode.insertBefore(errorBox, submitBtn.nextSibling);
+        } else {
+          form.appendChild(errorBox);
+        }
+
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          errorBox.textContent = '';
+          errorBox.style.display = 'none';
+
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+
+          var data = Object.fromEntries(new FormData(form).entries());
+          if (!data.source) {
+            data.source = form.dataset.leadSource || window.location.pathname;
+          }
+
+          if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+          try {
+            var res = await fetch('/api/lead', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data),
+            });
+            var payload = await res.json().catch(function () { return {}; });
+            if (!res.ok || !payload.ok) {
+              throw new Error(payload.error || 'Something went wrong. Please try again or call 916-465-5551.');
+            }
+
+            form.innerHTML = SUCCESS_HTML;
+            form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } catch (err) {
+            errorBox.textContent = (err && err.message) || 'Network error. Please try again.';
+            errorBox.style.display = 'block';
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
+          }
+        });
+      });
+    })();
+  </script>
+
+  <slot name="scripts" />
+</body>
+</html>

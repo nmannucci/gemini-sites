@@ -1,0 +1,20 @@
+{
+  "name": "better-baseball-training",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^6.3.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workerd-darwin-arm64": "^1.20260527.1",
+    "wrangler": "^4.95.0"
+  }
+}
