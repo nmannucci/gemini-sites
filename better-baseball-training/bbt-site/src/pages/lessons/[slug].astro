@@ -12,6 +12,7 @@ import {
   lessonRelatedCoachKeysFor,
 } from '../../data/urls';
 import { contact } from '../../data/contact';
+import LeadForm from '../../components/LeadForm.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -354,43 +355,7 @@ const metaTitle = `${lessonTitle} Lessons | Rocklin & El Dorado Hills | Better B
           <h2 class="cta-box-headline">{lessonPageHeading}</h2>
           <p class="ls-form-copy">{lesson.form_copy ?? 'Tell us about your athlete and our team will help you choose the right next step.'}</p>
           <div class="forminator-shell">
-            <form action="/api/lead" method="POST" novalidate data-lead-form data-lead-source={lesson.slug}>
-              <input type="hidden" name="source" value={lesson.slug} />
-              <div class="form-row">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" required />
-              </div>
-              <div class="form-row">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" required />
-              </div>
-              <div class="form-row">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required />
-              </div>
-              <div class="form-row">
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" />
-              </div>
-              <div class="form-row">
-                <label for="program">Program of Interest</label>
-                <select id="program" name="program">
-                  <option value="hitting" selected={lesson.slug === 'hitting'}>Hitting Lessons</option>
-                  <option value="pitching" selected={lesson.slug === 'pitching'}>Pitching Lessons</option>
-                  <option value="infield-outfield" selected={lesson.slug === 'infield-outfield'}>Infield / Outfield Lessons</option>
-                  <option value="catching" selected={lesson.slug === 'catching'}>Catching Lessons</option>
-                  <option value="baseball-iq" selected={lesson.slug === 'baseball-iq'}>Baseball IQ Training</option>
-                  <option value="academy">Academy Membership</option>
-                  <option value="travel">Travel Baseball</option>
-                  <option value="general">General Question</option>
-                </select>
-              </div>
-              <div class="form-row">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-              </div>
-              <button type="submit">Submit</button>
-            </form>
+            <LeadForm source={lesson.slug} idPrefix={`lesson-${lesson.slug}`} areaFocus={lesson.slug} />
           </div>
         </div>
       </div>

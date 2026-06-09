@@ -11,6 +11,7 @@ import {
 } from '../data/urls';
 import { contact } from '../data/contact';
 import { locations } from '../data/locations';
+import LeadForm from '../components/LeadForm.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -21,6 +22,19 @@ export function getStaticPaths() {
 const { page } = Astro.props;
 
 const pageUrl = `${SITE}${seoPageUrl(page.slug)}`;
+
+const formAreaFocus =
+  page.slug === 'baseball-academy' ? 'academy' :
+  page.slug === 'travel-baseball' ? 'travel' :
+  '';
+const formInterest =
+  page.slug === 'baseball-academy' ? 'academy-training' :
+  page.slug === 'travel-baseball' ? 'competitive-teams' :
+  '';
+const formLocation =
+  page.slug.includes('rocklin') ? 'rocklin' :
+  page.slug.includes('el-dorado-hills') ? 'el-dorado-hills' :
+  '';
 
 // related_link_items(): lesson -> "{Label} Lessons"; seo -> title; book-now/schedule/coaches keywords.
 const lessonBySlug = new Map(lessons.map((l) => [l.slug, l]));
@@ -440,43 +454,13 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
             <h2 class="cta-box-headline">{page.cta_label}</h2>
             <p class="ls-form-copy">Tell us about your athlete and the BBT team will help you choose the right lesson, academy, facility, or development next step.</p>
             <div class="forminator-shell">
-              <form action="/api/lead" method="POST" novalidate data-lead-form data-lead-source={page.slug}>
-                <input type="hidden" name="source" value={page.slug} />
-                <div class="form-row">
-                  <label for="firstName">First Name</label>
-                  <input type="text" id="firstName" name="firstName" required />
-                </div>
-                <div class="form-row">
-                  <label for="lastName">Last Name</label>
-                  <input type="text" id="lastName" name="lastName" required />
-                </div>
-                <div class="form-row">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" required />
-                </div>
-                <div class="form-row">
-                  <label for="phone">Phone</label>
-                  <input type="tel" id="phone" name="phone" />
-                </div>
-                <div class="form-row">
-                  <label for="program">Program of Interest</label>
-                  <select id="program" name="program">
-                    <option value="hitting">Hitting Lessons</option>
-                    <option value="pitching">Pitching Lessons</option>
-                    <option value="infield-outfield">Infield / Outfield Lessons</option>
-                    <option value="catching">Catching Lessons</option>
-                    <option value="baseball-iq">Baseball IQ Training</option>
-                    <option value="academy">Academy Membership</option>
-                    <option value="travel">Travel Baseball</option>
-                    <option value="general">General Question</option>
-                  </select>
-                </div>
-                <div class="form-row">
-                  <label for="message">Message</label>
-                  <textarea id="message" name="message" rows="4"></textarea>
-                </div>
-                <button type="submit">Submit</button>
-              </form>
+              <LeadForm
+                source={page.slug}
+                idPrefix={`seo-story-${page.slug}`}
+                areaFocus={formAreaFocus}
+                interest={formInterest}
+                location={formLocation}
+              />
             </div>
           </div>
         </div>
@@ -622,43 +606,13 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
             <h2 class="cta-box-headline">{page.cta_label}</h2>
             <p class="ls-form-copy">Tell us about your athlete and the BBT team will help you choose the right lesson, academy, facility, or development next step.</p>
             <div class="forminator-shell">
-              <form action="/api/lead" method="POST" novalidate data-lead-form data-lead-source={page.slug}>
-                <input type="hidden" name="source" value={page.slug} />
-                <div class="form-row">
-                  <label for="firstName">First Name</label>
-                  <input type="text" id="firstName" name="firstName" required />
-                </div>
-                <div class="form-row">
-                  <label for="lastName">Last Name</label>
-                  <input type="text" id="lastName" name="lastName" required />
-                </div>
-                <div class="form-row">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" name="email" required />
-                </div>
-                <div class="form-row">
-                  <label for="phone">Phone</label>
-                  <input type="tel" id="phone" name="phone" />
-                </div>
-                <div class="form-row">
-                  <label for="program">Program of Interest</label>
-                  <select id="program" name="program">
-                    <option value="hitting">Hitting Lessons</option>
-                    <option value="pitching">Pitching Lessons</option>
-                    <option value="infield-outfield">Infield / Outfield Lessons</option>
-                    <option value="catching">Catching Lessons</option>
-                    <option value="baseball-iq">Baseball IQ Training</option>
-                    <option value="academy">Academy Membership</option>
-                    <option value="travel">Travel Baseball</option>
-                    <option value="general">General Question</option>
-                  </select>
-                </div>
-                <div class="form-row">
-                  <label for="message">Message</label>
-                  <textarea id="message" name="message" rows="4"></textarea>
-                </div>
-                <button type="submit">Submit</button>
-              </form>
+              <LeadForm
+                source={page.slug}
+                idPrefix={`seo-${page.slug}`}
+                areaFocus={formAreaFocus}
+                interest={formInterest}
+                location={formLocation}
+              />
             </div>
           </div>
         </div>

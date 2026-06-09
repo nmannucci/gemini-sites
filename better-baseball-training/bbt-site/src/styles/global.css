@@ -1457,6 +1457,7 @@ nav {
 .forminator-shell input[type='text'],
 .forminator-shell input[type='email'],
 .forminator-shell input[type='tel'],
+.forminator-shell input[type='date'],
 .forminator-shell input[type='number'],
 .forminator-shell input[type='url'],
 .forminator-shell select,
@@ -1698,6 +1699,97 @@ nav {
   box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.42);
   clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
   transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.forminator-shell .lead-form {
+  position: relative;
+  display: grid;
+  gap: 14px;
+}
+
+.forminator-shell .lead-form__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 44px;
+}
+
+.forminator-shell .lead-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.forminator-shell .lead-form__field label {
+  margin: 0 !important;
+  font-family: 'DM Mono', monospace;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.22em !important;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--cyan) !important;
+}
+
+.forminator-shell .lead-form__field label span {
+  color: var(--yellow);
+}
+
+.forminator-shell .lead-form input,
+.forminator-shell .lead-form select {
+  min-height: 66px;
+  border: 2px solid rgba(255, 255, 255, 0.16) !important;
+  background: rgba(13, 13, 13, 0.78) !important;
+  color: var(--white) !important;
+  font-size: 24px !important;
+  line-height: 1.2 !important;
+  padding: 17px 26px !important;
+  box-shadow: none !important;
+}
+
+.forminator-shell .lead-form input::placeholder {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.forminator-shell .lead-form select {
+  color: rgba(255, 255, 255, 0.58) !important;
+  background-color: rgba(13, 13, 13, 0.84) !important;
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, 0.52) 50%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.52) 50%, transparent 50%) !important;
+  background-position:
+    calc(100% - 34px) calc(50% - 3px),
+    calc(100% - 24px) calc(50% - 3px) !important;
+  background-size: 10px 10px, 10px 10px !important;
+}
+
+.forminator-shell .lead-form select:valid {
+  color: var(--white) !important;
+}
+
+.forminator-shell .lead-form input[type='date'] {
+  color-scheme: dark;
+}
+
+.forminator-shell .lead-form input:focus,
+.forminator-shell .lead-form select:focus {
+  border-color: rgba(0, 174, 239, 0.95) !important;
+  background: rgba(0, 174, 239, 0.07) !important;
+  box-shadow: 0 0 0 4px rgba(0, 174, 239, 0.12) !important;
+  transform: none;
+}
+
+.forminator-shell .lead-form button[type='submit'] {
+  min-height: 82px;
+  margin-top: 7px !important;
+  padding: 22px 28px !important;
+  font-size: 31px !important;
+  letter-spacing: 0.22em !important;
+  box-shadow: none;
+  clip-path: polygon(15px 0%, 100% 0%, calc(100% - 18px) 100%, 0% 100%);
+}
+
+.forminator-shell .lead-form button[type='submit'] span {
+  display: inline-block;
 }
 
 .forminator-shell .forminator-button:hover,
@@ -6621,11 +6713,7 @@ footer {
   }
 }
 
-/* ---------------- BBT Astro lead form: layout for the wrappers used by the Astro forms inside .forminator-shell ---------------- */
-/* Two wrapper variants depending on page:
-   - .form-row            → /lessons/*, /book-now, /[seoPage]  (single-column field)
-   - .bk-form__row + .bk-form__field → homepage (paired-column grid)
-   Without these rules the browser falls back to inline flow and the form looks unstyled. */
+/* ---------------- BBT Astro lead form fallback layout ---------------- */
 .forminator-shell .form-row,
 .forminator-shell .bk-form__field {
   margin: 0 0 16px;
@@ -6654,6 +6742,28 @@ footer {
   color: #ffffff;
 }
 @media (max-width: 600px) {
+  .forminator-shell .lead-form__grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .forminator-shell .lead-form input,
+  .forminator-shell .lead-form select {
+    min-height: 58px;
+    font-size: 18px !important;
+    padding: 14px 18px !important;
+  }
+
+  .forminator-shell .lead-form__field label {
+    font-size: 11px !important;
+    letter-spacing: 0.18em !important;
+  }
+
+  .forminator-shell .lead-form button[type='submit'] {
+    min-height: 68px;
+    font-size: 24px !important;
+  }
+
   .forminator-shell .bk-form__row {
     grid-template-columns: 1fr;
   }

@@ -8,6 +8,7 @@ import {
   coachesUrl,
 } from '../data/urls';
 import { contact } from '../data/contact';
+import LeadForm from '../components/LeadForm.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -219,16 +220,6 @@ const serviceVariant = (img: string, w: number) =>
 const serviceSrcset = (img: string) =>
   [640, 960].map((w) => `${serviceVariant(img, w)} ${w}w`).join(', ');
 
-const programOptions = [
-  { value: 'hitting', label: 'Hitting Lessons' },
-  { value: 'pitching', label: 'Pitching Lessons' },
-  { value: 'infield-outfield', label: 'Infield / Outfield Lessons' },
-  { value: 'catching', label: 'Catching Lessons' },
-  { value: 'baseball-iq', label: 'Baseball IQ Training' },
-  { value: 'academy', label: 'Academy Membership' },
-  { value: 'travel', label: 'Travel Baseball' },
-  { value: 'general', label: 'General Question' },
-];
 ---
 
 <Layout title={pageTitle} description={metaDescription} pageSchema={pageSchema}>
@@ -762,45 +753,10 @@ const programOptions = [
         <div class="cta-box-eyebrow">Start With a Game Plan</div>
         <div class="cta-box-badge">Ages 8-14U</div>
       </div>
-      <h3 class="cta-box-headline">Fill Out the Form Below to <em>Get Started</em></h3>
+      <h3 class="cta-box-headline">Tell Us About Your Athlete and <em>Get Started</em></h3>
 
       <div class="forminator-shell">
-        <form class="bk-form training-form" action="/api/lead" method="POST" novalidate data-lead-form data-lead-source="home">
-          <input type="hidden" name="source" value="home" />
-          <div class="bk-form__row">
-            <div class="bk-form__field">
-              <label for="lead-first-name">First Name</label>
-              <input type="text" id="lead-first-name" name="firstName" autocomplete="given-name" required />
-            </div>
-            <div class="bk-form__field">
-              <label for="lead-last-name">Last Name</label>
-              <input type="text" id="lead-last-name" name="lastName" autocomplete="family-name" required />
-            </div>
-          </div>
-          <div class="bk-form__row">
-            <div class="bk-form__field">
-              <label for="lead-email">Email</label>
-              <input type="email" id="lead-email" name="email" autocomplete="email" required />
-            </div>
-            <div class="bk-form__field">
-              <label for="lead-phone">Phone</label>
-              <input type="tel" id="lead-phone" name="phone" autocomplete="tel" />
-            </div>
-          </div>
-          <div class="bk-form__field">
-            <label for="lead-program">Program of Interest</label>
-            <select id="lead-program" name="program">
-              {programOptions.map((opt) => (
-                <option value={opt.value}>{opt.label}</option>
-              ))}
-            </select>
-          </div>
-          <div class="bk-form__field">
-            <label for="lead-message">Message</label>
-            <textarea id="lead-message" name="message" rows="4"></textarea>
-          </div>
-          <button type="submit" class="form-submit btn-primary"><span>Get Started</span></button>
-        </form>
+        <LeadForm source="home" idPrefix="home-lead" />
       </div>
 
       <div class="cta-box-support">

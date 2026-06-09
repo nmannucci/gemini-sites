@@ -1,0 +1,106 @@
+---
+interface Props {
+  source: string;
+  idPrefix?: string;
+  areaFocus?: string;
+  interest?: string;
+  location?: string;
+}
+
+const {
+  source,
+  idPrefix = 'lead',
+  areaFocus = '',
+  interest = '',
+  location = '',
+} = Astro.props;
+
+const fieldId = (name: string) => `${idPrefix}-${name}`;
+
+const areaOptions = [
+  { value: 'hitting', label: 'Hitting' },
+  { value: 'pitching', label: 'Pitching' },
+  { value: 'infield-outfield', label: 'Infield / Outfield' },
+  { value: 'catching', label: 'Catching' },
+  { value: 'baseball-iq', label: 'Baseball IQ' },
+  { value: 'academy', label: 'Academy Training' },
+  { value: 'travel', label: 'Competitive Teams' },
+];
+
+const interestOptions = [
+  { value: 'competitive-teams', label: 'Competitive Teams' },
+  { value: 'academy-training', label: 'Academy Training' },
+  { value: 'teams-academy', label: 'Competitive Teams or Academy Training' },
+  { value: 'private-lessons', label: 'Private Lessons' },
+  { value: 'not-sure', label: 'Not Sure Yet' },
+];
+
+const locationOptions = [
+  { value: 'rocklin', label: 'Rocklin' },
+  { value: 'el-dorado-hills', label: 'El Dorado Hills' },
+  { value: 'either', label: 'Either Location' },
+];
+---
+
+<form class="lead-form" action="/api/lead" method="POST" novalidate data-lead-form data-lead-source={source}>
+  <input type="hidden" name="source" value={source} />
+
+  <div class="lead-form__field lead-form__field--full">
+    <label for={fieldId('full-name')}>Full Name <span aria-hidden="true">*</span></label>
+    <input type="text" id={fieldId('full-name')} name="fullName" placeholder="First & Last Name" autocomplete="name" required />
+  </div>
+
+  <div class="lead-form__grid">
+    <div class="lead-form__field">
+      <label for={fieldId('player-name')}>Player Name <span aria-hidden="true">*</span></label>
+      <input type="text" id={fieldId('player-name')} name="playerName" placeholder="Player Name" required />
+    </div>
+
+    <div class="lead-form__field">
+      <label for={fieldId('player-dob')}>Player Date of Birth <span aria-hidden="true">*</span></label>
+      <input type="date" id={fieldId('player-dob')} name="playerDob" required />
+    </div>
+  </div>
+
+  <div class="lead-form__field lead-form__field--full">
+    <label for={fieldId('area-focus')}>Area of Focus <span aria-hidden="true">*</span></label>
+    <select id={fieldId('area-focus')} name="areaFocus" required>
+      <option value="" selected={!areaFocus} disabled>Area of Focus</option>
+      {areaOptions.map((opt) => (
+        <option value={opt.value} selected={areaFocus === opt.value}>{opt.label}</option>
+      ))}
+    </select>
+  </div>
+
+  <div class="lead-form__field lead-form__field--full">
+    <label for={fieldId('interest')}>Interest? <span aria-hidden="true">*</span></label>
+    <select id={fieldId('interest')} name="interest" required>
+      <option value="" selected={!interest} disabled>Competitive Teams or Academy Training</option>
+      {interestOptions.map((opt) => (
+        <option value={opt.value} selected={interest === opt.value}>{opt.label}</option>
+      ))}
+    </select>
+  </div>
+
+  <div class="lead-form__field lead-form__field--full">
+    <label for={fieldId('location')}>Location <span aria-hidden="true">*</span></label>
+    <select id={fieldId('location')} name="location" required>
+      <option value="" selected={!location} disabled>Location</option>
+      {locationOptions.map((opt) => (
+        <option value={opt.value} selected={location === opt.value}>{opt.label}</option>
+      ))}
+    </select>
+  </div>
+
+  <div class="lead-form__field lead-form__field--full">
+    <label for={fieldId('email')}>Email Address <span aria-hidden="true">*</span></label>
+    <input type="email" id={fieldId('email')} name="email" placeholder="Email" autocomplete="email" required />
+  </div>
+
+  <div class="lead-form__field lead-form__field--full">
+    <label for={fieldId('phone')}>Phone <span aria-hidden="true">*</span></label>
+    <input type="tel" id={fieldId('phone')} name="phone" placeholder="Phone" autocomplete="tel" required />
+  </div>
+
+  <button type="submit"><span>Submit</span></button>
+</form>

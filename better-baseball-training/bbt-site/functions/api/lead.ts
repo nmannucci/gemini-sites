@@ -9,6 +9,7 @@ interface Env {
 }
 
 interface LeadPayload {
+  fullName?: string;
   firstName?: string;
   lastName?: string;
   email?: string;
@@ -16,6 +17,11 @@ interface LeadPayload {
   program?: string;
   message?: string;
   source?: string;
+  playerName?: string;
+  playerDob?: string;
+  areaFocus?: string;
+  interest?: string;
+  location?: string;
 }
 
 const PROGRAM_LABELS: Record<string, string> = {
@@ -24,9 +30,23 @@ const PROGRAM_LABELS: Record<string, string> = {
   'infield-outfield': 'Infield / Outfield Lessons',
   catching: 'Catching Lessons',
   'baseball-iq': 'Baseball IQ Training',
-  academy: 'Academy Membership',
-  travel: 'Travel Baseball',
+  academy: 'Academy Training',
+  travel: 'Competitive Teams',
   general: 'General Question',
+};
+
+const INTEREST_LABELS: Record<string, string> = {
+  'competitive-teams': 'Competitive Teams',
+  'academy-training': 'Academy Training',
+  'teams-academy': 'Competitive Teams or Academy Training',
+  'private-lessons': 'Private Lessons',
+  'not-sure': 'Not Sure Yet',
+};
+
+const LOCATION_LABELS: Record<string, string> = {
+  rocklin: 'Rocklin',
+  'el-dorado-hills': 'El Dorado Hills',
+  either: 'Either Location',
 };
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
@@ -39,15 +59,28 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     return json({ error: 'Invalid JSON' }, 400);
   }
 
-  const firstName = (payload.firstName ?? '').trim();
-  const lastName = (payload.lastName ?? '').trim();
+  const fullName = (payload.fullName ?? '').trim();
+  const fallbackName = splitFullName(fullName);
+  const firstName = (payload.firstName ?? fallbackName.firstName).trim();
+  const lastName = (payload.lastName ?? fallbackName.lastName).trim();
   const email = (payload.email ?? '').trim();
   const phone = (payload.phone ?? '').trim();
-  const program = (payload.program ?? '').trim();
-  const message = (payload.message ?? '').trim();
+  const playerName = (payload.playerName ?? '').trim();
+  const playerDob = (payload.playerDob ?? '').trim();
+  const areaFocus = (payload.areaFocus ?? payload.program ?? '').trim();
+  const interest = (payload.interest ?? '').trim();
+  const location = (payload.location ?? '').trim();
+  const message = buildLeadMessage({
+    playerName,
+    playerDob,
+    areaFocus,
+    interest,
+    location,
+    message: (payload.message ?? '').trim(),
+  });
   const source = (payload.source ?? '').trim();
 
-  if (!firstName || !lastName || !email) {
+  if (!firstName || !lastName || !email || !phone || !playerName || !playerDob || !areaFocus || !interest || !location) {
     return json({ error: 'Missing required fields' }, 400);
   }
 
@@ -55,7 +88,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     return json({ error: 'Invalid email' }, 400);
   }
 
-  if (firstName.length > 100 || lastName.length > 100 || email.length > 200 || message.length > 5000 || source.length > 100) {
+  if (firstName.length > 100 || lastName.length > 100 || email.length > 200 || phone.length > 100 || playerName.length > 160 || playerDob.length > 40 || areaFocus.length > 100 || interest.length > 100 || location.length > 100 || message.length > 5000 || source.length > 100) {
     return json({ error: 'Field too long' }, 400);
   }
 
@@ -67,7 +100,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       `INSERT INTO leads (first_name, last_name, email, phone, program, message, source, user_agent, ip)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
-      .bind(firstName, lastName, email, phone || null, program || null, message, source || null, userAgent, ip)
+      .bind(firstName, lastName, email, phone, areaFocus, message, source || null, userAgent, ip)
       .run();
   } catch (err) {
     console.error('D1 insert failed', err);
@@ -75,24 +108,23 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   }
 
   context.waitUntil(
-    sendNotificationEmail(env, { firstName, lastName, email, phone, program, message, source })
+    sendNotificationEmail(env, { firstName, lastName, email, phone, program: areaFocus, message, source, playerName, playerDob, areaFocus, interest, location })
   );
 
   return json({ ok: true });
 };
 
-async function sendNotificationEmail(env: Env, lead: Required<LeadPayload>): Promise<void> {
+async function sendNotificationEmail(env: Env, lead: Required<Omit<LeadPayload, 'fullName'>>): Promise<void> {
   if (!env.RESEND_API_KEY) {
     console.warn('RESEND_API_KEY not set; skipping email');
     return;
   }
 
   const programLabel = lead.program ? PROGRAM_LABELS[lead.program] ?? lead.program : '—';
+  const interestLabel = lead.interest ? INTEREST_LABELS[lead.interest] ?? lead.interest : '—';
+  const locationLabel = lead.location ? LOCATION_LABELS[lead.location] ?? lead.location : '—';
   const subject = `New lead: ${lead.firstName} ${lead.lastName}${lead.program ? ` (${programLabel})` : ''}`;
 
-  const messageRow = lead.message
-    ? `<tr><td style="padding:8px 12px;background:#f5f5f0;vertical-align:top"><strong>Message</strong></td><td style="padding:8px 12px;border-bottom:1px solid #eee;white-space:pre-wrap">${escapeHtml(lead.message)}</td></tr>`
-    : '';
   const sourceRow = lead.source
     ? `<tr><td style="padding:8px 12px;background:#f5f5f0"><strong>Source</strong></td><td style="padding:8px 12px;border-bottom:1px solid #eee;color:#5A5A5A;font-size:13px">${escapeHtml(lead.source)}</td></tr>`
     : '';
@@ -102,10 +134,13 @@ async function sendNotificationEmail(env: Env, lead: Required<LeadPayload>): Pro
       <h2 style="margin:0 0 16px;font-size:20px">New lead from betterbaseballtraining.com</h2>
       <table style="width:100%;border-collapse:collapse;font-size:14px">
         <tr><td style="padding:8px 12px;background:#f5f5f0;width:140px"><strong>Name</strong></td><td style="padding:8px 12px;border-bottom:1px solid #eee">${escapeHtml(lead.firstName)} ${escapeHtml(lead.lastName)}</td></tr>
+        <tr><td style="padding:8px 12px;background:#f5f5f0"><strong>Player</strong></td><td style="padding:8px 12px;border-bottom:1px solid #eee">${escapeHtml(lead.playerName)}</td></tr>
+        <tr><td style="padding:8px 12px;background:#f5f5f0"><strong>DOB</strong></td><td style="padding:8px 12px;border-bottom:1px solid #eee">${escapeHtml(lead.playerDob)}</td></tr>
         <tr><td style="padding:8px 12px;background:#f5f5f0"><strong>Email</strong></td><td style="padding:8px 12px;border-bottom:1px solid #eee"><a href="mailto:${escapeHtml(lead.email)}">${escapeHtml(lead.email)}</a></td></tr>
         <tr><td style="padding:8px 12px;background:#f5f5f0"><strong>Phone</strong></td><td style="padding:8px 12px;border-bottom:1px solid #eee">${lead.phone ? `<a href="tel:${escapeHtml(lead.phone)}">${escapeHtml(lead.phone)}</a>` : '—'}</td></tr>
-        <tr><td style="padding:8px 12px;background:#f5f5f0"><strong>Program</strong></td><td style="padding:8px 12px;border-bottom:1px solid #eee">${escapeHtml(programLabel)}</td></tr>
-        ${messageRow}
+        <tr><td style="padding:8px 12px;background:#f5f5f0"><strong>Area of Focus</strong></td><td style="padding:8px 12px;border-bottom:1px solid #eee">${escapeHtml(programLabel)}</td></tr>
+        <tr><td style="padding:8px 12px;background:#f5f5f0"><strong>Interest</strong></td><td style="padding:8px 12px;border-bottom:1px solid #eee">${escapeHtml(interestLabel)}</td></tr>
+        <tr><td style="padding:8px 12px;background:#f5f5f0"><strong>Location</strong></td><td style="padding:8px 12px;border-bottom:1px solid #eee">${escapeHtml(locationLabel)}</td></tr>
         ${sourceRow}
       </table>
     </div>
@@ -115,10 +150,13 @@ async function sendNotificationEmail(env: Env, lead: Required<LeadPayload>): Pro
     `New lead from betterbaseballtraining.com`,
     ``,
     `Name: ${lead.firstName} ${lead.lastName}`,
+    `Player: ${lead.playerName}`,
+    `DOB: ${lead.playerDob}`,
     `Email: ${lead.email}`,
     `Phone: ${lead.phone || '—'}`,
-    `Program: ${programLabel}`,
-    lead.message ? `\nMessage:\n${lead.message}` : '',
+    `Area of Focus: ${programLabel}`,
+    `Interest: ${interestLabel}`,
+    `Location: ${locationLabel}`,
     lead.source ? `\nSource: ${lead.source}` : '',
   ].join('\n');
 
@@ -142,6 +180,36 @@ async function sendNotificationEmail(env: Env, lead: Required<LeadPayload>): Pro
     const body = await res.text();
     console.error('Resend send failed', res.status, body);
   }
+}
+
+function splitFullName(fullName: string): { firstName: string; lastName: string } {
+  const parts = fullName.trim().split(/\s+/).filter(Boolean);
+  if (parts.length < 2) {
+    return { firstName: parts[0] ?? '', lastName: '' };
+  }
+  return {
+    firstName: parts[0],
+    lastName: parts.slice(1).join(' '),
+  };
+}
+
+function buildLeadMessage(input: {
+  playerName: string;
+  playerDob: string;
+  areaFocus: string;
+  interest: string;
+  location: string;
+  message: string;
+}): string {
+  const rows = [
+    `Player Name: ${input.playerName}`,
+    `Player DOB: ${input.playerDob}`,
+    `Area of Focus: ${PROGRAM_LABELS[input.areaFocus] ?? input.areaFocus}`,
+    `Interest: ${INTEREST_LABELS[input.interest] ?? input.interest}`,
+    `Location: ${LOCATION_LABELS[input.location] ?? input.location}`,
+  ];
+  if (input.message) rows.push('', input.message);
+  return rows.join('\n');
 }
 
 function json(body: unknown, status = 200): Response {

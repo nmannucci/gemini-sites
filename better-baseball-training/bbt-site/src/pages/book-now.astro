@@ -4,6 +4,7 @@ import { contact } from '../data/contact';
 import { locations } from '../data/locations';
 import { lessons } from '../data/lessons';
 import { scheduleUrl, coachesUrl, bookingUrl } from '../data/urls';
+import LeadForm from '../components/LeadForm.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -54,43 +55,7 @@ const breadcrumbSchema = {
           </div>
           <h2 class="cta-box-headline">Tell Us About Your Athlete and <em>Get Started</em></h2>
           <div class="forminator-shell">
-            <form action="/api/lead" method="POST" novalidate data-lead-form data-lead-source="book-now">
-              <input type="hidden" name="source" value="book-now" />
-              <div class="form-row">
-                <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" required />
-              </div>
-              <div class="form-row">
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" required />
-              </div>
-              <div class="form-row">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required />
-              </div>
-              <div class="form-row">
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" />
-              </div>
-              <div class="form-row">
-                <label for="program">Program of Interest</label>
-                <select id="program" name="program">
-                  <option value="hitting">Hitting Lessons</option>
-                  <option value="pitching">Pitching Lessons</option>
-                  <option value="infield-outfield">Infield / Outfield Lessons</option>
-                  <option value="catching">Catching Lessons</option>
-                  <option value="baseball-iq">Baseball IQ Training</option>
-                  <option value="academy">Academy Membership</option>
-                  <option value="travel">Travel Baseball</option>
-                  <option value="general">General Question</option>
-                </select>
-              </div>
-              <div class="form-row">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-              </div>
-              <button type="submit">Submit</button>
-            </form>
+            <LeadForm source="book-now" idPrefix="book-lead" />
           </div>
         </div>
       </div>
