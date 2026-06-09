@@ -38,7 +38,6 @@ const PROGRAM_LABELS: Record<string, string> = {
 const INTEREST_LABELS: Record<string, string> = {
   'competitive-teams': 'Competitive Teams',
   'academy-training': 'Academy Training',
-  'teams-academy': 'Competitive Teams or Academy Training',
   'private-lessons': 'Private Lessons',
   'not-sure': 'Not Sure Yet',
 };
