@@ -13,7 +13,7 @@ import {
 } from '../../data/urls';
 import { contact } from '../../data/contact';
 
-const SITE = 'https://betterbaseballtraining.com';
+const SITE = 'https://www.betterbaseballtraining.com';
 
 export function getStaticPaths() {
   return lessons.map((lesson) => ({ params: { slug: lesson.slug }, props: { lesson } }));

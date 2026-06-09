@@ -12,7 +12,7 @@ import {
 import { contact } from '../data/contact';
 import { locations } from '../data/locations';
 
-const SITE = 'https://betterbaseballtraining.com';
+const SITE = 'https://www.betterbaseballtraining.com';
 
 export function getStaticPaths() {
   return seoPages.map((page) => ({ params: { seoPage: page.slug }, props: { page } }));

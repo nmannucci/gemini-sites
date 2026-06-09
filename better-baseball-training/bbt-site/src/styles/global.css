@@ -1,6 +1,6 @@
 /*
 Theme Name: house36-bbt
-Theme URI: https://betterbaseballtraining.com/
+Theme URI: https://www.betterbaseballtraining.com/
 Author: OpenAI Codex
 Description: Classic custom WordPress theme for Better Baseball Training.
 Version: 1.0.0
@@ -11,7 +11,7 @@ Text Domain: house36-bbt
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --tryouts-banner-h: 38px;
+  --tryouts-banner-h: 0px;
   --yellow:  #FFF200;
   --yellow2: #FFFF66;
   --pink:    #EC008C;
@@ -80,96 +80,6 @@ img {
 }
 
 /* ─── NAVIGATION ────────────────────────────────────────── */
-.tryouts-banner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 101;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  height: var(--tryouts-banner-h);
-  padding: 0 20px;
-  background: var(--yellow);
-  color: var(--black);
-  text-decoration: none;
-  font-family: 'Inter', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  transition: background 0.2s ease;
-}
-
-.tryouts-banner:hover,
-.tryouts-banner:focus-visible {
-  background: var(--yellow2);
-  outline: none;
-}
-
-.tryouts-banner-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--pink);
-  box-shadow: 0 0 10px rgba(236, 0, 140, 0.7);
-  animation: tryouts-pulse 1.6s ease-in-out infinite;
-  flex-shrink: 0;
-}
-
-.tryouts-banner-text {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-transform: uppercase;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.tryouts-banner-text strong {
-  font-weight: 800;
-  letter-spacing: 0.06em;
-}
-
-.tryouts-banner-divider {
-  opacity: 0.55;
-  font-weight: 900;
-}
-
-.tryouts-banner-meta {
-  font-weight: 700;
-}
-
-.tryouts-banner-link {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 2px;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-}
-
-.tryouts-banner:hover .tryouts-banner-link,
-.tryouts-banner:focus-visible .tryouts-banner-link {
-  text-decoration-thickness: 3px;
-}
-
-@media (max-width: 720px) {
-  :root { --tryouts-banner-h: 34px; }
-  .tryouts-banner {
-    gap: 8px;
-    padding: 0 12px;
-    font-size: 11px;
-  }
-  .tryouts-banner-meta,
-  .tryouts-banner-divider {
-    display: none;
-  }
-}
-
 nav {
   position: fixed;
   top: var(--tryouts-banner-h); left: 0; right: 0;

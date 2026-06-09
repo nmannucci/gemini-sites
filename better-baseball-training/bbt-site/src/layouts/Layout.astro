@@ -23,7 +23,7 @@ const {
   pageSchema,
 } = Astro.props;
 
-const site = Astro.site ?? 'https://betterbaseballtraining.com';
+const site = Astro.site ?? 'https://www.betterbaseballtraining.com';
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site).toString();
 const ogImageUrl = new URL(ogImage, site).toString();
 ---

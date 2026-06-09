@@ -3,6 +3,9 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -14,7 +17,6 @@
     "astro": "^6.3.8"
   },
   "devDependencies": {
-    "@cloudflare/workerd-darwin-arm64": "^1.20260527.1",
     "wrangler": "^4.95.0"
   }
 }

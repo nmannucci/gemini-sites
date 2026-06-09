@@ -1,96 +1,174 @@
-# BBT — deploy state & remaining work
+# BBT — Pages deploy state & remaining work
 
-**As of 2026-05-27** the site is **live on Cloudflare Workers** at
-`https://better-baseball-training.nmannucci1.workers.dev`. End-to-end pipeline
-(Astro static → Workers Assets → `/api/lead` → D1 `bbt-leads` → Resend → gmail)
-verified working. Everything that's still pending is **DNS-dependent** and waits
-for registrar access on `betterbaseballtraining.com`.
+**As of 2026-06-09** the site is migrating from a Cloudflare Worker custom-domain plan to **Cloudflare Pages**. The domain stays registered/DNS-hosted at **Wix** because Wix does not allow changing nameservers for this domain.
+
+Architecture:
+- Astro app source: `bbt-site/`
+- Pages project: `better-baseball-training`
+- Pages preview host: `https://better-baseball-training.pages.dev`
+- Canonical production host: `https://www.betterbaseballtraining.com`
+- Apex handling: Wix 301 redirect from `betterbaseballtraining.com` to `https://www.betterbaseballtraining.com`
+- DNS source of truth: Wix DNS, not Cloudflare DNS
+- Lead pipeline: form -> Pages Function `/api/lead` -> D1 `bbt-leads` -> Resend email
+
+Cloudflare Pages build settings for the `nmannucci/gemini-sites` repository:
+```text
+Production branch: master
+Framework preset: Astro
+Root directory: better-baseball-training/bbt-site
+Build command: npm run build
+Build output directory: dist
+Node version: 22.16.0
+```
+
+The root directory is relative to the GitHub repo root. Do not use only `bbt-site`, because Cloudflare clones `nmannucci/gemini-sites` and the app lives one folder deeper.
 
 ---
 
-## ✅ Done
+## Done
 
-- [x] Wrangler installed locally + workerd platform binary fix (see `reference_wrangler_workerd_optional_dep_fix` memory)
-- [x] `wrangler login` (account: `nmannucci1@gmail.com`, account ID `7ab38c4525d46a3ea8322e1ce35da1ce`)
+- [x] Astro site rebuilt under `bbt-site/`
+- [x] Pages Function added at `functions/api/lead.ts`
+- [x] `wrangler.jsonc` converted for Pages with `pages_build_output_dir: "./dist"`
 - [x] D1 database `bbt-leads` created — `database_id: e4b35f56-eaba-44c6-9238-446b77023c6c`
 - [x] Schema applied (`migrations/0001_leads.sql`)
-- [x] Worker `better-baseball-training` deployed (assets + `/api/lead`)
-- [x] `RESEND_API_KEY` secret uploaded (key was rotated after a transcript leak — current key is the rotated one)
-- [x] Smoke test: D1 insert + Resend email both confirmed
-- [x] Form CSS fix for Astro `.form-row` / `.bk-form__row` wrappers (labels 13px white DM Mono caps inside `.forminator-shell`)
+- [x] Pages project deployment started
+- [x] Stale May 27 tryouts promo removed from the nav/homepage
+- [x] Astro canonical/site URL set to `https://www.betterbaseballtraining.com`
+- [x] Node version pinned for Pages builds with `.node-version`
 
 Current `wrangler.jsonc` vars:
-- `LEAD_NOTIFY_TO`: `nmannucci1@gmail.com` (deliberate — never the client during build/test)
-- `LEAD_NOTIFY_FROM`: `Better Baseball Training <onboarding@resend.dev>` (Resend shared sender; switches after domain verification)
+- `LEAD_NOTIFY_TO`: `nmannucci1@gmail.com` during build/test
+- `LEAD_NOTIFY_FROM`: `Better Baseball Training <onboarding@resend.dev>` until Resend domain verification is complete
 
 ---
 
-## 🔜 TODO (all gated on DNS access at the registrar)
+## Immediate
 
-### TODO 1 — Move `betterbaseballtraining.com` into the Cloudflare account
-Cloudflare dashboard → **Add a site** → `betterbaseballtraining.com` (Free plan). It returns 2 nameservers. Change NS at the current registrar.
+### #21 — Re-add `RESEND_API_KEY` to Pages
 
-**Before flipping NS**, in Cloudflare DNS tab copy the *current* live records so nothing breaks at cutover:
-- A/AAAA for `@`, `www` (current WP host)
-- MX (whatever email provider they use today)
-- Any existing TXT/CNAME (SPF, verifications, etc.)
-- All set to **DNS only** (grey cloud) for now
+Add the rotated Resend key to the **Cloudflare Pages project**, not the old Worker.
 
-NS propagation: usually <1 hour, up to 24.
+Dashboard path:
+Cloudflare -> Workers & Pages -> `better-baseball-training` -> Settings -> Environment variables -> Production -> add secret `RESEND_API_KEY`.
 
-### TODO 2 — Bind the Worker to the custom domain (THIS IS THE CUTOVER)
-Once NS has propagated, Cloudflare dashboard → **Workers & Pages → better-baseball-training → Settings → Domains & Routes → Add Custom Domain**:
-- `betterbaseballtraining.com`
-- `www.betterbaseballtraining.com`
+CLI option from `bbt-site/`:
+```sh
+./node_modules/.bin/wrangler pages secret put RESEND_API_KEY --project-name better-baseball-training
+```
 
-**The moment those save, traffic flips from WP to the Worker.** Either do off-hours, or test on `staging.betterbaseballtraining.com` first.
+### #22 — Smoke test Pages deploy
 
-Rollback if anything looks wrong: **Remove** the custom domains in that same panel; DNS reverts to the records copied in TODO 1 and WP serves again within seconds.
+After `RESEND_API_KEY` is present and a new Pages deployment is live:
+1. Submit the site lead form on the Pages URL or `www` custom domain.
+2. Confirm the row lands in D1.
+3. Confirm the Resend email arrives at `LEAD_NOTIFY_TO`.
 
-### TODO 3 — Verify domain in Resend, switch `LEAD_NOTIFY_FROM`
-Resend dashboard → **Domains → Add Domain** → `betterbaseballtraining.com`. Resend gives 3 DNS records — add in Cloudflare DNS:
-- `resend._domainkey` TXT — **DNS only / grey cloud** (not proxied)
-- `send.betterbaseballtraining.com` TXT (SPF: `v=spf1 include:amazonses.com ~all`)
-- `send.betterbaseballtraining.com` MX → `feedback-smtp.us-east-1.amazonses.com`
+Useful checks from `bbt-site/`:
+```sh
+./node_modules/.bin/wrangler d1 execute bbt-leads --remote --command="SELECT COUNT(*) FROM leads;"
+```
 
-Click Verify. Then edit `wrangler.jsonc`:
+### #23 — Delete the old Worker
+
+Only delete the Worker after Pages is green:
+- Pages site loads
+- `/api/lead` writes to D1
+- Resend email delivery works
+- Custom domain is serving Pages
+
+---
+
+## Domain Cutover
+
+### Replaces stale #12 — Do not add `betterbaseballtraining.com` as a Cloudflare zone
+
+Kill the old "Add domain as Cloudflare Zone" task. Nameservers are staying on Wix.
+
+All DNS records go in Wix:
+- Cloudflare Pages custom-domain CNAME
+- Resend verification records
+- DMARC
+
+### Replaces stale #13 — Bind `www` to Pages, not the Worker
+
+Cloudflare Pages:
+1. Go to Workers & Pages -> `better-baseball-training` -> Custom domains.
+2. Add `www.betterbaseballtraining.com`.
+3. Let Cloudflare show the required CNAME target.
+
+Wix DNS:
+```text
+Type: CNAME
+Host: www
+Value: better-baseball-training.pages.dev
+```
+
+Wix domain forwarding:
+```text
+betterbaseballtraining.com -> https://www.betterbaseballtraining.com
+Type: 301 permanent redirect
+```
+
+---
+
+## Email DNS Follow-Ups
+
+### #14 — Verify domain in Resend and switch `LEAD_NOTIFY_FROM`
+
+Resend dashboard -> Domains -> Add Domain -> `betterbaseballtraining.com`.
+
+Add the records Resend provides in **Wix DNS**. Expect records like:
+- DKIM TXT/CNAME under `resend._domainkey` or similar
+- SPF TXT for the send subdomain
+- MX for bounce/feedback handling
+
+After Resend verifies the domain, change:
 ```jsonc
 "LEAD_NOTIFY_FROM": "Better Baseball Training <leads@betterbaseballtraining.com>"
 ```
-and `./node_modules/.bin/wrangler deploy`.
 
-### TODO 4 — DMARC
-Cloudflare DNS → add TXT at `_dmarc.betterbaseballtraining.com`:
+Then redeploy Pages.
+
+### #15 — Add DMARC in Wix DNS
+
+Add TXT:
+```text
+Host: _dmarc
+Value: v=DMARC1; p=none; rua=mailto:nmannucci1@gmail.com; adkim=r; aspf=r;
 ```
-v=DMARC1; p=none; rua=mailto:nmannucci1@gmail.com; adkim=r; aspf=r;
+
+Start at `p=none` for monitoring before tightening.
+
+### #16 — Handoff
+
+Do this last:
+1. Swap `LEAD_NOTIFY_TO` to the client address, optionally keeping Nico copied during transition.
+2. Redeploy Pages.
+3. Submit a fresh test lead.
+4. Clear test rows from D1 when approved.
+
+Example D1 cleanup:
+```sh
+./node_modules/.bin/wrangler d1 execute bbt-leads --remote \
+  --command="DELETE FROM leads; DELETE FROM sqlite_sequence WHERE name='leads';"
 ```
-Start at `p=none` (monitor mode) for ~2 weeks before tightening.
-
-### TODO 5 — Handoff: swap `LEAD_NOTIFY_TO` to client + clean D1
-Do this **last**, in its own session, and **never chain** `wrangler deploy && curl …` (edge propagation isn't atomic — see `feedback_recipient_change_propagation` memory).
-
-1. Edit `wrangler.jsonc` → `"LEAD_NOTIFY_TO": "trainwithbbt@gmail.com,nmannucci1@gmail.com"` (or whatever the client wants; can be comma-separated for multi-recipient)
-2. `./node_modules/.bin/wrangler deploy`
-3. Wait ~30s
-4. **Separate** test curl
-5. Clear test rows:
-   ```sh
-   ./node_modules/.bin/wrangler d1 execute bbt-leads --remote \
-     --command="DELETE FROM leads; DELETE FROM sqlite_sequence WHERE name='leads';"
-   ```
 
 ---
 
-## Open content items to confirm with client
-- **Schedule page calendar**: used Acuity embed `owner=19350065` (from `businessinfo.md`). The live WP site rendered this via the page body (`the_content()`) — confirm the actual current embed/provider. Marked with TODO comment in `src/pages/schedule.astro`.
-- **Form fields**: replaced Forminator (form ID 42) with `firstName, lastName, email, phone, program, message`. Confirm this matches what the client wants captured.
-- **Tryouts banner** (`Wed May 27 · Folsom Lake College`) is hardcoded in `src/components/Nav.astro` — that date has passed. Either remove the banner or update the date before cutover.
+## Content Items To Confirm
 
-## Quick-start for the next session
+- Schedule page calendar: verify the current Acuity/provider embed.
+- Form fields: confirm `firstName, lastName, email, phone, program, message` matches the client handoff needs.
+- New tryouts content: the expired May 27 promo is removed; add a fresh promo only after the client provides a new date/details.
+
+---
+
+## Quick Start
+
 ```sh
 cd /Users/nico/Gemini/gemini-sites/better-baseball-training/bbt-site
-./node_modules/.bin/wrangler whoami        # confirm logged in as nmannucci1@gmail.com
+npm run build
+./node_modules/.bin/wrangler whoami
 ./node_modules/.bin/wrangler d1 execute bbt-leads --remote --command="SELECT COUNT(*) FROM leads;"
-./node_modules/.bin/wrangler secret list   # should show RESEND_API_KEY
 ```
-Live preview: <https://better-baseball-training.nmannucci1.workers.dev>
