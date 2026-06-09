@@ -23,10 +23,7 @@ const { page } = Astro.props;
 
 const pageUrl = `${SITE}${seoPageUrl(page.slug)}`;
 
-const formAreaFocus =
-  page.slug === 'baseball-academy' ? 'academy' :
-  page.slug === 'travel-baseball' ? 'travel' :
-  '';
+const formAreaFocus = '';
 const formInterest =
   page.slug === 'baseball-academy' ? 'academy-training' :
   page.slug === 'travel-baseball' ? 'competitive-teams' :

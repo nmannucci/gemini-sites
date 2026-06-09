@@ -25,21 +25,15 @@ interface LeadPayload {
 }
 
 const PROGRAM_LABELS: Record<string, string> = {
-  hitting: 'Hitting Lessons',
-  pitching: 'Pitching Lessons',
-  'infield-outfield': 'Infield / Outfield Lessons',
-  catching: 'Catching Lessons',
-  'baseball-iq': 'Baseball IQ Training',
-  academy: 'Academy Training',
-  travel: 'Competitive Teams',
-  general: 'General Question',
+  hitting: 'Hitting',
+  pitching: 'Pitching',
+  catching: 'Catching',
+  fielding: 'Fielding',
 };
 
 const INTEREST_LABELS: Record<string, string> = {
   'competitive-teams': 'Competitive Teams',
   'academy-training': 'Academy Training',
-  'private-lessons': 'Private Lessons',
-  'not-sure': 'Not Sure Yet',
 };
 
 const LOCATION_LABELS: Record<string, string> = {

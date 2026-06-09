@@ -24,6 +24,12 @@ const { lesson } = Astro.props;
 
 // PHP $lesson['title'] === the data 'label' field.
 const lessonTitle = lesson.label;
+const lessonAreaFocus =
+  lesson.slug === 'hitting' ? 'hitting' :
+  lesson.slug === 'pitching' ? 'pitching' :
+  lesson.slug === 'catching' ? 'catching' :
+  lesson.slug === 'infield-outfield' ? 'fielding' :
+  '';
 
 const relatedCoachKeys = lessonRelatedCoachKeysFor(lesson.slug);
 const relatedCoaches = relatedCoachKeys
@@ -355,7 +361,7 @@ const metaTitle = `${lessonTitle} Lessons | Rocklin & El Dorado Hills | Better B
           <h2 class="cta-box-headline">{lessonPageHeading}</h2>
           <p class="ls-form-copy">{lesson.form_copy ?? 'Tell us about your athlete and our team will help you choose the right next step.'}</p>
           <div class="forminator-shell">
-            <LeadForm source={lesson.slug} idPrefix={`lesson-${lesson.slug}`} areaFocus={lesson.slug} />
+            <LeadForm source={lesson.slug} idPrefix={`lesson-${lesson.slug}`} areaFocus={lessonAreaFocus} />
           </div>
         </div>
       </div>
