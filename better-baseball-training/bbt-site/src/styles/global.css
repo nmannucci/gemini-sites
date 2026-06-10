@@ -1718,6 +1718,7 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
 }
 
 .forminator-shell .lead-form__field label {
@@ -1737,7 +1738,12 @@ nav {
 
 .forminator-shell .lead-form input,
 .forminator-shell .lead-form select {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0;
   min-height: 54px;
+  box-sizing: border-box;
   border: 2px solid rgba(255, 255, 255, 0.16) !important;
   background: rgba(13, 13, 13, 0.78) !important;
   color: var(--white) !important;
@@ -1770,7 +1776,21 @@ nav {
 }
 
 .forminator-shell .lead-form input[type='date'] {
+  appearance: none;
+  -webkit-appearance: none;
   color-scheme: dark;
+  overflow: hidden;
+}
+
+.forminator-shell .lead-form input[type='date']::-webkit-date-and-time-value {
+  margin: 0;
+  min-height: 1.2em;
+  text-align: left;
+}
+
+.forminator-shell .lead-form input[type='date']::-webkit-calendar-picker-indicator {
+  flex: 0 0 auto;
+  margin-left: auto;
 }
 
 .forminator-shell .lead-form input:focus,
@@ -6763,6 +6783,15 @@ footer {
     min-height: 50px;
     font-size: 16px !important;
     padding: 11px 15px !important;
+  }
+
+  .forminator-shell .lead-form input[type='date'] {
+    padding-right: 12px !important;
+    text-align: left;
+  }
+
+  .forminator-shell .lead-form input[type='date']::-webkit-date-and-time-value {
+    text-align: left;
   }
 
   .forminator-shell .lead-form select {
