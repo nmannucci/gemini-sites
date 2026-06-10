@@ -3,7 +3,7 @@
   "compatibility_date": "2026-05-12",
   "pages_build_output_dir": "./dist",
   "vars": {
-    "LEAD_NOTIFY_TO": "nmannucci1@gmail.com",
+    "LEAD_NOTIFY_TO": "house36@agentmail.to",
     "LEAD_NOTIFY_FROM": "Better Baseball Training <onboarding@resend.dev>"
   },
   "d1_databases": [
