@@ -3,6 +3,7 @@ interface Env {
   RESEND_API_KEY: string;
   LEAD_NOTIFY_TO: string;
   LEAD_NOTIFY_FROM: string;
+  GHL_WEBHOOK_URL: string;
   ASSETS: Fetcher;
 }
 
@@ -78,9 +79,48 @@ async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Pr
     return json({ error: 'Could not save your message. Please try again.' }, 500);
   }
 
-  ctx.waitUntil(sendNotificationEmail(env, { firstName, lastName, email, phone, program, message, source }));
+  const lead = { firstName, lastName, email, phone, program, message, source };
+  ctx.waitUntil(sendNotificationEmail(env, lead));
+  ctx.waitUntil(sendToGoHighLevel(env, lead));
 
   return json({ ok: true });
+}
+
+async function sendToGoHighLevel(env: Env, lead: Required<LeadPayload>): Promise<void> {
+  if (!env.GHL_WEBHOOK_URL) {
+    console.warn('GHL_WEBHOOK_URL not set; skipping GoHighLevel');
+    return;
+  }
+
+  const programLabel = lead.program ? PROGRAM_LABELS[lead.program] ?? lead.program : '';
+
+  // Map to GoHighLevel's native contact fields; program/message/source land as
+  // custom fields you can reference in the workflow.
+  const body = {
+    first_name: lead.firstName,
+    last_name: lead.lastName,
+    full_name: `${lead.firstName} ${lead.lastName}`.trim(),
+    email: lead.email,
+    phone: lead.phone || undefined,
+    source: lead.source || 'lajollatkd.com',
+    program: programLabel || undefined,
+    message: lead.message || undefined,
+  };
+
+  try {
+    const res = await fetch(env.GHL_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      console.error('GoHighLevel webhook failed', res.status, text);
+    }
+  } catch (err) {
+    console.error('GoHighLevel webhook error', err);
+  }
 }
 
 async function sendNotificationEmail(env: Env, lead: Required<LeadPayload>): Promise<void> {
