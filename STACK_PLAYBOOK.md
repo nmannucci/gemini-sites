@@ -170,6 +170,37 @@ npm run build && npx wrangler deploy
 
 ---
 
+## Optional: GoHighLevel (GHL) CRM integration
+
+Push every lead into GoHighLevel to trigger an outreach automation (SMS/email the prospect, assign to the owner, drop into a pipeline). Runs **alongside** the Resend email — both fire on each submit, redundant on purpose. First wired for La Jolla Martial Arts.
+
+**Why the Inbound Webhook (not the GHL API):** no API key, no OAuth, no location ID. You create a workflow whose trigger is an Inbound Webhook, GHL hands you a URL, the Worker POSTs to it, the contact upserts (on email/phone) and the automation fires.
+
+### Steps
+1. **In GHL:** Automation → Workflows → Create Workflow → trigger **Inbound Webhook** → copy the URL (`https://services.leadconnectorhq.com/hooks/.../webhook-trigger/...`).
+2. **Add to the Worker** (`src/worker.ts`) — copy `sendToGoHighLevel()` from `eagle-martial-arts/src/worker.ts`. It:
+   - Adds `GHL_WEBHOOK_URL: string` to the `Env` interface.
+   - Maps to GHL's native fields: `first_name`, `last_name`, `full_name`, `email`, `phone`, plus `source`/`program`/`message` as custom fields.
+   - Fires via its own `ctx.waitUntil(sendToGoHighLevel(env, lead))` — isolated from the email and the D1 write, with a no-op guard if `GHL_WEBHOOK_URL` is unset, so the form never breaks if GHL is down.
+3. **Capture the field structure in GHL:** the Inbound Webhook trigger needs to *see* a sample payload before you can map fields. Fire one test directly at the URL (does **not** email the client — it only hits GHL):
+   ```sh
+   curl -sS -X POST '<GHL_WEBHOOK_URL>' -H 'Content-Type: application/json' \
+     -d '{"first_name":"Test","last_name":"Lead","full_name":"Test Lead","email":"nmannucci1@gmail.com","phone":"+15555550123","source":"<domain>","program":"...","message":"webhook setup test"}'
+   # → {"status":"Success: test request received"}  (HTTP 200)
+   ```
+   Then in the trigger, map `first_name`/`last_name`/`email`/`phone` to the native fields and `program`/`message`/`source` to custom fields.
+4. **Deploy, then set the secret** (versioned-Worker order — deploy must come first):
+   ```sh
+   npm run build && npx wrangler deploy
+   printf '%s' '<GHL_WEBHOOK_URL>' | npx wrangler secret put GHL_WEBHOOK_URL
+   npx wrangler secret list | grep GHL_WEBHOOK_URL   # confirm it's bound
+   ```
+   (The webhook URL isn't a credential like an API key, so piping it is fine — no 401 risk.)
+5. **Publish the GHL workflow.** A workflow left in *Draft* won't fire on real submissions.
+6. **End-to-end test = a real form submit, which also emails `LEAD_NOTIFY_TO`.** During build that's safe (`nmannucci1@gmail.com`); after handoff it hits the client inbox — so confirm GHL standalone via the step-3 curl, and only run the full live-form test before `LEAD_NOTIFY_TO` is switched to the client, or with the client's OK.
+
+---
+
 ## Common gotchas
 
 | Symptom | Fix |
