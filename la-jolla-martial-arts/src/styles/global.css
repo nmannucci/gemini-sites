@@ -49,3 +49,28 @@
     max-height: 44px;
   }
 }
+
+/* ============================================================
+   CTA color — orange buttons complementing the cyan brand.
+   Applied site-wide so the filled CTAs match the /lp landing
+   pages. Uses !important to override each page's <style is:global>.
+============================================================ */
+:root {
+  --orange: #FF6A1A;
+  --orange-dark: #E2560A;
+}
+
+.nav-cta,
+.btn-primary,
+.form-submit,
+.mobile-menu-cta {
+  background: var(--orange) !important;
+  color: #fff !important;
+}
+
+.nav-cta:hover,
+.btn-primary:hover,
+.form-submit:hover,
+.mobile-menu-cta:hover {
+  background: var(--orange-dark) !important;
+}
