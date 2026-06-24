@@ -27,7 +27,7 @@
   </script>
 
   <style is:global>
-    :root { --bg:#F5F5F0; --ink:#141414; --muted:#5A5A5A; --red:#29BEE2; --teal:#29BEE2; --teal-soft:rgba(41,190,226,.12); }
+    :root { --bg:#F5F5F0; --ink:#141414; --muted:#5A5A5A; --red:#D32F2F; --teal:#29BEE2; --orange:#EA580C; --teal-soft:rgba(41,190,226,.12); }
     * { box-sizing:border-box; margin:0; padding:0; }
     body { font-family:'Archivo',system-ui,sans-serif; background:var(--bg); color:var(--ink);
       min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:1.5rem;
@@ -36,9 +36,9 @@
     .tick { width:84px; height:84px; border-radius:50%; background:rgba(15,118,110,.1);
       border:2px solid var(--teal); color:var(--teal); display:flex; align-items:center; justify-content:center; margin:0 auto 1.4rem; }
     h1 { font-family:'Bebas Neue',sans-serif; font-size:3rem; text-transform:uppercase; letter-spacing:.01em; line-height:1; }
-    .resp { color:var(--teal); font-weight:700; margin:0.9rem 0 0.4rem; font-size:1.1rem; }
+    .resp { color:var(--red); font-weight:700; margin:0.9rem 0 0.4rem; font-size:1.1rem; }
     p { color:var(--muted); font-size:1.05rem; line-height:1.6; }
-    .btn-call { display:inline-flex; align-items:center; gap:.5rem; margin-top:1.6rem; background:var(--red);
+    .btn-call { display:inline-flex; align-items:center; gap:.5rem; margin-top:1.6rem; background:var(--orange);
       color:#fff; font-weight:700; padding:0.95rem 1.6rem; border-radius:10px; }
     img.logo { height:54px; margin:0 auto 2rem; }
   </style>
@@ -47,8 +47,8 @@
   <div class="card">
     <img class="logo" src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" />
     <div class="tick"><i data-lucide="check" style="width:42px;height:42px"></i></div>
-    <h1>You're All Set</h1>
-    <div class="resp">We'll respond in under 60 seconds.</div>
+    <h1>We'll Text You The Class Details</h1>
+    <div class="resp">Keep your phone close — we'll respond in less than 60 seconds.</div>
     <p>Thanks for your request. Keep your phone handy — we'll text or call you right now with the class schedule and how to claim your free week.</p>
     <a class="btn-call" href="tel:8583610961"><i data-lucide="phone"></i> Or call us now: (858) 361-0961</a>
   </div>
