@@ -1,0 +1,328 @@
+---
+/**
+ * LpPage — full PPC landing page. Each ad-group page supplies its hero + meta;
+ * body content defaults to the kids version and can be overridden (e.g. the adult page).
+ */
+import LpLayout from '../layouts/LpLayout.astro';
+
+const phone = '(858) 361-0961';
+const tel = 'tel:8583610961';
+const addr = '7680 Girard Ave, Basement, La Jolla, CA 92037';
+const mapsEmbed = 'https://maps.google.com/maps?width=100%25&height=380&hl=en&q=7680%20Girard%20Ave,%20La%20Jolla,%20CA%2092037&t=&z=15&ie=UTF8&iwloc=B&output=embed';
+const trackingFields = ['gclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+
+const DEFAULT_BENEFITS_LEAD = 'Most parents don’t enroll their kid in Taekwondo to raise a fighter. They enroll because something’s missing: focus, confidence, and a better outlet than a screen. On the mat, kids learn that effort pays off and respect is a habit, and those lessons follow them into the classroom and home.';
+const DEFAULT_BENEFITS = [
+  'Confidence that grows one belt at a time',
+  'Focus and self-control that carry into the classroom',
+  'A healthy outlet for energy and better sleep at night',
+  'The presence to handle a bully without throwing a punch',
+  'Respect, patience, and follow-through that stick',
+  'A coach and community that genuinely notice your kid',
+];
+const DEFAULT_THEM = [
+  'Endless screen time and restless energy',
+  'Team sports that bench the shy or smaller kids',
+  'Programs with no real structure or progress',
+  'Big classes where your child gets overlooked',
+  'Long contracts before you’ve even tried it',
+];
+const DEFAULT_US = [
+  'Focus and self-control that shows up at home',
+  'Every child included, coached, and encouraged',
+  'A clear belt path kids feel proud to earn',
+  'Small classes with real one-on-one attention',
+  'Start with a free week, no contract, no pressure',
+];
+const DEFAULT_STEPS = [
+  { h: 'Get The Schedule', p: 'Fill out the quick form and we’ll text or call you the full class schedule in under 60 seconds, plus exactly how to claim your free week. No phone tag, no waiting.' },
+  { h: 'Come Train Free', p: 'Bring your child in for a full week of real classes. Meet the head instructor, watch a class, and let your child try it on the mat, no commitment, no pressure.' },
+  { h: 'Watch Them Grow', p: 'If it’s a fit (it usually is), we’ll get them on a schedule. Within a few weeks you’ll see more focus, confidence, and respect at home and at school.' },
+];
+const DEFAULT_FEATURES = [
+  { ic: 'shield', h: 'Anti-Bullying Skills', p: 'Confidence and presence so your child can stand up for themselves and others.' },
+  { ic: 'target', h: 'Focus & Discipline', p: 'Habits that carry into the classroom, attention, effort, follow-through.' },
+  { ic: 'smile', h: 'Real Confidence', p: 'Small wins and earned belts that make kids believe in themselves.' },
+  { ic: 'handshake', h: 'Respect & Integrity', p: 'Courtesy and self-control parents notice at home and at school.' },
+  { ic: 'activity', h: 'Coordination & Fitness', p: 'A high-energy outlet that builds balance, strength, and stamina.' },
+  { ic: 'award', h: 'Belt Progression', p: 'A clear path kids can see, earn, and feel proud of, one belt at a time.' },
+];
+const DEFAULT_FAQS = [
+  { q: 'Is the first week really free?', a: 'Yes. The trial week is completely free with no commitment and no contract, the best way to see how your child responds before deciding anything.' },
+  { q: 'What ages do you teach?', a: 'We have programs for every age: Little Ninjas (3–6), Kids (7–12), and Teen & Adult (13+). Tell us the age and we’ll point you to the right class.' },
+  { q: 'Will martial arts make my child more aggressive?', a: 'No. Taekwondo teaches self-defense, respect, and restraint. Kids learn that confidence helps them avoid conflict, not seek it out.' },
+  { q: 'My child is shy or not very coordinated, is that okay?', a: 'Completely okay. Kids start at every level. Our instructors build coordination, balance, and confidence step by step in a supportive environment.' },
+  { q: 'How fast can my child start?', a: 'This week. Classes run Monday–Thursday with a Saturday morning option. Send for the schedule and we’ll get them set up.' },
+  { q: 'What does it cost after the free week?', a: 'Simple monthly options, we’ll walk you through what fits your child and schedule during your visit. No pressure, no hard sell.' },
+];
+
+const {
+  // meta
+  title, description, leadSource, ogImage = '/assets/Lead%20Form%20BG%20Image.jpg',
+  // hero
+  tagline, headlineLines, subtitle,
+  heroImg = '/assets/Lead%20Form%20BG%20Image.jpg', heroImgAlt = 'La Jolla Martial Arts students training',
+  program = 'kids',
+  // benefits
+  benefitsLabel = 'More Than Kicks & Punches',
+  benefitsTitle = 'What Martial Arts <span class="accent">Really</span> Does For Kids',
+  benefitsLead = DEFAULT_BENEFITS_LEAD,
+  benefits = DEFAULT_BENEFITS,
+  // vs
+  vsLabel = 'Why It Works',
+  vsTitle = 'Not Just Another <span class="accent">After-School</span> Activity',
+  themHeading = 'Most Options', them = DEFAULT_THEM,
+  usHeading = 'La Jolla Martial Arts', us = DEFAULT_US,
+  // steps
+  stepsTitle = 'Three Steps To Your <span class="accent">Free Week</span>',
+  steps = DEFAULT_STEPS,
+  // features
+  featuresLabel = 'The Program',
+  featuresTitle = 'What Your Child Builds On The <span class="accent">Mat</span>',
+  features = DEFAULT_FEATURES,
+  // faq
+  faqLabel = 'FAQ',
+  faqTitle = 'Questions Parents <span class="accent">Ask</span>',
+  faqs = DEFAULT_FAQS,
+  // map + final
+  scheduleLine = 'Classes Mon–Thu afternoons + Saturday mornings.',
+  finalNote = 'Summer special: your child’s first week is on us. See the class times and reserve a spot.',
+} = Astro.props;
+---
+
+<LpLayout title={title} description={description} leadSource={leadSource} ogImage={ogImage}>
+  <!-- Sticky top: banner always; nav sticks too on desktop -->
+  <div class="lp-topstick">
+    <div class="promo-banner">☀️ SUMMER SPECIAL: Get Your <strong>First Week Free</strong> · Limited Spots</div>
+    <header class="lp-header">
+      <div class="inner">
+        <img src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" />
+        <div class="actions">
+          <a class="lp-sched" href="#schedule"><i data-lucide="calendar"></i> See Class Schedule</a>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-background">
+      <img src={heroImg} alt={heroImgAlt} />
+    </div>
+    <div class="hero-container">
+      <div class="hero-left">
+        <p class="tagline">{tagline}</p>
+        <h1 class="hero-title font-display">
+          {headlineLines.map((line, i) => (
+            <span class={i === headlineLines.length - 1 ? 'accent' : undefined}>{line}</span>
+          ))}
+        </h1>
+        <p class="hero-subtitle">{subtitle}</p>
+        <div class="stats">
+          <div class="stat-item"><h3 class="font-display">40+</h3><p>Years Teaching</p></div>
+          <div class="stat-item"><h3 class="font-display">300+</h3><p>Black Belts Trained</p></div>
+          <div class="stat-item"><h3 class="font-display">5.0★</h3><p>49+ Reviews</p></div>
+        </div>
+      </div>
+
+      <div class="hero-photo-mobile"><img src={heroImg} alt={heroImgAlt} /></div>
+
+      <div class="hero-right">
+        <div class="hero-form-container">
+          <form class="hero-form" novalidate data-lead-form>
+            <div class="hero-form-header">
+              <span class="hero-form-badge">Summer Special · 1 Week Free</span>
+              <h3 class="hero-form-title font-display">Get The Class Schedule</h3>
+              <div class="resp-tag"><i data-lucide="zap"></i> We Respond In Under 60 Seconds</div>
+              <p class="hero-form-subtitle">See class times and claim your free week.</p>
+            </div>
+            <input type="hidden" name="program" value={program} />
+            {trackingFields.map((f) => <input type="hidden" name={f} value="" />)}
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" for="firstName">First Name</label><input type="text" id="firstName" name="firstName" class="form-input" placeholder="John" required /></div>
+              <div class="form-group"><label class="form-label" for="lastName">Last Name</label><input type="text" id="lastName" name="lastName" class="form-input" placeholder="Smith" required /></div>
+            </div>
+            <div class="form-group"><label class="form-label" for="phone">Phone Number</label><input type="tel" id="phone" name="phone" class="form-input" placeholder="(858) 555-0123" required /></div>
+            <div class="form-group"><label class="form-label" for="email">Email Address</label><input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required /></div>
+            <button type="submit" class="form-submit">Send Me Your Class Schedule</button>
+            <div class="form-err" role="alert"></div>
+            <div class="or-call">or call <a href={tel}>{phone}</a></div>
+            <p class="form-disclaimer">No commitment. By submitting, you agree to receive emails and texts about your trial. We never share your information.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why it helps -->
+  <section class="section sec-light">
+    <div class="benefits-wrap">
+      <div class="lp-head" style="margin-bottom:1.5rem;">
+        <p class="section-label">{benefitsLabel}</p>
+        <h2 class="section-title font-display" set:html={benefitsTitle}></h2>
+      </div>
+      <p class="benefits-lead">{benefitsLead}</p>
+      <ul class="benefits-grid">
+        {benefits.map((b) => (<li><i data-lucide="check-circle" class="ic"></i><span>{b}</span></li>))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Us vs Them -->
+  <section class="section sec-alt">
+    <div class="lp-head"><p class="section-label">{vsLabel}</p><h2 class="section-title font-display" set:html={vsTitle}></h2></div>
+    <div class="lp-vs">
+      <div class="lp-card them">
+        <h3>{themHeading}</h3>
+        <ul>{them.map((t) => (<li><i data-lucide="x" class="ic"></i> {t}</li>))}</ul>
+      </div>
+      <div class="lp-card us">
+        <h3>{usHeading}</h3>
+        <ul>{us.map((u) => (<li><i data-lucide="check" class="ic"></i> {u}</li>))}</ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section sec-light">
+    <div class="lp-head"><p class="section-label">How It Works</p><h2 class="section-title font-display" set:html={stepsTitle}></h2></div>
+    <div class="lp-steps">
+      {steps.map((s, i) => (
+        <div class="lp-card lp-step"><div class="n">{i + 1}</div><h3>{s.h}</h3><p>{s.p}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Program / features -->
+  <section class="section sec-alt">
+    <div class="lp-head"><p class="section-label">{featuresLabel}</p><h2 class="section-title font-display" set:html={featuresTitle}></h2></div>
+    <div class="lp-features">
+      {features.map((c) => (
+        <div class="lp-card lp-feature"><div class="ci"><i data-lucide={c.ic}></i></div><h3>{c.h}</h3><p>{c.p}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Reviews (live Google reviews widget) -->
+  <section class="section reviews">
+    <div class="reviews-header">
+      <p class="section-label">Testimonials</p>
+      <h2 class="section-title font-display">What La Jolla <span class="accent">Families</span> Say</h2>
+      <div class="reviews-rating">
+        <span class="reviews-rating-stars">★★★★★</span>
+        <span class="reviews-rating-text">5.0 Rating • 49+ Reviews on Google &amp; Yelp</span>
+      </div>
+    </div>
+    <div class="reviews-widget">
+      <script is:inline type="text/javascript" src="https://page.intromartialarts.com/reputation/assets/review-widget.js"></script>
+      <iframe class="lc_reviews_widget" src="https://page.intromartialarts.com/reputation/widgets/review_widget/bmB2HGbfaWFdd07zoGeg" frameborder="0" scrolling="no" style="min-width: 100%; width: 100%;" title="La Jolla Martial Arts Google Reviews"></iframe>
+    </div>
+  </section>
+
+  <!-- Why us (dark) -->
+  <section class="section sec-dark">
+    <div class="lp-head"><p class="section-label">Why Families Choose Us</p><h2 class="section-title font-display">Trusted In <span class="accent">La Jolla</span></h2></div>
+    <div class="lp-why">
+      <div><i data-lucide="calendar-clock" class="ic"></i><div class="big">40+</div><div class="lab">Years Teaching</div></div>
+      <div><i data-lucide="award" class="ic"></i><div class="big">300+</div><div class="lab">Black Belts Trained</div></div>
+      <div><i data-lucide="star" class="ic"></i><div class="big">5.0★</div><div class="lab">49+ Reviews</div></div>
+      <div><i data-lucide="home" class="ic"></i><div class="big">Local</div><div class="lab">Family-Owned, La Jolla</div></div>
+      <div><i data-lucide="user-check" class="ic"></i><div class="big">All</div><div class="lab">Beginners Welcome</div></div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="section sec-alt">
+    <div class="lp-head"><p class="section-label">Inside The Dojo</p><h2 class="section-title font-display">Real Students. Real <span class="accent">Classes.</span></h2></div>
+    <div class="gallery-grid">
+      <div class="gallery-item gallery-item--wide"><img src="/assets/EMA - Post 12.jpg" alt="Belt ceremony" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/assets/EMA Image 2.webp" alt="Focus and discipline" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/assets/EMA - Post.jpg" alt="Taekwondo class in session" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/assets/IMG_8330-5592456.webp" alt="Student demonstrating a technique" loading="lazy" /></div>
+      <div class="gallery-item gallery-item--wide"><img src="/assets/Lead Form BG Image.jpg" alt="Dojo training atmosphere" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/assets/EMA - Post 6.jpg" alt="Instructor working with a student" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/assets/EMA - Post 2.jpg" alt="Students practicing techniques" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/assets/kids-martial-arts-1.webp" alt="Martial arts class" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/assets/Eagle_martial_arts_classes_2-9552290.webp" alt="Martial arts class group" loading="lazy" /></div>
+      <div class="gallery-item"><img src="/assets/IMG_3276-5592099.webp" alt="Students training together" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section class="section sec-light">
+    <div class="lp-head"><p class="section-label">Find Us</p><h2 class="section-title font-display">Right In The Heart Of <span class="accent">La Jolla</span></h2></div>
+    <div class="map-wrap">
+      <div class="map-info">
+        <h3>La Jolla Martial Arts</h3>
+        <div class="it"><i data-lucide="map-pin" class="ic"></i><span>{addr}</span></div>
+        <div class="it"><i data-lucide="navigation" class="ic"></i><span>Minutes from Bird Rock, Pacific Beach, and UTC / University City.</span></div>
+        <div class="it"><i data-lucide="clock" class="ic"></i><span>{scheduleLine}</span></div>
+        <div class="it"><i data-lucide="phone" class="ic"></i><span><a href={tel} style="color:var(--blood-red);font-weight:700;">{phone}</a></span></div>
+        <a class="btn-primary" href="#schedule" style="margin-top:1rem;">See Class Schedule</a>
+      </div>
+      <div class="map-card">
+        <iframe src={mapsEmbed} loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to La Jolla Martial Arts"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section sec-alt">
+    <div class="lp-head"><p class="section-label">{faqLabel}</p><h2 class="section-title font-display" set:html={faqTitle}></h2></div>
+    <div class="lp-faq">
+      {faqs.map((f) => (
+        <details><summary>{f.q}<span class="pl">+</span></summary><p>{f.a}</p></details>
+      ))}
+    </div>
+  </section>
+
+  <!-- Final CTA (dark) -->
+  <section class="section sec-dark">
+    <div class="lp-final">
+      <div>
+        <p class="section-label">Claim Your Spot</p>
+        <h2 class="section-title font-display">Get The Schedule &amp; Your <span class="accent">Free Week</span></h2>
+        <p style="color:rgba(245,245,240,.7)">{finalNote}</p>
+        <ul class="pts">
+          <li><i data-lucide="message-circle" class="ic"></i> We respond in under 60 seconds (call or text)</li>
+          <li><i data-lucide="badge-check" class="ic"></i> 40+ years teaching · 300+ black belts trained</li>
+          <li><i data-lucide="star" class="ic"></i> 5.0★ from 49+ Google &amp; Yelp reviews</li>
+          <li><i data-lucide="map-pin" class="ic"></i> {addr}</li>
+        </ul>
+      </div>
+      <div class="hero-form-container" id="schedule">
+        <form class="hero-form" novalidate data-lead-form>
+          <div class="hero-form-header">
+            <span class="hero-form-badge">Summer Special · 1 Week Free</span>
+            <h3 class="hero-form-title font-display">Get The Class Schedule</h3>
+            <div class="resp-tag"><i data-lucide="zap"></i> We Respond In Under 60 Seconds</div>
+            <p class="hero-form-subtitle">See class times and claim your free week.</p>
+          </div>
+          <input type="hidden" name="program" value={program} />
+          {trackingFields.map((f) => <input type="hidden" name={f} value="" />)}
+          <div class="form-row">
+            <div class="form-group"><label class="form-label" for="firstName2">First Name</label><input type="text" id="firstName2" name="firstName" class="form-input" placeholder="John" required /></div>
+            <div class="form-group"><label class="form-label" for="lastName2">Last Name</label><input type="text" id="lastName2" name="lastName" class="form-input" placeholder="Smith" required /></div>
+          </div>
+          <div class="form-group"><label class="form-label" for="phone2">Phone Number</label><input type="tel" id="phone2" name="phone" class="form-input" placeholder="(858) 555-0123" required /></div>
+          <div class="form-group"><label class="form-label" for="email2">Email Address</label><input type="email" id="email2" name="email" class="form-input" placeholder="john@example.com" required /></div>
+          <button type="submit" class="form-submit">Send Me Your Class Schedule</button>
+          <div class="form-err" role="alert"></div>
+          <div class="or-call">or call <a href={tel}>{phone}</a></div>
+          <p class="form-disclaimer">No commitment. By submitting, you agree to receive emails and texts about your trial.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="lp-footer">
+    <div class="row">
+      <span>La Jolla Martial Arts</span>
+      <a href={tel}>{phone}</a>
+      <span>{addr}</span>
+      <a href="/privacy">Privacy Policy</a>
+    </div>
+    <div>© 2026 La Jolla Martial Arts. All rights reserved.</div>
+  </footer>
+</LpLayout>

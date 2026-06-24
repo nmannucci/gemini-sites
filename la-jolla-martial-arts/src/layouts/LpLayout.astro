@@ -169,6 +169,9 @@ const { title, description, leadSource, ogImage = '/assets/EMA%20-%20Post.jpg' }
     /* Heavier callout/tagline above the headline */
     .hero .tagline { font-weight:800; }
 
+    /* Desktop hero: trim the homepage's tall top padding (it was clearing a fixed nav) */
+    .hero-container { padding-top:3.5rem; padding-bottom:4rem; }
+
     /* Promo banner */
     /* Desktop: banner + nav stick together. Mobile (below): banner only. */
     .lp-topstick { position:sticky; top:0; z-index:1100; }

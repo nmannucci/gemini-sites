@@ -1,0 +1,78 @@
+---
+import LpPage from '../../components/LpPage.astro';
+
+const benefits = [
+  'Practical self-defense you can actually use',
+  'A full-body workout that builds real fitness',
+  'Stress relief and a clearer head after work',
+  'Discipline and focus that carry into daily life',
+  'Confidence that comes from doing hard things',
+  'A welcoming community, all levels, ages 13 and up',
+];
+
+const them = [
+  'A membership you stop using by February',
+  'Workouts that feel like punishment',
+  'No real skill to show for the hours',
+  'Crowded floors where nobody knows you',
+  'Long contracts before you’ve even tried it',
+];
+const us = [
+  'Self-defense and fitness you’ll actually use',
+  'Training that’s challenging but never miserable',
+  'Clear progress you can see and feel',
+  'Small classes where instructors know your name',
+  'Start with a free week, no contract, no pressure',
+];
+
+const steps = [
+  { h: 'Get The Schedule', p: 'Fill out the quick form and we’ll text or call you the full class schedule in under 60 seconds, plus exactly how to claim your free week. No phone tag, no waiting.' },
+  { h: 'Come Train Free', p: 'Come in for a full week of real classes. Meet the instructors, jump in at your own pace, and see how it feels. No experience needed, no commitment.' },
+  { h: 'See Your Progress', p: 'If it’s a fit (it usually is), we’ll get you on a schedule. Within a few weeks you’ll feel fitter, sharper, and more confident, on and off the mat.' },
+];
+
+const features = [
+  { ic: 'shield', h: 'Real Self-Defense', p: 'Practical Taekwondo techniques that hold up when it actually counts.' },
+  { ic: 'flame', h: 'Fitness & Conditioning', p: 'A full-body workout that builds strength, speed, and stamina.' },
+  { ic: 'brain', h: 'Stress Relief', p: 'Leave the day on the mat and walk out with a clearer head.' },
+  { ic: 'target', h: 'Focus & Discipline', p: 'Habits that carry into work, health, and everyday life.' },
+  { ic: 'smile', h: 'Confidence', p: 'The quiet confidence that comes from doing hard things well.' },
+  { ic: 'award', h: 'Belt Progression', p: 'A clear path you can see, earn, and feel proud of.' },
+];
+
+const faqs = [
+  { q: 'Is the first week really free?', a: 'Yes. The trial week is completely free with no commitment and no contract, the best way to see if it’s a fit before deciding anything.' },
+  { q: 'Do I need to be in shape to start?', a: 'Not at all. Most people start out of shape and out of practice. You train at your own pace and build up class by class.' },
+  { q: 'I’ve never trained before. Is that okay?', a: 'Completely. Our classes are built for beginners. Instructors meet you where you are and walk you through every technique.' },
+  { q: 'What ages train in the adult class?', a: 'Teens and adults 13 and up train together. Whether you’re 15 or 55, there’s a place for you on the mat.' },
+  { q: 'How fast can I start?', a: 'This week. Teen & adult classes run Monday–Thursday evenings. Send for the schedule and we’ll get you set up.' },
+  { q: 'What does it cost after the free week?', a: 'Simple monthly options, we’ll walk you through what fits your goals and schedule during your visit. No pressure, no hard sell.' },
+];
+---
+<LpPage
+  title="Adult Martial Arts & Self-Defense in La Jolla | Free Week"
+  description="Adult martial arts and self-defense in La Jolla for teens and adults 13+. Get fit, learn real self-defense, and build discipline through Taekwondo. Claim a free week."
+  leadSource="lp-adult-martial-arts"
+  ogImage="/assets/EMA%20Image%202.webp"
+  tagline="La Jolla · Teens & Adults 13+"
+  headlineLines={["Adult Martial Arts", "& Self-Defense", "First Week Free"]}
+  subtitle="Get fit, learn real self-defense, and build discipline through Taekwondo. See the class schedule and start with a free week, no commitment."
+  heroImg="/assets/EMA%20Image%202.webp"
+  heroImgAlt="Adult martial arts and self-defense class in La Jolla"
+  program="teen-adult"
+  benefitsLabel="More Than A Workout"
+  benefitsTitle={'What Martial Arts <span class="accent">Really</span> Does For Adults'}
+  benefitsLead="You don’t need to be in shape to start, and you won’t dread showing up. Adults train Taekwondo here for real self-defense, a workout that doesn’t feel like punishment, and a clearer head after a long day. You build strength, focus, and confidence one class at a time, alongside a community that actually knows your name."
+  benefits={benefits}
+  vsTitle={'Not Just Another <span class="accent">Gym</span> Membership'}
+  themHeading="Most Gyms"
+  them={them}
+  us={us}
+  steps={steps}
+  featuresTitle={'What You Build On The <span class="accent">Mat</span>'}
+  features={features}
+  faqTitle={'Questions Adults <span class="accent">Ask</span>'}
+  faqs={faqs}
+  scheduleLine="Teen & adult classes Mon–Thu evenings."
+  finalNote="Summer special: your first week is on us. See the class times and reserve your spot."
+/>
