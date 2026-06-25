@@ -87,18 +87,29 @@ const {
   // map + final
   scheduleLine = 'Classes Mon–Thu afternoons + Saturday mornings.',
   finalNote = 'Summer special: your child’s first week is on us. See the class times and reserve a spot.',
+  // offer microcopy (overridable per page; defaults = the free-trial offer)
+  promoBanner = '☀️ SUMMER SPECIAL: Get Your <strong>First Week Free</strong> · Limited Spots',
+  headerCtaText = 'See Class Schedule',
+  formBadge = 'Summer Special · 1 Week Free',
+  formTitle = 'Get The Class Schedule',
+  formSubtitle = 'See class times and claim your free week.',
+  formSubmit = 'Send Me Your Class Schedule',
+  respTag = 'We Respond In Under 60 Seconds',
+  formDisclaimer = 'No commitment. By submitting, you agree to receive emails and texts about your trial. We never share your information.',
+  finalLabel = 'Claim Your Spot',
+  finalTitle = 'Get The Schedule &amp; Your <span class="accent">Free Week</span>',
 } = Astro.props;
 ---
 
 <LpLayout title={title} description={description} leadSource={leadSource} ogImage={ogImage}>
   <!-- Sticky top: banner always; nav sticks too on desktop -->
   <div class="lp-topstick">
-    <div class="promo-banner">☀️ SUMMER SPECIAL: Get Your <strong>First Week Free</strong> · Limited Spots</div>
+    <div class="promo-banner" set:html={promoBanner}></div>
     <header class="lp-header">
       <div class="inner">
         <img src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" />
         <div class="actions">
-          <a class="lp-sched" href="#schedule"><i data-lucide="calendar"></i> See Class Schedule</a>
+          <a class="lp-sched" href="#schedule"><i data-lucide="calendar"></i> {headerCtaText}</a>
         </div>
       </div>
     </header>
@@ -131,10 +142,10 @@ const {
         <div class="hero-form-container">
           <form class="hero-form" novalidate data-lead-form>
             <div class="hero-form-header">
-              <span class="hero-form-badge">Summer Special · 1 Week Free</span>
-              <h3 class="hero-form-title font-display">Get The Class Schedule</h3>
-              <div class="resp-tag"><i data-lucide="zap"></i> We Respond In Under 60 Seconds</div>
-              <p class="hero-form-subtitle">See class times and claim your free week.</p>
+              <span class="hero-form-badge">{formBadge}</span>
+              <h3 class="hero-form-title font-display">{formTitle}</h3>
+              <div class="resp-tag"><i data-lucide="zap"></i> {respTag}</div>
+              <p class="hero-form-subtitle">{formSubtitle}</p>
             </div>
             <input type="hidden" name="program" value={program} />
             {trackingFields.map((f) => <input type="hidden" name={f} value="" />)}
@@ -144,10 +155,10 @@ const {
             </div>
             <div class="form-group"><label class="form-label" for="phone">Phone Number</label><input type="tel" id="phone" name="phone" class="form-input" placeholder="(858) 555-0123" required /></div>
             <div class="form-group"><label class="form-label" for="email">Email Address</label><input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required /></div>
-            <button type="submit" class="form-submit">Send Me Your Class Schedule</button>
+            <button type="submit" class="form-submit">{formSubmit}</button>
             <div class="form-err" role="alert"></div>
             <div class="or-call">or call <a href={tel}>{phone}</a></div>
-            <p class="form-disclaimer">No commitment. By submitting, you agree to receive emails and texts about your trial. We never share your information.</p>
+            <p class="form-disclaimer">{formDisclaimer}</p>
           </form>
         </div>
       </div>
@@ -280,8 +291,8 @@ const {
   <section class="section sec-dark">
     <div class="lp-final">
       <div>
-        <p class="section-label">Claim Your Spot</p>
-        <h2 class="section-title font-display">Get The Schedule &amp; Your <span class="accent">Free Week</span></h2>
+        <p class="section-label">{finalLabel}</p>
+        <h2 class="section-title font-display" set:html={finalTitle}></h2>
         <p style="color:rgba(245,245,240,.7)">{finalNote}</p>
         <ul class="pts">
           <li><i data-lucide="message-circle" class="ic"></i> We respond in under 60 seconds (call or text)</li>
@@ -293,10 +304,10 @@ const {
       <div class="hero-form-container" id="schedule">
         <form class="hero-form" novalidate data-lead-form>
           <div class="hero-form-header">
-            <span class="hero-form-badge">Summer Special · 1 Week Free</span>
-            <h3 class="hero-form-title font-display">Get The Class Schedule</h3>
-            <div class="resp-tag"><i data-lucide="zap"></i> We Respond In Under 60 Seconds</div>
-            <p class="hero-form-subtitle">See class times and claim your free week.</p>
+            <span class="hero-form-badge">{formBadge}</span>
+            <h3 class="hero-form-title font-display">{formTitle}</h3>
+            <div class="resp-tag"><i data-lucide="zap"></i> {respTag}</div>
+            <p class="hero-form-subtitle">{formSubtitle}</p>
           </div>
           <input type="hidden" name="program" value={program} />
           {trackingFields.map((f) => <input type="hidden" name={f} value="" />)}
@@ -306,10 +317,10 @@ const {
           </div>
           <div class="form-group"><label class="form-label" for="phone2">Phone Number</label><input type="tel" id="phone2" name="phone" class="form-input" placeholder="(858) 555-0123" required /></div>
           <div class="form-group"><label class="form-label" for="email2">Email Address</label><input type="email" id="email2" name="email" class="form-input" placeholder="john@example.com" required /></div>
-          <button type="submit" class="form-submit">Send Me Your Class Schedule</button>
+          <button type="submit" class="form-submit">{formSubmit}</button>
           <div class="form-err" role="alert"></div>
           <div class="or-call">or call <a href={tel}>{phone}</a></div>
-          <p class="form-disclaimer">No commitment. By submitting, you agree to receive emails and texts about your trial.</p>
+          <p class="form-disclaimer">{formDisclaimer}</p>
         </form>
       </div>
     </div>

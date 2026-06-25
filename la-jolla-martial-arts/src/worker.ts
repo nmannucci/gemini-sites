@@ -21,6 +21,7 @@ const PROGRAM_LABELS: Record<string, string> = {
   'little-ninjas': 'Little Ninjas (Ages 3–6)',
   kids: 'Kids Martial Arts (Ages 7–12)',
   'teen-adult': 'Teen & Adult (Ages 13+)',
+  birthday: 'Birthday Party',
   general: 'General Question',
 };
 
