@@ -1229,6 +1229,13 @@ import Layout from '../layouts/Layout.astro';
       gap: 1.25rem;
     }
 
+    .reviews-widget {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
     .review-card {
       background: white;
       padding: 1.75rem;
@@ -2293,53 +2300,9 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
 
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">
-          "This is an amazing program. The head instructor is amazing with kids and has helped
-          both my boys with their confidence and self discipline."
-        </p>
-        <div class="review-author">
-          <div class="review-author-avatar">P</div>
-          <div class="review-author-info">
-            <h5>Parent of Two</h5>
-            <p>Verified Review</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">
-          "We have been taking our kids to La Jolla Martial Arts for five years now.
-          He's not only a great coach for martial arts, he teaches the kids respect,
-          integrity and discipline."
-        </p>
-        <div class="review-author">
-          <div class="review-author-avatar">L</div>
-          <div class="review-author-info">
-            <h5>Long-time Member</h5>
-            <p>5 Years Training</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">
-          "My son has been attending classes here for 3 years. Martial Arts has given
-          him confidence in a way no other sport has. The head instructor strikes a good balance
-          of positivity and discipline."
-        </p>
-        <div class="review-author">
-          <div class="review-author-avatar">M</div>
-          <div class="review-author-info">
-            <h5>Proud Parent</h5>
-            <p>3 Years Training</p>
-          </div>
-        </div>
-      </div>
+    <div class="reviews-widget">
+      <script is:inline type="text/javascript" src="https://page.intromartialarts.com/reputation/assets/review-widget.js"></script>
+      <iframe class="lc_reviews_widget" src="https://page.intromartialarts.com/reputation/widgets/review_widget/bmB2HGbfaWFdd07zoGeg" frameborder="0" scrolling="no" style="min-width: 100%; width: 100%;"></iframe>
     </div>
   </section>
 
