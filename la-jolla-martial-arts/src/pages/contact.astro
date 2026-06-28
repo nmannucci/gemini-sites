@@ -192,6 +192,45 @@ import Layout from '../layouts/Layout.astro';
     }
     .contact-facts a:hover { color: var(--blood-red); }
 
+    /* CHECKPOINTS (under form) */
+    .checkpoints {
+      background: var(--off-black);
+      padding: 3rem 4rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .checkpoints-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.75rem;
+    }
+    .checkpoint {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      column-gap: 0.9rem;
+      align-items: center;
+    }
+    .checkpoint .icon-wrap {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(41,190,226,0.15);
+      border: 1px solid rgba(41,190,226,0.45);
+      color: var(--blood-red);
+    }
+    .checkpoint .icon-wrap svg { width: 17px; height: 17px; }
+    .checkpoint strong {
+      display: block;
+      font-size: 0.68rem; letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0.15rem; font-weight: 600;
+    }
+    .checkpoint a, .checkpoint p {
+      font-size: 0.9rem; line-height: 1.4;
+      color: var(--bone-white); text-decoration: none;
+    }
+    .checkpoint a:hover { color: var(--blood-red); }
+
     /* FORM CARD */
     .contact-form-wrap {
       display: flex; justify-content: flex-end;
@@ -268,6 +307,33 @@ import Layout from '../layouts/Layout.astro';
     }
     .form-submit:hover { background: #1A9DBE; transform: translateY(-2px); }
     .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .form-divider {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 1.25rem 0;
+    }
+    .form-divider::before, .form-divider::after {
+      content: ''; flex: 1; height: 1px; background: #D8D8D8;
+    }
+    .form-divider span {
+      font-size: 0.72rem; color: #999;
+      text-transform: uppercase; letter-spacing: 0.1em;
+    }
+
+    .btn-call {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.6rem; width: 100%; padding: 0.95rem;
+      background: transparent; color: var(--dark-text);
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+      font-size: 0.8rem; border: 2px solid #D1D1D1;
+      cursor: pointer; transition: all 0.3s ease; text-decoration: none;
+    }
+    .btn-call:hover {
+      border-color: var(--dark-text);
+      background: var(--dark-text);
+      color: var(--bone-white);
+    }
+    .btn-call svg { width: 18px; height: 18px; }
 
     .form-error {
       display: none;
@@ -354,21 +420,15 @@ import Layout from '../layouts/Layout.astro';
       .contact-grid {
         display: flex;
         flex-direction: column;
-        gap: 0;
+        gap: 2.25rem;
         align-items: stretch;
       }
-      .contact-copy { display: contents; }
-      .eyebrow { order: 1; margin-bottom: 0.75rem; }
-      .contact-title { order: 2; margin-bottom: 1.25rem; }
-      .contact-lede { order: 3; margin-bottom: 2rem; }
-      .contact-form-wrap { order: 4; justify-content: center; margin-bottom: 2.25rem; }
-      .contact-facts {
-        order: 5;
-        padding-top: 1.75rem;
-        border-top: 1px solid rgba(255,255,255,0.15);
-      }
+      .contact-copy { max-width: 100%; }
+      .contact-form-wrap { justify-content: center; }
       .contact-form { max-width: 100%; padding: 2rem 1.5rem 1.75rem; }
       .contact-lede { font-size: 1rem; }
+      .checkpoints { padding: 2.5rem 1.5rem; }
+      .checkpoints-inner { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
       .footer { padding: 2rem 1.5rem; }
       .footer-content {
         flex-direction: column; gap: 1.25rem; text-align: center;
@@ -382,11 +442,10 @@ import Layout from '../layouts/Layout.astro';
       .contact-hero { padding: 6rem 1.25rem 2.5rem; }
       .contact-title { font-size: clamp(2.75rem, 12vw, 3.75rem); line-height: 1; }
       .contact-form { padding: 1.5rem 1.25rem; }
+      .checkpoints-inner { grid-template-columns: 1fr; gap: 1.25rem; }
     }
     @media (max-width: 480px) {
       .form-row { grid-template-columns: 1fr; gap: 0; }
-      .contact-facts li { grid-template-columns: 32px 1fr; }
-      .contact-facts .icon-wrap { width: 32px; height: 32px; }
       .nav { padding: 0.5rem 1rem; }
       .logo { font-size: 0.9rem; letter-spacing: 0.08em; }
       .nav-cta { padding: 0.6rem 0.85rem; font-size: 0.65rem; }
@@ -420,46 +479,16 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="contact-grid">
       <div class="contact-copy">
-        <p class="eyebrow">Get In Touch</p>
+        <p class="eyebrow">Free Trial · No Commitment</p>
         <h1 class="contact-title font-display">
-          <span>Contact</span>
-          <span>Us</span>
+          <span>Claim Your</span>
+          <span class="accent">Free Week</span>
+          <span>of Martial Arts</span>
         </h1>
         <p class="contact-lede">
-          Questions about classes, schedules, or ready to book your free week?
-          Send us a note and our team will get back to you within one business day.
+          Fill out the form and we'll get you set up with your complimentary one-week
+          trial. No commitment — just come experience what we're all about.
         </p>
-
-        <ul class="contact-facts">
-          <li>
-            <span class="icon-wrap"><i data-lucide="map-pin"></i></span>
-            <div>
-              <strong>Visit</strong>
-              <p>7680 Girard Ave, Basement, La Jolla, CA 92037</p>
-            </div>
-          </li>
-          <li>
-            <span class="icon-wrap"><i data-lucide="phone"></i></span>
-            <div>
-              <strong>Call</strong>
-              <a href="tel:8583610961">(858) 361-0961</a>
-            </div>
-          </li>
-          <li>
-            <span class="icon-wrap"><i data-lucide="mail"></i></span>
-            <div>
-              <strong>Email</strong>
-              <a href="mailto:LJBULLYPROOF@GMAIL.COM">LJBULLYPROOF@GMAIL.COM</a>
-            </div>
-          </li>
-          <li>
-            <span class="icon-wrap"><i data-lucide="clock"></i></span>
-            <div>
-              <strong>Hours</strong>
-              <p>Mon–Thu: 3:00pm – 6:30pm · Sat: 10:00am – 1:00pm</p>
-            </div>
-          </li>
-        </ul>
       </div>
 
       <div class="contact-form-wrap" id="contact-form">
@@ -510,12 +539,14 @@ import Layout from '../layouts/Layout.astro';
             </select>
           </div>
 
-          <div class="form-group">
-            <label class="form-label" for="message">Message</label>
-            <textarea id="message" name="message" class="form-textarea" placeholder="How can we help?" required></textarea>
-          </div>
-
           <button type="submit" class="form-submit" id="lead-submit">Claim My Free Week</button>
+
+          <div class="form-divider"><span>or</span></div>
+
+          <a href="tel:8583610961" class="btn-call">
+            <i data-lucide="phone"></i>
+            Call (858) 361-0961
+          </a>
 
           <div class="form-error" id="lead-error" role="alert"></div>
 
@@ -528,6 +559,39 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </header>
+
+  <section class="checkpoints" aria-label="Visit, call, email and hours">
+    <div class="checkpoints-inner">
+      <div class="checkpoint">
+        <span class="icon-wrap"><i data-lucide="map-pin"></i></span>
+        <div>
+          <strong>Visit</strong>
+          <p>7680 Girard Ave, Basement, La Jolla, CA 92037</p>
+        </div>
+      </div>
+      <div class="checkpoint">
+        <span class="icon-wrap"><i data-lucide="phone"></i></span>
+        <div>
+          <strong>Call</strong>
+          <a href="tel:8583610961">(858) 361-0961</a>
+        </div>
+      </div>
+      <div class="checkpoint">
+        <span class="icon-wrap"><i data-lucide="mail"></i></span>
+        <div>
+          <strong>Email</strong>
+          <a href="mailto:LJBULLYPROOF@GMAIL.COM">LJBULLYPROOF@GMAIL.COM</a>
+        </div>
+      </div>
+      <div class="checkpoint">
+        <span class="icon-wrap"><i data-lucide="clock"></i></span>
+        <div>
+          <strong>Hours</strong>
+          <p>Mon–Thu: 3:00pm – 6:30pm · Sat: 10:00am – 1:00pm</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <Fragment slot="scripts">
 <script is:inline>
