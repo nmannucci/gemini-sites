@@ -87,6 +87,98 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
       });
     }
   </script>
+
+  <script is:inline>
+    /* Robust in-page anchor scrolling.
+       The page has late-loading sections below the fold (the reviews iframe,
+       which sets its own height after load, and lazy gallery images). A plain
+       hash jump lands on the target's pre-shift position, then those sections
+       expand and push the target away — leaving you stranded in reviews/gallery.
+       This animates to the target while RECOMPUTING its position every frame,
+       then keeps it pinned for a short settle window as content loads in. */
+    (function () {
+      var navEl = document.getElementById('nav');
+      function navOffset() {
+        // Fixed nav overlays content; offset so the target heading isn't hidden.
+        return (navEl ? navEl.offsetHeight : 0) + 12;
+      }
+      function targetY(el) {
+        return window.scrollY + el.getBoundingClientRect().top - navOffset();
+      }
+      function clamp(y) {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        return Math.max(0, Math.min(y, max));
+      }
+      function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+
+      var cancelActive = null;
+
+      function scrollToEl(el) {
+        if (cancelActive) cancelActive();
+
+        var startY = window.scrollY;
+        var startTime = null;
+        var settleStart = null;
+        var interrupted = false;
+        var DURATION = 550;   // animate to target
+        var SETTLE = 1800;    // then hold the target as the page settles
+
+        function onUserScroll() { interrupted = true; }
+        function onKey(e) {
+          if (['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' ','Spacebar'].indexOf(e.key) !== -1) interrupted = true;
+        }
+        window.addEventListener('wheel', onUserScroll, { passive: true });
+        window.addEventListener('touchstart', onUserScroll, { passive: true });
+        window.addEventListener('keydown', onKey);
+
+        function cleanup() {
+          window.removeEventListener('wheel', onUserScroll);
+          window.removeEventListener('touchstart', onUserScroll);
+          window.removeEventListener('keydown', onKey);
+          cancelActive = null;
+        }
+        cancelActive = function () { interrupted = true; cleanup(); };
+
+        function go(y) { window.scrollTo({ top: clamp(y), behavior: 'auto' }); }
+
+        function frame(ts) {
+          if (interrupted) return cleanup();
+          if (startTime === null) startTime = ts;
+          var t = Math.min(1, (ts - startTime) / DURATION);
+          var dest = targetY(el); // recomputed each frame absorbs shifts mid-animation
+          go(startY + (dest - startY) * ease(t));
+          if (t < 1) { requestAnimationFrame(frame); return; }
+          if (settleStart === null) settleStart = ts;
+          if (Math.abs(window.scrollY - dest) > 2) go(dest); // re-pin as content loads
+          if (ts - settleStart < SETTLE) requestAnimationFrame(frame);
+          else cleanup();
+        }
+        requestAnimationFrame(frame);
+      }
+
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="#"]');
+        if (!a) return;
+        var hash = a.getAttribute('href');
+        if (!hash || hash === '#' || hash.length < 2) return;
+        var el;
+        try { el = document.querySelector(hash); } catch (_) { return; }
+        if (!el) return;
+        e.preventDefault();
+
+        // Close the mobile menu if the tapped link lives inside it.
+        var toggle = document.querySelector('.nav-toggle');
+        var menu = document.getElementById('mobileMenu');
+        if (toggle && menu && menu.getAttribute('data-open') === 'true') {
+          toggle.setAttribute('aria-expanded', 'false');
+          menu.setAttribute('data-open', 'false');
+        }
+
+        if (window.history && history.pushState) history.pushState(null, '', hash);
+        scrollToEl(el);
+      });
+    })();
+  </script>
   <script is:inline>
     (function () {
       var t = document.querySelector('.nav-toggle');
