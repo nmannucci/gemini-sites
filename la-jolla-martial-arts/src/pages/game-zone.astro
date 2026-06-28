@@ -1,0 +1,830 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title={`Interactive Game Zone in La Jolla | La Jolla Martial Arts`}
+  description={`Step into the Game Zone at La Jolla Martial Arts — Jumper, an AR trampoline, and Astro Blaster, a wall laser arena. Open play, birthday parties and group events for ages 6+. Plan your visit.`}
+  canonical={`https://lajollatkd.com/game-zone`}
+  ogImage={`/assets/gamezone-astro-1.webp`}
+  programPageCss
+  bodyClass="gz-body"
+>
+  <Fragment slot="head">
+<style is:global>
+  .gz-body {
+    --gz-cyan: #29BEE2;
+    --gz-magenta: #FF2E97;
+    --gz-lime: #B6FF3C;
+    --gz-ink: #05070F;
+    --gz-panel: rgba(255, 255, 255, 0.04);
+    --gz-line: rgba(255, 255, 255, 0.10);
+    background: var(--gz-ink);
+  }
+
+  /* Atmospheric arcade backdrop: dot grid + corner glows */
+  .gz {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(70% 55% at 12% 0%, rgba(41, 190, 226, 0.16), transparent 60%),
+      radial-gradient(60% 50% at 92% 12%, rgba(255, 46, 151, 0.14), transparent 60%),
+      radial-gradient(90% 60% at 50% 110%, rgba(41, 190, 226, 0.10), transparent 60%),
+      var(--gz-ink);
+  }
+  .gz::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 46px 46px;
+    -webkit-mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 78%);
+    mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 78%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .gz > * { position: relative; z-index: 1; }
+
+  .gz-wrap { max-width: 1240px; margin: 0 auto; padding: 0 2rem; }
+
+  .gz-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gz-cyan);
+  }
+  .gz-eyebrow::before {
+    content: "";
+    width: 26px;
+    height: 2px;
+    background: var(--gz-cyan);
+    box-shadow: 0 0 12px var(--gz-cyan);
+  }
+
+  .gz-kicker {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  /* ============================== HERO ============================== */
+  .gz-hero {
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    padding: 9rem 0 5rem;
+  }
+  .gz-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .gz-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.45;
+  }
+  .gz-hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(5, 7, 15, 0.55) 0%, rgba(5, 7, 15, 0.82) 60%, var(--gz-ink) 100%),
+      linear-gradient(90deg, rgba(5, 7, 15, 0.85) 0%, rgba(5, 7, 15, 0.2) 100%);
+  }
+  .gz-hero .gz-wrap { position: relative; z-index: 2; }
+
+  .gz-hero h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(3.6rem, 11vw, 8.5rem);
+    line-height: 0.86;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    margin: 1.4rem 0 1.2rem;
+    color: #fff;
+    text-shadow: 0 0 40px rgba(41, 190, 226, 0.35);
+  }
+  .gz-hero h1 .neon {
+    color: var(--gz-cyan);
+    text-shadow: 0 0 18px rgba(41, 190, 226, 0.9), 0 0 46px rgba(41, 190, 226, 0.5);
+  }
+  .gz-hero h1 .neon-pink {
+    color: var(--gz-magenta);
+    text-shadow: 0 0 18px rgba(255, 46, 151, 0.9), 0 0 46px rgba(255, 46, 151, 0.5);
+  }
+  .gz-hero p.gz-lead {
+    max-width: 560px;
+    font-size: 1.12rem;
+    line-height: 1.65;
+    color: rgba(245, 245, 245, 0.82);
+    margin-bottom: 2.2rem;
+  }
+
+  .gz-cta-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .gz-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.05rem 2rem;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .gz-btn-primary {
+    background: var(--orange, #FF6A1A);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(255, 106, 26, 0.35);
+  }
+  .gz-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(255, 106, 26, 0.5); }
+  .gz-btn-ghost {
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    border: 1.5px solid var(--gz-cyan);
+    box-shadow: inset 0 0 0 0 rgba(41, 190, 226, 0.15);
+  }
+  .gz-btn-ghost:hover {
+    background: rgba(41, 190, 226, 0.12);
+    box-shadow: 0 0 26px rgba(41, 190, 226, 0.35);
+    transform: translateY(-3px);
+  }
+
+  .gz-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2.6rem;
+  }
+  .gz-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.95rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(245, 245, 245, 0.9);
+    background: var(--gz-panel);
+    border: 1px solid var(--gz-line);
+    border-radius: 100px;
+  }
+  .gz-chip b { color: var(--gz-cyan); font-weight: 800; }
+
+  /* ============================== SECTION SHELL ============================== */
+  .gz-section { padding: 5.5rem 0; }
+  .gz-section-head { max-width: 720px; margin-bottom: 3rem; }
+  .gz-section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .gz-section-title {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(2.3rem, 5vw, 3.6rem);
+    line-height: 0.96;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0.9rem 0 1rem;
+  }
+  .gz-section-title .neon { color: var(--gz-cyan); }
+  .gz-section-title .neon-pink { color: var(--gz-magenta); }
+  .gz-section-sub { color: rgba(245, 245, 245, 0.7); line-height: 1.7; font-size: 1.02rem; }
+
+  /* ============================== INTRO STAT BAR ============================== */
+  .gz-statbar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--gz-line);
+    border: 1px solid var(--gz-line);
+  }
+  .gz-stat { background: var(--gz-ink); padding: 1.8rem 1.4rem; text-align: center; }
+  .gz-stat h3 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--gz-cyan);
+    text-shadow: 0 0 22px rgba(41, 190, 226, 0.5);
+  }
+  .gz-stat p {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(245, 245, 245, 0.6);
+    margin-top: 0.5rem;
+  }
+
+  /* ============================== ATTRACTION FEATURE ============================== */
+  .gz-feature {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+  .gz-feature + .gz-feature { margin-top: 5rem; }
+  .gz-feature.reverse .gz-feature-media { order: 2; }
+
+  .gz-feature-media {
+    position: relative;
+    border: 1px solid var(--gz-line);
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+  }
+  .gz-feature-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(41, 190, 226, 0.25);
+    pointer-events: none;
+  }
+  .gz-feature-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 16 / 11;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+  .gz-feature-media:hover img { transform: scale(1.05); }
+  .gz-feature.pink .gz-feature-media::after { border-color: rgba(255, 46, 151, 0.3); }
+
+  .gz-media-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #05070f;
+    background: var(--gz-cyan);
+    box-shadow: 0 0 22px rgba(41, 190, 226, 0.6);
+  }
+  .gz-feature.pink .gz-media-tag { background: var(--gz-magenta); box-shadow: 0 0 22px rgba(255, 46, 151, 0.6); }
+
+  .gz-feature-body .gz-kicker { color: var(--gz-cyan); }
+  .gz-feature.pink .gz-feature-body .gz-kicker { color: var(--gz-magenta); }
+  .gz-feature-name {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 0.92;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0.6rem 0 1rem;
+  }
+  .gz-feature-desc { color: rgba(245, 245, 245, 0.78); line-height: 1.75; margin-bottom: 1.6rem; }
+
+  .gz-bullets { list-style: none; display: grid; gap: 0.75rem; margin: 0 0 1.7rem; padding: 0; }
+  .gz-bullets li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    color: rgba(245, 245, 245, 0.86);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .gz-bullets li::before {
+    content: "";
+    width: 11px;
+    height: 11px;
+    margin-top: 0.32rem;
+    background: var(--gz-cyan);
+    transform: rotate(45deg);
+    box-shadow: 0 0 12px rgba(41, 190, 226, 0.7);
+  }
+  .gz-feature.pink .gz-bullets li::before { background: var(--gz-magenta); box-shadow: 0 0 12px rgba(255, 46, 151, 0.7); }
+
+  .gz-games-label {
+    font-size: 0.66rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 245, 245, 0.5);
+    margin-bottom: 0.7rem;
+  }
+  .gz-games { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+  .gz-game {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: rgba(245, 245, 245, 0.9);
+    background: var(--gz-panel);
+    border: 1px solid var(--gz-line);
+  }
+
+  /* ============================== WAYS TO PLAY ============================== */
+  .gz-ways-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .gz-way {
+    background: var(--gz-panel);
+    border: 1px solid var(--gz-line);
+    padding: 2rem 1.7rem;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .gz-way:hover {
+    transform: translateY(-6px);
+    border-color: rgba(41, 190, 226, 0.5);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+  }
+  .gz-way-ic {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gz-cyan);
+    background: rgba(41, 190, 226, 0.1);
+    border: 1px solid rgba(41, 190, 226, 0.3);
+    margin-bottom: 1.1rem;
+  }
+  .gz-way-ic svg { width: 24px; height: 24px; }
+  .gz-way h3 { font-family: "Bebas Neue", sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 0.5rem; letter-spacing: 0.02em; }
+  .gz-way p { color: rgba(245, 245, 245, 0.7); font-size: 0.92rem; line-height: 1.6; }
+
+  /* ============================== GALLERY ============================== */
+  .gz-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+  .gz-gallery .gz-shot { overflow: hidden; border: 1px solid var(--gz-line); }
+  .gz-gallery .gz-shot.wide { grid-column: span 2; }
+  .gz-gallery img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3; transition: transform 0.6s ease; }
+  .gz-gallery .gz-shot:hover img { transform: scale(1.06); }
+
+  /* ============================== PARTY BANNER ============================== */
+  .gz-party {
+    position: relative;
+    border: 1px solid rgba(255, 46, 151, 0.35);
+    background:
+      radial-gradient(80% 120% at 100% 0%, rgba(255, 46, 151, 0.22), transparent 60%),
+      radial-gradient(80% 120% at 0% 100%, rgba(41, 190, 226, 0.18), transparent 60%),
+      rgba(255, 255, 255, 0.03);
+    padding: 3.2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .gz-party h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 0.96;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 0.6rem;
+  }
+  .gz-party h2 .neon-pink { color: var(--gz-magenta); }
+  .gz-party p { color: rgba(245, 245, 245, 0.78); max-width: 540px; line-height: 1.6; }
+
+  /* ============================== FAQ ============================== */
+  .gz-faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .gz-faq-item { background: var(--gz-panel); border: 1px solid var(--gz-line); padding: 1.5rem 1.6rem; }
+  .gz-faq-item h3 {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.6rem;
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+  }
+  .gz-faq-item h3::before { content: "Q"; font-family: "Bebas Neue", sans-serif; font-size: 1.2rem; color: var(--gz-cyan); }
+  .gz-faq-item p { color: rgba(245, 245, 245, 0.72); font-size: 0.92rem; line-height: 1.65; }
+
+  /* ============================== FINAL CTA / FORM ============================== */
+  .gz-final { padding: 5.5rem 0 6.5rem; }
+  .gz-final-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem; align-items: center; }
+  .gz-final h2 {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 0.94;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0.9rem 0 1rem;
+  }
+  .gz-final h2 .neon { color: var(--gz-cyan); }
+  .gz-final p.gz-final-sub { color: rgba(245, 245, 245, 0.75); line-height: 1.7; margin-bottom: 1.8rem; max-width: 480px; }
+  .gz-contact { display: grid; gap: 0.9rem; margin-top: 0.4rem; }
+  .gz-contact-item { display: flex; align-items: center; gap: 0.75rem; color: rgba(245, 245, 245, 0.78); font-size: 0.92rem; }
+  .gz-contact-item svg { width: 18px; height: 18px; color: var(--gz-cyan); flex-shrink: 0; }
+
+  .gz-form {
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--gz-line);
+    padding: 2rem 2rem 1.8rem;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  }
+  .gz-form-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #05070f;
+    background: var(--gz-cyan);
+    margin-bottom: 0.9rem;
+  }
+  .gz-form h3 { font-family: "Bebas Neue", sans-serif; font-size: 1.8rem; color: #fff; line-height: 1; margin-bottom: 0.4rem; }
+  .gz-form > p { color: rgba(245, 245, 245, 0.62); font-size: 0.85rem; margin-bottom: 1.3rem; }
+  .gz-field { margin-bottom: 0.9rem; }
+  .gz-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .gz-field label {
+    display: block;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245, 245, 245, 0.55);
+    margin-bottom: 0.4rem;
+  }
+  .gz-field input,
+  .gz-field select {
+    width: 100%;
+    padding: 0.8rem 0.85rem;
+    background: rgba(5, 7, 15, 0.6);
+    border: 1px solid var(--gz-line);
+    color: #fff;
+    font-family: "Archivo", sans-serif;
+    font-size: 0.88rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .gz-field input::placeholder { color: rgba(245, 245, 245, 0.35); }
+  .gz-field input:focus,
+  .gz-field select:focus {
+    outline: none;
+    border-color: var(--gz-cyan);
+    box-shadow: 0 0 0 3px rgba(41, 190, 226, 0.18);
+  }
+  .gz-field select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2329BEE2' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.85rem center;
+  }
+  .gz-field select option { background: #05070f; color: #fff; }
+  .gz-form button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 0.4rem;
+    background: var(--orange, #FF6A1A);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .gz-form button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(255, 106, 26, 0.45); }
+  .gz-form-fine { font-size: 0.66rem; color: rgba(245, 245, 245, 0.4); line-height: 1.5; margin-top: 0.85rem; }
+
+  /* ============================== RESPONSIVE ============================== */
+  @media (max-width: 1024px) {
+    .gz-feature, .gz-final-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .gz-feature.reverse .gz-feature-media { order: 0; }
+    .gz-statbar { grid-template-columns: repeat(2, 1fr); }
+    .gz-ways-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .gz-wrap { padding: 0 1.25rem; }
+    .gz-hero { min-height: auto; padding: 7.5rem 0 4rem; }
+    .gz-section { padding: 4rem 0; }
+    .gz-ways-grid, .gz-faq-grid, .gz-gallery { grid-template-columns: 1fr; }
+    .gz-gallery .gz-shot.wide { grid-column: span 1; }
+    .gz-party { padding: 2.25rem 1.5rem; }
+    .gz-cta-row .gz-btn { flex: 1; justify-content: center; }
+  }
+  @media (max-width: 480px) {
+    .gz-statbar { grid-template-columns: 1fr; }
+    .gz-ways-grid { grid-template-columns: 1fr; }
+  }
+</style>
+  </Fragment>
+
+  <!-- ================= HERO ================= -->
+  <section class="gz gz-hero">
+    <div class="gz-hero-bg">
+      <img src="/assets/gamezone-astro-1.webp" alt="Child playing Astro Blaster laser arena at La Jolla Martial Arts" />
+    </div>
+    <div class="gz-wrap">
+      <p class="gz-eyebrow">New at La Jolla Martial Arts</p>
+      <h1 class="font-display">
+        Enter The<br /><span class="neon">Game</span> <span class="neon-pink">Zone</span>
+      </h1>
+      <p class="gz-lead">
+        Two next-level interactive attractions, right inside our La Jolla dojo. Jump into
+        augmented-reality worlds, blast neon targets off the wall, and move your body the
+        whole time. Built for kids, loved by grown-ups, perfect for parties.
+      </p>
+      <div class="gz-cta-row">
+        <a href="#plan" class="gz-btn gz-btn-primary">Plan Your Visit</a>
+        <a href="/lp/birthday-parties" class="gz-btn gz-btn-ghost">Book A Party</a>
+      </div>
+      <div class="gz-chips">
+        <span class="gz-chip"><b>2</b> Interactive Attractions</span>
+        <span class="gz-chip">Ages <b>6+</b></span>
+        <span class="gz-chip">Open Play &amp; Private Parties</span>
+        <span class="gz-chip">Active, Screen-Free-ish Fun</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INTRO / STAT BAR ================= -->
+  <section class="gz gz-section" style="padding-top:4rem;">
+    <div class="gz-wrap">
+      <div class="gz-section-head center">
+        <p class="gz-eyebrow" style="justify-content:center;">Two Ways To Play</p>
+        <h2 class="gz-section-title font-display">
+          Where Martial-Arts Energy<br />Meets <span class="neon">Next-Gen</span> Arcade
+        </h2>
+        <p class="gz-section-sub">
+          We brought in two of the most exciting interactive game systems on the market and
+          dropped them in our dojo. They get kids moving, thinking and competing — the same
+          focus, coordination and energy we teach on the mat, packaged as pure fun.
+        </p>
+      </div>
+      <div class="gz-statbar">
+        <div class="gz-stat"><h3 class="font-display">2</h3><p>Attractions</p></div>
+        <div class="gz-stat"><h3 class="font-display">8+</h3><p>Built-In Games</p></div>
+        <div class="gz-stat"><h3 class="font-display">100%</h3><p>On Your Feet</p></div>
+        <div class="gz-stat"><h3 class="font-display">6+</h3><p>Age To Play</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ATTRACTION 1: JUMPER ================= -->
+  <section class="gz gz-section" id="jumper" style="padding-top:1rem;">
+    <div class="gz-wrap">
+      <div class="gz-feature">
+        <div class="gz-feature-media">
+          <span class="gz-media-tag">AR Trampoline</span>
+          <img src="/assets/gamezone-jumper-1.webp" alt="Child jumping on the Jumper AR trampoline, controlling an on-screen jungle game" />
+        </div>
+        <div class="gz-feature-body">
+          <p class="gz-kicker">Attraction 01</p>
+          <h2 class="gz-feature-name font-display">Jumper</h2>
+          <p class="gz-feature-desc">
+            A pro-grade trampoline fused with augmented reality. Players control the action
+            on a giant projected wall using their own movement — jump, squat and freeze to
+            chase scores, dodge obstacles and battle through 3D worlds. It's cardio,
+            coordination and timing disguised as the best game in the building.
+          </p>
+          <ul class="gz-bullets">
+            <li>Full-body play that builds balance, timing and fitness</li>
+            <li>Up to 2 players bounce and compete at once</li>
+            <li>Adjustable difficulty, so first-timers and pros both have a blast</li>
+            <li>Stunning 3D graphics react to every jump in real time</li>
+          </ul>
+          <p class="gz-games-label">Featured Games</p>
+          <div class="gz-games">
+            <span class="gz-game">Cat &amp; Mouse</span>
+            <span class="gz-game">Jungle Adventure</span>
+            <span class="gz-game">Clash of Worlds</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ATTRACTION 2: ASTRO BLASTER ================= -->
+  <section class="gz gz-section" id="astro-blaster" style="padding-top:1rem;">
+    <div class="gz-wrap">
+      <div class="gz-feature reverse pink">
+        <div class="gz-feature-media">
+          <span class="gz-media-tag">Wall Laser Arena</span>
+          <img src="/assets/gamezone-astro-1.webp" alt="Child aiming a laser blaster at glowing targets projected on the wall in Astro Blaster" />
+        </div>
+        <div class="gz-feature-body">
+          <p class="gz-kicker">Attraction 02</p>
+          <h2 class="gz-feature-name font-display">Astro Blaster</h2>
+          <p class="gz-feature-desc">
+            An entire wall becomes an interactive battlefield. Grab a laser blaster and take
+            aim at vivid 3D targets that fire back, swarm and challenge your reflexes. Play
+            solo for the high score or team up two-player for co-op chaos across five
+            different themed games.
+          </p>
+          <ul class="gz-bullets">
+            <li>Lightning-fast hand-eye coordination and reaction training</li>
+            <li>2 laser blasters for head-to-head or co-op play</li>
+            <li>Projects onto a standard wall — up to a 14㎡ play area</li>
+            <li>Bright, arcade-style 3D graphics and big-screen action</li>
+          </ul>
+          <p class="gz-games-label">Featured Games</p>
+          <div class="gz-games">
+            <span class="gz-game">Robot Uprising</span>
+            <span class="gz-game">Gunslinger</span>
+            <span class="gz-game">Space Combat</span>
+            <span class="gz-game">Rhythm</span>
+            <span class="gz-game">Mission: Zombie</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section class="gz gz-section" style="padding-top:1rem;">
+    <div class="gz-wrap">
+      <div class="gz-section-head">
+        <p class="gz-eyebrow">See It In Action</p>
+        <h2 class="gz-section-title font-display">Lights On, <span class="neon-pink">Game On</span></h2>
+      </div>
+      <div class="gz-gallery">
+        <div class="gz-shot wide"><img src="/assets/gamezone-jumper-poster.webp" alt="Player choosing between glowing Jumper game portals" loading="lazy" /></div>
+        <div class="gz-shot"><img src="/assets/gamezone-astro-poster.webp" alt="Neon Astro Blaster laser gameplay on the wall" loading="lazy" /></div>
+        <div class="gz-shot"><img src="/assets/gamezone-jumper-2.webp" alt="Kid mid-jump in an AR trampoline game" loading="lazy" /></div>
+        <div class="gz-shot"><img src="/assets/gamezone-astro-2.webp" alt="Astro Blaster targets glowing on the wall" loading="lazy" /></div>
+        <div class="gz-shot"><img src="/assets/gamezone-jumper-3.webp" alt="Jumper AR trampoline session" loading="lazy" /></div>
+        <div class="gz-shot wide"><img src="/assets/gamezone-astro-3.webp" alt="Astro Blaster wall laser arena in play" loading="lazy" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WAYS TO PLAY ================= -->
+  <section class="gz gz-section">
+    <div class="gz-wrap">
+      <div class="gz-section-head center">
+        <p class="gz-eyebrow" style="justify-content:center;">How To Get In</p>
+        <h2 class="gz-section-title font-display">Four Ways To <span class="neon">Play</span></h2>
+      </div>
+      <div class="gz-ways-grid">
+        <div class="gz-way">
+          <span class="gz-way-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></span>
+          <h3 class="font-display">Open Play</h3>
+          <p>Drop in during open hours and take turns on both attractions. Great for a quick
+            burst of fun or burning off energy after school.</p>
+        </div>
+        <div class="gz-way">
+          <span class="gz-way-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7a3 3 0 1 0-3-3c0 1.66 1.34 3 3 3z"/></svg></span>
+          <h3 class="font-display">Birthday Parties</h3>
+          <p>Make the Game Zone the centerpiece of the party. A pro host runs the whole thing
+            while the kids jump, blast and compete.</p>
+        </div>
+        <div class="gz-way">
+          <span class="gz-way-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg></span>
+          <h3 class="font-display">Class Rewards</h3>
+          <p>Our students earn Game Zone time as a reward for effort and milestones — one more
+            reason kids love coming to train.</p>
+        </div>
+        <div class="gz-way">
+          <span class="gz-way-ic"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <h3 class="font-display">Group Events</h3>
+          <p>Team outings, camps and group bookings welcome. Tell us your headcount and we'll
+            build a session around it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PARTY BANNER ================= -->
+  <section class="gz gz-section" style="padding-top:0;">
+    <div class="gz-wrap">
+      <div class="gz-party">
+        <div>
+          <h2 class="font-display">The Ultimate <span class="neon-pink">Birthday Party</span> HQ</h2>
+          <p>Combine the Game Zone with real kicks, games and a board-break finale led by a
+            trained instructor. You bring the cake — we run the show.</p>
+        </div>
+        <a href="/lp/birthday-parties" class="gz-btn gz-btn-primary">See Party Packages</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="gz gz-section" style="padding-top:0;">
+    <div class="gz-wrap">
+      <div class="gz-section-head">
+        <p class="gz-eyebrow">Good To Know</p>
+        <h2 class="gz-section-title font-display">Game Zone <span class="neon">Questions</span></h2>
+      </div>
+      <div class="gz-faq-grid">
+        <div class="gz-faq-item">
+          <h3>What ages is the Game Zone for?</h3>
+          <p>Both attractions are built for ages 6 and up, with adjustable difficulty so younger
+            kids, teens and adults can all jump in. Younger siblings can usually play with a
+            little help.</p>
+        </div>
+        <div class="gz-faq-item">
+          <h3>Do I need to be a member to play?</h3>
+          <p>Nope. The Game Zone is open to members, party guests and the community. Reach out
+            for current open-play hours and availability.</p>
+        </div>
+        <div class="gz-faq-item">
+          <h3>How many kids can play at once?</h3>
+          <p>Each attraction supports up to 2 active players at a time, so groups rotate through
+            quickly. For parties and groups we manage turns so everyone gets plenty of play.</p>
+        </div>
+        <div class="gz-faq-item">
+          <h3>Can I book it for a birthday party?</h3>
+          <p>Absolutely — it's one of the most popular parts of our parties. A trained host runs
+            the Game Zone alongside martial-arts games. Check our
+            <a href="/lp/birthday-parties" style="color:var(--gz-cyan);">party packages</a>.</p>
+        </div>
+        <div class="gz-faq-item">
+          <h3>Is it active or just screen time?</h3>
+          <p>It's the opposite of sitting on the couch. Jumper is a trampoline workout and Astro
+            Blaster has you moving, aiming and reacting the entire time. Real exercise, zero
+            controllers.</p>
+        </div>
+        <div class="gz-faq-item">
+          <h3>Where is it located?</h3>
+          <p>Right inside our dojo at 7680 Girard Ave, Basement, La Jolla, CA 92037. Call
+            (858) 361-0961 and we'll help you plan a visit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA / FORM ================= -->
+  <section class="gz gz-final" id="plan">
+    <div class="gz-wrap">
+      <div class="gz-final-grid">
+        <div>
+          <p class="gz-eyebrow">Plan Your Visit</p>
+          <h2 class="font-display">Ready To <span class="neon">Press Start?</span></h2>
+          <p class="gz-final-sub">
+            Tell us a little about what you're after — open play, a birthday party or a group
+            event — and we'll get back to you with availability, hours and pricing.
+          </p>
+          <div class="gz-contact">
+            <div class="gz-contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <p>7680 Girard Ave, Basement, La Jolla, CA 92037</p>
+            </div>
+            <div class="gz-contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <p><a href="tel:8583610961" style="color:inherit;text-decoration:none;">(858) 361-0961</a></p>
+            </div>
+            <div class="gz-contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <p><a href="mailto:LJBULLYPROOF@GMAIL.COM" style="color:inherit;text-decoration:none;">LJBULLYPROOF@GMAIL.COM</a></p>
+            </div>
+          </div>
+        </div>
+
+        <form class="gz-form" action="/api/lead" method="POST" novalidate data-lead-form data-lead-source="game-zone">
+          <span class="gz-form-badge">Game Zone Inquiry</span>
+          <h3 class="font-display">Let's Get You Playing</h3>
+          <p>We'll reply within one business day.</p>
+
+          <div class="gz-row">
+            <div class="gz-field">
+              <label for="gzFirst">First Name</label>
+              <input type="text" id="gzFirst" name="firstName" placeholder="John" required />
+            </div>
+            <div class="gz-field">
+              <label for="gzLast">Last Name</label>
+              <input type="text" id="gzLast" name="lastName" placeholder="Smith" required />
+            </div>
+          </div>
+
+          <div class="gz-field">
+            <label for="gzEmail">Email Address</label>
+            <input type="email" id="gzEmail" name="email" placeholder="john@example.com" required />
+          </div>
+
+          <div class="gz-field">
+            <label for="gzPhone">Phone Number</label>
+            <input type="tel" id="gzPhone" name="phone" placeholder="(858) 555-0123" required />
+          </div>
+
+          <div class="gz-field">
+            <label for="gzInterest">I'm Interested In</label>
+            <select id="gzInterest" name="program" required>
+              <option value="" disabled selected>Select an option</option>
+              <option value="Game Zone — Open Play">Open Play / Walk-In</option>
+              <option value="birthday">Birthday Party</option>
+              <option value="Game Zone — Group Event">Group / Team Event</option>
+              <option value="general">Just Have A Question</option>
+            </select>
+          </div>
+
+          <button type="submit">Plan My Visit</button>
+
+          <p class="gz-form-fine">
+            By submitting, you agree to receive emails and texts about your visit. We respect
+            your privacy and will never share your information.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>

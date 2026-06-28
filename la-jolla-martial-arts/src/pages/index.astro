@@ -1628,6 +1628,126 @@ import Layout from '../layouts/Layout.astro';
     }
 
     /* ============================================
+       GAME ZONE BAND
+    ============================================ */
+    .gamezone-band {
+      background:
+        radial-gradient(70% 80% at 8% 10%, rgba(41, 190, 226, 0.16), transparent 60%),
+        radial-gradient(70% 90% at 100% 100%, rgba(255, 46, 151, 0.14), transparent 60%),
+        var(--deep-black);
+      color: var(--bone-white);
+      position: relative;
+      overflow: hidden;
+    }
+    .gamezone-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 46px 46px;
+      -webkit-mask-image: radial-gradient(circle at 30% 40%, #000, transparent 75%);
+      mask-image: radial-gradient(circle at 30% 40%, #000, transparent 75%);
+      pointer-events: none;
+    }
+    .gamezone-inner {
+      position: relative;
+      max-width: 1320px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    .gamezone-label { color: var(--blood-red); }
+    .gamezone-title { color: var(--bone-white); }
+    .gz-neon {
+      color: var(--blood-red);
+      text-shadow: 0 0 18px rgba(41, 190, 226, 0.85), 0 0 44px rgba(41, 190, 226, 0.45);
+    }
+    .gamezone-text {
+      color: rgba(245, 245, 245, 0.78);
+      line-height: 1.75;
+      font-size: 1.02rem;
+      margin-bottom: 1.4rem;
+      max-width: 540px;
+    }
+    .gamezone-text strong { color: var(--bone-white); }
+    .gamezone-points {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .gamezone-points li {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.86rem;
+      color: rgba(245, 245, 245, 0.85);
+    }
+    .gamezone-points li::before {
+      content: '';
+      width: 9px;
+      height: 9px;
+      background: var(--blood-red);
+      transform: rotate(45deg);
+      box-shadow: 0 0 10px rgba(41, 190, 226, 0.7);
+    }
+    .gamezone-cta { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .gamezone-btn2 { border-color: rgba(255, 255, 255, 0.4); }
+    .gamezone-media {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+    .gamezone-shot {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    }
+    .gamezone-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .gamezone-shot:hover img { transform: scale(1.06); }
+    .gamezone-shot--lg { grid-row: span 2; aspect-ratio: 3 / 4; }
+    .gamezone-shot--sm { aspect-ratio: 4 / 3; align-self: center; }
+    .gamezone-tag {
+      position: absolute;
+      left: 0.85rem;
+      bottom: 0.85rem;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #05070f;
+      background: var(--blood-red);
+      box-shadow: 0 0 20px rgba(41, 190, 226, 0.55);
+    }
+    .gamezone-tag--pink { background: #FF2E97; box-shadow: 0 0 20px rgba(255, 46, 151, 0.55); }
+
+    @media (max-width: 1024px) {
+      .gamezone-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 768px) {
+      .gamezone-media { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gamezone-shot--lg { grid-row: auto; aspect-ratio: 3 / 4; }
+    }
+    @media (max-width: 480px) {
+      .gamezone-media { grid-template-columns: 1fr; }
+      .gamezone-cta .btn-primary, .gamezone-cta .btn-secondary { width: 100%; text-align: center; }
+    }
+
+    /* ============================================
        RESPONSIVE
     ============================================ */
     @media (max-width: 1200px) {
@@ -2167,6 +2287,43 @@ import Layout from '../layouts/Layout.astro';
     <div class="programs-footer">
       <p>Not sure which class is right? <strong>Try our 1 Week FREE Martial Arts Classes.</strong></p>
       <a href="#get-started" class="btn-primary">Book Your Free Trial</a>
+    </div>
+  </section>
+
+  <!-- Game Zone Section -->
+  <section class="section gamezone-band" id="game-zone">
+    <div class="gamezone-inner">
+      <div class="gamezone-copy">
+        <p class="section-label gamezone-label">New · Interactive Game Zone</p>
+        <h2 class="section-title font-display gamezone-title">
+          Step Into The <span class="gz-neon">Game Zone</span>
+        </h2>
+        <p class="gamezone-text">
+          We added two next-level interactive attractions right inside the dojo:
+          <strong>Jumper</strong>, an augmented-reality trampoline, and
+          <strong>Astro Blaster</strong>, a wall laser arena. Active, screen-free-ish fun that
+          gets kids moving — perfect for open play, class rewards and birthday parties.
+        </p>
+        <ul class="gamezone-points">
+          <li>AR trampoline + wall laser tag</li>
+          <li>Ages 6 and up</li>
+          <li>Open play &amp; private parties</li>
+        </ul>
+        <div class="gamezone-cta">
+          <a href="/game-zone" class="btn-primary">Explore The Game Zone</a>
+          <a href="/lp/birthday-parties" class="btn-secondary gamezone-btn2">Book A Party</a>
+        </div>
+      </div>
+      <div class="gamezone-media">
+        <div class="gamezone-shot gamezone-shot--lg">
+          <img src="/assets/gamezone-jumper-1.webp" alt="Child jumping on the Jumper AR trampoline" loading="lazy" />
+          <span class="gamezone-tag">Jumper · AR Trampoline</span>
+        </div>
+        <div class="gamezone-shot gamezone-shot--sm">
+          <img src="/assets/gamezone-astro-1.webp" alt="Child playing Astro Blaster wall laser arena" loading="lazy" />
+          <span class="gamezone-tag gamezone-tag--pink">Astro Blaster · Laser Arena</span>
+        </div>
+      </div>
     </div>
   </section>
 

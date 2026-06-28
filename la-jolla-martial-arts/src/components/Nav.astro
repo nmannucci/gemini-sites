@@ -18,6 +18,7 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
         <li><a href="/adult-martial-arts">Adult Classes</a></li>
       </ul>
     </li>
+    <li><a href="/game-zone" class:list={[{ active: isActive('/game-zone') }]}>Game Zone</a></li>
     <li><a href="/schedule">Schedule</a></li>
     <li><a href="/about">About</a></li>
     <li><a href="/#reviews">Reviews</a></li>
@@ -33,6 +34,7 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
     <a href="/kids-martial-arts">Kids Martial Arts</a>
     <a href="/teen-martial-arts">Teen Martial Arts</a>
     <a href="/adult-martial-arts">Adult Classes</a>
+    <a href="/game-zone">Game Zone</a>
     <a href="/schedule">Schedule</a>
     <a href="/about">About</a>
     <a href="/contact">Contact</a>
