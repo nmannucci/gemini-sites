@@ -1,0 +1,528 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title={`Martial Arts Birthday Parties in La Jolla | La Jolla Martial Arts`}
+  description={`Throw an unforgettable martial arts birthday party in La Jolla. A trained instructor runs the games, real kicks, board breaks and our interactive Game Zone — you just bring the cake. Ages 4+. Check dates & pricing.`}
+  canonical={`https://lajollatkd.com/birthday-parties`}
+  ogImage={`/assets/kids-martial-arts-1.webp`}
+  programPageCss
+>
+  <Fragment slot="head">
+<style is:global>
+
+    .hero-media img {
+      object-fit: cover !important;
+      object-position: center 35% !important;
+    }
+    .hero-media::after {
+      background:
+        linear-gradient(
+          100deg,
+          rgba(8, 8, 8, 0.95) 0%,
+          rgba(8, 8, 8, 0.85) 45%,
+          rgba(8, 8, 8, 0.6) 75%,
+          rgba(8, 8, 8, 0.45) 100%
+        ) !important;
+    }
+
+    .hero-copy { max-width: 820px; }
+    .hero-title { font-size: clamp(3.4rem, 7.5vw, 6rem); }
+    .hero-subtitle {
+      padding: 0.95rem 1.25rem;
+      font-size: 0.95rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.85rem;
+    }
+    .hero-details { margin-top: 2.65rem; }
+    .hero-benefits { gap: 1rem; }
+    .hero-benefits li {
+      grid-template-columns: 20px minmax(0, 1fr);
+      column-gap: 1rem;
+    }
+    .hero-benefits strong {
+      font-size: 1.18rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.98);
+      text-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    }
+    .hero-benefits span { display: none; }
+    .hero-actions { margin-top: 3.4rem; gap: 1.1rem; }
+    .btn-primary, .btn-secondary { padding: 1.1rem 1.95rem; font-size: 0.9rem; }
+
+    .section-title .program-highlight {
+      color: var(--blood-red);
+      -webkit-text-stroke: 0;
+    }
+
+    /* ---------- Photo strip ---------- */
+    .photo-strip { padding: 0; background: var(--dark-text, #141414); }
+    .photo-strip-inner { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
+    .photo-strip figure { position: relative; margin: 0; aspect-ratio: 4 / 5; overflow: hidden; }
+    .photo-strip img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(0.12) contrast(1.05);
+      transition: transform 0.8s ease, filter 0.6s ease;
+    }
+    .photo-strip figure:hover img { transform: scale(1.06); filter: grayscale(0) contrast(1.05); }
+    .photo-strip figcaption {
+      position: absolute; left: 1rem; bottom: 0.85rem;
+      font-family: "Bebas Neue", sans-serif; font-size: 0.95rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--bone-white, #fdfbf5); text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+      padding: 0.2rem 0.55rem; border-left: 3px solid var(--blood-red, #29BEE2);
+    }
+    @media (max-width: 900px) {
+      .photo-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .photo-strip figure:nth-child(5) { display: none; }
+    }
+
+    /* ---------- Split spotlight ---------- */
+    .spotlight-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
+    .spotlight-grid.reverse .spotlight-media { order: 2; }
+    .spotlight-media {
+      position: relative; aspect-ratio: 4 / 5; overflow: hidden;
+      box-shadow: 0 30px 70px rgba(10, 10, 10, 0.35);
+    }
+    .spotlight-media::after {
+      content: ""; position: absolute; inset: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18); pointer-events: none;
+    }
+    .spotlight-media img { width: 100%; height: 100%; object-fit: cover; }
+    .spotlight-tag {
+      position: absolute; top: 1.2rem; left: -0.6rem;
+      background: var(--blood-red, #29BEE2); color: var(--bone-white, #fdfbf5);
+      font-family: "Bebas Neue", sans-serif; letter-spacing: 0.18em;
+      padding: 0.55rem 1rem; font-size: 0.9rem;
+    }
+    .spotlight-copy h2 { margin-bottom: 1rem; }
+    .spotlight-list { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 0.9rem; }
+    .spotlight-list li {
+      display: grid; grid-template-columns: 28px 1fr; gap: 0.75rem;
+      align-items: start; font-size: 1.02rem; line-height: 1.55;
+    }
+    .spotlight-list li::before {
+      content: ""; width: 14px; height: 14px; margin-top: 0.45rem;
+      background: var(--blood-red, #29BEE2); transform: rotate(45deg);
+    }
+    .spotlight-cta { margin-top: 1.9rem; }
+    @media (max-width: 860px) {
+      .spotlight-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .spotlight-grid.reverse .spotlight-media { order: 0; }
+    }
+
+    /* ---------- Steps ---------- */
+    .party-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 0.5rem; }
+    .party-step {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 1.75rem 1.6rem;
+    }
+    .party-step .n {
+      font-family: "Bebas Neue", sans-serif; font-size: 2.8rem; line-height: 1;
+      color: var(--blood-red);
+    }
+    .party-step h3 {
+      font-family: "Bebas Neue", sans-serif; font-size: 1.5rem; text-transform: uppercase;
+      letter-spacing: 0.02em; margin: 0.5rem 0 0.5rem; color: var(--bone-white);
+    }
+    .party-step p { color: rgba(245, 245, 240, 0.72); font-size: 0.96rem; line-height: 1.6; }
+    @media (max-width: 860px) { .party-steps { grid-template-columns: 1fr; } }
+
+</style>
+  </Fragment>
+
+  <header class="hero">
+    <div class="hero-media">
+      <img src="/assets/kids-martial-arts-1.webp" alt="Kids celebrating a martial arts birthday party in La Jolla">
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="hero-title font-display">
+          <span>Martial Arts Birthday</span>
+          <span>Parties In La Jolla</span>
+        </h1>
+        <p class="hero-subtitle">The Most Fun Party In La Jolla · Ages 4+</p>
+
+        <div class="hero-details" aria-label="Party overview">
+          <ul class="hero-benefits">
+            <li><strong>A trained instructor runs the entire party</strong></li>
+            <li><strong>Real kicks, board breaks and our interactive Game Zone</strong></li>
+            <li><strong>Your own private dojo — you just bring the cake</strong></li>
+          </ul>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Check Party Dates</a>
+          <a href="#faq" class="btn-secondary">View FAQ</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== PROOF ===== -->
+    <section class="section section-light" id="proof">
+      <div class="section-inner">
+        <p class="section-label">Why Parents Love It</p>
+        <h2 class="section-title font-display">
+          More Than A <span class="program-highlight">Birthday Party</span>
+        </h2>
+        <p class="section-intro">
+          A martial arts party isn't another loud afternoon you have to run yourself. A trained
+          instructor takes over the moment guests arrive — leading games, teaching real kicks, and
+          keeping a room full of excited kids engaged and safe — while you actually get to enjoy
+          your child's birthday.
+        </p>
+
+        <div class="proof-bar">
+          <article class="proof-card">
+            <strong>1</strong>
+            <span>Pro instructor runs the whole party start to finish</span>
+          </article>
+          <article class="proof-card">
+            <strong>4+</strong>
+            <span>Ages welcome — games are tailored to the group</span>
+          </article>
+          <article class="proof-card">
+            <strong>90<span class="proof-star" aria-hidden="true">min</span></strong>
+            <span>Of high-energy fun, plus time for cake</span>
+          </article>
+          <article class="proof-card">
+            <strong>100%</strong>
+            <span>Private dojo — no sharing with strangers</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PHOTO STRIP ===== -->
+    <section class="photo-strip" aria-label="Party moments">
+      <div class="photo-strip-inner">
+        <figure>
+          <img src="/assets/EMA - Post 12.jpg" alt="Kids martial arts games at a birthday party">
+          <figcaption>Games</figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/gamezone-jumper-1.webp" alt="Child jumping in the interactive Game Zone">
+          <figcaption>Game Zone</figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/EMA - Post 6.jpg" alt="Instructor teaching a real kick at a party">
+          <figcaption>Real Kicks</figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/gamezone-astro-1.webp" alt="Child playing Astro Blaster laser arena">
+          <figcaption>Laser Arena</figcaption>
+        </figure>
+        <figure>
+          <img src="/assets/EMA - Post 2.jpg" alt="Birthday star breaking a board">
+          <figcaption>Board Break</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== WHAT'S INCLUDED ===== -->
+    <section class="section section-dark" id="included">
+      <div class="section-inner">
+        <p class="section-label">What's Included</p>
+        <h2 class="section-title font-display">
+          Everything For An <span class="program-highlight">Unforgettable</span> Party
+        </h2>
+        <p class="section-intro">
+          We handle the energy, the activities and the clean-up. You show up with the cake and the
+          guests, and your child gets to be the star of a party their friends will talk about for
+          weeks.
+        </p>
+
+        <div class="benefits-grid">
+          <article class="benefit-card">
+            <h3 class="font-display">A Pro Instructor</h3>
+            <p>A trained coach leads the entire party so you don't have to lift a finger. They keep every kid engaged, moving and safe from start to finish.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">High-Energy Games</h3>
+            <p>Martial-arts games and challenges that burn off all that birthday energy and keep even the wiggliest guests laughing and involved.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">The Interactive Game Zone</h3>
+            <p>Our Jumper AR trampoline and Astro Blaster laser arena add a next-level wow factor that sets these parties apart from anything else in La Jolla.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">Real Kicks &amp; Board Breaks</h3>
+            <p>Every guest gets the thrill of throwing real kicks and breaking a board — the highlight moment that makes kids feel like total champions.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">A Birthday-Star Moment</h3>
+            <p>Your child gets a special spotlight moment they'll remember for years, surrounded by friends and cheered on by the whole room.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">Zero Stress For You</h3>
+            <p>Set-up, activities and clean-up are handled in your own private La Jolla dojo. You get to relax, take photos and actually enjoy the day.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GAME ZONE SPOTLIGHT ===== -->
+    <section class="section section-light" id="game-zone">
+      <div class="section-inner">
+        <div class="spotlight-grid reverse">
+          <div class="spotlight-media">
+            <span class="spotlight-tag">New</span>
+            <img src="/assets/gamezone-jumper-poster.webp" alt="Interactive Game Zone with glowing AR game portals">
+          </div>
+          <div class="spotlight-copy">
+            <p class="section-label">The Wow Factor</p>
+            <h2 class="section-title font-display">
+              Add The <span class="program-highlight">Game Zone</span>
+            </h2>
+            <p class="section-intro">
+              Make our two interactive attractions part of the party. <strong>Jumper</strong> is an
+              augmented-reality trampoline, and <strong>Astro Blaster</strong> turns a whole wall into
+              a neon laser arena. It's active, screen-free-ish fun the kids won't stop talking about.
+            </p>
+            <ul class="spotlight-list">
+              <li>AR trampoline games the whole party can rotate through</li>
+              <li>Wall laser tag for head-to-head and co-op play</li>
+              <li>A pro host keeps turns fair so every kid gets plenty of play</li>
+            </ul>
+            <div class="spotlight-cta">
+              <a href="/game-zone" class="btn-primary">Explore The Game Zone</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="section section-dark" id="how-it-works">
+      <div class="section-inner">
+        <p class="section-label">How It Works</p>
+        <h2 class="section-title font-display">
+          Three Steps To An <span class="program-highlight">Epic Party</span>
+        </h2>
+
+        <div class="party-steps">
+          <div class="party-step">
+            <div class="n font-display">1</div>
+            <h3 class="font-display">Pick Your Date</h3>
+            <p>Send your preferred date and we'll confirm availability and walk you through party packages and pricing, usually within a day.</p>
+          </div>
+          <div class="party-step">
+            <div class="n font-display">2</div>
+            <h3 class="font-display">We Handle It All</h3>
+            <p>On party day a trained instructor leads the games, the Game Zone and a board-break finale, and keeps every kid safe and engaged. Set-up and clean-up included.</p>
+          </div>
+          <div class="party-step">
+            <div class="n font-display">3</div>
+            <h3 class="font-display">You Enjoy The Day</h3>
+            <p>You bring the cake and the guests, we bring the fun. Snap photos, relax, and let your child be the birthday star.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== REVIEWS ===== -->
+    <section class="section section-alt" id="reviews">
+      <div class="section-inner">
+        <div class="reviews-head">
+          <div>
+            <p class="section-label">Reviews</p>
+            <h2 class="section-title font-display">
+              What Families Say About <span class="program-highlight">Our Parties</span>
+            </h2>
+          </div>
+          <div class="rating-chip">
+            <strong>★★★★★</strong>
+            <span>Fun, organized, and stress-free for parents</span>
+          </div>
+        </div>
+
+        <div class="reviews-grid">
+          <article class="review-card">
+            <span class="review-kicker">Jeanne Liem</span>
+            <h3>The Kids Had A Blast</h3>
+            <p>"My kids have been at Eagle Martial Arts for 3+ years" — the instructors know how to keep a room full of children engaged and having fun.</p>
+          </article>
+          <article class="review-card">
+            <span class="review-kicker">Ulka Pandya</span>
+            <h3>So Much More Than Games</h3>
+            <p>Families point to our head instructor's teaching style as "great life lessons for children" — energy and structure kids respond to instantly.</p>
+          </article>
+          <article class="review-card">
+            <span class="review-kicker">Local Parent</span>
+            <h3>Stress-Free For Parents</h3>
+            <p>The instructors run the whole thing and keep every kid involved — parents get to relax and actually enjoy the celebration.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section section-light" id="faq">
+      <div class="section-inner">
+        <p class="section-label">FAQ</p>
+        <h2 class="section-title font-display">
+          Birthday Party <span class="program-highlight">Questions</span>
+        </h2>
+        <p class="section-intro">
+          The questions parents ask most about booking a martial arts birthday party in La Jolla —
+          ages, group size, timing, and what you need to bring.
+        </p>
+
+        <div class="faq-list">
+          <article class="faq-item open">
+            <button class="faq-question" type="button" aria-expanded="true">
+              <span>What ages are the parties for?</span>
+              <i data-lucide="minus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Parties work best for ages 4 and up. We tailor the games and activities to the age group so everyone has a blast, whether it's preschoolers or older kids.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>How many kids can come?</span>
+              <i data-lucide="plus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Most parties are 10 to 20 kids. Tell us your headcount when you reach out and we'll recommend the right package.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>How long is the party?</span>
+              <i data-lucide="plus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Parties typically run about 90 minutes — enough time for games, the Game Zone, martial arts, the board-break finale and cake, without dragging.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Do the kids need any experience?</span>
+              <i data-lucide="plus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Not at all. Every activity is beginner-friendly and led by an instructor. Total first-timers have just as much fun as current students.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>What do we need to bring?</span>
+              <i data-lucide="plus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Just the cake, food and any decorations you want. We handle the space, the activities and the clean-up.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>How do we book a date?</span>
+              <i data-lucide="plus"></i>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">Send your preferred date through the form below or give us a call. Weekend dates book up fast, especially in summer, so the earlier the better.</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT / CTA ===== -->
+    <section class="section section-dark" id="contact">
+      <div class="section-inner">
+        <div class="cta-layout">
+          <div class="cta-panel">
+            <p class="section-label">Book Your Party</p>
+            <h2 class="section-title font-display">Lock In Your Party Date</h2>
+            <p>Weekend dates book fast, especially in summer. Send your preferred date and we'll confirm availability and pricing right away. Parties are available weekends and select weekday evenings.</p>
+
+            <ul class="cta-highlights">
+              <li>A trained instructor runs the entire party</li>
+              <li>Games, real kicks, board breaks and the interactive Game Zone</li>
+              <li>Your own private dojo — set-up and clean-up handled</li>
+            </ul>
+          </div>
+
+          <div class="get-started-form-container">
+            <form class="get-started-form" data-form-type="BirthdayPartyForm" action="/api/lead" method="POST" novalidate data-lead-form data-lead-source="birthday-parties-page">
+              <div class="get-started-form-header">
+                <span class="offer-badge">Birthday Parties · Ages 4+</span>
+                <h3 class="font-display">Check Dates &amp; Pricing</h3>
+                <p>Tell us your date and we'll send party packages and pricing.</p>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="first-name">First Name</label>
+                  <input id="first-name" name="firstName" type="text" class="form-input" placeholder="John" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="last-name">Last Name</label>
+                  <input id="last-name" name="lastName" type="text" class="form-input" placeholder="Smith" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input id="email" name="email" type="email" class="form-input" placeholder="john@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone Number</label>
+                <input id="phone" name="phone" type="tel" class="form-input" placeholder="(858) 555-0123" required>
+              </div>
+
+              <input type="hidden" name="program" value="birthday">
+
+              <button class="form-submit" type="submit">Send Me Party Info</button>
+
+              <div class="form-divider">
+                <span>or</span>
+              </div>
+
+              <a href="tel:8583610961" class="btn-call">
+                <i data-lucide="phone"></i>
+                Call (858) 361-0961
+              </a>
+
+              <p class="form-disclaimer">
+                No obligation. By submitting, you agree to receive emails and texts about your party.
+                We never share your information.
+              </p>
+            </form>
+
+            <div class="contact-info-bottom">
+              <div class="contact-item-bottom">
+                <i data-lucide="map-pin"></i>
+                <p>7680 Girard Ave, Basement, La Jolla, CA 92037</p>
+              </div>
+              <div class="contact-item-bottom">
+                <i data-lucide="clock"></i>
+                <p>Parties available weekends &amp; select weekday evenings</p>
+              </div>
+              <div class="contact-item-bottom">
+                <i data-lucide="mail"></i>
+                <p>LJBULLYPROOF@GMAIL.COM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Fragment slot="scripts">
+<script is:inline src="/program-template.js"></script>
+  </Fragment>
+</Layout>
