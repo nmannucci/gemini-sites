@@ -10,6 +10,12 @@ const tel = 'tel:8583610961';
 const addr = '7680 Girard Ave, Basement, La Jolla, CA 92037';
 const mapsEmbed = 'https://maps.google.com/maps?width=100%25&height=380&hl=en&q=7680%20Girard%20Ave,%20La%20Jolla,%20CA%2092037&t=&z=15&ie=UTF8&iwloc=B&output=embed';
 const trackingFields = ['gclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+const programOptions = [
+  { value: 'little-ninjas', label: 'Little Ninjas (Ages 3–6)' },
+  { value: 'kids', label: 'Kids Martial Arts (Ages 7–12)' },
+  { value: 'teen-adult', label: 'Teen & Adult (Ages 13+)' },
+  { value: 'birthday', label: 'Birthday Party' },
+];
 
 const DEFAULT_BENEFITS_LEAD = 'Most parents don’t enroll their kid in Taekwondo to raise a fighter. They enroll because something’s missing: focus, confidence, and a better outlet than a screen. On the mat, kids learn that effort pays off and respect is a habit, and those lessons follow them into the classroom and home.';
 const DEFAULT_BENEFITS = [
@@ -147,7 +153,6 @@ const {
               <div class="resp-tag"><i data-lucide="zap"></i> {respTag}</div>
               <p class="hero-form-subtitle">{formSubtitle}</p>
             </div>
-            <input type="hidden" name="program" value={program} />
             {trackingFields.map((f) => <input type="hidden" name={f} value="" />)}
             <div class="form-row">
               <div class="form-group"><label class="form-label" for="firstName">First Name</label><input type="text" id="firstName" name="firstName" class="form-input" placeholder="John" required /></div>
@@ -155,6 +160,13 @@ const {
             </div>
             <div class="form-group"><label class="form-label" for="phone">Phone Number</label><input type="tel" id="phone" name="phone" class="form-input" placeholder="(858) 555-0123" required /></div>
             <div class="form-group"><label class="form-label" for="email">Email Address</label><input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required /></div>
+            <div class="form-group">
+              <label class="form-label" for="program">Program Interest</label>
+              <select id="program" name="program" class="form-select" required>
+                <option value="" disabled selected={!programOptions.some((o) => o.value === program)}>Select a program</option>
+                {programOptions.map((o) => <option value={o.value} selected={o.value === program}>{o.label}</option>)}
+              </select>
+            </div>
             <button type="submit" class="form-submit">{formSubmit}</button>
             <div class="form-err" role="alert"></div>
             <div class="or-call">or call <a href={tel}>{phone}</a></div>
@@ -309,7 +321,6 @@ const {
             <div class="resp-tag"><i data-lucide="zap"></i> {respTag}</div>
             <p class="hero-form-subtitle">{formSubtitle}</p>
           </div>
-          <input type="hidden" name="program" value={program} />
           {trackingFields.map((f) => <input type="hidden" name={f} value="" />)}
           <div class="form-row">
             <div class="form-group"><label class="form-label" for="firstName2">First Name</label><input type="text" id="firstName2" name="firstName" class="form-input" placeholder="John" required /></div>
@@ -317,6 +328,13 @@ const {
           </div>
           <div class="form-group"><label class="form-label" for="phone2">Phone Number</label><input type="tel" id="phone2" name="phone" class="form-input" placeholder="(858) 555-0123" required /></div>
           <div class="form-group"><label class="form-label" for="email2">Email Address</label><input type="email" id="email2" name="email" class="form-input" placeholder="john@example.com" required /></div>
+          <div class="form-group">
+            <label class="form-label" for="program2">Program Interest</label>
+            <select id="program2" name="program" class="form-select" required>
+              <option value="" disabled selected={!programOptions.some((o) => o.value === program)}>Select a program</option>
+              {programOptions.map((o) => <option value={o.value} selected={o.value === program}>{o.label}</option>)}
+            </select>
+          </div>
           <button type="submit" class="form-submit">{formSubmit}</button>
           <div class="form-err" role="alert"></div>
           <div class="or-call">or call <a href={tel}>{phone}</a></div>
