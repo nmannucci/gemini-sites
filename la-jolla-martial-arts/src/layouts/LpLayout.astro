@@ -331,5 +331,33 @@ const { title, description, leadSource, ogImage = '/assets/EMA%20-%20Post.jpg' }
 
   <!-- LeadConnector chat widget -->
   <script is:inline src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a4204f26112ba37bb33944d"></script>
+
+  <!-- Lift the chat bubble above the sticky mobile call-bar (LP pages only).
+       The launcher lives in the widget's shadow DOM, so inject a style there
+       and re-inject when the widget re-renders. Scoped to the call-bar breakpoint. -->
+  <script is:inline>
+    (function () {
+      var CSS = '@media (max-width:820px){.lc_text-widget,.lc_text-widget--bubble{bottom:calc(84px + env(safe-area-inset-bottom)) !important;}}';
+      function ensure(root) {
+        if (root.querySelector('style[data-cw-nudge]')) return;
+        var s = document.createElement('style');
+        s.setAttribute('data-cw-nudge', '');
+        s.textContent = CSS;
+        root.appendChild(s);
+      }
+      function start() {
+        var cw = document.querySelector('chat-widget');
+        if (!cw || !cw.shadowRoot) return false;
+        ensure(cw.shadowRoot);
+        new MutationObserver(function () { ensure(cw.shadowRoot); })
+          .observe(cw.shadowRoot, { childList: true });
+        return true;
+      }
+      if (start()) return;
+      var n = 0, iv = setInterval(function () {
+        if (start() || ++n > 80) clearInterval(iv);
+      }, 400);
+    })();
+  </script>
 </body>
 </html>
