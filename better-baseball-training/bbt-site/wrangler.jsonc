@@ -3,8 +3,7 @@
   "compatibility_date": "2026-05-12",
   "pages_build_output_dir": "./dist",
   "vars": {
-    "LEAD_NOTIFY_TO": "nico@house36marketing.com",
-    "LEAD_NOTIFY_FROM": "Better Baseball Training <onboarding@resend.dev>"
+    "GHL_WEBHOOK_URL": "https://services.leadconnectorhq.com/hooks/izaQo9UT1BJu4MjOFtN4/webhook-trigger/22d50435-a665-4c19-af0a-03f444117699"
   },
   "d1_databases": [
     {

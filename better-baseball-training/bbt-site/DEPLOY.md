@@ -1,7 +1,9 @@
 # BBT — Vercel migration (2026-07-01)
 
 **Hosting moved to Vercel** because Wix DNS blocked connecting the custom domain to
-Cloudflare. The Cloudflare backend (D1 + Resend) is kept and reused.
+Cloudflare. The Cloudflare backend (D1) is kept and reused; lead notifications now go
+through a **GoHighLevel inbound webhook** (Resend was retired — Wix DNS can't host the
+SPF/DKIM records a verified Resend sending domain needs).
 
 ## Current architecture
 - **Static site**: Astro `bbt-site/` → **Vercel** project `better-baseball-training`
@@ -10,7 +12,9 @@ Cloudflare. The Cloudflare backend (D1 + Resend) is kept and reused.
   framework `astro`. Prod URL: `https://better-baseball-training.vercel.app`. Deploys
   on every push to `master`.
 - **Lead API**: still the Cloudflare **Pages** project at
-  `https://better-baseball-training.pages.dev/api/lead` (D1 `bbt-leads` + Resend, unchanged).
+  `https://better-baseball-training.pages.dev/api/lead` — writes to D1 `bbt-leads` and
+  forwards the lead to the GoHighLevel webhook (`GHL_WEBHOOK_URL` in `wrangler.jsonc`).
+  GHL sends the notification email. **The Resend sections lower in this file are superseded.**
 - **Glue**: `bbt-site/vercel.json` rewrites `/api/lead` → the pages.dev function
   (server-side proxy, so the browser sees same-origin — no CORS, no form-code change).
 - The Cloudflare Pages project stays deployed **only as the API backend**; it needs

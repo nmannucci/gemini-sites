@@ -1,5 +1,46 @@
 # better-baseball-training
 
+## Live site: stack & backend (this is the real, production site)
+
+The **public production site** at `https://www.betterbaseballtraining.com` is the
+**Astro** app in `bbt-site/` — NOT the `house36-bbt` WordPress theme (that's a retired
+track, see the LEGACY section below).
+
+- **Hosting**: **Vercel** project `better-baseball-training` (team `nico-mannuccis-projects`),
+  **git-connected** to `github.com/nmannucci/gemini-sites`, production branch `master`,
+  **Root Directory `better-baseball-training/bbt-site`**, framework Astro (static).
+  → Any change under `bbt-site/` deploys automatically on **push to `master`** (no CLI step).
+- **Domain**: registered/DNS-hosted at **Wix** (`ns*.wixdns.net`). Connected to Vercel via
+  DNS records only — apex `A 76.76.21.21`, `www CNAME cname.vercel-dns.com` — **no
+  nameserver change** (that's why Vercel, not Cloudflare, hosts). Apex 308-redirects to `www`.
+- **Lead form** (`/api/lead`): the Astro form POSTs JSON to `/api/lead`, which
+  `bbt-site/vercel.json` **rewrites (server-side proxy) to Cloudflare**
+  `https://better-baseball-training.pages.dev/api/lead`. Same-origin to the browser → no CORS.
+- **Lead backend** = **Cloudflare Pages Function** (`bbt-site/functions/api/lead.ts`) →
+  writes the lead to **Cloudflare D1** database `bbt-leads`
+  (id `e4b35f56-eaba-44c6-9238-446b77023c6c`) **+** forwards it to a **GoHighLevel
+  inbound webhook** (`GHL_WEBHOOK_URL`); **GHL sends the notification email** and creates
+  the contact. (Resend was dropped — Wix DNS can't host the SPF/DKIM records a verified
+  Resend sending domain needs.)
+- **Config source of truth = `wrangler.jsonc`, NOT the CF dashboard.** The CF Pages project
+  is git-connected, so a git-triggered build **re-applies `wrangler.jsonc`'s `vars` and
+  overwrites any dashboard env-var edits** (secrets set via `wrangler pages secret` persist
+  separately). To change a var (e.g. `GHL_WEBHOOK_URL`), edit `wrangler.jsonc` and **push**.
+- Full deploy state, DNS steps, and TODOs: **`bbt-site/DEPLOY.md`**.
+
+Lead notifications are now configured in **GoHighLevel** (workflow off the inbound webhook),
+not in code.
+
+---
+
+> ## ⚠️ LEGACY / ARCHIVED — do not use for the live site
+>
+> Everything from here down describes the `house36-bbt` **WordPress → LocalWP → Flywheel**
+> workflow, which is **superseded and no longer the live site.** It is kept only for
+> historical reference. Any mention below of "the site", "hosted destination (Flywheel)",
+> "push live", or "the homepage lead form (Forminator)" refers to the old, retired
+> WordPress build — **not** anything currently in production (see the stack above).
+
 ## Project System
 
 - This project uses a **source theme workflow**.
