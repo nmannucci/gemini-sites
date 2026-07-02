@@ -1,5 +1,64 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const SITE = 'https://lajollatkd.com';
+
+// LocalBusiness (MartialArtsSchool) structured data. Values mirror what is
+// displayed on the site (NAP in the footer + Get Started section) so the markup
+// matches visible content. Facebook link is omitted intentionally — the on-site
+// link is a placeholder (facebook.com root), not a real page.
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MartialArtsSchool',
+  '@id': `${SITE}/#business`,
+  name: 'La Jolla Martial Arts',
+  description:
+    'La Jolla Martial Arts offers world-class Taekwondo training for all ages. Build discipline, confidence, and self-defense skills at our family-owned dojo with 40+ years of teaching experience.',
+  url: `${SITE}/`,
+  telephone: '+1-858-361-0961',
+  image: `${SITE}/assets/EMA%20-%20Post.jpg`,
+  logo: `${SITE}/assets/LJ-martial-arts-logo.PNG`,
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '7680 Girard Ave, Basement',
+    addressLocality: 'La Jolla',
+    addressRegion: 'CA',
+    postalCode: '92037',
+    addressCountry: 'US',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 32.8442,
+    longitude: -117.274,
+  },
+  areaServed: [
+    { '@type': 'City', name: 'La Jolla' },
+    { '@type': 'City', name: 'San Diego' },
+  ],
+  founder: { '@type': 'Person', name: 'Master Sam' },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+      opens: '15:00',
+      closes: '18:30',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Saturday',
+      opens: '10:00',
+      closes: '13:00',
+    },
+  ],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'La Jolla Martial Arts',
+  url: `${SITE}/`,
+};
 ---
 
 <Layout
@@ -7,6 +66,8 @@ import Layout from '../layouts/Layout.astro';
   description={`La Jolla Martial Arts offers world-class Taekwondo training for all ages. Build discipline, confidence, and self-defense skills at our family-owned dojo with 40+ years of teaching experience.`}
 >
   <Fragment slot="head">
+<script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 <style is:global>
 
     :root {
@@ -1748,6 +1809,55 @@ import Layout from '../layouts/Layout.astro';
     }
 
     /* ============================================
+       FAQ SECTION
+    ============================================ */
+    .faq {
+      background: var(--light-bg);
+      color: var(--dark-text);
+    }
+
+    .faq-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .faq .section-label {
+      color: var(--blood-red);
+    }
+
+    .faq .section-title {
+      color: var(--dark-text);
+      margin-bottom: 1rem;
+    }
+
+    .faq .section-title .accent {
+      color: var(--blood-red);
+    }
+
+    .faq-header p {
+      color: var(--muted-text);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .faq-widget {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid var(--light-bg-alt);
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.06);
+      padding: 1rem;
+    }
+
+    .faq-widget iframe {
+      width: 100%;
+      height: 1100px;
+      border: none;
+      display: block;
+    }
+
+    /* ============================================
        RESPONSIVE
     ============================================ */
     @media (max-width: 1200px) {
@@ -2497,6 +2607,26 @@ import Layout from '../layouts/Layout.astro';
       <div class="gallery-item">
         <img src="/assets/EMA - Post 6.jpg" alt="Fitness and self defense" loading="lazy">
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section faq" id="faq">
+    <div class="faq-header">
+      <p class="section-label">Questions?</p>
+      <h2 class="section-title font-display">
+        Frequently Asked <span class="accent">Questions</span>
+      </h2>
+      <p>Everything parents and new students want to know about training at La Jolla Martial Arts.</p>
+    </div>
+
+    <div class="faq-widget">
+      <iframe
+        src="https://www.localmarketingmanager.com/api/questions/la-jolla-martial-arts-llc-frequently-asked-questions?textColor=%23000000&backgroundColor=%23ffffff&showTitle=true&borderRadius=10px&visibility=showAllExpanded&isTransparentBackgroundApplied=false"
+        loading="lazy"
+        id="ai-seo-iframe"
+        title="La Jolla Martial Arts Frequently Asked Questions"
+      ></iframe>
     </div>
   </section>
 

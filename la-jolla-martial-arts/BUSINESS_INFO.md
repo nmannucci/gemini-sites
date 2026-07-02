@@ -27,7 +27,7 @@ The current website has useful raw messaging, but it also contains obvious templ
 
 ## Business Snapshot
 - Business name: La Jolla Martial Arts
-- Primary location: 7438 Girard Ave, La Jolla, CA 92037
+- Primary location: 7680 Girard Ave, Basement, La Jolla, CA 92037 (the "Basement" suite is part of the official address — always include it)
 - Primary phone: (858) 361-0961
 - Secondary phone shown on homepage shell: (858) 551-5425
 - Email: Samhadaf@gmail.com
@@ -1210,7 +1210,7 @@ If the registration discount is still valid, confirm it and present it clearly. 
 ## Contact and Local Trust Details
 ### Core NAP data
 - Name: La Jolla Martial Arts
-- Address: 7438 Girard Ave, La Jolla, CA 92037
+- Address: 7680 Girard Ave, Basement, La Jolla, CA 92037 (the "Basement" suite is part of the official address — always include it)
 - Phone: (858) 361-0961
 - Email: Samhadaf@gmail.com
 
