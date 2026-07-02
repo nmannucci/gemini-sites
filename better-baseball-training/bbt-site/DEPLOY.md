@@ -1,3 +1,41 @@
+# BBT — Vercel migration (2026-07-01)
+
+**Hosting moved to Vercel** because Wix DNS blocked connecting the custom domain to
+Cloudflare. The Cloudflare backend (D1 + Resend) is kept and reused.
+
+## Current architecture
+- **Static site**: Astro `bbt-site/` → **Vercel** project `better-baseball-training`
+  (team `nico-mannuccis-projects`), **git-connected** to `nmannucci/gemini-sites`,
+  production branch `master`, **Root Directory `better-baseball-training/bbt-site`**,
+  framework `astro`. Prod URL: `https://better-baseball-training.vercel.app`. Deploys
+  on every push to `master`.
+- **Lead API**: still the Cloudflare **Pages** project at
+  `https://better-baseball-training.pages.dev/api/lead` (D1 `bbt-leads` + Resend, unchanged).
+- **Glue**: `bbt-site/vercel.json` rewrites `/api/lead` → the pages.dev function
+  (server-side proxy, so the browser sees same-origin — no CORS, no form-code change).
+- The Cloudflare Pages project stays deployed **only as the API backend**; it needs
+  no Cloudflare custom domain, which is what sidesteps the Wix nameserver limitation.
+
+## Remaining step — connect the domain (needs Wix login)
+DNS is hosted at Wix (`ns*.wixdns.net`). No nameserver change needed — just edit records
+in Wix → Domains → **Manage DNS Records**:
+
+| Host | Type  | Value                    | Notes                         |
+|------|-------|--------------------------|-------------------------------|
+| `@`  | A     | `76.76.21.21`            | replace the current Fastly A  |
+| `www`| CNAME | `cname.vercel-dns.com`   | replace the current alias     |
+
+Both `betterbaseballtraining.com` and `www.betterbaseballtraining.com` are already
+attached to the `better-baseball-training` project, with the apex set to 308-redirect
+to `www` (matches the Astro `site` URL). SSL auto-issues once DNS propagates. Verify
+with `vercel domains inspect www.betterbaseballtraining.com`.
+
+## Not yet done
+- Live end-to-end lead test (real submission) intentionally skipped — it would email
+  `house36@agentmail.to`. Trigger via the real form after DNS is live.
+
+---
+
 # BBT — Pages deploy state & remaining work
 
 **As of 2026-06-09** the site is migrating from a Cloudflare Worker custom-domain plan to **Cloudflare Pages**. The domain stays registered/DNS-hosted at **Wix** because Wix does not allow changing nameservers for this domain.
