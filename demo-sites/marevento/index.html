@@ -175,7 +175,7 @@ a{color:inherit}
 @media (min-width:900px){.swipe-hint{display:none}}
 .year-scroll{overflow-x:auto;overscroll-behavior-x:contain;padding-bottom:.75rem;
   scroll-snap-type:x proximity}
-.year-band{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);
+.year-band{display:grid;grid-auto-flow:column;grid-auto-columns:132px;
   gap:3px;min-width:max-content}
 /* Above 900px all twelve months must fit the wrap with no scroll. minmax(0,1fr)
    rather than 1fr — the auto minimum of `1fr` is content-sized, and the longest
@@ -342,7 +342,6 @@ a{color:inherit}
     <rect fill="var(--ink)" opacity=".45" x="16.4" y="8" width="1.2" height="22"/>
     <path fill="var(--coral)" d="M1 10 A16 16 0 0 1 33 10 Z"/>
     <path fill="var(--stucco)" d="M9 10 A16 16 0 0 1 17 1 L17 10 Z"/>
-    <path fill="var(--stucco)" d="M25 10 A16 16 0 0 0 17 1 L17 10 Z" opacity="0"/>
     <path fill="var(--stucco)" d="M17 1 A16 16 0 0 1 25 10 L17 10 Z"/>
   </symbol>
 
@@ -364,9 +363,13 @@ a{color:inherit}
     <path class="leaf" d="M18 26 L34 14 L34 18 Z"/>
   </symbol>
 
+  <!-- Scallop, not a blob: wide fluted base tapering to a hinge, so it still
+       reads as a shell at 12px rather than as a red teardrop. -->
   <symbol id="shell" viewBox="0 0 16 14">
-    <path fill="var(--coral)" d="M8 14 C1 10 0 4 3 1 C6 -1 10 -1 13 1 C16 4 15 10 8 14 Z"/>
-    <path fill="var(--stucco)" opacity=".55" d="M8 14 C6 9 6 4 7 1 L9 1 C10 4 10 9 8 14 Z"/>
+    <path fill="var(--coral)" d="M8 1 C12.5 1 15.5 6.5 15 13 H1 C.5 6.5 3.5 1 8 1 Z"/>
+    <path fill="var(--stucco)" opacity=".5" d="M8 1 C8.9 5.5 9.2 9 9.2 13 H6.8 C6.8 9 7.1 5.5 8 1 Z"/>
+    <path fill="var(--stucco)" opacity=".32" d="M4.6 2.6 C4 6.4 3.6 9.6 3.4 13 H2 C2.2 9.2 2.9 5.6 4.6 2.6 Z"/>
+    <path fill="var(--stucco)" opacity=".32" d="M11.4 2.6 C12 6.4 12.4 9.6 12.6 13 H14 C13.8 9.2 13.1 5.6 11.4 2.6 Z"/>
   </symbol>
 
 </defs>
