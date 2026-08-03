@@ -80,6 +80,14 @@ const lessonFaqItems: LessonFaqItem[] = [
     linkUrl: scheduleUrl(),
     linkLabel: 'View the training schedule',
   },
+  // Lesson-specific questions from lessons.ts. These carry the page's uniqueness — the four
+  // above are structural and read nearly the same on every lesson page, so the block would be
+  // boilerplate without them.
+  ...lesson.faq_items.map((item) => ({
+    question: item.question,
+    answerHtml: item.answer,
+    answerText: item.answer,
+  })),
 ];
 
 interface GalleryItem {
@@ -264,6 +272,11 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
           <div class="ls-section-label">How It Helps</div>
           <h2 class="ls-section-title">{lesson.section_title ?? 'What This Lesson Helps Build'}</h2>
           <p class="ls-overview__text">{lesson.overview}</p>
+          {lesson.also_called && lesson.also_called.length > 0 && (
+            <p class="ls-overview__aka">
+              Families also search for this as {lesson.also_called.slice(0, -1).join(', ')}, or {lesson.also_called.slice(-1)[0]} — it is the same coaching.
+            </p>
+          )}
 
           {lesson.focus_items && lesson.focus_items.length > 0 && (
             <ul class="ls-focus-list">

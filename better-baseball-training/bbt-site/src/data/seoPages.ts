@@ -226,7 +226,9 @@ export const seoPages: SeoPage[] = [
     slug: 'baseball-academy',
     label: 'Baseball Academy',
     title: 'Youth Baseball Academy',
-    meta_title: `Baseball Academy Sacramento Area | Rocklin & EDH | ${SITE_NAME}`,
+    // Location-neutral: this is a service pillar, so naming cities here competes with the
+    // two location pages for the same queries. The academy's cities live on those pages.
+    meta_title: `Youth Baseball Academy Memberships | ${SITE_NAME}`,
     meta_description:
       'Youth baseball academy memberships in Rocklin and El Dorado Hills for ages 8-14U. Unlimited access training from Better Baseball Training.',
     kicker: 'Youth Baseball Academy',
@@ -279,6 +281,31 @@ export const seoPages: SeoPage[] = [
         answer:
           'Academy training can support hitting, pitching, infield/outfield, catching, baseball IQ, and broader player development.',
       },
+      {
+        question: 'Why does El Dorado Hills cost more than Rocklin?',
+        answer:
+          'The two facilities are priced separately at $250 and $299 per month. Families choose the location that works for their commute rather than paying one blended rate across both.',
+      },
+      {
+        question: 'Is academy membership better value than private lessons?',
+        answer:
+          'They solve different problems. Private lessons are targeted work on one skill, while academy membership is recurring structured training. Players who need volume and consistency usually get more out of membership; players fixing one specific thing often start with lessons.',
+      },
+      {
+        question: 'Can a player do private lessons and academy membership at the same time?',
+        answer:
+          'Yes. Many families use lessons for focused skill work and academy training for consistent reps between them. Call 916-465-5551 and the staff can suggest the right mix.',
+      },
+      {
+        question: 'Which location should we choose for academy membership?',
+        answer:
+          'Choose on commute first. Rocklin is at 4283 Duluth Ave and serves Rocklin, Roseville, Granite Bay, and Loomis. El Dorado Hills is at 4990 Hillsdale Dr, Suite 400 and serves EDH, Folsom, Cameron Park, and Shingle Springs.',
+      },
+      {
+        question: 'Does academy membership lead into travel baseball?',
+        answer:
+          'It can. BBT runs travel baseball development alongside the academy, and the staff can advise when a player is ready for team-based play rather than continuing with individual and group training alone.',
+      },
     ],
     service_type: 'Youth baseball academy membership',
     schema_locations: ['rocklin', 'el-dorado-hills'],
@@ -295,7 +322,8 @@ export const seoPages: SeoPage[] = [
     slug: 'travel-baseball',
     label: 'Travel Baseball',
     title: 'Travel Baseball Development',
-    meta_title: `Travel Baseball Sacramento Area | Youth Development | ${SITE_NAME}`,
+    // Location-neutral for the same reason as the academy pillar.
+    meta_title: `Travel Baseball Development for Youth Players | ${SITE_NAME}`,
     meta_description:
       'Travel baseball development in the Sacramento area for youth players ages 8-14U. Better Baseball Training helps players prepare for team competition.',
     kicker: 'Travel Baseball Development',
@@ -347,6 +375,31 @@ export const seoPages: SeoPage[] = [
         question: 'Is this a tournament directory?',
         answer:
           'No. This page is focused on player development and readiness, not listing Sacramento travel baseball tournaments.',
+      },
+      {
+        question: 'How do we know if our player is ready for travel baseball?',
+        answer:
+          'Readiness is usually about whether a player can execute skills consistently and handle a bigger workload, not just whether they are one of the better players on their current team. BBT staff can give an honest read after seeing an athlete train.',
+      },
+      {
+        question: 'Should a player do travel ball or keep working on skills first?',
+        answer:
+          'Both paths are legitimate, and the wrong order is common. A player who joins a team before their skills hold up often gets reps without development. BBT is set up so families can build skills first and move to team play when it actually helps.',
+      },
+      {
+        question: 'Does BBT run its own travel teams?',
+        answer:
+          'Travel baseball development is part of what BBT offers alongside lessons and academy membership. Call 916-465-5551 for what is currently running and which age groups have openings.',
+      },
+      {
+        question: 'What ages does travel baseball development cover?',
+        answer:
+          'The BBT development model is built around players ages 8-14U, which is the window where most families are first deciding whether to move into travel baseball.',
+      },
+      {
+        question: 'Can a player train for travel baseball at either location?',
+        answer:
+          'Yes. Both the Rocklin and El Dorado Hills facilities support the same development work, so families can train at whichever location is a better commute.',
       },
     ],
     service_type: 'Travel baseball development',
