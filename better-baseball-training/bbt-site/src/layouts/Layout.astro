@@ -164,6 +164,44 @@ const ogImageUrl = new URL(ogImage, site).toString();
   </script>
 
   <script is:inline>
+    // Hero lead-start: carry the three above-the-fold fields into the full form below,
+    // scroll there, and focus the first field the visitor still has to fill.
+    (function () {
+      var blocks = document.querySelectorAll('[data-hero-lead-start]');
+      if (!blocks.length) return;
+
+      blocks.forEach(function (block) {
+        var btn = block.querySelector('[data-hero-lead-continue]');
+        var section = document.getElementById(block.dataset.targetForm);
+        if (!btn || !section) return;
+
+        var form = section.querySelector('form[data-lead-form]');
+        if (!form) return;
+
+        btn.addEventListener('click', function () {
+          block.querySelectorAll('[data-hero-field]').forEach(function (input) {
+            var target = form.querySelector('[name="' + input.dataset.heroField + '"]');
+            if (target && input.value) target.value = input.value;
+          });
+
+          if (typeof gtag === 'function') {
+            gtag('event', 'lead_start', { page_path: window.location.pathname });
+          }
+
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+          // Focus the first still-empty required field so the visitor lands mid-task.
+          var next = Array.prototype.find.call(
+            form.querySelectorAll('[required]'),
+            function (el) { return !el.value; }
+          );
+          if (next) setTimeout(function () { next.focus({ preventScroll: true }); }, 450);
+        });
+      });
+    })();
+  </script>
+
+  <script is:inline>
     // Phone and booking clicks are the other half of the lead picture — without these,
     // a location page that drives calls instead of form fills looks like it converts zero.
     (function () {

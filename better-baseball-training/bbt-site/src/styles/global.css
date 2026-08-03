@@ -682,9 +682,9 @@ nav {
 .services-header {
   padding: 80px 72px 60px;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
 }
 
 .services-label {
@@ -711,15 +711,14 @@ nav {
 }
 
 .services-desc {
-  max-width: 380px;
+  max-width: 560px;
   font-family: 'Inter', sans-serif;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.65;
   color: rgba(255,255,255,0.75);
   letter-spacing: 0.02em;
-  text-align: right;
-  padding-bottom: 8px;
+  text-align: left;
 }
 
 .services-grid {
@@ -4793,7 +4792,8 @@ footer {
   backdrop-filter: blur(10px);
 }
 
-.ls-picture-hero__panel {
+.ls-picture-hero__panel,
+.hero-lead-start {
   align-self: end;
   padding: 28px;
   border: 1px solid rgba(255,255,255,0.14);
@@ -4802,6 +4802,127 @@ footer {
     rgba(0,0,0,0.58);
   backdrop-filter: blur(14px);
   box-shadow: 0 28px 80px rgba(0,0,0,0.32);
+}
+
+/* Above-the-fold lead capture. Occupies the slot the quick-facts panel used to,
+   so the hero grid is unchanged. */
+.hero-lead-start__eyebrow {
+  display: block;
+  margin-bottom: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.hero-lead-start__title {
+  margin: 0 0 18px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  color: var(--white);
+}
+
+.hero-lead-start__field {
+  margin-bottom: 12px;
+}
+
+.hero-lead-start__field label {
+  display: block;
+  margin-bottom: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+}
+
+.hero-lead-start__field input,
+.hero-lead-start__field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.45);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  border-radius: 0;
+  appearance: none;
+}
+
+.hero-lead-start__field input:focus,
+.hero-lead-start__field select:focus {
+  outline: none;
+  border-color: var(--yellow);
+}
+
+.hero-lead-start__field input::placeholder {
+  color: rgba(255,255,255,0.38);
+}
+
+.hero-lead-start__field select option {
+  background: #101010;
+  color: var(--white);
+}
+
+.hero-lead-start__submit {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 6px;
+  border: 0;
+  background: var(--yellow);
+  color: #0A0A0A;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.hero-lead-start__submit:hover,
+.hero-lead-start__submit:focus-visible {
+  background: var(--white);
+}
+
+.hero-lead-start__note {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.5);
+}
+
+@media (max-width: 800px) {
+  /* The hero's two columns stack, which pushed the form's Continue button below the fold.
+     The meta pills are already repeated verbatim by the .ls-snapshot strip immediately
+     under the hero, so dropping them here costs nothing and buys back ~160px — enough to
+     land the CTA above the fold on a 375x812 screen. */
+  .ls-picture-hero .ls-hero__meta {
+    display: none;
+  }
+
+  /* Same reasoning for the hero's secondary buttons: the fixed mobile nav already shows
+     Call Us, Book Now and Schedule at every scroll position, so these are a third copy of
+     the same two intents. Removing them is what gets the form's CTA above the fold, and
+     the template is explicit that a hero shouldn't stack CTAs when a sticky one exists. */
+  .ls-picture-hero .ls-hero__actions {
+    display: none;
+  }
+
+  .ls-picture-hero .ls-hero__copy {
+    margin-top: 14px;
+  }
+
+  .hero-lead-start {
+    padding: 22px;
+  }
+
+  .hero-lead-start__title {
+    margin-bottom: 14px;
+  }
 }
 
 .ls-picture-hero__panel span {

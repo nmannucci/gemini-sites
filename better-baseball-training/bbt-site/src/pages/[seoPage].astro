@@ -12,6 +12,7 @@ import {
 import { contact } from '../data/contact';
 import { locations } from '../data/locations';
 import LeadForm from '../components/LeadForm.astro';
+import HeroLeadStart from '../components/HeroLeadStart.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -302,16 +303,15 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
               </div>
             )}
             <div class="ls-hero__actions">
-              <a href="#seo-story-form" class="membership-cta">Start the Player Form</a>
               <a href={contact.phoneHref} class="cta-box-secondary-link">Call {contact.phone}</a>
               <a href={scheduleUrl()} class="cta-box-secondary-link">View Schedule</a>
             </div>
           </div>
-          <div class="ls-picture-hero__panel" aria-label="Program quick facts">
-            <span>{storyGallery[0]?.label ?? page.title}</span>
-            <strong>{page.title}</strong>
-            <p>{page.intro_copy}</p>
-          </div>
+          <HeroLeadStart
+            targetFormId="seo-story-form"
+            idPrefix={`seo-story-${page.slug}`}
+            heading={page.title}
+          />
         </div>
       </section>
 

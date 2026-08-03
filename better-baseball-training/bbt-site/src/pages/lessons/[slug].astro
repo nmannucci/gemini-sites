@@ -13,6 +13,7 @@ import {
 } from '../../data/urls';
 import { contact } from '../../data/contact';
 import LeadForm from '../../components/LeadForm.astro';
+import HeroLeadStart from '../../components/HeroLeadStart.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -235,15 +236,16 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
             <span>Rocklin + EDH</span>
           </div>
           <div class="ls-hero__actions">
-            <a href="#lesson-form" class="membership-cta">Start the Player Form</a>
+            <a href={contact.phoneHref} class="cta-box-secondary-link">Call {contact.phone}</a>
             <a href={scheduleUrl()} class="cta-box-secondary-link">View Schedule</a>
           </div>
         </div>
-        <div class="ls-picture-hero__panel" aria-label="Lesson quick facts">
-          <span>{lessonGallery[0].label}</span>
-          <strong>{lessonTitle} Development</strong>
-          <p>Focused reps, coach feedback, and a clear next step for players who want their training to show up in games.</p>
-        </div>
+        <HeroLeadStart
+          targetFormId="lesson-form"
+          idPrefix={`lesson-${lesson.slug}`}
+          areaFocus={lessonAreaFocus}
+          heading={`${lessonTitle} Lessons`}
+        />
       </div>
     </section>
 
