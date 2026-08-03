@@ -201,9 +201,26 @@ govern which URLs Google consolidates on at all:
    and GBP URLs.
 8. GA4 `generate_lead` + `tel:` click events — without these, location pages can only be
    judged on traffic, not leads.
-9. Apply the page template to both location pages — process section with pricing (you have it:
-   $250 Rocklin / $299 EDH), 6–10 FAQs with ~⅓ locally specific, map embed.
-10. GBP per-location URLs → the matching location page, not the homepage.
+9. ✅ Location page depth — FAQs expanded 3 → 8 per location and genuinely differentiated
+   (pricing, ages, GM by name, communities served, cages at Rocklin, indoor at EDH),
+   Google Maps embed + Get Directions, and a click-to-call CTA in the hero.
+10. GBP per-location URLs → the matching location page, not the homepage. **Client task.**
+
+### Blocked on client data — one ask, send it all at once
+
+Everything below is unbuildable without real information from BBT. Inventing any of it
+would put false business data into structured markup or onto a live page.
+
+| Needed | Unblocks |
+|---|---|
+| Opening hours per location | `openingHoursSpecification`, "exact hours" on each location page |
+| The two Google Business Profile URLs | `sameAs` on each LocalBusiness node, GBP link on each page |
+| Lat/long per location | `geo` / `GeoCoordinates` |
+| Which coaches work at which facility | "coaches available at this location" section |
+| 2–3 reviews/testimonials per location | Location-specific social proof |
+| Parking + entrance notes (suite access, which door) | Practical local detail Google and parents both reward |
+
+Only the two GM names were available (`BUSINESS_INFO.md`), and those are already on the pages.
 
 **Known and deliberately not fixed:** legacy indexed URLs take two redirect hops
 (`apex/coaches/` → `www/coaches/` → `www/coaches`). The apex→www hop is Vercel domain-level

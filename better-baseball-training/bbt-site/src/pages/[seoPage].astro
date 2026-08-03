@@ -303,6 +303,7 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
             )}
             <div class="ls-hero__actions">
               <a href="#seo-story-form" class="membership-cta">Start the Player Form</a>
+              <a href={contact.phoneHref} class="cta-box-secondary-link">Call {contact.phone}</a>
               <a href={scheduleUrl()} class="cta-box-secondary-link">View Schedule</a>
             </div>
           </div>
@@ -440,6 +441,32 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
           </article>
         </div>
       </section>
+
+      {page.map_query && (
+        <section class="ls-map-section reveal" aria-labelledby="seo-story-map-heading">
+          <div class="ls-map-section__inner">
+            <div class="ls-section-label">Find Us</div>
+            <h2 id="seo-story-map-heading" class="ls-section-title">{page.map_caption ?? page.title}</h2>
+            <div class="ls-map-frame">
+              <iframe
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(page.map_query)}&output=embed`}
+                title={`Map to ${page.map_caption ?? page.title}`}
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="ls-map-actions">
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(page.map_query)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >Get Directions</a>
+              <a href={contact.phoneHref}>Call {contact.phone}</a>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section id="seo-story-form" class="ls-form-section">
         <div class="ls-form-section__inner reveal">

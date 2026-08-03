@@ -35,6 +35,10 @@ export interface SeoPage {
   schema_locations: string[];
   related_links: string[];
   cta_label: string;
+  // Location pages only. Address string for the Google Maps embed — no API key needed,
+  // and it resolves from the real address rather than hardcoded coordinates we don't have.
+  map_query?: string;
+  map_caption?: string;
 }
 
 export const seoPages: SeoPage[] = [
@@ -95,11 +99,38 @@ export const seoPages: SeoPage[] = [
         answer:
           "BBT offers both private lessons and group academy training, depending on the player's goals and the family's schedule.",
       },
+      {
+        question: 'How much is academy membership at BBT Rocklin?',
+        answer:
+          'Academy membership at the Rocklin facility is $250 per month, which gives players recurring access to structured group training rather than one-off lessons.',
+      },
+      {
+        question: 'What ages train at the Rocklin facility?',
+        answer:
+          'The core lesson and academy model at Rocklin is built for youth players ages 8-14U. Families outside that range can call 916-465-5551 to ask what makes sense for their athlete.',
+      },
+      {
+        question: 'Which communities does the Rocklin facility serve?',
+        answer:
+          'The Duluth Ave facility mainly serves families from Rocklin, Roseville, Granite Bay, and Loomis, along with other nearby Placer County communities.',
+      },
+      {
+        question: 'Does the Rocklin location have batting cages?',
+        answer:
+          'Yes. The Rocklin facility includes indoor batting cages and turf training space, used for both private lessons and academy reps rather than rented by the hour on their own.',
+      },
+      {
+        question: 'Who runs the Rocklin facility?',
+        answer:
+          'Cesar Tamayo is the general manager at BBT Rocklin and can help families choose the right coach and training path.',
+      },
     ],
     service_type: 'Youth baseball lessons',
     schema_locations: ['rocklin'],
     related_links: ['hitting', 'pitching', 'baseball-academy', 'travel-baseball', 'book-now'],
     cta_label: 'Book Rocklin Baseball Lessons',
+    map_query: '4283 Duluth Ave, Rocklin, CA 95765',
+    map_caption: 'BBT Rocklin — 4283 Duluth Ave, Rocklin, CA 95765',
   },
   {
     slug: 'baseball-lessons-el-dorado-hills',
@@ -158,11 +189,38 @@ export const seoPages: SeoPage[] = [
         answer:
           'Private lessons focus on targeted skill work, while academy membership gives players recurring access to structured group training.',
       },
+      {
+        question: 'How much is academy membership in El Dorado Hills?',
+        answer:
+          'Academy membership at the El Dorado Hills facility is $299 per month. It covers recurring group training across hitting, pitching, defense, catching, and baseball IQ.',
+      },
+      {
+        question: 'Which communities does the El Dorado Hills facility serve?',
+        answer:
+          'The Hillsdale Dr facility mainly serves families from El Dorado Hills, Folsom, Cameron Park, and Shingle Springs.',
+      },
+      {
+        question: 'Who runs the El Dorado Hills facility?',
+        answer:
+          'Trey Furrey is the general manager at BBT El Dorado Hills and can help families pick the right coach and starting point.',
+      },
+      {
+        question: 'Does BBT El Dorado Hills help players prepare for travel baseball?',
+        answer:
+          'Yes. Travel baseball development is part of what BBT offers, and the EDH staff can advise on when a player is ready for team-based play versus more individual skill work.',
+      },
+      {
+        question: 'Is the El Dorado Hills facility indoors?',
+        answer:
+          'Yes. EDH is an indoor training facility with turf and netted training space, so training is not dependent on field availability.',
+      },
     ],
     service_type: 'Youth baseball lessons',
     schema_locations: ['el-dorado-hills'],
-    related_links: ['pitching', 'hitting', 'baseball-academy', 'book-now', 'schedule'],
+    related_links: ['pitching', 'hitting', 'baseball-academy', 'travel-baseball', 'book-now', 'schedule'],
     cta_label: 'Book EDH Baseball Lessons',
+    map_query: '4990 Hillsdale Dr Suite 400, El Dorado Hills, CA 95762',
+    map_caption: 'BBT El Dorado Hills — 4990 Hillsdale Dr, Suite 400, El Dorado Hills, CA 95762',
   },
   {
     slug: 'baseball-academy',
