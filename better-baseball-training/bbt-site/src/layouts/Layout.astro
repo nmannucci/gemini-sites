@@ -7,6 +7,7 @@ export interface Props {
   title?: string;
   description?: string;
   canonical?: string;
+  robots?: string;
   ogImage?: string;
   ogType?: string;
   bodyClass?: string;
@@ -17,6 +18,7 @@ const {
   title = 'Better Baseball Training | Youth Baseball Lessons in Rocklin & El Dorado Hills',
   description = 'Better Baseball Training develops youth players socially, physically, and mentally through private lessons, academy memberships, and travel baseball in Rocklin and El Dorado Hills.',
   canonical,
+  robots = 'index,follow',
   ogImage = '/assets/images/team-photo-1.jpg',
   ogType = 'website',
   bodyClass,
@@ -24,7 +26,15 @@ const {
 } = Astro.props;
 
 const site = Astro.site ?? 'https://www.betterbaseballtraining.com';
-const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site).toString();
+
+// build.format: 'file' makes Astro.url.pathname resolve to '/index.html', '/schedule.html',
+// etc. at build time — but those URLs 308-redirect to their clean equivalents in production.
+// Normalize before building the canonical so no page ever declares a redirecting URL.
+// Pages that pass an explicit `canonical` bypass this entirely.
+const cleanPath = Astro.url.pathname
+  .replace(/\/index\.html$/, '/')
+  .replace(/\.html$/, '');
+const canonicalUrl = canonical ?? new URL(cleanPath, site).toString();
 const ogImageUrl = new URL(ogImage, site).toString();
 ---
 
@@ -45,7 +55,7 @@ const ogImageUrl = new URL(ogImage, site).toString();
 
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="robots" content="index,follow" />
+  <meta name="robots" content={robots} />
   <link rel="canonical" href={canonicalUrl} />
 
   <link rel="icon" type="image/png" href="/assets/images/logo-bbt.png" />
@@ -134,6 +144,13 @@ const ogImageUrl = new URL(ogImage, site).toString();
               throw new Error(payload.error || 'Something went wrong. Please try again or call 916-465-5551.');
             }
 
+            if (typeof gtag === 'function') {
+              gtag('event', 'generate_lead', {
+                form_source: data.source,
+                page_path: window.location.pathname,
+              });
+            }
+
             form.innerHTML = SUCCESS_HTML;
             form.scrollIntoView({ behavior: 'smooth', block: 'center' });
           } catch (err) {
@@ -142,6 +159,30 @@ const ogImageUrl = new URL(ogImage, site).toString();
             if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
           }
         });
+      });
+    })();
+  </script>
+
+  <script is:inline>
+    // Phone and booking clicks are the other half of the lead picture — without these,
+    // a location page that drives calls instead of form fills looks like it converts zero.
+    (function () {
+      if (typeof gtag !== 'function') return;
+
+      document.addEventListener('click', function (e) {
+        var link = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+        if (!link) return;
+
+        var href = link.getAttribute('href') || '';
+        var page = window.location.pathname;
+
+        if (href.indexOf('tel:') === 0) {
+          gtag('event', 'phone_click', { link_url: href, page_path: page });
+        } else if (href.indexOf('mailto:') === 0) {
+          gtag('event', 'email_click', { link_url: href, page_path: page });
+        } else if (/wodhopper\.com|\/book-now/.test(href)) {
+          gtag('event', 'booking_click', { link_url: href, page_path: page });
+        }
       });
     })();
   </script>

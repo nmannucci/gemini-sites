@@ -179,7 +179,7 @@ const webPageSchema = {
   '@type': 'WebPage',
   '@id': `${pageUrl}#webpage`,
   url: pageUrl,
-  name: `${lessonTitle} Lessons in Rocklin & El Dorado Hills`,
+  name: `${lessonTitle} Lessons`,
   description: lesson.meta_description,
   dateModified: new Date().toISOString(),
   isPartOf: { '@id': `${SITE}/#website` },
@@ -198,7 +198,11 @@ const breadcrumbSchema = {
 
 const pageSchema = [webPageSchema, breadcrumbSchema, lessonServiceSchema, lessonFaqSchema];
 
-const metaTitle = `${lessonTitle} Lessons | Rocklin & El Dorado Hills | Better Baseball Training`;
+// Location-neutral by design: these are service pages. Naming both cities here made them
+// compete with /baseball-lessons-rocklin and /baseball-lessons-el-dorado-hills for the same
+// queries. The cities still appear in the FAQ and the location cross-links further down,
+// which is what should carry a visitor to the right location page.
+const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
 ---
 
 <Layout

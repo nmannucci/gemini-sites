@@ -20,6 +20,8 @@ const schema = [
     '@type': 'Organization',
     '@id': `${SITE}/#organization`,
     name: 'Better Baseball Training',
+    // Branded searches arrive as "bbt baseball" / "bbt boys" far more than the full name.
+    alternateName: ['BBT', 'BBT Baseball', 'BBT Boys'],
     url: `${SITE}/`,
     logo: `${SITE}/assets/images/logo-bbt.png`,
     email: contact.email,
@@ -64,6 +66,11 @@ const schema = [
       postalCode: '95765',
       addressCountry: 'US',
     },
+    // Distinct per location so each node claims its own catchment rather than inheriting
+    // the Organization's full six-city list.
+    // TODO (blocked on client data): geo, hasMap, openingHoursSpecification, and
+    // sameAs -> this location's Google Business Profile. Do not invent these values.
+    areaServed: ['Rocklin', 'Roseville', 'Granite Bay', 'Loomis'],
     parentOrganization: { '@id': `${SITE}/#organization` },
   },
   {
@@ -83,6 +90,9 @@ const schema = [
       postalCode: '95762',
       addressCountry: 'US',
     },
+    // TODO (blocked on client data): geo, hasMap, openingHoursSpecification, and
+    // sameAs -> this location's Google Business Profile. Do not invent these values.
+    areaServed: ['El Dorado Hills', 'Folsom', 'Cameron Park', 'Shingle Springs'],
     parentOrganization: { '@id': `${SITE}/#organization` },
   },
   {

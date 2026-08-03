@@ -20,6 +20,14 @@ const lessonsSubmenu: NavChild[] = [
   { title: 'Baseball IQ', url: lessonUrl('baseball-iq') },
 ];
 
+// The two location pages are the site's local-SEO hubs — the nav is the strongest internal
+// linking surface, so they point at the real pages rather than a homepage anchor.
+const locationsSubmenu: NavChild[] = [
+  { title: 'Rocklin', url: seoPageUrl('baseball-lessons-rocklin') },
+  { title: 'El Dorado Hills', url: seoPageUrl('baseball-lessons-el-dorado-hills') },
+  { title: 'Rocklin Batting Cages', url: seoPageUrl('batting-cages-rocklin') },
+];
+
 export const primaryMenu: NavItem[] = [
   { title: 'Home', url: homeSectionUrl('hero') },
   { title: 'Lessons', url: homeSectionUrl('lessons'), children: lessonsSubmenu },
@@ -27,6 +35,6 @@ export const primaryMenu: NavItem[] = [
   { title: 'Travel Baseball', url: seoPageUrl('travel-baseball') },
   { title: 'Schedule', url: scheduleUrl() },
   { title: 'Coaches', url: coachesUrl() },
-  { title: 'Facilities', url: homeSectionUrl('facilities') },
+  { title: 'Locations', url: seoPageUrl('baseball-lessons-rocklin'), children: locationsSubmenu },
   { title: 'Book Now', url: bookingUrl() },
 ];
