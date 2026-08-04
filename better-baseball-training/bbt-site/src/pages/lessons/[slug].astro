@@ -13,7 +13,7 @@ import {
 } from '../../data/urls';
 import { contact } from '../../data/contact';
 import LeadForm from '../../components/LeadForm.astro';
-import HeroLeadStart from '../../components/HeroLeadStart.astro';
+import HeroLeadForm from '../../components/HeroLeadForm.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -240,11 +240,12 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
             <a href={scheduleUrl()} class="cta-box-secondary-link">View Schedule</a>
           </div>
         </div>
-        <HeroLeadStart
-          targetFormId="lesson-form"
+        <HeroLeadForm
+          source={lesson.slug}
           idPrefix={`lesson-${lesson.slug}`}
           areaFocus={lessonAreaFocus}
-          heading={`${lessonTitle} Lessons`}
+          heading={lessonPageHeading}
+          copy={lesson.form_copy}
         />
       </div>
     </section>
@@ -367,22 +368,6 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
           <strong>4990 Hillsdale Dr, Suite 400</strong>
           <a href={seoPageUrl('baseball-lessons-el-dorado-hills')}>View EDH lessons</a>
         </article>
-      </div>
-    </section>
-
-    <section id="lesson-form" class="ls-form-section">
-      <div class="ls-form-section__inner reveal">
-        <div class="cta-box forminator-cta-box ls-form-card">
-          <div class="cta-box-topline">
-            <div class="cta-box-eyebrow">Parent Inquiry Form</div>
-            <div class="cta-box-badge">Private + Group</div>
-          </div>
-          <h2 class="cta-box-headline">{lessonPageHeading}</h2>
-          <p class="ls-form-copy">{lesson.form_copy ?? 'Tell us about your athlete and our team will help you choose the right next step.'}</p>
-          <div class="forminator-shell">
-            <LeadForm source={lesson.slug} idPrefix={`lesson-${lesson.slug}`} areaFocus={lessonAreaFocus} />
-          </div>
-        </div>
       </div>
     </section>
 

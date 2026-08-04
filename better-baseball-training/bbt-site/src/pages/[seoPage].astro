@@ -12,7 +12,7 @@ import {
 import { contact } from '../data/contact';
 import { locations } from '../data/locations';
 import LeadForm from '../components/LeadForm.astro';
-import HeroLeadStart from '../components/HeroLeadStart.astro';
+import HeroLeadForm from '../components/HeroLeadForm.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -307,10 +307,14 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
               <a href={scheduleUrl()} class="cta-box-secondary-link">View Schedule</a>
             </div>
           </div>
-          <HeroLeadStart
-            targetFormId="seo-story-form"
+          <HeroLeadForm
+            source={page.slug}
             idPrefix={`seo-story-${page.slug}`}
-            heading={page.title}
+            heading={page.cta_label}
+            copy="Tell us about your athlete and the BBT team will help you choose the right lesson, academy, facility, or development next step."
+            areaFocus={formAreaFocus}
+            interest={formInterest}
+            location={formLocation}
           />
         </div>
       </section>
@@ -467,28 +471,6 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
           </div>
         </section>
       )}
-
-      <section id="seo-story-form" class="ls-form-section">
-        <div class="ls-form-section__inner reveal">
-          <div class="cta-box forminator-cta-box ls-form-card">
-            <div class="cta-box-topline">
-              <div class="cta-box-eyebrow">Parent Inquiry Form</div>
-              <div class="cta-box-badge">Ages 8-14U</div>
-            </div>
-            <h2 class="cta-box-headline">{page.cta_label}</h2>
-            <p class="ls-form-copy">Tell us about your athlete and the BBT team will help you choose the right lesson, academy, facility, or development next step.</p>
-            <div class="forminator-shell">
-              <LeadForm
-                source={page.slug}
-                idPrefix={`seo-story-${page.slug}`}
-                areaFocus={formAreaFocus}
-                interest={formInterest}
-                location={formLocation}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {faqItems.length > 0 && (
         <section class="ls-answer-strip reveal" aria-labelledby="seo-faq-heading">

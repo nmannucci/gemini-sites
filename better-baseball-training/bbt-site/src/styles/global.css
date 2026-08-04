@@ -4792,8 +4792,7 @@ footer {
   backdrop-filter: blur(10px);
 }
 
-.ls-picture-hero__panel,
-.hero-lead-start {
+.ls-picture-hero__panel {
   align-self: end;
   padding: 28px;
   border: 1px solid rgba(255,255,255,0.14);
@@ -4804,11 +4803,29 @@ footer {
   box-shadow: 0 28px 80px rgba(0,0,0,0.32);
 }
 
-/* Above-the-fold lead capture. Occupies the slot the quick-facts panel used to,
-   so the hero grid is unchanged. */
-.hero-lead-start__eyebrow {
+/* The hero grid is bottom-aligned for the old short quick-facts panel. A full form makes
+   the row much taller, which stranded the H1 at the bottom of the viewport away from it.
+   Top-align both columns only on heroes that contain the form. */
+.ls-picture-hero__inner:has(.hero-lead-form) {
+  align-items: start;
+}
+
+/* The page's single lead form, in the hero's right column. Taller than the panel it
+   replaced, so it aligns to the top of the grid row rather than the bottom. */
+.hero-lead-form {
+  align-self: start;
+  padding: 26px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02)),
+    rgba(8,8,8,0.86);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 28px 80px rgba(0,0,0,0.42);
+}
+
+.hero-lead-form__eyebrow {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-family: 'DM Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.18em;
@@ -4816,98 +4833,55 @@ footer {
   color: var(--yellow);
 }
 
-.hero-lead-start__title {
-  margin: 0 0 18px;
+.hero-lead-form__title {
+  margin: 0 0 8px;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(28px, 3vw, 40px);
-  line-height: 0.98;
+  font-size: clamp(26px, 2.6vw, 34px);
+  line-height: 1;
   letter-spacing: 0.01em;
   color: var(--white);
 }
 
-.hero-lead-start__field {
-  margin-bottom: 12px;
-}
-
-.hero-lead-start__field label {
-  display: block;
-  margin-bottom: 6px;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-}
-
-.hero-lead-start__field input,
-.hero-lead-start__field select {
-  width: 100%;
-  min-height: 44px;
-  padding: 10px 12px;
-  border: 1px solid rgba(255,255,255,0.16);
-  background: rgba(0,0,0,0.45);
-  color: var(--white);
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  border-radius: 0;
-  appearance: none;
-}
-
-.hero-lead-start__field input:focus,
-.hero-lead-start__field select:focus {
-  outline: none;
-  border-color: var(--yellow);
-}
-
-.hero-lead-start__field input::placeholder {
-  color: rgba(255,255,255,0.38);
-}
-
-.hero-lead-start__field select option {
-  background: #101010;
-  color: var(--white);
-}
-
-.hero-lead-start__submit {
-  width: 100%;
-  min-height: 48px;
-  margin-top: 6px;
-  border: 0;
-  background: var(--yellow);
-  color: #0A0A0A;
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.hero-lead-start__submit:hover,
-.hero-lead-start__submit:focus-visible {
-  background: var(--white);
-}
-
-.hero-lead-start__note {
-  margin-top: 10px;
-  font-size: 11px;
+.hero-lead-form__copy {
+  margin: 0 0 18px;
+  font-size: 13px;
   line-height: 1.6;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.62);
+}
+
+/* The hero card already provides border, background and shadow, so the nested shell
+   drops its own chrome and just acts as the styling scope for .lead-form. */
+.hero-lead-form .forminator-shell {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.hero-lead-form .forminator-shell::before {
+  display: none;
+}
+
+/* The hero column is narrower than the old full-width form section, so the two-up
+   player-name/DOB row would be cramped. Stack it here only. */
+.hero-lead-form .forminator-shell .lead-form__grid {
+  grid-template-columns: 1fr;
+  row-gap: 12px;
 }
 
 @media (max-width: 800px) {
-  /* The hero's two columns stack, which pushed the form's Continue button below the fold.
-     The meta pills are already repeated verbatim by the .ls-snapshot strip immediately
-     under the hero, so dropping them here costs nothing and buys back ~160px — enough to
-     land the CTA above the fold on a 375x812 screen. */
+  /* The hero's two columns stack on mobile, so everything above the form pushes it down.
+     A nine-field form can't fit entirely above the fold and shouldn't try — the goal is
+     that it visibly starts there. These two blocks are dropped because both are already
+     duplicated elsewhere on screen, not merely to save space:
+       - the meta pills are repeated verbatim by the .ls-snapshot strip directly below
+       - Call / Schedule are in the fixed mobile nav at every scroll position, and the
+         template is explicit that a hero shouldn't stack CTAs when a sticky one exists
+     Together they move the form up ~290px, which is what puts its first fields on screen. */
   .ls-picture-hero .ls-hero__meta {
     display: none;
   }
 
-  /* Same reasoning for the hero's secondary buttons: the fixed mobile nav already shows
-     Call Us, Book Now and Schedule at every scroll position, so these are a third copy of
-     the same two intents. Removing them is what gets the form's CTA above the fold, and
-     the template is explicit that a hero shouldn't stack CTAs when a sticky one exists. */
   .ls-picture-hero .ls-hero__actions {
     display: none;
   }
@@ -4916,12 +4890,8 @@ footer {
     margin-top: 14px;
   }
 
-  .hero-lead-start {
-    padding: 22px;
-  }
-
-  .hero-lead-start__title {
-    margin-bottom: 14px;
+  .hero-lead-form {
+    padding: 20px;
   }
 }
 
