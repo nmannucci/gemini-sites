@@ -369,7 +369,7 @@ export const seoPages: SeoPage[] = [
       {
         question: 'What age group is this built around?',
         answer:
-          'BBT core programming is built around ages 8-14U. Families should use the inquiry form to ask about current team or development options.',
+          'BBT core programming is built around ages 8-14U. Call 916-465-5551 or book a lesson to ask about current team or development options.',
       },
       {
         question: 'Is this a tournament directory?',
@@ -441,7 +441,7 @@ export const seoPages: SeoPage[] = [
       {
         label: 'Important',
         title: 'Training-First Facility',
-        copy: 'This page does not promise generic drop-in cage rental. Use the form or phone number to ask what is currently available.',
+        copy: 'This page does not promise generic drop-in cage rental. Call 916-465-5551 to ask what is currently available.',
       },
       {
         label: 'Best Use',

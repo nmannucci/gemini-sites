@@ -62,7 +62,7 @@ const lessonFaqItems: LessonFaqItem[] = [
     answerText:
       'BBT builds these sessions for players ages 8-14U who need better skill execution, more confidence, and a clearer development plan.',
     linkUrl: bookingUrl(),
-    linkLabel: 'Start with the player form',
+    linkLabel: 'Book a lesson',
   },
   {
     question: 'Who can teach this lesson?',
@@ -73,9 +73,9 @@ const lessonFaqItems: LessonFaqItem[] = [
   {
     question: 'What should we do next?',
     answerHtml:
-      'Check the current training schedule, then submit the form so BBT can recommend the right lesson, coach, and next step for your athlete.',
+      'Check the current training schedule, then book a lesson or call 916-465-5551 so BBT can recommend the right lesson, coach, and next step for your athlete.',
     answerText:
-      'Check the current training schedule, then submit the form so BBT can recommend the right lesson, coach, and next step for your athlete.',
+      'Check the current training schedule, then book a lesson or call 916-465-5551 so BBT can recommend the right lesson, coach, and next step for your athlete.',
     linkUrl: scheduleUrl(),
     linkLabel: 'View the training schedule',
   },
@@ -247,11 +247,6 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
           <div class="ls-section-label">How It Helps</div>
           <h2 class="ls-section-title">{lesson.section_title ?? 'What This Lesson Helps Build'}</h2>
           <p class="ls-overview__text">{lesson.overview}</p>
-          {lesson.also_called && lesson.also_called.length > 0 && (
-            <p class="ls-overview__aka">
-              Families also search for this as {lesson.also_called.slice(0, -1).join(', ')}, or {lesson.also_called.slice(-1)[0]} — it is the same coaching.
-            </p>
-          )}
 
           {lesson.focus_items && lesson.focus_items.length > 0 && (
             <ul class="ls-focus-list">
@@ -304,7 +299,7 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
       <div class="ls-coach-location__content">
         <div class="ls-section-label">Coach + Location Fit</div>
         <h2 id="ls-coach-location-heading" class="ls-section-title">Matched to the Player, Not a Generic Lesson Slot</h2>
-        <p>BBT uses the player inquiry form to understand the athlete first, then helps families choose the right coach, location, and training rhythm.</p>
+        <p>BBT starts by understanding the athlete, then helps families choose the right coach, location, and training rhythm.</p>
         {relatedCoaches.length > 0 && (
           <div class="ls-coach-pills" aria-label="Common coach fits">
             {relatedCoaches.map((coach) => (
@@ -368,7 +363,7 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
               <a href={contact.emailHref}>{contact.email}</a>
             </div>
           </div>
-          <a href={bookingUrl()} class="bk-card__inline-link">Start the Player Form</a>
+          <a href={bookingUrl()} class="bk-card__inline-link">Book a Lesson</a>
         </article>
 
         <article class="bk-card">
@@ -414,7 +409,7 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
         <article class="bk-card">
           <div class="bk-card__eyebrow">Next Step</div>
           <h2 class="bk-card__title">See the Schedule</h2>
-          <p class="bk-card__copy">Browse current class options and training times, then use the form above so our team can follow up with the best fit.</p>
+          <p class="bk-card__copy">Browse current class options and training times, then book a lesson so our team can follow up with the best fit.</p>
           <a href={scheduleUrl()} class="bk-card__inline-link">View Current Schedule</a>
         </article>
       </div>

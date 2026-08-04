@@ -21,9 +21,6 @@ export interface Lesson {
   // with the service name swapped is the duplicate pattern that gets pages deindexed.
   // Phrased as problems and scenarios, since that is how families actually search.
   faq_items: LessonFaq[];
-  // Variant names and related terms people use for this service, so the page can catch
-  // the range of phrasings. Rendered as a plain line of copy, not a keyword dump.
-  also_called: string[];
 }
 
 export const lessons: Lesson[] = [
@@ -49,7 +46,6 @@ export const lessons: Lesson[] = [
     image_widths: [640, 960],
     meta_description:
       'Hitting lessons for youth baseball players. Build a more confident swing, better timing, and stronger at-bats at Better Baseball Training.',
-    also_called: ['batting lessons', 'swing lessons', 'hitting coach', 'batting instruction', 'swing mechanics training'],
     faq_items: [
       {
         question: 'My player keeps making weak contact. Can hitting lessons help?',
@@ -100,7 +96,6 @@ export const lessons: Lesson[] = [
     image_widths: [640, 960],
     meta_description:
       'Pitching lessons for youth baseball players. Improve command, mechanics, arm care, and mound confidence at Better Baseball Training.',
-    also_called: ['pitching coach', 'throwing lessons', 'mound work', 'pitching mechanics training', 'arm care training'],
     faq_items: [
       {
         question: 'My pitcher throws strikes in practice but loses command in games. Can lessons help?',
@@ -151,7 +146,6 @@ export const lessons: Lesson[] = [
     image_widths: [640, 960],
     meta_description:
       'Infield and outfield lessons for youth baseball players. Improve footwork, reads, positioning, and defensive confidence at Better Baseball Training.',
-    also_called: ['fielding lessons', 'defense training', 'ground ball work', 'outfield reads', 'glove work'],
     faq_items: [
       {
         question: 'My player freezes on ground balls. What does infield training work on?',
@@ -202,7 +196,6 @@ export const lessons: Lesson[] = [
     image_widths: [640, 960],
     meta_description:
       'Catching lessons for youth baseball players. Improve receiving, blocking, footwork, and leadership behind the plate at Better Baseball Training.',
-    also_called: ['catcher training', 'receiving and framing', 'blocking drills', 'pop time training', 'catcher footwork'],
     faq_items: [
       {
         question: 'Is catching training different from general defensive lessons?',
@@ -253,7 +246,6 @@ export const lessons: Lesson[] = [
     image_widths: [640, 960],
     meta_description:
       'Baseball IQ training for youth baseball players. Improve game awareness, decision-making, and confidence in live situations at Better Baseball Training.',
-    also_called: ['game awareness training', 'baseball smarts', 'situational baseball', 'baserunning and basestealing', 'mental side of baseball'],
     faq_items: [
       {
         question: 'What is baseball IQ training?',

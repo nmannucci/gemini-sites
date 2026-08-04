@@ -5181,15 +5181,6 @@ footer {
   color: rgba(255,255,255,0.72);
 }
 
-/* Variant-name line on service pages. Deliberately quieter than body copy — it exists to
-   catch alternate phrasings without reading like a keyword list. */
-.ls-overview__aka {
-  max-width: 680px;
-  margin-top: 14px;
-  font-size: 14px;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.5);
-}
 
 .ls-coach-pills,
 .ls-map-actions {
