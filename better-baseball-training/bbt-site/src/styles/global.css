@@ -4803,95 +4803,39 @@ footer {
   box-shadow: 0 28px 80px rgba(0,0,0,0.32);
 }
 
-/* The hero grid is bottom-aligned for the old short quick-facts panel. A full form makes
-   the row much taller, which stranded the H1 at the bottom of the viewport away from it.
-   Top-align both columns only on heroes that contain the form. */
-.ls-picture-hero__inner:has(.hero-lead-form) {
-  align-items: start;
-}
-
-/* The page's single lead form, in the hero's right column. Taller than the panel it
-   replaced, so it aligns to the top of the grid row rather than the bottom. */
-.hero-lead-form {
-  align-self: start;
-  padding: 26px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02)),
-    rgba(8,8,8,0.86);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 28px 80px rgba(0,0,0,0.42);
-}
-
-.hero-lead-form__eyebrow {
-  display: block;
-  margin-bottom: 8px;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--yellow);
-}
-
-.hero-lead-form__title {
-  margin: 0 0 8px;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(26px, 2.6vw, 34px);
-  line-height: 1;
-  letter-spacing: 0.01em;
-  color: var(--white);
-}
-
-.hero-lead-form__copy {
-  margin: 0 0 18px;
-  font-size: 13px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.62);
-}
-
-/* The hero card already provides border, background and shadow, so the nested shell
-   drops its own chrome and just acts as the styling scope for .lead-form. */
-.hero-lead-form .forminator-shell {
-  padding: 0;
-  border: 0;
-  background: none;
-  box-shadow: none;
-}
-
-.hero-lead-form .forminator-shell::before {
-  display: none;
-}
-
-/* The hero column is narrower than the old full-width form section, so the two-up
-   player-name/DOB row would be cramped. Stack it here only. */
-.hero-lead-form .forminator-shell .lead-form__grid {
-  grid-template-columns: 1fr;
-  row-gap: 12px;
-}
+/* The hero's right column is gone — the form was removed in favour of a single clear CTA
+   pointing at the contact page, so the copy column sits alone over the background photo. */
 
 @media (max-width: 800px) {
-  /* The hero's two columns stack on mobile, so everything above the form pushes it down.
-     A nine-field form can't fit entirely above the fold and shouldn't try — the goal is
-     that it visibly starts there. These two blocks are dropped because both are already
-     duplicated elsewhere on screen, not merely to save space:
-       - the meta pills are repeated verbatim by the .ls-snapshot strip directly below
-       - Call / Schedule are in the fixed mobile nav at every scroll position, and the
-         template is explicit that a hero shouldn't stack CTAs when a sticky one exists
-     Together they move the form up ~290px, which is what puts its first fields on screen. */
-  .ls-picture-hero .ls-hero__meta {
-    display: none;
-  }
-
-  .ls-picture-hero .ls-hero__actions {
-    display: none;
-  }
-
+  /* The hero actions are now the page's primary conversion path, so unlike the form era
+     they must stay visible here. The meta pills stay too: the .ls-snapshot strip that used
+     to duplicate them has been removed, making the hero their only home. */
   .ls-picture-hero .ls-hero__copy {
     margin-top: 14px;
   }
 
-  .hero-lead-form {
-    padding: 20px;
+  .ls-picture-hero .ls-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ls-picture-hero .ls-hero__actions > a {
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* The generic mobile rule stacks meta pills full-width, which costs ~230px above the
+     CTA for three short labels. They're now the only place this info lives (the snapshot
+     strip that repeated it is gone), so keep them — just let them wrap inline. */
+  .ls-picture-hero .ls-hero__meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ls-picture-hero .ls-hero__meta span {
+    width: auto;
   }
 }
 

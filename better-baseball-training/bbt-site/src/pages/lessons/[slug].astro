@@ -12,8 +12,6 @@ import {
   lessonRelatedCoachKeysFor,
 } from '../../data/urls';
 import { contact } from '../../data/contact';
-import LeadForm from '../../components/LeadForm.astro';
-import HeroLeadForm from '../../components/HeroLeadForm.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -236,36 +234,10 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
             <span>Rocklin + EDH</span>
           </div>
           <div class="ls-hero__actions">
+            <a href={bookingUrl()} class="membership-cta">Book a {lessonTitle} Lesson</a>
             <a href={contact.phoneHref} class="cta-box-secondary-link">Call {contact.phone}</a>
-            <a href={scheduleUrl()} class="cta-box-secondary-link">View Schedule</a>
           </div>
         </div>
-        <HeroLeadForm
-          source={lesson.slug}
-          idPrefix={`lesson-${lesson.slug}`}
-          areaFocus={lessonAreaFocus}
-          heading={lessonPageHeading}
-          copy={lesson.form_copy}
-        />
-      </div>
-    </section>
-
-    <section class="ls-snapshot reveal" aria-label="Lesson snapshot">
-      <div class="ls-snapshot__item">
-        <span>Best Fit</span>
-        <strong>Ages 8-14U</strong>
-      </div>
-      <div class="ls-snapshot__item">
-        <span>Format</span>
-        <strong>Private + Group</strong>
-      </div>
-      <div class="ls-snapshot__item">
-        <span>Locations</span>
-        <strong>Rocklin + EDH</strong>
-      </div>
-      <div class="ls-snapshot__item">
-        <span>Next Step</span>
-        <strong>Coach Match</strong>
       </div>
     </section>
 
@@ -326,22 +298,6 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
           </article>
         ))}
       </div>
-    </section>
-
-    <section class="ls-photo-strip reveal" aria-label="Training photo gallery">
-      {lessonGallery.map((galleryItem, index) => (
-        <figure class={`ls-photo-strip__item ${index === 0 ? 'ls-photo-strip__item--wide' : ''}`}>
-          <img
-            src={galleryItem.image}
-            sizes="(max-width: 768px) 100vw, 42vw"
-            alt={galleryItem.alt}
-            class="ls-photo-strip__img"
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>{galleryItem.label}</figcaption>
-        </figure>
-      ))}
     </section>
 
     <section class="ls-coach-location reveal" aria-labelledby="ls-coach-location-heading">

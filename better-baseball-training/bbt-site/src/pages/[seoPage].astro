@@ -12,7 +12,6 @@ import {
 import { contact } from '../data/contact';
 import { locations } from '../data/locations';
 import LeadForm from '../components/LeadForm.astro';
-import HeroLeadForm from '../components/HeroLeadForm.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -140,33 +139,6 @@ const storyGalleryMap: Record<string, GalleryItem[]> = {
   ],
 };
 
-const storySnapshotsMap: Record<string, Array<{ label: string; value: string }>> = {
-  'baseball-lessons-rocklin': [
-    { label: 'Location', value: 'Rocklin' },
-    { label: 'Address', value: '4283 Duluth Ave' },
-    { label: 'Best Fit', value: 'Ages 8-14U' },
-    { label: 'Format', value: 'Private + Group' },
-  ],
-  'baseball-lessons-el-dorado-hills': [
-    { label: 'Location', value: 'El Dorado Hills' },
-    { label: 'Address', value: '4990 Hillsdale Dr' },
-    { label: 'Best Fit', value: 'Ages 8-14U' },
-    { label: 'Format', value: 'Academy + Lessons' },
-  ],
-  'baseball-academy': [
-    { label: 'Rocklin', value: '$250/mo' },
-    { label: 'EDH', value: '$299/mo' },
-    { label: 'Best Fit', value: 'Ages 8-14U' },
-    { label: 'Format', value: 'Unlimited Access' },
-  ],
-  'travel-baseball': [
-    { label: 'Best Fit', value: 'Ages 8-14U' },
-    { label: 'Area', value: 'Sacramento' },
-    { label: 'Focus', value: 'Development First' },
-    { label: 'Path', value: 'Lessons + Academy' },
-  ],
-};
-
 const storyStepsMap: Record<string, Array<{ label: string; title: string; copy: string }>> = {
   'baseball-lessons-rocklin': [
     { label: 'Assess', title: 'Start With the Player', copy: 'Coaches look at age, goals, confidence, and current skill needs before recommending the right first lesson.' },
@@ -236,7 +208,6 @@ const storyGallery: GalleryItem[] =
     { image: '/assets/images/hero-slideshow-4.PNG', alt: 'Youth baseball training inside Better Baseball Training', label: 'Training' },
     { image: '/assets/images/team-photo-1.jpg', alt: 'Better Baseball Training youth team', label: 'Team' },
   ];
-const storySnapshots = storySnapshotsMap[page.slug] ?? [];
 const storySteps = storyStepsMap[page.slug] ?? [];
 const storyNote =
   storyNoteMap[page.slug] ??
@@ -303,32 +274,12 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
               </div>
             )}
             <div class="ls-hero__actions">
+              <a href={bookingUrl()} class="membership-cta">{page.cta_label}</a>
               <a href={contact.phoneHref} class="cta-box-secondary-link">Call {contact.phone}</a>
-              <a href={scheduleUrl()} class="cta-box-secondary-link">View Schedule</a>
             </div>
           </div>
-          <HeroLeadForm
-            source={page.slug}
-            idPrefix={`seo-story-${page.slug}`}
-            heading={page.cta_label}
-            copy="Tell us about your athlete and the BBT team will help you choose the right lesson, academy, facility, or development next step."
-            areaFocus={formAreaFocus}
-            interest={formInterest}
-            location={formLocation}
-          />
         </div>
       </section>
-
-      {storySnapshots.length > 0 && (
-        <section class="ls-snapshot reveal" aria-label="Program snapshot">
-          {storySnapshots.map((snapshot) => (
-            <div class="ls-snapshot__item">
-              <span>{snapshot.label}</span>
-              <strong>{snapshot.value}</strong>
-            </div>
-          ))}
-        </section>
-      )}
 
       <section class="ls-overview ls-overview--story">
         <div class="ls-overview__inner reveal">
@@ -385,22 +336,6 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
           </div>
         </section>
       )}
-
-      <section class="ls-photo-strip reveal" aria-label="Program photo gallery">
-        {storyGallery.map((galleryItem, index) => (
-          <figure class={`ls-photo-strip__item ${index === 0 ? 'ls-photo-strip__item--wide' : ''}`}>
-            <img
-              src={galleryItem.image}
-              sizes="(max-width: 768px) 100vw, 42vw"
-              alt={galleryItem.alt}
-              class="ls-photo-strip__img"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>{galleryItem.label}</figcaption>
-          </figure>
-        ))}
-      </section>
 
       {page.detail_cards && page.detail_cards.length > 0 && (
         <section class="seo-detail-section ls-cards reveal" aria-labelledby="seo-detail-heading">
