@@ -7139,3 +7139,49 @@ footer {
 }
 
 .ls-coach-location__content > .bk-card__inline-link { margin-top: 22px; display: inline-block; }
+
+/* ============================================================================
+   Hero sizing after the form came out
+   ----------------------------------------------------------------------------
+   The hero was laid out around a right-hand panel (later a lead form) that no
+   longer exists. Three things were still sized for it and together left a large
+   empty band above the copy:
+     - a reserved second grid column (~400px) with nothing in it
+     - align-items:end, pushing the copy to the bottom of the box
+     - min-heights of 860px desktop / 720px mobile, plus a 100svh floor on the
+       smallest breakpoint, against ~415px of actual content
+   Measured before: 860px hero, 353px of dead space above the copy.
+   ========================================================================= */
+.ls-picture-hero {
+  min-height: 560px;
+}
+
+.ls-picture-hero__inner {
+  grid-template-columns: 1fr;
+  padding: 128px 72px 80px;
+  align-items: end;
+}
+
+/* Keep line length readable now that the copy has the full width available. */
+.ls-picture-hero__copy { max-width: 780px; }
+
+@media (max-width: 900px) {
+  .ls-picture-hero { min-height: 500px; }
+  .ls-picture-hero__inner { padding: 112px 48px 64px; }
+}
+
+@media (max-width: 700px) {
+  .ls-picture-hero { min-height: 460px; }
+  .ls-picture-hero__inner { padding: 104px 24px 56px; }
+  .ls-picture-hero__copy { max-width: 100%; }
+}
+
+@media (max-width: 520px) {
+  .ls-picture-hero { min-height: 420px; }
+  /* The 100svh floor here was the mobile gap — a full-viewport hero for a
+     headline, a paragraph and two buttons. */
+  .ls-picture-hero__inner {
+    min-height: 0;
+    padding: calc(96px + env(safe-area-inset-top, 0px)) 20px 48px;
+  }
+}
