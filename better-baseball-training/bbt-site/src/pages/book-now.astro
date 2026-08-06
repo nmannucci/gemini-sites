@@ -9,7 +9,13 @@ import LeadForm from '../components/LeadForm.astro';
 const SITE = 'https://www.betterbaseballtraining.com';
 
 // house36_bbt_training_focus_labels(): the label of each lesson.
-const trainingFocuses = lessons.map((lesson) => lesson.label);
+// Pair each lesson with its own first focus item. Rendering "{label} lessons and training
+// for more confidence and better reps" for all five produced five identical bullets with
+// only the service name swapped — the clearest machine-written tell on the site.
+const trainingFocuses = lessons.map((lesson) => ({
+  label: lesson.label,
+  detail: lesson.focus_items[0].charAt(0).toLowerCase() + lesson.focus_items[0].slice(1),
+}));
 
 const title = 'Book Baseball Lessons | Rocklin & El Dorado Hills | Better Baseball Training';
 const description =
@@ -42,7 +48,7 @@ const breadcrumbSchema = {
       <div class="bk-hero__inner">
         <div class="bk-hero__kicker">Better Baseball Training</div>
         <h1 class="bk-hero__title">Book Baseball Lessons and Training in <em>Rocklin &amp; El Dorado Hills</em></h1>
-        <p class="bk-hero__copy">Fill out the player interest form below and BBT will help you choose the right lesson, academy membership, coach, and location for your athlete.</p>
+        <p class="bk-hero__copy">Tell us about your athlete below and the BBT team will follow up within one business day.</p>
       </div>
     </section>
 
@@ -65,11 +71,11 @@ const breadcrumbSchema = {
       <div class="bk-overview__inner">
         <article class="bk-overview-card bk-overview-card--wide">
           <div class="bk-card__eyebrow">What We Can Help With</div>
-          <h2 id="bk-overview-heading" class="bk-card__title">Lessons, Academy, and the Right Next Step</h2>
-          <p class="bk-card__copy">If you are not sure what your athlete needs yet, this is the place to start. The BBT team can help you choose the right option based on age, goals, and preferred location.</p>
+          <h2 id="bk-overview-heading" class="bk-card__title">What You Can Train Here</h2>
+          <p class="bk-card__copy">Not sure what your athlete needs yet? Say so on the form and the staff will point you somewhere sensible.</p>
           <ul class="bk-detail-list">
             {trainingFocuses.map((focus) => (
-              <li>{focus} lessons and training for more confidence and better reps.</li>
+              <li><strong>{focus.label}</strong> — {focus.detail}.</li>
             ))}
             <li>Academy guidance for families who want a more consistent long-term plan.</li>
           </ul>
