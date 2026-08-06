@@ -8,7 +8,9 @@ import {
   scheduleUrl,
   bookingUrl,
   coachesUrl,
+  serviceAreaUrl,
 } from '../data/urls';
+import { serviceAreasForLocation } from '../data/serviceAreas';
 import { contact } from '../data/contact';
 import { locations } from '../data/locations';
 import LeadForm from '../components/LeadForm.astro';
@@ -248,6 +250,29 @@ const breadcrumbSchema = {
 };
 
 const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchema ? [faqSchema] : [])];
+
+// A core location page links to ITS service-area pages, not to the shared lesson pages —
+// that one-to-one targeting is the whole point of the layer. `locationKey` is only set on
+// the two location pages, so the block renders nowhere else.
+const locationKey =
+  page.slug === 'baseball-lessons-rocklin' ? 'rocklin' :
+  page.slug === 'baseball-lessons-el-dorado-hills' ? 'el-dorado-hills' :
+  null;
+const localServiceAreas = locationKey ? serviceAreasForLocation(locationKey) : [];
+const localServiceAreaLinks = localServiceAreas.map((a) => ({
+  area: a,
+  label: lessonBySlug.get(a.lessonSlug)?.label ?? a.lessonSlug,
+  url: serviceAreaUrl(a.locationKey, a.slug),
+}));
+// Lessons with no service-area page here yet still need a route out — they fall back to the
+// location-neutral lesson page until their variant is built.
+const builtLessonSlugs = new Set(localServiceAreas.map((a) => a.lessonSlug));
+const genericLessonLinks = locationKey
+  ? lessons
+      .filter((l) => !builtLessonSlugs.has(l.slug as 'hitting' | 'pitching'))
+      .map((l) => ({ label: l.label, url: lessonUrl(l.slug) }))
+  : [];
+const locationName = locationKey === 'rocklin' ? 'Rocklin' : 'El Dorado Hills';
 ---
 
 <Layout
@@ -367,6 +392,22 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
             <a href={lessonUrl('baseball-iq')}>Baseball IQ</a>
             <a href={coachesUrl()}>Meet the Coaches</a>
           </div>
+
+          {localServiceAreaLinks.length > 0 && (
+            <div class="sa-hub-links">
+              <div class="ls-section-label">Lessons at This Facility</div>
+              <ul class="sa-hub-list">
+                {localServiceAreaLinks.map((l) => (
+                  <li>
+                    <a href={l.url}><strong>{l.label} in {locationName}</strong></a>
+                  </li>
+                ))}
+                {genericLessonLinks.map((l) => (
+                  <li><a href={l.url}>{l.label} Lessons</a></li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
         <div class="ls-location-cards">
           <article>
@@ -607,3 +648,31 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
     </main>
   )}
 </Layout>
+
+<style>
+  /* "Lessons at This Facility" — the location hub's one-to-one links to its own
+     service-area pages. Built variants are bolded; the rest fall back to the
+     location-neutral lesson pages until their variant exists. */
+  .sa-hub-links {
+    margin-top: 26px;
+  }
+  .sa-hub-list {
+    list-style: none;
+    margin: 12px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sa-hub-list a {
+    color: var(--cyan);
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .sa-hub-list a:hover {
+    text-decoration: underline;
+  }
+  .sa-hub-list strong {
+    font-weight: 600;
+  }
+</style>

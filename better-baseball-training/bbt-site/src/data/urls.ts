@@ -29,6 +29,28 @@ export function seoPageUrl(slug: string): string {
   return `/${slug}`;
 }
 
+// Service-area pages nest under their core location hub:
+//   /baseball-lessons-rocklin/hitting
+// The hub slug comes from locationHubSlug() so the two never drift apart.
+const LOCATION_HUB_SLUGS: Record<string, string> = {
+  rocklin: 'baseball-lessons-rocklin',
+  'el-dorado-hills': 'baseball-lessons-el-dorado-hills',
+};
+
+export function locationHubSlug(locationKey: string): string | undefined {
+  return LOCATION_HUB_SLUGS[locationKey];
+}
+
+export function locationHubUrl(locationKey: string): string {
+  const slug = LOCATION_HUB_SLUGS[locationKey];
+  return slug ? `/${slug}` : '/';
+}
+
+export function serviceAreaUrl(locationKey: string, serviceSlug: string): string {
+  const slug = LOCATION_HUB_SLUGS[locationKey];
+  return slug ? `/${slug}/${serviceSlug}` : '/';
+}
+
 // house36_bbt_booking_url(): /book-now/ -> /book-now
 export function bookingUrl(): string {
   return `/${BOOKING_SLUG}`;

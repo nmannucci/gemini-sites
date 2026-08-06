@@ -10,7 +10,9 @@ import {
   seoPageUrl,
   homeSectionUrl,
   lessonRelatedCoachKeysFor,
+  serviceAreaUrl,
 } from '../../data/urls';
+import { serviceAreasForLesson } from '../../data/serviceAreas';
 import { contact } from '../../data/contact';
 import LeadCtaSection from '../../components/LeadCtaSection.astro';
 
@@ -39,6 +41,11 @@ const relatedCoachNames = relatedCoaches.map((c) => c.name);
 
 const lessonLabel = `${lessonTitle} lessons`;
 
+// Service-area variants of THIS lesson, if any are built yet.
+const areasForLesson = serviceAreasForLesson(lesson.slug);
+const rocklinArea = areasForLesson.find((a) => a.locationKey === 'rocklin');
+const edhArea = areasForLesson.find((a) => a.locationKey === 'el-dorado-hills');
+
 interface LessonFaqItem {
   question: string;
   answerHtml: string;
@@ -51,10 +58,16 @@ interface LessonFaqItem {
 const lessonFaqItems: LessonFaqItem[] = [
   {
     question: 'Where are these lessons offered?',
-    answerHtml: `${lessonLabel} are available in <strong>Rocklin and El Dorado Hills</strong> so families can choose the location and schedule that works best.`,
-    answerText: `${lessonLabel} are available in Rocklin and El Dorado Hills so families can choose the location and schedule that works best.`,
-    linkUrl: homeSectionUrl('facilities'),
-    linkLabel: 'See both training locations',
+    answerHtml:
+      rocklinArea && edhArea
+        ? `${lessonLabel} are available at both facilities. See <a href="${serviceAreaUrl('rocklin', rocklinArea.slug)}">${lessonLabel.toLowerCase()} in Rocklin</a> or <a href="${serviceAreaUrl('el-dorado-hills', edhArea.slug)}">${lessonLabel.toLowerCase()} in El Dorado Hills</a> for the facility, coaches, and details at each.`
+        : `${lessonLabel} are available in <strong>Rocklin and El Dorado Hills</strong> so families can choose the location and schedule that works best.`,
+    answerText:
+      rocklinArea && edhArea
+        ? `${lessonLabel} are available at both facilities. See ${lessonLabel.toLowerCase()} in Rocklin or ${lessonLabel.toLowerCase()} in El Dorado Hills for the facility, coaches, and details at each.`
+        : `${lessonLabel} are available in Rocklin and El Dorado Hills so families can choose the location and schedule that works best.`,
+    linkUrl: rocklinArea && edhArea ? undefined : homeSectionUrl('facilities'),
+    linkLabel: rocklinArea && edhArea ? undefined : 'See both training locations',
   },
   {
     question: 'Who is this training built for?',
@@ -309,16 +322,27 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
         )}
         <a href={coachesUrl()} class="bk-card__inline-link">Meet the full coaching staff</a>
       </div>
+      {/* "Where we offer this service." When this lesson has a service-area page for a
+          facility, link to that rather than the location hub — the variant is the page that
+          targets "{lesson} in {city}". Lessons without a variant yet fall back to the hub. */}
       <div class="ls-location-cards">
         <article>
           <span>Rocklin</span>
           <strong>4283 Duluth Ave</strong>
-          <a href={seoPageUrl('baseball-lessons-rocklin')}>View Rocklin lessons</a>
+          {rocklinArea ? (
+            <a href={serviceAreaUrl('rocklin', rocklinArea.slug)}>{lessonTitle} lessons in Rocklin</a>
+          ) : (
+            <a href={seoPageUrl('baseball-lessons-rocklin')}>View Rocklin lessons</a>
+          )}
         </article>
         <article>
           <span>El Dorado Hills</span>
           <strong>4990 Hillsdale Dr, Suite 400</strong>
-          <a href={seoPageUrl('baseball-lessons-el-dorado-hills')}>View EDH lessons</a>
+          {edhArea ? (
+            <a href={serviceAreaUrl('el-dorado-hills', edhArea.slug)}>{lessonTitle} lessons in El Dorado Hills</a>
+          ) : (
+            <a href={seoPageUrl('baseball-lessons-el-dorado-hills')}>View EDH lessons</a>
+          )}
         </article>
       </div>
     </section>

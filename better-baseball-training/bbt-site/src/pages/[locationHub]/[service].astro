@@ -1,0 +1,327 @@
+---
+// Service-area page: one {lesson} × {location}. Nested under its core location hub, e.g.
+// /baseball-lessons-rocklin/hitting.
+//
+// The playbook's rule for this layer is that the page has TWO parents and links to both:
+//   core service (/lessons/hitting)  ↔  this page  ↔  core location (/baseball-lessons-rocklin)
+// It also links sideways: the same service at the other facility, and the other built
+// service at this facility. Both parents link back — see [seoPage].astro and lessons/[slug].astro.
+import Layout from '../../layouts/Layout.astro';
+import { serviceAreas } from '../../data/serviceAreas';
+import { lessons } from '../../data/lessons';
+import { locations } from '../../data/locations';
+import { coaches } from '../../data/coaches';
+import { contact } from '../../data/contact';
+import { lessonUrl, locationHubSlug, locationHubUrl, serviceAreaUrl, bookingUrl, coachesUrl } from '../../data/urls';
+import LeadForm from '../../components/LeadForm.astro';
+
+const SITE = 'https://www.betterbaseballtraining.com';
+
+export function getStaticPaths() {
+  return serviceAreas.map((area) => ({
+    params: { locationHub: locationHubSlug(area.locationKey)!, service: area.slug },
+    props: { area },
+  }));
+}
+
+const { area } = Astro.props;
+
+const location = locations.find((l) => l.key === area.locationKey)!;
+const lesson = lessons.find((l) => l.slug === area.lessonSlug)!;
+const pageUrl = `${SITE}${serviceAreaUrl(area.locationKey, area.slug)}`;
+
+// Coaches who actually work this skill at this facility. Derived from coaches.ts rather than
+// hand-listed, so the roster can never claim someone is at a location they are not.
+const specialtyFor: Record<string, string> = { hitting: 'Hitting', pitching: 'Pitching' };
+const localCoaches = coaches.filter(
+  (c) =>
+    c.locations?.includes(location.name) &&
+    c.specialties?.includes(specialtyFor[area.lessonSlug]),
+);
+
+// Sideways links: same service at the other facility, other built service at this facility.
+const sameServiceElsewhere = serviceAreas.find(
+  (a) => a.lessonSlug === area.lessonSlug && a.locationKey !== area.locationKey,
+);
+const otherServiceHere = serviceAreas.find(
+  (a) => a.locationKey === area.locationKey && a.lessonSlug !== area.lessonSlug,
+);
+const otherLocation = locations.find((l) => l.key !== area.locationKey)!;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${pageUrl}#service`,
+  name: area.headline,
+  serviceType: `Youth baseball ${area.lessonSlug} lessons`,
+  description: area.meta_description,
+  url: pageUrl,
+  provider: { '@id': `${SITE}/#organization` },
+  areaServed: { '@type': 'City', name: location.name },
+  availableAtOrFrom: {
+    '@id': area.locationKey === 'rocklin' ? `${SITE}/#rocklin-location` : `${SITE}/#edh-location`,
+  },
+  audience: { '@type': 'PeopleAudience', suggestedMinAge: 8, suggestedMaxAge: 14 },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: area.faq_items.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+
+// Breadcrumb mirrors the URL nesting: Home > {location hub} > {this page}.
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: `Baseball Lessons in ${location.name}`,
+      item: `${SITE}${locationHubUrl(area.locationKey)}`,
+    },
+    { '@type': 'ListItem', position: 3, name: area.headline, item: pageUrl },
+  ],
+};
+---
+
+<Layout
+  title={area.meta_title}
+  description={area.meta_description}
+  canonical={pageUrl}
+  pageSchema={[serviceSchema, faqSchema, breadcrumbSchema]}
+>
+  <main id="main-content" class="seo-landing-page ls-page">
+    <section class="ls-hero reveal">
+      <div class="ls-hero__inner">
+        {/* A <div role="navigation"> rather than <nav>: global.css styles the bare `nav`
+            element as the fixed site header (position: fixed), so a <nav> here renders on
+            top of the real navigation. Same semantics, no collision. It lives inside the
+            hero because the hero's padding is what clears the fixed header. */}
+        <div class="ls-breadcrumb" role="navigation" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li><a href={locationHubUrl(area.locationKey)}>Baseball Lessons in {location.name}</a></li>
+            <li aria-current="page">{lesson.label}</li>
+          </ol>
+        </div>
+        <div class="ls-hero__kicker">{area.kicker}</div>
+        <h1 class="ls-hero__title">{area.headline}</h1>
+        <p class="ls-hero__copy">{area.subheadline}</p>
+        <div class="ls-hero__meta" aria-label="Page details">
+          {area.meta_items.map((item) => <span>{item}</span>)}
+        </div>
+        <div class="ls-hero__actions">
+          <a href={bookingUrl()} class="membership-cta">{area.cta_label}</a>
+          <a href={contact.phoneHref} class="cta-box-secondary-link">Call {contact.phone}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="ls-overview">
+      <div class="ls-overview__inner reveal">
+        <div class="ls-overview__media">
+          <img
+            src={area.image}
+            sizes="(max-width: 768px) 100vw, (max-width: 1180px) 50vw, 540px"
+            alt={area.image_alt}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+        <div class="ls-overview__content">
+          <div class="ls-section-label">{lesson.label} · {location.name}</div>
+          <h2 class="ls-section-title">{area.intro_title}</h2>
+          <p class="ls-overview__text">{area.intro_copy}</p>
+          <ul class="ls-focus-list">
+            {area.focus_items.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="ls-answer-strip reveal" aria-labelledby="sa-local-heading">
+      <div class="ls-answer-strip__inner">
+        <div class="ls-section-label">This Facility</div>
+        <h2 id="sa-local-heading" class="ls-section-title">{area.local_title}</h2>
+        <p>{area.local_copy}</p>
+        <address class="sa-address">
+          {location.address_line}<br />{location.city_state_zip}
+        </address>
+        <a href={locationHubUrl(area.locationKey)} class="bk-card__inline-link">
+          Everything at BBT {location.name}
+        </a>
+      </div>
+    </section>
+
+    {localCoaches.length > 0 && (
+      <section class="ls-cards reveal" aria-labelledby="sa-coach-heading">
+        <div class="seo-section-heading">
+          <div class="ls-section-label">Your Coaches</div>
+          <h2 id="sa-coach-heading" class="ls-section-title">
+            Who Coaches {lesson.label} at {location.name}
+          </h2>
+        </div>
+        <div class="ls-cards__inner">
+          {localCoaches.map((coach) => (
+            <article class="bk-card">
+              <div class="bk-card__eyebrow">{coach.job_title}</div>
+              <h3 class="bk-card__title">{coach.name}</h3>
+              <p class="bk-card__copy">{coach.description}</p>
+              <a href={`${coachesUrl()}#${coach.anchor}`} class="bk-card__inline-link">
+                About {coach.name}
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="ls-answer-strip reveal" aria-labelledby="sa-faq-heading">
+      <div class="ls-answer-strip__inner">
+        <div class="ls-section-label">Parents Ask</div>
+        <h2 id="sa-faq-heading" class="ls-section-title">
+          {lesson.label} in {location.name}: Common Questions
+        </h2>
+        <div class="ls-faq-list">
+          {area.faq_items.map((item) => (
+            <details class="faq-item">
+              <summary>{item.question} <span class="faq-icon"></span></summary>
+              <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">
+                <p>{item.answer}</p>
+              </div></div></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="ls-form-section">
+      <div class="ls-form-section__inner reveal">
+        <div class="cta-box forminator-cta-box ls-form-card">
+          <div class="cta-box-topline">
+            <div class="cta-box-eyebrow">Parent Inquiry Form</div>
+            <div class="cta-box-badge">Ages 8-14U</div>
+          </div>
+          <h2 class="cta-box-headline">{area.cta_label}</h2>
+          <p class="ls-form-copy">
+            Tell us about your athlete and the BBT team will follow up about {lesson.label.toLowerCase()} lessons at {location.name}.
+          </p>
+          <div class="forminator-shell">
+            <LeadForm
+              source={`${locationHubSlug(area.locationKey)}-${area.slug}`}
+              idPrefix={`sa-${area.locationKey}-${area.slug}`}
+              areaFocus={area.lessonSlug}
+              interest=""
+              location={area.locationKey}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Both parents plus the two sideways links. This block is the page's half of the
+        service ↔ service-area ↔ location graph. */}
+    <section class="ls-cards seo-related-section reveal" aria-labelledby="sa-related-heading">
+      <div class="seo-section-heading">
+        <div class="ls-section-label">Related Training</div>
+        <h2 id="sa-related-heading" class="ls-section-title">Where to Go Next</h2>
+      </div>
+      <div class="ls-cards__inner">
+        <article class="bk-card">
+          <div class="bk-card__eyebrow">The Service</div>
+          <h3 class="bk-card__title">{lesson.label} Lessons</h3>
+          <p class="bk-card__copy">How BBT teaches {lesson.label.toLowerCase()}, at either facility.</p>
+          <a href={lessonUrl(lesson.slug)} class="bk-card__inline-link">View {lesson.label} Lessons</a>
+        </article>
+
+        <article class="bk-card">
+          <div class="bk-card__eyebrow">The Location</div>
+          <h3 class="bk-card__title">BBT {location.name}</h3>
+          <p class="bk-card__copy">{location.summary}</p>
+          <a href={locationHubUrl(area.locationKey)} class="bk-card__inline-link">
+            View BBT {location.name}
+          </a>
+        </article>
+
+        {sameServiceElsewhere && (
+          <article class="bk-card">
+            <div class="bk-card__eyebrow">Other Facility</div>
+            <h3 class="bk-card__title">{lesson.label} in {otherLocation.name}</h3>
+            <p class="bk-card__copy">The same lesson at the other BBT facility, if that commute is better.</p>
+            <a
+              href={serviceAreaUrl(sameServiceElsewhere.locationKey, sameServiceElsewhere.slug)}
+              class="bk-card__inline-link"
+            >
+              View {lesson.label} in {otherLocation.name}
+            </a>
+          </article>
+        )}
+
+        {otherServiceHere && (
+          <article class="bk-card">
+            <div class="bk-card__eyebrow">Same Facility</div>
+            <h3 class="bk-card__title">
+              {lessons.find((l) => l.slug === otherServiceHere.lessonSlug)?.label} in {location.name}
+            </h3>
+            <p class="bk-card__copy">Another skill families train at this facility.</p>
+            <a
+              href={serviceAreaUrl(otherServiceHere.locationKey, otherServiceHere.slug)}
+              class="bk-card__inline-link"
+            >
+              View {lessons.find((l) => l.slug === otherServiceHere.lessonSlug)?.label} in {location.name}
+            </a>
+          </article>
+        )}
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .ls-breadcrumb {
+    margin: 0 0 18px;
+  }
+  .ls-breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .ls-breadcrumb li + li::before {
+    content: '/';
+    margin-right: 8px;
+    opacity: 0.4;
+  }
+  .ls-breadcrumb a {
+    color: var(--cyan);
+    text-decoration: none;
+  }
+  .ls-breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  .ls-breadcrumb [aria-current='page'] {
+    opacity: 0.6;
+  }
+  .sa-address {
+    font-style: normal;
+    margin: 16px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    opacity: 0.75;
+  }
+</style>
