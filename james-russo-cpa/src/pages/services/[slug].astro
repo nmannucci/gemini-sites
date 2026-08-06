@@ -1,0 +1,133 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import HomepageContactForm from "../../components/HomepageContactForm.astro";
+import { contact, getServicePillars, site } from "../../data/site";
+
+export function getStaticPaths() {
+  return getServicePillars().map((pillar) => ({ params: { slug: pillar.slug }, props: { pillar } }));
+}
+
+const { pillar } = Astro.props;
+const canonicalPath = pillar.path;
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/#services" },
+  { label: pillar.name }
+];
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    item: item.href && site.siteUrl ? `${site.siteUrl}${item.href}` : site.siteUrl ? `${site.siteUrl}${canonicalPath}` : undefined
+  }))
+};
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": site.siteUrl ? `${site.siteUrl}${canonicalPath}#service` : `${canonicalPath}#service`,
+  serviceType: pillar.name,
+  name: pillar.name,
+  description: pillar.summary,
+  provider: { "@id": site.siteUrl ? `${site.siteUrl}/#business` : "#business" },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: pillar.name,
+    itemListElement: pillar.services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: service.name, url: site.siteUrl ? `${site.siteUrl}${service.path}` : service.path }
+    }))
+  }
+};
+---
+
+<BaseLayout title={`${pillar.name} Near You | ${site.businessName}`} description={pillar.summary} schemas={[serviceSchema, breadcrumbSchema]}>
+  <Header />
+  <main>
+    <Breadcrumbs items={breadcrumbItems} />
+    <section class="pillar-hero">
+      <div class="container pillar-hero-inner">
+        <div>
+          <span class="eyebrow">{pillar.name} near you</span>
+          <h1>{pillar.headline}</h1>
+          <p>{pillar.intro}</p>
+          <div class="pillar-actions"><a class="button light" href="/contact/">Contact Jim</a><a href={contact.href}><i class="ph ph-phone" aria-hidden="true"></i>{site.phone}</a></div>
+        </div>
+        <HomepageContactForm />
+      </div>
+    </section>
+
+    <section class="pillar-intro container">
+      <div><span class="eyebrow">Explore services</span><h2 class="section-title">Choose the service that matches the decision.</h2></div>
+      <p>Start with the service that best matches your filing need or financial decision. Each page explains what the work can cover and connects you with dedicated San Francisco guidance.</p>
+    </section>
+
+    <section class="subservices">
+      <div class="container subservice-grid">
+        {pillar.services.map((service) => (
+          <a href={service.path}>
+            <img src={service.image} alt="" width="1448" height="1086" loading="lazy" decoding="async" />
+            <div><span>{service.number}</span><h2>{service.name}</h2><p>{service.summary}</p><strong>Explore service<i class="ph ph-arrow-up-right" aria-hidden="true"></i></strong></div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="home-turf container">
+      <div><span class="eyebrow">Home turf</span><h2 class="section-title">Looking for this help in San Francisco?</h2><p>Each service has a dedicated San Francisco page with local context, common situations, frequently asked questions, and direct ways to contact Jim.</p></div>
+      <div class="home-links">{pillar.services.map((service) => <a href={service.homeTurfPath}><span>{service.name} in San Francisco</span><i class="ph ph-arrow-right" aria-hidden="true"></i></a>)}</div>
+    </section>
+
+    <section class="pillar-contact" id="pillar-contact">
+      <div class="pillar-contact-inner container">
+        <div><span class="eyebrow">Start with the situation</span><h2 class="section-title">Talk directly with Jim.</h2><p>Share the decision, deadline, and what you want to understand. Jim will help identify the right service and next step.</p></div>
+        <HomepageContactForm />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .pillar-hero { padding: 88px 0; color: var(--brand-dark-contrast); background: var(--brand-dark); }
+  .pillar-hero-inner { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(440px, 0.8fr); align-items: start; gap: clamp(54px, 8vw, 110px); }
+  .pillar-hero .eyebrow { color: color-mix(in srgb, var(--brand-dark-contrast) 72%, transparent); text-transform: uppercase; }
+  .pillar-hero h1 { max-width: 700px; margin-top: 18px; font-size: clamp(3.25rem, 4.35vw, 4.6rem); line-height: 0.98; }
+  .pillar-hero p { max-width: 690px; margin-top: 24px; color: color-mix(in srgb, var(--brand-dark-contrast) 80%, transparent); font-size: 1.05rem; line-height: 1.72; }
+  .pillar-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; margin-top: 30px; }
+  .pillar-actions > a:not(.button) { display: inline-flex; align-items: center; gap: 8px; font-size: 0.88rem; font-weight: 600; text-decoration: none; }
+  .pillar-hero :global(.homepage-contact-form) { color: var(--ink); background: var(--white); box-shadow: 0 18px 42px rgba(0,0,0,0.18); }
+  .pillar-intro .eyebrow, .home-turf .eyebrow, .pillar-contact .eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .pillar-intro .section-title, .home-turf .section-title, .pillar-contact .section-title { font-size: clamp(2.45rem, 4vw, 4rem); line-height: 1.02; }
+  .pillar-intro { max-width: 900px; padding-block: 102px; }
+  .pillar-intro h2 { max-width: 760px; margin-top: 12px; }
+  .pillar-intro > p { max-width: 720px; margin-top: 18px; color: var(--muted); line-height: 1.75; }
+  .subservices { padding: 96px 0 104px; background: var(--cream); }
+  .subservice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .subservice-grid > a { overflow: hidden; color: var(--ink); background: var(--white); text-decoration: none; transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out); }
+  .subservice-grid > a:hover { transform: translateY(-3px); box-shadow: var(--shadow-raised); }
+  .subservice-grid img { aspect-ratio: 4 / 3; object-fit: cover; }
+  .subservice-grid a > div { min-height: 290px; display: flex; flex-direction: column; padding: 26px; }
+  .subservice-grid span { color: var(--brand); font-size: 0.78rem; }
+  .subservice-grid h2 { margin-top: 28px; font-size: 2rem; line-height: 1.02; }
+  .subservice-grid p { margin-top: 14px; color: var(--muted); font-size: 0.92rem; line-height: 1.65; }
+  .subservice-grid strong { display: flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 24px; color: var(--brand); font-size: 0.84rem; }
+  .home-turf { display: grid; grid-template-columns: 0.75fr 1fr; gap: clamp(50px, 9vw, 120px); padding-block: 104px; }
+  .home-turf h2 { margin-top: 12px; }
+  .home-turf p { margin-top: 18px; color: var(--muted); line-height: 1.7; }
+  .home-links { border-top: 1px solid var(--line); }
+  .home-links a { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 4px; border-bottom: 1px solid var(--line); font: 500 1.25rem/1.15 var(--display); text-decoration: none; }
+  .home-links a:hover { color: var(--brand); }
+  .pillar-contact { padding: 100px 0; background: var(--cream); }
+  .pillar-contact-inner { display: grid; grid-template-columns: 0.78fr 1fr; gap: clamp(50px, 8vw, 100px); }
+  .pillar-contact h2 { margin-top: 12px; }
+  .pillar-contact p { margin-top: 18px; color: var(--muted); line-height: 1.7; }
+  .pillar-contact :global(.homepage-contact-form) { background: var(--white); }
+  @media (max-width: 860px) { .pillar-hero-inner, .home-turf, .pillar-contact-inner { grid-template-columns: 1fr; } .subservice-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 620px) { .pillar-hero { padding-block: 68px; } .pillar-hero h1 { font-size: clamp(3.2rem, 15vw, 4.5rem); } .pillar-intro, .home-turf { padding-block: 78px; } .subservices, .pillar-contact { padding-block: 78px; } }
+</style>

@@ -6890,3 +6890,159 @@ footer {
 .forminator-shell form > .form-submit {
   margin-top: 10px;
 }
+
+/* ============================================================================
+   Service & location page readability pass
+   ----------------------------------------------------------------------------
+   Every section on these pages was a bordered dark card sitting on a dark
+   background, so nothing had hierarchy and the eye had no path through the
+   page. The FAQ was the worst case: nine items in a two-column masonry grid
+   with questions set in Bebas Neue, a display face with no lowercase glyphs —
+   so every question rendered as condensed all-caps.
+
+   These rules strip the card chrome and lay the content out in a single
+   readable column. Scoped to the ls-* service page components only; the
+   homepage (.answer-card, .faq) and coaches page (.coach-summary-card) use
+   different classes and are untouched.
+   ========================================================================= */
+
+/* --- FAQ: one column, readable question type, dividers instead of cards --- */
+.ls-answer-strip__inner {
+  max-width: 860px;
+  padding: 32px 0 4px;
+  border: 0;
+  background: none;
+}
+
+.ls-answer-grid {
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 22px;
+}
+
+.ls-answer-card {
+  padding: 20px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.09);
+  background: none;
+}
+
+.ls-answer-card:last-child { border-bottom: 0; }
+
+.ls-answer-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0;
+  color: var(--white);
+}
+
+.ls-answer-card p {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.7);
+}
+
+/* --- Process: a vertical numbered list, not four side-by-side cards --- */
+.ls-process__grid {
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-width: 860px;
+}
+
+.ls-process-card {
+  min-height: 0;
+  padding: 18px 0 18px 54px;
+  border: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.09);
+  background: none;
+}
+
+.ls-process-card:last-child { border-bottom: 0; }
+.ls-process-card::before { display: none; }
+
+.ls-process-card__number {
+  right: auto;
+  left: 0;
+  top: 20px;
+  font-size: 26px;
+  color: rgba(255,255,255,0.28);
+}
+
+.ls-process-card__label { margin-bottom: 2px; }
+
+.ls-process-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.ls-process-card p { margin-top: 6px; }
+
+.ls-process__header { max-width: 860px; }
+
+/* --- Link / detail blocks: plain columns, not bordered cards --- */
+.ls-cards .bk-card {
+  padding: 22px 0 0;
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  background: none;
+}
+
+.ls-cards .bk-card__title {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.ls-cards .bk-card__copy {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* --- Coach + location block: drop the panel chrome, keep the two columns --- */
+.ls-coach-location__content,
+.ls-location-cards article {
+  border: 0;
+  background: none;
+}
+
+.ls-coach-location__content { padding: 0; }
+.ls-location-cards article { padding: 16px 0 0; border-top: 1px solid rgba(255,255,255,0.12); }
+
+.ls-coach-location__content p { font-size: 16px; }
+
+/* --- Overview: the pull-quote card was filler between the copy and the photo --- */
+.ls-overview--story .ls-overview__inner,
+.ls-overview__content {
+  border: 0;
+  background: none;
+}
+
+/* --- Overview photo: portrait source images rendered ~800px tall and left the
+       section mostly dead space. Cap the height and crop instead. --- */
+.ls-overview--story .ls-photo-panel figure {
+  max-height: 420px;
+  overflow: hidden;
+}
+
+.ls-overview--story .ls-photo-panel__img {
+  height: 420px;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+/* --- Map block: match the rest of the page. The frame around the map itself
+       stays; the outer panel chrome goes. --- */
+.ls-map-section__inner {
+  padding: 26px 0 0;
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  background: none;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "james-russo-cpa",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.9.0",
+  "engines": {
+    "node": "18.20.8 || ^20.3.0 || >=22.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node scripts/build-sites-worker.mjs",
+    "build:prospect": "node scripts/build-prospect.mjs",
+    "preview": "astro preview",
+    "test": "node --test tests/site-output.test.mjs"
+  },
+  "dependencies": {
+    "@phosphor-icons/web": "^2.1.2",
+    "astro": "^5.11.0"
+  }
+}

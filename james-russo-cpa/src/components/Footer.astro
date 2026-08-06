@@ -1,0 +1,80 @@
+---
+import { contact, getAreas, getServicePillars, getServices, site } from "../data/site";
+
+const services = getServices();
+const pillars = getServicePillars();
+const areas = getAreas();
+---
+<footer class="site-footer">
+  <div class="footer-main container">
+    <div class="footer-brand">
+      {site.logoImage ? <div class="footer-logos"><img class="footer-logo" src={site.logoImage} alt="JJR" width="163" height="82" /><img class="footer-logo" src="/brand/cpa-logo.png" alt="CPA" width="168" height="82" /></div> : <span class="footer-mark">{site.logoText}</span>}
+      <h2>{site.businessName}</h2>
+      <p>San Francisco CPA providing individual tax preparation and year-round planning across the Bay Area.</p>
+      <a href={contact.href}>{site.phone}</a>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+
+    <div class="footer-column">
+      <strong>Services</strong>
+      {pillars.map((pillar) => <a class="pillar-footer-link" href={pillar.path}>{pillar.name}</a>)}
+      {services.slice(0, 6).map((service) => <a href={service.path}>{service.name}</a>)}
+    </div>
+
+    <div class="footer-column">
+      <strong>Areas served</strong>
+      <span class="footer-group-label">Primary counties</span>
+      {areas.slice(0, 3).map((area) => <a href={area.path}>{area.name}</a>)}
+      <span class="footer-group-label secondary-label">Additional counties</span>
+      {areas.slice(3).map((area) => <a href={area.path}>{area.name}</a>)}
+    </div>
+
+    <div class="footer-column">
+      <strong>Who Jim helps</strong>
+      <a href="/who-we-help/">Who we help</a>
+      <a href="/who-we-help/high-income-individuals/">High-income individuals</a>
+      <a href="/services/tax-preparation/small-business-tax-services/">Small-business owners</a>
+      <a href="/services/tax-planning/stock-option-tax-planning/">Technology professionals</a>
+      <a href="/services/tax-planning/real-estate-and-landlord-tax/">Real estate owners</a>
+      <a href="/services/tax-preparation/retirement-and-life-change-planning/">Retired taxpayers</a>
+    </div>
+
+    <div class="footer-column contact-column">
+      <strong>Firm details</strong>
+      <span>{site.address}</span>
+      <span>{site.hours}</span>
+      <a href="/contact/">Contact the firm</a>
+    </div>
+  </div>
+
+  <div class="footer-bottom container">
+    <span>© {new Date().getFullYear()} {site.businessName}. All rights reserved.</span>
+    <span>Information on this site is general and does not constitute tax, legal, or financial advice.</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding: 76px 0 28px; color: var(--footer-text); background: var(--brand-dark); }
+  .footer-main { display: grid; grid-template-columns: 1.35fr repeat(4, minmax(140px, 0.72fr)); gap: 42px; }
+  .footer-brand { display: grid; justify-items: start; align-content: start; }
+  .footer-mark { display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,0.22); border-radius: 50%; color: var(--white); font: 500 0.9rem/1 var(--display); }
+  .footer-logos { display: flex; align-items: center; }
+  .footer-logo { width: auto; height: 48px; max-width: 112px; object-fit: contain; }
+  .footer-logo + .footer-logo { margin-left: -6px; }
+  .footer-brand h2 { max-width: 340px; margin-top: 22px; font-size: 2rem; line-height: 1; }
+  .footer-brand p { max-width: 340px; margin: 16px 0 22px; color: var(--footer-muted); line-height: 1.67; }
+  .footer-brand a { margin-top: 6px; color: var(--white); font-size: 0.875rem; text-decoration: none; }
+  .footer-column { display: grid; align-content: start; gap: 12px; }
+  .footer-column strong { margin-bottom: 9px; color: var(--white); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.055em; line-height: 1; text-transform: uppercase; }
+  .footer-column a, .footer-column span { color: var(--footer-muted); font-size: 0.875rem; line-height: 1.55; text-decoration: none; }
+  .footer-column a { transition: color 160ms var(--ease-out); }
+  .footer-column .pillar-footer-link { color: var(--white); font-weight: 600; }
+  .footer-group-label { color: var(--white) !important; font-size: 0.7rem !important; font-weight: 700; letter-spacing: 0.045em; text-transform: uppercase; }
+  .footer-group-label.secondary-label { margin-top: 8px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.13); }
+  .footer-column a:hover, .footer-column a:focus-visible { color: var(--white); }
+  .contact-column { gap: 18px; }
+  .footer-bottom { display: flex; justify-content: space-between; gap: 30px; margin-top: 70px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.13); color: var(--footer-faint); font-size: 0.8125rem; line-height: 1.55; }
+
+  @media (max-width: 1080px) { .footer-main { grid-template-columns: 1.4fr 1fr 1fr; } .contact-column { grid-column: 2 / -1; } }
+  @media (max-width: 620px) { .site-footer { padding-top: 58px; } .footer-main { grid-template-columns: 1fr 1fr; gap: 42px 26px; } .footer-brand { grid-column: 1 / -1; } .contact-column { grid-column: 1 / -1; } .footer-bottom { flex-direction: column; margin-top: 46px; font-size: 0.875rem; } }
+</style>

@@ -1,0 +1,214 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import HomepageContactForm from "../../components/HomepageContactForm.astro";
+import { contact, site } from "../../data/site";
+
+const audiences = [
+  {
+    title: "Small-business owners",
+    description: "Coordinate business returns, entity choices, owner compensation, estimated payments, and the connection to your individual return.",
+    image: "/assets/james-russo/who-small-business.webp",
+    alt: "Small-business point-of-sale system in use",
+    href: "/services/tax-preparation/small-business-tax-services/"
+  },
+  {
+    title: "Real estate owners & landlords",
+    description: "Plan around rental income, expenses, depreciation, property improvements, home sales, basis, and capital gains.",
+    image: "/assets/james-russo/who-real-estate.webp",
+    alt: "A hand holding keys for a residential property",
+    href: "/services/tax-planning/real-estate-and-landlord-tax/"
+  },
+  {
+    title: "High-income individuals",
+    description: "Bring salary, bonuses, investment income, property, withholding, and estimated payments into one coordinated tax picture.",
+    image: "/assets/james-russo/who-high-income.webp",
+    alt: "Financial reports, a calculator, and a laptop used for tax planning",
+    href: "/who-we-help/high-income-individuals/"
+  },
+  {
+    title: "Technology professionals",
+    description: "Understand the tax treatment and timing of ISOs, NQSOs, ESPPs, AMT exposure, exercises, and sales before taking action.",
+    image: "/assets/james-russo/who-technology.webp",
+    alt: "Technology professional working at a computer",
+    href: "/services/tax-planning/stock-option-tax-planning/"
+  },
+  {
+    title: "Retired taxpayers",
+    description: "Coordinate pensions, retirement distributions, investments, withholding, trusts, property, and important life transitions.",
+    image: "/assets/james-russo/who-retirement.webp",
+    alt: "Retired couple reviewing financial paperwork at home",
+    href: "/services/tax-preparation/retirement-and-life-change-planning/"
+  }
+];
+
+const breadcrumbItems = [{ label: "Home", href: "/" }, { label: "Who we help" }];
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    item: site.siteUrl ? `${site.siteUrl}${item.href || "/who-we-help/"}` : item.href || "/who-we-help/"
+  }))
+};
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Who James J. Russo, CPA Helps",
+  description: "Tax preparation and planning guidance for business owners, property owners, high-income individuals, technology professionals, and retired taxpayers.",
+  url: site.siteUrl ? `${site.siteUrl}/who-we-help/` : "/who-we-help/"
+};
+---
+
+<BaseLayout
+  title={`Who We Help | ${site.businessName}`}
+  description="Tax preparation and planning for small-business owners, property owners, high-income individuals, technology professionals, and retired taxpayers."
+  schemas={[collectionSchema, breadcrumbSchema]}
+>
+  <Header />
+  <main>
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <section class="audience-hero">
+      <div class="audience-hero-inner container">
+        <div>
+          <span class="eyebrow">Who Jim helps</span>
+          <h1>Tax guidance for the way you earn, own, and plan.</h1>
+          <p>Jim works directly with individuals whose tax lives involve more than one moving part. Start with the situation that feels most familiar, then explore the preparation and planning services that fit.</p>
+          <div class="hero-actions">
+            <a class="button light" href="#audiences">Find your starting point</a>
+            <a class="hero-call" href={contact.href}><i class="ph ph-phone" aria-hidden="true"></i>{site.phone}</a>
+          </div>
+        </div>
+        <aside>
+          <img src="/brand/james-russo-headshot.jpg" alt="James J. Russo, CPA" width="343" height="500" />
+          <div><strong>Work directly with Jim</strong><span>CPA since 1984 · MBA–Taxation · 35+ years in practice</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="audiences container" id="audiences">
+      <div class="section-heading">
+        <span class="eyebrow">Find your situation</span>
+        <h2 class="section-title">Experience matched to your tax life.</h2>
+        <p>These paths organize Jim’s two primary services—individual income tax preparation and year-round tax planning—around the clients who most often need them.</p>
+      </div>
+      <div class="audience-grid">
+        {audiences.map((audience, index) => (
+          <a href={audience.href}>
+            <img src={audience.image} alt={audience.alt} width="1448" height="1086" loading="lazy" decoding="async" />
+            <div><span>{String(index + 1).padStart(2, "0")}</span><h2>{audience.title}</h2><p>{audience.description}</p><strong>Explore guidance<i class="ph ph-arrow-up-right" aria-hidden="true"></i></strong></div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="core-services">
+      <div class="core-inner container">
+        <div>
+          <span class="eyebrow">Primary services</span>
+          <h2 class="section-title">Preparation for what happened. Planning for what comes next.</h2>
+        </div>
+        <div class="core-grid">
+          <a href="/services/tax-preparation/"><span>01</span><h3>Tax Preparation Services</h3><p>Careful individual and small-business filing grounded in a clear understanding of what changed during the year.</p><strong>Explore tax preparation<i class="ph ph-arrow-right" aria-hidden="true"></i></strong></a>
+          <a href="/services/tax-planning/"><span>02</span><h3>Tax Planning Services</h3><p>Year-round guidance for estimates, compensation, property, retirement, and decisions that can still be shaped.</p><strong>Explore tax planning<i class="ph ph-arrow-right" aria-hidden="true"></i></strong></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="practice-reach container">
+      <div>
+        <span class="eyebrow">Bay Area practice</span>
+        <h2 class="section-title">Primary counties, clearly defined.</h2>
+      </div>
+      <div>
+        <p>Jim primarily serves clients in San Francisco, Marin, and San Mateo Counties. He also works with select clients in Santa Clara, Alameda, and Contra Costa Counties.</p>
+        <div class="area-links"><a href="/areas/san-francisco-county/">San Francisco</a><a href="/areas/marin-county/">Marin</a><a href="/areas/san-mateo-county/">San Mateo</a><a href="/#areas-served">View all areas</a></div>
+      </div>
+    </section>
+
+    <section class="audience-contact" id="contact">
+      <div class="audience-contact-inner container">
+        <div><span class="eyebrow">Not sure where to begin?</span><h2 class="section-title">Start with the tax question.</h2><p>Share the deadline, decision, and what you want to understand. Jim can help identify the most useful next step.</p></div>
+        <HomepageContactForm />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .audience-hero { padding: 76px 0 84px; color: var(--brand-dark-contrast); background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%); }
+  .audience-hero-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 0.58fr); align-items: center; gap: clamp(58px, 9vw, 120px); }
+  .audience-hero .eyebrow { color: color-mix(in srgb, var(--brand-dark-contrast) 75%, transparent); text-transform: uppercase; }
+  .audience-hero h1 { max-width: 700px; margin-top: 18px; font-size: clamp(3.25rem, 4.35vw, 4.6rem); line-height: 0.98; }
+  .audience-hero p { max-width: 690px; margin-top: 24px; color: color-mix(in srgb, var(--brand-dark-contrast) 80%, transparent); font-size: 1.04rem; line-height: 1.72; }
+  .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 30px; }
+  .hero-call { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; text-decoration: none; }
+  .audience-hero aside { overflow: hidden; border: 10px solid var(--white); border-radius: 12px; color: var(--ink); background: var(--white); box-shadow: 0 22px 48px rgba(0,0,0,0.2); }
+  .audience-hero aside img { aspect-ratio: 4 / 3; object-fit: cover; object-position: center 20%; }
+  .audience-hero aside div { display: grid; gap: 4px; padding: 19px 17px 15px; }
+  .audience-hero aside strong { font: 500 1.32rem/1.08 var(--display); }
+  .audience-hero aside span { color: var(--muted); font-size: 0.78rem; line-height: 1.5; }
+
+  .audiences { padding-block: 104px 114px; }
+  .section-heading { max-width: 820px; }
+  .section-heading h2 { margin-top: 15px; }
+  .section-heading p { max-width: 720px; margin-top: 20px; color: var(--muted); line-height: 1.72; }
+  .audience-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; margin-top: 44px; }
+  .audience-grid > a { grid-column: span 2; overflow: hidden; color: var(--ink); background: var(--white); border: 1px solid var(--line); border-radius: 10px; text-decoration: none; transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out), border-color 180ms var(--ease-out); }
+  .audience-grid > a:nth-child(4), .audience-grid > a:nth-child(5) { grid-column: span 3; }
+  .audience-grid > a:hover { transform: translateY(-4px); border-color: var(--brand); box-shadow: var(--shadow-raised); }
+  .audience-grid img { aspect-ratio: 4 / 3; object-fit: cover; }
+  .audience-grid a > div { min-height: 290px; display: flex; flex-direction: column; align-items: flex-start; padding: 26px; }
+  .audience-grid div > span { color: var(--brand); font-size: 0.76rem; font-weight: 700; }
+  .audience-grid h2 { margin-top: 25px; font-size: 1.85rem; line-height: 1.03; }
+  .audience-grid p { margin-top: 14px; color: var(--muted); font-size: 0.9rem; line-height: 1.64; }
+  .audience-grid strong { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 24px; color: var(--brand); font-size: 0.8rem; }
+
+  .core-services { padding: 102px 0; color: var(--brand-dark-contrast); background: var(--brand-dark); }
+  .core-services .eyebrow { color: color-mix(in srgb, var(--brand-dark-contrast) 70%, transparent); }
+  .core-inner { display: grid; grid-template-columns: 0.72fr 1fr; gap: clamp(55px, 9vw, 120px); }
+  .core-inner h2 { margin-top: 15px; }
+  .core-grid { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,0.2); border-left: 1px solid rgba(255,255,255,0.2); }
+  .core-grid a { min-height: 340px; display: flex; flex-direction: column; padding: 28px; border-right: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2); text-decoration: none; }
+  .core-grid span { color: color-mix(in srgb, var(--brand-dark-contrast) 58%, transparent); font-size: 0.76rem; }
+  .core-grid h3 { margin-top: 48px; font-size: 2rem; line-height: 1.02; }
+  .core-grid p { margin-top: 14px; color: color-mix(in srgb, var(--brand-dark-contrast) 74%, transparent); font-size: 0.9rem; line-height: 1.65; }
+  .core-grid strong { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 24px; font-size: 0.8rem; }
+
+  .practice-reach { display: grid; grid-template-columns: 0.75fr 1fr; gap: clamp(52px, 9vw, 120px); padding-block: 104px; }
+  .practice-reach h2 { margin-top: 15px; }
+  .practice-reach > div:last-child { padding-top: 28px; }
+  .practice-reach p { max-width: 690px; color: var(--muted); line-height: 1.75; }
+  .area-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .area-links a { min-height: 42px; display: inline-flex; align-items: center; padding: 0 15px; border: 1px solid var(--line); border-radius: 999px; color: var(--brand); font-size: 0.8rem; font-weight: 700; text-decoration: none; }
+
+  .audience-contact { padding: 100px 0; background: var(--cream); }
+  .audience-contact-inner { display: grid; grid-template-columns: 0.75fr 1fr; align-items: start; gap: clamp(55px, 9vw, 115px); }
+  .audience-contact h2 { margin-top: 15px; }
+  .audience-contact p { max-width: 590px; margin-top: 20px; color: var(--muted); line-height: 1.72; }
+  .audience-contact :global(.homepage-contact-form) { background: var(--white); }
+
+  @media (max-width: 900px) {
+    .audience-hero-inner, .core-inner, .practice-reach, .audience-contact-inner { grid-template-columns: 1fr; }
+    .audience-hero aside { width: min(100%, 560px); }
+    .audience-grid { grid-template-columns: repeat(2, 1fr); }
+    .audience-grid > a, .audience-grid > a:nth-child(4), .audience-grid > a:nth-child(5) { grid-column: auto; }
+    .core-inner, .practice-reach { gap: 30px; }
+    .practice-reach > div:last-child { padding-top: 0; }
+  }
+  @media (max-width: 620px) {
+    .audience-hero { padding-block: 60px 70px; }
+    .audience-hero h1 { font-size: clamp(3.2rem, 15vw, 4.5rem); }
+    .audiences, .practice-reach { padding-block: 78px; }
+    .core-services, .audience-contact { padding-block: 78px; }
+    .audience-grid, .core-grid { grid-template-columns: 1fr; }
+    .audience-grid a > div { min-height: 250px; }
+    .core-grid a { min-height: 285px; }
+  }
+</style>

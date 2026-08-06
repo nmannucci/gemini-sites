@@ -1,0 +1,168 @@
+---
+import "@phosphor-icons/web/regular";
+import { site } from "../data/site";
+
+const {
+  title = `San Francisco CPA & Tax Preparation | ${site.businessName}`,
+  description = `Individual tax preparation and year-round planning from a San Francisco CPA with more than 35 years in business.`,
+  schemas = []
+} = Astro.props;
+
+const canonical = site.siteUrl ? `${site.siteUrl}${Astro.url.pathname}` : "";
+const businessId = site.siteUrl ? `${site.siteUrl}/#business` : "#business";
+const socialImage = site.siteUrl ? `${site.siteUrl}/og.png` : "/og.png";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "AccountingService",
+  "@id": businessId,
+  name: site.businessName,
+  url: site.siteUrl || canonical || undefined,
+  telephone: site.phone,
+  email: site.email,
+  logo: site.siteUrl && site.logoImage ? `${site.siteUrl}${site.logoImage}` : undefined,
+  image: site.siteUrl ? `${site.siteUrl}${site.heroImage}` : undefined,
+  foundingDate: site.yearFounded ? String(site.yearFounded) : undefined,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "San Francisco",
+    addressRegion: "CA",
+    addressCountry: "US"
+  },
+  areaServed: site.serviceAreas.map((name) => ({ "@type": "AdministrativeArea", name })),
+  founder: site.ownerName ? {
+    "@type": "Person",
+    name: site.ownerName,
+    jobTitle: "Certified Public Accountant"
+  } : undefined,
+  knowsAbout: site.services,
+  sameAs: [
+    "https://www.bbb.org/us/ca/san-francisco/profile/tax-return-preparation/james-j-russo-cpa-1116-178319"
+  ],
+  ...(site.hours && site.hours !== "By appointment" ? { openingHours: site.hours } : {}),
+  ...(site.reviewRating && site.reviewCount ? {
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: site.reviewRating,
+      reviewCount: site.reviewCount
+    }
+  } : {})
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": site.siteUrl ? `${site.siteUrl}/#website` : "#website",
+  name: site.businessName,
+  url: site.siteUrl || canonical || undefined,
+  publisher: { "@id": businessId }
+};
+
+const schemaItems = [structuredData, ...(Astro.url.pathname === "/" ? [websiteSchema] : []), ...schemas];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    {site.demoMode && <meta name="robots" content="noindex, nofollow" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" href={site.logoImage || "/brand/jjr-logo.png"} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={site.businessName} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="1731" />
+    <meta property="og:image:height" content="909" />
+    <meta property="og:image:alt" content="James J. Russo, CPA — Tax advice shaped by real life." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
+    {schemaItems.map((schema) => <script type="application/ld+json" set:html={JSON.stringify(schema)} />)}
+    <title>{title}</title>
+    <style is:global>
+      *, *::before, *::after { box-sizing: border-box; }
+
+      :root {
+        --brand: #345a46;
+        --brand-dark: #274537;
+        --brand-contrast: #fffdf6;
+        --brand-dark-contrast: #fffdf6;
+        --brand-soft: color-mix(in srgb, var(--brand) 9%, var(--cream-light));
+        --ink: #252620;
+        --muted: #64635c;
+        --cream: #f5f1e8;
+        --cream-light: #fbf9f4;
+        --warm: #ece7dc;
+        --white: #ffffff;
+        --line: #d9d5cc;
+        --footer-text: color-mix(in srgb, var(--brand-dark-contrast) 92%, transparent);
+        --footer-muted: color-mix(in srgb, var(--brand-dark-contrast) 72%, transparent);
+        --footer-faint: color-mix(in srgb, var(--brand-dark-contrast) 58%, transparent);
+        --success: #2e6b42;
+        --error: #9a3127;
+        --star: #efd58b;
+        --display: "Newsreader", Georgia, serif;
+        --sans: "IBM Plex Sans", sans-serif;
+        --radius: 2px;
+        --shadow-raised: 0 12px 24px rgba(29, 29, 25, 0.1);
+        --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+        --z-dropdown: 20;
+        --z-sticky: 30;
+      }
+
+      html { scroll-behavior: smooth; }
+      body { margin: 0; color: var(--ink); background: var(--cream-light); font-family: var(--sans); line-height: 1.5; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
+      img { display: block; width: 100%; max-width: 100%; height: auto; background: var(--cream); }
+      a { color: inherit; }
+      button, input, select, textarea { font: inherit; }
+      h1, h2, h3, p, figure, blockquote { margin: 0; }
+      h1, h2, h3 { font-family: var(--display); font-weight: 500; letter-spacing: -0.035em; text-wrap: balance; }
+      p { text-wrap: pretty; }
+      :focus-visible { outline: 3px solid color-mix(in srgb, var(--brand) 68%, white); outline-offset: 4px; }
+      ::selection { color: var(--brand-contrast); background: var(--brand); }
+      section { scroll-margin-top: 118px; }
+
+      .container { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+      .eyebrow { display: block; color: var(--brand); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.01em; line-height: 1.3; }
+      .section-title { font-size: clamp(2.55rem, 5vw, 4.5rem); line-height: 0.98; }
+      .section-intro { max-width: 660px; margin-top: 18px; color: var(--muted); font-size: 1.02rem; line-height: 1.72; }
+
+      .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 49px; padding: 0 22px; border: 1px solid var(--brand); border-radius: var(--radius); color: var(--brand-contrast); background: var(--brand); font-size: 0.875rem; font-weight: 600; line-height: 1; text-decoration: none; transition: transform 180ms var(--ease-out), background 180ms var(--ease-out), border-color 180ms var(--ease-out); }
+      .button:hover { transform: translateY(-2px); color: var(--brand-dark-contrast); background: var(--brand-dark); border-color: var(--brand-dark); }
+      .button:active { transform: translateY(0); }
+      .button.light { color: var(--brand); background: var(--white); border-color: var(--white); }
+      .button.light:hover { background: var(--cream); border-color: var(--cream); }
+      .button.outline { color: var(--brand); background: transparent; }
+      .button.outline:hover { color: var(--brand-contrast); background: var(--brand); }
+
+      .simple-hero { padding: 88px 0 92px; color: var(--brand-contrast); background: var(--brand); }
+      .simple-hero .eyebrow { color: color-mix(in srgb, var(--brand-contrast) 82%, transparent); letter-spacing: 0.055em; text-transform: uppercase; }
+      .simple-hero h1 { max-width: 860px; margin-top: 18px; font-size: clamp(3.4rem, 7vw, 6rem); line-height: 0.93; }
+      .simple-hero p { max-width: 690px; margin-top: 24px; color: color-mix(in srgb, var(--brand-contrast) 82%, transparent); font-size: 1.08rem; line-height: 1.7; }
+      .simple-hero .button { margin-top: 30px; }
+
+      @media (max-width: 700px) {
+        .container { width: min(100% - 30px, 1160px); }
+        section { scroll-margin-top: 74px; }
+        .section-title { font-size: clamp(2.45rem, 12vw, 3.7rem); }
+        .simple-hero { padding: 65px 0 72px; }
+        .simple-hero h1 { font-size: clamp(3.1rem, 15vw, 4.8rem); }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+      }
+    </style>
+  </head>
+  <body style={`--brand: ${site.primaryColor}; --brand-dark: ${site.primaryDark}; --brand-contrast: ${site.primaryContrast}; --brand-dark-contrast: ${site.primaryDarkContrast};`}>
+    <slot />
+  </body>
+</html>

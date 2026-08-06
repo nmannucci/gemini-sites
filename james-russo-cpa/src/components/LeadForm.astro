@@ -1,0 +1,47 @@
+---
+import { contact, site } from "../data/site";
+
+const {
+  title = "Start a conversation",
+  intro = "Tell Jim what you need help with and when it matters.",
+  selectedService = ""
+} = Astro.props;
+
+const subject = encodeURIComponent(selectedService
+  ? `Question about ${selectedService}`
+  : "Tax consultation inquiry");
+---
+<aside class="contact-panel" aria-label="Contact James J. Russo, CPA">
+  <span>Direct, confidential contact</span>
+  <h2>{title}</h2>
+  <p>{intro} A brief phone call or email is enough to determine the right next step.</p>
+
+  <div class="contact-options">
+    <a class="primary" href={contact.href}>
+      <small>Call Jim</small>
+      <strong>{site.phone}</strong>
+      <i class="ph ph-arrow-right" aria-hidden="true"></i>
+    </a>
+    <a href={`mailto:${site.email}?subject=${subject}`}>
+      <small>Email Jim</small>
+      <strong>{site.email}</strong>
+      <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+    </a>
+  </div>
+
+  <small class="location">Middle Sunset · San Francisco, California · By appointment</small>
+</aside>
+
+<style>
+  .contact-panel { padding: clamp(28px, 4vw, 46px); border: 1px solid var(--line); background: var(--white); }
+  .contact-panel > span { color: var(--brand); font-size: 0.875rem; font-weight: 600; line-height: 1.3; }
+  .contact-panel h2 { margin-top: 13px; font-size: clamp(2.2rem, 4vw, 3.15rem); line-height: 0.98; }
+  .contact-panel > p { max-width: 610px; margin-top: 15px; color: var(--muted); line-height: 1.7; }
+  .contact-options { display: grid; margin-top: 30px; border-top: 1px solid var(--line); }
+  .contact-options a { min-width: 0; min-height: 86px; display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 18px 2px; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; transition: color 160ms var(--ease-out), padding 160ms var(--ease-out); }
+  .contact-options a:hover { padding-inline: 8px; color: var(--brand); }
+  .contact-options small { grid-column: 1; color: var(--muted); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+  .contact-options strong { min-width: 0; grid-column: 1; margin-top: 4px; overflow-wrap: anywhere; font: 500 clamp(1.15rem, 2vw, 1.4rem)/1.2 var(--display); }
+  .contact-options i { grid-column: 2; grid-row: 1 / 3; color: var(--brand); font-size: 1.2rem; }
+  .location { display: block; margin-top: 22px; color: var(--muted); font-size: 0.8rem; line-height: 1.55; }
+</style>

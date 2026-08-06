@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import HomepageContactForm from "../components/HomepageContactForm.astro";
+import { contact, site } from "../data/site";
+
+const breadcrumbItems = [{ label: "Home", href: "/" }, { label: "Contact" }];
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: `Contact ${site.businessName}`,
+  description: "Contact James J. Russo, CPA about individual tax preparation or year-round tax planning.",
+  mainEntity: { "@id": site.siteUrl ? `${site.siteUrl}/#business` : "#business" }
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    item: site.siteUrl ? `${site.siteUrl}${item.href || "/contact/"}` : item.href || "/contact/"
+  }))
+};
+---
+
+<BaseLayout title={`Contact ${site.businessName} | San Francisco CPA`} description="Contact James J. Russo, CPA in San Francisco about individual tax preparation, tax planning, stock options, real estate, business taxes, or retirement." schemas={[contactPageSchema, breadcrumbSchema]}>
+  <Header />
+  <main>
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <section class="contact-hero">
+      <div class="container contact-hero-inner">
+        <div>
+          <span class="eyebrow">Contact James J. Russo, CPA</span>
+          <h1>Start with your tax question.</h1>
+          <p>Share the broad outline of your filing need or upcoming decision. Jim will follow up personally about fit, timing, and the next step.</p>
+        </div>
+        <div class="direct-contact">
+          <span>Prefer to contact Jim directly?</span>
+          <a href={contact.href}><i class="ph ph-phone" aria-hidden="true"></i>{site.phone}</a>
+          <a href={`mailto:${site.email}`}><i class="ph ph-envelope-simple" aria-hidden="true"></i>{site.email}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-main container">
+      <aside>
+        <span class="eyebrow">Before you send</span>
+        <h2>Keep sensitive records out of the form.</h2>
+        <p>Describe the issue at a high level. Do not include Social Security numbers, account numbers, tax documents, or other sensitive records.</p>
+        <dl>
+          <div><dt>Location</dt><dd>{site.address}</dd></div>
+          <div><dt>Meetings</dt><dd>{site.hours}</dd></div>
+          <div><dt>Primary service areas</dt><dd>San Francisco, Marin, and San Mateo Counties</dd></div>
+        </dl>
+      </aside>
+      <HomepageContactForm />
+    </section>
+
+    <section class="contact-map">
+      <div class="container contact-map-inner">
+        <div>
+          <span class="eyebrow">Middle Sunset practice</span>
+          <h2 class="section-title">Based in San Francisco.</h2>
+          <p>The practice is located in Middle Sunset. The street address is withheld by request, and meetings are arranged directly.</p>
+        </div>
+        <iframe title="Google Map of Middle Sunset, San Francisco" src={site.mapEmbedUrl} loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .contact-hero { padding: 72px 0 82px; color: var(--brand-dark-contrast); background: var(--brand-dark); }
+  .contact-hero-inner { display: grid; grid-template-columns: 1fr 0.58fr; align-items: end; gap: clamp(52px, 9vw, 120px); }
+  .contact-hero .eyebrow { color: color-mix(in srgb, var(--brand-dark-contrast) 72%, transparent); text-transform: uppercase; }
+  .contact-hero h1 { max-width: 700px; margin-top: 18px; font-size: clamp(3.25rem, 4.35vw, 4.6rem); line-height: 0.98; }
+  .contact-hero p { max-width: 680px; margin-top: 24px; color: color-mix(in srgb, var(--brand-dark-contrast) 80%, transparent); font-size: 1.05rem; line-height: 1.72; }
+  .direct-contact { display: grid; justify-items: start; gap: 13px; padding: 26px; border: 1px solid rgba(255,255,255,0.22); }
+  .direct-contact span { color: color-mix(in srgb, var(--brand-dark-contrast) 72%, transparent); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; }
+  .direct-contact a { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; text-decoration: none; }
+  .contact-main { display: grid; grid-template-columns: minmax(300px, 0.62fr) minmax(0, 1fr); align-items: start; gap: clamp(52px, 8vw, 100px); padding-block: 104px; }
+  .contact-main :global(.homepage-contact-form) { background: var(--white); box-shadow: var(--shadow-raised); }
+  .contact-main aside { padding-top: 18px; }
+  .contact-main aside h2 { margin-top: 15px; font-size: clamp(2.2rem, 3.6vw, 3.35rem); line-height: 1; }
+  .contact-main aside > p { margin-top: 20px; color: var(--muted); line-height: 1.72; }
+  .contact-main dl { margin: 30px 0 0; border-top: 1px solid var(--line); }
+  .contact-main dl > div { display: grid; gap: 5px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .contact-main dt { color: var(--brand); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+  .contact-main dd { margin: 0; color: var(--muted); line-height: 1.55; }
+  .contact-map { padding: 100px 0; background: var(--cream); }
+  .contact-map-inner { display: grid; grid-template-columns: 0.72fr 1fr; gap: clamp(52px, 8vw, 100px); }
+  .contact-map h2 { margin-top: 15px; }
+  .contact-map p { margin-top: 20px; color: var(--muted); line-height: 1.72; }
+  .contact-map iframe { width: 100%; min-height: 410px; border: 1px solid var(--line); background: var(--white); }
+  @media (max-width: 860px) { .contact-hero-inner, .contact-main, .contact-map-inner { grid-template-columns: 1fr; } .direct-contact { max-width: 520px; } .contact-main aside { padding-top: 0; } }
+  @media (max-width: 620px) { .contact-hero { padding-block: 54px 70px; } .contact-hero h1 { font-size: clamp(3.2rem, 15vw, 4.5rem); } .contact-main, .contact-map { padding-block: 78px; } .direct-contact { padding: 22px; } }
+</style>

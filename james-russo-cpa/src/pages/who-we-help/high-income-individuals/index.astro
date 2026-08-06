@@ -1,0 +1,244 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import HomepageContactForm from "../../../components/HomepageContactForm.astro";
+import { contact, site } from "../../../data/site";
+
+const faqs = [
+  {
+    q: "What can make a high-income tax return more complex?",
+    a: "Salary, bonuses, investment income, stock compensation, property, business activity, and retirement income can interact across the same return. The useful starting point is understanding every income source and what changed during the year."
+  },
+  {
+    q: "When should I schedule tax planning?",
+    a: "Planning is most useful before a large bonus, option exercise, property sale, retirement distribution, or year-end income change. Earlier conversations leave more time to evaluate withholding, estimated payments, and timing."
+  },
+  {
+    q: "Can Jim coordinate tax preparation and year-round planning?",
+    a: "Yes. Jim’s primary work includes individual income tax preparation and year-round tax planning, so the completed return can inform the decisions and payment estimates that follow."
+  },
+  {
+    q: "Can Jim review withholding and estimated payments?",
+    a: "Yes. Jim can compare expected income and available withholding, then discuss whether estimated payments or withholding adjustments may be appropriate."
+  },
+  {
+    q: "Does Jim help technology professionals with stock options?",
+    a: "Yes. Jim provides planning around ISOs, NQSOs, ESPPs, alternative minimum tax exposure, exercises, sales, and related payment timing."
+  },
+  {
+    q: "Who is a good fit for this service?",
+    a: "This guidance is designed for individuals who want direct access to an experienced CPA and need their income, investments, property, business interests, or financial transitions considered together."
+  }
+];
+
+const relatedServices = [
+  { title: "Individual Tax Preparation", body: "Careful filing for income, investments, property, and meaningful changes during the year.", href: "/services/tax-preparation/individual-tax-preparation/" },
+  { title: "Year-Round Tax Planning", body: "Plan estimates, withholding, income changes, and consequential transactions before year-end.", href: "/services/tax-planning/year-round-tax-planning/" },
+  { title: "Stock Option Tax Planning", body: "Understand ISOs, NQSOs, ESPPs, AMT exposure, and exercise-to-sale decisions.", href: "/services/tax-planning/stock-option-tax-planning/" },
+  { title: "Real Estate & Landlord Tax", body: "Coordinate property income, depreciation, basis, improvements, and potential sales.", href: "/services/tax-planning/real-estate-and-landlord-tax/" }
+];
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Who we help", href: "/who-we-help/" },
+  { label: "High-income individuals" }
+];
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    item: site.siteUrl ? `${site.siteUrl}${item.href || "/who-we-help/high-income-individuals/"}` : item.href || "/who-we-help/high-income-individuals/"
+  }))
+};
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": site.siteUrl ? `${site.siteUrl}/who-we-help/high-income-individuals/#service` : "/who-we-help/high-income-individuals/#service",
+  name: "Tax Planning and Preparation for High-Income Individuals",
+  serviceType: "High-Income Individual Tax Planning and Preparation",
+  description: "Individual income tax preparation and year-round tax planning for people with multiple income sources, bonuses, investments, property, stock compensation, and other consequential financial decisions.",
+  provider: { "@id": site.siteUrl ? `${site.siteUrl}/#business` : "#business" },
+  url: site.siteUrl ? `${site.siteUrl}/who-we-help/high-income-individuals/` : "/who-we-help/high-income-individuals/",
+  audience: { "@type": "PeopleAudience", audienceType: "High-income individuals" }
+};
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.q, acceptedAnswer: { "@type": "Answer", text: faq.a } }))
+};
+---
+
+<BaseLayout
+  title={`Tax Planning for High-Income Individuals | ${site.businessName}`}
+  description="Individual tax preparation and year-round planning for high-income individuals managing bonuses, investments, stock compensation, property, and estimated taxes."
+  schemas={[serviceSchema, faqSchema, breadcrumbSchema]}
+>
+  <Header />
+  <main>
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <section class="income-hero">
+      <div class="income-hero-inner container">
+        <div class="income-copy">
+          <span class="eyebrow">For high-income individuals</span>
+          <h1>Bring the moving parts into one tax picture.</h1>
+          <p>Higher income often arrives through more than one source. Jim helps connect salary, bonuses, investments, stock compensation, property, business activity, retirement income, withholding, and estimated payments through careful preparation and year-round planning.</p>
+          <a class="hero-call" href={contact.href}><i class="ph ph-phone" aria-hidden="true"></i>Talk directly with Jim · {site.phone}</a>
+        </div>
+        <HomepageContactForm />
+      </div>
+    </section>
+
+    <section class="income-intro container">
+      <div><span class="eyebrow">Why coordination matters</span><h2 class="section-title">More income sources create more connections.</h2></div>
+      <div><p>A return can be accurate and still reveal that withholding, estimated payments, or transaction timing deserved attention earlier. Jim’s approach connects filing work to the decisions that can shape the next result.</p><p>The goal is not complexity for its own sake. It is a clear understanding of what changed, what may be taxable, what requires documentation, and what still has time to be planned.</p></div>
+    </section>
+
+    <section class="situations">
+      <div class="container">
+        <span class="eyebrow">Common situations</span>
+        <h2 class="section-title">The questions often begin before filing season.</h2>
+        <div class="situation-grid">
+          <article><span>01</span><i class="ph ph-briefcase" aria-hidden="true"></i><h3>Salary and bonus changes</h3><p>Review how a compensation increase, bonus, or changing withholding may affect expected tax and payment timing.</p></article>
+          <article><span>02</span><i class="ph ph-chart-line-up" aria-hidden="true"></i><h3>Investments and capital gains</h3><p>Consider investment income and a potential sale alongside wages, property, and the rest of the individual return.</p></article>
+          <article><span>03</span><i class="ph ph-currency-circle-dollar" aria-hidden="true"></i><h3>Stock compensation</h3><p>Understand ISOs, NQSOs, ESPPs, alternative minimum tax exposure, exercises, and sales before taking action.</p></article>
+          <article><span>04</span><i class="ph ph-house-line" aria-hidden="true"></i><h3>Property and life transitions</h3><p>Plan around a home or rental-property sale, business change, retirement distribution, trust activity, or another consequential event.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="process container">
+      <div><span class="eyebrow">A direct process</span><h2 class="section-title">Know what happens next.</h2></div>
+      <div class="process-list">
+        <article><strong>01</strong><div><h3>Start with the decision or filing need</h3><p>Share what changed, the deadline, and what you want to understand.</p></div></article>
+        <article><strong>02</strong><div><h3>Organize the relevant information</h3><p>Jim identifies the returns, statements, compensation records, property details, and estimates that matter.</p></div></article>
+        <article><strong>03</strong><div><h3>Move forward with a clearer plan</h3><p>Receive careful work, direct explanations, and practical next steps for payments, records, or future decisions.</p></div></article>
+      </div>
+    </section>
+
+    <section class="experience">
+      <div class="experience-inner container">
+        <div class="experience-image"><img src="/brand/james-russo-headshot.jpg" alt="James J. Russo, CPA" width="343" height="500" loading="lazy" decoding="async" /><span>James J. Russo, CPA</span></div>
+        <div><span class="eyebrow">Experienced, personal guidance</span><h2 class="section-title">Work with the CPA whose name is on the door.</h2><p>Jim has been a Certified Public Accountant since 1984, earned his MBA–Taxation from Golden Gate University, and founded his practice in 1990. Clients work directly with him for plain-language guidance shaped by decades of preparation, planning, business ownership, investing, property, and real-life financial decisions.</p><div class="experience-proof"><span><strong>35+</strong> years in practice</span><span><strong>CPA</strong> since 1984</span><span><strong>MBA–Taxation</strong> Golden Gate University</span></div></div>
+      </div>
+    </section>
+
+    <section class="related container">
+      <div><span class="eyebrow">Services that may fit</span><h2 class="section-title">Explore the work behind the guidance.</h2></div>
+      <div class="related-grid">{relatedServices.map((service) => <a href={service.href}><h3>{service.title}</h3><p>{service.body}</p><strong>Explore service<i class="ph ph-arrow-up-right" aria-hidden="true"></i></strong></a>)}</div>
+    </section>
+
+    <section class="income-faq">
+      <div class="income-faq-inner container">
+        <div><span class="eyebrow">High-income tax questions</span><h2 class="section-title">Answers before you reach out.</h2><p>Start with the question you have now. The exact scope can be defined after Jim understands the situation.</p></div>
+        <div class="faq-list">{faqs.map((faq, index) => <details open={index === 0}><summary>{faq.q}<i class="ph ph-plus" aria-hidden="true"></i></summary><p>{faq.a}</p></details>)}</div>
+      </div>
+    </section>
+
+    <section class="income-contact" id="contact">
+      <div class="income-contact-inner container">
+        <div><span class="eyebrow">Start a conversation</span><h2 class="section-title">Tell Jim what changed.</h2><p>Share the income change, transaction, deadline, or filing concern. Jim can help identify the right preparation or planning next step.</p><a href="/who-we-help/">Explore everyone Jim helps<i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
+        <HomepageContactForm />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .income-hero { padding: 72px 0 82px; color: var(--brand-dark-contrast); background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%); }
+  .income-hero-inner { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(440px, 0.8fr); align-items: start; gap: clamp(54px, 8vw, 110px); }
+  .income-copy { padding-top: 25px; }
+  .income-hero .eyebrow { color: color-mix(in srgb, var(--brand-dark-contrast) 74%, transparent); text-transform: uppercase; }
+  .income-hero h1 { max-width: 700px; margin-top: 18px; font-size: clamp(3.25rem, 4.35vw, 4.6rem); line-height: 0.98; }
+  .income-hero p { max-width: 700px; margin-top: 24px; color: color-mix(in srgb, var(--brand-dark-contrast) 80%, transparent); font-size: 1.04rem; line-height: 1.72; }
+  .hero-call { display: inline-flex; align-items: center; gap: 8px; margin-top: 27px; font-weight: 600; text-decoration: none; }
+  .income-hero :global(.homepage-contact-form) { color: var(--ink); background: var(--white); box-shadow: 0 18px 42px rgba(0,0,0,0.18); }
+
+  .income-intro { display: grid; grid-template-columns: 0.78fr 1fr; gap: clamp(50px, 9vw, 120px); padding-block: 104px; }
+  .income-intro h2 { margin-top: 15px; }
+  .income-intro > div:last-child { padding-top: 28px; }
+  .income-intro p { color: var(--muted); line-height: 1.75; }
+  .income-intro p + p { margin-top: 20px; }
+
+  .situations { padding: 98px 0 104px; color: var(--brand-dark-contrast); background: var(--brand-dark); }
+  .situations .eyebrow { color: color-mix(in srgb, var(--brand-dark-contrast) 70%, transparent); }
+  .situations h2 { max-width: 780px; margin-top: 15px; }
+  .situation-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 42px; border-top: 1px solid rgba(255,255,255,0.2); border-left: 1px solid rgba(255,255,255,0.2); }
+  .situation-grid article { min-height: 330px; display: flex; flex-direction: column; padding: 27px; border-right: 1px solid rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .situation-grid article > span { color: color-mix(in srgb, var(--brand-dark-contrast) 55%, transparent); font-size: 0.76rem; }
+  .situation-grid i { margin-top: 38px; font-size: 2rem; }
+  .situation-grid h3 { margin-top: auto; font-size: 1.55rem; line-height: 1.05; }
+  .situation-grid p { margin-top: 13px; color: color-mix(in srgb, var(--brand-dark-contrast) 75%, transparent); font-size: 0.88rem; line-height: 1.62; }
+
+  .process { display: grid; grid-template-columns: 0.72fr 1fr; gap: clamp(52px, 9vw, 120px); padding-block: 104px; }
+  .process h2 { margin-top: 15px; }
+  .process-list { border-top: 1px solid var(--line); }
+  .process-list article { display: grid; grid-template-columns: 62px 1fr; gap: 20px; padding: 25px 0; border-bottom: 1px solid var(--line); }
+  .process-list strong { color: var(--brand); font-size: 0.78rem; }
+  .process-list h3 { font-size: 1.52rem; line-height: 1.08; }
+  .process-list p { margin-top: 9px; color: var(--muted); line-height: 1.68; }
+
+  .experience { padding: 104px 0; background: var(--cream); }
+  .experience-inner { display: grid; grid-template-columns: minmax(320px, 0.7fr) 1fr; align-items: center; gap: clamp(58px, 9vw, 120px); }
+  .experience-image { position: relative; }
+  .experience-image img { aspect-ratio: 4 / 5; border-radius: 10px; object-fit: cover; object-position: center 16%; }
+  .experience-image > span { position: absolute; right: -20px; bottom: 22px; padding: 14px 18px; border-radius: 8px; color: var(--brand-dark-contrast); background: var(--brand); font-weight: 700; box-shadow: var(--shadow-raised); }
+  .experience-inner h2 { max-width: 780px; margin-top: 15px; }
+  .experience-inner > div:last-child > p { max-width: 740px; margin-top: 22px; color: var(--muted); line-height: 1.75; }
+  .experience-proof { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 30px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .experience-proof span { min-height: 112px; display: grid; align-content: center; gap: 4px; padding: 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); font-size: 0.76rem; }
+  .experience-proof strong { color: var(--ink); font-size: 1.02rem; }
+
+  .related { padding-block: 104px; }
+  .related h2 { max-width: 760px; margin-top: 15px; }
+  .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+  .related-grid a { min-height: 265px; display: flex; flex-direction: column; padding: 25px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); text-decoration: none; transition: transform 180ms var(--ease-out), border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out); }
+  .related-grid a:hover { transform: translateY(-3px); border-color: var(--brand); box-shadow: var(--shadow-raised); }
+  .related-grid h3 { font-size: 1.55rem; line-height: 1.07; }
+  .related-grid p { margin-top: 13px; color: var(--muted); font-size: 0.87rem; line-height: 1.62; }
+  .related-grid strong { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 24px; color: var(--brand); font-size: 0.79rem; }
+
+  .income-faq { padding: 104px 0; background: var(--white); }
+  .income-faq-inner { display: grid; grid-template-columns: minmax(290px, 0.66fr) 1fr; gap: clamp(55px, 9vw, 120px); }
+  .income-faq h2 { margin-top: 15px; }
+  .income-faq-inner > div:first-child > p { margin-top: 20px; color: var(--muted); line-height: 1.7; }
+  .faq-list { border-top: 1px solid var(--line); }
+  .faq-list details { border-bottom: 1px solid var(--line); }
+  .faq-list summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 0; cursor: pointer; list-style: none; font: 500 1.35rem/1.16 var(--display); }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary i { color: var(--brand); transition: transform 180ms var(--ease-out); }
+  .faq-list details[open] summary i { transform: rotate(45deg); }
+  .faq-list p { padding: 0 42px 24px 0; color: var(--muted); line-height: 1.7; }
+
+  .income-contact { padding: 100px 0; background: var(--cream); }
+  .income-contact-inner { display: grid; grid-template-columns: 0.75fr 1fr; align-items: start; gap: clamp(55px, 9vw, 115px); }
+  .income-contact h2 { margin-top: 15px; }
+  .income-contact p { max-width: 590px; margin-top: 20px; color: var(--muted); line-height: 1.72; }
+  .income-contact div > a { display: inline-flex; align-items: center; gap: 7px; margin-top: 24px; color: var(--brand); font-size: 0.84rem; font-weight: 700; text-decoration: none; }
+  .income-contact :global(.homepage-contact-form) { background: var(--white); }
+
+  @media (max-width: 1000px) { .situation-grid, .related-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 900px) {
+    .income-hero-inner, .income-intro, .process, .experience-inner, .income-faq-inner, .income-contact-inner { grid-template-columns: 1fr; }
+    .income-copy { padding-top: 0; }
+    .income-intro, .process { gap: 28px; }
+    .income-intro > div:last-child { padding-top: 0; }
+    .experience-image { width: min(100% - 20px, 560px); }
+  }
+  @media (max-width: 620px) {
+    .income-hero { padding-block: 54px 70px; }
+    .income-hero h1 { font-size: clamp(3.2rem, 15vw, 4.5rem); }
+    .income-intro, .process, .related { gap: 22px; padding-block: 78px; }
+    .situations, .experience, .income-faq, .income-contact { padding-block: 78px; }
+    .situation-grid, .related-grid, .experience-proof { grid-template-columns: 1fr; }
+    .situation-grid article { min-height: 285px; }
+    .process-list article { grid-template-columns: 45px 1fr; gap: 12px; }
+    .experience-image > span { right: -10px; }
+  }
+</style>
