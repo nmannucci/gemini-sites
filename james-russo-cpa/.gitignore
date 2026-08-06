@@ -43,3 +43,6 @@ next-env.d.ts
 /.firecrawl/
 /.astro/
 /design-evidence/
+
+# here.now local publish state
+/.herenow/
