@@ -12,6 +12,7 @@ import {
 import { contact } from '../data/contact';
 import { locations } from '../data/locations';
 import LeadForm from '../components/LeadForm.astro';
+import LeadCtaSection from '../components/LeadCtaSection.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -425,6 +426,15 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
           </div>
         </section>
       )}
+
+      <LeadCtaSection
+        source={page.slug}
+        idPrefix={`seo-story-${page.slug}`}
+        heading={page.cta_label}
+        areaFocus={formAreaFocus}
+        interest={formInterest}
+        location={formLocation}
+      />
 
       <section class="ls-cards seo-related-section reveal" aria-labelledby="seo-related-heading">
         <div class="seo-section-heading">

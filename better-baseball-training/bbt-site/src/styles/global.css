@@ -7185,3 +7185,88 @@ footer {
     padding: calc(96px + env(safe-area-inset-top, 0px)) 20px 48px;
   }
 }
+
+/* ============================================================================
+   Lead CTA section
+   ----------------------------------------------------------------------------
+   Sits after the FAQ on service and location pages. The hero keeps a button to
+   /book-now for visitors who arrive ready; this catches the ones who needed to
+   read the page first, without making them leave it.
+   ========================================================================= */
+.ls-lead-cta {
+  padding-left: 72px;
+  padding-right: 72px;
+}
+
+.ls-lead-cta__inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(340px, 0.6fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.ls-lead-cta__copy p {
+  max-width: 520px;
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.7);
+}
+
+.ls-lead-cta__alt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.ls-lead-cta__alt span {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+.ls-lead-cta__alt a {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.02em;
+  color: var(--yellow);
+  text-decoration: none;
+}
+
+.ls-lead-cta__alt a:hover,
+.ls-lead-cta__alt a:focus-visible { color: var(--cyan); }
+
+/* The form column is narrower than the full-width book-now page, so the
+   two-up player-name/DOB row would be cramped. Stack it here. */
+.ls-lead-cta__form .lead-form__grid {
+  grid-template-columns: 1fr;
+  row-gap: 12px;
+}
+
+@media (max-width: 1024px) {
+  .ls-lead-cta__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .ls-lead-cta__copy p { max-width: 100%; }
+}
+
+@media (max-width: 900px) {
+  .ls-lead-cta { padding-left: 48px; padding-right: 48px; }
+}
+
+@media (max-width: 700px) {
+  .ls-lead-cta { padding-left: 24px; padding-right: 24px; }
+}
+
+@media (max-width: 520px) {
+  .ls-lead-cta { padding-left: 20px; padding-right: 20px; }
+}

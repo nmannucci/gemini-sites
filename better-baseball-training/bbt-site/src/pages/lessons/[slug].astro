@@ -12,6 +12,7 @@ import {
   lessonRelatedCoachKeysFor,
 } from '../../data/urls';
 import { contact } from '../../data/contact';
+import LeadCtaSection from '../../components/LeadCtaSection.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
 
@@ -348,6 +349,14 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
         </div>
       </div>
     </section>
+
+    <LeadCtaSection
+      source={lesson.slug}
+      idPrefix={`lesson-${lesson.slug}`}
+      heading={`Book a ${lessonTitle} Lesson`}
+      copy={lesson.form_copy}
+      areaFocus={lessonAreaFocus}
+    />
 
     <section class="ls-cards reveal">
       <div class="ls-cards__inner">

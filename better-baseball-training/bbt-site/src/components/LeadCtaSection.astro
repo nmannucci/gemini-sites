@@ -1,0 +1,59 @@
+---
+// Conversion section for service and location pages. Sits after the FAQ — the visitor
+// has read the page by then — and before the related-links block, so we capture before
+// sending anyone elsewhere.
+//
+// The hero keeps its button to /book-now for people who arrive ready. This is for the
+// ones who needed convincing first.
+//
+// NOTE: .forminator-shell is load-bearing. Every .lead-form rule in global.css is scoped
+// under it; without the wrapper the form renders unstyled.
+import LeadForm from './LeadForm.astro';
+import { contact } from '../data/contact';
+
+interface Props {
+  source: string;
+  idPrefix: string;
+  heading: string;
+  copy?: string;
+  areaFocus?: string;
+  interest?: string;
+  location?: string;
+}
+
+const {
+  source,
+  idPrefix,
+  heading,
+  copy = 'Tell us about your athlete and the BBT team will follow up within one business day.',
+  areaFocus = '',
+  interest = '',
+  location = '',
+} = Astro.props;
+---
+
+<section id="lead-cta" class="ls-lead-cta reveal" aria-labelledby="ls-lead-cta-heading">
+  <div class="ls-lead-cta__inner">
+    <div class="ls-lead-cta__copy">
+      <div class="ls-section-label">Get Started</div>
+      <h2 id="ls-lead-cta-heading" class="ls-section-title">{heading}</h2>
+      <p>{copy}</p>
+      <div class="ls-lead-cta__alt">
+        <span>Prefer to talk?</span>
+        <a href={contact.phoneHref}>Call {contact.phone}</a>
+      </div>
+    </div>
+
+    <div class="ls-lead-cta__form">
+      <div class="forminator-shell">
+        <LeadForm
+          source={source}
+          idPrefix={idPrefix}
+          areaFocus={areaFocus}
+          interest={interest}
+          location={location}
+        />
+      </div>
+    </div>
+  </div>
+</section>
