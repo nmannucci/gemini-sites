@@ -269,10 +269,6 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
             />
             <figcaption>{lessonGallery[3].label}</figcaption>
           </figure>
-          <div class="ls-photo-panel__note">
-            <span>BBT Flow</span>
-            <strong>Skill work that connects to confidence in games.</strong>
-          </div>
         </div>
       </div>
     </section>
@@ -297,16 +293,20 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
 
     <section class="ls-coach-location reveal" aria-labelledby="ls-coach-location-heading">
       <div class="ls-coach-location__content">
-        <div class="ls-section-label">Coach + Location Fit</div>
-        <h2 id="ls-coach-location-heading" class="ls-section-title">Matched to the Player, Not a Generic Lesson Slot</h2>
-        <p>BBT starts by understanding the athlete, then helps families choose the right coach, location, and training rhythm.</p>
+        <div class="ls-section-label">Your Coaches</div>
+        <h2 id="ls-coach-location-heading" class="ls-section-title">Who Coaches {lessonTitle}</h2>
+        <p>BBT matches each athlete to a coach based on age, goals, and location.</p>
         {relatedCoaches.length > 0 && (
-          <div class="ls-coach-pills" aria-label="Common coach fits">
+          <ul class="ls-coach-list">
             {relatedCoaches.map((coach) => (
-              <a href={`${coachesUrl()}#${coach.anchor}`}>{coach.name}</a>
+              <li>
+                <a href={`${coachesUrl()}#${coach.anchor}`}>{coach.name}</a>
+                <span>{coach.job_title}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
+        <a href={coachesUrl()} class="bk-card__inline-link">Meet the full coaching staff</a>
       </div>
       <div class="ls-location-cards">
         <article>
@@ -326,22 +326,24 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
       <div class="ls-answer-strip__inner">
         <div class="ls-section-label">Parents Ask About {lessonTitle}</div>
         <h2 id="ls-answer-strip-heading" class="ls-section-title">What to Know Before You Book {lessonTitle} Lessons</h2>
-        <div class="ls-answer-grid">
+        <div class="ls-faq-list">
           {lessonFaqItems.map((item) => (
-            <article class="ls-answer-card">
-              <h3>{item.question}</h3>
-              <p set:html={item.answerHtml} />
-              {item.coachLinks && item.coachLinks.length > 0 && (
-                <ul class="ls-answer-links">
-                  {item.coachLinks.map((coach) => (
-                    <li><a href={`${coachesUrl()}#${coach.anchor}`}>{coach.name}</a> <span>{coach.job_title}</span></li>
-                  ))}
-                </ul>
-              )}
-              {item.linkUrl && item.linkLabel && (
-                <a href={item.linkUrl} class="bk-card__inline-link">{item.linkLabel}</a>
-              )}
-            </article>
+            <details class="faq-item">
+              <summary>{item.question} <span class="faq-icon"></span></summary>
+              <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">
+                <p set:html={item.answerHtml} />
+                {item.coachLinks && item.coachLinks.length > 0 && (
+                  <ul class="ls-answer-links">
+                    {item.coachLinks.map((coach) => (
+                      <li><a href={`${coachesUrl()}#${coach.anchor}`}>{coach.name}</a> <span>{coach.job_title}</span></li>
+                    ))}
+                  </ul>
+                )}
+                {item.linkUrl && item.linkLabel && (
+                  <a href={item.linkUrl} class="bk-card__inline-link">{item.linkLabel}</a>
+                )}
+              </div></div></div>
+            </details>
           ))}
         </div>
       </div>

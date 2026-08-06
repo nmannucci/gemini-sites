@@ -412,12 +412,14 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
           <div class="ls-answer-strip__inner">
             <div class="ls-section-label">Parents Ask</div>
             <h2 id="seo-faq-heading" class="ls-section-title">Answers About {page.title}</h2>
-            <div class="ls-answer-grid">
+            <div class="ls-faq-list">
               {faqItems.map((item) => (
-                <article class="ls-answer-card">
-                  <h3>{item.question}</h3>
-                  <p>{item.answer}</p>
-                </article>
+                <details class="faq-item">
+                  <summary>{item.question} <span class="faq-icon"></span></summary>
+                  <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">
+                    <p>{item.answer}</p>
+                  </div></div></div>
+                </details>
               ))}
             </div>
           </div>
@@ -525,12 +527,14 @@ const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchem
           <div class="ls-answer-strip__inner">
             <div class="ls-section-label">Parents Ask</div>
             <h2 id="seo-faq-heading" class="ls-section-title">Answers About {page.title}</h2>
-            <div class="ls-answer-grid">
+            <div class="ls-faq-list">
               {faqItems.map((item) => (
-                <article class="ls-answer-card">
-                  <h3>{item.question}</h3>
-                  <p>{item.answer}</p>
-                </article>
+                <details class="faq-item">
+                  <summary>{item.question} <span class="faq-icon"></span></summary>
+                  <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">
+                    <p>{item.answer}</p>
+                  </div></div></div>
+                </details>
               ))}
             </div>
           </div>
