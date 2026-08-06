@@ -229,8 +229,11 @@ export const seoPages: SeoPage[] = [
     // Location-neutral: this is a service pillar, so naming cities here competes with the
     // two location pages for the same queries. The academy's cities live on those pages.
     meta_title: `Youth Baseball Academy Memberships | ${SITE_NAME}`,
+    // The cities stay out of the description too — naming them here was the same
+    // location-targeting the meta_title deliberately avoids. Per-facility pricing and
+    // catchment still live in the body copy and FAQs, which is where the skill puts them.
     meta_description:
-      'Youth baseball academy memberships in Rocklin and El Dorado Hills for ages 8-14U. Unlimited access training from Better Baseball Training.',
+      'Youth baseball academy memberships for ages 8-14U. Unlimited access training and recurring group instruction from Better Baseball Training.',
     kicker: 'Youth Baseball Academy',
     headline: 'Baseball Academy Memberships for Consistent Player Development',
     subheadline:

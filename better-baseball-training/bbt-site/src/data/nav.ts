@@ -23,17 +23,21 @@ const lessonsSubmenu: NavChild[] = [
 // The two service pillars. Grouped rather than sitting at top level — "Travel Baseball" is
 // the longest label in the bar and cost more width than it earned. Both stay one click away
 // and stay crawlable, since the submenu is real markup, not JS-injected.
+// "Rocklin Batting Cages" lives here, not under Locations. It is a service-in-a-place page
+// (batting cages × Rocklin), not a location hub — listing it beside Rocklin implied the two
+// were peer geographic hubs competing for the same intent.
 const programsSubmenu: NavChild[] = [
   { title: 'Baseball Academy', url: seoPageUrl('baseball-academy') },
   { title: 'Travel Baseball', url: seoPageUrl('travel-baseball') },
+  { title: 'Rocklin Batting Cages', url: seoPageUrl('batting-cages-rocklin') },
 ];
 
 // The two location pages are the site's local-SEO hubs — the nav is the strongest internal
 // linking surface, so they point at the real pages rather than a homepage anchor.
+// Exactly two entries, because there are exactly two core locations.
 const locationsSubmenu: NavChild[] = [
   { title: 'Rocklin', url: seoPageUrl('baseball-lessons-rocklin') },
   { title: 'El Dorado Hills', url: seoPageUrl('baseball-lessons-el-dorado-hills') },
-  { title: 'Rocklin Batting Cages', url: seoPageUrl('batting-cages-rocklin') },
 ];
 
 // Five items. "Home" is dropped — the logo already links home with rel="home". "Book Now" is

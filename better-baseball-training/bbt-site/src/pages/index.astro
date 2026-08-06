@@ -16,11 +16,15 @@ const lazyPixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
 
 const faqItems = [
   {
-    question: 'Where can I get baseball lessons in Rocklin and El Dorado Hills?',
+    // Phrased as "which facility", not "where can I get baseball lessons in {city}" — the
+    // latter is the location pages' query, and asking it here put it into FAQPage schema on
+    // the homepage as well. This version routes the visitor to the right hub instead of
+    // competing with it.
+    question: 'Which BBT facility should we train at?',
     answerHtml:
-      `Better Baseball Training offers private and group <strong>baseball lessons in Rocklin and El Dorado Hills</strong> for hitting, pitching, infield/outfield, catching, and baseball IQ. Families can train at <a href="${seoPageUrl('baseball-lessons-rocklin')}">4283 Duluth Ave in Rocklin</a> or <a href="${seoPageUrl('baseball-lessons-el-dorado-hills')}">4990 Hillsdale Dr, Suite 400 in El Dorado Hills</a>.`,
+      `Choose on commute. <a href="${seoPageUrl('baseball-lessons-rocklin')}">BBT Rocklin</a> is at 4283 Duluth Ave and serves Rocklin, Roseville, Granite Bay, and Loomis. <a href="${seoPageUrl('baseball-lessons-el-dorado-hills')}">BBT El Dorado Hills</a> is at 4990 Hillsdale Dr, Suite 400 and serves EDH, Folsom, Cameron Park, and Shingle Springs. Both run the same hitting, pitching, infield/outfield, catching, and baseball IQ training.`,
     answerText:
-      'Better Baseball Training offers private and group baseball lessons in Rocklin and El Dorado Hills for hitting, pitching, infield/outfield, catching, and baseball IQ. Families can train at 4283 Duluth Ave in Rocklin or 4990 Hillsdale Dr, Suite 400 in El Dorado Hills.',
+      'Choose on commute. BBT Rocklin is at 4283 Duluth Ave and serves Rocklin, Roseville, Granite Bay, and Loomis. BBT El Dorado Hills is at 4990 Hillsdale Dr, Suite 400 and serves EDH, Folsom, Cameron Park, and Shingle Springs. Both run the same hitting, pitching, infield/outfield, catching, and baseball IQ training.',
   },
   {
     question: 'Who teaches pitching lessons at Better Baseball Training?',
@@ -46,10 +50,14 @@ const faqItems = [
   },
 ];
 
+// Brand + region, not "{service} in {city}". The exact phrase "baseball lessons in Rocklin"
+// belongs to /baseball-lessons-rocklin; when the homepage carried it too, GSC showed the
+// homepage — not the location page — as the landing page for "rocklin baseball".
+// Leading with the exact brand string also keeps "/" the unambiguous brand result.
 const pageTitle =
-  'Better Baseball Training | Youth Baseball Lessons in Rocklin & El Dorado Hills';
+  'Better Baseball Training | Youth Baseball Training in the Sacramento Area';
 const metaDescription =
-  'Private baseball lessons, academy memberships, pitching, hitting, and travel baseball in Rocklin and El Dorado Hills for players ages 8-14U.';
+  'Youth baseball training for players ages 8-14U across the Sacramento area. Private lessons, academy memberships, and travel baseball development at two indoor facilities.';
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -248,11 +256,11 @@ const serviceSrcset = (img: string) =>
 
     <h1 class="hero-headline hero-headline--compact">
       <span class="line1">Youth Baseball Training</span>
-      <span class="line2">Rocklin &amp; El Dorado Hills</span>
+      <span class="line2">Sacramento Area</span>
     </h1>
 
     <p class="hero-sub">
-      Private hitting, pitching, fielding, catching, and baseball IQ training for players ages 8-14U, plus academy memberships and travel baseball development across Rocklin and El Dorado Hills.
+      Private hitting, pitching, fielding, catching, and baseball IQ training for players ages 8-14U, plus academy memberships and travel baseball development at our Rocklin and El Dorado Hills facilities.
     </p>
 
     <div class="hero-ctas">
@@ -402,7 +410,7 @@ const serviceSrcset = (img: string) =>
 
 <section id="coaches" class="coaches" aria-labelledby="coaches-heading">
   <div class="coaches-header reveal">
-    <h2 id="coaches-heading" class="coaches-title">Baseball <em>Coaches</em> in Rocklin &amp; El Dorado Hills</h2>
+    <h2 id="coaches-heading" class="coaches-title">Meet the <em>Coaching</em> Staff</h2>
     <a href={coachesUrl()} class="btn-outline"><span>Meet All Coaches</span></a>
   </div>
 
@@ -625,7 +633,7 @@ const serviceSrcset = (img: string) =>
 
 <section id="facilities" class="facilities" aria-labelledby="facilities-heading">
   <div class="facilities-header reveal">
-    <h2 id="facilities-heading">Baseball Training Facilities in <em>Rocklin &amp; El Dorado Hills</em></h2>
+    <h2 id="facilities-heading">Two <em>Indoor</em> Training Facilities</h2>
     <p>Indoor turf space, batting cages, netting, and structured player-development environments across two Sacramento-area training locations.</p>
   </div>
 

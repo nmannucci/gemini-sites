@@ -23,16 +23,19 @@ const scheduleHighlights = [
   },
 ];
 
-const title = 'Baseball Schedule | Rocklin & El Dorado Hills | Better Baseball Training';
+// No city pair in the title or H1: this is a utility page, and carrying "Rocklin & El Dorado
+// Hills" put it in the running for the location pages' queries. It was also the recorded
+// landing page for the brand terms "better baseball" and "betterbaseball" ahead of "/".
+const title = 'Training Schedule | Better Baseball Training';
 const description =
-  'View the current Better Baseball Training academy schedule for Rocklin and El Dorado Hills, including active class times and recurring training sessions.';
+  'View the current Better Baseball Training academy schedule, including active class times and recurring training sessions at both facilities.';
 
 const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   '@id': `${SITE}${scheduleUrl()}#webpage`,
   url: `${SITE}${scheduleUrl()}`,
-  name: 'Baseball Training Schedule in Rocklin & El Dorado Hills',
+  name: 'Baseball Training Schedule',
   description,
   isPartOf: { '@id': `${SITE}/#website` },
   about: { '@id': `${SITE}/#organization` },
@@ -52,8 +55,8 @@ const breadcrumbSchema = {
   <main id="main-content" class="default-page">
     <div class="default-page__inner">
       <article class="entry-card">
-        <h1 class="default-page__title">Baseball Training Schedule in Rocklin &amp; El Dorado Hills</h1>
-        <p class="default-page__copy">View the current Better Baseball Training academy schedule for Rocklin and El Dorado Hills, including active class times and recurring training sessions.</p>
+        <h1 class="default-page__title">Baseball Training Schedule</h1>
+        <p class="default-page__copy">View the current Better Baseball Training academy schedule, including active class times and recurring training sessions at both facilities.</p>
         <div class="schedule-highlights">
           {scheduleHighlights.map((item) => (
             <div class="schedule-highlight">

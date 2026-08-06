@@ -17,16 +17,19 @@ const trainingFocuses = lessons.map((lesson) => ({
   detail: lesson.focus_items[0].charAt(0).toLowerCase() + lesson.focus_items[0].slice(1),
 }));
 
-const title = 'Book Baseball Lessons | Rocklin & El Dorado Hills | Better Baseball Training';
+// Same reason as /schedule: "Book Baseball Lessons ... in Rocklin & El Dorado Hills" is the
+// location pages' phrase on a conversion utility page. Keep the transactional intent, drop
+// the city targeting.
+const title = 'Book a Baseball Lesson | Better Baseball Training';
 const description =
-  'Fill out the player interest form to book baseball lessons, academy memberships, and training in Rocklin and El Dorado Hills with Better Baseball Training.';
+  'Fill out the player interest form to book baseball lessons, academy memberships, and training with Better Baseball Training.';
 
 const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   '@id': `${SITE}${bookingUrl()}#webpage`,
   url: `${SITE}${bookingUrl()}`,
-  name: 'Book Baseball Lessons and Training in Rocklin & El Dorado Hills',
+  name: 'Book Baseball Lessons and Training',
   description,
   isPartOf: { '@id': `${SITE}/#website` },
   about: { '@id': `${SITE}/#organization` },
@@ -47,7 +50,7 @@ const breadcrumbSchema = {
     <section class="bk-hero reveal">
       <div class="bk-hero__inner">
         <div class="bk-hero__kicker">Better Baseball Training</div>
-        <h1 class="bk-hero__title">Book Baseball Lessons and Training in <em>Rocklin &amp; El Dorado Hills</em></h1>
+        <h1 class="bk-hero__title">Book Baseball <em>Lessons and Training</em></h1>
         <p class="bk-hero__copy">Tell us about your athlete below and the BBT team will follow up within one business day.</p>
       </div>
     </section>
