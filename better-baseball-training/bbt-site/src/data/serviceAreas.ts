@@ -9,11 +9,16 @@
 // is the recorded landing page for its city queries; nesting under a /locations/ prefix
 // would have created a parent path that 404s and a breadcrumb pointing at nothing.
 //
-// Only hitting and pitching are built, at both locations. The other three lessons keep
-// linking to their generic pages until these four earn impressions — see
-// LOCAL_SEO_BUILD_ORDER.md. Every field below has to be true for that specific facility;
-// a page that reads like another page with the city swapped is the failure mode this layer
-// is supposed to avoid.
+// All five lessons are built at both locations, so every lesson page links one-to-one to its
+// own variant. Every field below has to be true for that specific facility; a page that reads
+// like another page with the city swapped is the failure mode this layer is supposed to avoid.
+//
+// What genuinely differs between the two, and therefore carries the copy:
+//   Rocklin  4283 Duluth Ave · GM Cesar Tamayo · academy $250/mo · cages AND turf in one
+//            building · Rocklin, Roseville, Granite Bay, Loomis
+//   EDH      4990 Hillsdale Cir Ste 400 · GM Trey Furrey · academy $299/mo · fully indoor
+//            turf and netting · El Dorado Hills, Folsom, Cameron Park, Shingle Springs
+// Coach rosters are derived per page in the template, not written here.
 
 export interface ServiceAreaFaq {
   question: string;
@@ -22,7 +27,7 @@ export interface ServiceAreaFaq {
 
 export interface ServiceArea {
   locationKey: 'rocklin' | 'el-dorado-hills';
-  lessonSlug: 'hitting' | 'pitching';
+  lessonSlug: 'hitting' | 'pitching' | 'infield-outfield' | 'catching' | 'baseball-iq';
   /** Final path segment. Full URL is built in urls.ts from the location hub slug. */
   slug: string;
   meta_title: string;
@@ -32,6 +37,8 @@ export interface ServiceArea {
   subheadline: string;
   meta_items: string[];
   image: string;
+  /** Optimized webp variants — the originals run up to 3.6 MB. */
+  image_srcset: string;
   image_alt: string;
   intro_title: string;
   intro_copy: string;
@@ -58,7 +65,9 @@ export const serviceAreas: ServiceArea[] = [
     subheadline:
       'Coached swing work in the Duluth Ave cages for players ages 8-14U from Rocklin, Roseville, Granite Bay, and Loomis.',
     meta_items: ['4283 Duluth Ave', 'Indoor Cages', 'Ages 8-14U'],
-    image: '/assets/images/service-hitting-1.PNG',
+    image: '/assets/optimized/service-hitting-1-960.webp',
+    image_srcset:
+      '/assets/optimized/service-hitting-1-640.webp 640w, /assets/optimized/service-hitting-1-960.webp 960w',
     image_alt: 'Hitting lesson in the batting cages at Better Baseball Training Rocklin',
     intro_title: 'Swing Work That Uses the Cage Instead of Just Renting It',
     intro_copy:
@@ -113,7 +122,9 @@ export const serviceAreas: ServiceArea[] = [
     subheadline:
       'Indoor mound work on mechanics, control, and velocity for players ages 8-14U across Rocklin, Roseville, Granite Bay, and Loomis.',
     meta_items: ['4283 Duluth Ave', 'Indoor Turf', 'Ages 8-14U'],
-    image: '/assets/images/service-pitching-2.PNG',
+    image: '/assets/optimized/service-pitching-2-960.webp',
+    image_srcset:
+      '/assets/optimized/service-pitching-2-640.webp 640w, /assets/optimized/service-pitching-2-960.webp 960w',
     image_alt: 'Pitching instruction at Better Baseball Training Rocklin',
     intro_title: 'Repeatable Mechanics Before Radar Numbers',
     intro_copy:
@@ -168,7 +179,9 @@ export const serviceAreas: ServiceArea[] = [
     subheadline:
       'Coached swing work indoors for players ages 8-14U from El Dorado Hills, Folsom, Cameron Park, and Shingle Springs.',
     meta_items: ['4990 Hillsdale Cir', 'Near Folsom', 'Ages 8-14U'],
-    image: '/assets/images/IMG_0607.jpg',
+    image: '/assets/optimized/IMG_0607-960.webp',
+    image_srcset:
+      '/assets/optimized/IMG_0607-320.webp 320w, /assets/optimized/IMG_0607-960.webp 960w',
     image_alt: 'Indoor hitting training at Better Baseball Training El Dorado Hills',
     intro_title: 'A Swing Built Indoors, Tested in Games',
     intro_copy:
@@ -223,7 +236,9 @@ export const serviceAreas: ServiceArea[] = [
     subheadline:
       'Indoor mound work for players ages 8-14U from EDH, Folsom, Cameron Park, and Shingle Springs — including instruction from a former MLB pitcher.',
     meta_items: ['4990 Hillsdale Cir', 'Former MLB Staff', 'Ages 8-14U'],
-    image: '/assets/images/jean-machi.jpeg',
+    image: '/assets/optimized/jean-machi-768.webp',
+    image_srcset:
+      '/assets/optimized/jean-machi-480.webp 480w, /assets/optimized/jean-machi-768.webp 768w',
     image_alt: 'Pitching coach Jean Machi at Better Baseball Training El Dorado Hills',
     intro_title: 'Professional Instruction, Youth-Appropriate Workload',
     intro_copy:
@@ -265,6 +280,348 @@ export const serviceAreas: ServiceArea[] = [
       },
     ],
     cta_label: 'Book an EDH Pitching Lesson',
+  },
+  {
+    locationKey: 'rocklin',
+    lessonSlug: 'infield-outfield',
+    slug: 'infield-outfield',
+    meta_title: `Infield & Outfield Lessons in Rocklin | ${SITE_NAME}`,
+    meta_description:
+      'Youth infield and outfield lessons in Rocklin at 4283 Duluth Ave. Indoor turf work on footwork, glove work, and throwing for ages 8-14U.',
+    kicker: 'Infield / Outfield · Rocklin',
+    headline: 'Infield & Outfield Lessons in Rocklin',
+    subheadline:
+      'Indoor turf work on footwork, glove work, and accurate throws for players ages 8-14U from Rocklin, Roseville, Granite Bay, and Loomis.',
+    meta_items: ['4283 Duluth Ave', 'Indoor Turf', 'Ages 8-14U'],
+    image: '/assets/optimized/service-inf.ouf-3-960.webp',
+    image_srcset:
+      '/assets/optimized/service-inf.ouf-3-640.webp 640w, /assets/optimized/service-inf.ouf-3-960.webp 960w',
+    image_alt: 'Infield and outfield defensive training at Better Baseball Training Rocklin',
+    intro_title: 'Defense Is Footwork Before It Is Hands',
+    intro_copy:
+      'Most missed ground balls are a footwork problem, not a glove problem. Rocklin defensive lessons work on the approach to the ball, the first step, the funnel, and the exchange — then the throw, so the whole play holds up at game speed instead of only in warm-ups.',
+    local_title: 'Why Rocklin for Defense',
+    local_copy:
+      'The Duluth Ave building has turf and cage lanes under one roof, so a defensive lesson can move from short-hop work on turf to live reps without waiting on a field or a dry afternoon. That matters most from November through March, when outdoor infields around Placer County are unusable for weeks at a time.',
+    focus_items: [
+      'First-step reads, footwork, and the funnel into the exchange',
+      'Short hops and in-between hops on indoor turf at 4283 Duluth Ave',
+      'Throwing accuracy and arm slot from the positions players actually field',
+      'Convenient for Rocklin, Roseville, Granite Bay, and Loomis families',
+    ],
+    faq_items: [
+      {
+        question: 'Where do Rocklin infield and outfield lessons take place?',
+        answer:
+          'On the indoor turf at 4283 Duluth Ave, Rocklin, CA 95765. Defensive work does not depend on field availability or the weather, which is the main reason families train through the winter here.',
+      },
+      {
+        question: 'My player boots routine ground balls. What actually fixes that?',
+        answer:
+          'Usually the feet, not the glove. If the first step is late or the approach leaves a player fielding off the back foot, even a clean glove ends up rushed. Lessons rebuild the approach and the footwork first, then the exchange and throw on top of it.',
+      },
+      {
+        question: 'Do you coach outfield separately from infield?',
+        answer:
+          'The reads are different — first step, routes, and playing through the ball on a throw — so sessions are built around the positions the athlete actually plays. Call 916-465-5551 and mention where the player is on the field.',
+      },
+      {
+        question: 'Can you train defense indoors properly?',
+        answer:
+          'For footwork, hands, exchanges, and throwing mechanics, yes — those are the pieces that break down under pressure and they are best trained with high reps and immediate feedback. Full-depth outfield reads need space a batting facility cannot give, and BBT will say so rather than sell a session that cannot deliver it.',
+      },
+      {
+        question: 'Who should we talk to about defensive lessons at Rocklin?',
+        answer:
+          'Cesar Tamayo is the Rocklin GM and can match a player to the right defensive coach based on position and age. He brings collegiate playing experience and a kinesiology background.',
+      },
+    ],
+    cta_label: 'Book a Rocklin Defense Lesson',
+  },
+  {
+    locationKey: 'el-dorado-hills',
+    lessonSlug: 'infield-outfield',
+    slug: 'infield-outfield',
+    meta_title: `Infield & Outfield Lessons in El Dorado Hills | ${SITE_NAME}`,
+    meta_description:
+      'Youth infield and outfield lessons in El Dorado Hills at 4990 Hillsdale Cir. Indoor defensive training for ages 8-14U near Folsom.',
+    kicker: 'Infield / Outfield · El Dorado Hills',
+    headline: 'Infield & Outfield Lessons in El Dorado Hills',
+    subheadline:
+      'Indoor defensive training for players ages 8-14U from El Dorado Hills, Folsom, Cameron Park, and Shingle Springs.',
+    meta_items: ['4990 Hillsdale Cir', 'Near Folsom', 'Ages 8-14U'],
+    image: '/assets/optimized/IMG_0604-960.webp',
+    image_srcset:
+      '/assets/optimized/IMG_0604-320.webp 320w, /assets/optimized/IMG_0604-960.webp 960w',
+    image_alt: 'Indoor turf training space at Better Baseball Training El Dorado Hills',
+    intro_title: 'Reps That Do Not Wait for a Dry Field',
+    intro_copy:
+      'Defensive skill is built on volume — the same read, the same footwork, the same exchange, enough times that it holds under pressure. EDH lessons work on approach, glove work, and throwing accuracy indoors, so the rep count does not collapse every time a field goes unplayable.',
+    local_title: 'Why El Dorado Hills for Defense',
+    local_copy:
+      'The Hillsdale Cir facility is fully indoor turf and netting, which makes it a practical midweek option for EDH and Folsom families who would otherwise lose a session to a wet field or an early sunset. Trey Furrey, the EDH GM, brings All-America playing experience and helps families match a player to the right defensive coach.',
+    focus_items: [
+      'Approach, first step, and footwork into a clean exchange',
+      'Indoor turf and netting at 4990 Hillsdale Cir, Suite 400',
+      'Throwing accuracy from the positions the athlete actually plays',
+      'The closer facility for El Dorado Hills, Folsom, Cameron Park, and Shingle Springs',
+    ],
+    faq_items: [
+      {
+        question: 'Where do EDH infield and outfield lessons take place?',
+        answer:
+          'At 4990 Hillsdale Cir, Suite 400, El Dorado Hills, CA 95762, on indoor turf with netted training space. Sessions run year-round regardless of field conditions.',
+      },
+      {
+        question: 'We are in Folsom — is this the closer facility?',
+        answer:
+          'Yes. Folsom, Cameron Park, and Shingle Springs families are closer to Hillsdale Cir than to the Rocklin facility on Duluth Ave. BBT runs the same defensive work at both.',
+      },
+      {
+        question: 'My player has the arm but the throws sail. Is that fixable?',
+        answer:
+          'Usually. Sailing throws are often a footwork and exchange problem showing up at the end of the play — a rushed transfer moves the release point. Sessions work the whole sequence rather than treating it as an arm issue.',
+      },
+      {
+        question: 'Is defensive training useful in the offseason, or should we wait for spring?',
+        answer:
+          'The offseason is when it is most useful. Footwork changes need repetition before they survive a game, and doing that work in January means it is automatic by the time the season starts rather than being introduced mid-season.',
+      },
+      {
+        question: 'How much does defensive training cost in El Dorado Hills?',
+        answer:
+          'Private lessons are priced per session. Academy membership at El Dorado Hills is $299 per month and includes recurring group work across defense and the other disciplines. Rocklin academy is priced separately at $250 per month.',
+      },
+    ],
+    cta_label: 'Book an EDH Defense Lesson',
+  },
+  {
+    locationKey: 'rocklin',
+    lessonSlug: 'catching',
+    slug: 'catching',
+    meta_title: `Catching Lessons in Rocklin | Youth Baseball | ${SITE_NAME}`,
+    meta_description:
+      'Youth catching lessons in Rocklin at 4283 Duluth Ave. Receiving, blocking, and throwing to second for players ages 8-14U.',
+    kicker: 'Catching · Rocklin',
+    headline: 'Catching Lessons in Rocklin',
+    subheadline:
+      'Receiving, blocking, and throwing work for players ages 8-14U from Rocklin, Roseville, Granite Bay, and Loomis.',
+    meta_items: ['4283 Duluth Ave', 'Indoor Facility', 'Ages 8-14U'],
+    image: '/assets/optimized/service-catching-4-960.webp',
+    image_srcset:
+      '/assets/optimized/service-catching-4-640.webp 640w, /assets/optimized/service-catching-4-960.webp 960w',
+    image_alt: 'Catching instruction at Better Baseball Training Rocklin',
+    intro_title: 'The Position That Touches Every Pitch',
+    intro_copy:
+      'Catching is the one spot on the field involved in every single pitch, and it is usually the least coached. Rocklin catching lessons work on stance and receiving, blocking, footwork on the throw to second, and the game-management habits that make a young catcher easier for a pitcher to trust.',
+    local_title: 'Why Rocklin for Catching',
+    local_copy:
+      'The Duluth Ave facility runs catching work indoors on turf, with the cage lanes in the same building — so a catcher can take receiving and blocking reps in a controlled space rather than borrowing time at the end of a team practice. Catching is also the position most often learned by whoever volunteers; BBT treats it as a skill set with its own coaching.',
+    focus_items: [
+      'Stance, glove position, and receiving that holds borderline strikes',
+      'Blocking technique and recovery, trained indoors year-round',
+      'Footwork and exchange on the throw to second',
+      'Convenient for Rocklin, Roseville, Granite Bay, and Loomis families',
+    ],
+    faq_items: [
+      {
+        question: 'Where do Rocklin catching lessons take place?',
+        answer:
+          'At 4283 Duluth Ave, Rocklin, CA 95765, indoors on turf. Receiving and blocking work does not depend on field access or the weather.',
+      },
+      {
+        question: 'My kid got put behind the plate and nobody has taught him anything. Is that normal?',
+        answer:
+          'Very. At 8-14U the catcher is often whoever was willing, and the position gets almost no dedicated instruction. That is exactly the gap these lessons fill — stance, receiving, and blocking taught properly rather than picked up by trial and error.',
+      },
+      {
+        question: 'Does my player need their own gear for a lesson?',
+        answer:
+          'Call 916-465-5551 before the first session and the staff will tell you what to bring. Do not buy a full set of gear on the assumption it is required.',
+      },
+      {
+        question: 'Is catching bad for a young player’s knees?',
+        answer:
+          'Workload and technique both matter. A catcher in a poor stance for a full season takes more of a toll than one taught to set up properly and rotate positions through a game. Coaching the stance is part of protecting the athlete, not just improving the receiving.',
+      },
+      {
+        question: 'Can a catcher train here and still take hitting lessons?',
+        answer:
+          'Yes, and many do. The Rocklin building has both the turf and the cage lanes, so families often pair catching work with hitting reps, or move into academy membership at $250 per month for recurring access to both.',
+      },
+    ],
+    cta_label: 'Book a Rocklin Catching Lesson',
+  },
+  {
+    locationKey: 'el-dorado-hills',
+    lessonSlug: 'catching',
+    slug: 'catching',
+    meta_title: `Catching Lessons in El Dorado Hills | ${SITE_NAME}`,
+    meta_description:
+      'Youth catching lessons in El Dorado Hills at 4990 Hillsdale Cir. Receiving, blocking, and throwing for ages 8-14U near Folsom.',
+    kicker: 'Catching · El Dorado Hills',
+    headline: 'Catching Lessons in El Dorado Hills',
+    subheadline:
+      'Receiving, blocking, and throwing work for players ages 8-14U from El Dorado Hills, Folsom, Cameron Park, and Shingle Springs.',
+    meta_items: ['4990 Hillsdale Cir', 'Near Folsom', 'Ages 8-14U'],
+    image: '/assets/optimized/IMG_0605-960.webp',
+    image_srcset:
+      '/assets/optimized/IMG_0605-320.webp 320w, /assets/optimized/IMG_0605-960.webp 960w',
+    image_alt: 'Indoor training space at Better Baseball Training El Dorado Hills',
+    intro_title: 'Coaching for the Position Nobody Coaches',
+    intro_copy:
+      'Catchers are usually taught by inheritance — the gear gets handed over and the technique is guessed at. EDH catching lessons treat it as its own skill: receiving that holds a strike, blocking that keeps the ball in front, a repeatable transfer, and the awareness to run an inning rather than just survive it.',
+    local_title: 'Why El Dorado Hills for Catching',
+    local_copy:
+      'Hillsdale Cir is fully indoor, which makes catching one of the more practical things to train there — receiving and blocking need volume and a controlled surface far more than they need open field space. For Folsom and Cameron Park families it is the shorter drive, and Trey Furrey, the EDH GM, can point you to the right coach for the athlete.',
+    focus_items: [
+      'Receiving and presentation that holds borderline pitches',
+      'Blocking and recovery on indoor turf at 4990 Hillsdale Cir, Suite 400',
+      'Transfer and footwork on the throw to second',
+      'The closer facility for El Dorado Hills, Folsom, Cameron Park, and Shingle Springs',
+    ],
+    faq_items: [
+      {
+        question: 'Where do EDH catching lessons take place?',
+        answer:
+          'At 4990 Hillsdale Cir, Suite 400, El Dorado Hills, CA 95762 — indoors, on turf with netted space, so sessions run through the winter.',
+      },
+      {
+        question: 'What does a catching lesson actually cover?',
+        answer:
+          'Stance and receiving, blocking technique and recovery, the transfer and footwork on throws, and the game-awareness pieces — counts, situations, and working with a pitcher. Which of those gets the time depends on where the athlete is.',
+      },
+      {
+        question: 'How does catching work fit with pitching lessons at the same facility?',
+        answer:
+          'They pair naturally, and El Dorado Hills is where BBT’s pitching staff includes a former MLB pitcher. Families with a catcher and a pitcher in the same household often schedule at the same facility.',
+      },
+      {
+        question: 'What age should a player start catching lessons?',
+        answer:
+          'BBT’s programming is built around ages 8-14U. The earlier a catcher learns a sound stance the better, mostly because bad habits in the stance are the hardest to undo later and the hardest on the body.',
+      },
+      {
+        question: 'Do you have catching gear at the facility?',
+        answer:
+          'Call 916-465-5551 before the first lesson and the staff will confirm what to bring rather than have you buy a set you may not need.',
+      },
+    ],
+    cta_label: 'Book an EDH Catching Lesson',
+  },
+  {
+    locationKey: 'rocklin',
+    lessonSlug: 'baseball-iq',
+    slug: 'baseball-iq',
+    meta_title: `Baseball IQ Training in Rocklin | Youth Baseball | ${SITE_NAME}`,
+    meta_description:
+      'Baseball IQ training in Rocklin at 4283 Duluth Ave. Situations, baserunning, and decision-making for youth players ages 8-14U.',
+    kicker: 'Baseball IQ · Rocklin',
+    headline: 'Baseball IQ Training in Rocklin',
+    subheadline:
+      'Situational reads, baserunning, and decision-making for players ages 8-14U from Rocklin, Roseville, Granite Bay, and Loomis.',
+    meta_items: ['4283 Duluth Ave', 'Situations + Baserunning', 'Ages 8-14U'],
+    image: '/assets/optimized/service-baseball.iq-5-960.webp',
+    image_srcset:
+      '/assets/optimized/service-baseball.iq-5-640.webp 640w, /assets/optimized/service-baseball.iq-5-960.webp 960w',
+    image_alt: 'Youth baseball player training inside Better Baseball Training Rocklin',
+    intro_title: 'The Player Who Always Seems to Know Where to Throw',
+    intro_copy:
+      'Two players with the same swing and the same arm can be worth very different amounts to a team, and the gap is usually decision-making. Rocklin baseball IQ work covers where the ball goes before it is hit to you, when to take an extra base, how counts change an at-bat, and how to read a pitcher from first.',
+    local_title: 'Why Rocklin for Baseball IQ',
+    local_copy:
+      'The Rocklin facility runs baserunning and basestealing work alongside situational instruction, so the reads are practised rather than only explained — a player can walk through a lead, a secondary, and a first-step read in the same session they learn why it matters. It is also the skill families most often add once a player has the physical tools but is still guessing in games.',
+    focus_items: [
+      'Situations: where the ball goes, cutoffs, and who covers what',
+      'Baserunning and basestealing reads, trained at 4283 Duluth Ave',
+      'Count awareness and how it changes an at-bat',
+      'Convenient for Rocklin, Roseville, Granite Bay, and Loomis families',
+    ],
+    faq_items: [
+      {
+        question: 'What is baseball IQ training, concretely?',
+        answer:
+          'Coached work on the decisions rather than the mechanics: pre-pitch positioning, where the throw goes, cutoffs and backups, baserunning reads, count awareness, and situational hitting. It is the part of the game most youth practices run out of time for.',
+      },
+      {
+        question: 'Where does Rocklin baseball IQ training take place?',
+        answer:
+          'At 4283 Duluth Ave, Rocklin, CA 95765. Sessions combine instruction with reps indoors, including baserunning and basestealing work.',
+      },
+      {
+        question: 'My player has the tools but freezes in games. Is this the right thing?',
+        answer:
+          'Often, yes. Freezing is usually uncertainty rather than nerves — a player who has not rehearsed the decision has to work it out while the play is happening. Rehearsing the reads is what makes the reaction automatic.',
+      },
+      {
+        question: 'Is this just a classroom session?',
+        answer:
+          'No. The reads are practised on the turf, not lectured. A player who can recite where the ball goes but has never done it at speed still hesitates in a game.',
+      },
+      {
+        question: 'Who coaches baseball IQ at Rocklin?',
+        answer:
+          'Jon Peters, the BBT owner, oversees player-development programming across both facilities, with Kris Krise and Justin Watari also working with Rocklin players. Cesar Tamayo, the Rocklin GM, can help pick the right fit.',
+      },
+    ],
+    cta_label: 'Book Rocklin Baseball IQ Training',
+  },
+  {
+    locationKey: 'el-dorado-hills',
+    lessonSlug: 'baseball-iq',
+    slug: 'baseball-iq',
+    meta_title: `Baseball IQ Training in El Dorado Hills | ${SITE_NAME}`,
+    meta_description:
+      'Baseball IQ training in El Dorado Hills at 4990 Hillsdale Cir. Situational reads and decision-making for ages 8-14U near Folsom.',
+    kicker: 'Baseball IQ · El Dorado Hills',
+    headline: 'Baseball IQ Training in El Dorado Hills',
+    subheadline:
+      'Situational reads and better decisions for players ages 8-14U from El Dorado Hills, Folsom, Cameron Park, and Shingle Springs.',
+    meta_items: ['4990 Hillsdale Cir', 'Near Folsom', 'Ages 8-14U'],
+    image: '/assets/optimized/IMG_0609-960.webp',
+    image_srcset:
+      '/assets/optimized/IMG_0609-320.webp 320w, /assets/optimized/IMG_0609-960.webp 960w',
+    image_alt: 'Player development training at Better Baseball Training El Dorado Hills',
+    intro_title: 'Where Travel-Ball Readiness Actually Gets Decided',
+    intro_copy:
+      'When families ask whether a player is ready for a more competitive team, the honest answer usually turns on decision-making rather than tools. EDH baseball IQ work covers pre-pitch thinking, situational responsibility, count awareness, and the habits that separate a player who can be trusted in a close inning from one who cannot.',
+    local_title: 'Why El Dorado Hills for Baseball IQ',
+    local_copy:
+      'Trey Furrey, the EDH GM, runs programming at Hillsdale Cir and brings All-America playing experience to the readiness conversation — useful for families weighing travel baseball, since the honest read on an athlete usually comes from watching them train rather than from a tryout. The facility is fully indoor, so this work carries through the offseason when the decisions are actually being made.',
+    focus_items: [
+      'Pre-pitch positioning, cutoffs, and situational responsibility',
+      'Count awareness and approach at the plate',
+      'Indoor sessions at 4990 Hillsdale Cir, Suite 400, year-round',
+      'The closer facility for El Dorado Hills, Folsom, Cameron Park, and Shingle Springs',
+    ],
+    faq_items: [
+      {
+        question: 'Where does EDH baseball IQ training take place?',
+        answer:
+          'At 4990 Hillsdale Cir, Suite 400, El Dorado Hills, CA 95762, indoors on turf, so the work continues through the offseason.',
+      },
+      {
+        question: 'Does this help decide whether our player is ready for travel ball?',
+        answer:
+          'It is one of the better ways to find out. Readiness is mostly about executing consistently and handling a bigger workload, not about being among the better players on a current team. Staff can give an honest read after seeing an athlete train.',
+      },
+      {
+        question: 'Our player is smart but slow to react on the field. Same problem?',
+        answer:
+          'Usually a different one. Understanding a situation and having rehearsed it are not the same thing — reaction time comes from having made the decision before, not from knowing the rule. The sessions target the rehearsal.',
+      },
+      {
+        question: 'How does this fit with academy membership?',
+        answer:
+          'El Dorado Hills academy membership is $299 per month and covers recurring group training including baseball IQ work. Families often use private sessions for a specific gap and the academy for consistent reps between them.',
+      },
+      {
+        question: 'Who coaches baseball IQ in El Dorado Hills?',
+        answer:
+          'Trey Furrey, the EDH GM, along with Jon Peters, Kris Krise, and Justin Watari across the player-development staff. Call 916-465-5551 to check current availability.',
+      },
+    ],
+    cta_label: 'Book EDH Baseball IQ Training',
   },
 ];
 

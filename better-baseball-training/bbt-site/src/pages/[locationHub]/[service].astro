@@ -12,7 +12,15 @@ import { lessons } from '../../data/lessons';
 import { locations } from '../../data/locations';
 import { coaches } from '../../data/coaches';
 import { contact } from '../../data/contact';
-import { lessonUrl, locationHubSlug, locationHubUrl, serviceAreaUrl, bookingUrl, coachesUrl } from '../../data/urls';
+import {
+  lessonUrl,
+  locationHubSlug,
+  locationHubUrl,
+  serviceAreaUrl,
+  bookingUrl,
+  coachesUrl,
+  lessonRelatedCoachKeysFor,
+} from '../../data/urls';
 import LeadForm from '../../components/LeadForm.astro';
 
 const SITE = 'https://www.betterbaseballtraining.com';
@@ -30,22 +38,45 @@ const location = locations.find((l) => l.key === area.locationKey)!;
 const lesson = lessons.find((l) => l.slug === area.lessonSlug)!;
 const pageUrl = `${SITE}${serviceAreaUrl(area.locationKey, area.slug)}`;
 
-// Coaches who actually work this skill at this facility. Derived from coaches.ts rather than
-// hand-listed, so the roster can never claim someone is at a location they are not.
-const specialtyFor: Record<string, string> = { hitting: 'Hitting', pitching: 'Pitching' };
-const localCoaches = coaches.filter(
-  (c) =>
-    c.locations?.includes(location.name) &&
-    c.specialties?.includes(specialtyFor[area.lessonSlug]),
-);
+// Coaches who actually work this skill at this facility. Two sources, both already in the
+// repo: the editorial per-lesson map that the lesson pages' FAQ uses, plus anyone whose
+// coaches.ts specialty matches. Union of the two, then filtered to coaches whose `locations`
+// include this facility — so the roster can never claim someone is somewhere they are not.
+//
+// The specialty list has no "Catching" or "Baseball IQ" entry, which is why the map is the
+// primary source rather than a specialty lookup.
+const specialtyFor: Record<string, string | undefined> = {
+  hitting: 'Hitting',
+  pitching: 'Pitching',
+  'infield-outfield': 'Defense',
+};
+const mappedKeys = lessonRelatedCoachKeysFor(area.lessonSlug);
+const specialty = specialtyFor[area.lessonSlug];
+const orderedKeys = [
+  ...mappedKeys,
+  ...coaches
+    .filter((c) => specialty && c.specialties?.includes(specialty))
+    .map((c) => c.key)
+    .filter((k) => !mappedKeys.includes(k)),
+];
+const localCoaches = orderedKeys
+  .map((key) => coaches.find((c) => c.key === key))
+  .filter((c): c is NonNullable<typeof c> => Boolean(c))
+  .filter((c) => c.locations?.includes(location.name));
 
 // Sideways links: same service at the other facility, other built service at this facility.
 const sameServiceElsewhere = serviceAreas.find(
   (a) => a.lessonSlug === area.lessonSlug && a.locationKey !== area.locationKey,
 );
-const otherServiceHere = serviceAreas.find(
-  (a) => a.locationKey === area.locationKey && a.lessonSlug !== area.lessonSlug,
-);
+// Every other lesson at this facility, in lessons.ts order — not a single arbitrary .find(),
+// now that all five exist per location.
+const otherServicesHere = lessons
+  .filter((l) => l.slug !== area.lessonSlug)
+  .map((l) => ({
+    label: l.label,
+    area: serviceAreas.find((a) => a.locationKey === area.locationKey && a.lessonSlug === l.slug),
+  }))
+  .filter((x): x is { label: string; area: NonNullable<typeof x.area> } => Boolean(x.area));
 const otherLocation = locations.find((l) => l.key !== area.locationKey)!;
 
 const serviceSchema = {
@@ -129,6 +160,7 @@ const breadcrumbSchema = {
         <div class="ls-overview__media">
           <img
             src={area.image}
+            srcset={area.image_srcset}
             sizes="(max-width: 768px) 100vw, (max-width: 1180px) 50vw, 540px"
             alt={area.image_alt}
             loading="eager"
@@ -265,19 +297,20 @@ const breadcrumbSchema = {
           </article>
         )}
 
-        {otherServiceHere && (
+        {otherServicesHere.length > 0 && (
           <article class="bk-card">
             <div class="bk-card__eyebrow">Same Facility</div>
-            <h3 class="bk-card__title">
-              {lessons.find((l) => l.slug === otherServiceHere.lessonSlug)?.label} in {location.name}
-            </h3>
-            <p class="bk-card__copy">Another skill families train at this facility.</p>
-            <a
-              href={serviceAreaUrl(otherServiceHere.locationKey, otherServiceHere.slug)}
-              class="bk-card__inline-link"
-            >
-              View {lessons.find((l) => l.slug === otherServiceHere.lessonSlug)?.label} in {location.name}
-            </a>
+            <h3 class="bk-card__title">Other Lessons in {location.name}</h3>
+            <p class="bk-card__copy">Everything else BBT {location.name} trains, ages 8-14U.</p>
+            <ul class="sa-sibling-list">
+              {otherServicesHere.map((s) => (
+                <li>
+                  <a href={serviceAreaUrl(s.area.locationKey, s.area.slug)}>
+                    {s.label} in {location.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </article>
         )}
       </div>
@@ -317,6 +350,22 @@ const breadcrumbSchema = {
   }
   .ls-breadcrumb [aria-current='page'] {
     opacity: 0.6;
+  }
+  .sa-sibling-list {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .sa-sibling-list a {
+    color: var(--cyan);
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .sa-sibling-list a:hover {
+    text-decoration: underline;
   }
   .sa-address {
     font-style: normal;
