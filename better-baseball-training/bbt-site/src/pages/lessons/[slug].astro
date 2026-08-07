@@ -320,24 +320,10 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
       </div>
     </section>
 
-    <section class="ls-coach-location ls-coach-location--solo reveal" aria-labelledby="ls-coach-location-heading">
-      <div class="ls-coach-location__content">
-        <div class="ls-section-label">Your Coaches</div>
-        <h2 id="ls-coach-location-heading" class="ls-section-title">Who Coaches {lessonTitle}</h2>
-        <p>BBT matches each athlete to a coach based on age, goals, and location.</p>
-        {relatedCoaches.length > 0 && (
-          <ul class="ls-coach-list">
-            {relatedCoaches.map((coach) => (
-              <li>
-                <a href={`${coachesUrl()}#${coach.anchor}`}>{coach.name}</a>
-                <span>{coach.job_title}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-        <a href={coachesUrl()} class="bk-card__inline-link">Meet the full coaching staff</a>
-      </div>
-    </section>
+    {/* The standalone "Who Coaches X" band was removed: the FAQ item "Who can teach this
+        lesson?" already lists the same relatedCoaches with the same links, so the section
+        was the same data twice on one page. Coach depth lives on the service-area pages
+        (with bios, filtered to the facility) and on /coaches. */}
 
     {/* "Where we offer this service" — its own section rather than a sidebar on the coaches
         block. Each card is a single link covering the whole card, pointing at this lesson's
@@ -364,7 +350,7 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
     <section class="ls-answer-strip reveal" aria-labelledby="ls-answer-strip-heading">
       <div class="ls-answer-strip__inner">
         <div class="ls-section-label">Parents Ask About {lessonTitle}</div>
-        <h2 id="ls-answer-strip-heading" class="ls-section-title">What to Know Before You Book {lessonTitle} Lessons</h2>
+        <h2 id="ls-answer-strip-heading" class="ls-section-title">Your {lessonTitle} Questions, Answered</h2>
         <div class="ls-faq-list">
           {lessonFaqItems.map((item) => (
             <details class="faq-item">

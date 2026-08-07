@@ -5140,10 +5140,6 @@ footer {
     rgba(12,12,12,0.92);
 }
 
-/* Coaches block with the location cards lifted out into their own section. */
-.ls-coach-location--solo {
-  grid-template-columns: minmax(0, 1fr);
-}
 
 .ls-map-section {
   max-width: 1320px;
