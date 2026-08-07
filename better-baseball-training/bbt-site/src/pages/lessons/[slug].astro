@@ -13,6 +13,7 @@ import {
   serviceAreaUrl,
 } from '../../data/urls';
 import { serviceAreasForLesson } from '../../data/serviceAreas';
+import { locations } from '../../data/locations';
 import { contact } from '../../data/contact';
 import LeadCtaSection from '../../components/LeadCtaSection.astro';
 
@@ -45,6 +46,20 @@ const lessonLabel = `${lessonTitle} lessons`;
 const areasForLesson = serviceAreasForLesson(lesson.slug);
 const rocklinArea = areasForLesson.find((a) => a.locationKey === 'rocklin');
 const edhArea = areasForLesson.find((a) => a.locationKey === 'el-dorado-hills');
+
+// Cards for the Locations section. Each points at this lesson's service-area page when one
+// exists, and falls back to the location hub when it does not — so the card is never a
+// dead end regardless of which lessons have variants built.
+const locationCards = locations.map((loc) => {
+  const areaForLoc = areasForLesson.find((a) => a.locationKey === loc.key);
+  return {
+    name: loc.name,
+    addressLine: loc.address_line,
+    cityStateZip: loc.city_state_zip,
+    href: areaForLoc ? serviceAreaUrl(loc.key, areaForLoc.slug) : loc.location_url,
+    cta: areaForLoc ? `${lessonTitle} lessons in ${loc.name}` : `View ${loc.name} lessons`,
+  };
+});
 
 interface LessonFaqItem {
   question: string;
@@ -305,7 +320,7 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
       </div>
     </section>
 
-    <section class="ls-coach-location reveal" aria-labelledby="ls-coach-location-heading">
+    <section class="ls-coach-location ls-coach-location--solo reveal" aria-labelledby="ls-coach-location-heading">
       <div class="ls-coach-location__content">
         <div class="ls-section-label">Your Coaches</div>
         <h2 id="ls-coach-location-heading" class="ls-section-title">Who Coaches {lessonTitle}</h2>
@@ -322,28 +337,27 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
         )}
         <a href={coachesUrl()} class="bk-card__inline-link">Meet the full coaching staff</a>
       </div>
-      {/* "Where we offer this service." When this lesson has a service-area page for a
-          facility, link to that rather than the location hub — the variant is the page that
-          targets "{lesson} in {city}". Lessons without a variant yet fall back to the hub. */}
+    </section>
+
+    {/* "Where we offer this service" — its own section rather than a sidebar on the coaches
+        block. Each card is a single link covering the whole card, pointing at this lesson's
+        service-area page where one exists. */}
+    <section class="ls-locations-section reveal" aria-labelledby="ls-locations-heading">
+      <div class="ls-locations__head">
+        <div class="ls-section-label">Locations</div>
+        <h2 id="ls-locations-heading" class="ls-section-title">Where {lessonTitle} Lessons Happen</h2>
+        <p>Both BBT facilities run {lessonLabel.toLowerCase()} for ages 8-14U. Pick whichever is the better drive.</p>
+      </div>
       <div class="ls-location-cards">
-        <article>
-          <span>Rocklin</span>
-          <strong>4283 Duluth Ave</strong>
-          {rocklinArea ? (
-            <a href={serviceAreaUrl('rocklin', rocklinArea.slug)}>{lessonTitle} lessons in Rocklin</a>
-          ) : (
-            <a href={seoPageUrl('baseball-lessons-rocklin')}>View Rocklin lessons</a>
-          )}
-        </article>
-        <article>
-          <span>El Dorado Hills</span>
-          <strong>4990 Hillsdale Dr, Suite 400</strong>
-          {edhArea ? (
-            <a href={serviceAreaUrl('el-dorado-hills', edhArea.slug)}>{lessonTitle} lessons in El Dorado Hills</a>
-          ) : (
-            <a href={seoPageUrl('baseball-lessons-el-dorado-hills')}>View EDH lessons</a>
-          )}
-        </article>
+        {locationCards.map((card) => (
+          <a class="ls-location-card" href={card.href}>
+            <span class="ls-location-card__city">{card.name}</span>
+            <address class="ls-location-card__address">
+              {card.addressLine}<br />{card.cityStateZip}
+            </address>
+            <span class="ls-location-card__cta">{card.cta}</span>
+          </a>
+        ))}
       </div>
     </section>
 

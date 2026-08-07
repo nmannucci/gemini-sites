@@ -5133,12 +5133,16 @@ footer {
 }
 
 .ls-coach-location__content,
-.ls-map-section__inner,
-.ls-location-cards article {
+.ls-map-section__inner {
   border: 1px solid rgba(255,255,255,0.08);
   background:
     linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015)),
     rgba(12,12,12,0.92);
+}
+
+/* Coaches block with the location cards lifted out into their own section. */
+.ls-coach-location--solo {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .ls-map-section {
@@ -5219,42 +5223,143 @@ footer {
   gap: 16px;
 }
 
-.ls-location-cards article {
+/* Standalone "Locations" band. The cards used to be bolted to the right of the coaches
+   grid; they carry their own section now so the lesson page states plainly where the
+   lesson happens. */
+.ls-locations-section {
+  max-width: 1320px;
+  margin: 0 auto 58px;
+  padding: 0 72px;
+}
+
+.ls-locations-section .ls-location-cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ls-locations__head {
+  margin-bottom: 22px;
+}
+
+.ls-locations__head p {
+  margin: 10px 0 0;
+  max-width: 60ch;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+/* The whole card is the link — one target, not a small text hit-area at the bottom.
+   Anchor is the card element itself, so it must contain no nested interactive elements. */
+.ls-location-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 26px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015)),
+    rgba(12, 12, 12, 0.92);
+  transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
 }
 
-.ls-location-cards span {
-  display: block;
-  margin-bottom: 10px;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--cyan);
+.ls-location-card:hover,
+.ls-location-card:focus-visible {
+  border-color: rgba(255, 242, 0, 0.55);
+  transform: translateY(-3px);
+  background:
+    linear-gradient(180deg, rgba(255, 242, 0, 0.06), rgba(255, 255, 255, 0.015)),
+    rgba(12, 12, 12, 0.92);
 }
 
-.ls-location-cards strong {
+.ls-location-card:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+/* City is the headline now — it was the small cyan eyebrow, with the street address
+   taking the display size. Inverted: people scan for the city first. */
+.ls-location-card__city {
   display: block;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 34px;
-  line-height: 1;
+  font-size: 44px;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
   color: var(--white);
 }
 
-.ls-location-cards a {
-  display: inline-block;
-  margin-top: 18px;
+.ls-location-card__address {
+  display: block;
+  margin-top: 12px;
+  font-family: 'DM Mono', monospace;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.ls-location-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  /* auto, not a fixed gap: cards stretch to equal height in both layouts, so this pins the
+     CTA to the base of the card instead of leaving dead space under it. */
+  margin-top: auto;
+  padding-top: 18px;
   color: var(--yellow);
-  text-decoration: none;
   font-family: 'DM Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.ls-location-cards a:hover,
-.ls-location-cards a:focus-visible {
-  color: var(--cyan);
+.ls-location-card__cta::after {
+  content: '→';
+  transition: transform 0.25s ease;
+}
+
+.ls-location-card:hover .ls-location-card__cta::after,
+.ls-location-card:focus-visible .ls-location-card__cta::after {
+  transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ls-location-card,
+  .ls-location-card__cta::after {
+    transition: none;
+  }
+  .ls-location-card:hover,
+  .ls-location-card:focus-visible {
+    transform: none;
+  }
+}
+
+/* Section padding tracks the other .ls-* bands at each breakpoint, and the two cards stack
+   rather than squeezing into a pair of ~108px columns. */
+@media (max-width: 1024px) {
+  .ls-locations-section {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ls-locations-section {
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-bottom: 44px;
+  }
+  .ls-locations-section .ls-location-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ls-location-card__city {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 500px) {
+  .ls-locations-section {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .ls-overview {
@@ -5804,7 +5909,7 @@ footer {
     margin-bottom: 44px;
   }
   .ls-coach-location__content,
-  .ls-location-cards article {
+  .ls-location-card {
     padding: 28px 24px;
   }
   .seo-section-heading { margin-bottom: 20px; }
@@ -5897,7 +6002,7 @@ footer {
     grid-auto-rows: 210px;
   }
   .ls-coach-location__content,
-  .ls-location-cards article {
+  .ls-location-card {
     padding: 24px 20px;
   }
   .seo-detail-section,
@@ -7016,16 +7121,13 @@ footer {
 
 .ls-coach-location__content p { font-size: 16px; }
 
-.ls-location-cards article {
+.ls-location-card {
   padding: 22px;
   border: 1px solid rgba(255,255,255,0.10);
   background:
     linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015)),
     rgba(16,16,16,0.9);
-  transition: border-color 0.2s ease;
 }
-
-.ls-location-cards article:hover { border-color: rgba(0,194,255,0.4); }
 
 /* --- Link blocks: cards that read as cards, with a hover affordance --- */
 .ls-cards__inner { gap: 18px; }
