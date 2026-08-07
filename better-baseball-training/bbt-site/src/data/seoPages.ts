@@ -143,7 +143,7 @@ export const seoPages: SeoPage[] = [
     headline: 'Baseball Lessons in El Dorado Hills for Ages 8-14U',
     subheadline:
       'Structured youth baseball instruction for EDH and Folsom families who want more than disconnected reps or one-off cage time.',
-    meta_items: ['4990 Hillsdale Dr', 'Near Folsom', 'Academy + Lessons'],
+    meta_items: ['4990 Hillsdale Cir', 'Near Folsom', 'Academy + Lessons'],
     image: '/assets/images/IMG_0607.jpg',
     image_alt: 'El Dorado Hills indoor baseball training facility at Better Baseball Training',
     intro_label: 'EDH Development Facility',
@@ -160,7 +160,7 @@ export const seoPages: SeoPage[] = [
       {
         label: 'Location',
         title: 'El Dorado Hills Facility',
-        copy: 'Training is available at 4990 Hillsdale Dr, Suite 400 in El Dorado Hills for families around EDH, Folsom, Cameron Park, and nearby areas.',
+        copy: 'Training is available at 4990 Hillsdale Cir, Suite 400 in El Dorado Hills for families around EDH, Folsom, Cameron Park, and nearby areas.',
       },
       {
         label: 'Program Fit',
@@ -177,7 +177,7 @@ export const seoPages: SeoPage[] = [
       {
         question: 'Where is BBT in El Dorado Hills?',
         answer:
-          'The El Dorado Hills facility is at 4990 Hillsdale Dr, Suite 400, El Dorado Hills, CA 95762.',
+          'The El Dorado Hills facility is at 4990 Hillsdale Cir, Suite 400, El Dorado Hills, CA 95762.',
       },
       {
         question: 'Do EDH lessons include pitching and hitting?',
@@ -197,7 +197,7 @@ export const seoPages: SeoPage[] = [
       {
         question: 'Which communities does the El Dorado Hills facility serve?',
         answer:
-          'The Hillsdale Dr facility mainly serves families from El Dorado Hills, Folsom, Cameron Park, and Shingle Springs.',
+          'The Hillsdale Cir facility mainly serves families from El Dorado Hills, Folsom, Cameron Park, and Shingle Springs.',
       },
       {
         question: 'Who runs the El Dorado Hills facility?',
@@ -219,8 +219,8 @@ export const seoPages: SeoPage[] = [
     schema_locations: ['el-dorado-hills'],
     related_links: ['pitching', 'hitting', 'baseball-academy', 'travel-baseball', 'book-now', 'schedule'],
     cta_label: 'Book EDH Baseball Lessons',
-    map_query: '4990 Hillsdale Dr Suite 400, El Dorado Hills, CA 95762',
-    map_caption: 'BBT El Dorado Hills — 4990 Hillsdale Dr, Suite 400, El Dorado Hills, CA 95762',
+    map_query: '4990 Hillsdale Cir Suite 400, El Dorado Hills, CA 95762',
+    map_caption: 'BBT El Dorado Hills — 4990 Hillsdale Cir, Suite 400, El Dorado Hills, CA 95762',
   },
   {
     slug: 'baseball-academy',
@@ -260,7 +260,7 @@ export const seoPages: SeoPage[] = [
       {
         label: 'El Dorado Hills',
         title: '$299/month',
-        copy: 'EDH academy access gives families structured training at the Hillsdale Dr facility near Folsom.',
+        copy: 'EDH academy access gives families structured training at the Hillsdale Cir facility near Folsom.',
       },
       {
         label: 'Development Path',
@@ -302,7 +302,7 @@ export const seoPages: SeoPage[] = [
       {
         question: 'Which location should we choose for academy membership?',
         answer:
-          'Choose on commute first. Rocklin is at 4283 Duluth Ave and serves Rocklin, Roseville, Granite Bay, and Loomis. El Dorado Hills is at 4990 Hillsdale Dr, Suite 400 and serves EDH, Folsom, Cameron Park, and Shingle Springs.',
+          'Choose on commute first. Rocklin is at 4283 Duluth Ave and serves Rocklin, Roseville, Granite Bay, and Loomis. El Dorado Hills is at 4990 Hillsdale Cir, Suite 400 and serves EDH, Folsom, Cameron Park, and Shingle Springs.',
       },
       {
         question: 'Does academy membership lead into travel baseball?',

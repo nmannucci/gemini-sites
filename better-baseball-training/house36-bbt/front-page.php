@@ -4,8 +4,8 @@ get_header();
 $faq_items = array(
     array(
         'question'    => 'Where can I get baseball lessons in Rocklin and El Dorado Hills?',
-        'answer_html' => 'Better Baseball Training offers private and group <strong>baseball lessons in Rocklin and El Dorado Hills</strong> for hitting, pitching, infield/outfield, catching, and baseball IQ. Families can train at <strong>4283 Duluth Ave in Rocklin</strong> or <strong>4990 Hillsdale Dr, Suite 400 in El Dorado Hills</strong>.',
-        'answer_text' => 'Better Baseball Training offers private and group baseball lessons in Rocklin and El Dorado Hills for hitting, pitching, infield/outfield, catching, and baseball IQ. Families can train at 4283 Duluth Ave in Rocklin or 4990 Hillsdale Dr, Suite 400 in El Dorado Hills.',
+        'answer_html' => 'Better Baseball Training offers private and group <strong>baseball lessons in Rocklin and El Dorado Hills</strong> for hitting, pitching, infield/outfield, catching, and baseball IQ. Families can train at <strong>4283 Duluth Ave in Rocklin</strong> or <strong>4990 Hillsdale Cir, Suite 400 in El Dorado Hills</strong>.',
+        'answer_text' => 'Better Baseball Training offers private and group baseball lessons in Rocklin and El Dorado Hills for hitting, pitching, infield/outfield, catching, and baseball IQ. Families can train at 4283 Duluth Ave in Rocklin or 4990 Hillsdale Cir, Suite 400 in El Dorado Hills.',
     ),
     array(
         'question'    => 'Who teaches pitching lessons at Better Baseball Training?',
@@ -567,7 +567,7 @@ $lazy_pixel = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
       </div>
       <div class="facility-info">
         <h3>El Dorado Hills (EDH)</h3>
-        <address>4990 Hillsdale Dr, Suite 400<br>El Dorado Hills, CA 95762</address>
+        <address>4990 Hillsdale Cir, Suite 400<br>El Dorado Hills, CA 95762</address>
         <p>El Dorado Hills gives families in EDH, Folsom, and surrounding areas access to indoor baseball lessons, academy programming, and pitching instruction close to home.</p>
         <a href="<?php echo esc_url(house36_bbt_seo_page_url('baseball-lessons-el-dorado-hills')); ?>" class="bk-card__inline-link">View EDH lessons</a>
       </div>

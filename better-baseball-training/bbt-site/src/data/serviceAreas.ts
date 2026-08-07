@@ -151,7 +151,7 @@ export const serviceAreas: ServiceArea[] = [
       {
         question: 'Does BBT offer pitching lessons closer to Folsom?',
         answer:
-          'Yes. The El Dorado Hills facility at 4990 Hillsdale Dr, Suite 400 runs pitching lessons and is the closer option for Folsom, Cameron Park, and Shingle Springs families.',
+          'Yes. The El Dorado Hills facility at 4990 Hillsdale Cir, Suite 400 runs pitching lessons and is the closer option for Folsom, Cameron Park, and Shingle Springs families.',
       },
     ],
     cta_label: 'Book a Rocklin Pitching Lesson',
@@ -162,12 +162,12 @@ export const serviceAreas: ServiceArea[] = [
     slug: 'hitting',
     meta_title: `Hitting Lessons in El Dorado Hills | Youth Baseball | ${SITE_NAME}`,
     meta_description:
-      'Youth hitting lessons in El Dorado Hills at 4990 Hillsdale Dr, Suite 400. Indoor swing work and academy reps for players ages 8-14U near Folsom.',
+      'Youth hitting lessons in El Dorado Hills at 4990 Hillsdale Cir, Suite 400. Indoor swing work and academy reps for players ages 8-14U near Folsom.',
     kicker: 'Hitting Lessons · El Dorado Hills',
     headline: 'Hitting Lessons in El Dorado Hills',
     subheadline:
       'Coached swing work indoors for players ages 8-14U from El Dorado Hills, Folsom, Cameron Park, and Shingle Springs.',
-    meta_items: ['4990 Hillsdale Dr', 'Near Folsom', 'Ages 8-14U'],
+    meta_items: ['4990 Hillsdale Cir', 'Near Folsom', 'Ages 8-14U'],
     image: '/assets/images/IMG_0607.jpg',
     image_alt: 'Indoor hitting training at Better Baseball Training El Dorado Hills',
     intro_title: 'A Swing Built Indoors, Tested in Games',
@@ -175,10 +175,10 @@ export const serviceAreas: ServiceArea[] = [
       'Hitting lessons at BBT El Dorado Hills work on swing path, timing, plate discipline, and approach — the difference between a player who looks good in a cage and one who produces at-bats. Every rep is coached, and the plan carries into academy training.',
     local_title: 'Why El Dorado Hills for Hitting',
     local_copy:
-      'The Hillsdale Dr facility is fully indoor with turf and netted training space, so hitting is never on hold for weather or field access. Trey Furrey, the EDH GM, brings All-America playing experience and helps families pick the right hitting coach and starting point.',
+      'The Hillsdale Cir facility is fully indoor with turf and netted training space, so hitting is never on hold for weather or field access. Trey Furrey, the EDH GM, brings All-America playing experience and helps families pick the right hitting coach and starting point.',
     focus_items: [
       'Coached work on swing path, timing, plate discipline, and approach',
-      'Indoor turf and netting at 4990 Hillsdale Dr, Suite 400',
+      'Indoor turf and netting at 4990 Hillsdale Cir, Suite 400',
       'A path from private hitting lessons into academy membership at $299/month',
       'The closer facility for El Dorado Hills, Folsom, Cameron Park, and Shingle Springs',
     ],
@@ -186,7 +186,7 @@ export const serviceAreas: ServiceArea[] = [
       {
         question: 'Where do El Dorado Hills hitting lessons take place?',
         answer:
-          'At 4990 Hillsdale Dr, Suite 400, El Dorado Hills, CA 95762. The facility is indoors with turf and netted training space, so lessons run year-round.',
+          'At 4990 Hillsdale Cir, Suite 400, El Dorado Hills, CA 95762. The facility is indoors with turf and netted training space, so lessons run year-round.',
       },
       {
         question: 'How much does hitting cost in El Dorado Hills?',
@@ -201,7 +201,7 @@ export const serviceAreas: ServiceArea[] = [
       {
         question: 'We are in Folsom — is EDH the closer facility?',
         answer:
-          'Yes. Folsom, Cameron Park, and Shingle Springs families are closer to Hillsdale Dr than to the Rocklin facility. Rocklin is the better fit for Roseville, Granite Bay, and Loomis.',
+          'Yes. Folsom, Cameron Park, and Shingle Springs families are closer to Hillsdale Cir than to the Rocklin facility. Rocklin is the better fit for Roseville, Granite Bay, and Loomis.',
       },
       {
         question: 'Does EDH have batting cages like Rocklin?',
@@ -222,7 +222,7 @@ export const serviceAreas: ServiceArea[] = [
     headline: 'Pitching Lessons in El Dorado Hills',
     subheadline:
       'Indoor mound work for players ages 8-14U from EDH, Folsom, Cameron Park, and Shingle Springs — including instruction from a former MLB pitcher.',
-    meta_items: ['4990 Hillsdale Dr', 'Former MLB Staff', 'Ages 8-14U'],
+    meta_items: ['4990 Hillsdale Cir', 'Former MLB Staff', 'Ages 8-14U'],
     image: '/assets/images/jean-machi.jpeg',
     image_alt: 'Pitching coach Jean Machi at Better Baseball Training El Dorado Hills',
     intro_title: 'Professional Instruction, Youth-Appropriate Workload',
@@ -233,7 +233,7 @@ export const serviceAreas: ServiceArea[] = [
       'El Dorado Hills is where Jean Machi coaches — a former MLB pitcher and 2014 World Series champion who gives pitching lessons at this facility. Gabe Emmett, a former Dodgers draft pick focused on velocity development, also works here. The facility is fully indoor, so bullpens are not weather-dependent.',
     focus_items: [
       'Instruction from a former MLB pitcher and a former Dodgers draft pick',
-      'Indoor turf and netted throwing space at 4990 Hillsdale Dr, Suite 400',
+      'Indoor turf and netted throwing space at 4990 Hillsdale Cir, Suite 400',
       'Command and repeatable mechanics before velocity chasing',
       'The closer facility for El Dorado Hills, Folsom, Cameron Park, and Shingle Springs',
     ],
@@ -246,7 +246,7 @@ export const serviceAreas: ServiceArea[] = [
       {
         question: 'Where do EDH pitching lessons take place?',
         answer:
-          'At 4990 Hillsdale Dr, Suite 400, El Dorado Hills, CA 95762 — indoors, on turf with netted throwing space, so bullpens run year-round.',
+          'At 4990 Hillsdale Cir, Suite 400, El Dorado Hills, CA 95762 — indoors, on turf with netted throwing space, so bullpens run year-round.',
       },
       {
         question: 'Is a former pro coach appropriate for a 10-year-old?',

@@ -194,7 +194,7 @@ get_header();
         </div>
         <div class="bk-card__location">
           <strong>El Dorado Hills</strong>
-          <span>4990 Hillsdale Dr, Suite 400</span>
+          <span>4990 Hillsdale Cir, Suite 400</span>
           <span>El Dorado Hills, CA 95762</span>
         </div>
       </article>

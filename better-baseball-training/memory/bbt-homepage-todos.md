@@ -32,7 +32,7 @@
 - [ ] Player Interest Form link, Waiver link
 
 ### 9. Footer
-- [ ] Full NAP for both locations (Rocklin: 4283 Duluth Ave, EDH: 4990 Hillsdale Dr Suite 400)
+- [ ] Full NAP for both locations (Rocklin: 4283 Duluth Ave, EDH: 4990 Hillsdale Cir Suite 400)
 - [ ] Social links (Facebook, Instagram, Twitter/X)
 - [ ] Service area keywords: Rocklin, El Dorado Hills, Sacramento, Granite Bay, Folsom, Roseville
 

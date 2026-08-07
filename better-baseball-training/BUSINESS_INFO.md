@@ -16,7 +16,7 @@
 ## Locations
 
 - Rocklin Basecamp: `4283 Duluth Ave, Rocklin, CA 95765`
-- El Dorado Hills (EDH): `4990 Hillsdale Dr, Suite 400, El Dorado Hills, CA 95762`
+- El Dorado Hills (EDH): `4990 Hillsdale Cir, Suite 400, El Dorado Hills, CA 95762`
 
 ## Core Services
 

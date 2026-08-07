@@ -269,7 +269,7 @@ get_header();
       </article>
       <article>
         <span>El Dorado Hills</span>
-        <strong>4990 Hillsdale Dr, Suite 400</strong>
+        <strong>4990 Hillsdale Cir, Suite 400</strong>
         <a href="<?php echo esc_url(house36_bbt_seo_page_url('baseball-lessons-el-dorado-hills')); ?>">View EDH lessons</a>
       </article>
     </div>
@@ -345,7 +345,7 @@ get_header();
         </div>
         <div class="bk-card__location">
           <strong>El Dorado Hills</strong>
-          <span>4990 Hillsdale Dr, Suite 400</span>
+          <span>4990 Hillsdale Cir, Suite 400</span>
           <span>El Dorado Hills, CA 95762</span>
         </div>
         <div class="bk-card__links">

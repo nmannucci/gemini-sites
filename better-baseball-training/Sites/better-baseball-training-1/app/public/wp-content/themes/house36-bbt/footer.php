@@ -80,7 +80,7 @@ $schema = array(
         'email'    => house36_bbt_contact_email(),
         'address'  => array(
             '@type'           => 'PostalAddress',
-            'streetAddress'   => '4990 Hillsdale Dr, Suite 400',
+            'streetAddress'   => '4990 Hillsdale Cir, Suite 400',
             'addressLocality' => 'El Dorado Hills',
             'addressRegion'   => 'CA',
             'postalCode'      => '95762',
@@ -174,7 +174,7 @@ $schema = array(
         </address>
         <address>
           <strong>El Dorado Hills (EDH)</strong>
-          4990 Hillsdale Dr, Suite 400<br>
+          4990 Hillsdale Cir, Suite 400<br>
           El Dorado Hills, CA 95762<br>
           <a href="<?php echo esc_url(house36_bbt_home_section_url('el-dorado-hills-training')); ?>"><?php esc_html_e('View EDH details', 'house36-bbt'); ?></a><br>
           <a href="<?php echo esc_url(house36_bbt_contact_phone_href()); ?>"><?php echo esc_html(house36_bbt_contact_phone()); ?></a>

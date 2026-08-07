@@ -506,7 +506,7 @@ function house36_bbt_seo_pages_data() {
             'kicker'           => 'El Dorado Hills Baseball Lessons',
             'headline'         => 'Baseball Lessons in El Dorado Hills for Ages 8-14U',
             'subheadline'      => 'Structured youth baseball instruction for EDH and Folsom families who want more than disconnected reps or one-off cage time.',
-            'meta_items'       => array('4990 Hillsdale Dr', 'Near Folsom', 'Academy + Lessons'),
+            'meta_items'       => array('4990 Hillsdale Cir', 'Near Folsom', 'Academy + Lessons'),
             'image'            => 'images/IMG_0607.jpg',
             'image_alt'        => 'El Dorado Hills indoor baseball training facility at Better Baseball Training',
             'intro_label'      => 'EDH Development Facility',
@@ -519,12 +519,12 @@ function house36_bbt_seo_pages_data() {
                 'A clear development path for EDH, Folsom, and surrounding families',
             ),
             'detail_cards'     => array(
-                array('label' => 'Location', 'title' => 'El Dorado Hills Facility', 'copy' => 'Training is available at 4990 Hillsdale Dr, Suite 400 in El Dorado Hills for families around EDH, Folsom, Cameron Park, and nearby areas.'),
+                array('label' => 'Location', 'title' => 'El Dorado Hills Facility', 'copy' => 'Training is available at 4990 Hillsdale Cir, Suite 400 in El Dorado Hills for families around EDH, Folsom, Cameron Park, and nearby areas.'),
                 array('label' => 'Program Fit', 'title' => 'Lessons, Academy, and Player Development', 'copy' => 'BBT helps families choose between skill-specific private lessons and recurring academy training based on where the athlete is now.'),
                 array('label' => 'Coaching Depth', 'title' => 'Former Pro and College Backgrounds', 'copy' => 'The staff includes coaches with professional, college, academy, and travel baseball experience across multiple player-development needs.'),
             ),
             'faq_items'        => array(
-                array('question' => 'Where is BBT in El Dorado Hills?', 'answer' => 'The El Dorado Hills facility is at 4990 Hillsdale Dr, Suite 400, El Dorado Hills, CA 95762.'),
+                array('question' => 'Where is BBT in El Dorado Hills?', 'answer' => 'The El Dorado Hills facility is at 4990 Hillsdale Cir, Suite 400, El Dorado Hills, CA 95762.'),
                 array('question' => 'Do EDH lessons include pitching and hitting?', 'answer' => 'Yes. BBT offers hitting, pitching, catching, infield/outfield, baseball IQ, and related youth baseball training.'),
                 array('question' => 'Is the EDH academy different from private lessons?', 'answer' => 'Private lessons focus on targeted skill work, while academy membership gives players recurring access to structured group training.'),
             ),
@@ -555,7 +555,7 @@ function house36_bbt_seo_pages_data() {
             ),
             'detail_cards'     => array(
                 array('label' => 'Rocklin', 'title' => '$250/month', 'copy' => 'Rocklin academy access gives families a recurring training option at the Duluth Ave facility.'),
-                array('label' => 'El Dorado Hills', 'title' => '$299/month', 'copy' => 'EDH academy access gives families structured training at the Hillsdale Dr facility near Folsom.'),
+                array('label' => 'El Dorado Hills', 'title' => '$299/month', 'copy' => 'EDH academy access gives families structured training at the Hillsdale Cir facility near Folsom.'),
                 array('label' => 'Development Path', 'title' => 'Lessons + Academy + Teams', 'copy' => 'BBT can help families decide when a player should use private lessons, academy classes, or team-based development.'),
             ),
             'faq_items'        => array(
@@ -763,7 +763,7 @@ function house36_bbt_locations_data() {
         'el-dorado-hills' => array(
             'name'            => 'El Dorado Hills',
             'full_name'       => 'Better Baseball Training - El Dorado Hills',
-            'address_line'    => '4990 Hillsdale Dr, Suite 400',
+            'address_line'    => '4990 Hillsdale Cir, Suite 400',
             'city_state_zip'  => 'El Dorado Hills, CA 95762',
             'location_url'    => house36_bbt_seo_page_url('baseball-lessons-el-dorado-hills'),
             'summary'         => 'El Dorado Hills offers indoor baseball lessons, academy classes, and player development for families across EDH, Folsom, and surrounding communities.',

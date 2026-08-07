@@ -58,7 +58,11 @@ const locationCards = locations.map((loc) => {
     cityStateZip: loc.city_state_zip,
     mapQuery: loc.map_query,
     href: areaForLoc ? serviceAreaUrl(loc.key, areaForLoc.slug) : loc.location_url,
-    cta: areaForLoc ? `${lessonTitle} lessons in ${loc.name}` : `View ${loc.name} lessons`,
+    // Anchor text has to match where the link actually goes. With a variant built, the card
+    // promises "{lesson} in {city}" and delivers that page. Without one it falls back to the
+    // location hub — a general baseball-lessons page — so it must not promise the
+    // lesson-in-city page that does not exist yet. "See BBT Rocklin" is what it delivers.
+    cta: areaForLoc ? `${lessonTitle} lessons in ${loc.name}` : `See BBT ${loc.name}`,
   };
 });
 
@@ -425,7 +429,7 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
           </div>
           <div class="bk-card__location">
             <strong>El Dorado Hills</strong>
-            <span>4990 Hillsdale Dr, Suite 400</span>
+            <span>4990 Hillsdale Cir, Suite 400</span>
             <span>El Dorado Hills, CA 95762</span>
           </div>
           <div class="bk-card__links">

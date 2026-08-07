@@ -502,7 +502,7 @@ function house36_bbt_locations_data() {
         'el-dorado-hills' => array(
             'name'            => 'El Dorado Hills',
             'full_name'       => 'Better Baseball Training - El Dorado Hills',
-            'address_line'    => '4990 Hillsdale Dr, Suite 400',
+            'address_line'    => '4990 Hillsdale Cir, Suite 400',
             'city_state_zip'  => 'El Dorado Hills, CA 95762',
             'location_url'    => house36_bbt_home_section_url('el-dorado-hills-training'),
             'summary'         => 'El Dorado Hills offers indoor baseball lessons, academy classes, and player development for families across EDH, Folsom, and surrounding communities.',

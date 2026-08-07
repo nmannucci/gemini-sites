@@ -50,7 +50,7 @@ H2: Get Started
 Position EDH as a complete youth development facility for families in El Dorado Hills, Folsom, and nearby communities who want structured training instead of one-off reps.
 
 ## Differentiation
-- EDH facility at 4990 Hillsdale Dr, Suite 400.
+- EDH facility at 4990 Hillsdale Cir, Suite 400.
 - BBT's development path for 8-14U.
 - Former pro and college staff.
 - Academy pricing can be made concrete: EDH membership is $299/month.

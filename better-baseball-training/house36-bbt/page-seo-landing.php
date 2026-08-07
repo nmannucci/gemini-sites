@@ -138,7 +138,7 @@ $story_snapshots_map = array(
     ),
     'baseball-lessons-el-dorado-hills' => array(
         array('label' => 'Location', 'value' => 'El Dorado Hills'),
-        array('label' => 'Address', 'value' => '4990 Hillsdale Dr'),
+        array('label' => 'Address', 'value' => '4990 Hillsdale Cir'),
         array('label' => 'Best Fit', 'value' => 'Ages 8-14U'),
         array('label' => 'Format', 'value' => 'Academy + Lessons'),
     ),
@@ -393,7 +393,7 @@ get_header();
       </article>
       <article>
         <span>El Dorado Hills</span>
-        <strong>4990 Hillsdale Dr, Suite 400</strong>
+        <strong>4990 Hillsdale Cir, Suite 400</strong>
         <a href="<?php echo esc_url(house36_bbt_seo_page_url('baseball-lessons-el-dorado-hills')); ?>">View EDH lessons</a>
       </article>
     </div>

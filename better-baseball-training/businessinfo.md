@@ -45,7 +45,7 @@ BBT is a youth sports performance platform focused on baseball training and play
 **Address:** 4283 Duluth Ave, Rocklin, CA 95765
 
 ### El Dorado Hills (EDH) — 2nd Location
-**Address:** 4990 Hillsdale Dr, Suite 400, El Dorado Hills, CA
+**Address:** 4990 Hillsdale Cir, Suite 400, El Dorado Hills, CA
 
 The EDH location has 3,000+ sq ft of brand new turf, netting and equipment.
 
