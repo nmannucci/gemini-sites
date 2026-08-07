@@ -383,19 +383,26 @@ const locationName = locationKey === 'rocklin' ? 'Rocklin' : 'El Dorado Hills';
 
       <section class="ls-coach-location reveal" aria-labelledby="seo-story-location-heading">
         <div class="ls-coach-location__content">
-          <div class="ls-section-label">Coach + Facility Fit</div>
+          {/* Label said "Coach + Facility Fit" but the block held no coaches — just link
+              pills. On a location page it now leads with the facility's own lesson list. */}
+          <div class="ls-section-label">{locationKey ? 'Training at This Facility' : 'Coach + Facility Fit'}</div>
           <h2 id="seo-story-location-heading" class="ls-section-title">{storyLocationHeading}</h2>
           <p>{storyLocationCopy}</p>
-          <div class="ls-coach-pills" aria-label="Related training paths">
-            <a href={lessonUrl('hitting')}>Hitting Lessons</a>
-            <a href={lessonUrl('pitching')}>Pitching Lessons</a>
-            <a href={lessonUrl('baseball-iq')}>Baseball IQ</a>
-            <a href={coachesUrl()}>Meet the Coaches</a>
-          </div>
+
+          {/* Pills only where there is no facility lesson list. On the location pages they
+              duplicated it outright — "Hitting Lessons" as a pill and "Hitting in Rocklin"
+              in the list, plus Baseball IQ twice. */}
+          {!locationKey && (
+            <div class="ls-coach-pills" aria-label="Related training paths">
+              <a href={lessonUrl('hitting')}>Hitting Lessons</a>
+              <a href={lessonUrl('pitching')}>Pitching Lessons</a>
+              <a href={lessonUrl('baseball-iq')}>Baseball IQ</a>
+              <a href={coachesUrl()}>Meet the Coaches</a>
+            </div>
+          )}
 
           {localServiceAreaLinks.length > 0 && (
             <div class="sa-hub-links">
-              <div class="ls-section-label">Lessons at This Facility</div>
               <ul class="sa-hub-list">
                 {localServiceAreaLinks.map((l) => (
                   <li>
@@ -406,21 +413,27 @@ const locationName = locationKey === 'rocklin' ? 'Rocklin' : 'El Dorado Hills';
                   <li><a href={l.url}>{l.label} Lessons</a></li>
                 ))}
               </ul>
+              <a href={coachesUrl()} class="bk-card__inline-link">Meet the coaching staff</a>
             </div>
           )}
         </div>
-        {/* Same clickable card as the lesson pages' Locations section — one component, so
-            the two do not drift apart. Addresses come from locations.ts, not hardcoded. */}
+        {/* Same clickable card as the lesson pages' Locations section, minus the map: the
+            location hubs already carry a full map section lower down, so a second embed
+            here would be the same map twice on one page.
+            On a location page the card for THIS location is dropped — it linked to the page
+            you are already on. What is left is genuinely the other facility. */}
         <div class="ls-location-cards">
-          {locations.map((loc) => (
-            <a class="ls-location-card" href={loc.location_url}>
-              <span class="ls-location-card__city">{loc.name}</span>
-              <address class="ls-location-card__address">
-                {loc.address_line}<br />{loc.city_state_zip}
-              </address>
-              <span class="ls-location-card__cta">View {loc.name} lessons</span>
-            </a>
-          ))}
+          {locations
+            .filter((loc) => loc.key !== locationKey)
+            .map((loc) => (
+              <article class="ls-location-card">
+                <span class="ls-location-card__city">{loc.name}</span>
+                <address class="ls-location-card__address">
+                  {loc.address_line}<br />{loc.city_state_zip}
+                </address>
+                <a class="ls-location-card__cta" href={loc.location_url}>View {loc.name} lessons</a>
+              </article>
+            ))}
         </div>
       </section>
 

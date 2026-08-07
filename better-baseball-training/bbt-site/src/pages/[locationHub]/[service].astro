@@ -292,6 +292,8 @@ const breadcrumbSchema = {
   .ls-breadcrumb ol {
     display: flex;
     flex-wrap: wrap;
+    /* The hero is centre-aligned; a flex row would otherwise sit hard against the left. */
+    justify-content: center;
     gap: 8px;
     list-style: none;
     margin: 0;

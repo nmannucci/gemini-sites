@@ -56,6 +56,7 @@ const locationCards = locations.map((loc) => {
     name: loc.name,
     addressLine: loc.address_line,
     cityStateZip: loc.city_state_zip,
+    mapQuery: loc.map_query,
     href: areaForLoc ? serviceAreaUrl(loc.key, areaForLoc.slug) : loc.location_url,
     cta: areaForLoc ? `${lessonTitle} lessons in ${loc.name}` : `View ${loc.name} lessons`,
   };
@@ -334,15 +335,28 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
         <h2 id="ls-locations-heading" class="ls-section-title">Where {lessonTitle} Lessons Happen</h2>
         <p>Both BBT facilities run {lessonLabel.toLowerCase()} for ages 8-14U. Pick whichever is the better drive.</p>
       </div>
+      {/* The card can't be a single <a> any more — an iframe inside an anchor is invalid and
+          would swallow the click. Instead the CTA is the real link and its ::after stretches
+          over the whole card, so the entire block stays one target. */}
       <div class="ls-location-cards">
         {locationCards.map((card) => (
-          <a class="ls-location-card" href={card.href}>
-            <span class="ls-location-card__city">{card.name}</span>
-            <address class="ls-location-card__address">
-              {card.addressLine}<br />{card.cityStateZip}
-            </address>
-            <span class="ls-location-card__cta">{card.cta}</span>
-          </a>
+          <article class="ls-location-card ls-location-card--mapped">
+            <div class="ls-location-card__map">
+              <iframe
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(card.mapQuery)}&output=embed`}
+                title={`Map of Better Baseball Training ${card.name}`}
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div class="ls-location-card__body">
+              <span class="ls-location-card__city">{card.name}</span>
+              <address class="ls-location-card__address">
+                {card.addressLine}<br />{card.cityStateZip}
+              </address>
+              <a class="ls-location-card__cta" href={card.href}>{card.cta}</a>
+            </div>
+          </article>
         ))}
       </div>
     </section>

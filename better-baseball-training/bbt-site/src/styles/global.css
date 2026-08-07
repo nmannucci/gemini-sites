@@ -4897,6 +4897,14 @@ footer {
   margin: 0;
 }
 
+/* .ls-hero is the centred hero; .ls-picture-hero is the left-aligned one. The flex row
+   defaults to flex-start, which is right inside the picture hero but left the buttons
+   hugging the left edge of an otherwise centred hero. Scoped so the picture hero is
+   untouched. */
+.ls-hero .ls-hero__actions {
+  justify-content: center;
+}
+
 .ls-hero-collage {
   position: relative;
   min-height: 560px;
@@ -5242,13 +5250,15 @@ footer {
   color: rgba(255, 255, 255, 0.62);
 }
 
-/* The whole card is the link — one target, not a small text hit-area at the bottom.
-   Anchor is the card element itself, so it must contain no nested interactive elements. */
+/* The whole card is one click target. The CTA is the real anchor and its ::after stretches
+   across the card, which keeps that true even with a map iframe inside — an iframe cannot
+   live inside an <a>. */
 .ls-location-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 26px;
+  padding: 30px;
   text-decoration: none;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background:
@@ -5257,8 +5267,48 @@ footer {
   transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
 }
 
+/* Mapped variant: the map spans the full card width, so padding moves to the body. */
+.ls-location-card--mapped {
+  padding: 0;
+}
+
+.ls-location-card__map {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  filter: grayscale(1) contrast(1.05) brightness(0.85);
+  transition: filter 0.3s ease;
+}
+
+.ls-location-card:hover .ls-location-card__map,
+.ls-location-card:focus-within .ls-location-card__map {
+  filter: grayscale(0) contrast(1) brightness(1);
+}
+
+.ls-location-card__map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  /* The card is the click target, so the map must not capture the click — or trap a
+     mobile scroll gesture inside itself. */
+  pointer-events: none;
+}
+
+.ls-location-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  width: 100%;
+  padding: 28px 30px 30px;
+}
+
+/* focus-within, not focus-visible: the card is an <article> now, so keyboard focus lands on
+   the anchor inside it. */
 .ls-location-card:hover,
-.ls-location-card:focus-visible {
+.ls-location-card:focus-within {
   border-color: rgba(255, 242, 0, 0.55);
   transform: translateY(-3px);
   background:
@@ -5266,9 +5316,14 @@ footer {
     rgba(12, 12, 12, 0.92);
 }
 
-.ls-location-card:focus-visible {
+.ls-location-card:focus-within {
   outline: 2px solid var(--yellow);
   outline-offset: 3px;
+}
+
+/* The stretched ::before would otherwise draw its own focus ring across the whole card. */
+.ls-location-card__cta:focus-visible {
+  outline: none;
 }
 
 /* City is the headline now — it was the small cyan eyebrow, with the street address
@@ -5276,7 +5331,7 @@ footer {
 .ls-location-card__city {
   display: block;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 44px;
+  font-size: 54px;
   line-height: 0.95;
   letter-spacing: 0.02em;
   color: var(--white);
@@ -5284,12 +5339,12 @@ footer {
 
 .ls-location-card__address {
   display: block;
-  margin-top: 12px;
+  margin-top: 14px;
   font-family: 'DM Mono', monospace;
   font-style: normal;
-  font-size: 12px;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.66);
 }
 
 .ls-location-card__cta {
@@ -5299,12 +5354,21 @@ footer {
   /* auto, not a fixed gap: cards stretch to equal height in both layouts, so this pins the
      CTA to the base of the card instead of leaving dead space under it. */
   margin-top: auto;
-  padding-top: 18px;
+  padding-top: 20px;
   color: var(--yellow);
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* Stretched link: the anchor is small, its hit-area is the whole card. */
+.ls-location-card__cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 .ls-location-card__cta::after {
@@ -5323,8 +5387,11 @@ footer {
     transition: none;
   }
   .ls-location-card:hover,
-  .ls-location-card:focus-visible {
+  .ls-location-card:focus-within {
     transform: none;
+  }
+  .ls-location-card__map {
+    transition: none;
   }
 }
 
@@ -5908,6 +5975,8 @@ footer {
   .ls-location-card {
     padding: 28px 24px;
   }
+  .ls-location-card--mapped { padding: 0; }
+  .ls-location-card--mapped .ls-location-card__body { padding: 26px 24px 28px; }
   .seo-section-heading { margin-bottom: 20px; }
   .ls-overview { padding-bottom: 42px; }
   .ls-overview__content,
@@ -6001,6 +6070,8 @@ footer {
   .ls-location-card {
     padding: 24px 20px;
   }
+  .ls-location-card--mapped { padding: 0; }
+  .ls-location-card--mapped .ls-location-card__body { padding: 22px 20px 24px; }
   .seo-detail-section,
   .seo-related-section { padding-bottom: 52px; }
   .ls-overview__content,
@@ -7118,11 +7189,17 @@ footer {
 .ls-coach-location__content p { font-size: 16px; }
 
 .ls-location-card {
-  padding: 22px;
+  padding: 30px;
   border: 1px solid rgba(255,255,255,0.10);
   background:
     linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015)),
     rgba(16,16,16,0.9);
+}
+
+/* Must follow the rule above: same specificity, so the mapped card would otherwise inherit
+   its padding and inset the map from the card edge. */
+.ls-location-card--mapped {
+  padding: 0;
 }
 
 /* --- Link blocks: cards that read as cards, with a hover affordance --- */
