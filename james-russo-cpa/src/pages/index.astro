@@ -271,11 +271,17 @@ const milestones = [
   .section-heading { max-width: 780px; }
   .section-heading > p { max-width: 720px; margin-top: 18px; color: #5f6c78; line-height: 1.72; }
   .pillar-links { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 40px; }
-  .pillar-links a { min-height: 245px; display: flex; flex-direction: column; padding: 28px; border-radius: 11px; color: #fff; background: var(--brand-dark); text-decoration: none; }
+  .pillar-links a { position: relative; min-height: 245px; display: flex; flex-direction: column; padding: 28px; overflow: hidden; border: 1px solid transparent; border-radius: 11px; color: #fff; background: var(--brand-dark); text-decoration: none; transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), border-color 220ms var(--ease-out), background 220ms var(--ease-out); }
+  .pillar-links a::after { content: ""; position: absolute; inset: auto -12% -58% auto; width: 220px; height: 170px; border-radius: 50%; background: rgba(255,255,255,0.1); filter: blur(28px); opacity: 0; transform: translate(18px, 18px); transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out); pointer-events: none; }
+  .pillar-links a:hover, .pillar-links a:focus-visible { transform: translateY(-6px); border-color: rgba(255,255,255,0.28); background: #185f90; box-shadow: 0 18px 34px rgba(11,52,82,0.22); }
+  .pillar-links a:hover::after, .pillar-links a:focus-visible::after { opacity: 1; transform: translate(0, 0); }
+  .pillar-links a:active { transform: translateY(-2px); }
   .pillar-links span { color: color-mix(in srgb, #fff 68%, transparent); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
   .pillar-links h3 { margin-top: 30px; font-size: 2rem; }
   .pillar-links p { margin-top: 12px; color: color-mix(in srgb, #fff 74%, transparent); font-size: 0.9rem; line-height: 1.62; }
-  .pillar-links strong { display: flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 22px; font: 700 0.8rem/1 var(--sans); }
+  .pillar-links strong { position: relative; z-index: 1; display: flex; align-items: center; gap: 7px; margin-top: auto; padding-top: 22px; font: 700 0.8rem/1 var(--sans); }
+  .pillar-links strong i { transition: transform 220ms var(--ease-out); }
+  .pillar-links a:hover strong i, .pillar-links a:focus-visible strong i { transform: translate(3px, -3px); }
   .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 42px; }
   .service-card { min-height: 330px; display: flex; flex-direction: column; align-items: flex-start; padding: 30px 27px; border: 1px solid color-mix(in srgb, var(--brand) 34%, #dce5eb); border-radius: 11px; color: #111826; background: #fff; text-decoration: none; transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out), border-color 180ms var(--ease-out); }
   .service-card:hover { transform: translateY(-4px); border-color: var(--brand); box-shadow: 0 15px 32px rgba(16,45,66,0.09); }
