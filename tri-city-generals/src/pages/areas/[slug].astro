@@ -1,0 +1,472 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import { contact, defaultImages, getAreas, getServices, site } from "../../data/site";
+
+export function getStaticPaths() {
+  return getAreas().map((area) => ({
+    params: { slug: area.slug },
+    props: { area }
+  }));
+}
+
+const { area } = Astro.props;
+const services = getServices();
+const mapQuery = encodeURIComponent(`${site.address}`);
+---
+<BaseLayout title={`Baseball Training Near ${area.name} | ${site.businessName}`} description={`Baseball training options for families near ${area.name}.`}>
+  <Header />
+  <main>
+    <section class="area-hero">
+      <img src={defaultImages.teamTraining} alt={`Youth baseball training near ${area.name}`} loading="eager" />
+      <div class="area-hero-content container">
+        <div>
+          <span class="eyebrow">Baseball training near {area.name}</span>
+          <h1>Extra baseball reps for players near {area.name}</h1>
+          <p>If your family is looking for academy training, private instruction, position-specific development, or strength and conditioning near {area.name}, {site.businessName} gives your player a clear place to start.</p>
+          <div class="hero-actions">
+            <a class="button" href="#area-form">Ask about availability</a>
+            <a class="button secondary" href={contact.href}>{contact.shortLabel}</a>
+          </div>
+        </div>
+        <aside>
+          <span>Quick details</span>
+          <strong>{site.serviceArea}</strong>
+          <p>Serving players from {area.name} and nearby communities.</p>
+          <p>{site.hours}</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="parent-path container">
+      <div>
+        <span class="eyebrow">For {area.name} families</span>
+        <h2>A simple way to compare training options before you reach out</h2>
+        <p>Parents usually want to know three things: what program fits their player, whether the schedule can work, and how to get started. This page keeps those answers close together so families near {area.name} do not have to hunt for the next step.</p>
+      </div>
+      <div class="path-grid">
+        <article>
+          <strong>1</strong>
+          <h3>Pick a focus</h3>
+          <p>Compare the Summer Training Academy, hitting, pitching, catching, private instruction, and strength and conditioning.</p>
+        </article>
+        <article>
+          <strong>2</strong>
+          <h3>Ask what fits</h3>
+          <p>Share your player's age, goals, and schedule so the team can point you in the right direction.</p>
+        </article>
+        <article>
+          <strong>3</strong>
+          <h3>Start with a plan</h3>
+          <p>Come in with a clear training focus instead of guessing what your player should work on.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="area-programs container">
+      <div class="section-head">
+        <h2>Programs families near {area.name} can ask about</h2>
+        <p>Each program page gives parents a cleaner way to compare the training focus before sending an inquiry.</p>
+      </div>
+      <div class="program-grid">
+        {services.map((service) => (
+          <a class="program-card" href={`/services/${service.slug}/`}>
+            <img src={service.image} alt={`${service.name} near ${area.name}`} loading="lazy" />
+            <div>
+              <strong>{service.name}</strong>
+              <span>{service.summary}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="visit-panel">
+      <div>
+        <span class="eyebrow">Visit from {area.name}</span>
+        <h2>Know where you are going before the first session</h2>
+        <p>{site.businessName} serves players across {site.serviceArea} from {site.address}. Check the map, current schedule, and contact details before you book.</p>
+        <div class="detail-grid">
+          <article><span>Address</span><strong>{site.address}</strong></article>
+          <article><span>Schedule</span><strong>{site.hours}</strong></article>
+          <article><span>Phone</span><strong><a href={contact.href}>{site.phone}</a></strong></article>
+          <article><span>Email</span><strong>{site.email}</strong></article>
+        </div>
+      </div>
+      <iframe title={`${site.businessName} map`} loading="lazy" src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}></iframe>
+    </section>
+
+    <section class="area-content container" id="area-form">
+      <div>
+        <span class="eyebrow">Ask a question</span>
+        <h2>Not sure which program is right?</h2>
+        <p>Send a quick note with your player's age, experience level, and what they want to improve. The first step can be as simple as asking what is available.</p>
+      </div>
+      <LeadForm title={`Ask about training near ${area.name}`} intro="Tell us what your player wants to improve and the best way to reach you." />
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .area-hero {
+    position: relative;
+    min-height: 620px;
+    display: grid;
+    align-items: center;
+    padding: 76px 0;
+    color: var(--white);
+    background: var(--primary-dark);
+    overflow: hidden;
+  }
+
+  .area-hero > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.42;
+  }
+
+  .area-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(5, 8, 13, 0.86), rgba(5, 8, 13, 0.54));
+  }
+
+  .area-hero-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr minmax(300px, 380px);
+    align-items: end;
+    gap: clamp(30px, 5vw, 70px);
+  }
+
+  h1 {
+    margin-top: var(--eyebrow-heading-gap);
+    max-width: 690px;
+    font-size: clamp(2.35rem, 4.4vw, 4rem);
+    line-height: 0.98;
+  }
+
+  .area-hero p {
+    max-width: 650px;
+    margin-top: 22px;
+    color: rgba(255,255,255,0.82);
+    font-size: 1.16rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .area-hero .button {
+    background: var(--white);
+    color: var(--primary-dark);
+  }
+
+  .area-hero .button.secondary {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.75);
+  }
+
+  aside {
+    padding: 26px;
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(14px);
+  }
+
+  aside span,
+  .detail-grid span {
+    display: block;
+    color: rgba(255,255,255,0.62);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  aside strong {
+    display: block;
+    margin-top: 12px;
+    font-family: "Barlow Condensed", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: clamp(1.75rem, 2.7vw, 2.15rem);
+    font-weight: 400;
+    line-height: 1.03;
+    text-transform: uppercase;
+  }
+
+  aside p {
+    margin-top: 14px;
+    color: rgba(255,255,255,0.76);
+    line-height: 1.6;
+  }
+
+  .parent-path,
+  .area-programs {
+    padding: 76px 0;
+  }
+
+  .parent-path {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
+    gap: clamp(28px, 5vw, 62px);
+  }
+
+  .parent-path .eyebrow,
+  .area-programs .eyebrow,
+  .visit-panel .eyebrow,
+  .area-content .eyebrow {
+    min-height: 26px;
+    width: fit-content;
+    padding: var(--eyebrow-padding-block) var(--eyebrow-padding-inline);
+    border-radius: 5px;
+    font-size: 0.66rem;
+    letter-spacing: 0.09em;
+    line-height: 1.15;
+  }
+
+  .parent-path h2,
+  .visit-panel h2 {
+    margin-top: var(--eyebrow-heading-gap);
+    max-width: 620px;
+    font-size: clamp(1.85rem, 3vw, 2.9rem);
+    line-height: 1.02;
+  }
+
+  .parent-path p,
+  .visit-panel p,
+  .area-content p {
+    margin-top: 18px;
+    color: var(--muted);
+    line-height: 1.68;
+  }
+
+  .path-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .path-grid article {
+    padding: 22px 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--white);
+  }
+
+  .path-grid strong {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-size: 0.88rem;
+  }
+
+  .path-grid h3 {
+    margin-top: 18px;
+    font-size: 1.35rem;
+    line-height: 1.05;
+  }
+
+  .path-grid p {
+    margin-top: 12px;
+    color: var(--muted);
+    line-height: 1.58;
+  }
+
+  .area-programs .section-head {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.55fr);
+    align-items: end;
+    gap: clamp(24px, 5vw, 64px);
+    margin-bottom: 30px;
+  }
+
+  .area-programs .section-head h2 {
+    max-width: 700px;
+    font-size: clamp(2rem, 3.5vw, 3.35rem);
+    line-height: 1.02;
+  }
+
+  .program-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .program-card {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--white);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .program-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .program-card div {
+    padding: 20px;
+  }
+
+  .program-card strong {
+    display: block;
+    font-family: "Barlow Condensed", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 1.42rem;
+    font-weight: 400;
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+
+  .program-card span {
+    display: block;
+    margin-top: 10px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .visit-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+    background: var(--white);
+  }
+
+  .visit-panel > div {
+    min-width: 0;
+    padding: clamp(46px, 6vw, 80px);
+  }
+
+  .visit-panel iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    border: 0;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .detail-grid article {
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+
+  .detail-grid span {
+    color: var(--primary);
+  }
+
+  .detail-grid strong {
+    display: block;
+    margin-top: 8px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .area-content {
+    display: grid;
+    grid-template-columns: 1fr minmax(360px, 440px);
+    align-items: start;
+    gap: clamp(32px, 6vw, 72px);
+    padding: 78px 0;
+  }
+
+  .area-content h2 {
+    margin-top: var(--eyebrow-heading-gap);
+    font-size: clamp(1.85rem, 3vw, 2.9rem);
+    line-height: 1.02;
+  }
+
+  @media (max-width: 860px) {
+    .area-hero-content,
+    .parent-path,
+    .path-grid,
+    .program-grid,
+    .visit-panel,
+    .area-content {
+      grid-template-columns: 1fr;
+    }
+
+    .area-hero {
+      min-height: auto;
+    }
+
+    .area-programs .section-head {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .path-grid,
+    .program-grid {
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    h1 {
+      font-size: clamp(2.7rem, 13vw, 3.25rem);
+      line-height: 0.94;
+    }
+
+    .area-hero p {
+      font-size: 1rem;
+      line-height: 1.62;
+    }
+
+    .parent-path,
+    .area-programs {
+      padding: 64px 0;
+    }
+
+    .parent-path {
+      padding-bottom: 0;
+    }
+
+    .visit-panel > div {
+      padding: 52px 20px;
+    }
+
+    .visit-panel .detail-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .visit-panel iframe {
+      min-height: 360px;
+    }
+
+    .parent-path h2,
+    .visit-panel h2,
+    .area-content h2,
+    .area-programs .section-head h2 {
+      font-size: clamp(2.5rem, 12vw, 3rem);
+      line-height: 0.96;
+    }
+  }
+</style>

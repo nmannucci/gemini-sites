@@ -1,0 +1,480 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import LeadForm from "../../components/LeadForm.astro";
+import { contact, defaultImages, getServices, serviceSummary, site } from "../../data/site";
+
+export function getStaticPaths() {
+  return getServices().map((service) => ({
+    params: { slug: service.slug },
+    props: { service }
+  }));
+}
+
+const { service } = Astro.props;
+const detail = getProgramDetail(service.name);
+const officialProgramUrl = service.name.toLowerCase().includes("private") ? site.privateBookingUrl : site.registrationUrl;
+const officialProgramLabel = service.name.toLowerCase().includes("private") ? "Book private instruction" : "View current programs";
+const galleryImages = [
+  service.image,
+  defaultImages.teamTraining,
+  defaultImages.fielding
+];
+
+function getProgramDetail(name: string) {
+  const lower = name.toLowerCase();
+
+  if (lower.includes("academy")) {
+    return {
+      headline: "Complete summer development for serious players",
+      intro: "A high-performance academy format for athletes ages 9+ who are ready for purposeful work across every part of the game.",
+      programTitle: "Four days a week of skill work, movement, and preparation",
+      program: "Academy sessions cover hitting, fielding, throwing, mobility, conditioning, and the habits athletes need to prepare for the next level.",
+      helps: ["Get meaningful volume across the full game", "Develop athletic movement and work capacity", "Build consistent preparation habits"],
+      gallery: "The academy describes a focused, high-tempo schedule that combines high-level baseball skill work with a physical foundation for athleticism."
+    };
+  }
+
+  if (lower.includes("catch")) {
+    return {
+      headline: "Catcher training for the details behind every pitch",
+      intro: "Position-specific development focused on positioning, blocking, framing, conditioning, flexibility, and situational awareness.",
+      programTitle: "Technical work for one of baseball's most demanding positions",
+      program: "The 2026 Catcher's Legacy Program uses two three-hour sessions per week across eight weeks. It requires prior completion of a TCG summer academy, fall training academy, or Legacy Program.",
+      helps: ["Develop positioning, blocking, and framing", "Build flexibility and conditioning", "Improve situational awareness behind the plate"],
+      gallery: "The academy reports that its catcher program has produced multiple collegiate-level catchers since 2019."
+    };
+  }
+
+  if (lower.includes("strength") || lower.includes("condition")) {
+    return {
+      headline: "Strength and conditioning that supports the athlete",
+      intro: "Purposeful physical preparation designed to build motivation, consistency, conditioning, and progress toward a stronger version of the athlete.",
+      programTitle: "Train the physical qualities that let skill show up",
+      program: "The academy says its programs are built by D1 strength and conditioning coaches, former and current professional players, and former U.S. Army Master Fitness Trainers.",
+      helps: ["Build strength and conditioning", "Follow a custom workout plan", "Create consistent training habits"],
+      gallery: "Custom workout plans are available across sports, ages, and fitness goals according to the academy's official transformation page."
+    };
+  }
+
+  if (lower.includes("private")) {
+    return {
+      headline: "Private instruction for mechanical and physical development",
+      intro: "Professionally designed one-on-one training focused on detailed breakdowns, efficiency, performance, and character growth.",
+      programTitle: "Individual work across the academy's core training areas",
+      program: "The official private-training service lists hitting, pitching, fielding, catching, speed and agility, vertical jump training, and strength and conditioning.",
+      helps: ["Break down mechanical skill sets", "Develop physical performance", "Support character growth on and off the field"],
+      gallery: "Private sessions take place at the Tri-City Generals facility at 1620 5th Ave in Columbus."
+    };
+  }
+
+  if (lower.includes("hit")) {
+    return {
+      headline: `${name} for a repeatable, efficient swing`,
+      intro: "An intensive approach centered on biomechanical precision, disciplined fundamentals, rotational power, and an efficient bat path.",
+      programTitle: "Mechanics, strike-zone command, and mental resilience",
+      program: "The 2026 Hitting Legacy Program focuses on hip-shoulder separation, bat-path efficiency, pitch-plane recognition, and maintaining mechanical integrity under high-velocity conditions.",
+      helps: ["Build a repeatable swing", "Create rotational power and an efficient bat path", "Recognize pitch planes and command the strike zone"],
+      gallery: "The program treats accountability and disciplined repetition as part of developing confidence and ownership at the plate."
+    };
+  }
+
+  if (lower.includes("pitch")) {
+    return {
+      headline: `${name} for cleaner mechanics and command`,
+      intro: "A structured approach to repeatable mechanics, command, release-point precision, and mental resilience.",
+      programTitle: "A focused plan for pitching mechanics and command",
+      program: "The 2026 Pitching Legacy Program begins with a video audit of the kinetic chain, then works toward synchronized mechanics, strike-zone command, consistent release points, and pressure-tested execution.",
+      helps: ["Identify inefficient movement patterns", "Build repeatable, synchronized mechanics", "Develop command and release-point precision"],
+      gallery: "The academy's program connects mechanical integrity with accountability, discipline, and high-pressure simulations."
+    };
+  }
+
+  return {
+    headline: `${name} with a clearer plan for your player`,
+    intro: "A focused training option for families who want more than random reps and a better idea of what their player should work on next.",
+    programTitle: "A focused training path built around your player's next step",
+    program: "Sessions are structured around the player's age, experience, current confidence level, and the skill they most need to improve.",
+    helps: ["Create a simple training focus", "Give your player feedback they can remember", "Make the next step easier for parents to understand"],
+    gallery: "Training time combines coach feedback, steady reps, and simple takeaways your player can bring back to the field."
+  };
+}
+---
+<BaseLayout title={`${service.name} | ${site.businessName}`} description={`${service.name} for student-athletes across ${site.serviceArea}.`}>
+  <Header />
+  <main>
+    <section class="page-hero">
+      <img src={service.image} alt={`${service.name} for student-athletes`} loading="eager" />
+      <div class="hero-content container">
+        <div>
+          <span class="eyebrow">{service.name}</span>
+          <h1>{detail.headline}</h1>
+          <p>{detail.intro}</p>
+          <div class="hero-actions">
+            <a class="button" href="#service-form">Ask about availability</a>
+            <a class="button secondary" href={contact.href}>{contact.shortLabel}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="program-intro container">
+      <div>
+        <span class="eyebrow">What the program is</span>
+        <h2>{detail.programTitle}</h2>
+      </div>
+      <div>
+        <p>{detail.program}</p>
+        <p>Parents do not need to know the perfect training plan before reaching out. Share your player's age, experience, and goals, and {site.businessName} can help point you toward the right starting point.</p>
+      </div>
+    </section>
+
+    <section class="helps">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">How it helps</span>
+          <h2>Clear reps, simple feedback, and a next step your player understands</h2>
+          <p>{serviceSummary(service.name)}</p>
+        </div>
+        <div class="help-grid">
+          {detail.helps.map((item, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item}</h3>
+              <p>Each program keeps the focus on purposeful work that supports the athlete's development and next step.</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery container">
+      <div class="gallery-copy">
+        <span class="eyebrow">Training environment</span>
+        <h2>What families can picture before the first session</h2>
+        <p>{detail.gallery}</p>
+      </div>
+      <div class="gallery-grid">
+        {galleryImages.map((image, index) => (
+          <img src={image} alt={`${service.name} training photo ${index + 1}`} loading="lazy" />
+        ))}
+      </div>
+    </section>
+
+    <section class="service-cta" id="service-form">
+      <div class="cta-copy">
+        <span class="eyebrow">Ask about {service.name}</span>
+        <h2>Find out if this is the right fit for your player</h2>
+        <p>Send a quick note with your player's age, current experience level, and what they want to improve. The next step can be simple.</p>
+        <div class="contact-strip">
+          <a href={officialProgramUrl} target="_blank" rel="noopener">{officialProgramLabel}</a>
+          <a href={contact.href}>{site.phone}</a>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </div>
+      </div>
+      <LeadForm title={`Ask about ${service.name}`} intro="Tell us what your player wants to improve and the best way to reach you." />
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    position: relative;
+    min-height: 620px;
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+    color: var(--white);
+    background: var(--primary-dark);
+  }
+
+  .page-hero > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.46;
+  }
+
+  .page-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(5, 8, 13, 0.9), rgba(5, 8, 13, 0.56) 58%, rgba(5, 8, 13, 0.24));
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    margin-top: var(--eyebrow-heading-gap);
+    max-width: 720px;
+    font-size: clamp(2.35rem, 4.4vw, 4rem);
+    line-height: 0.98;
+  }
+
+  .page-hero p {
+    max-width: 620px;
+    margin-top: 22px;
+    color: rgba(255,255,255,0.82);
+    font-size: 1.08rem;
+    line-height: 1.66;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .page-hero .button {
+    background: var(--white);
+    color: var(--primary-dark);
+  }
+
+  .page-hero .button.secondary {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.74);
+  }
+
+  .program-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 860px);
+    align-items: start;
+    gap: 20px;
+    padding: 76px 0;
+  }
+
+  .program-intro .eyebrow,
+  .helps .eyebrow,
+  .gallery .eyebrow,
+  .service-cta .eyebrow {
+    min-height: 26px;
+    width: fit-content;
+    padding: var(--eyebrow-padding-block) var(--eyebrow-padding-inline);
+    border-radius: 5px;
+    font-size: 0.66rem;
+    letter-spacing: 0.09em;
+    line-height: 1.15;
+  }
+
+  .program-intro h2,
+  .gallery h2,
+  .service-cta h2 {
+    margin-top: var(--eyebrow-heading-gap);
+    max-width: 760px;
+    font-size: clamp(1.85rem, 3vw, 2.9rem);
+    line-height: 1.02;
+  }
+
+  .program-intro p,
+  .gallery p,
+  .service-cta p {
+    max-width: 640px;
+    margin-top: 20px;
+    color: var(--muted);
+    line-height: 1.68;
+  }
+
+  .program-intro p:first-child {
+    margin-top: 0;
+  }
+
+  .helps {
+    padding: 76px 0;
+    background: var(--surface);
+  }
+
+  .helps .section-head {
+    display: block;
+    max-width: 820px;
+    margin-bottom: 30px;
+  }
+
+  .helps .section-head .eyebrow,
+  .helps .section-head h2 {
+    grid-column: auto;
+  }
+
+  .helps .section-head h2 {
+    max-width: 740px;
+    font-size: clamp(2rem, 3.5vw, 3.35rem);
+    line-height: 1.02;
+  }
+
+  .helps .section-head p {
+    grid-column: auto;
+    grid-row: auto;
+    max-width: 640px;
+    margin-top: 18px;
+    font-size: 1rem;
+    line-height: 1.62;
+  }
+
+  .help-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .help-grid article {
+    min-height: 230px;
+    padding: 22px 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--white);
+  }
+
+  .help-grid span {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-size: 0.88rem;
+    font-weight: 900;
+  }
+
+  .help-grid h3 {
+    margin-top: 18px;
+    font-size: 1.42rem;
+    line-height: 1.05;
+  }
+
+  .help-grid p {
+    margin-top: 14px;
+    color: var(--muted);
+    line-height: 1.58;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr);
+    align-items: center;
+    gap: clamp(28px, 5vw, 64px);
+    padding: 76px 0;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 14px;
+  }
+
+  .gallery-grid img {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .gallery-grid img:first-child {
+    grid-row: span 2;
+  }
+
+  .service-cta {
+    display: grid;
+    grid-template-columns: 1fr minmax(360px, 440px);
+    align-items: start;
+    gap: clamp(32px, 6vw, 72px);
+    padding: 78px clamp(20px, 5vw, 70px);
+    background: var(--primary-dark);
+    color: var(--white);
+  }
+
+  .service-cta p {
+    color: rgba(255,255,255,0.76);
+  }
+
+  .contact-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .contact-strip a {
+    padding: 14px 16px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.08);
+    color: var(--white);
+    font-weight: 900;
+    text-decoration: none;
+  }
+
+  @media (max-width: 860px) {
+    .page-hero {
+      min-height: 590px;
+    }
+
+    .program-intro,
+    .help-grid,
+    .gallery,
+    .gallery-grid,
+    .service-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery-grid img:first-child {
+      grid-row: auto;
+    }
+
+    .helps .section-head {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .helps .section-head p {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .help-grid {
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    h1 {
+      font-size: clamp(2.7rem, 13vw, 3.25rem);
+      line-height: 0.94;
+    }
+
+    .page-hero p {
+      font-size: 1rem;
+      line-height: 1.62;
+    }
+
+    .program-intro,
+    .helps,
+    .gallery {
+      padding: 64px 0;
+    }
+
+    .program-intro,
+    .helps {
+      padding-bottom: 0;
+    }
+
+    .service-cta {
+      padding: 58px 14px;
+    }
+
+    .program-intro h2,
+    .gallery h2,
+    .service-cta h2,
+    .helps .section-head h2 {
+      font-size: clamp(2.5rem, 12vw, 3rem);
+      line-height: 0.96;
+    }
+  }
+</style>

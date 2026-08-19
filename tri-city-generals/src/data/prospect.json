@@ -1,0 +1,24 @@
+{
+  "business_name": "Tri-City Generals Sports Academy",
+  "business_phone": "(706) 243-1598",
+  "business_email": "tcgenerals@gmail.com",
+  "hours_of_operation": "Program schedules vary; see current events or book a private training session",
+  "address": "1620 5th Ave, Columbus, GA 31901",
+  "service_area": "Columbus, Phenix City, Fort Moore, and surrounding areas",
+  "service_areas": ["Columbus, GA", "Phenix City, AL", "Fort Moore, GA"],
+  "services_offered": [
+    "Summer Training Academy",
+    "Hitting Training",
+    "Pitching Training",
+    "Catcher Training",
+    "Private Instruction",
+    "Strength and Conditioning"
+  ],
+  "logo": "/assets/tcg-logo.png",
+  "logo_text": "TCG",
+  "primary_brand_color": "#d6a928",
+  "form_endpoint": "https://services.leadconnectorhq.com/hooks/AATwjYxkwYdtw8hJzwbb/webhook-trigger/43fb5719-ad6c-48bd-82d4-6438334de763",
+  "demo_mode": true,
+  "site_url": "",
+  "testimonials": []
+}

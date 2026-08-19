@@ -1,0 +1,14 @@
+node_modules/
+.astro/
+dist/
+output/playwright/
+.firecrawl/
+
+# Package store / tool caches
+.pnpm-store/
+.herenow/
+.impeccable/
+
+# Scratch copies of other projects — not this site's source
+.publish/
+.staging/
