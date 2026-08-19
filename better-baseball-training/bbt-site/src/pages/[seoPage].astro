@@ -10,7 +10,7 @@ import {
   coachesUrl,
   serviceAreaUrl,
 } from '../data/urls';
-import { serviceAreasForLocation } from '../data/serviceAreas';
+import { serviceAreasForLocation, type ServiceArea } from '../data/serviceAreas';
 import { contact } from '../data/contact';
 import { locations } from '../data/locations';
 import LeadForm from '../components/LeadForm.astro';
@@ -259,20 +259,49 @@ const locationKey =
   page.slug === 'baseball-lessons-el-dorado-hills' ? 'el-dorado-hills' :
   null;
 const localServiceAreas = locationKey ? serviceAreasForLocation(locationKey) : [];
-const localServiceAreaLinks = localServiceAreas.map((a) => ({
-  area: a,
+const locationName = locationKey === 'rocklin' ? 'Rocklin' : 'El Dorado Hills';
+
+// The facility's lessons render as picture cards, not a bullet list of links. This is the
+// section families use to pick what to book, so each entry needs a target big enough to
+// tap and enough copy to choose from.
+interface FacilityLessonCard {
+  label: string;
+  url: string;
+  copy: string;
+  image: string;
+  srcset?: string;
+  alt: string;
+}
+
+const facilityLessonCards: FacilityLessonCard[] = localServiceAreas.map((a) => ({
   label: lessonBySlug.get(a.lessonSlug)?.label ?? a.lessonSlug,
   url: serviceAreaUrl(a.locationKey, a.slug),
+  copy: a.card_copy,
+  image: a.card_image ?? a.image,
+  srcset: a.card_image ? a.card_image_srcset : a.image_srcset,
+  alt: a.card_image_alt ?? a.image_alt,
 }));
+
 // Lessons with no service-area page here yet still need a route out — they fall back to the
 // location-neutral lesson page until their variant is built.
 const builtLessonSlugs = new Set(localServiceAreas.map((a) => a.lessonSlug));
-const genericLessonLinks = locationKey
-  ? lessons
-      .filter((l) => !builtLessonSlugs.has(l.slug as 'hitting' | 'pitching'))
-      .map((l) => ({ label: l.label, url: lessonUrl(l.slug) }))
-  : [];
-const locationName = locationKey === 'rocklin' ? 'Rocklin' : 'El Dorado Hills';
+if (locationKey) {
+  for (const l of lessons) {
+    if (builtLessonSlugs.has(l.slug as ServiceArea['lessonSlug'])) continue;
+    facilityLessonCards.push({
+      label: l.label,
+      url: lessonUrl(l.slug),
+      copy: l.meta_description,
+      image: l.image,
+      alt: l.image_alt,
+    });
+  }
+}
+
+// Cross-link to the other facility. It used to be a full-height card pinned beside this
+// section, which on a Rocklin page meant the largest object on screen was an El Dorado
+// Hills address — a card advertising the location you did not come for.
+const otherLocation = locationKey ? locations.find((l) => l.key !== locationKey) ?? null : null;
 ---
 
 <Layout
@@ -381,51 +410,74 @@ const locationName = locationKey === 'rocklin' ? 'Rocklin' : 'El Dorado Hills';
         </section>
       )}
 
-      <section class="ls-coach-location reveal" aria-labelledby="seo-story-location-heading">
-        <div class="ls-coach-location__content">
-          {/* Label said "Coach + Facility Fit" but the block held no coaches — just link
-              pills. On a location page it now leads with the facility's own lesson list. */}
-          <div class="ls-section-label">{locationKey ? 'Training at This Facility' : 'Coach + Facility Fit'}</div>
-          <h2 id="seo-story-location-heading" class="ls-section-title">{storyLocationHeading}</h2>
-          <p>{storyLocationCopy}</p>
+      {/* Location hubs get the facility's own lessons as picture cards. The previous version
+          listed them as small text links beside a full-height card for the OTHER facility —
+          so the biggest, most clickable thing in a "Training at This Facility" section was
+          an address in the city you did not search for. */}
+      {locationKey ? (
+        <section class="ls-facility-lessons reveal" aria-labelledby="seo-story-location-heading">
+          <div class="ls-facility-lessons__head">
+            <div class="ls-section-label">Training at This Facility</div>
+            <h2 id="seo-story-location-heading" class="ls-section-title">{storyLocationHeading}</h2>
+            <p>{storyLocationCopy}</p>
+          </div>
 
-          {/* Pills only where there is no facility lesson list. On the location pages they
-              duplicated it outright — "Hitting Lessons" as a pill and "Hitting in Rocklin"
-              in the list, plus Baseball IQ twice. */}
-          {!locationKey && (
+          <div class="ls-facility-lessons__grid">
+            {facilityLessonCards.map((card, index) => (
+              <a class="fl-card" href={card.url}>
+                <div class="fl-card__media">
+                  <img
+                    src={card.image}
+                    srcset={card.srcset}
+                    sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 300px"
+                    alt={card.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="fl-card__body">
+                  <span class="fl-card__number">{String(index + 1).padStart(2, '0')}</span>
+                  <h3 class="fl-card__title">{card.label} in {locationName}</h3>
+                  <p class="fl-card__copy">{card.copy}</p>
+                  <span class="fl-card__cta">
+                    View lesson
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <div class="ls-facility-lessons__foot">
+            <a href={coachesUrl()}>Meet the coaching staff</a>
+            {otherLocation && (
+              <a href={otherLocation.location_url}>
+                Closer to {otherLocation.name}? See that facility
+              </a>
+            )}
+          </div>
+        </section>
+      ) : (
+        <section class="ls-coach-location reveal" aria-labelledby="seo-story-location-heading">
+          <div class="ls-coach-location__content">
+            <div class="ls-section-label">Coach + Facility Fit</div>
+            <h2 id="seo-story-location-heading" class="ls-section-title">{storyLocationHeading}</h2>
+            <p>{storyLocationCopy}</p>
+
             <div class="ls-coach-pills" aria-label="Related training paths">
               <a href={lessonUrl('hitting')}>Hitting Lessons</a>
               <a href={lessonUrl('pitching')}>Pitching Lessons</a>
               <a href={lessonUrl('baseball-iq')}>Baseball IQ</a>
               <a href={coachesUrl()}>Meet the Coaches</a>
             </div>
-          )}
-
-          {localServiceAreaLinks.length > 0 && (
-            <div class="sa-hub-links">
-              <ul class="sa-hub-list">
-                {localServiceAreaLinks.map((l) => (
-                  <li>
-                    <a href={l.url}><strong>{l.label} in {locationName}</strong></a>
-                  </li>
-                ))}
-                {genericLessonLinks.map((l) => (
-                  <li><a href={l.url}>{l.label} Lessons</a></li>
-                ))}
-              </ul>
-              <a href={coachesUrl()} class="bk-card__inline-link">Meet the coaching staff</a>
-            </div>
-          )}
-        </div>
-        {/* Same clickable card as the lesson pages' Locations section, minus the map: the
-            location hubs already carry a full map section lower down, so a second embed
-            here would be the same map twice on one page.
-            On a location page the card for THIS location is dropped — it linked to the page
-            you are already on. What is left is genuinely the other facility. */}
-        <div class="ls-location-cards">
-          {locations
-            .filter((loc) => loc.key !== locationKey)
-            .map((loc) => (
+          </div>
+          {/* Same clickable card as the lesson pages' Locations section, minus the map: the
+              hubs already carry a full map section lower down, so a second embed here would
+              be the same map twice on one page. */}
+          <div class="ls-location-cards">
+            {locations.map((loc) => (
               <article class="ls-location-card">
                 <span class="ls-location-card__city">{loc.name}</span>
                 <address class="ls-location-card__address">
@@ -434,9 +486,9 @@ const locationName = locationKey === 'rocklin' ? 'Rocklin' : 'El Dorado Hills';
                 <a class="ls-location-card__cta" href={loc.location_url}>View {loc.name} lessons</a>
               </article>
             ))}
-        </div>
-      </section>
-
+          </div>
+        </section>
+      )}
       {page.map_query && (
         <section class="ls-map-section reveal" aria-labelledby="seo-story-map-heading">
           <div class="ls-map-section__inner">

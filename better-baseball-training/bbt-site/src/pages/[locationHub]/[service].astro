@@ -179,17 +179,52 @@ const breadcrumbSchema = {
       </div>
     </section>
 
-    <section class="ls-answer-strip reveal" aria-labelledby="sa-local-heading">
-      <div class="ls-answer-strip__inner">
+    {/* The facility block used to be the FAQ's narrow text column with the address set as
+        small mono type — the one place on the page that has to answer "where do I drive to"
+        was the least visible thing on it. It now carries the map at full section width. */}
+    <section class="sa-facility reveal" aria-labelledby="sa-local-heading">
+      <div class="sa-facility__head">
         <div class="ls-section-label">This Facility</div>
         <h2 id="sa-local-heading" class="ls-section-title">{area.local_title}</h2>
         <p>{area.local_copy}</p>
-        <address class="sa-address">
-          {location.address_line}<br />{location.city_state_zip}
-        </address>
-        <a href={locationHubUrl(area.locationKey)} class="bk-card__inline-link">
-          Everything at BBT {location.name}
-        </a>
+      </div>
+
+      <div class="sa-facility__grid">
+        <div class="sa-facility__map">
+          <iframe
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(location.map_query)}&output=embed`}
+            title={`Map to Better Baseball Training ${location.name}, ${location.address_line}`}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <aside class="sa-facility__card">
+          <div class="sa-facility__eyebrow">Where This Lesson Happens</div>
+          <h3 class="sa-facility__name">BBT {location.name}</h3>
+          <address class="sa-facility__address">
+            {location.address_line}<br />{location.city_state_zip}
+          </address>
+          <ul class="sa-facility__facts">
+            <li><span>Lesson</span><strong>{lesson.label}, ages 8-14U</strong></li>
+            <li><span>Phone</span><strong><a href={contact.phoneHref}>{contact.phone}</a></strong></li>
+          </ul>
+          <div class="sa-facility__actions">
+            <a
+              class="sa-facility__cta"
+              href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(location.map_query)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >Get Directions</a>
+            <a class="sa-facility__cta sa-facility__cta--ghost" href={contact.phoneHref}>
+              Call {contact.phone}
+            </a>
+          </div>
+          <a href={locationHubUrl(area.locationKey)} class="bk-card__inline-link">
+            Everything at BBT {location.name}
+          </a>
+        </aside>
       </div>
     </section>
 
@@ -216,7 +251,7 @@ const breadcrumbSchema = {
       </section>
     )}
 
-    <section class="ls-answer-strip reveal" aria-labelledby="sa-faq-heading">
+    <section class="ls-answer-strip sa-faq reveal" aria-labelledby="sa-faq-heading">
       <div class="ls-answer-strip__inner">
         <div class="ls-section-label">Parents Ask</div>
         <h2 id="sa-faq-heading" class="ls-section-title">
@@ -367,12 +402,183 @@ const breadcrumbSchema = {
   .sa-sibling-list a:hover {
     text-decoration: underline;
   }
-  .sa-address {
-    font-style: normal;
-    margin: 16px 0;
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    line-height: 1.7;
-    opacity: 0.75;
+  /* Facility band: heading at section width, then map + details card side by side. The map
+     leads because the question this section answers is "where is it". */
+  .sa-facility {
+    padding: 0 72px;
   }
+  .sa-facility__head {
+    max-width: 1320px;
+    margin: 0 auto 26px;
+  }
+  .sa-facility__head p {
+    max-width: 70ch;
+    margin-top: 18px;
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .sa-facility__grid {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr);
+    gap: 20px;
+    align-items: stretch;
+  }
+  .sa-facility__map {
+    position: relative;
+    min-height: 420px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+  }
+  /* Deliberately unfiltered — an invert() would match the dark palette but wreck the map's
+     legibility, and a directions map has to look obviously working first. */
+  .sa-facility__map iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .sa-facility__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015)),
+      rgba(12, 12, 12, 0.92);
+  }
+  .sa-facility__eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+  .sa-facility__name {
+    margin: 12px 0 0;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(34px, 3.4vw, 46px);
+    line-height: 0.96;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .sa-facility__address {
+    font-style: normal;
+    margin: 14px 0 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.78);
+  }
+  .sa-facility__facts {
+    width: 100%;
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 18px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .sa-facility__facts li {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .sa-facility__facts span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+  }
+  .sa-facility__facts strong {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.86);
+  }
+  .sa-facility__facts a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .sa-facility__facts a:hover {
+    color: var(--cyan);
+  }
+  .sa-facility__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 22px 0 18px;
+  }
+  .sa-facility__cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 11px 16px;
+    background: var(--yellow);
+    color: var(--black);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .sa-facility__cta:hover,
+  .sa-facility__cta:focus-visible {
+    background: var(--cyan);
+    color: var(--black);
+  }
+  .sa-facility__cta--ghost {
+    background: transparent;
+    color: var(--yellow);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+  }
+  .sa-facility__cta--ghost:hover,
+  .sa-facility__cta--ghost:focus-visible {
+    background: transparent;
+    color: var(--cyan);
+    border-color: rgba(0, 174, 239, 0.5);
+  }
+
+  @media (max-width: 1024px) {
+    .sa-facility {
+      padding: 0 48px;
+    }
+    .sa-facility__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .sa-facility__map {
+      min-height: 0;
+      aspect-ratio: 16 / 8;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sa-facility {
+      padding: 0 24px;
+    }
+    .sa-facility__map {
+      aspect-ratio: 4 / 3;
+    }
+    .sa-facility__card {
+      padding: 26px 22px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .sa-facility {
+      padding: 0 20px;
+    }
+    .sa-facility__actions .sa-facility__cta {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
 </style>

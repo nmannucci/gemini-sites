@@ -4968,8 +4968,10 @@ footer {
   bottom: 0;
 }
 
+/* 1464 = 1320 content + the 72px gutters, so this band's content column matches the
+   sections whose padding sits on a full-width parent (.ls-cards, .ls-overview). */
 .ls-snapshot {
-  max-width: 1320px;
+  max-width: 1464px;
   margin: -38px auto 64px;
   padding: 0 72px;
   display: grid;
@@ -5130,8 +5132,10 @@ footer {
   grid-row: span 2;
 }
 
+/* 1464 = 1320 content + the 72px gutters, so this band's content column matches the
+   sections whose padding sits on a full-width parent (.ls-cards, .ls-overview). */
 .ls-coach-location {
-  max-width: 1320px;
+  max-width: 1464px;
   margin: 0 auto 58px;
   padding: 0 72px;
   display: grid;
@@ -5149,8 +5153,10 @@ footer {
 }
 
 
+/* 1464 = 1320 content + the 72px gutters, so this band's content column matches the
+   sections whose padding sits on a full-width parent (.ls-cards, .ls-overview). */
 .ls-map-section {
-  max-width: 1320px;
+  max-width: 1464px;
   margin: 0 auto 58px;
   padding: 0 72px;
 }
@@ -5230,8 +5236,10 @@ footer {
 /* Standalone "Locations" band. The cards used to be bolted to the right of the coaches
    grid; they carry their own section now so the lesson page states plainly where the
    lesson happens. */
+/* 1464 = 1320 content + the 72px gutters, so this band's content column matches the
+   sections whose padding sits on a full-width parent (.ls-cards, .ls-overview). */
 .ls-locations-section {
-  max-width: 1320px;
+  max-width: 1464px;
   margin: 0 auto 58px;
   padding: 0 72px;
 }
@@ -5425,6 +5433,245 @@ footer {
   }
 }
 
+/* Facility lesson cards — the "Training at This Facility" band on the two location hubs.
+   Same visual language as the homepage .service-card so the two read as one system, but
+   sized for a five-up row and carrying the "{Lesson} in {City}" service-area titles. */
+/* 1464 = 1320 content + the 72px gutters, so this band's content column matches the
+   sections whose padding sits on a full-width parent (.ls-cards, .ls-overview). */
+.ls-facility-lessons {
+  max-width: 1464px;
+  margin: 0 auto 58px;
+  padding: 0 72px;
+}
+
+.ls-facility-lessons__head {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.ls-facility-lessons__head p {
+  margin-top: 18px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* auto-fit rather than repeat(5): five cards fit the 1176px content width today, and a
+   sixth lesson would wrap instead of crushing the row. */
+.ls-facility-lessons__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 208px), 1fr));
+  gap: 16px;
+}
+
+.fl-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--black3);
+  border-bottom: 3px solid transparent;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fl-card:hover,
+.fl-card:focus-visible {
+  border-bottom-color: var(--cyan);
+  background: #1a1a1a;
+  transform: translateY(-8px);
+  outline: none;
+}
+
+.fl-card:focus-visible {
+  border-bottom-color: var(--yellow);
+  box-shadow: 0 0 0 2px var(--yellow);
+}
+
+.fl-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+}
+
+.fl-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(70%) contrast(1.1) brightness(0.85);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.fl-card:hover .fl-card__media img,
+.fl-card:focus-visible .fl-card__media img {
+  transform: scale(1.08);
+  filter: grayscale(0%) contrast(1) brightness(1);
+}
+
+.fl-card__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 18px 20px 22px;
+}
+
+.fl-card__number {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px;
+  line-height: 1;
+  color: var(--cyan);
+  opacity: 0.15;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.fl-card:hover .fl-card__number,
+.fl-card:focus-visible .fl-card__number {
+  opacity: 1;
+}
+
+.fl-card__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 25px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin: 0 46px 10px 0;
+  transition: color 0.2s ease;
+}
+
+.fl-card:hover .fl-card__title,
+.fl-card:focus-visible .fl-card__title {
+  color: var(--cyan);
+}
+
+.fl-card__copy {
+  flex: 1;
+  margin: 0 0 16px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.fl-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  transition: color 0.2s ease;
+}
+
+.fl-card__cta svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.fl-card:hover .fl-card__cta,
+.fl-card:focus-visible .fl-card__cta {
+  color: var(--cyan);
+}
+
+.fl-card:hover .fl-card__cta svg,
+.fl-card:focus-visible .fl-card__cta svg {
+  transform: translateX(5px);
+}
+
+.ls-facility-lessons__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.ls-facility-lessons__foot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--yellow);
+  text-decoration: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ls-facility-lessons__foot a:hover,
+.ls-facility-lessons__foot a:focus-visible {
+  color: var(--cyan);
+  border-color: rgba(0, 194, 255, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fl-card,
+  .fl-card__media img,
+  .fl-card__cta svg {
+    transition: none;
+  }
+  .fl-card:hover,
+  .fl-card:focus-visible {
+    transform: none;
+  }
+  .fl-card:hover .fl-card__media img,
+  .fl-card:focus-visible .fl-card__media img {
+    transform: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ls-facility-lessons {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+  .ls-facility-lessons__grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .ls-facility-lessons {
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-bottom: 44px;
+  }
+  .ls-facility-lessons__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .fl-card__title {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 500px) {
+  .ls-facility-lessons {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .ls-facility-lessons__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fl-card__media {
+    aspect-ratio: 16 / 9;
+  }
+}
+
 .ls-overview {
   padding: 0 72px 56px;
 }
@@ -5539,8 +5786,10 @@ footer {
   gap: 20px;
 }
 
+/* Matches .ls-cards__inner's 1320px so the label and title line up with the left edge of
+   the first card. At 1120px the heading sat 100px inside the grid on wide screens. */
 .seo-section-heading {
-  max-width: 1120px;
+  max-width: 1320px;
   margin: 0 auto 26px;
 }
 
@@ -5554,10 +5803,6 @@ footer {
 
 .seo-story-page .ls-picture-hero__panel strong {
   max-width: 360px;
-}
-
-.seo-story-page .seo-section-heading {
-  max-width: 1320px;
 }
 
 .seo-story-page .seo-detail-section {
@@ -7095,8 +7340,15 @@ footer {
 }
 
 /* --- FAQ: collapsible, with readable question type --- */
+/* FAQ keeps a reading-width column, but left-aligned rather than centred — every other
+   band on these pages starts at the same left edge, and a centred 880px block read as a
+   third, accidental margin. */
 .ls-answer-strip__inner {
   max-width: 880px;
+  /* Left edge tracks the 1320px column the card grids centre in, so the FAQ starts on the
+     same line as every other band instead of 24px outside it on wide screens. */
+  margin-left: max(0px, calc((100% - 1320px) / 2));
+  margin-right: auto;
   padding: 0;
   border: 0;
   background: none;
@@ -7107,6 +7359,24 @@ footer {
   flex-direction: column;
   gap: 10px;
   margin-top: 26px;
+}
+
+/* Service-area pages centre their FAQ, following the homepage FAQ's convention: centred
+   reading column, centred label and heading, accordion rows left-aligned so the questions
+   still start on a common edge. Lives here rather than in [service].astro's scoped <style>
+   so it ships in the same stylesheet as the rule it overrides — a scoped block is a separate
+   style module, and a long-running dev server can serve a stale copy of it. */
+.ls-answer-strip.sa-faq .ls-answer-strip__inner {
+  margin-left: auto;
+  margin-right: auto;
+  /* Centring lives on the container, not the label: .ls-section-label is inline-block, so
+     text-align on the label itself only centres text inside a box that stays hard left. */
+  text-align: center;
+}
+
+/* Rows keep their left edge — a centred accordion question is harder to scan. */
+.ls-answer-strip.sa-faq .ls-faq-list {
+  text-align: left;
 }
 
 .ls-faq-list .faq-item {
@@ -7141,13 +7411,19 @@ footer {
 .ls-faq-list .ls-answer-links { margin-top: 14px; }
 
 /* --- Process: a vertical numbered list rather than four side-by-side cards --- */
+/* Narrow reading column, but left-aligned on the same edge as the card bands — see the
+   matching margin-left on .ls-answer-strip__inner. */
+.ls-process__grid,
+.ls-process__header {
+  max-width: 880px;
+  margin-left: max(0px, calc((100% - 1320px) / 2));
+  margin-right: auto;
+}
+
 .ls-process__grid {
   grid-template-columns: 1fr;
   gap: 0;
-  max-width: 880px;
 }
-
-.ls-process__header { max-width: 880px; }
 
 .ls-process-card {
   min-height: 0;

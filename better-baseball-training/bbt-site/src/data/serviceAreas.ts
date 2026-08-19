@@ -40,6 +40,15 @@ export interface ServiceArea {
   /** Optimized webp variants — the originals run up to 3.6 MB. */
   image_srcset: string;
   image_alt: string;
+  /** One line for the facility lesson cards on the location hubs. Kept short and specific
+   *  to this page — the cards sit five-across, so a shared sentence would read as filler. */
+  card_copy: string;
+  /** Card-only image override. Three of the EDH pages lead with a lounge/waiting-room photo
+   *  of the real facility, which works as a page hero but reads as a mistake on a 222px card
+   *  captioned "Catching in El Dorado Hills". The hero stays; the card shows training space. */
+  card_image?: string;
+  card_image_srcset?: string;
+  card_image_alt?: string;
   intro_title: string;
   intro_copy: string;
   /** What makes training this skill at THIS facility different. Not interchangeable copy. */
@@ -69,6 +78,8 @@ export const serviceAreas: ServiceArea[] = [
     image_srcset:
       '/assets/optimized/service-hitting-1-640.webp 640w, /assets/optimized/service-hitting-1-960.webp 960w',
     image_alt: 'Hitting lesson in the batting cages at Better Baseball Training Rocklin',
+    card_copy:
+      'Coached cage work on swing path, timing, and approach — not a bucket of balls and a timer.',
     intro_title: 'Swing Work That Uses the Cage Instead of Just Renting It',
     intro_copy:
       'A hitting lesson at BBT Rocklin is coached time in the cage, not a bucket of balls and a timer. Sessions work on swing path, timing, plate discipline, and approach, with someone watching every rep and building a plan the player can repeat.',
@@ -126,6 +137,8 @@ export const serviceAreas: ServiceArea[] = [
     image_srcset:
       '/assets/optimized/service-pitching-2-640.webp 640w, /assets/optimized/service-pitching-2-960.webp 960w',
     image_alt: 'Pitching instruction at Better Baseball Training Rocklin',
+    card_copy:
+      'A delivery the player can repeat, with bullpens on indoor turf that run through the winter.',
     intro_title: 'Repeatable Mechanics Before Radar Numbers',
     intro_copy:
       'Pitching lessons at BBT Rocklin work on a delivery a player can repeat under game pressure — arm path, lower half, balance, and the ability to throw a strike when it matters. Velocity follows mechanics; chasing it first is how young arms get hurt.',
@@ -183,6 +196,8 @@ export const serviceAreas: ServiceArea[] = [
     image_srcset:
       '/assets/optimized/IMG_0607-320.webp 320w, /assets/optimized/IMG_0607-960.webp 960w',
     image_alt: 'Indoor hitting training at Better Baseball Training El Dorado Hills',
+    card_copy:
+      'Swing path, timing, and approach coached indoors, with the plan carrying into academy reps.',
     intro_title: 'A Swing Built Indoors, Tested in Games',
     intro_copy:
       'Hitting lessons at BBT El Dorado Hills work on swing path, timing, plate discipline, and approach — the difference between a player who looks good in a cage and one who produces at-bats. Every rep is coached, and the plan carries into academy training.',
@@ -240,6 +255,8 @@ export const serviceAreas: ServiceArea[] = [
     image_srcset:
       '/assets/optimized/jean-machi-480.webp 480w, /assets/optimized/jean-machi-768.webp 768w',
     image_alt: 'Pitching coach Jean Machi at Better Baseball Training El Dorado Hills',
+    card_copy:
+      'Command and workload before velocity, including instruction from former MLB pitcher Jean Machi.',
     intro_title: 'Professional Instruction, Youth-Appropriate Workload',
     intro_copy:
       'Pitching lessons at BBT El Dorado Hills work on a delivery a player can repeat, command they can trust, and a workload appropriate for a developing arm. Mechanics come before velocity, and the plan is built around the athlete in front of the coach.',
@@ -297,6 +314,8 @@ export const serviceAreas: ServiceArea[] = [
     image_srcset:
       '/assets/optimized/service-inf.ouf-3-640.webp 640w, /assets/optimized/service-inf.ouf-3-960.webp 960w',
     image_alt: 'Infield and outfield defensive training at Better Baseball Training Rocklin',
+    card_copy:
+      'Footwork, funnel, and exchange on indoor turf, so defensive reps never wait on a dry field.',
     intro_title: 'Defense Is Footwork Before It Is Hands',
     intro_copy:
       'Most missed ground balls are a footwork problem, not a glove problem. Rocklin defensive lessons work on the approach to the ball, the first step, the funnel, and the exchange — then the throw, so the whole play holds up at game speed instead of only in warm-ups.',
@@ -354,6 +373,12 @@ export const serviceAreas: ServiceArea[] = [
     image_srcset:
       '/assets/optimized/IMG_0604-320.webp 320w, /assets/optimized/IMG_0604-960.webp 960w',
     image_alt: 'Indoor turf training space at Better Baseball Training El Dorado Hills',
+    card_image: '/assets/optimized/IMG_0609-960.webp',
+    card_image_srcset:
+      '/assets/optimized/IMG_0609-320.webp 320w, /assets/optimized/IMG_0609-960.webp 960w',
+    card_image_alt: 'Indoor turf and netting used for defensive work at Better Baseball Training El Dorado Hills',
+    card_copy:
+      'The rep volume defense actually needs, indoors on turf and netting when fields go unplayable.',
     intro_title: 'Reps That Do Not Wait for a Dry Field',
     intro_copy:
       'Defensive skill is built on volume — the same read, the same footwork, the same exchange, enough times that it holds under pressure. EDH lessons work on approach, glove work, and throwing accuracy indoors, so the rep count does not collapse every time a field goes unplayable.',
@@ -411,6 +436,8 @@ export const serviceAreas: ServiceArea[] = [
     image_srcset:
       '/assets/optimized/service-catching-4-640.webp 640w, /assets/optimized/service-catching-4-960.webp 960w',
     image_alt: 'Catching instruction at Better Baseball Training Rocklin',
+    card_copy:
+      'Receiving, blocking, and the throw to second, coached as a position instead of a volunteer job.',
     intro_title: 'The Position That Touches Every Pitch',
     intro_copy:
       'Catching is the one spot on the field involved in every single pitch, and it is usually the least coached. Rocklin catching lessons work on stance and receiving, blocking, footwork on the throw to second, and the game-management habits that make a young catcher easier for a pitcher to trust.',
@@ -468,6 +495,12 @@ export const serviceAreas: ServiceArea[] = [
     image_srcset:
       '/assets/optimized/IMG_0605-320.webp 320w, /assets/optimized/IMG_0605-960.webp 960w',
     image_alt: 'Indoor training space at Better Baseball Training El Dorado Hills',
+    card_image: '/assets/optimized/facility-edh-7-548.webp',
+    card_image_srcset:
+      '/assets/optimized/facility-edh-7-320.webp 320w, /assets/optimized/facility-edh-7-548.webp 548w',
+    card_image_alt: 'Netted indoor training cages at Better Baseball Training El Dorado Hills',
+    card_copy:
+      'Receiving that holds a strike and blocking that keeps the ball in front, on a controlled surface.',
     intro_title: 'Coaching for the Position Nobody Coaches',
     intro_copy:
       'Catchers are usually taught by inheritance — the gear gets handed over and the technique is guessed at. EDH catching lessons treat it as its own skill: receiving that holds a strike, blocking that keeps the ball in front, a repeatable transfer, and the awareness to run an inning rather than just survive it.',
@@ -525,6 +558,8 @@ export const serviceAreas: ServiceArea[] = [
     image_srcset:
       '/assets/optimized/service-baseball.iq-5-640.webp 640w, /assets/optimized/service-baseball.iq-5-960.webp 960w',
     image_alt: 'Youth baseball player training inside Better Baseball Training Rocklin',
+    card_copy:
+      'Situational reads and baserunning walked through in the session, not just explained on a board.',
     intro_title: 'The Player Who Always Seems to Know Where to Throw',
     intro_copy:
       'Two players with the same swing and the same arm can be worth very different amounts to a team, and the gap is usually decision-making. Rocklin baseball IQ work covers where the ball goes before it is hit to you, when to take an extra base, how counts change an at-bat, and how to read a pitcher from first.',
@@ -582,6 +617,10 @@ export const serviceAreas: ServiceArea[] = [
     image_srcset:
       '/assets/optimized/IMG_0609-320.webp 320w, /assets/optimized/IMG_0609-960.webp 960w',
     image_alt: 'Player development training at Better Baseball Training El Dorado Hills',
+    card_image: '/assets/optimized/facility-edh-3-359.webp',
+    card_image_alt: 'Coach-led group training session on the turf at Better Baseball Training El Dorado Hills',
+    card_copy:
+      'Pre-pitch thinking and an honest readiness read from EDH GM Trey Furrey before the next roster.',
     intro_title: 'Where Travel-Ball Readiness Actually Gets Decided',
     intro_copy:
       'When families ask whether a player is ready for a more competitive team, the honest answer usually turns on decision-making rather than tools. EDH baseball IQ work covers pre-pitch thinking, situational responsibility, count awareness, and the habits that separate a player who can be trusted in a close inning from one who cannot.',
