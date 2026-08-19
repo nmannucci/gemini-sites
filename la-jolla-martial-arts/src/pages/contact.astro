@@ -647,6 +647,10 @@ import Layout from '../layouts/Layout.astro';
 
           // Google Ads: Submit lead form conversion
           if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', {
+              form_id: 'contact-page-form',
+              lead_source: data.source || 'contact-page',
+            });
             gtag('event', 'conversion', { 'send_to': 'AW-18166558698/waUoCJyf_a0cEOrfvtZD' });
           }
         } catch (err) {

@@ -1,9 +1,3 @@
-interface Env {
-  DB: D1Database;
-  GHL_WEBHOOK_URL: string;
-  ASSETS: Fetcher;
-}
-
 interface LeadPayload {
   firstName?: string;
   lastName?: string;
@@ -13,6 +7,26 @@ interface LeadPayload {
   message?: string;
   source?: string;
 }
+
+interface NormalizedLead {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  program: string;
+  message: string;
+  source: string;
+}
+
+const GONE_PATHS = new Set(['/fitness-kickboxing']);
+
+const SECURITY_HEADERS = {
+  'x-content-type-options': 'nosniff',
+  'x-frame-options': 'SAMEORIGIN',
+  'referrer-policy': 'strict-origin-when-cross-origin',
+  'permissions-policy': 'camera=(), microphone=(), geolocation=()',
+  'strict-transport-security': 'max-age=31536000',
+} as const;
 
 const PROGRAM_LABELS: Record<string, string> = {
   'little-ninjas': 'Little Ninjas (Ages 3–6)',
@@ -25,22 +39,37 @@ const PROGRAM_LABELS: Record<string, string> = {
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+    const normalizedPath = url.pathname.replace(/\/+$/, '') || '/';
 
-    if (url.pathname === '/api/lead' && request.method === 'POST') {
+    if (GONE_PATHS.has(normalizedPath)) {
+      return gone();
+    }
+
+    if (url.pathname === '/api/lead') {
+      if (request.method !== 'POST') {
+        return json({ error: 'Method not allowed' }, 405, { allow: 'POST' });
+      }
+
       return handleLead(request, env, ctx);
     }
 
     return env.ASSETS.fetch(request);
   },
-};
+} satisfies ExportedHandler<Env>;
 
 async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-  let payload: LeadPayload;
+  let parsed: unknown;
   try {
-    payload = (await request.json()) as LeadPayload;
+    parsed = await request.json();
   } catch {
     return json({ error: 'Invalid JSON' }, 400);
   }
+
+  if (!isLeadPayload(parsed)) {
+    return json({ error: 'Invalid request fields' }, 400);
+  }
+
+  const payload = parsed;
 
   const firstName = (payload.firstName ?? '').trim();
   const lastName = (payload.lastName ?? '').trim();
@@ -73,7 +102,11 @@ async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Pr
       .bind(firstName, lastName, email, phone || null, program || null, message, source || null, userAgent, ip)
       .run();
   } catch (err) {
-    console.error('D1 insert failed', err);
+    console.error(JSON.stringify({
+      message: 'D1 insert failed',
+      error: err instanceof Error ? err.message : String(err),
+      source,
+    }));
     return json({ error: 'Could not save your message. Please try again.' }, 500);
   }
 
@@ -83,9 +116,9 @@ async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Pr
   return json({ ok: true });
 }
 
-async function sendToGoHighLevel(env: Env, lead: Required<LeadPayload>): Promise<void> {
+async function sendToGoHighLevel(env: Env, lead: NormalizedLead): Promise<void> {
   if (!env.GHL_WEBHOOK_URL) {
-    console.warn('GHL_WEBHOOK_URL not set; skipping GoHighLevel');
+    console.warn(JSON.stringify({ message: 'GHL_WEBHOOK_URL not set; skipping GoHighLevel' }));
     return;
   }
 
@@ -112,17 +145,64 @@ async function sendToGoHighLevel(env: Env, lead: Required<LeadPayload>): Promise
     });
 
     if (!res.ok) {
-      const text = await res.text();
-      console.error('GoHighLevel webhook failed', res.status, text);
+      console.error(JSON.stringify({
+        message: 'GoHighLevel webhook failed',
+        status: res.status,
+        statusText: res.statusText,
+        source: lead.source,
+      }));
     }
   } catch (err) {
-    console.error('GoHighLevel webhook error', err);
+    console.error(JSON.stringify({
+      message: 'GoHighLevel webhook error',
+      error: err instanceof Error ? err.message : String(err),
+      source: lead.source,
+    }));
   }
 }
 
-function json(body: unknown, status = 200): Response {
+function isLeadPayload(value: unknown): value is LeadPayload {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+
+  const record = value as Record<string, unknown>;
+  const allowedFields: Array<keyof LeadPayload> = [
+    'firstName',
+    'lastName',
+    'email',
+    'phone',
+    'program',
+    'message',
+    'source',
+  ];
+
+  return allowedFields.every((field) =>
+    record[field] === undefined || typeof record[field] === 'string'
+  );
+}
+
+function json(body: unknown, status = 200, extraHeaders: Record<string, string> = {}): Response {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { 'content-type': 'application/json' },
+    headers: {
+      ...SECURITY_HEADERS,
+      'content-type': 'application/json; charset=utf-8',
+      'cache-control': 'no-store',
+      ...extraHeaders,
+    },
   });
+}
+
+function gone(): Response {
+  return new Response(
+    '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><title>Program No Longer Offered | La Jolla Martial Arts</title></head><body><main><h1>This program is no longer offered</h1><p>Explore our current <a href="/adult-martial-arts">adult martial arts classes</a> or <a href="/contact">contact La Jolla Martial Arts</a>.</p></main></body></html>',
+    {
+      status: 410,
+      headers: {
+        ...SECURITY_HEADERS,
+        'content-type': 'text/html; charset=utf-8',
+        'cache-control': 'public, max-age=3600',
+        'x-robots-tag': 'noindex, follow',
+      },
+    }
+  );
 }

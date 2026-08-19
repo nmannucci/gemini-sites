@@ -1,0 +1,17 @@
+old_url,new_url,status_code,implementation_note
+https://lajollamartialarts.com/,https://lajollatkd.com/,301,Apply at the old domain host
+https://lajollamartialarts.com/about,https://lajollatkd.com/about,301,Apply at the old domain host
+https://lajollamartialarts.com/programs,https://lajollatkd.com/#programs,301,Replace with /services/ when the service index exists
+https://lajollamartialarts.com/little-ninjas,https://lajollatkd.com/little-ninjas,301,Update destination after the core service route launches
+https://lajollamartialarts.com/kids-martial-arts,https://lajollatkd.com/kids-martial-arts,301,Update destination after the core service route launches
+https://lajollamartialarts.com/teen-martial-arts,https://lajollatkd.com/teen-martial-arts,301,Update destination after the core service route launches
+https://lajollamartialarts.com/adult-martial-arts,https://lajollatkd.com/adult-martial-arts,301,Update destination after the core service route launches
+https://lajollamartialarts.com/fitness-kickboxing,,410,Program retired with no equivalent service
+https://lajollamartialarts.com/schedule,https://lajollatkd.com/schedule,301,Apply at the old domain host
+https://lajollamartialarts.com/reviews,https://lajollatkd.com/#reviews,301,Apply at the old domain host
+https://lajollamartialarts.com/faq,https://lajollatkd.com/#faq,301,Apply at the old domain host
+https://lajollamartialarts.com/gallery,https://lajollatkd.com/#gallery,301,Apply at the old domain host
+https://lajollamartialarts.com/contact,https://lajollatkd.com/contact,301,Apply at the old domain host
+https://lajollamartialarts.com/la-jolla,https://lajollatkd.com/contact,301,Update to /locations/la-jolla/ when that hub launches
+https://lajollamartialarts.com/special-offer,https://lajollatkd.com/contact,301,Apply at the old domain host
+https://lajollamartialarts.com/policy,,410,Legacy cancellation-policy page has no current equivalent

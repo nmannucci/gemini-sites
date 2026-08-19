@@ -1,0 +1,2 @@
+# The production value must be stored with `wrangler secret put GHL_WEBHOOK_URL`.
+GHL_WEBHOOK_URL=""

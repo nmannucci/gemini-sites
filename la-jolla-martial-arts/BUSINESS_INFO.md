@@ -1,5 +1,14 @@
 # La Jolla Martial Arts - Research, Copy Source, and SEO Build Brief
 
+## Authoritative Business Status — August 6, 2026
+
+- **Active business:** La Jolla Martial Arts
+- **Authoritative website:** [https://lajollatkd.com/](https://lajollatkd.com/)
+- **Active location:** 7680 Girard Ave, Basement, La Jolla, CA 92037
+- **Former business:** Eagle Martial Arts is closed. Do not present it as an active brand or location.
+- **Inactive program:** Fitness Kickboxing is not offered. Do not build, advertise, or include it in navigation, schema, GBP services, or SEO targeting.
+- Material below that was collected from `lajollamartialarts.com` is retained only as historical copy research. When it conflicts with `lajollatkd.com` or this status block, this status block and `lajollatkd.com` control.
+
 ## Research Scope
 - Research date: April 5, 2026
 - Primary source reviewed: [https://lajollamartialarts.com/](https://lajollamartialarts.com/)
@@ -30,9 +39,9 @@ The current website has useful raw messaging, but it also contains obvious templ
 - Primary location: 7680 Girard Ave, Basement, La Jolla, CA 92037 (the "Basement" suite is part of the official address — always include it)
 - Primary phone: (858) 361-0961
 - Secondary phone shown on homepage shell: (858) 551-5425
-- Email: Samhadaf@gmail.com
-- Website: https://lajollamartialarts.com/
-- Alternate domain mentioned in prior project notes: https://eaglemartialarts.net
+- Email: LJBULLYPROOF@GMAIL.COM
+- Website: https://lajollatkd.com/
+- Historical domains: https://lajollamartialarts.com/ and https://eaglemartialarts.net
 - Social media surfaced on site: Facebook
 - Mobile app messaging on site: "Download our app" / "Mobile apps coming soon"
 - Core geography:
@@ -90,7 +99,6 @@ The live site is organized around these core offerings:
 - Kid's Martial Arts
 - Teen's Martial Arts
 - Adult Martial Arts
-- Fitness Kickboxing
 
 These should each have their own dedicated SEO page on the new site.
 
@@ -206,7 +214,9 @@ The adult page is strong and should be reused conceptually. It pitches adult tra
 - Train in a supportive community
 - Build confidence, flexibility, strength, and stamina
 
-## Fitness Kickboxing
+## Fitness Kickboxing — Inactive Historical Material
+
+**Do not use this section to build or advertise a page. Fitness Kickboxing is not active.** The notes are retained only to document legacy content that must be removed from the current SEO and conversion architecture.
 ### Current site signals
 The specific page content was harder to extract cleanly, but testimonials on the live site provide clear direction:
 - Great workout every time
@@ -222,8 +232,8 @@ The specific page content was harder to extract cleanly, but testimonials on the
 - Burn calories, sweat hard, and stay motivated
 - Great for adults and older teens who want fitness with structure
 
-### Caution
-Only present this as an active program if the client confirms it is still currently offered.
+### Status
+Do not present Fitness Kickboxing as an active program.
 
 ## Program Page Source Copy
 This section is structured specifically for page-template buildout. It captures the recurring sections found on the live program pages:
@@ -551,7 +561,9 @@ Questions and answer themes:
 - This is one of the cleanest and strongest program pages on the current site
 - The Bruce Lee / Jeet Kune Do line should be client-approved before reuse
 
-## Fitness Kickboxing Page Source
+## Fitness Kickboxing Page Source — Archived, Do Not Build
+
+The following legacy source notes are intentionally excluded from the active page plan.
 ### Hero
 - Page title: `Fitness Kickboxing`
 - Hero headline: `Are you tired of the same cardio workouts?`
@@ -1034,7 +1046,9 @@ Best fits:
 - start with a free trial
 - see schedule
 
-## Fitness Kickboxing Template Fill
+## Fitness Kickboxing Template Fill — Archived, Do Not Build
+
+Do not implement this template. It is retained only as a record of legacy source material.
 ### Primary keyword direction
 - kickboxing La Jolla
 - fitness kickboxing La Jolla
@@ -1212,7 +1226,7 @@ If the registration discount is still valid, confirm it and present it clearly. 
 - Name: La Jolla Martial Arts
 - Address: 7680 Girard Ave, Basement, La Jolla, CA 92037 (the "Basement" suite is part of the official address — always include it)
 - Phone: (858) 361-0961
-- Email: Samhadaf@gmail.com
+- Email: LJBULLYPROOF@GMAIL.COM
 
 ### Local trust opportunities for the rebuild
 - Embed a real Google Map
@@ -1255,7 +1269,7 @@ These should be treated as cleanup items so they do not get carried into the new
 - The kids page references "Leesburg martial arts school"
 - The kids page references "Jun Lee Taekwondo"
 - Contact and gallery areas contain copy fragments like "Welcome to Master Lee's Tae Kwon Do"
-- The current source website title/description ecosystem sometimes mixes old-brand variants like "Eagle Martial Arts" and "Eagle Mixed Martial Arts"
+- Historical pages and citations use "Eagle Martial Arts" and "Eagle Mixed Martial Arts." Eagle Martial Arts is closed; remove these names from active La Jolla Martial Arts pages and mark or suppress obsolete listings appropriately.
 
 ### Program inconsistencies
 - Little Ninjas age range appears as `3 to 5` in one place and `3.5 to 7` elsewhere
@@ -1266,7 +1280,7 @@ These should be treated as cleanup items so they do not get carried into the new
 - Hours conflict with older local project notes
 - Secondary phone number appears in homepage shell but not consistently elsewhere
 - Team credentials and bios should be confirmed before publishing
-- If Fitness Kickboxing is not actively scheduled, it should not be a primary navigation item
+- Fitness Kickboxing is inactive and must not appear in primary navigation, offers, schema, GBP services, or SEO targeting.
 
 ## Recommended Website Structure for Rankings and Conversions
 The new website should be built around clear local service intent plus dedicated pages for each program. Ranking well here is not just about metadata. It is about matching search intent with specific, useful, locally grounded content.
@@ -1298,7 +1312,6 @@ These are the sections I would consider essential on the new homepage:
 - Kid's Martial Arts
 - Teen's Martial Arts
 - Adult Martial Arts
-- Fitness Kickboxing if confirmed active
 
 ### 5. Meet Master Sam / Instructor Section
 - Humanize the school
@@ -1344,7 +1357,6 @@ These are the sections I would consider essential on the new homepage:
 - Kid's Martial Arts
 - Teen's Martial Arts
 - Adult Martial Arts
-- Fitness Kickboxing if active
 - Schedule
 - Reviews
 - FAQ
@@ -1364,7 +1376,6 @@ These are the sections I would consider essential on the new homepage:
 - kids martial arts La Jolla
 - teen martial arts La Jolla
 - adult martial arts La Jolla
-- kickboxing La Jolla
 - self-defense classes La Jolla
 
 ### Secondary keyword themes

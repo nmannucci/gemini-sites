@@ -1,0 +1,11 @@
+# Sitemap compatibility
+/sitemap.xml /sitemap-index.xml 301
+
+# Legacy paths on the active domain
+/programs /#programs 301
+/reviews /#reviews 301
+/faq /#faq 301
+/gallery /#gallery 301
+/contact-us /contact 301
+/special-offer /contact 301
+/privacy-policy /privacy 301

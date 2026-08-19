@@ -8,6 +8,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thank You | La Jolla Martial Arts</title>
+  <meta name="description" content="Confirmation page for La Jolla Martial Arts trial and class-information requests." />
   <meta name="robots" content="noindex,nofollow" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,8 +23,20 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'AW-18166558698');
-    // Fire the lead-form conversion on this confirmation page load.
-    gtag('event', 'conversion', { send_to: 'AW-18166558698/waUoCJyf_a0cEOrfvtZD' });
+    gtag('config', 'G-2G50L1RC7D');
+
+    // Fire once only after a successful landing-page submission. Direct visits
+    // and reloads must not create duplicate leads or ad conversions.
+    try {
+      if (sessionStorage.getItem('ljma_confirmed_lead') === '1') {
+        sessionStorage.removeItem('ljma_confirmed_lead');
+        gtag('event', 'generate_lead', {
+          form_id: 'ppc-landing-page-form',
+          lead_source: 'ppc-landing-page',
+        });
+        gtag('event', 'conversion', { send_to: 'AW-18166558698/waUoCJyf_a0cEOrfvtZD' });
+      }
+    } catch (_) {}
   </script>
 
   <style is:global>

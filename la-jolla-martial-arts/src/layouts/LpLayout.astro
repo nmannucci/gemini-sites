@@ -15,6 +15,7 @@ export interface Props {
   ogImage?: string;
 }
 const { title, description, leadSource, ogImage = '/assets/EMA%20-%20Post.jpg' } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://lajollatkd.com').toString();
 ---
 
 <!DOCTYPE html>
@@ -25,6 +26,7 @@ const { title, description, leadSource, ogImage = '/assets/EMA%20-%20Post.jpg' }
   <title>{title}</title>
   <meta name="description" content={description} />
   <meta name="robots" content="noindex,follow" />
+  <link rel="canonical" href={canonicalUrl} />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -317,6 +319,7 @@ const { title, description, leadSource, ogImage = '/assets/EMA%20-%20Post.jpg' }
             var res = await fetch('/api/lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
             var j = await res.json().catch(function(){return {};});
             if (!res.ok || !j.ok) throw new Error(j.error || 'Something went wrong. Please call (858) 361-0961.');
+            try { sessionStorage.setItem('ljma_confirmed_lead', '1'); } catch (_) {}
             window.location.href = '/thank-you';
           } catch (ex) {
             if (err) { err.textContent = ex.message || 'Network error. Please try again.'; err.style.display='block'; }

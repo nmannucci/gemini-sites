@@ -1,5 +1,5 @@
 {
-  "name": "eagle-martial-arts",
+  "name": "la-jolla-martial-arts",
   "type": "module",
   "version": "0.1.0",
   "private": true,
@@ -7,12 +7,19 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "check:seo": "node scripts/check-seo.mjs",
+    "types:worker": "wrangler types",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.2.4",
     "astro": "^5.0.0",
     "tailwindcss": "^4.2.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260804.1",
+    "wrangler": "^4.119.0"
   }
 }
