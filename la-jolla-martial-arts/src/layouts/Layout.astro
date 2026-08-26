@@ -196,22 +196,61 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
       var t = document.querySelector('.nav-toggle');
       var m = document.getElementById('mobileMenu');
       if (!t || !m) return;
+
+      var programsTrigger = m.querySelector('.mobile-programs-trigger');
+      var programsBack = m.querySelector('.mobile-programs-back');
+
+      function showPanel(name) {
+        m.setAttribute('data-panel', name);
+        if (programsTrigger) programsTrigger.setAttribute('aria-expanded', String(name === 'programs'));
+      }
+
+      function closeMenu() {
+        t.setAttribute('aria-expanded', 'false');
+        m.setAttribute('data-open', 'false');
+        showPanel('main');
+      }
+
       t.addEventListener('click', function (e) {
         e.stopPropagation();
         var open = t.getAttribute('aria-expanded') === 'true';
-        t.setAttribute('aria-expanded', String(!open));
-        m.setAttribute('data-open', String(!open));
+        if (open) {
+          closeMenu();
+        } else {
+          t.setAttribute('aria-expanded', 'true');
+          m.setAttribute('data-open', 'true');
+          showPanel('main');
+        }
       });
+
+      if (programsTrigger) {
+        programsTrigger.addEventListener('click', function () {
+          showPanel('programs');
+          if (programsBack) programsBack.focus();
+        });
+      }
+
+      if (programsBack) {
+        programsBack.addEventListener('click', function () {
+          showPanel('main');
+          if (programsTrigger) programsTrigger.focus();
+        });
+      }
+
       m.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () {
-          t.setAttribute('aria-expanded', 'false');
-          m.setAttribute('data-open', 'false');
+          closeMenu();
         });
       });
       document.addEventListener('click', function (e) {
         if (!t.contains(e.target) && !m.contains(e.target) && m.getAttribute('data-open') === 'true') {
-          t.setAttribute('aria-expanded', 'false');
-          m.setAttribute('data-open', 'false');
+          closeMenu();
+        }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && m.getAttribute('data-open') === 'true') {
+          closeMenu();
+          t.focus();
         }
       });
     })();

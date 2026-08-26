@@ -74,3 +74,99 @@
 .mobile-menu-cta:hover {
   background: var(--orange-dark) !important;
 }
+
+/* Compact, two-panel mobile navigation shared by every page. The menu keeps
+   top-level navigation short, then slides the program links into view. */
+#mobileMenu {
+  padding: 0;
+  overflow: hidden;
+  max-height: calc(100dvh - 56px);
+}
+
+#mobileMenu .mobile-menu-track {
+  display: flex;
+  width: 200%;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#mobileMenu[data-panel="programs"] .mobile-menu-track {
+  transform: translateX(-50%);
+}
+
+#mobileMenu .mobile-menu-panel {
+  display: flex;
+  flex: 0 0 50%;
+  flex-direction: column;
+  max-height: calc(100dvh - 56px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.25rem 0 0.75rem;
+}
+
+#mobileMenu .mobile-programs-trigger,
+#mobileMenu .mobile-programs-back {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: #fff;
+  color: var(--dark-text, #1a1a1a);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+#mobileMenu .mobile-programs-trigger {
+  justify-content: space-between;
+}
+
+#mobileMenu .mobile-programs-trigger:hover,
+#mobileMenu .mobile-programs-back:hover,
+#mobileMenu .mobile-programs-trigger:focus-visible,
+#mobileMenu .mobile-programs-back:focus-visible {
+  background: rgba(41, 190, 226, 0.07);
+  color: var(--blood-red, #29BEE2);
+  outline: none;
+}
+
+#mobileMenu .mobile-programs-arrow,
+#mobileMenu .mobile-programs-back-arrow {
+  width: 0.52rem;
+  height: 0.52rem;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+}
+
+#mobileMenu .mobile-programs-arrow {
+  transform: rotate(45deg);
+}
+
+#mobileMenu .mobile-programs-back {
+  gap: 0.75rem;
+  color: var(--muted-text, #5a5a5a);
+  font-size: 0.7rem;
+}
+
+#mobileMenu .mobile-programs-back-arrow {
+  transform: rotate(-135deg);
+}
+
+#mobileMenu .mobile-programs-heading {
+  padding: 0.95rem 1.5rem 0.7rem;
+  color: var(--blood-red, #29BEE2);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.85rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+#mobileMenu .mobile-menu-cta {
+  margin-bottom: 0;
+}

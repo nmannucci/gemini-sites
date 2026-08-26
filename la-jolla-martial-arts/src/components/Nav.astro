@@ -18,32 +18,46 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
         <li><a href="/adult-martial-arts">Adult Classes</a></li>
         <li><a href="/zumba">Zumba</a></li>
         <li><a href="/birthday-parties">Birthday Parties</a></li>
+        <li><a href="/game-zone">Game Zone</a></li>
       </ul>
     </li>
-    <li><a href="/game-zone" class:list={[{ active: isActive('/game-zone') }]}>Game Zone</a></li>
     <li><a href="/schedule">Schedule</a></li>
     <li><a href="/about">About</a></li>
     <li><a href="/#reviews">Reviews</a></li>
-    <li><a href="/#faq">FAQ</a></li>
     <li><a href="/contact">Contact</a></li>
   </ul>
   <a href="/contact" class="nav-cta">Claim My Free Week</a>
   <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
     <span></span><span></span><span></span>
   </button>
-  <div class="mobile-menu" id="mobileMenu" data-open="false">
-    <a href="/">Home</a>
-    <a href="/little-ninjas">Little Ninjas</a>
-    <a href="/kids-martial-arts">Kids Martial Arts</a>
-    <a href="/teen-martial-arts">Teen Martial Arts</a>
-    <a href="/adult-martial-arts">Adult Classes</a>
-    <a href="/zumba">Zumba</a>
-    <a href="/birthday-parties">Birthday Parties</a>
-    <a href="/game-zone">Game Zone</a>
-    <a href="/schedule">Schedule</a>
-    <a href="/about">About</a>
-    <a href="/#faq">FAQ</a>
-    <a href="/contact">Contact</a>
-    <a href="/contact" class="mobile-menu-cta">Claim My Free Week</a>
+  <div class="mobile-menu" id="mobileMenu" data-open="false" data-panel="main">
+    <div class="mobile-menu-track">
+      <div class="mobile-menu-panel" data-menu-panel="main">
+        <a href="/">Home</a>
+        <button class="mobile-programs-trigger" type="button" aria-expanded="false" aria-controls="mobileProgramsPanel">
+          <span>Programs</span>
+          <span class="mobile-programs-arrow" aria-hidden="true"></span>
+        </button>
+        <a href="/schedule">Schedule</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/contact" class="mobile-menu-cta">Claim My Free Week</a>
+      </div>
+
+      <div class="mobile-menu-panel" id="mobileProgramsPanel" data-menu-panel="programs" aria-label="Programs">
+        <button class="mobile-programs-back" type="button">
+          <span class="mobile-programs-back-arrow" aria-hidden="true"></span>
+          Back to menu
+        </button>
+        <p class="mobile-programs-heading">Programs</p>
+        <a href="/little-ninjas">Little Ninjas</a>
+        <a href="/kids-martial-arts">Kids Martial Arts</a>
+        <a href="/teen-martial-arts">Teen Martial Arts</a>
+        <a href="/adult-martial-arts">Adult Classes</a>
+        <a href="/zumba">Zumba</a>
+        <a href="/birthday-parties">Birthday Parties</a>
+        <a href="/game-zone">Game Zone</a>
+      </div>
+    </div>
   </div>
 </nav>
