@@ -1125,45 +1125,20 @@ const faqSchema = {
     }
 
     .zumba-band-graphic {
-      min-height: 380px;
-      padding: 2.2rem;
       position: relative;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: linear-gradient(145deg, #fff7de 0 52%, #ffd93d 52% 73%, #c9e500 73%);
-      color: var(--deep-black);
+      max-width: 450px;
+      justify-self: end;
+      background: #fff7de;
       transform: rotate(2deg);
       box-shadow: 20px 24px 0 rgba(41,190,226,0.17);
     }
 
-    .zumba-band-graphic::before {
-      content: '';
-      position: absolute;
-      width: 240px;
-      height: 240px;
-      right: -48px;
-      top: 64px;
-      border-radius: 50%;
-      background: #f50768;
-      box-shadow: -70px 82px 0 rgba(255,106,26,0.88);
+    .zumba-band-graphic img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
-
-    .zumba-band-graphic > * { position: relative; z-index: 1; }
-    .zumba-band-graphic small { font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
-
-    .zumba-band-words {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4.4rem, 7vw, 6.6rem);
-      line-height: 0.7;
-      text-transform: uppercase;
-    }
-
-    .zumba-band-words span { display: block; }
-    .zumba-band-words span:first-child { color: #f50768; transform: rotate(-3deg); }
-    .zumba-band-words span:last-child { margin-left: 0.25em; color: #fff; -webkit-text-stroke: 2px var(--deep-black); }
-    .zumba-band-graphic strong { font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; text-transform: uppercase; }
 
     /* ============================================
        SCHEDULE SECTION
@@ -2701,11 +2676,9 @@ const faqSchema = {
         </div>
         <a href="/zumba#zumba-signup" class="btn-primary">Try A Zumba Class</a>
       </div>
-      <div class="zumba-band-graphic" aria-label="Zumba dance fitness — feel the joy">
-        <small>Dance Fitness · La Jolla</small>
-        <div class="zumba-band-words" aria-hidden="true"><span>Dance</span><span>Sweat</span><span>Smile</span></div>
-        <strong>Feel the joy.</strong>
-      </div>
+      <figure class="zumba-band-graphic">
+        <img src="/assets/zumba-banner.jpeg" alt="Zumba Dance, Sweat, Smile class banner" loading="lazy" />
+      </figure>
     </div>
   </section>
 
