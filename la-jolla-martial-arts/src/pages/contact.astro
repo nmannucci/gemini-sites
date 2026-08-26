@@ -479,13 +479,13 @@ import Layout from '../layouts/Layout.astro';
 
     <div class="contact-grid">
       <div class="contact-copy">
-        <p class="eyebrow">Free Trial · No Commitment</p>
-        <h1 class="contact-title font-display">
+        <p class="eyebrow" id="contact-kicker">Free Trial · No Commitment</p>
+        <h1 class="contact-title font-display" id="contact-title">
           <span>Claim Your</span>
           <span class="accent">Free Week</span>
           <span>of Martial Arts</span>
         </h1>
-        <p class="contact-lede">
+        <p class="contact-lede" id="contact-lede">
           Fill out the form and we'll get you set up with your complimentary one-week
           trial. No commitment — just come experience what we're all about.
         </p>
@@ -499,13 +499,13 @@ import Layout from '../layouts/Layout.astro';
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
             <h3>Message Sent</h3>
-            <p>Thanks — we got it. Our team will reach out within one business day to get you scheduled for your free week.</p>
+            <p id="lead-success-message">Thanks — we got it. Our team will reach out within one business day to get you scheduled for your free week.</p>
           </div>
 
           <div id="lead-form-fields">
           <span class="form-badge">Response Within 1 Business Day</span>
-          <h2 class="form-title font-display">Claim My Free Week</h2>
-          <p class="form-subtitle">Tell us a little about you — we'll take it from there.</p>
+          <h2 class="form-title font-display" id="lead-form-title">Claim My Free Week</h2>
+          <p class="form-subtitle" id="lead-form-subtitle">Tell us a little about you — we'll take it from there.</p>
 
           <div class="form-row">
             <div class="form-group">
@@ -535,6 +535,7 @@ import Layout from '../layouts/Layout.astro';
               <option value="little-ninjas">Little Ninjas (Ages 3–6)</option>
               <option value="kids">Kids Martial Arts (Ages 7–12)</option>
               <option value="teen-adult">Teen &amp; Adult (Ages 13+)</option>
+              <option value="zumba">Zumba Classes</option>
               <option value="general">General Question</option>
             </select>
           </div>
@@ -603,7 +604,51 @@ import Layout from '../layouts/Layout.astro';
       const submitBtn = document.getElementById('lead-submit');
       const errorBox = document.getElementById('lead-error');
       const successBox = document.getElementById('lead-success');
+      const successMessage = document.getElementById('lead-success-message');
       const fields = document.getElementById('lead-form-fields');
+      const programSelect = form.querySelector('[name="program"]');
+      const formTitle = document.getElementById('lead-form-title');
+      const formSubtitle = document.getElementById('lead-form-subtitle');
+      const contactKicker = document.getElementById('contact-kicker');
+      const contactTitle = document.getElementById('contact-title');
+      const contactLede = document.getElementById('contact-lede');
+      const defaultContactKicker = contactKicker ? contactKicker.textContent : '';
+      const defaultContactTitle = contactTitle ? contactTitle.innerHTML : '';
+      const defaultContactLede = contactLede ? contactLede.textContent : '';
+
+      function updateFormContext() {
+        const isZumba = programSelect && programSelect.value === 'zumba';
+        if (formTitle) formTitle.textContent = isZumba ? 'Ask About Zumba' : 'Claim My Free Week';
+        if (formSubtitle) {
+          formSubtitle.textContent = isZumba
+            ? 'Zumba Classes are selected. Send the normal form and our team will follow up.'
+            : "Tell us a little about you — we'll take it from there.";
+        }
+        if (submitBtn && !submitBtn.disabled) submitBtn.textContent = isZumba ? 'Send My Request' : 'Claim My Free Week';
+        if (successMessage) {
+          successMessage.textContent = isZumba
+            ? 'Thanks — we got your Zumba request. Our team will reach out within one business day.'
+            : 'Thanks — we got it. Our team will reach out within one business day to get you scheduled for your free week.';
+        }
+        if (contactKicker) contactKicker.textContent = isZumba ? 'Zumba Classes' : defaultContactKicker;
+        if (contactTitle) {
+          contactTitle.innerHTML = isZumba
+            ? '<span>Ask About</span><span class="accent">Zumba Classes</span><span>in La Jolla</span>'
+            : defaultContactTitle;
+        }
+        if (contactLede) {
+          contactLede.textContent = isZumba
+            ? 'Use our normal contact form to ask about Friday and Saturday Zumba classes from 10:30am to 11:15am. Our team will follow up with the details.'
+            : defaultContactLede;
+        }
+      }
+
+      const requestedProgram = new URLSearchParams(window.location.search).get('program');
+      if (programSelect && requestedProgram && Array.from(programSelect.options).some((option) => option.value === requestedProgram)) {
+        programSelect.value = requestedProgram;
+      }
+      if (programSelect) programSelect.addEventListener('change', updateFormContext);
+      updateFormContext();
 
       function showError(msg) {
         errorBox.textContent = msg;

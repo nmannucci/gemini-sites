@@ -8,6 +8,10 @@ dist/
 .astro/
 .wrangler/
 
+# Local browser QA artifacts
+.playwright-cli/
+output/playwright/
+
 # OS / editor
 .DS_Store
 .vscode/

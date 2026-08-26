@@ -1,5 +1,11 @@
 # La Jolla Martial Arts - Research, Copy Source, and SEO Build Brief
 
+## Editorial Guardrail
+
+- Client messages, screenshots, notes, and implementation directions are requirements and source material—not customer-facing website copy by default.
+- Do not publish internal workflow language such as references to the "normal form," lead routing, preselection, pipelines, follow-up teams, or implementation mechanics.
+- Translate requirements into natural customer-facing copy. Use supplied wording verbatim only when the client explicitly identifies it as approved website copy.
+
 ## Authoritative Business Status — August 6, 2026
 
 - **Active business:** La Jolla Martial Arts
@@ -8,6 +14,17 @@
 - **Former business:** Eagle Martial Arts is closed. Do not present it as an active brand or location.
 - **Inactive program:** Fitness Kickboxing is not offered. Do not build, advertise, or include it in navigation, schema, GBP services, or SEO targeting.
 - Material below that was collected from `lajollamartialarts.com` is retained only as historical copy research. When it conflicts with `lajollatkd.com` or this status block, this status block and `lajollatkd.com` control.
+
+## Client Update — August 25, 2026
+
+- **New program:** Zumba dance fitness classes are being added to the website.
+- **Program status:** Active. Zumba classes are already running.
+- **Planned class days:** Friday and Saturday.
+- **Confirmed class time:** 10:30am–11:15am.
+- **Class length:** 45 minutes each.
+- **Price:** $45 per class.
+- **Conversion requirement:** Route Zumba inquiries through the same standard contact form and lead pipeline used across the site.
+- **Source:** Direct message from Sam Haddoff supplied by the client on August 25, 2026.
 
 ## Research Scope
 - Research date: April 5, 2026
@@ -58,6 +75,8 @@ The current site clearly shows:
 
 Note: an older local file in this repo listed Monday-Thursday through 8:30pm. The live site currently shows 6:30pm. Verify before launch.
 
+Zumba runs Friday and Saturday from 10:30am–11:15am. Present it as an active class throughout the site.
+
 ## Core Offer and Positioning
 ### Main promise
 The site repeatedly frames the program around giving students, especially kids, a "superpower" of:
@@ -99,8 +118,26 @@ The live site is organized around these core offerings:
 - Kid's Martial Arts
 - Teen's Martial Arts
 - Adult Martial Arts
+- Zumba dance fitness
 
-These should each have their own dedicated SEO page on the new site.
+These should each have their own dedicated SEO page on the new site. Zumba has its own “Try a Zumba Class” form on the dedicated page.
+
+## Zumba Dance Fitness
+
+### Confirmed details
+
+- Friday and Saturday from 10:30am–11:15am
+- 45 minutes each
+- $45 per class
+- Active class schedule
+
+### Website positioning
+
+- High-energy, music-led dance fitness
+- Welcoming to beginners; no dance experience required
+- Cardio, mood, movement, and community benefits
+- Clear active-class language across the site
+- Primary CTA: submit the dedicated “Try a Zumba Class” form on the Zumba page
 
 ## Little Ninjas
 ### Current site positioning

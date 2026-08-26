@@ -59,6 +59,58 @@ const websiteSchema = {
   name: 'La Jolla Martial Arts',
   url: `${SITE}/`,
 };
+
+const homepageFaqs = [
+  {
+    question: 'Can martial arts help my child with self-control?',
+    answer: 'Yes. Self-control is a core part of martial arts training. Kids practice listening, regulating their actions, and learning that discipline helps them succeed both on and off the mat.',
+  },
+  {
+    question: 'Will martial arts make my child more aggressive?',
+    answer: 'No. Our program teaches self-defense, respect, and restraint. Students learn that confidence should help them avoid conflict—not seek it out.',
+  },
+  {
+    question: 'What if my child does not enjoy team sports?',
+    answer: 'Martial arts can be a great fit for kids who do not connect with team sports. It is active and challenging, while letting each student progress through personal, skill-based goals.',
+  },
+  {
+    question: 'Can martial arts help with focus and discipline at school?',
+    answer: 'Training reinforces focus, patience, self-control, and respect. Those habits can support stronger classroom behavior, better effort, and more confidence when school feels challenging.',
+  },
+  {
+    question: 'Is martial arts safe for a child who is not coordinated?',
+    answer: 'Yes. Kids begin at different ability levels, and our instructors help them improve balance, coordination, and control step by step in a supportive environment.',
+  },
+  {
+    question: 'Can martial arts help my child build confidence?',
+    answer: 'Yes. As kids learn techniques, work through challenges, and recognize their progress, they begin to trust themselves and carry that confidence into everyday life.',
+  },
+  {
+    question: 'Do I need to be athletic or experienced to start?',
+    answer: 'Not at all. Most students begin with no martial arts experience. Instruction is adapted to your starting point, so you can build strength, fitness, and skill at a comfortable pace.',
+  },
+  {
+    question: 'Can martial arts help adults feel safer and more confident?',
+    answer: 'Yes. Adults learn practical self-defense skills while improving awareness, fitness, and composure. Over time, that preparation can build real confidence in everyday situations.',
+  },
+  {
+    question: 'Is martial arts a good way for adults to stay motivated?',
+    answer: 'It can be. Classes offer clear goals, steady progress, engaging workouts, and a welcoming group of people training alongside you—making it easier to stay consistent.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: homepageFaqs.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer,
+    },
+  })),
+};
 ---
 
 <Layout
@@ -68,6 +120,7 @@ const websiteSchema = {
   <Fragment slot="head">
 <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 <style is:global>
 
     :root {
@@ -991,6 +1044,128 @@ const websiteSchema = {
     }
 
     /* ============================================
+       ZUMBA ANNOUNCEMENT
+    ============================================ */
+    .zumba-band {
+      padding: 5rem 4rem;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 83% 18%, rgba(41, 190, 226, 0.25), transparent 24%),
+        radial-gradient(circle at 73% 92%, rgba(245, 7, 104, 0.22), transparent 29%),
+        var(--deep-black);
+      color: #fff;
+    }
+
+    .zumba-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.13;
+      background-image: repeating-linear-gradient(115deg, transparent 0 30px, rgba(255,255,255,0.1) 30px 31px);
+    }
+
+    .zumba-band-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(330px, 0.85fr);
+      gap: clamp(3rem, 8vw, 8rem);
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .zumba-band-kicker {
+      color: #c9e500;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .zumba-band-title {
+      font-size: clamp(3.7rem, 7vw, 7rem);
+      line-height: 0.84;
+      text-transform: uppercase;
+      margin-bottom: 1.35rem;
+    }
+
+    .zumba-band-title .accent { color: #c9e500; }
+
+    .zumba-band-copy {
+      max-width: 660px;
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .zumba-band-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin: 1.75rem 0 2rem;
+    }
+
+    .zumba-band-details span {
+      padding: 0.65rem 0.8rem;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .zumba-band-details .zumba-coming {
+      background: #f50768;
+      border-color: #f50768;
+    }
+
+    .zumba-band-graphic {
+      min-height: 380px;
+      padding: 2.2rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(145deg, #fff7de 0 52%, #ffd93d 52% 73%, #c9e500 73%);
+      color: var(--deep-black);
+      transform: rotate(2deg);
+      box-shadow: 20px 24px 0 rgba(41,190,226,0.17);
+    }
+
+    .zumba-band-graphic::before {
+      content: '';
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -48px;
+      top: 64px;
+      border-radius: 50%;
+      background: #f50768;
+      box-shadow: -70px 82px 0 rgba(255,106,26,0.88);
+    }
+
+    .zumba-band-graphic > * { position: relative; z-index: 1; }
+    .zumba-band-graphic small { font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+
+    .zumba-band-words {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.4rem, 7vw, 6.6rem);
+      line-height: 0.7;
+      text-transform: uppercase;
+    }
+
+    .zumba-band-words span { display: block; }
+    .zumba-band-words span:first-child { color: #f50768; transform: rotate(-3deg); }
+    .zumba-band-words span:last-child { margin-left: 0.25em; color: #fff; -webkit-text-stroke: 2px var(--deep-black); }
+    .zumba-band-graphic strong { font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; text-transform: uppercase; }
+
+    /* ============================================
        SCHEDULE SECTION
     ============================================ */
     .schedule {
@@ -1134,6 +1309,12 @@ const websiteSchema = {
       background: linear-gradient(180deg, #f9d9d4, #f3b7af);
       border-color: rgba(153, 27, 27, 0.18);
     }
+    .schedule-slot--zumba {
+      background: linear-gradient(145deg, #f9f7bf, #d7ef50);
+      border-color: rgba(117, 134, 0, 0.28);
+      color: #2d3300;
+    }
+    .schedule-slot--zumba span { color: rgba(45, 51, 0, 0.76); }
     .schedule-slot--private {
       background: linear-gradient(180deg, #fde7d2, #f8c98e);
       border-color: rgba(176, 96, 18, 0.25);
@@ -1841,20 +2022,110 @@ const websiteSchema = {
       font-size: 1rem;
     }
 
-    .faq-widget {
+    .faq-list {
       max-width: 900px;
       margin: 0 auto;
       background: #ffffff;
       border: 1px solid var(--light-bg-alt);
+      border-top: 5px solid var(--blood-red);
       box-shadow: 0 10px 32px rgba(0, 0, 0, 0.06);
-      padding: 1rem;
     }
 
-    .faq-widget iframe {
+    .faq-item {
+      border-bottom: 1px solid var(--light-bg-alt);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-question {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       width: 100%;
-      height: 1100px;
-      border: none;
-      display: block;
+      padding: 1.3rem 4.5rem 1.3rem 1.5rem;
+      color: var(--dark-text);
+      cursor: pointer;
+      list-style: none;
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.4;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .faq-question::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-number {
+      flex: 0 0 auto;
+      color: var(--blood-red);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.06em;
+    }
+
+    .faq-question::before,
+    .faq-question::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 1.6rem;
+      width: 1rem;
+      height: 2px;
+      background: var(--blood-red);
+      transform: translateY(-50%);
+      transition: transform 0.25s ease;
+    }
+
+    .faq-question::after {
+      transform: translateY(-50%) rotate(90deg);
+    }
+
+    .faq-item[open] .faq-question {
+      color: #137f9a;
+      background: rgba(41, 190, 226, 0.06);
+    }
+
+    .faq-item[open] .faq-question::after {
+      transform: translateY(-50%) rotate(0deg);
+    }
+
+    .faq-question:hover {
+      background: rgba(41, 190, 226, 0.06);
+    }
+
+    .faq-question:focus-visible {
+      outline: 3px solid rgba(41, 190, 226, 0.4);
+      outline-offset: -3px;
+    }
+
+    .faq-answer {
+      padding: 0.1rem 4.5rem 1.45rem 4.1rem;
+      color: var(--muted-text);
+      font-size: 0.98rem;
+      line-height: 1.75;
+    }
+
+    @media (max-width: 600px) {
+      .faq-question {
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 1.1rem 3.5rem 1.1rem 1rem;
+        font-size: 0.96rem;
+      }
+
+      .faq-question::before,
+      .faq-question::after {
+        right: 1.15rem;
+      }
+
+      .faq-answer {
+        padding: 0 1rem 1.25rem 2.95rem;
+        font-size: 0.93rem;
+      }
     }
 
     /* ============================================
@@ -1946,6 +2217,9 @@ const websiteSchema = {
         grid-template-columns: 1fr;
         gap: 3rem;
       }
+
+      .zumba-band-inner { grid-template-columns: 1fr; }
+      .zumba-band-graphic { max-width: 580px; width: 100%; margin: 0 auto; }
     }
 
     @media (max-width: 768px) {
@@ -2010,6 +2284,10 @@ const websiteSchema = {
       .programs-grid {
         grid-template-columns: 1fr;
       }
+
+      .zumba-band { padding: 4rem 1.25rem; }
+      .zumba-band-title { font-size: clamp(3.6rem, 18vw, 5.3rem); }
+      .zumba-band-graphic { min-height: 335px; transform: none; box-shadow: 10px 14px 0 rgba(41,190,226,0.17); }
 
       .programs-header {
         flex-direction: column;
@@ -2278,6 +2556,7 @@ const websiteSchema = {
                 <option value="little-ninjas">Little Ninjas (Ages 3–6)</option>
                 <option value="kids">Kids Martial Arts (Ages 7–12)</option>
                 <option value="teen-adult">Teen &amp; Adult (Ages 13+)</option>
+                <option value="zumba">Zumba Classes</option>
               </select>
             </div>
 
@@ -2401,6 +2680,35 @@ const websiteSchema = {
     </div>
   </section>
 
+  <!-- Zumba Announcement -->
+  <section class="zumba-band" aria-labelledby="home-zumba-title">
+    <div class="zumba-band-inner">
+      <div>
+        <p class="zumba-band-kicker">New · Zumba classes</p>
+        <h2 class="zumba-band-title font-display" id="home-zumba-title">
+          Dance. Sweat. <span class="accent">Smile.</span>
+        </h2>
+        <p class="zumba-band-copy">
+          Zumba is here at La Jolla Martial Arts. Join us for upbeat, 45-minute
+          dance fitness classes every Friday and Saturday morning—no dance
+          experience required.
+        </p>
+        <div class="zumba-band-details" aria-label="Planned Zumba class details">
+          <span class="zumba-coming">Now enrolling</span>
+          <span>Fri + Sat · 10:30am–11:15am</span>
+          <span>45 minutes</span>
+          <span>$45 / class</span>
+        </div>
+        <a href="/zumba#zumba-signup" class="btn-primary">Try A Zumba Class</a>
+      </div>
+      <div class="zumba-band-graphic" aria-label="Zumba dance fitness — feel the joy">
+        <small>Dance Fitness · La Jolla</small>
+        <div class="zumba-band-words" aria-hidden="true"><span>Dance</span><span>Sweat</span><span>Smile</span></div>
+        <strong>Feel the joy.</strong>
+      </div>
+    </div>
+  </section>
+
   <!-- Game Zone Section -->
   <section class="section gamezone-band" id="game-zone">
     <div class="gamezone-inner">
@@ -2447,13 +2755,14 @@ const websiteSchema = {
       </h2>
       <p class="section-intro">
         Classes run Monday through Thursday with an extra combo class on Saturday morning.
-        Open Fridays for private lessons by appointment. Closed Sundays.
+        Zumba runs Friday and Saturday from 10:30am to 11:15am.
+        Private lessons are available Friday by appointment. Closed Sundays.
       </p>
     </div>
 
     <div class="schedule-board">
       <div class="schedule-board-scroll">
-        <div class="schedule-grid" role="table" aria-label="Eagle Martial Arts weekly class schedule">
+        <div class="schedule-grid" role="table" aria-label="La Jolla Martial Arts weekly class schedule">
           <div class="schedule-corner" role="columnheader">Time</div>
           <div class="schedule-day" role="columnheader">Mon</div>
           <div class="schedule-day" role="columnheader">Tue</div>
@@ -2475,6 +2784,15 @@ const websiteSchema = {
               <span>Ages 3–12</span>
             </div>
           </div>
+          <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
+
+          <div class="schedule-time" role="rowheader">10:30am – 11:15am</div>
+          <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
+          <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
+          <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
+          <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
+          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>Zumba</strong><span>Dance fitness</span></div></div>
+          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>Zumba</strong><span>Dance fitness</span></div></div>
           <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
 
           <div class="schedule-time" role="rowheader">4:00pm – 4:30pm</div>
@@ -2507,6 +2825,15 @@ const websiteSchema = {
       </div>
 
       <div class="schedule-mobile" aria-label="Weekly schedule mobile preview">
+        <article class="schedule-mobile-card">
+          <div class="schedule-mobile-top">
+            <span class="schedule-mobile-day">Friday + Saturday</span>
+            <span class="schedule-mobile-time">10:30am – 11:15am</span>
+          </div>
+          <strong>Zumba</strong>
+          <p>45-minute dance fitness class. <a href="/zumba#zumba-signup">Try a Zumba class</a>.</p>
+        </article>
+
         <article class="schedule-mobile-card">
           <div class="schedule-mobile-top">
             <span class="schedule-mobile-day">Mon–Thu</span>
@@ -2549,7 +2876,7 @@ const websiteSchema = {
             <span class="schedule-mobile-time">By appointment</span>
           </div>
           <strong>Private Lessons</strong>
-          <p>Fridays are reserved for private lessons by appointment. Sundays closed.</p>
+          <p>Available by appointment outside the planned Zumba time. Sundays closed.</p>
         </article>
       </div>
     </div>
@@ -2621,13 +2948,18 @@ const websiteSchema = {
       <p>Everything parents and new students want to know about training at La Jolla Martial Arts.</p>
     </div>
 
-    <div class="faq-widget">
-      <iframe
-        src="https://www.localmarketingmanager.com/api/questions/la-jolla-martial-arts-llc-frequently-asked-questions?textColor=%23000000&backgroundColor=%23ffffff&showTitle=true&borderRadius=10px&visibility=showAllExpanded&isTransparentBackgroundApplied=false"
-        loading="lazy"
-        id="ai-seo-iframe"
-        title="La Jolla Martial Arts Frequently Asked Questions"
-      ></iframe>
+    <div class="faq-list">
+      {homepageFaqs.map((faq, index) => (
+        <details class="faq-item" open={index === 0}>
+          <summary class="faq-question">
+            <span class="faq-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <span>{faq.question}</span>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
     </div>
   </section>
 
@@ -2717,6 +3049,7 @@ const websiteSchema = {
               <option value="little-ninjas">Little Ninjas (Ages 3–6)</option>
               <option value="kids">Kids Martial Arts (Ages 7–12)</option>
               <option value="teen-adult">Teen &amp; Adult (Ages 13+)</option>
+              <option value="zumba">Zumba Classes</option>
             </select>
           </div>
 

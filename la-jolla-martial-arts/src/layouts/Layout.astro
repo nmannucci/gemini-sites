@@ -228,7 +228,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
             '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
           '</div>' +
           '<h3 style="font-family:\'Bebas Neue\',sans-serif;font-size:1.9rem;text-transform:uppercase;letter-spacing:0.02em;color:#1a1a1a;margin:0 0 0.55rem;">You\'re All Set</h3>' +
-          '<p style="font-size:0.95rem;color:#5A5A5A;line-height:1.55;max-width:360px;margin:0 auto;">Thanks — we got your free trial request. Our team will reach out within one business day to get you scheduled.</p>' +
+          '<p style="font-size:0.95rem;color:#5A5A5A;line-height:1.55;max-width:360px;margin:0 auto;">Thanks — we got your request. Our team will reach out within one business day.</p>' +
         '</div>';
 
       forms.forEach(function (form) {
@@ -237,6 +237,20 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
 
         var submitBtn = form.querySelector('button[type="submit"], .form-submit');
         var originalLabel = submitBtn ? submitBtn.textContent : '';
+        var programSelect = form.querySelector('[name="program"]');
+
+        function currentSubmitLabel() {
+          return programSelect && programSelect.tagName === 'SELECT' && programSelect.value === 'zumba'
+            ? 'Ask About Zumba'
+            : originalLabel;
+        }
+
+        if (programSelect && programSelect.tagName === 'SELECT' && submitBtn) {
+          programSelect.addEventListener('change', function () {
+            if (!submitBtn.disabled) submitBtn.textContent = currentSubmitLabel();
+          });
+          submitBtn.textContent = currentSubmitLabel();
+        }
 
         var errorBox = document.createElement('div');
         errorBox.setAttribute('role', 'alert');
@@ -288,7 +302,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
           } catch (err) {
             errorBox.textContent = (err && err.message) || 'Network error. Please try again.';
             errorBox.style.display = 'block';
-            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = currentSubmitLabel(); }
           }
         });
       });

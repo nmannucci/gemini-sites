@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title={`Class Schedule | La Jolla Martial Arts — Eagle Martial Arts`}
-  description={`Weekly Taekwondo class schedule at Eagle Martial Arts in La Jolla. Little Ninjas, Kids, Teens, and Adults — Monday through Thursday, plus Saturday combo class.`}
+  title={`Class Schedule | La Jolla Martial Arts`}
+  description={`Weekly La Jolla Martial Arts class schedule for Little Ninjas, Kids, Teens, Adults, and Zumba dance fitness classes.`}
   canonical={`https://lajollatkd.com/schedule`}
 >
   <Fragment slot="head">
@@ -255,6 +255,12 @@ import Layout from '../layouts/Layout.astro';
       background: linear-gradient(180deg, #f9d9d4, #f3b7af);
       border-color: rgba(153,27,27,0.18);
     }
+    .schedule-slot--zumba {
+      background: linear-gradient(145deg, #f9f7bf, #d7ef50);
+      border-color: rgba(117, 134, 0, 0.28);
+      color: #2d3300;
+    }
+    .schedule-slot--zumba span { color: rgba(45, 51, 0, 0.76); }
     .schedule-slot--private {
       background: linear-gradient(180deg, #fde7d2, #f8c98e);
       border-color: rgba(176, 96, 18, 0.25);
@@ -331,6 +337,7 @@ import Layout from '../layouts/Layout.astro';
     .legend-swatch.kids { background: linear-gradient(180deg, #d8f3ef, #b8ebe3); }
     .legend-swatch.teen { background: linear-gradient(180deg, #f6b9b0, #ef8f82); }
     .legend-swatch.combo { background: linear-gradient(180deg, #f9d9d4, #f3b7af); }
+    .legend-swatch.zumba { background: linear-gradient(145deg, #f9f7bf, #d7ef50); }
     .legend-swatch.closed {
       background:
         linear-gradient(135deg, rgba(20,20,20,0.06) 25%, transparent 25%, transparent 50%, rgba(20,20,20,0.06) 50%, rgba(20,20,20,0.06) 75%, transparent 75%, transparent),
@@ -485,8 +492,8 @@ import Layout from '../layouts/Layout.astro';
           <span><span class="accent">Schedule.</span></span>
         </h1>
         <p class="hero-subtitle">
-          Monday through Thursday plus a Saturday combo class. Find the time
-          that fits your family — then come in and try a week free.
+          Martial arts Monday through Thursday plus Saturday morning, with
+          Zumba classes every Friday and Saturday.
         </p>
       </div>
     </div>
@@ -502,13 +509,14 @@ import Layout from '../layouts/Layout.astro';
         </h2>
         <p class="section-intro">
           Classes are broken out by age and experience level so every student
-          trains with the right group. Open Fridays for private lessons by appointment. Closed Sundays.
+          trains with the right group. Zumba runs Friday and Saturday from
+          10:30am to 11:15am. Closed Sundays.
         </p>
       </div>
 
       <div class="schedule-board">
         <div class="schedule-board-scroll">
-          <div class="schedule-grid" role="table" aria-label="Eagle Martial Arts weekly class schedule">
+          <div class="schedule-grid" role="table" aria-label="La Jolla Martial Arts weekly class schedule">
             <div class="schedule-corner" role="columnheader">Time</div>
             <div class="schedule-day" role="columnheader">Mon</div>
             <div class="schedule-day" role="columnheader">Tue</div>
@@ -530,6 +538,15 @@ import Layout from '../layouts/Layout.astro';
                 <span>Ages 3–12</span>
               </div>
             </div>
+            <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
+
+            <div class="schedule-time" role="rowheader">10:30am – 11:15am</div>
+            <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
+            <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
+            <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
+            <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
+            <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>Zumba</strong><span>Dance fitness</span></div></div>
+            <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>Zumba</strong><span>Dance fitness</span></div></div>
             <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
 
             <div class="schedule-time" role="rowheader">3:30pm – 4:00pm</div>
@@ -573,6 +590,14 @@ import Layout from '../layouts/Layout.astro';
         <div class="schedule-mobile" aria-label="Weekly schedule mobile preview">
           <article class="schedule-mobile-card">
             <div class="schedule-mobile-top">
+              <span class="schedule-mobile-day">Friday + Saturday</span>
+              <span class="schedule-mobile-time">10:30am – 11:15am</span>
+            </div>
+            <strong>Zumba</strong>
+            <p>45-minute dance fitness class. <a href="/zumba#zumba-signup">Try a Zumba class</a>.</p>
+          </article>
+          <article class="schedule-mobile-card">
+            <div class="schedule-mobile-top">
               <span class="schedule-mobile-day">Mon–Thu</span>
               <span class="schedule-mobile-time">3:30pm – 4:30pm</span>
             </div>
@@ -609,7 +634,7 @@ import Layout from '../layouts/Layout.astro';
               <span class="schedule-mobile-time">By appointment</span>
             </div>
             <strong>Private Lessons</strong>
-            <p>Fridays are reserved for private lessons by appointment. Sundays closed.</p>
+            <p>Available by appointment outside the planned Zumba time. Sundays closed.</p>
           </article>
         </div>
       </div>
@@ -619,6 +644,7 @@ import Layout from '../layouts/Layout.astro';
         <span class="legend-chip"><span class="legend-swatch kids"></span>Kids</span>
         <span class="legend-chip"><span class="legend-swatch teen"></span>Teen &amp; Adult</span>
         <span class="legend-chip"><span class="legend-swatch combo"></span>Combo</span>
+        <span class="legend-chip"><span class="legend-swatch zumba"></span>Zumba</span>
         <span class="legend-chip"><span class="legend-swatch closed"></span>Closed</span>
       </div>
     </div>
@@ -638,7 +664,7 @@ import Layout from '../layouts/Layout.astro';
         <span class="icon-wrap"><i data-lucide="clock"></i></span>
         <div>
           <h3>Hours</h3>
-          <p>Mon–Thu: 3:00pm – 6:30pm<br>Saturday: 9:00am – 10:00am</p>
+          <p>Martial arts: Mon–Thu afternoons + Sat morning<br>Zumba: Fri + Sat, 10:30am–11:15am</p>
         </div>
       </div>
       <div class="info-card">
