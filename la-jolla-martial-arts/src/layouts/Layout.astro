@@ -201,8 +201,22 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
       var programsBack = m.querySelector('.mobile-programs-back');
 
       function showPanel(name) {
+        // Focusing a control in the offscreen panel can make browsers scroll
+        // this overflow-hidden container horizontally. Keep the slide solely
+        // under the track transform's control.
+        m.scrollLeft = 0;
         m.setAttribute('data-panel', name);
         if (programsTrigger) programsTrigger.setAttribute('aria-expanded', String(name === 'programs'));
+      }
+
+      function focusWithoutScrolling(control) {
+        if (!control) return;
+        try {
+          control.focus({ preventScroll: true });
+        } catch (_) {
+          control.focus();
+          m.scrollLeft = 0;
+        }
       }
 
       function closeMenu() {
@@ -226,14 +240,14 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
       if (programsTrigger) {
         programsTrigger.addEventListener('click', function () {
           showPanel('programs');
-          if (programsBack) programsBack.focus();
+          focusWithoutScrolling(programsBack);
         });
       }
 
       if (programsBack) {
         programsBack.addEventListener('click', function () {
           showPanel('main');
-          if (programsTrigger) programsTrigger.focus();
+          focusWithoutScrolling(programsTrigger);
         });
       }
 
