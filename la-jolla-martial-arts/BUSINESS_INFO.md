@@ -22,7 +22,7 @@
 - **Planned class days:** Friday and Saturday.
 - **Confirmed class time:** 10:30am–11:15am.
 - **Class length:** 45 minutes each.
-- **Price:** $45 per class.
+- **Intro offer:** First week of Zumba classes is free.
 - **Conversion requirement:** Route Zumba inquiries through the same standard contact form and lead pipeline used across the site.
 - **Source:** Direct message from Sam Haddoff supplied by the client on August 25, 2026.
 
@@ -120,7 +120,7 @@ The live site is organized around these core offerings:
 - Adult Martial Arts
 - Zumba dance fitness
 
-These should each have their own dedicated SEO page on the new site. Zumba has its own “Try a Zumba Class” form on the dedicated page.
+These should each have their own dedicated SEO page on the new site. Zumba has its own “Claim Your Free Week” form on the dedicated page.
 
 ## Zumba Dance Fitness
 
@@ -128,7 +128,7 @@ These should each have their own dedicated SEO page on the new site. Zumba has i
 
 - Friday and Saturday from 10:30am–11:15am
 - 45 minutes each
-- $45 per class
+- First week of Zumba classes is free
 - Active class schedule
 
 ### Website positioning
@@ -137,7 +137,7 @@ These should each have their own dedicated SEO page on the new site. Zumba has i
 - Welcoming to beginners; no dance experience required
 - Cardio, mood, movement, and community benefits
 - Clear active-class language across the site
-- Primary CTA: submit the dedicated “Try a Zumba Class” form on the Zumba page
+- Primary CTA: claim a free week through the dedicated Zumba form on the Zumba page
 
 ## Little Ninjas
 ### Current site positioning

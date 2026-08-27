@@ -9,7 +9,7 @@ const serviceSchema = {
   '@type': 'Service',
   name: 'Zumba Classes in La Jolla',
   description:
-    'Zumba dance fitness classes at La Jolla Martial Arts. Fridays and Saturdays from 10:30am to 11:15am, with 45-minute classes at $45 per class.',
+    'Get a free week of Zumba dance fitness classes at La Jolla Martial Arts. Classes meet Fridays and Saturdays from 10:30am to 11:15am.',
   url: `${SITE}/zumba`,
   areaServed: { '@type': 'City', name: 'La Jolla' },
   provider: {
@@ -28,9 +28,9 @@ const serviceSchema = {
   },
   offers: {
     '@type': 'Offer',
-    price: '45',
+    price: '0',
     priceCurrency: 'USD',
-    description: 'One 45-minute Zumba class',
+    description: 'One free week of Zumba classes',
     availability: 'https://schema.org/InStock',
   },
 };
@@ -38,7 +38,7 @@ const serviceSchema = {
 
 <Layout
   title="Zumba Classes in La Jolla, CA | Dance Fitness"
-  description="Try a Zumba class at La Jolla Martial Arts. Friday and Saturday from 10:30am to 11:15am — 45-minute dance fitness classes in La Jolla."
+  description="Claim a free week of Zumba classes at La Jolla Martial Arts. Join us Friday and Saturday from 10:30am to 11:15am in La Jolla."
   canonical={`${SITE}/zumba`}
 >
   <Fragment slot="head">
@@ -396,22 +396,20 @@ const serviceSchema = {
         <div>
           <p class="zumba-kicker">Zumba dance fitness in La Jolla</p>
           <h1 class="zumba-title font-display" id="zumba-title">
-            <span>Zumba</span>
-            <span class="zumba-title-accent">Is Here.</span>
+            <span>Get A Free</span>
+            <span class="zumba-title-accent">Week Of Zumba.</span>
           </h1>
           <p class="zumba-lede">
-            Move, sweat, and leave smiling. Our new 45-minute Zumba classes bring
-            high-energy dance fitness to the La Jolla Martial Arts community—no dance
-            experience required.
+            Move, sweat, and leave smiling—your first week is on us. Join our high-energy,
+            45-minute dance fitness classes with no dance experience required.
           </p>
           <div class="zumba-hero-meta" aria-label="Zumba class details">
-            <span class="zumba-meta-chip zumba-meta-chip--soon">Now enrolling</span>
+            <span class="zumba-meta-chip zumba-meta-chip--soon">First Week Free</span>
             <span class="zumba-meta-chip">Friday + Saturday</span>
             <span class="zumba-meta-chip">10:30am–11:15am</span>
-            <span class="zumba-meta-chip">$45 / class</span>
           </div>
           <div class="zumba-hero-actions">
-            <a href="#zumba-signup" class="btn-primary">Try A Zumba Class</a>
+            <a href="#zumba-signup" class="btn-primary">Claim My Free Week</a>
             <a href="/schedule" class="zumba-text-link">View Full Schedule</a>
           </div>
         </div>
@@ -431,14 +429,14 @@ const serviceSchema = {
           </div>
           <p>
             Classes run every Friday and Saturday morning. Choose the day that works for you,
-            then send the form below and our team will help you try your first class.
+            then send the form below to claim your free week and start dancing with us.
           </p>
         </div>
         <div class="zumba-fact-grid">
           <div class="zumba-fact"><i data-lucide="calendar-days"></i><div><strong>Friday + Saturday</strong><span>Two weekly class days.</span></div></div>
           <div class="zumba-fact"><i data-lucide="clock-3"></i><div><strong>10:30am–11:15am</strong><span>A 45-minute late-morning energy reset.</span></div></div>
           <div class="zumba-fact"><i data-lucide="timer"></i><div><strong>45 Minutes</strong><span>One focused dance fitness session.</span></div></div>
-          <div class="zumba-fact"><i data-lucide="badge-dollar-sign"></i><div><strong>$45 / Class</strong><span>Simple pay-per-class pricing.</span></div></div>
+          <div class="zumba-fact"><i data-lucide="gift"></i><div><strong>First Week Free</strong><span>Come dance with us for a full week, on us.</span></div></div>
         </div>
       </div>
     </section>
@@ -465,11 +463,11 @@ const serviceSchema = {
     <section class="zumba-signup" id="zumba-signup" aria-labelledby="zumba-signup-title">
       <div class="zumba-inner zumba-signup-grid">
         <div class="zumba-signup-copy">
-          <p class="zumba-section-label">Your first class</p>
-          <h2 class="zumba-section-title font-display" id="zumba-signup-title">Try A Zumba Class.</h2>
+          <p class="zumba-section-label">Your free week</p>
+          <h2 class="zumba-section-title font-display" id="zumba-signup-title">Claim Your Free Week.</h2>
           <p>
             Pick Friday or Saturday and tell us how to reach you. Our team will follow up
-            with everything you need for your first 45-minute Zumba class.
+            with everything you need to enjoy your free week of Zumba classes.
           </p>
           <div class="zumba-note">
             <i data-lucide="sparkles"></i>
@@ -487,8 +485,8 @@ const serviceSchema = {
           data-lead-source="zumba-page"
         >
           <div class="zumba-form-head">
-            <strong>Try a Zumba Class</strong>
-            <span>Friday or Saturday · 10:30am–11:15am</span>
+            <strong>Claim Your Free Week</strong>
+            <span>Your first week is free · Friday + Saturday · 10:30am–11:15am</span>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -520,7 +518,7 @@ const serviceSchema = {
             </select>
           </div>
           <input type="hidden" name="program" value="zumba" />
-          <button class="form-submit" type="submit">Try A Zumba Class</button>
+          <button class="form-submit" type="submit">Claim My Free Week</button>
           <p class="form-disclaimer">By submitting, you agree to receive emails and texts about Zumba classes. We respect your privacy and will never share your information.</p>
         </form>
       </div>
