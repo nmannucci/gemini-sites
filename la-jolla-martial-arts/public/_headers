@@ -14,5 +14,8 @@
 /thank-you
   X-Robots-Tag: noindex, nofollow
 
+/review
+  X-Robots-Tag: noindex, nofollow
+
 /privacy
   X-Robots-Tag: noindex, follow

@@ -30,7 +30,7 @@ if (existsSync(join(dist, 'robots.txt'))) {
 
 if (existsSync(join(dist, 'sitemap-0.xml'))) {
   const sitemap = readFileSync(join(dist, 'sitemap-0.xml'), 'utf8');
-  for (const excluded of ['/lp/', '/thank-you', '/privacy', '/404']) {
+  for (const excluded of ['/lp/', '/thank-you', '/privacy', '/404', '/review']) {
     assert(!sitemap.includes(`https://lajollatkd.com${excluded}`), `Sitemap includes excluded URL: ${excluded}`);
   }
 }
