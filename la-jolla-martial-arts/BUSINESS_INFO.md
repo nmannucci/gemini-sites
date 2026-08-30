@@ -1249,11 +1249,10 @@ These are excellent conversion and SEO assets because they match real parent and
 
 - **URL:** `/review` (`https://lajollatkd.com/review`)
 - **Purpose:** SMS/email campaign landing page. Not a ranking page (`noindex,nofollow`).
-- **Flow:** 1) Rate 1–5 stars (no code). 2) Same Google-review step for every rating, including 1–4: thank them and say $25 off in the equipment shop comes after they leave a Google review. 3) After they click “Leave a Google review,” keep them on this page with “I left my review.” 4) Only then show `REVIEW25`. Do not gate by star rating.
-- **Code timing:** Never show `REVIEW25` before the Google-review click. Copy must not claim the Google review was verified. Optional unlock: returning to this tab after the Google click can also reveal the code; the confirm button must still exist.
+- **Flow:** Tap 1–5 stars. Immediately show thank-you + `REVIEW25` on this page. At the same time open the Google write-review URL in a new tab. If the popup is blocked, navigate this tab to Google after a short delay so the coupon has already painted. No “I left my review” step. Do not gate by star rating.
 - **Reward:** $25 off in the on-site equipment shop. Code `REVIEW25`, shown at the front desk. There is no `/shop` page and no online checkout.
-- **Google review CTA:** “Leave a Google review” → `https://search.google.com/local/writereview?placeid=ChIJ5XqIvZcD3IARJiAnQzFXmXY`
-- **Analytics:** Chosen rating is stored as `?rating=1` through `?rating=5`. After the Google click, `step=confirm` then `step=code`. Logged client-side (`review_rating`, `review_google_click`, `review_code_revealed`). No CRM write for ratings.
+- **Google review URL:** `https://search.google.com/local/writereview?placeid=ChIJ5XqIvZcD3IARJiAnQzFXmXY`
+- **Analytics:** Chosen rating is stored as `?rating=1` through `?rating=5`. Logged client-side (`review_rating`, `review_google_open`). No CRM write for ratings.
 - **Nav:** Not a public marketing item. Do not add it to primary navigation.
 
 ## Offers and Conversion Hooks
