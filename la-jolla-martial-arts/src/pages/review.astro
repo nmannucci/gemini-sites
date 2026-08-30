@@ -319,8 +319,9 @@ const GOOGLE_REVIEW_URL =
     };
     var buttons = Array.prototype.slice.call(starsEl.querySelectorAll('.review-star'));
     var step = 'prompt';
-    var leftTabAfterGoogle = false;
+    var hiddenAt = 0;
     var returnUnlockBound = false;
+    var TAB_RETURN_MS = 2000;
 
     function parseRating(value) {
       var n = Number(value);
@@ -403,19 +404,16 @@ const GOOGLE_REVIEW_URL =
       if (returnUnlockBound) return;
       returnUnlockBound = true;
 
-      function maybeUnlock() {
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          hiddenAt = Date.now();
+          return;
+        }
         if (step !== 'confirm') return;
         if (!readStore(STORAGE_CLICKED)) return;
-        if (!leftTabAfterGoogle) return;
+        if (!hiddenAt || Date.now() - hiddenAt < TAB_RETURN_MS) return;
         revealCode('tab-return');
-      }
-
-      document.addEventListener('visibilitychange', function () {
-        if (document.hidden) leftTabAfterGoogle = true;
-        else maybeUnlock();
       });
-      window.addEventListener('focus', maybeUnlock);
-      window.addEventListener('pageshow', maybeUnlock);
     }
 
     function goGoogleStep(rating, fromTap) {
@@ -441,7 +439,7 @@ const GOOGLE_REVIEW_URL =
     var clicked = readStore(STORAGE_CLICKED);
     var unlocked = readStore(STORAGE_UNLOCKED);
 
-    if (initial.rating && unlocked && clicked) {
+    if (initial.rating && clicked && unlocked && initial.step === 'code') {
       paintStars(initial.rating, false);
       persist(initial.rating, 'code');
       showStep('code');
