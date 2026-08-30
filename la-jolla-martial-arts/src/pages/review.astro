@@ -254,7 +254,6 @@ const GOOGLE_REVIEW_URL =
   (function () {
     var GOOGLE_REVIEW_URL =
       'https://search.google.com/local/writereview?placeid=ChIJ5XqIvZcD3IARJiAnQzFXmXY';
-    var POPUP_FALLBACK_MS = 700;
 
     var promptEl = document.getElementById('review-prompt');
     var thanksEl = document.getElementById('review-thanks');
@@ -327,10 +326,8 @@ const GOOGLE_REVIEW_URL =
         return;
       }
 
-      logEvent('review_google_open', { method: 'same_tab_fallback', page_path: window.location.pathname + window.location.search });
-      window.setTimeout(function () {
-        window.location.assign(GOOGLE_REVIEW_URL);
-      }, POPUP_FALLBACK_MS);
+      // Stay on /review with REVIEW25. Never navigate this tab to Google.
+      logEvent('review_google_open', { method: 'blocked', page_path: window.location.pathname + window.location.search });
     }
 
     function completeRating(rating, fromTap) {
