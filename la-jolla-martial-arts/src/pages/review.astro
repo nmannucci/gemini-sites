@@ -8,7 +8,7 @@ const GOOGLE_REVIEW_URL =
 
 <Layout
   title="Rate Your Experience | La Jolla Martial Arts"
-  description="Share how your visit to La Jolla Martial Arts went. Then pick up $25 off in the on-site equipment shop."
+  description="Share how your visit to La Jolla Martial Arts went, then leave a Google review for $25 off in the on-site equipment shop."
   robots="noindex,nofollow"
   canonical="https://lajollatkd.com/review"
   bodyClass="review-funnel"
@@ -43,29 +43,47 @@ const GOOGLE_REVIEW_URL =
       </div>
     </section>
 
-    <section class="review-panel review-thanks" id="review-thanks" data-review-step="thanks" hidden>
+    <section class="review-panel" id="review-google-step" data-review-step="google" hidden>
       <p class="review-kicker">Thanks</p>
       <h2 class="review-title font-display">Thanks for your rating.</h2>
       <p class="review-lede">
-        You earned $25 off in the La Jolla Martial Arts equipment shop for sharing your rating.
-        Show this code at the front desk.
+        Leave a Google review and you get $25 off in the La Jolla Martial Arts equipment shop.
+        We'll show the front-desk code on this page after you go write that review.
       </p>
-
-      <div class="review-code" aria-label="Equipment shop discount code">
-        <span class="review-code-label">Front desk code</span>
-        <strong class="review-code-value">REVIEW25</strong>
-        <span class="review-code-note">$25 off in the on-site shop</span>
-      </div>
-
-      <p class="review-invite">If you have a minute, you can also leave a Google review.</p>
       <a
         class="btn-primary review-google"
+        id="review-google"
         href={GOOGLE_REVIEW_URL}
         target="_blank"
         rel="noopener noreferrer"
       >
         Leave a Google review
       </a>
+    </section>
+
+    <section class="review-panel" id="review-confirm-step" data-review-step="confirm" hidden>
+      <p class="review-kicker">Google review</p>
+      <h2 class="review-title font-display">After you post, come back here.</h2>
+      <p class="review-lede">
+        After you post, come back to this tab and tap below. We can't tell when a Google review
+        goes live, so this just unlocks your shop code.
+      </p>
+      <button type="button" class="review-secondary" id="review-confirm">
+        I left my review
+      </button>
+    </section>
+
+    <section class="review-panel" id="review-code-step" data-review-step="code" hidden>
+      <p class="review-kicker">Equipment shop</p>
+      <h2 class="review-title font-display">Your front-desk code</h2>
+      <p class="review-lede">
+        Show this at the front desk for $25 off in the La Jolla Martial Arts equipment shop.
+      </p>
+      <div class="review-code" aria-label="Equipment shop discount code">
+        <span class="review-code-label">Front desk code</span>
+        <strong class="review-code-value">REVIEW25</strong>
+        <span class="review-code-note">$25 off in the on-site shop</span>
+      </div>
     </section>
   </main>
 </Layout>
@@ -123,11 +141,12 @@ const GOOGLE_REVIEW_URL =
     text-transform: uppercase;
   }
 
-  .review-lede,
-  .review-invite {
+  .review-lede {
     color: var(--muted-text);
     font-size: 1rem;
     line-height: 1.6;
+    max-width: 28rem;
+    margin: 0 auto 1.5rem;
   }
 
   .review-stars {
@@ -191,13 +210,8 @@ const GOOGLE_REVIEW_URL =
     box-shadow: 0 0 0 3px rgba(41, 190, 226, 0.35);
   }
 
-  .review-thanks .review-lede {
-    max-width: 28rem;
-    margin: 0 auto;
-  }
-
   .review-code {
-    margin: 1.6rem 0 1.35rem;
+    margin: 0.25rem 0 0;
     padding: 1.15rem 1rem 1.2rem;
     background: var(--light-bg);
     border: 1px dashed rgba(20, 20, 20, 0.18);
@@ -223,13 +237,35 @@ const GOOGLE_REVIEW_URL =
     line-height: 1;
   }
 
-  .review-invite {
-    margin-bottom: 1.15rem;
-  }
-
-  .review-google {
+  .review-google,
+  .review-secondary {
     width: 100%;
     text-align: center;
+  }
+
+  .review-secondary {
+    padding: 1.15rem 1.5rem;
+    background: transparent;
+    color: var(--dark-text);
+    border: 2px solid var(--dark-text);
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .review-secondary:hover,
+  .review-secondary:focus-visible {
+    background: var(--dark-text);
+    color: var(--bone-white);
+    outline: none;
+  }
+
+  .review-secondary:focus-visible {
+    box-shadow: 0 0 0 3px rgba(41, 190, 226, 0.35);
   }
 
   @media (min-width: 640px) {
@@ -254,7 +290,8 @@ const GOOGLE_REVIEW_URL =
       height: 2.5rem;
     }
 
-    .review-google {
+    .review-google,
+    .review-secondary {
       width: auto;
     }
   }
@@ -262,24 +299,67 @@ const GOOGLE_REVIEW_URL =
 
 <script is:inline>
   (function () {
-    var promptEl = document.getElementById('review-prompt');
-    var thanksEl = document.getElementById('review-thanks');
-    var starsEl = document.getElementById('review-stars');
-    if (!promptEl || !thanksEl || !starsEl) return;
+    var STORAGE_CLICKED = 'ljma_review_google_clicked';
+    var STORAGE_UNLOCKED = 'ljma_review_code_unlocked';
 
+    var promptEl = document.getElementById('review-prompt');
+    var googleEl = document.getElementById('review-google-step');
+    var confirmEl = document.getElementById('review-confirm-step');
+    var codeEl = document.getElementById('review-code-step');
+    var starsEl = document.getElementById('review-stars');
+    var googleLink = document.getElementById('review-google');
+    var confirmBtn = document.getElementById('review-confirm');
+    if (!promptEl || !googleEl || !confirmEl || !codeEl || !starsEl || !googleLink || !confirmBtn) return;
+
+    var panels = {
+      prompt: promptEl,
+      google: googleEl,
+      confirm: confirmEl,
+      code: codeEl,
+    };
     var buttons = Array.prototype.slice.call(starsEl.querySelectorAll('.review-star'));
+    var step = 'prompt';
+    var leftTabAfterGoogle = false;
+    var returnUnlockBound = false;
 
     function parseRating(value) {
       var n = Number(value);
       return n >= 1 && n <= 5 && n === Math.floor(n) ? n : null;
     }
 
-    function ratingFromUrl() {
+    function readStore(key) {
+      try { return sessionStorage.getItem(key) === '1'; } catch (_) { return false; }
+    }
+
+    function writeStore(key) {
+      try { sessionStorage.setItem(key, '1'); } catch (_) {}
+    }
+
+    function urlState() {
       try {
-        return parseRating(new URL(window.location.href).searchParams.get('rating'));
+        var url = new URL(window.location.href);
+        return {
+          rating: parseRating(url.searchParams.get('rating')),
+          step: url.searchParams.get('step'),
+        };
       } catch (_) {
-        return null;
+        return { rating: null, step: null };
       }
+    }
+
+    function persist(rating, nextStep) {
+      try {
+        var url = new URL(window.location.href);
+        if (rating) url.searchParams.set('rating', String(rating));
+        if (nextStep && nextStep !== 'prompt' && nextStep !== 'google') {
+          url.searchParams.set('step', nextStep);
+        } else {
+          url.searchParams.delete('step');
+        }
+        if (window.history && history.replaceState) {
+          history.replaceState(null, '', url.pathname + url.search + url.hash);
+        }
+      } catch (_) {}
     }
 
     function paintStars(rating, preview) {
@@ -291,38 +371,87 @@ const GOOGLE_REVIEW_URL =
       });
     }
 
-    function showThanks() {
-      promptEl.hidden = true;
-      thanksEl.hidden = false;
-      var heading = thanksEl.querySelector('h2');
+    function showStep(nextStep) {
+      step = nextStep;
+      Object.keys(panels).forEach(function (name) {
+        panels[name].hidden = name !== nextStep;
+      });
+      var heading = panels[nextStep].querySelector('h1, h2');
       if (heading) heading.setAttribute('tabindex', '-1');
       if (heading && heading.focus) heading.focus({ preventScroll: true });
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
 
-    function persistRating(rating) {
-      try {
-        var url = new URL(window.location.href);
-        url.searchParams.set('rating', String(rating));
-        if (window.history && history.replaceState) {
-          history.replaceState(null, '', url.pathname + url.search + url.hash);
-        }
-      } catch (_) {}
+    function logEvent(name, params) {
+      if (typeof gtag === 'function') gtag('event', name, params || {});
     }
 
-    function logRating(rating) {
-      if (typeof gtag === 'function') {
-        gtag('event', 'review_rating', {
+    function revealCode(reason) {
+      if (step === 'code') return;
+      if (!readStore(STORAGE_CLICKED)) return;
+      writeStore(STORAGE_UNLOCKED);
+      persist(urlState().rating, 'code');
+      showStep('code');
+      logEvent('review_code_revealed', {
+        rating: urlState().rating,
+        unlock: reason || 'confirm',
+        page_path: window.location.pathname + window.location.search,
+      });
+    }
+
+    function bindReturnUnlock() {
+      if (returnUnlockBound) return;
+      returnUnlockBound = true;
+
+      function maybeUnlock() {
+        if (step !== 'confirm') return;
+        if (!readStore(STORAGE_CLICKED)) return;
+        if (!leftTabAfterGoogle) return;
+        revealCode('tab-return');
+      }
+
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) leftTabAfterGoogle = true;
+        else maybeUnlock();
+      });
+      window.addEventListener('focus', maybeUnlock);
+      window.addEventListener('pageshow', maybeUnlock);
+    }
+
+    function goGoogleStep(rating, fromTap) {
+      persist(rating, 'google');
+      paintStars(rating, false);
+      showStep('google');
+      if (fromTap) {
+        logEvent('review_rating', {
           rating: rating,
           page_path: '/review?rating=' + rating,
         });
       }
     }
 
-    var current = ratingFromUrl();
-    if (current) {
-      paintStars(current, false);
-      showThanks();
+    function goConfirmStep() {
+      writeStore(STORAGE_CLICKED);
+      persist(urlState().rating, 'confirm');
+      showStep('confirm');
+      bindReturnUnlock();
+    }
+
+    var initial = urlState();
+    var clicked = readStore(STORAGE_CLICKED);
+    var unlocked = readStore(STORAGE_UNLOCKED);
+
+    if (initial.rating && unlocked && clicked) {
+      paintStars(initial.rating, false);
+      persist(initial.rating, 'code');
+      showStep('code');
+    } else if (initial.rating && clicked && initial.step === 'confirm') {
+      paintStars(initial.rating, false);
+      persist(initial.rating, 'confirm');
+      showStep('confirm');
+      bindReturnUnlock();
+    } else if (initial.rating) {
+      goGoogleStep(initial.rating, false);
     } else {
       paintStars(null, false);
     }
@@ -332,10 +461,7 @@ const GOOGLE_REVIEW_URL =
       if (!btn) return;
       var rating = parseRating(btn.getAttribute('data-rating'));
       if (!rating) return;
-      persistRating(rating);
-      logRating(rating);
-      paintStars(rating, false);
-      showThanks();
+      goGoogleStep(rating, true);
     });
 
     starsEl.addEventListener('pointerover', function (e) {
@@ -346,7 +472,7 @@ const GOOGLE_REVIEW_URL =
 
     starsEl.addEventListener('pointerout', function (e) {
       if (e.relatedTarget && starsEl.contains(e.relatedTarget)) return;
-      paintStars(ratingFromUrl(), false);
+      paintStars(urlState().rating, false);
     });
 
     starsEl.addEventListener('focusin', function (e) {
@@ -357,7 +483,19 @@ const GOOGLE_REVIEW_URL =
 
     starsEl.addEventListener('focusout', function (e) {
       if (e.relatedTarget && starsEl.contains(e.relatedTarget)) return;
-      paintStars(ratingFromUrl(), false);
+      paintStars(urlState().rating, false);
+    });
+
+    googleLink.addEventListener('click', function () {
+      logEvent('review_google_click', {
+        rating: urlState().rating,
+        page_path: '/review?rating=' + (urlState().rating || '') + '&step=confirm',
+      });
+      goConfirmStep();
+    });
+
+    confirmBtn.addEventListener('click', function () {
+      revealCode('confirm');
     });
   })();
 </script>
