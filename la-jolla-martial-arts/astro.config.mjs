@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-const excludedFromSitemap = ['/lp/', '/thank-you', '/privacy', '/404'];
+const excludedFromSitemap = ['/lp/', '/thank-you', '/privacy', '/404', '/review'];
 
 export default defineConfig({
   site: 'https://lajollatkd.com',

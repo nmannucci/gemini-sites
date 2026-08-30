@@ -1245,6 +1245,16 @@ These are excellent conversion and SEO assets because they match real parent and
 - confidence
 - self-defense
 
+## Review Funnel — Campaign Landing Page
+
+- **URL:** `/review` (`https://lajollatkd.com/review`)
+- **Purpose:** SMS/email campaign landing page. Not a ranking page (`noindex,nofollow`).
+- **Flow:** Visitor rates 1–5 stars. Every rating, including 1–4, goes to the same thank-you state. Do not gate or send only 5-star ratings to Google.
+- **Reward:** $25 off in the on-site equipment shop for sharing the rating. Code `REVIEW25`, shown at the front desk. There is no `/shop` page and no online checkout.
+- **Google review CTA:** “Leave a Google review” → `https://search.google.com/local/writereview?placeid=ChIJ5XqIvZcD3IARJiAnQzFXmXY`
+- **Analytics:** Chosen rating is stored as `?rating=1` through `?rating=5`. Logged client-side (`review_rating` event). No CRM write for ratings.
+- **Nav:** Not a public marketing item. Do not add it to primary navigation.
+
 ## Offers and Conversion Hooks
 ### Live offer language found on site
 - "Special limited time new members deal"
