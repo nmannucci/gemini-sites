@@ -2,54 +2,74 @@
 import Layout from '../layouts/Layout.astro';
 import { site } from '../data/site';
 
+/**
+ * Programs hub — visual language mirrors the homepage `.program-card` /
+ * `.programs-grid` section (cyan brand accents via --blood-red, orange CTAs
+ * via global.css `.btn-primary`). Card photos prefer stronger training shots
+ * already used on home/kids where available.
+ */
 const programs = [
   {
     href: '/little-ninjas',
-    image: '/assets/EMA - Post 12.jpg',
+    image: '/assets/little-ninjas-1.webp',
     alt: 'Little Ninjas class training at La Jolla Martial Arts',
-    badge: 'Ages 3–6',
+    badge: 'Ages 3–5',
+    age: 'Ages 3–5',
     title: 'Little Ninjas',
     copy: 'Beginner Taekwondo for young kids. Listening, coordination, and confidence through short, upbeat classes.',
+    features: ['Focus & coordination', 'Character building', 'Engaging & fun'],
   },
   {
     href: '/kids-martial-arts',
-    image: '/assets/EMA - Cover Page.jpg',
+    image: '/assets/kids-martial-arts-1.webp',
     alt: 'Kids martial arts class at La Jolla Martial Arts',
     badge: 'Ages 7–12',
+    age: 'Ages 7–12',
     title: 'Kids Martial Arts',
     copy: 'Structured Taekwondo for school-age kids. Focus, respect, self-defense, and a positive outlet for energy.',
+    features: ['Anti-bullying skills', 'Confidence building', 'Respect & integrity'],
+    imageStyle: 'object-position: center top;',
   },
   {
     href: '/teen-martial-arts',
     image: '/assets/EMA - Post 6.jpg',
     alt: 'Teen martial arts students at La Jolla Martial Arts',
     badge: 'Ages 13+',
+    age: 'Ages 13 & Up',
     title: 'Teen Martial Arts',
     copy: 'Teens train with adults. Fitness, discipline, and practical self-defense during the years it matters most.',
+    features: ['Physical fitness', 'Mental toughness', 'Leadership development'],
   },
   {
     href: '/adult-martial-arts',
     image: '/assets/EMA Image 2.webp',
     alt: 'Adult martial arts class at La Jolla Martial Arts',
     badge: 'Adults',
-    title: 'Adult Martial Arts',
+    age: 'Adults',
+    title: 'Adult Classes',
     copy: 'A real workout plus self-defense. Beginner-friendly Taekwondo in a non-judgmental, family-owned dojo.',
+    features: ['Practical self-defense', 'Stress relief & fitness', 'All experience levels'],
   },
   {
     href: '/zumba',
     image: '/assets/zumba-banner.jpeg',
-    alt: 'Zumba dance fitness class banner',
+    alt: 'Zumba dance fitness at La Jolla Martial Arts',
     badge: 'Fri + Sat',
+    age: 'Fri + Sat · 10:30–11:15am',
     title: 'Zumba',
-    copy: '45-minute dance fitness Friday and Saturday, 10:30am–11:15am. First week free. No dance experience needed.',
+    copy: '45-minute dance fitness Friday and Saturday mornings. First week free. No dance experience needed.',
+    features: ['45-minute classes', 'First week free', 'No experience needed'],
+    imageStyle: 'object-position: center 18%;',
   },
   {
     href: '/game-zone',
     image: '/assets/gamezone-jumper-1.webp',
     alt: 'Child jumping on the Jumper AR trampoline in the Game Zone',
     badge: 'Ages 6+',
+    age: 'Ages 6+',
     title: 'Game Zone',
     copy: 'AR trampoline and wall laser arena inside the dojo. Open play, class rewards, and birthday parties.',
+    features: ['AR trampoline', 'Wall laser arena', 'Open play & parties'],
   },
 ];
 ---
@@ -60,155 +80,443 @@ const programs = [
   canonical="https://lajollatkd.com/programs"
 >
   <main class="programs-hub">
-    <header class="programs-hero">
-      <p class="eyebrow">La Jolla Martial Arts</p>
-      <h1>Programs in La Jolla</h1>
-      <p class="lede">
-        Age-based Taekwondo, Zumba dance fitness, and the interactive Game Zone
-        — all at one gym: {site.address}. Call {site.phoneDisplay}.
-      </p>
-      <p class="nap">{site.hoursOneLine}</p>
-    </header>
+    <section class="programs-hub-inner" aria-labelledby="programs-hub-title">
+      <header class="programs-hub-header">
+        <p class="section-label">Our Programs</p>
+        <h1 class="section-title font-display" id="programs-hub-title">
+          <span>Programs at</span>
+          <span><span class="accent">La Jolla</span> Martial Arts</span>
+        </h1>
+        <p class="programs-hub-lede">
+          Age-based Taekwondo, Zumba dance fitness, and the interactive Game Zone
+          — all under one roof in La Jolla.
+        </p>
 
-    <section class="programs-list" aria-label="Program directory">
-      {programs.map((program) => (
-        <a class="card" href={program.href}>
-          <img src={program.image} alt={program.alt} title={program.alt} />
-          <div class="card-body">
-            <span class="badge">{program.badge}</span>
-            <h2>{program.title}</h2>
-            <p>{program.copy}</p>
-            <span class="more">Learn more</span>
-          </div>
-        </a>
-      ))}
+        <div class="programs-hub-meta" aria-label="Location and hours">
+          <a class="hub-meta-pill" href={`tel:${site.phoneTel}`}>
+            <span class="hub-meta-label">Call</span>
+            <span class="hub-meta-value">{site.phoneDisplay}</span>
+          </a>
+          <p class="hub-meta-address">{site.address}</p>
+          <p class="hub-meta-hours">{site.hoursOneLine}</p>
+        </div>
+      </header>
+
+      <div class="programs-grid" aria-label="Program directory">
+        {programs.map((program) => (
+          <a class="program-card" href={program.href}>
+            <div class="program-image">
+              <img
+                src={program.image}
+                alt={program.alt}
+                title={program.alt}
+                style={program.imageStyle}
+                loading="lazy"
+              />
+              <span class="program-badge">{program.badge}</span>
+            </div>
+            <div class="program-body">
+              <h2 class="program-title font-display">{program.title}</h2>
+              <p class="program-age">{program.age}</p>
+              <p class="program-description">{program.copy}</p>
+              <ul class="program-features">
+                {program.features.map((feature) => (
+                  <li>{feature}</li>
+                ))}
+              </ul>
+              <span class="program-link">Learn More →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="programs-footer">
+        <p>
+          Not sure which class is right?
+          <strong> Try 1 week free</strong>
+          — or check the <a href="/schedule">weekly schedule</a>.
+        </p>
+        <a href="/contact" class="btn-primary">Claim Your Free Week</a>
+      </div>
     </section>
-
-    <p class="schedule-note">
-      See exact class times on the <a href="/schedule">weekly schedule</a>,
-      or <a href="/contact">claim a free week</a>.
-    </p>
   </main>
 </Layout>
 
-<style>
-  .programs-hub {
-    background: #f5f5f0;
-    color: #1a1a1a;
-    padding: 8.5rem 1.5rem 5rem;
+<style is:global>
+  /* Page chrome — Archivo body + display titles, matching homepage programs section. */
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--light-bg, #f5f5f0);
+    color: var(--dark-text, #1a1a1a);
   }
-  .programs-hero {
-    max-width: 760px;
-    margin: 0 auto 3rem;
-  }
-  .eyebrow {
-    color: #29bee2;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    margin-bottom: 0.85rem;
-  }
-  h1 {
+
+  .font-display {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.8rem, 8vw, 5.2rem);
-    line-height: 0.95;
+  }
+
+  .programs-hub {
+    background: var(--light-bg, #f5f5f0);
+    color: var(--dark-text, #1a1a1a);
+    padding: 8.5rem 4rem 5.5rem;
+  }
+
+  .programs-hub-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .programs-hub-header {
+    max-width: 760px;
+    margin-bottom: 3rem;
+    text-align: left;
+  }
+
+  .programs-hub .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
+    color: var(--blood-red, #29bee2);
     margin-bottom: 1rem;
-  }
-  .lede {
-    color: #5a5a5a;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 0.85rem;
-  }
-  .nap {
-    color: #1a1a1a;
-    font-size: 0.92rem;
-    line-height: 1.55;
     font-weight: 600;
   }
-  .programs-list {
-    max-width: 1180px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-  }
-  .card {
+
+  .programs-hub .section-title {
     display: flex;
     flex-direction: column;
+    gap: 0.08em;
+    font-size: clamp(2.4rem, 6vw, 4.25rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--dark-text, #1a1a1a);
+    margin-bottom: 1.15rem;
+  }
+
+  .programs-hub .section-title .accent {
+    color: var(--blood-red, #29bee2);
+  }
+
+  .programs-hub-lede {
+    color: var(--muted-text, #5a5a5a);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 620px;
+  }
+
+  /* Compact NAP — useful for local SEO without dominating the mobile hero. */
+  .programs-hub-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    max-width: 560px;
+  }
+
+  .hub-meta-pill {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    padding: 0.55rem 0.95rem;
     background: #fff;
-    border: 1px solid #eaeae5;
+    border: 1px solid var(--light-bg-alt, #eaeae5);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
     text-decoration: none;
     color: inherit;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-    transition: transform 0.25s ease, border-color 0.25s ease;
+    transition: border-color 0.25s ease, transform 0.25s ease;
   }
-  .card:hover {
-    transform: translateY(-4px);
-    border-color: #29bee2;
+
+  .hub-meta-pill:hover {
+    border-color: var(--blood-red, #29bee2);
+    transform: translateY(-1px);
   }
-  .card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-  }
-  .card-body {
-    padding: 1.25rem 1.35rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    flex: 1;
-  }
-  .badge {
-    align-self: flex-start;
-    background: #29bee2;
-    color: #fff;
+
+  .hub-meta-label {
     font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    padding: 0.35rem 0.65rem;
+    color: var(--blood-red, #29bee2);
   }
-  .card h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.7rem;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
-  .card p {
-    color: #5a5a5a;
-    font-size: 0.92rem;
-    line-height: 1.6;
-    flex: 1;
-  }
-  .more {
-    color: #29bee2;
-    font-size: 0.75rem;
+
+  .hub-meta-value {
+    font-size: 1.05rem;
     font-weight: 700;
+    color: var(--dark-text, #1a1a1a);
+    letter-spacing: 0.01em;
+  }
+
+  .hub-meta-address {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark-text, #1a1a1a);
+    line-height: 1.45;
+  }
+
+  .hub-meta-hours {
+    font-size: 0.82rem;
+    color: var(--muted-text, #5a5a5a);
+    line-height: 1.5;
+  }
+
+  /* Homepage program-card language (3-up for six programs). */
+  .programs-hub .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .programs-hub .program-card {
+    background: white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    border: 1px solid var(--light-bg-alt, #eaeae5);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .programs-hub .program-card:hover .program-link {
+    gap: 1rem;
+  }
+
+  .programs-hub .program-card::before {
+    content: '';
+    position: absolute;
+    top: 240px;
+    left: 1.5rem;
+    width: 44px;
+    height: 3px;
+    background: var(--blood-red, #29bee2);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+    z-index: 2;
+  }
+
+  .programs-hub .program-card:hover {
+    border-color: var(--blood-red, #29bee2);
+    transform: translateY(-8px);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.12);
+  }
+
+  .programs-hub .program-card:hover::before {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  .programs-hub .program-image {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+  }
+
+  .programs-hub .program-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease, filter 0.3s ease;
+    filter: saturate(1.02);
+  }
+
+  .programs-hub .program-card:hover .program-image img {
+    transform: scale(1.06);
+    filter: saturate(1.08);
+  }
+
+  .programs-hub .program-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: inline-block;
+    background: var(--blood-red, #29bee2);
+    color: var(--bone-white, #f5f5f0);
+    padding: 0.45rem 0.85rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
     letter-spacing: 0.12em;
+    z-index: 2;
+  }
+
+  .programs-hub .program-body {
+    padding: 1.5rem 1.5rem 1.8rem;
+  }
+
+  .programs-hub .program-title {
+    font-size: 1.55rem;
+    text-transform: none;
+    margin-bottom: 0.35rem;
+    line-height: 1.1;
+    color: var(--dark-text, #1a1a1a);
+  }
+
+  .programs-hub .program-age {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: none;
+    color: var(--blood-red, #29bee2);
+    margin-bottom: 0.85rem;
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  .programs-hub .program-description {
+    font-size: 0.92rem;
+    color: var(--muted-text, #5a5a5a);
+    line-height: 1.65;
+    margin-bottom: 1.15rem;
+  }
+
+  .programs-hub .program-features {
+    list-style: none;
+    margin: 0 0 1.35rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .programs-hub .program-features li {
+    font-size: 0.82rem;
+    color: var(--muted-text, #5a5a5a);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .programs-hub .program-features li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--blood-red, #29bee2);
+    flex-shrink: 0;
+    transform: rotate(45deg);
+  }
+
+  .programs-hub .program-link {
+    font-size: 0.78rem;
     text-transform: uppercase;
-    margin-top: 0.4rem;
-  }
-  .schedule-note {
-    max-width: 760px;
-    margin: 2.5rem auto 0;
-    text-align: center;
-    color: #5a5a5a;
-    line-height: 1.6;
-  }
-  .schedule-note a {
-    color: #1a1a1a;
+    letter-spacing: 0.12em;
+    color: var(--blood-red, #29bee2);
+    text-decoration: none;
     font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.3s ease;
   }
-  @media (max-width: 960px) {
-    .programs-list { grid-template-columns: 1fr 1fr; }
+
+  .programs-hub .programs-footer {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    text-align: center;
   }
-  @media (max-width: 640px) {
-    .programs-hub { padding: 7rem 1.15rem 3.5rem; }
-    .programs-list { grid-template-columns: 1fr; }
+
+  .programs-hub .programs-footer p {
+    color: var(--muted-text, #5a5a5a);
+    font-size: 1rem;
+    font-style: italic;
+    max-width: 420px;
+    line-height: 1.55;
+  }
+
+  .programs-hub .programs-footer strong {
+    color: var(--dark-text, #1a1a1a);
+    font-style: normal;
+  }
+
+  .programs-hub .programs-footer a:not(.btn-primary) {
+    color: var(--dark-text, #1a1a1a);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .programs-hub .btn-primary {
+    padding: 1.1rem 2.1rem;
+    background: var(--orange, #ff6a1a);
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease, background 0.25s ease;
+  }
+
+  .programs-hub .btn-primary:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 1100px) {
+    .programs-hub .programs-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .programs-hub {
+      padding: 8rem 2rem 4.5rem;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .programs-hub {
+      padding: 7rem 1.25rem 3.5rem;
+    }
+
+    .programs-hub-header {
+      margin-bottom: 2.25rem;
+    }
+
+    .programs-hub .section-title {
+      font-size: clamp(2.15rem, 10vw, 3rem);
+      line-height: 1.02;
+    }
+
+    .programs-hub-lede {
+      font-size: 0.98rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .hub-meta-hours {
+      font-size: 0.78rem;
+    }
+
+    .programs-hub .programs-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .programs-hub .program-image {
+      height: 220px;
+    }
+
+    .programs-hub .program-card::before {
+      top: 220px;
+    }
+
+    .programs-hub .programs-footer {
+      margin-top: 2.5rem;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .programs-hub .btn-primary {
+      width: 100%;
+      text-align: center;
+    }
   }
 </style>
