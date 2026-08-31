@@ -33,6 +33,22 @@ if (existsSync(join(dist, 'sitemap-0.xml'))) {
   for (const excluded of ['/lp/', '/thank-you', '/privacy', '/404', '/review']) {
     assert(!sitemap.includes(`https://lajollatkd.com${excluded}`), `Sitemap includes excluded URL: ${excluded}`);
   }
+  assert(sitemap.includes('https://lajollatkd.com/programs'), 'Sitemap missing unique /programs URL');
+}
+
+function decodeEntities(value) {
+  return value
+    .replace(/&amp;/g, '&')
+    .replace(/&#38;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
+}
+
+if (existsSync(join(dist, '_redirects'))) {
+  const redirects = readFileSync(join(dist, '_redirects'), 'utf8');
+  assert(!/^\s*\/programs\s+/m.test(redirects), '_redirects must not 301 /programs now that it is a unique page');
 }
 
 if (existsSync(dist)) {
@@ -50,6 +66,36 @@ if (existsSync(dist)) {
       assert(canonicalCount === 1, `${displayPath}: indexable page must have exactly one canonical, found ${canonicalCount}`);
       assert(html.includes('href="https://lajollatkd.com'), `${displayPath}: canonical must use the apex HTTPS domain`);
     }
+  }
+
+  const homePath = join(dist, 'index.html');
+  const programsPath = join(dist, 'programs.html');
+  assert(existsSync(programsPath), 'Missing dist/programs.html unique programs hub');
+
+  if (existsSync(homePath)) {
+    const home = readFileSync(homePath, 'utf8');
+    const descMatch = home.match(/<meta\s+name="description"\s+content="([^"]*)"/i);
+    if (descMatch) {
+      const description = decodeEntities(descMatch[1]);
+      assert(description.length <= 155, `Homepage meta description is ${description.length} chars (need ~150 or less)`);
+      assert(!/Pacific Beach|University City|Clairemont/i.test(description), 'Homepage meta still stuffs nearby neighborhood names');
+    }
+    const homeImages = [...home.matchAll(/<img\b[^>]*>/gi)].map((match) => match[0]);
+    homeImages.forEach((tag, index) => {
+      assert(/\balt="[^"]+"/i.test(tag), `index.html image ${index + 1} is missing alt`);
+      assert(/\btitle="[^"]+"/i.test(tag), `index.html image ${index + 1} is missing title`);
+    });
+    assert(home.includes('(858) 361-0961'), 'Homepage body/footer is missing the published phone number');
+    assert(home.includes('7680 Girard Ave, Basement'), 'Homepage is missing the Basement street address');
+  }
+
+  if (existsSync(homePath) && existsSync(programsPath)) {
+    const homeTitle = readFileSync(homePath, 'utf8').match(/<title>([^<]*)<\/title>/i)?.[1] ?? '';
+    const programsHtml = readFileSync(programsPath, 'utf8');
+    const programsTitle = programsHtml.match(/<title>([^<]*)<\/title>/i)?.[1] ?? '';
+    const programsH1 = programsHtml.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]?.replace(/<[^>]+>/g, '').trim() ?? '';
+    assert(programsTitle && programsTitle !== homeTitle, '/programs title must be unique and not match the homepage');
+    assert(programsH1.length > 0 && !/Kids Martial Arts,\s*Taekwondo/i.test(programsH1), '/programs must have a unique H1, not the homepage headline');
   }
 }
 

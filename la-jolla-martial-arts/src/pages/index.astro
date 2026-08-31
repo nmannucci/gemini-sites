@@ -1,63 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-const SITE = 'https://lajollatkd.com';
-
-// LocalBusiness (MartialArtsSchool) structured data. Values mirror what is
-// displayed on the site (NAP in the footer + Get Started section) so the markup
-// matches visible content. Facebook link is omitted intentionally — the on-site
-// link is a placeholder (facebook.com root), not a real page.
-const businessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'MartialArtsSchool',
-  '@id': `${SITE}/#business`,
-  name: 'La Jolla Martial Arts',
-  description:
-    'La Jolla Martial Arts offers world-class Taekwondo training for all ages. Build discipline, confidence, and self-defense skills at our family-owned dojo with 40+ years of teaching experience.',
-  url: `${SITE}/`,
-  telephone: '+1-858-361-0961',
-  image: `${SITE}/assets/EMA%20-%20Post.jpg`,
-  logo: `${SITE}/assets/LJ-martial-arts-logo.PNG`,
-  priceRange: '$$',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: '7680 Girard Ave, Basement',
-    addressLocality: 'La Jolla',
-    addressRegion: 'CA',
-    postalCode: '92037',
-    addressCountry: 'US',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: 32.8442,
-    longitude: -117.274,
-  },
-  areaServed: [
-    { '@type': 'City', name: 'La Jolla' },
-    { '@type': 'City', name: 'San Diego' },
-  ],
-  founder: { '@type': 'Person', name: 'Master Sam' },
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
-      opens: '15:00',
-      closes: '18:30',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: 'Saturday',
-      opens: '10:00',
-      closes: '13:00',
-    },
-  ],
-};
+import { SITE_URL, site } from '../data/site';
 
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'La Jolla Martial Arts',
-  url: `${SITE}/`,
+  name: site.brand,
+  url: `${SITE_URL}/`,
 };
 
 const homepageFaqs = [
@@ -115,10 +64,9 @@ const faqSchema = {
 
 <Layout
   title={`Kids Martial Arts Taekwondo Karate | La Jolla San Diego`}
-  description={`La Jolla Martial Arts LLC: kids martial arts, kids karate, taekwondo & karate in La Jolla, San Diego, Pacific Beach, University City & Clairemont. Taekwondo San Diego.`}
+  description={`Kids taekwondo and karate at La Jolla Martial Arts LLC. Build discipline, confidence, and self-defense at our La Jolla dojo.`}
 >
   <Fragment slot="head">
-<script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 <style is:global>
@@ -1714,6 +1662,14 @@ const faqSchema = {
       color: var(--blood-red);
     }
 
+    .contact-item-bottom a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .contact-item-bottom a:hover {
+      color: var(--blood-red);
+    }
+
     .contact-item-bottom p {
       margin: 0;
     }
@@ -2456,7 +2412,7 @@ const faqSchema = {
 <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-background">
-      <img src="/assets/EMA - Post.jpg" alt="La Jolla Martial Arts students practicing Taekwondo">
+      <img src="/assets/EMA - Post.jpg" alt="La Jolla Martial Arts students practicing Taekwondo" title="La Jolla Martial Arts students practicing Taekwondo">
     </div>
 
     <div class="hero-container">
@@ -2566,7 +2522,7 @@ const faqSchema = {
     <div class="programs-grid">
       <a href="/little-ninjas" class="program-card" id="program-little-ninjas">
         <div class="program-image">
-          <img src="/assets/EMA - Post 12.jpg" alt="Little Ninjas class training">
+          <img src="/assets/EMA - Post 12.jpg" alt="Little Ninjas class training" title="Little Ninjas class training">
           <span class="program-badge">Ages 3-5</span>
         </div>
         <div class="program-body">
@@ -2587,7 +2543,7 @@ const faqSchema = {
 
       <a href="/kids-martial-arts" class="program-card" id="program-kids">
         <div class="program-image">
-          <img src="/assets/EMA - Cover Page.jpg" alt="Kids martial arts class" style="object-position: center top;">
+          <img src="/assets/EMA - Cover Page.jpg" alt="Kids martial arts class" title="Kids martial arts class" style="object-position: center top;">
           <span class="program-badge">Kids &amp; Youth</span>
         </div>
         <div class="program-body">
@@ -2608,7 +2564,7 @@ const faqSchema = {
 
       <a href="/teen-martial-arts" class="program-card" id="program-teens">
         <div class="program-image">
-          <img src="/assets/EMA - Post 6.jpg" alt="Teen martial arts students">
+          <img src="/assets/EMA - Post 6.jpg" alt="Teen martial arts students" title="Teen martial arts students">
           <span class="program-badge">Ages 13+</span>
         </div>
         <div class="program-body">
@@ -2629,7 +2585,7 @@ const faqSchema = {
 
       <a href="/adult-martial-arts" class="program-card" id="program-adults">
         <div class="program-image">
-          <img src="/assets/EMA Image 2.webp" alt="Adult martial arts class">
+          <img src="/assets/EMA Image 2.webp" alt="Adult martial arts class" title="Adult martial arts class">
           <span class="program-badge">Adults</span>
         </div>
         <div class="program-body">
@@ -2677,7 +2633,7 @@ const faqSchema = {
         <a href="/zumba#zumba-signup" class="btn-primary">Claim My Free Week</a>
       </div>
       <figure class="zumba-band-graphic">
-        <img src="/assets/zumba-banner.jpeg" alt="Zumba Dance, Sweat, Smile class banner" loading="lazy" />
+        <img src="/assets/zumba-banner.jpeg" alt="Zumba Dance, Sweat, Smile class banner" title="Zumba Dance, Sweat, Smile class banner" loading="lazy" />
       </figure>
     </div>
   </section>
@@ -2708,11 +2664,11 @@ const faqSchema = {
       </div>
       <div class="gamezone-media">
         <div class="gamezone-shot gamezone-shot--lg">
-          <img src="/assets/gamezone-jumper-1.webp" alt="Child jumping on the Jumper AR trampoline" loading="lazy" />
+          <img src="/assets/gamezone-jumper-1.webp" alt="Child jumping on the Jumper AR trampoline" title="Child jumping on the Jumper AR trampoline" loading="lazy" />
           <span class="gamezone-tag">Jumper · AR Trampoline</span>
         </div>
         <div class="gamezone-shot gamezone-shot--sm">
-          <img src="/assets/gamezone-astro-1.webp" alt="Child playing Astro Blaster wall laser arena" loading="lazy" />
+          <img src="/assets/gamezone-astro-1.webp" alt="Child playing Astro Blaster wall laser arena" title="Child playing Astro Blaster wall laser arena" loading="lazy" />
           <span class="gamezone-tag gamezone-tag--pink">Astro Blaster · Laser Arena</span>
         </div>
       </div>
@@ -2869,7 +2825,7 @@ const faqSchema = {
     </div>
 
     <div class="reviews-widget">
-      <script is:inline type="text/javascript" src="https://page.intromartialarts.com/reputation/assets/review-widget.js"></script>
+      <script is:inline defer type="text/javascript" src="https://page.intromartialarts.com/reputation/assets/review-widget.js"></script>
       <iframe class="lc_reviews_widget" src="https://page.intromartialarts.com/reputation/widgets/review_widget/bmB2HGbfaWFdd07zoGeg" frameborder="0" scrolling="no" style="min-width: 100%; width: 100%;"></iframe>
     </div>
   </section>
@@ -2886,27 +2842,27 @@ const faqSchema = {
 
     <div class="gallery-grid">
       <div class="gallery-item gallery-item--wide">
-        <img src="/assets/EMA - Post 12.jpg" alt="Martial arts training action shot" loading="lazy">
+        <img src="/assets/EMA - Post 12.jpg" alt="Martial arts training action shot" title="Martial arts training action shot" loading="lazy">
       </div>
 
       <div class="gallery-item">
-        <img src="/assets/EMA Image 2.webp" alt="Focus and discipline" loading="lazy">
+        <img src="/assets/EMA Image 2.webp" alt="Adult students training focus and discipline" title="Adult students training focus and discipline" loading="lazy">
       </div>
 
       <div class="gallery-item">
-        <img src="/assets/EMA - Post.jpg" alt="Taekwondo kick technique" loading="lazy">
+        <img src="/assets/EMA - Post.jpg" alt="Taekwondo kick technique" title="Taekwondo kick technique" loading="lazy">
       </div>
 
       <div class="gallery-item">
-        <img src="/assets/EMA - Post 2.jpg" alt="Students practicing techniques" loading="lazy">
+        <img src="/assets/EMA - Post 2.jpg" alt="Students practicing techniques" title="Students practicing techniques" loading="lazy">
       </div>
 
       <div class="gallery-item gallery-item--wide">
-        <img src="/assets/Lead Form BG Image.jpg" alt="Dojo training atmosphere" loading="lazy">
+        <img src="/assets/Lead Form BG Image.jpg" alt="Dojo training atmosphere" title="Dojo training atmosphere" loading="lazy">
       </div>
 
       <div class="gallery-item">
-        <img src="/assets/EMA - Post 6.jpg" alt="Fitness and self defense" loading="lazy">
+        <img src="/assets/EMA - Post 6.jpg" alt="Fitness and self defense training" title="Fitness and self defense training" loading="lazy">
       </div>
     </div>
   </section>
@@ -3032,9 +2988,9 @@ const faqSchema = {
             <span>or</span>
           </div>
 
-          <a href="tel:8583610961" class="btn-call">
+          <a href={`tel:${site.phoneTel}`} class="btn-call">
             <i data-lucide="phone"></i>
-            Call (858) 361-0961
+            Call {site.phoneDisplay}
           </a>
 
           <p class="form-disclaimer">
@@ -3045,16 +3001,24 @@ const faqSchema = {
 
         <div class="contact-info-bottom">
           <div class="contact-item-bottom">
+            <i data-lucide="home"></i>
+            <p>{site.brand}</p>
+          </div>
+          <div class="contact-item-bottom">
             <i data-lucide="map-pin"></i>
-            <p>7680 Girard Ave, Basement, La Jolla, CA 92037</p>
+            <p>{site.address}</p>
+          </div>
+          <div class="contact-item-bottom">
+            <i data-lucide="phone"></i>
+            <p><a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a></p>
           </div>
           <div class="contact-item-bottom">
             <i data-lucide="clock"></i>
-            <p>Mon-Thu: 3:00pm-6:30pm | Sat: 10:00am-1:00pm</p>
+            <p>{site.hoursOneLine}</p>
           </div>
           <div class="contact-item-bottom">
             <i data-lucide="mail"></i>
-            <p>LJBULLYPROOF@GMAIL.COM</p>
+            <p>{site.email}</p>
           </div>
         </div>
       </div>

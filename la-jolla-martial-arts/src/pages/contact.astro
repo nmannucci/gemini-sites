@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
 ---
 
 <Layout
-  title={`Contact Us | La Jolla Martial Arts — Eagle Martial Arts`}
+  title={`Contact Us | La Jolla Martial Arts`}
   description={`Contact La Jolla Martial Arts. Ask about classes, schedule a visit, or claim your free week of Taekwondo training in La Jolla, CA.`}
   canonical={`https://lajollatkd.com/contact`}
 >
@@ -474,7 +475,7 @@ import Layout from '../layouts/Layout.astro';
   </Fragment>
 <header class="contact-hero">
     <div class="contact-hero-bg">
-      <img src="/assets/Lead Form BG Image.jpg" alt="Eagle Martial Arts training floor in La Jolla">
+      <img src="/assets/Lead Form BG Image.jpg" alt="La Jolla Martial Arts training floor in La Jolla">
     </div>
 
     <div class="contact-grid">
@@ -544,9 +545,9 @@ import Layout from '../layouts/Layout.astro';
 
           <div class="form-divider"><span>or</span></div>
 
-          <a href="tel:8583610961" class="btn-call">
+          <a href={`tel:${site.phoneTel}`} class="btn-call">
             <i data-lucide="phone"></i>
-            Call (858) 361-0961
+            Call {site.phoneDisplay}
           </a>
 
           <div class="form-error" id="lead-error" role="alert"></div>
@@ -567,28 +568,28 @@ import Layout from '../layouts/Layout.astro';
         <span class="icon-wrap"><i data-lucide="map-pin"></i></span>
         <div>
           <strong>Visit</strong>
-          <p>7680 Girard Ave, Basement, La Jolla, CA 92037</p>
+          <p>{site.brand}<br>{site.address}</p>
         </div>
       </div>
       <div class="checkpoint">
         <span class="icon-wrap"><i data-lucide="phone"></i></span>
         <div>
           <strong>Call</strong>
-          <a href="tel:8583610961">(858) 361-0961</a>
+          <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
         </div>
       </div>
       <div class="checkpoint">
         <span class="icon-wrap"><i data-lucide="mail"></i></span>
         <div>
           <strong>Email</strong>
-          <a href="mailto:LJBULLYPROOF@GMAIL.COM">LJBULLYPROOF@GMAIL.COM</a>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
         </div>
       </div>
       <div class="checkpoint">
         <span class="icon-wrap"><i data-lucide="clock"></i></span>
         <div>
           <strong>Hours</strong>
-          <p>Mon–Thu: 3:00pm – 6:30pm · Sat: 10:00am – 1:00pm</p>
+          <p>{site.hoursOneLine}</p>
         </div>
       </div>
     </div>

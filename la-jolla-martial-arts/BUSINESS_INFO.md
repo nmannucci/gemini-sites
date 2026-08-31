@@ -67,13 +67,22 @@ The current website has useful raw messaging, but it also contains obvious templ
   - Nearby San Diego neighborhoods and family-oriented communities should be treated as service-area opportunities on the new site
 
 ## Hours
-The current site clearly shows:
-- Monday-Thursday: 3:00pm-6:30pm
-- Friday: Closed
-- Saturday: 10:00am-1:00pm
+Door hours published on the site (footer, contact, homepage body, Game Zone, and LocalBusiness schema) are a **superset of class times** on `/schedule` so no listed class sits outside posted hours:
+
+- Monday–Thursday: 3:00pm–6:30pm (covers the 3:30pm Little Ninjas start through the 6:15pm Teen & Adult end)
+- Friday: 10:30am–11:15am (Zumba; private lessons by appointment)
+- Saturday: 9:00am–1:00pm (covers the 9:00am Little Ninjas & Kids combo through the 1:00pm close, including Saturday Zumba)
 - Sunday: Closed
 
-Note: an older local file in this repo listed Monday-Thursday through 8:30pm. The live site currently shows 6:30pm. Verify before launch.
+The `/schedule` grid remains class times, not a second conflicting hours list.
+
+Class times currently shown on `/schedule`:
+- Monday–Thursday: Little Ninjas 3:30pm–4:30pm, Kids 4:30pm–5:15pm, Teen & Adult 5:15pm–6:15pm
+- Friday and Saturday: Zumba 10:30am–11:15am
+- Saturday: Little Ninjas & Kids combo 9:00am–9:45am
+- Friday: private lessons by appointment
+
+An older local file in this repo listed Monday–Thursday through 8:30pm. Do not restore that window.
 
 Zumba runs Friday and Saturday from 10:30am–11:15am. Present it as an active class throughout the site.
 

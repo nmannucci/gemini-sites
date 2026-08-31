@@ -5,12 +5,12 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
 
 <nav class="nav" id="nav">
   <a href="/" class="logo" aria-label="La Jolla Martial Arts — Home">
-    <img src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" />
+    <img src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" title="La Jolla Martial Arts" />
   </a>
   <ul class="nav-links">
     <li><a href="/" class:list={[{ active: isActive('/') }]}>Home</a></li>
     <li class="nav-dropdown">
-      <a href="#programs" class="nav-dropdown-toggle">Programs</a>
+      <a href="/programs" class="nav-dropdown-toggle">Programs</a>
       <ul class="nav-dropdown-menu">
         <li><a href="/little-ninjas">Little Ninjas</a></li>
         <li><a href="/kids-martial-arts">Kids Martial Arts</a></li>
