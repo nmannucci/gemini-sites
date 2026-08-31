@@ -56,6 +56,17 @@
    pages. Uses !important to override each page's <style is:global>.
 ============================================================ */
 :root {
+  /* Brand tokens available on every Layout page (thin pages included).
+     Pages may still override these in their own :root blocks. */
+  --blood-red: #29BEE2;
+  --deep-black: #0A0A0A;
+  --bone-white: #F5F5F0;
+  --steel-gray: #3A3A3A;
+  --off-black: #141414;
+  --light-bg: #F5F5F0;
+  --light-bg-alt: #EAEAE5;
+  --dark-text: #1A1A1A;
+  --muted-text: #5A5A5A;
   --orange: #FF6A1A;
   --orange-dark: #E2560A;
 }
