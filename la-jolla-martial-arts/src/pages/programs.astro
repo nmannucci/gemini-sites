@@ -1,0 +1,214 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+const programs = [
+  {
+    href: '/little-ninjas',
+    image: '/assets/EMA - Post 12.jpg',
+    alt: 'Little Ninjas class training at La Jolla Martial Arts',
+    badge: 'Ages 3–6',
+    title: 'Little Ninjas',
+    copy: 'Beginner Taekwondo for young kids. Listening, coordination, and confidence through short, upbeat classes.',
+  },
+  {
+    href: '/kids-martial-arts',
+    image: '/assets/EMA - Cover Page.jpg',
+    alt: 'Kids martial arts class at La Jolla Martial Arts',
+    badge: 'Ages 7–12',
+    title: 'Kids Martial Arts',
+    copy: 'Structured Taekwondo for school-age kids. Focus, respect, self-defense, and a positive outlet for energy.',
+  },
+  {
+    href: '/teen-martial-arts',
+    image: '/assets/EMA - Post 6.jpg',
+    alt: 'Teen martial arts students at La Jolla Martial Arts',
+    badge: 'Ages 13+',
+    title: 'Teen Martial Arts',
+    copy: 'Teens train with adults. Fitness, discipline, and practical self-defense during the years it matters most.',
+  },
+  {
+    href: '/adult-martial-arts',
+    image: '/assets/EMA Image 2.webp',
+    alt: 'Adult martial arts class at La Jolla Martial Arts',
+    badge: 'Adults',
+    title: 'Adult Martial Arts',
+    copy: 'A real workout plus self-defense. Beginner-friendly Taekwondo in a non-judgmental, family-owned dojo.',
+  },
+  {
+    href: '/zumba',
+    image: '/assets/zumba-banner.jpeg',
+    alt: 'Zumba dance fitness class banner',
+    badge: 'Fri + Sat',
+    title: 'Zumba',
+    copy: '45-minute dance fitness Friday and Saturday, 10:30am–11:15am. First week free. No dance experience needed.',
+  },
+  {
+    href: '/game-zone',
+    image: '/assets/gamezone-jumper-1.webp',
+    alt: 'Child jumping on the Jumper AR trampoline in the Game Zone',
+    badge: 'Ages 6+',
+    title: 'Game Zone',
+    copy: 'AR trampoline and wall laser arena inside the dojo. Open play, class rewards, and birthday parties.',
+  },
+];
+---
+
+<Layout
+  title="Programs | La Jolla Martial Arts"
+  description="Compare Little Ninjas, kids, teen, and adult Taekwondo plus Zumba and the Game Zone at La Jolla Martial Arts in La Jolla."
+  canonical="https://lajollatkd.com/programs"
+>
+  <main class="programs-hub">
+    <header class="programs-hero">
+      <p class="eyebrow">La Jolla Martial Arts</p>
+      <h1>Programs in La Jolla</h1>
+      <p class="lede">
+        Age-based Taekwondo, Zumba dance fitness, and the interactive Game Zone
+        — all at one gym: {site.address}. Call {site.phoneDisplay}.
+      </p>
+      <p class="nap">{site.hoursOneLine}</p>
+    </header>
+
+    <section class="programs-list" aria-label="Program directory">
+      {programs.map((program) => (
+        <a class="card" href={program.href}>
+          <img src={program.image} alt={program.alt} title={program.alt} />
+          <div class="card-body">
+            <span class="badge">{program.badge}</span>
+            <h2>{program.title}</h2>
+            <p>{program.copy}</p>
+            <span class="more">Learn more</span>
+          </div>
+        </a>
+      ))}
+    </section>
+
+    <p class="schedule-note">
+      See exact class times on the <a href="/schedule">weekly schedule</a>,
+      or <a href="/contact">claim a free week</a>.
+    </p>
+  </main>
+</Layout>
+
+<style>
+  .programs-hub {
+    background: #f5f5f0;
+    color: #1a1a1a;
+    padding: 8.5rem 1.5rem 5rem;
+  }
+  .programs-hero {
+    max-width: 760px;
+    margin: 0 auto 3rem;
+  }
+  .eyebrow {
+    color: #29bee2;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5.2rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .lede {
+    color: #5a5a5a;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 0.85rem;
+  }
+  .nap {
+    color: #1a1a1a;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    font-weight: 600;
+  }
+  .programs-list {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #eaeae5;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #29bee2;
+  }
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  .card-body {
+    padding: 1.25rem 1.35rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    flex: 1;
+  }
+  .badge {
+    align-self: flex-start;
+    background: #29bee2;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.65rem;
+  }
+  .card h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .card p {
+    color: #5a5a5a;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    flex: 1;
+  }
+  .more {
+    color: #29bee2;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+  .schedule-note {
+    max-width: 760px;
+    margin: 2.5rem auto 0;
+    text-align: center;
+    color: #5a5a5a;
+    line-height: 1.6;
+  }
+  .schedule-note a {
+    color: #1a1a1a;
+    font-weight: 700;
+  }
+  @media (max-width: 960px) {
+    .programs-list { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .programs-hub { padding: 7rem 1.15rem 3.5rem; }
+    .programs-list { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
 ---
 
 <Layout
@@ -482,7 +483,7 @@ import Layout from '../layouts/Layout.astro';
 <!-- HERO -->
   <header class="hero">
     <div class="hero-background">
-      <img src="/assets/EMA - Post 2.jpg" alt="Eagle Martial Arts class in session">
+      <img src="/assets/EMA - Post 2.jpg" alt="La Jolla Martial Arts class in session">
     </div>
     <div class="hero-container">
       <div class="hero-left">
@@ -657,21 +658,21 @@ import Layout from '../layouts/Layout.astro';
         <span class="icon-wrap"><i data-lucide="map-pin"></i></span>
         <div>
           <h3>Location</h3>
-          <p>7680 Girard Ave, Basement<br>La Jolla, CA 92037</p>
+          <p>{site.brand}<br>{site.streetAddress}<br>{site.addressLocality}, {site.addressRegion} {site.postalCode}</p>
         </div>
       </div>
       <div class="info-card">
         <span class="icon-wrap"><i data-lucide="clock"></i></span>
         <div>
           <h3>Hours</h3>
-          <p>Martial arts: Mon–Thu afternoons + Sat morning<br>Zumba: Fri + Sat, 10:30am–11:15am</p>
+          <p>{site.hoursOneLine}</p>
         </div>
       </div>
       <div class="info-card">
         <span class="icon-wrap"><i data-lucide="phone"></i></span>
         <div>
           <h3>Questions?</h3>
-          <p>Call <a href="tel:8583610961">(858) 361-0961</a> or email <a href="mailto:LJBULLYPROOF@GMAIL.COM">LJBULLYPROOF@GMAIL.COM</a></p>
+          <p>Call <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a> or email <a href={`mailto:${site.email}`}>{site.email}</a></p>
         </div>
       </div>
     </div>

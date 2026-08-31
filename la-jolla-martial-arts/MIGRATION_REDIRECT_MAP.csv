@@ -1,7 +1,7 @@
 old_url,new_url,status_code,implementation_note
 https://lajollamartialarts.com/,https://lajollatkd.com/,301,Apply at the old domain host
 https://lajollamartialarts.com/about,https://lajollatkd.com/about,301,Apply at the old domain host
-https://lajollamartialarts.com/programs,https://lajollatkd.com/#programs,301,Replace with /services/ when the service index exists
+https://lajollamartialarts.com/programs,https://lajollatkd.com/programs,301,Unique programs hub on the active domain
 https://lajollamartialarts.com/little-ninjas,https://lajollatkd.com/little-ninjas,301,Update destination after the core service route launches
 https://lajollamartialarts.com/kids-martial-arts,https://lajollatkd.com/kids-martial-arts,301,Update destination after the core service route launches
 https://lajollamartialarts.com/teen-martial-arts,https://lajollatkd.com/teen-martial-arts,301,Update destination after the core service route launches

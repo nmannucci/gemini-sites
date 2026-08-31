@@ -1,21 +1,25 @@
 ---
+import { site } from '../data/site';
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="footer site-footer">
   <div class="footer-content">
     <div class="footer-logo">
-      <img src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" />
+      <img src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" title="La Jolla Martial Arts" />
     </div>
     <div class="footer-info">
+      <p class="footer-brand">{site.brand}</p>
       <p class="footer-contact">
-        <span>7680 Girard Ave, Basement, La Jolla, CA 92037</span>
+        <span>{site.address}</span>
         <span class="footer-sep" aria-hidden="true">•</span>
-        <a href="tel:8583610961">(858) 361-0961</a>
+        <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
         <span class="footer-sep" aria-hidden="true">•</span>
-        <a href="mailto:LJBULLYPROOF@GMAIL.COM">LJBULLYPROOF@GMAIL.COM</a>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
       </p>
-      <p class="footer-copyright">© {year} La Jolla Martial Arts. All rights reserved.</p>
+      <p class="footer-hours">{site.hoursOneLine}</p>
+      <p class="footer-copyright">© {year} {site.brand}. All rights reserved.</p>
     </div>
     <div class="footer-social">
       <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
@@ -60,6 +64,17 @@ const year = new Date().getFullYear();
     font-size: 0.8rem;
     color: #6B6B6B;
     line-height: 1.6;
+  }
+  footer.site-footer .footer-brand {
+    color: #f5f5f0 !important;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+  footer.site-footer .footer-hours {
+    margin-top: 0.35rem;
+    color: #9a9a9a !important;
   }
   footer.site-footer .footer-info a {
     color: #f5f5f0;
@@ -113,6 +128,9 @@ const year = new Date().getFullYear();
     }
     footer.site-footer .footer-sep {
       display: none;
+    }
+    footer.site-footer .footer-hours {
+      margin-top: 0;
     }
     footer.site-footer .footer-copyright {
       margin-top: 0;
