@@ -8,7 +8,7 @@ const GOOGLE_REVIEW_URL =
 
 <Layout
   title="Rate Your Experience | La Jolla Martial Arts"
-  description="Share how your visit to La Jolla Martial Arts went, then pick up $25 off in the on-site equipment shop."
+  description="Leave a Google review for La Jolla Martial Arts, then show it at the front desk for a $25 equipment shop credit."
   robots="noindex,nofollow"
   canonical="https://lajollatkd.com/review"
   bodyClass="review-funnel"
@@ -19,7 +19,12 @@ const GOOGLE_REVIEW_URL =
       <h1 class="review-title font-display">
         How would you rate your experience at La Jolla Martial Arts?
       </h1>
-      <p class="review-lede">Tap a star to send your rating.</p>
+      <p class="review-lede">Leave a Google review by tapping a star below.</p>
+      <ol class="review-steps">
+        <li>Tap a star to open Google in a new tab.</li>
+        <li>Write your review on Google.</li>
+        <li>Come back to this tab for your $25 shop credit.</li>
+      </ol>
 
       <div
         class="review-stars"
@@ -47,13 +52,17 @@ const GOOGLE_REVIEW_URL =
       <p class="review-kicker">Thanks</p>
       <h2 class="review-title font-display">Thanks for your rating.</h2>
       <p class="review-lede">
-        You earned $25 off in the La Jolla Martial Arts equipment shop. Show this code at the
-        front desk. Google should open so you can leave a review too.
+        Google opened in a new tab so you can leave your review. Come back to this tab for
+        your reward. If it did not open, use the button below.
       </p>
-      <div class="review-code" aria-label="Equipment shop discount code">
+      <p class="review-reward">
+        Show your Google review at the La Jolla Martial Arts front desk and get a $25 credit
+        for the equipment shop.
+      </p>
+      <div class="review-code" aria-label="Equipment shop credit code">
         <span class="review-code-label">Front desk code</span>
         <strong class="review-code-value">REVIEW25</strong>
-        <span class="review-code-note">$25 off in the on-site shop</span>
+        <span class="review-code-note">$25 credit in the on-site shop</span>
       </div>
       <a
         class="btn-primary review-google"
@@ -126,7 +135,53 @@ const GOOGLE_REVIEW_URL =
     font-size: 1rem;
     line-height: 1.6;
     max-width: 28rem;
-    margin: 0 auto 1.5rem;
+    margin: 0 auto 1.15rem;
+  }
+
+  .review-steps {
+    list-style: none;
+    margin: 0 auto 0.25rem;
+    padding: 0;
+    max-width: 26rem;
+    display: grid;
+    gap: 0.55rem;
+    text-align: left;
+    counter-reset: review-step;
+  }
+
+  .review-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    color: var(--muted-text);
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .review-steps li::before {
+    counter-increment: review-step;
+    content: counter(review-step);
+    flex: 0 0 1.45rem;
+    width: 1.45rem;
+    height: 1.45rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.05rem;
+    background: rgba(217, 119, 6, 0.12);
+    color: #b45309;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .review-reward {
+    color: var(--dark-text);
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.55;
+    max-width: 28rem;
+    margin: 0 auto 1.25rem;
   }
 
   .review-stars {
