@@ -560,8 +560,9 @@ import Layout from '../layouts/Layout.astro';
               See The Weekly Rhythm For <span class="program-highlight">Little Ninjas</span>
             </h2>
             <p class="section-intro">
-              Little Ninjas runs Monday through Thursday in a weekday class block, with an additional Saturday morning
-              mixed-age session. Fridays are reserved for private lessons by appointment. Sundays closed.
+              Little Ninjas runs Monday through Thursday in two weekday class blocks — 3:30pm–4:00pm and 4:00pm–4:30pm —
+              with an additional Saturday morning mixed-age session. Fridays are reserved for private lessons by
+              appointment. Sundays closed.
             </p>
           </div>
         </div>
@@ -577,6 +578,43 @@ import Layout from '../layouts/Layout.astro';
               <div class="schedule-day" role="columnheader">Fri</div>
               <div class="schedule-day" role="columnheader">Sat</div>
               <div class="schedule-day" role="columnheader">Sun</div>
+
+              <div class="schedule-time" role="rowheader">3:30pm - 4:00pm</div>
+              <div class="schedule-slot schedule-slot--live" role="cell">
+                <div>
+                  <strong>Little Ninjas</strong>
+                  <span>Ages 3-6</span>
+                </div>
+              </div>
+              <div class="schedule-slot schedule-slot--live" role="cell">
+                <div>
+                  <strong>Little Ninjas</strong>
+                  <span>Ages 3-6</span>
+                </div>
+              </div>
+              <div class="schedule-slot schedule-slot--live" role="cell">
+                <div>
+                  <strong>Little Ninjas</strong>
+                  <span>Ages 3-6</span>
+                </div>
+              </div>
+              <div class="schedule-slot schedule-slot--live" role="cell">
+                <div>
+                  <strong>Little Ninjas</strong>
+                  <span>Ages 3-6</span>
+                </div>
+              </div>
+              <div class="schedule-slot schedule-slot--private" role="cell"><div><strong>Private Lessons</strong><span>By appointment</span></div></div>
+              <div class="schedule-slot schedule-slot--closed" role="cell">
+                <div>
+                  <strong>Closed</strong>
+                </div>
+              </div>
+              <div class="schedule-slot schedule-slot--closed" role="cell">
+                <div>
+                  <strong>Closed</strong>
+                </div>
+              </div>
 
               <div class="schedule-time" role="rowheader">4:00pm - 4:30pm</div>
               <div class="schedule-slot schedule-slot--live" role="cell">
@@ -655,10 +693,19 @@ import Layout from '../layouts/Layout.astro';
             <article class="schedule-mobile-card schedule-mobile-card--live">
               <div class="schedule-mobile-top">
                 <span class="schedule-mobile-day">Mon-Thu</span>
+                <span class="schedule-mobile-time">3:30pm - 4:00pm</span>
+              </div>
+              <strong>Little Ninjas</strong>
+              <p>Weekday Little Ninjas class for ages 3-6.</p>
+            </article>
+
+            <article class="schedule-mobile-card schedule-mobile-card--live">
+              <div class="schedule-mobile-top">
+                <span class="schedule-mobile-day">Mon-Thu</span>
                 <span class="schedule-mobile-time">4:00pm - 4:30pm</span>
               </div>
               <strong>Little Ninjas</strong>
-              <p>Weekday Little Ninjas class block for ages 3-6.</p>
+              <p>Weekday Little Ninjas class for ages 3-6.</p>
             </article>
 
             <article class="schedule-mobile-card schedule-mobile-card--live">
