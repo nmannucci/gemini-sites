@@ -105,7 +105,9 @@
   .schedule-mobile-weekend .schedule-mobile-card:not(.schedule-mobile-card--wide) {
     grid-template-columns: 1fr;
     align-items: start;
-    padding: 0.65rem 0.7rem 0.7rem;
+    align-content: start;
+    min-height: 100%;
+    padding: 0.6rem 0.65rem 0.65rem;
   }
 
   .schedule-mobile-card--wide {
@@ -129,7 +131,7 @@
   }
 
   .schedule-mobile-weekend .schedule-mobile-card:not(.schedule-mobile-card--wide) .schedule-mobile-time {
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.3rem;
   }
 
   .schedule-mobile-card strong {
@@ -140,6 +142,10 @@
     text-transform: uppercase;
     line-height: 1.05;
     margin: 0 0 0.12rem;
+  }
+
+  .schedule-mobile-weekend .schedule-mobile-card:not(.schedule-mobile-card--wide) strong {
+    font-size: 1.02rem;
   }
 
   .schedule-mobile-card p {
