@@ -1,0 +1,208 @@
+---
+/**
+ * Compact mobile weekly schedule. Hidden on desktop where `.schedule-grid` is used.
+ * Weekdays share one Mon–Thu heading; Fri/Sat use a 2-column tile grid.
+ */
+---
+
+<div class="schedule-mobile" aria-label="Weekly schedule mobile preview">
+  <div class="schedule-mobile-block">
+    <h3 class="schedule-mobile-heading">Mon–Thu</h3>
+    <div class="schedule-mobile-weekdays">
+      <article class="schedule-mobile-card schedule-mobile-card--little">
+        <span class="schedule-mobile-time">3:30–4:30pm</span>
+        <div class="schedule-mobile-body">
+          <strong>Little Ninjas</strong>
+          <p>Two back-to-back sessions · ages 3–6</p>
+        </div>
+      </article>
+      <article class="schedule-mobile-card schedule-mobile-card--kids">
+        <span class="schedule-mobile-time">4:30–5:15pm</span>
+        <div class="schedule-mobile-body">
+          <strong>Kids Martial Arts</strong>
+          <p>Ages 7–12</p>
+        </div>
+      </article>
+      <article class="schedule-mobile-card schedule-mobile-card--teen">
+        <span class="schedule-mobile-time">5:15–6:15pm</span>
+        <div class="schedule-mobile-body">
+          <strong>Teen &amp; Adult</strong>
+          <p>Ages 13+</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div class="schedule-mobile-block">
+    <h3 class="schedule-mobile-heading">Fri–Sat</h3>
+    <div class="schedule-mobile-weekend">
+      <article class="schedule-mobile-card schedule-mobile-card--combo">
+        <span class="schedule-mobile-day">Saturday</span>
+        <span class="schedule-mobile-time">9:00–9:45am</span>
+        <strong>Little Ninjas &amp; Kids Combo</strong>
+        <p>Ages 3–12</p>
+      </article>
+      <article class="schedule-mobile-card schedule-mobile-card--zumba">
+        <span class="schedule-mobile-day">Fri + Sat</span>
+        <span class="schedule-mobile-time">10:30–11:15am</span>
+        <strong>Zumba</strong>
+        <p>Dance fitness. <a href="/zumba#zumba-signup">Try a class</a>.</p>
+      </article>
+      <article class="schedule-mobile-card schedule-mobile-card--private schedule-mobile-card--wide">
+        <span class="schedule-mobile-time">Friday</span>
+        <div class="schedule-mobile-body">
+          <strong>Private Lessons</strong>
+          <p>By appointment outside Zumba. Sundays closed.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<style>
+  .schedule-mobile {
+    display: none;
+    margin-top: 1.25rem;
+    gap: 1.1rem;
+  }
+
+  .schedule-mobile-block {
+    min-width: 0;
+  }
+
+  .schedule-mobile-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.12rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dark-text);
+    margin: 0 0 0.5rem;
+  }
+
+  .schedule-mobile-weekdays {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .schedule-mobile-weekend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45rem;
+  }
+
+  .schedule-mobile-card {
+    display: grid;
+    grid-template-columns: 5.75rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.45rem 0.7rem;
+    padding: 0.62rem 0.7rem;
+    border: 1px solid rgba(20, 20, 20, 0.08);
+    box-shadow: 0 8px 18px rgba(10, 10, 10, 0.05);
+    color: var(--dark-text);
+    min-width: 0;
+  }
+
+  .schedule-mobile-weekend .schedule-mobile-card:not(.schedule-mobile-card--wide) {
+    grid-template-columns: 1fr;
+    align-items: start;
+    padding: 0.65rem 0.7rem 0.7rem;
+  }
+
+  .schedule-mobile-card--wide {
+    grid-column: 1 / -1;
+  }
+
+  .schedule-mobile-day {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.92rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .schedule-mobile-time {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.02rem;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  .schedule-mobile-weekend .schedule-mobile-card:not(.schedule-mobile-card--wide) .schedule-mobile-time {
+    margin-bottom: 0.35rem;
+  }
+
+  .schedule-mobile-card strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.12rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin: 0 0 0.12rem;
+  }
+
+  .schedule-mobile-card p {
+    margin: 0;
+    line-height: 1.35;
+    font-size: 0.74rem;
+    color: inherit;
+    opacity: 0.78;
+  }
+
+  .schedule-mobile-card a {
+    color: inherit;
+    font-weight: 700;
+    text-underline-offset: 2px;
+  }
+
+  .schedule-mobile-card--little {
+    background: linear-gradient(180deg, #fde8b8, #f9d682);
+    border-color: rgba(180, 120, 20, 0.18);
+  }
+
+  .schedule-mobile-card--kids {
+    background: linear-gradient(180deg, #d8f3ef, #b8ebe3);
+    border-color: rgba(15, 118, 110, 0.18);
+  }
+
+  .schedule-mobile-card--teen {
+    background: linear-gradient(180deg, #f6b9b0, #ef8f82);
+    border-color: rgba(153, 27, 27, 0.22);
+    color: #3a0d0d;
+  }
+
+  .schedule-mobile-card--combo {
+    background: linear-gradient(180deg, #f9d9d4, #f3b7af);
+    border-color: rgba(153, 27, 27, 0.18);
+  }
+
+  .schedule-mobile-card--zumba {
+    background: linear-gradient(145deg, #f9f7bf, #d7ef50);
+    border-color: rgba(117, 134, 0, 0.28);
+    color: #2d3300;
+  }
+
+  .schedule-mobile-card--private {
+    background: linear-gradient(180deg, #fde7d2, #f8c98e);
+    border-color: rgba(176, 96, 18, 0.25);
+    color: #5a3210;
+  }
+
+  @media (max-width: 820px) {
+    .schedule-mobile {
+      display: grid;
+    }
+  }
+
+  @media (max-width: 340px) {
+    .schedule-mobile-card {
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+    }
+
+    .schedule-mobile-weekend {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
