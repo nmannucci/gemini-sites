@@ -1,7 +1,7 @@
 ---
 /**
  * Compact mobile weekly schedule. Hidden on desktop where `.schedule-grid` is used.
- * Weekdays share one Mon–Thu heading; Fri/Sat use a 2-column tile grid.
+ * Weekdays share one Mon–Thu heading; Fri/Sat use the same full-width stacked cards.
  */
 ---
 
@@ -37,18 +37,26 @@
     <h3 class="schedule-mobile-heading">Fri–Sat</h3>
     <div class="schedule-mobile-weekend">
       <article class="schedule-mobile-card schedule-mobile-card--combo">
-        <span class="schedule-mobile-day">Saturday</span>
-        <span class="schedule-mobile-time">9:00–9:45am</span>
-        <strong>Little Ninjas &amp; Kids Combo</strong>
-        <p>Ages 3–12</p>
+        <div class="schedule-mobile-when">
+          <span class="schedule-mobile-day">Saturday</span>
+          <span class="schedule-mobile-time">9:00–9:45am</span>
+        </div>
+        <div class="schedule-mobile-body">
+          <strong>Little Ninjas &amp; Kids Combo</strong>
+          <p>Ages 3–12</p>
+        </div>
       </article>
       <article class="schedule-mobile-card schedule-mobile-card--zumba">
-        <span class="schedule-mobile-day">Fri + Sat</span>
-        <span class="schedule-mobile-time">10:30–11:15am</span>
-        <strong>Zumba</strong>
-        <p>Dance fitness. <a href="/zumba#zumba-signup">Try a class</a>.</p>
+        <div class="schedule-mobile-when">
+          <span class="schedule-mobile-day">Fri + Sat</span>
+          <span class="schedule-mobile-time">10:30–11:15am</span>
+        </div>
+        <div class="schedule-mobile-body">
+          <strong>Zumba</strong>
+          <p>Dance fitness. <a href="/zumba#zumba-signup">Try a class</a>.</p>
+        </div>
       </article>
-      <article class="schedule-mobile-card schedule-mobile-card--private schedule-mobile-card--wide">
+      <article class="schedule-mobile-card schedule-mobile-card--private">
         <span class="schedule-mobile-time">Friday</span>
         <div class="schedule-mobile-body">
           <strong>Private Lessons</strong>
@@ -79,15 +87,11 @@
     margin: 0 0 0.5rem;
   }
 
-  .schedule-mobile-weekdays {
-    display: grid;
-    gap: 0.4rem;
-  }
-
+  .schedule-mobile-weekdays,
   .schedule-mobile-weekend {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.45rem;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
   }
 
   .schedule-mobile-card {
@@ -102,24 +106,19 @@
     min-width: 0;
   }
 
-  .schedule-mobile-weekend .schedule-mobile-card:not(.schedule-mobile-card--wide) {
-    grid-template-columns: 1fr;
-    align-items: start;
-    align-content: start;
-    min-height: 100%;
-    padding: 0.6rem 0.65rem 0.65rem;
-  }
-
-  .schedule-mobile-card--wide {
-    grid-column: 1 / -1;
+  .schedule-mobile-when {
+    display: grid;
+    gap: 0.12rem;
+    min-width: 0;
   }
 
   .schedule-mobile-day {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.92rem;
+    font-size: 0.78rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     line-height: 1;
+    opacity: 0.72;
   }
 
   .schedule-mobile-time {
@@ -130,10 +129,6 @@
     text-transform: uppercase;
   }
 
-  .schedule-mobile-weekend .schedule-mobile-card:not(.schedule-mobile-card--wide) .schedule-mobile-time {
-    margin-bottom: 0.3rem;
-  }
-
   .schedule-mobile-card strong {
     display: block;
     font-family: 'Bebas Neue', sans-serif;
@@ -142,10 +137,6 @@
     text-transform: uppercase;
     line-height: 1.05;
     margin: 0 0 0.12rem;
-  }
-
-  .schedule-mobile-weekend .schedule-mobile-card:not(.schedule-mobile-card--wide) strong {
-    font-size: 1.02rem;
   }
 
   .schedule-mobile-card p {
@@ -205,10 +196,6 @@
     .schedule-mobile-card {
       grid-template-columns: 1fr;
       gap: 0.2rem;
-    }
-
-    .schedule-mobile-weekend {
-      grid-template-columns: 1fr;
     }
   }
 </style>
