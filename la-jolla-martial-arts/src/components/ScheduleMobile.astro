@@ -1,66 +1,128 @@
 ---
 /**
  * Compact mobile weekly schedule. Hidden on desktop where `.schedule-grid` is used.
- * Weekdays share one Mon–Thu heading; Fri/Sat use the same full-width stacked cards.
+ * `focus` filters rows for program pages; chrome/colors stay the same sitewide.
  */
+type Focus = 'full' | 'little-ninjas' | 'kids' | 'teen-adult';
+
+interface Props {
+  focus?: Focus;
+}
+
+const { focus = 'full' } = Astro.props;
+
+const labels: Record<Focus, string> = {
+  full: 'Weekly schedule mobile preview',
+  'little-ninjas': 'Little Ninjas mobile schedule preview',
+  kids: 'Kids Martial Arts mobile schedule preview',
+  'teen-adult': 'Teen & Adult mobile schedule preview',
+};
+
+const showLittleCombined = focus === 'full';
+const showLittleSplit = focus === 'little-ninjas';
+const showKids = focus === 'full' || focus === 'kids';
+const showTeen = focus === 'full' || focus === 'teen-adult';
+const showCombo = focus === 'full' || focus === 'little-ninjas' || focus === 'kids';
+const showZumba = focus === 'full';
+const showWeekdays = showLittleCombined || showLittleSplit || showKids || showTeen;
+const weekendHeading = showCombo || showZumba ? 'Fri–Sat' : 'Friday';
+
+const privateCopy =
+  focus === 'little-ninjas'
+    ? 'By appointment. No Little Ninjas class Friday or Sunday.'
+    : focus === 'kids'
+      ? 'By appointment. No Kids class Friday or Sunday.'
+      : focus === 'teen-adult'
+        ? 'By appointment. Saturdays and Sundays closed.'
+        : 'By appointment outside Zumba. Sundays closed.';
 ---
 
-<div class="schedule-mobile" aria-label="Weekly schedule mobile preview">
-  <div class="schedule-mobile-block">
-    <h3 class="schedule-mobile-heading">Mon–Thu</h3>
-    <div class="schedule-mobile-weekdays">
-      <article class="schedule-mobile-card schedule-mobile-card--little">
-        <span class="schedule-mobile-time">3:30–4:30pm</span>
-        <div class="schedule-mobile-body">
-          <strong>Little Ninjas</strong>
-          <p>Two back-to-back sessions · ages 3–6</p>
-        </div>
-      </article>
-      <article class="schedule-mobile-card schedule-mobile-card--kids">
-        <span class="schedule-mobile-time">4:30–5:15pm</span>
-        <div class="schedule-mobile-body">
-          <strong>Kids Martial Arts</strong>
-          <p>Ages 7–12</p>
-        </div>
-      </article>
-      <article class="schedule-mobile-card schedule-mobile-card--teen">
-        <span class="schedule-mobile-time">5:15–6:15pm</span>
-        <div class="schedule-mobile-body">
-          <strong>Teen &amp; Adult</strong>
-          <p>Ages 13+</p>
-        </div>
-      </article>
+<div class="schedule-mobile" aria-label={labels[focus]}>
+  {showWeekdays && (
+    <div class="schedule-mobile-block">
+      <h3 class="schedule-mobile-heading">Mon–Thu</h3>
+      <div class="schedule-mobile-weekdays">
+        {showLittleCombined && (
+          <article class="schedule-mobile-card schedule-mobile-card--little">
+            <span class="schedule-mobile-time">3:30–4:30pm</span>
+            <div class="schedule-mobile-body">
+              <strong>Little Ninjas</strong>
+              <p>Two back-to-back sessions · ages 3–6</p>
+            </div>
+          </article>
+        )}
+        {showLittleSplit && (
+          <>
+            <article class="schedule-mobile-card schedule-mobile-card--little">
+              <span class="schedule-mobile-time">3:30–4:00pm</span>
+              <div class="schedule-mobile-body">
+                <strong>Little Ninjas</strong>
+                <p>Ages 3–6</p>
+              </div>
+            </article>
+            <article class="schedule-mobile-card schedule-mobile-card--little">
+              <span class="schedule-mobile-time">4:00–4:30pm</span>
+              <div class="schedule-mobile-body">
+                <strong>Little Ninjas</strong>
+                <p>Ages 3–6</p>
+              </div>
+            </article>
+          </>
+        )}
+        {showKids && (
+          <article class="schedule-mobile-card schedule-mobile-card--kids">
+            <span class="schedule-mobile-time">4:30–5:15pm</span>
+            <div class="schedule-mobile-body">
+              <strong>Kids Martial Arts</strong>
+              <p>Ages 7–12</p>
+            </div>
+          </article>
+        )}
+        {showTeen && (
+          <article class="schedule-mobile-card schedule-mobile-card--teen">
+            <span class="schedule-mobile-time">5:15–6:15pm</span>
+            <div class="schedule-mobile-body">
+              <strong>Teen &amp; Adult</strong>
+              <p>Ages 13+</p>
+            </div>
+          </article>
+        )}
+      </div>
     </div>
-  </div>
+  )}
 
   <div class="schedule-mobile-block">
-    <h3 class="schedule-mobile-heading">Fri–Sat</h3>
+    <h3 class="schedule-mobile-heading">{weekendHeading}</h3>
     <div class="schedule-mobile-weekend">
-      <article class="schedule-mobile-card schedule-mobile-card--combo">
-        <div class="schedule-mobile-when">
-          <span class="schedule-mobile-day">Saturday</span>
-          <span class="schedule-mobile-time">9:00–9:45am</span>
-        </div>
-        <div class="schedule-mobile-body">
-          <strong>Little Ninjas &amp; Kids Combo</strong>
-          <p>Ages 3–12</p>
-        </div>
-      </article>
-      <article class="schedule-mobile-card schedule-mobile-card--zumba">
-        <div class="schedule-mobile-when">
-          <span class="schedule-mobile-day">Fri + Sat</span>
-          <span class="schedule-mobile-time">10:30–11:15am</span>
-        </div>
-        <div class="schedule-mobile-body">
-          <strong>Zumba</strong>
-          <p>Dance fitness. <a href="/zumba#zumba-signup">Try a class</a>.</p>
-        </div>
-      </article>
+      {showCombo && (
+        <article class="schedule-mobile-card schedule-mobile-card--combo">
+          <div class="schedule-mobile-when">
+            <span class="schedule-mobile-day">Saturday</span>
+            <span class="schedule-mobile-time">9:00–9:45am</span>
+          </div>
+          <div class="schedule-mobile-body">
+            <strong>Little Ninjas &amp; Kids Combo</strong>
+            <p>Ages 3–12</p>
+          </div>
+        </article>
+      )}
+      {showZumba && (
+        <article class="schedule-mobile-card schedule-mobile-card--zumba">
+          <div class="schedule-mobile-when">
+            <span class="schedule-mobile-day">Fri + Sat</span>
+            <span class="schedule-mobile-time">10:30–11:15am</span>
+          </div>
+          <div class="schedule-mobile-body">
+            <strong>Zumba</strong>
+            <p>Dance fitness. <a href="/zumba#zumba-signup">Try a class</a>.</p>
+          </div>
+        </article>
+      )}
       <article class="schedule-mobile-card schedule-mobile-card--private">
         <span class="schedule-mobile-time">Friday</span>
         <div class="schedule-mobile-body">
           <strong>Private Lessons</strong>
-          <p>By appointment outside Zumba. Sundays closed.</p>
+          <p>{privateCopy}</p>
         </div>
       </article>
     </div>

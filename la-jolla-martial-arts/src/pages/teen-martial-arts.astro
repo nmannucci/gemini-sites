@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ScheduleMobile from '../components/ScheduleMobile.astro';
 ---
 
 <Layout
@@ -183,69 +184,9 @@ import Layout from '../layouts/Layout.astro';
       font-size: 1.15rem;
     }
 
-    .schedule-mobile {
-      display: none;
-      margin-top: 1.25rem;
-      gap: 1rem;
-    }
-
-    .schedule-mobile-card {
-      background: #ffffff;
-      border: 1px solid rgba(20, 20, 20, 0.08);
-      box-shadow: 0 14px 28px rgba(10, 10, 10, 0.07);
-      padding: 1rem;
-      color: var(--dark-text);
-    }
-
-    .schedule-mobile-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .schedule-mobile-day {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 1.25rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .schedule-mobile-time {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--blood-red);
-    }
-
-    .schedule-mobile-card strong {
-      display: block;
-      margin-bottom: 0.3rem;
-      font-size: 1rem;
-    }
-
-    .schedule-mobile-card p {
-      color: var(--muted-text);
-      line-height: 1.6;
-    }
-
-    .schedule-mobile-card--live {
-      border-left: 4px solid var(--blood-red);
-    }
-
-    .schedule-mobile-card--off {
-      border-left: 4px solid #d4d4d8;
-    }
-
-    @media (max-width: 760px) {
+    @media (max-width: 820px) {
       .schedule-board-scroll {
         display: none;
-      }
-
-      .schedule-mobile {
-        display: grid;
       }
     }
 
@@ -608,25 +549,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
 
-          <div class="schedule-mobile" aria-label="Teen Martial Arts mobile schedule preview">
-            <article class="schedule-mobile-card schedule-mobile-card--live">
-              <div class="schedule-mobile-top">
-                <span class="schedule-mobile-day">Mon-Thu</span>
-                <span class="schedule-mobile-time">5:15pm - 6:15pm</span>
-              </div>
-              <strong>Teen &amp; Adult Martial Arts</strong>
-              <p>Combined Teen &amp; Adult class for ages 13+.</p>
-            </article>
-
-            <article class="schedule-mobile-card schedule-mobile-card--off">
-              <div class="schedule-mobile-top">
-                <span class="schedule-mobile-day">Friday</span>
-                <span class="schedule-mobile-time">By appointment</span>
-              </div>
-              <strong>Private Lessons</strong>
-              <p>Fridays are reserved for private lessons by appointment. Saturdays and Sundays closed.</p>
-            </article>
-          </div>
+          <ScheduleMobile focus="teen-adult" />
         </div>
       </div>
     </section>
