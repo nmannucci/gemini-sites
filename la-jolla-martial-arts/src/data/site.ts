@@ -57,7 +57,7 @@ export const businessSchema = {
   name: site.brand,
   legalName: site.legalName,
   description:
-    'La Jolla Martial Arts offers world-class Taekwondo training for all ages. Build discipline, confidence, and self-defense skills at our family-owned dojo with 40+ years of teaching experience.',
+    'La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.',
   url: `${SITE_URL}/`,
   telephone: site.telephone,
   image: `${SITE_URL}/assets/EMA%20-%20Post.jpg`,
