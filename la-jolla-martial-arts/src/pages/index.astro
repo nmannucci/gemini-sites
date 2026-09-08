@@ -12,6 +12,14 @@ const websiteSchema = {
 
 const homepageFaqs = [
   {
+    question: 'Is La Jolla Martial Arts a kids martial arts and Taekwondo school?',
+    answer: 'Yes. La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience, and we teach kids, teens, and adults at 7680 Girard Ave, Basement.',
+  },
+  {
+    question: 'Do you offer adult martial arts classes in La Jolla?',
+    answer: 'Yes. La Jolla Martial Arts offers adult martial arts classes in La Jolla as a combined Teen & Adult Taekwondo class, Monday through Thursday from 5:15pm to 6:15pm at 7680 Girard Ave, Basement.',
+  },
+  {
     question: 'Can martial arts help my child with self-control?',
     answer: 'Yes. Self-control is a core part of martial arts training. Kids practice listening, regulating their actions, and learning that discipline helps them succeed both on and off the mat.',
   },
@@ -65,7 +73,7 @@ const faqSchema = {
 
 <Layout
   title={`Kids Martial Arts Taekwondo Karate | La Jolla San Diego`}
-  description={`Kids taekwondo and karate at La Jolla Martial Arts LLC. Build discipline, confidence, and self-defense at our La Jolla dojo.`}
+  description={`Kids martial arts and Taekwondo in La Jolla. Discipline, confidence, and self-defense at La Jolla Martial Arts with Master Sam.`}
 >
   <Fragment slot="head">
 <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
@@ -647,6 +655,17 @@ const faqSchema = {
       color: var(--dark-text);
     }
 
+    .about .btn-secondary {
+      color: var(--dark-text);
+      border-color: rgba(26, 26, 26, 0.28);
+    }
+
+    .about .btn-secondary:hover {
+      background: var(--dark-text);
+      color: var(--bone-white);
+      border-color: var(--dark-text);
+    }
+
     /* ============================================
        PROGRAMS SECTION (LIGHT)
     ============================================ */
@@ -858,6 +877,12 @@ const faqSchema = {
 
     .programs-footer strong {
       color: var(--dark-text);
+    }
+
+    .programs-footer a:not(.btn-primary) {
+      color: var(--blood-red);
+      font-weight: 700;
+      font-style: normal;
     }
 
     /* ============================================
@@ -2129,9 +2154,9 @@ const faqSchema = {
           <span>in La Jolla San Diego</span>
         </h1>
         <p class="hero-subtitle">
-          Give your child the superpower of discipline, confidence, and self-defense —
-          start with a <strong>free trial week</strong>. World-class Taekwondo training for
-          ages 3 to adult in La Jolla.
+          La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla.
+          Give your child discipline, confidence, and self-defense with Master Sam —
+          40+ years of teaching experience at 7680 Girard Ave, Basement.
         </p>
 
         <div class="cta-group">
@@ -2208,6 +2233,35 @@ const faqSchema = {
     </div>
   </section>
 
+  <!-- School identity — quotable kids martial arts + Taekwondo copy -->
+  <section class="section about" id="about-school">
+    <div class="about__container">
+      <div class="about__image">
+        <img src="/assets/EMA - Post 12.jpg" alt="Kids martial arts and Taekwondo class at La Jolla Martial Arts" title="Kids martial arts and Taekwondo class at La Jolla Martial Arts">
+      </div>
+      <div class="about__content">
+        <p class="about__eyebrow">Kids Martial Arts in La Jolla</p>
+        <h2 class="about__title font-display">A Taekwondo School <em>For Kids And Families</em></h2>
+        <div class="about__desc">
+          <p>
+            <strong>La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla.</strong>
+            We teach children, teens, and adults at 7680 Girard Ave, Basement, with Master Sam and
+            40+ years of teaching experience.
+          </p>
+          <p>
+            Classes are structured, beginner-friendly, and built around discipline, confidence,
+            respect, and self-defense — not just a workout. Little Ninjas, kids martial arts,
+            teen, and adult Taekwondo all train under one roof.
+          </p>
+        </div>
+        <div class="cta-group">
+          <a href="/about" class="btn-primary">Meet The School</a>
+          <a href="/programs" class="btn-secondary">See All Programs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Programs Section -->
   <section class="section programs" id="programs">
     <div class="programs-header">
@@ -2217,9 +2271,10 @@ const faqSchema = {
           Taekwondo For <span class="accent">Every</span> Age
         </h2>
         <p>
-          Programs designed to leave a lasting positive impact on overall personality.
-          Whether your child is stepping onto the mat for the first time or you're an
-          adult looking for fitness, we have a structured program built for you.
+          La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla,
+          with structured classes for Little Ninjas, kids, teens, and adults. Whether your
+          child is stepping onto the mat for the first time or you want adult martial arts
+          classes, we have a program built for you.
         </p>
       </div>
     </div>
@@ -2255,8 +2310,8 @@ const faqSchema = {
           <h3 class="program-title font-display">Kids Martial Arts</h3>
           <p class="program-age">Ages 7-12</p>
           <p class="program-description">
-            Build character, self-esteem, and positive energy in a supportive environment.
-            Great for helping kids, including those with ADHD, find structure and discipline.
+            Kids martial arts classes in La Jolla that teach Taekwondo for ages 7–12.
+            Build character, self-esteem, and structure in a supportive environment.
           </p>
           <ul class="program-features">
             <li>Anti-bullying skills</li>
@@ -2311,7 +2366,7 @@ const faqSchema = {
     </div>
 
     <div class="programs-footer">
-      <p>Not sure which class is right? <strong>Try our 1 Week FREE Martial Arts Classes.</strong></p>
+      <p>Not sure which class is right? <strong>Try our 1 Week FREE Martial Arts Classes.</strong> Or <a href="/programs">see all programs</a>.</p>
       <a href="#get-started" class="btn-primary">Book Your Free Trial</a>
     </div>
   </section>
