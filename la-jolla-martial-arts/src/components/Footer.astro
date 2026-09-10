@@ -20,6 +20,9 @@ const year = new Date().getFullYear();
       </p>
       <p class="footer-hours">{site.hoursOneLine}</p>
       <p class="footer-copyright">© {year} {site.brand}. All rights reserved.</p>
+      <p class="footer-credit">
+        <a href="https://house36marketing.com" target="_blank" rel="noopener noreferrer">Built by House36 Marketing</a>
+      </p>
     </div>
     <div class="footer-social">
       <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
@@ -82,6 +85,13 @@ const year = new Date().getFullYear();
   }
   footer.site-footer .footer-info a:hover { color: #29BEE2; }
   footer.site-footer .footer-copyright { margin-top: 0.5rem; }
+  footer.site-footer .footer-credit { margin-top: 0.25rem; }
+  footer.site-footer .footer-credit a {
+    color: #8a8a8a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  footer.site-footer .footer-credit a:hover { color: #29BEE2; }
   footer.site-footer .footer-social {
     display: flex;
     gap: 0.75rem;
@@ -137,6 +147,10 @@ const year = new Date().getFullYear();
       font-size: 0.72rem;
       letter-spacing: 0.04em;
       color: #6B6B6B;
+    }
+    footer.site-footer .footer-credit {
+      margin-top: -0.45rem;
+      font-size: 0.72rem;
     }
     footer.site-footer .footer-social {
       gap: 0.9rem;

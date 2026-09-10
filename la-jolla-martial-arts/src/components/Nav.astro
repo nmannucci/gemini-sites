@@ -1,4 +1,6 @@
 ---
+interface Props { ctaText?: string; ctaHref?: string; }
+const { ctaText = 'Claim My Free Week', ctaHref = '/contact' } = Astro.props;
 const { pathname } = Astro.url;
 const isActive = (href: string) => pathname === href || pathname === href + '/';
 ---
@@ -27,7 +29,7 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
     <li><a href="/#reviews">Reviews</a></li>
     <li><a href="/contact">Contact</a></li>
   </ul>
-  <a href="/contact" class="nav-cta">Claim My Free Week</a>
+  <a href={ctaHref} class="nav-cta">{ctaText}</a>
   <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
     <span></span><span></span><span></span>
   </button>
@@ -42,7 +44,7 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
         <a href="/schedule">Schedule</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
-        <a href="/contact" class="mobile-menu-cta">Claim My Free Week</a>
+        <a href={ctaHref} class="mobile-menu-cta">{ctaText}</a>
       </div>
 
       <div class="mobile-menu-panel" id="mobileProgramsPanel" data-menu-panel="programs" aria-label="Programs">
@@ -335,3 +337,81 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
     }
   }
 </style>
+<script is:inline>
+    (function () {
+      var t = document.querySelector('.nav-toggle');
+      var m = document.getElementById('mobileMenu');
+      if (!t || !m) return;
+
+      var programsTrigger = m.querySelector('.mobile-programs-trigger');
+      var programsBack = m.querySelector('.mobile-programs-back');
+
+      function showPanel(name) {
+        // Focusing a control in the offscreen panel can make browsers scroll
+        // this overflow-hidden container horizontally. Keep the slide solely
+        // under the track transform's control.
+        m.scrollLeft = 0;
+        m.setAttribute('data-panel', name);
+        if (programsTrigger) programsTrigger.setAttribute('aria-expanded', String(name === 'programs'));
+      }
+
+      function focusWithoutScrolling(control) {
+        if (!control) return;
+        try {
+          control.focus({ preventScroll: true });
+        } catch (_) {
+          control.focus();
+          m.scrollLeft = 0;
+        }
+      }
+
+      function closeMenu() {
+        t.setAttribute('aria-expanded', 'false');
+        m.setAttribute('data-open', 'false');
+        showPanel('main');
+      }
+
+      t.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = t.getAttribute('aria-expanded') === 'true';
+        if (open) {
+          closeMenu();
+        } else {
+          t.setAttribute('aria-expanded', 'true');
+          m.setAttribute('data-open', 'true');
+          showPanel('main');
+        }
+      });
+
+      if (programsTrigger) {
+        programsTrigger.addEventListener('click', function () {
+          showPanel('programs');
+          focusWithoutScrolling(programsBack);
+        });
+      }
+
+      if (programsBack) {
+        programsBack.addEventListener('click', function () {
+          showPanel('main');
+          focusWithoutScrolling(programsTrigger);
+        });
+      }
+
+      m.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          closeMenu();
+        });
+      });
+      document.addEventListener('click', function (e) {
+        if (!t.contains(e.target) && !m.contains(e.target) && m.getAttribute('data-open') === 'true') {
+          closeMenu();
+        }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && m.getAttribute('data-open') === 'true') {
+          closeMenu();
+          t.focus();
+        }
+      });
+    })();
+</script>

@@ -3,6 +3,7 @@
  * LpPage — full PPC landing page. Each ad-group page supplies its hero + meta;
  * body content defaults to the kids version and can be overridden (e.g. the adult page).
  */
+import Nav from './Nav.astro';
 import LpLayout from '../layouts/LpLayout.astro';
 
 const phone = '(858) 361-0961';
@@ -93,11 +94,10 @@ const {
   faqs = DEFAULT_FAQS,
   // map + final
   scheduleLine = 'Classes Mon–Thu afternoons + Saturday mornings.',
-  finalNote = 'Summer special: your child’s first week is on us. See the class times and reserve a spot.',
+  finalNote = 'Your first week is on us. See the class times and reserve a spot.',
   // offer microcopy (overridable per page; defaults = the free-trial offer)
-  promoBanner = '☀️ SUMMER SPECIAL: Get Your <strong>First Week Free</strong> · Limited Spots',
-  headerCtaText = 'See Class Schedule',
-  formBadge = 'Summer Special · 1 Week Free',
+  headerCtaText = 'Claim My Free Week',
+  formBadge = '1 Week Free',
   formTitle = 'Get The Class Schedule',
   formSubtitle = 'See class times and claim your free week.',
   formSubmit = 'Send Me Your Class Schedule',
@@ -108,19 +108,8 @@ const {
 } = Astro.props;
 ---
 
-<LpLayout title={title} description={description} leadSource={leadSource} ogImage={ogImage}>
-  <!-- Sticky top: banner always; nav sticks too on desktop -->
-  <div class="lp-topstick">
-    <div class="promo-banner" set:html={promoBanner}></div>
-    <header class="lp-header">
-      <div class="inner">
-        <img src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" />
-        <div class="actions">
-          <a class="lp-sched" href="#schedule"><i data-lucide="calendar"></i> {headerCtaText}</a>
-        </div>
-      </div>
-    </header>
-  </div>
+<LpLayout title={title} description={description} leadSource={leadSource} ogImage={ogImage} ctaText={headerCtaText}>
+  <Nav ctaText={headerCtaText} ctaHref="#schedule" />
 
   <!-- Hero -->
   <section class="hero">
@@ -141,12 +130,13 @@ const {
           <div class="stat-item"><h3 class="font-display">300+</h3><p>Black Belts Trained</p></div>
           <div class="stat-item"><h3 class="font-display">5.0★</h3><p>49+ Reviews</p></div>
         </div>
+        <div class="cta-group lp-hero-cta">
+          <a href="#hero-form" class="btn-primary">{headerCtaText}</a>
+        </div>
       </div>
 
-      <div class="hero-photo-mobile"><img src={heroImg} alt={heroImgAlt} /></div>
-
       <div class="hero-right">
-        <div class="hero-form-container">
+        <div class="hero-form-container" id="hero-form">
           <form class="hero-form" novalidate data-lead-form>
             <div class="hero-form-header">
               <span class="hero-form-badge">{formBadge}</span>
@@ -354,5 +344,8 @@ const {
       <a href="/privacy">Privacy Policy</a>
     </div>
     <div>© 2026 La Jolla Martial Arts. All rights reserved.</div>
+    <div class="footer-credit">
+      <a href="https://house36marketing.com" target="_blank" rel="noopener noreferrer">Built by House36 Marketing</a>
+    </div>
   </footer>
 </LpLayout>
