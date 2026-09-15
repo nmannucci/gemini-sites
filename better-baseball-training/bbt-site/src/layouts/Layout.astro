@@ -1,6 +1,7 @@
 ---
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import PostHog from '../components/PostHog.astro';
 import '../styles/global.css';
 
 export interface Props {
@@ -52,6 +53,8 @@ const ogImageUrl = new URL(ogImage, site).toString();
     gtag('js', new Date());
     gtag('config', 'G-XW6CTZ09TV');
   </script>
+
+  <PostHog />
 
   <title>{title}</title>
   <meta name="description" content={description} />
@@ -131,6 +134,14 @@ const ogImageUrl = new URL(ogImage, site).toString();
             data.source = form.dataset.leadSource || window.location.pathname;
           }
 
+          if (window.posthog) {
+            window.posthog.capture('booking_started', {
+              from: 'lead_form',
+              form_id: data.source || form.dataset.leadSource || 'website-lead-form',
+              page_path: window.location.pathname,
+            });
+          }
+
           if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
 
           try {
@@ -151,9 +162,20 @@ const ogImageUrl = new URL(ogImage, site).toString();
               });
             }
 
+            if (window.posthog) {
+              window.posthog.capture('booking_completed', {
+                source: 'lead_form',
+                form_id: data.source || form.dataset.leadSource || 'website-lead-form',
+                page_path: window.location.pathname,
+              });
+            }
+
             form.innerHTML = SUCCESS_HTML;
             form.scrollIntoView({ behavior: 'smooth', block: 'center' });
           } catch (err) {
+            if (window.posthog && typeof window.posthog.captureException === 'function') {
+              window.posthog.captureException(err);
+            }
             errorBox.textContent = (err && err.message) || 'Network error. Please try again.';
             errorBox.style.display = 'block';
             if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }

@@ -1,4 +1,7 @@
 {
+  // PUBLIC_POSTHOG_KEY is inlined by Astro at `astro build` (import.meta.env).
+  // Set it as a Cloudflare Workers Builds *build-time* variable (and locally in `.env`).
+  // Do not rely on wrangler runtime `vars` alone — they are not available to the static client bundle.
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "la-jolla-martial-arts",
   "compatibility_date": "2026-08-06",

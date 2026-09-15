@@ -1,4 +1,8 @@
 {
+  // PUBLIC_POSTHOG_KEY is inlined by Astro at `astro build` (import.meta.env).
+  // Live frontend is Vercel: set PUBLIC_POSTHOG_KEY there (Production + Preview).
+  // This wrangler file is the Cloudflare Pages *lead API* config; runtime `vars`
+  // here do not populate the static client bundle unless the same name is present at build time.
   "name": "bbt-site",
   "compatibility_date": "2026-05-12",
   "pages_build_output_dir": "./dist",

@@ -1,2 +1,8 @@
 # The production value must be stored with `wrangler secret put GHL_WEBHOOK_URL`.
 GHL_WEBHOOK_URL=""
+
+# PostHog: PUBLIC_POSTHOG_KEY is a *build-time* Astro env var (see .env.example).
+# `.dev.vars` / wrangler runtime bindings do not populate import.meta.env.PUBLIC_*.
+# For `astro build` / `astro dev`, set it in `.env`. For Cloudflare Workers Builds,
+# add PUBLIC_POSTHOG_KEY as a build-time environment variable in the dashboard.
+# PUBLIC_POSTHOG_KEY=
