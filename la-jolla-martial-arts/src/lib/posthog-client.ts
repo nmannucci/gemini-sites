@@ -36,6 +36,7 @@ export function initPostHog(): boolean {
     autocapture: true,
     disable_session_recording: false,
   });
+  window.posthog = posthog;
   posthog.register({ site: SITE });
 
   if (window.__ljma_booking_completed) {

@@ -40,6 +40,7 @@ export function initPostHog(): boolean {
     autocapture: true,
     disable_session_recording: false,
   });
+  window.posthog = posthog;
   posthog.register({ site: SITE });
   return true;
 }
