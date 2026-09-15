@@ -1,6 +1,7 @@
 ---
 /** Shared site branding and navigation with campaign-specific forms and tracking. */
 import AnchorScroll from '../components/AnchorScroll.astro';
+import PostHog from '../components/PostHog.astro';
 import '../styles/site-theme.css';
 import '../styles/global.css';
 
@@ -54,6 +55,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://lajollat
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xeh50eucwk");
   </script>
+
+  <PostHog />
 
   <!-- PPC-specific pieces, built in the homepage's visual language -->
   <style is:global>
@@ -268,6 +271,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://lajollat
           e.preventDefault();
           if (err) { err.style.display='none'; err.textContent=''; }
           if (!form.checkValidity()) { form.reportValidity(); return; }
+          if (window.posthog) {
+            window.posthog.capture('booking_started', {
+              from: 'lead_form',
+              form_id: 'ppc-landing-page-form',
+              page_path: window.location.pathname,
+            });
+          }
           var d = Object.fromEntries(new FormData(form).entries());
           var track = ['gclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content']
             .map(function (k){ return d[k] ? k + '=' + d[k] : null; }).filter(Boolean).join('; ');
@@ -284,6 +294,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://lajollat
             try { sessionStorage.setItem('ljma_confirmed_lead', '1'); } catch (_) {}
             window.location.href = '/thank-you';
           } catch (ex) {
+            if (window.posthog && typeof window.posthog.captureException === 'function') {
+              window.posthog.captureException(ex);
+            }
             if (err) { err.textContent = ex.message || 'Network error. Please try again.'; err.style.display='block'; }
             if (btn) { btn.disabled=false; btn.textContent=orig; }
           }

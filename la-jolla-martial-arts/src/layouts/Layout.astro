@@ -2,6 +2,7 @@
 import AnchorScroll from '../components/AnchorScroll.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import PostHog from '../components/PostHog.astro';
 import { businessSchema } from '../data/site';
 import '../styles/global.css';
 
@@ -94,6 +95,8 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
     })(window, document, "clarity", "script", "xeh50eucwk");
   </script>
 
+  <PostHog />
+
   <slot name="head" />
 </head>
 <body class={bodyClass}>
@@ -173,6 +176,14 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
             return;
           }
 
+          if (window.posthog) {
+            window.posthog.capture('booking_started', {
+              from: 'lead_form',
+              form_id: form.dataset.formType || form.dataset.leadSource || 'website-lead-form',
+              page_path: window.location.pathname,
+            });
+          }
+
           var data = Object.fromEntries(new FormData(form).entries());
           if (!data.source) {
             data.source = form.dataset.leadSource || window.location.pathname;
@@ -199,9 +210,20 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
               gtag('event', 'conversion', { send_to: 'AW-18166558698/waUoCJyf_a0cEOrfvtZD' });
             }
 
+            if (window.posthog) {
+              window.posthog.capture('booking_completed', {
+                source: 'lead_form',
+                form_id: form.dataset.formType || form.dataset.leadSource || 'website-lead-form',
+                page_path: window.location.pathname,
+              });
+            }
+
             form.innerHTML = SUCCESS_HTML;
             form.scrollIntoView({ behavior: 'smooth', block: 'center' });
           } catch (err) {
+            if (window.posthog && typeof window.posthog.captureException === 'function') {
+              window.posthog.captureException(err);
+            }
             errorBox.textContent = (err && err.message) || 'Network error. Please try again.';
             errorBox.style.display = 'block';
             if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = currentSubmitLabel(); }

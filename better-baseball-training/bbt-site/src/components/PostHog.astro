@@ -1,0 +1,11 @@
+---
+/**
+ * PostHog web SDK — initialized once per full page load.
+ * Do not include this component more than once on a page.
+ */
+---
+<script>
+  import { bindBookingCtas, initPostHog } from '../lib/posthog-client';
+
+  if (initPostHog()) bindBookingCtas();
+</script>

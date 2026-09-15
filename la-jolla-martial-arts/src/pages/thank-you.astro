@@ -1,6 +1,7 @@
 ---
 // Conversion confirmation page for PPC landing pages.
 // Fires the Google Ads "Submit lead form" conversion on load.
+import PostHog from '../components/PostHog.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +31,7 @@
     try {
       if (sessionStorage.getItem('ljma_confirmed_lead') === '1') {
         sessionStorage.removeItem('ljma_confirmed_lead');
+        window.__ljma_booking_completed = true;
         gtag('event', 'generate_lead', {
           form_id: 'ppc-landing-page-form',
           lead_source: 'ppc-landing-page',
@@ -38,6 +40,7 @@
       }
     } catch (_) {}
   </script>
+  <PostHog />
 
   <style is:global>
     :root { --bg:#F5F5F0; --ink:#141414; --muted:#5A5A5A; --red:#D32F2F; --teal:#29BEE2; --orange:#EA580C; --teal-soft:rgba(41,190,226,.12); }
