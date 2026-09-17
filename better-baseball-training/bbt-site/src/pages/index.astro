@@ -6,6 +6,7 @@ import {
   bookingUrl,
   scheduleUrl,
   coachesUrl,
+  serviceAreaUrl,
 } from '../data/urls';
 import { contact } from '../data/contact';
 import LeadForm from '../components/LeadForm.astro';
@@ -55,9 +56,9 @@ const faqItems = [
 // homepage — not the location page — as the landing page for "rocklin baseball".
 // Leading with the exact brand string also keeps "/" the unambiguous brand result.
 const pageTitle =
-  'Better Baseball Training | Youth Baseball Training in the Sacramento Area';
+  'Better Baseball Training | Youth Training Rocklin & EDH';
 const metaDescription =
-  'Youth baseball training for players ages 8-14U across the Sacramento area. Private lessons, academy memberships, and travel baseball development at two indoor facilities.';
+  'Youth baseball training in Rocklin and El Dorado Hills — a training facility, not a rec league. Private lessons, academy memberships, and travel development for ages 8-14U.';
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -77,7 +78,7 @@ const webpageSchema = {
   '@type': 'WebPage',
   '@id': `${SITE}/#webpage`,
   url: `${SITE}/`,
-  name: 'Youth Baseball Training in Rocklin & El Dorado Hills',
+  name: 'Better Baseball Training | Youth Training Rocklin & EDH',
   description: metaDescription,
   dateModified: new Date().toISOString(),
   isPartOf: { '@id': `${SITE}/#website` },
@@ -102,33 +103,33 @@ const pageSchema = [webpageSchema, breadcrumbSchema, faqSchema];
 const heroSlides = [
   {
     n: 1,
-    alt: 'Better Baseball Training travel team players after a tournament win',
+    alt: 'Youth travel baseball team after a tournament with Better Baseball Training',
     width: 1320,
     height: 774,
     active: true,
   },
   {
     n: 2,
-    alt: 'Youth baseball players training inside Better Baseball Training',
+    alt: 'Youth baseball players training inside the Better Baseball Training indoor facility',
     width: 1299,
     height: 697,
   },
   {
     n: 3,
-    alt: 'Better Baseball Training players with medals after a tournament',
+    alt: 'Youth baseball players with medals after a Better Baseball Training tournament',
     width: 1320,
     height: 843,
   },
   {
     n: 4,
-    alt: 'Youth baseball lesson inside Better Baseball Training facility',
+    alt: 'Youth hitting lesson inside the Better Baseball Training indoor facility',
     width: 1320,
     height: 833,
     cover: true,
   },
   {
     n: 5,
-    alt: 'Better Baseball Training player showing a championship ring',
+    alt: 'Youth baseball player showing a championship ring at Better Baseball Training',
     width: 1320,
     height: 832,
     cover: true,
@@ -159,7 +160,7 @@ const services = [
     imgExt: 'PNG',
     width: 1320,
     height: 743,
-    alt: 'Hitting training at BBT',
+    alt: 'Youth hitting lesson in indoor batting cages at Better Baseball Training',
     style: undefined,
     delay: 1,
     aria: 'Learn more about Hitting Lessons',
@@ -173,7 +174,7 @@ const services = [
     imgExt: 'PNG',
     width: 1320,
     height: 753,
-    alt: 'Pitching training at BBT',
+    alt: 'Youth pitching lesson at the Better Baseball Training indoor facility',
     style: 'object-position:center top;',
     delay: 2,
     aria: 'Learn more about Pitching Lessons',
@@ -187,7 +188,7 @@ const services = [
     imgExt: 'PNG',
     width: 1320,
     height: 722,
-    alt: 'Infield and outfield training at BBT',
+    alt: 'Infield and outfield defensive training at Better Baseball Training',
     style: 'object-position:center 20%;',
     delay: 3,
     aria: 'Learn more about Infield and Outfield Lessons',
@@ -201,7 +202,7 @@ const services = [
     imgExt: 'PNG',
     width: 1210,
     height: 842,
-    alt: 'Catching training at BBT',
+    alt: 'Youth catching lesson at the Better Baseball Training indoor facility',
     style: 'object-position:center 30%;',
     delay: 4,
     aria: 'Learn more about Catching Lessons',
@@ -215,7 +216,7 @@ const services = [
     imgExt: 'PNG',
     width: 1320,
     height: 1054,
-    alt: 'Baseball IQ training at BBT',
+    alt: 'Baseball IQ and game-awareness training at Better Baseball Training',
     style: undefined,
     delay: 5,
     aria: 'Learn more about Baseball IQ Training',
@@ -230,7 +231,7 @@ const serviceSrcset = (img: string) =>
 
 ---
 
-<Layout title={pageTitle} description={metaDescription} pageSchema={pageSchema}>
+<Layout title={pageTitle} description={metaDescription} canonical={`${SITE}/`} pageSchema={pageSchema}>
 <main id="main-content">
 <section
   id="hero"
@@ -242,7 +243,7 @@ const serviceSrcset = (img: string) =>
       src="/assets/optimized/BBT Logo 1-no bg-320.webp"
       srcset="/assets/optimized/BBT Logo 1-no bg-160.webp 160w, /assets/optimized/BBT Logo 1-no bg-320.webp 320w"
       sizes="140px"
-      alt="Better Baseball Training"
+      alt="Better Baseball Training youth baseball training logo"
       class="hero-logo-mark"
       loading="eager"
       decoding="async"
@@ -335,7 +336,7 @@ const serviceSrcset = (img: string) =>
 
 <section id="lessons" class="services">
   <div class="services-topbar"></div>
-  <img src="/assets/optimized/BBT Logo 2-160.webp" srcset="/assets/optimized/BBT Logo 2-160.webp 160w, /assets/optimized/BBT Logo 2-320.webp 320w" sizes="160px" alt="" class="services-watermark" aria-hidden="true" loading="lazy" decoding="async" fetchpriority="low" width="695" height="606" />
+  <img src="/assets/optimized/BBT Logo 2-160.webp" srcset="/assets/optimized/BBT Logo 2-160.webp 160w, /assets/optimized/BBT Logo 2-320.webp 320w" sizes="160px" alt="Better Baseball Training youth baseball training logo" class="services-watermark" loading="lazy" decoding="async" fetchpriority="low" width="695" height="606" />
 
   <div class="services-header reveal">
     <div>
@@ -545,7 +546,7 @@ const serviceSrcset = (img: string) =>
   </div>
 
   <div class="coaches-quote reveal">
-    <img src="/assets/optimized/coach-jon-peters-480.webp" srcset="/assets/optimized/coach-jon-peters-480.webp 480w, /assets/optimized/coach-jon-peters-768.webp 768w" sizes="96px" alt="Jon Peters" class="coaches-quote-photo" loading="lazy" decoding="async" width="400" height="500" />
+    <img src="/assets/optimized/coach-jon-peters-480.webp" srcset="/assets/optimized/coach-jon-peters-480.webp 480w, /assets/optimized/coach-jon-peters-768.webp 768w" sizes="96px" alt="Jon Peters, owner of Better Baseball Training youth baseball facility" class="coaches-quote-photo" loading="lazy" decoding="async" width="400" height="500" />
     <div class="coaches-quote-body">
       <blockquote>
         "It doesn't matter if you're coaching tee-ball or coaching at the college level, I'm a firm believer that a coach can be one of the most influential people in a young player's life. At Better Baseball, we aim to be the pinnacle of youth development."
@@ -593,35 +594,35 @@ const serviceSrcset = (img: string) =>
 
   <div class="gallery-grid">
     <div class="gallery-item gallery-item--wide reveal reveal-delay-1" style="aspect-ratio:16/9;">
-      <img src="/assets/optimized/hero-slideshow-1-720.webp" srcset="/assets/optimized/hero-slideshow-1-720.webp 720w, /assets/optimized/hero-slideshow-1-960.webp 960w, /assets/optimized/hero-slideshow-1-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 66vw" alt="BBT division champions" style="object-position:center top;" loading="lazy" decoding="async" width="1320" height="774" />
+      <img src="/assets/optimized/hero-slideshow-1-720.webp" srcset="/assets/optimized/hero-slideshow-1-720.webp 720w, /assets/optimized/hero-slideshow-1-960.webp 960w, /assets/optimized/hero-slideshow-1-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 66vw" alt="Youth travel baseball division champions from Better Baseball Training" style="object-position:center top;" loading="lazy" decoding="async" width="1320" height="774" />
       <span class="gallery-caption">Division Champions</span>
     </div>
     <div class="gallery-item reveal reveal-delay-2" style="aspect-ratio:4/5;">
-      <img src="/assets/optimized/facility-img-4-320.webp" srcset="/assets/optimized/facility-img-4-320.webp 320w, /assets/optimized/facility-img-4-900.webp 900w" sizes="(max-width: 800px) 50vw, 25vw" alt="Catching gear and equipment at BBT" style="object-position:center 30%;" loading="lazy" decoding="async" width="905" height="679" />
+      <img src="/assets/optimized/facility-img-4-320.webp" srcset="/assets/optimized/facility-img-4-320.webp 320w, /assets/optimized/facility-img-4-900.webp 900w" sizes="(max-width: 800px) 50vw, 25vw" alt="Catching gear at the Better Baseball Training Rocklin indoor facility" style="object-position:center 30%;" loading="lazy" decoding="async" width="905" height="679" />
       <span class="gallery-caption">Catchers Clinic</span>
     </div>
     <div class="gallery-item reveal reveal-delay-3" style="aspect-ratio:4/5;">
-      <img src="/assets/optimized/hero-slideshow-3-720.webp" srcset="/assets/optimized/hero-slideshow-3-720.webp 720w, /assets/optimized/hero-slideshow-3-960.webp 960w, /assets/optimized/hero-slideshow-3-1320.webp 1320w" sizes="(max-width: 800px) 50vw, 25vw" alt="BBT players posing with medals" style="object-position:center top;" loading="lazy" decoding="async" width="1320" height="843" />
+      <img src="/assets/optimized/hero-slideshow-3-720.webp" srcset="/assets/optimized/hero-slideshow-3-720.webp 720w, /assets/optimized/hero-slideshow-3-960.webp 960w, /assets/optimized/hero-slideshow-3-1320.webp 1320w" sizes="(max-width: 800px) 50vw, 25vw" alt="Youth baseball players with medals after a Better Baseball Training tournament" style="object-position:center top;" loading="lazy" decoding="async" width="1320" height="843" />
       <span class="gallery-caption">Hardware</span>
     </div>
     <div class="gallery-item gallery-item--wide reveal reveal-delay-4" style="aspect-ratio:16/9;">
-      <img src="/assets/optimized/IMG_0609-960.webp" srcset="/assets/optimized/IMG_0609-320.webp 320w, /assets/optimized/IMG_0609-960.webp 960w" sizes="(max-width: 800px) 100vw, 66vw" alt="BBT indoor training facility with batting cages" loading="lazy" decoding="async" width="5712" height="4284" />
+      <img src="/assets/optimized/IMG_0609-960.webp" srcset="/assets/optimized/IMG_0609-320.webp 320w, /assets/optimized/IMG_0609-960.webp 960w" sizes="(max-width: 800px) 100vw, 66vw" alt="Indoor baseball training facility with batting cages at Better Baseball Training" loading="lazy" decoding="async" width="5712" height="4284" />
       <span class="gallery-caption">Training Facility</span>
     </div>
     <div class="gallery-item reveal reveal-delay-5" style="aspect-ratio:3/2;">
-      <img src="/assets/optimized/hero-slideshow-5-720.webp" srcset="/assets/optimized/hero-slideshow-5-720.webp 720w, /assets/optimized/hero-slideshow-5-960.webp 960w, /assets/optimized/hero-slideshow-5-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 33vw" alt="BBT player holding championship ring" style="object-position:center 30%;" loading="lazy" decoding="async" width="1320" height="832" />
+      <img src="/assets/optimized/hero-slideshow-5-720.webp" srcset="/assets/optimized/hero-slideshow-5-720.webp 720w, /assets/optimized/hero-slideshow-5-960.webp 960w, /assets/optimized/hero-slideshow-5-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 33vw" alt="Youth baseball player holding a championship ring at Better Baseball Training" style="object-position:center 30%;" loading="lazy" decoding="async" width="1320" height="832" />
       <span class="gallery-caption">Championship Rings</span>
     </div>
     <div class="gallery-item reveal reveal-delay-1" style="aspect-ratio:3/2;">
-      <img src="/assets/optimized/service-hitting-1-640.webp" srcset="/assets/optimized/service-hitting-1-640.webp 640w, /assets/optimized/service-hitting-1-960.webp 960w" sizes="(max-width: 800px) 100vw, 33vw" alt="Player hitting in batting cages" loading="lazy" decoding="async" width="1320" height="743" />
+      <img src="/assets/optimized/service-hitting-1-640.webp" srcset="/assets/optimized/service-hitting-1-640.webp 640w, /assets/optimized/service-hitting-1-960.webp 960w" sizes="(max-width: 800px) 100vw, 33vw" alt="Youth player taking a hitting lesson in indoor batting cages at Better Baseball Training" loading="lazy" decoding="async" width="1320" height="743" />
       <span class="gallery-caption">Batting Cages</span>
     </div>
     <div class="gallery-item reveal reveal-delay-2" style="aspect-ratio:3/2;">
-      <img src="/assets/optimized/hero-slideshow-2-720.webp" srcset="/assets/optimized/hero-slideshow-2-720.webp 720w, /assets/optimized/hero-slideshow-2-960.webp 960w, /assets/optimized/hero-slideshow-2-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 33vw" alt="BBT team celebrating with banner" style="object-position:center 20%;" loading="lazy" decoding="async" width="1299" height="697" />
+      <img src="/assets/optimized/hero-slideshow-2-720.webp" srcset="/assets/optimized/hero-slideshow-2-720.webp 720w, /assets/optimized/hero-slideshow-2-960.webp 960w, /assets/optimized/hero-slideshow-2-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 33vw" alt="Youth baseball team celebrating a tournament win with Better Baseball Training" style="object-position:center 20%;" loading="lazy" decoding="async" width="1299" height="697" />
       <span class="gallery-caption">Tournament Winners</span>
     </div>
     <div class="gallery-item gallery-item--wide reveal reveal-delay-3" style="aspect-ratio:16/9;">
-      <img src="/assets/optimized/hero-slideshow-4-720.webp" srcset="/assets/optimized/hero-slideshow-4-720.webp 720w, /assets/optimized/hero-slideshow-4-960.webp 960w, /assets/optimized/hero-slideshow-4-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 66vw" alt="BBT players celebrating a win" loading="lazy" decoding="async" width="1320" height="833" />
+      <img src="/assets/optimized/hero-slideshow-4-720.webp" srcset="/assets/optimized/hero-slideshow-4-720.webp 720w, /assets/optimized/hero-slideshow-4-960.webp 960w, /assets/optimized/hero-slideshow-4-1320.webp 1320w" sizes="(max-width: 800px) 100vw, 66vw" alt="Youth baseball players celebrating inside the Better Baseball Training facility" loading="lazy" decoding="async" width="1320" height="833" />
       <span class="gallery-caption">The BBT Family</span>
     </div>
   </div>
@@ -640,28 +641,32 @@ const serviceSrcset = (img: string) =>
   <div class="facilities-grid">
     <div id="rocklin-training" class="facility-card reveal reveal-delay-1">
       <div class="facility-gallery">
-        <img src="/assets/optimized/facility-img-1-900.webp" srcset="/assets/optimized/facility-img-1-320.webp 320w, /assets/optimized/facility-img-1-900.webp 900w" sizes="(max-width: 800px) 100vw, 50vw" alt="Rocklin facility batting cages" class="facility-main-img" loading="lazy" decoding="async" width="905" height="679" />
+        <img src="/assets/optimized/facility-img-1-900.webp" srcset="/assets/optimized/facility-img-1-320.webp 320w, /assets/optimized/facility-img-1-900.webp 900w" sizes="(max-width: 800px) 100vw, 50vw" alt="Indoor batting cages at Better Baseball Training Rocklin on Duluth Ave" class="facility-main-img" loading="lazy" decoding="async" width="905" height="679" />
         <div class="facility-thumbnails">
-          <img src="/assets/optimized/facility-img-2-320.webp" alt="Rocklin turf area" loading="lazy" decoding="async" width="679" height="679" />
-          <img src="/assets/optimized/facility-img-3-320.webp" alt="Rocklin training equipment" loading="lazy" decoding="async" width="905" height="679" />
-          <img src="/assets/optimized/facility-img-4-320.webp" alt="Rocklin catchers area" loading="lazy" decoding="async" width="905" height="679" />
+          <img src="/assets/optimized/facility-img-2-320.webp" alt="Indoor turf training area at Better Baseball Training Rocklin" loading="lazy" decoding="async" width="679" height="679" />
+          <img src="/assets/optimized/facility-img-3-320.webp" alt="Youth baseball training equipment at Better Baseball Training Rocklin" loading="lazy" decoding="async" width="905" height="679" />
+          <img src="/assets/optimized/facility-img-4-320.webp" alt="Catching training area at Better Baseball Training Rocklin" loading="lazy" decoding="async" width="905" height="679" />
         </div>
       </div>
       <div class="facility-info">
         <h3>Rocklin Basecamp</h3>
         <address>4283 Duluth Ave<br>Rocklin, CA 95765</address>
         <p>Rocklin is a core hub for private baseball lessons, academy classes, and travel-team development for families in Rocklin, Roseville, Granite Bay, and nearby communities.</p>
-        <a href={seoPageUrl('baseball-lessons-rocklin')} class="bk-card__inline-link">View Rocklin lessons</a>
+        <div class="bk-card__links">
+          <a href={seoPageUrl('baseball-lessons-rocklin')} class="bk-card__inline-link">View Rocklin lessons</a>
+          <a href={serviceAreaUrl('rocklin', 'hitting')} class="bk-card__inline-link">Hitting lessons in Rocklin</a>
+          <a href={seoPageUrl('batting-cages-rocklin')} class="bk-card__inline-link">Rocklin batting cages</a>
+        </div>
       </div>
     </div>
 
     <div id="el-dorado-hills-training" class="facility-card reveal reveal-delay-2">
       <div class="facility-gallery">
-        <img src="/assets/optimized/IMG_0607-960.webp" srcset="/assets/optimized/IMG_0607-320.webp 320w, /assets/optimized/IMG_0607-960.webp 960w" sizes="(max-width: 800px) 100vw, 50vw" alt="El Dorado Hills brand new turf facility" class="facility-main-img" loading="lazy" decoding="async" width="5712" height="4284" />
+        <img src="/assets/optimized/IMG_0607-960.webp" srcset="/assets/optimized/IMG_0607-320.webp 320w, /assets/optimized/IMG_0607-960.webp 960w" sizes="(max-width: 800px) 100vw, 50vw" alt="Indoor turf baseball training facility at Better Baseball Training El Dorado Hills" class="facility-main-img" loading="lazy" decoding="async" width="5712" height="4284" />
         <div class="facility-thumbnails">
-          <img src="/assets/optimized/IMG_0609-320.webp" alt="EDH facility batting lanes" loading="lazy" decoding="async" width="5712" height="4284" />
-          <img src="/assets/optimized/IMG_0604-320.webp" alt="EDH turf area" loading="lazy" decoding="async" width="5712" height="4284" />
-          <img src="/assets/optimized/IMG_0605-320.webp" alt="EDH facility details" loading="lazy" decoding="async" width="5712" height="4284" />
+          <img src="/assets/optimized/IMG_0609-320.webp" alt="Indoor batting lanes at Better Baseball Training El Dorado Hills" loading="lazy" decoding="async" width="5712" height="4284" />
+          <img src="/assets/optimized/IMG_0604-320.webp" alt="Indoor turf training area at Better Baseball Training El Dorado Hills" loading="lazy" decoding="async" width="5712" height="4284" />
+          <img src="/assets/optimized/IMG_0605-320.webp" alt="Indoor baseball training details at Better Baseball Training El Dorado Hills" loading="lazy" decoding="async" width="5712" height="4284" />
         </div>
       </div>
       <div class="facility-info">

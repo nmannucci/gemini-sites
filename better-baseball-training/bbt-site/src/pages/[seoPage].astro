@@ -47,6 +47,16 @@ interface RelatedLink {
 
 const relatedLinks: RelatedLink[] = (page.related_links ?? [])
   .map((key): RelatedLink | null => {
+    const serviceAreaKey = key.match(/^(rocklin|el-dorado-hills):([a-z0-9-]+)$/);
+    if (serviceAreaKey) {
+      const areaLesson = lessonBySlug.get(serviceAreaKey[2]);
+      if (!areaLesson) return null;
+      const locName = serviceAreaKey[1] === 'rocklin' ? 'Rocklin' : 'El Dorado Hills';
+      return {
+        label: `${areaLesson.label} in ${locName}`,
+        url: serviceAreaUrl(serviceAreaKey[1], areaLesson.slug),
+      };
+    }
     const lesson = lessonBySlug.get(key);
     if (lesson) return { label: `${lesson.label} Lessons`, url: lessonUrl(lesson.slug) };
     const seo = seoBySlug.get(key);
@@ -106,6 +116,7 @@ const storyPageSlugs = [
   'baseball-lessons-el-dorado-hills',
   'baseball-academy',
   'travel-baseball',
+  'batting-cages-rocklin',
 ];
 const isStoryPage = storyPageSlugs.includes(page.slug);
 
@@ -140,6 +151,12 @@ const storyGalleryMap: Record<string, GalleryItem[]> = {
     { image: '/assets/images/hero-slideshow-3.PNG', alt: 'Better Baseball Training players after competition', label: 'Competitive Moments' },
     { image: '/assets/images/team-photo-4.jpg', alt: 'Better Baseball Training players and coaches during travel baseball development', label: 'Player Growth' },
   ],
+  'batting-cages-rocklin': [
+    { image: '/assets/images/facility-img-1.jpg', alt: 'Indoor batting cages at Better Baseball Training Rocklin on Duluth Ave', label: 'Rocklin Cages' },
+    { image: '/assets/images/service-hitting-1.PNG', alt: 'Coached hitting lesson in the Rocklin batting cages at Better Baseball Training', label: 'Coached Cage Work' },
+    { image: '/assets/images/facility-img-2.jpg', alt: 'Indoor turf training space beside the Rocklin batting cages', label: 'Turf + Cages' },
+    { image: '/assets/images/hero-slideshow-4.PNG', alt: 'Youth baseball player training inside Better Baseball Training Rocklin', label: 'Player Development' },
+  ],
 };
 
 const storyStepsMap: Record<string, Array<{ label: string; title: string; copy: string }>> = {
@@ -167,6 +184,12 @@ const storyStepsMap: Record<string, Array<{ label: string; title: string; copy: 
     { label: 'Role', title: 'Find the Player Fit', copy: 'Training helps families understand where the athlete can contribute now and what has to improve for the next roster.' },
     { label: 'Path', title: 'Plan the Next Move', copy: 'The goal is readiness, not a vague tournament promise, with lessons and academy work supporting long-term player growth.' },
   ],
+  'batting-cages-rocklin': [
+    { label: 'Ask', title: 'Say What the Player Needs', copy: 'Age, commute, and the skill that is actually stuck — swing, arm, glove, catching, or game decisions — matter more than asking for a lane by the hour.' },
+    { label: 'Match', title: 'Choose Lessons or Academy', copy: 'Cage space is the room. The product is a hitting lesson, another skill lesson, or Rocklin academy membership at $250/month for recurring group work.' },
+    { label: 'Train', title: 'Use the Cages With a Coach', copy: 'Indoor lanes and turf stay available year-round so reps are not weather-dependent. Someone is watching the work instead of handing over a bucket and a timer.' },
+    { label: 'Plan', title: 'Pick the Rocklin Path', copy: 'From here families move into a specific Rocklin lesson page, the Rocklin location hub, or a booking conversation — not a second brand homepage.' },
+  ],
 };
 
 const storyNoteMap: Record<string, string> = {
@@ -174,6 +197,7 @@ const storyNoteMap: Record<string, string> = {
   'baseball-lessons-el-dorado-hills': 'A complete EDH training option for lessons, academy work, and position-specific development.',
   'baseball-academy': 'Consistent reps that turn occasional progress into a real training rhythm.',
   'travel-baseball': 'Training that prepares players for the speed of stronger baseball.',
+  'batting-cages-rocklin': 'Indoor cages for coached work — not a drop-in rental promise.',
 };
 
 const storyProcessHeadingMap: Record<string, string> = {
@@ -181,6 +205,7 @@ const storyProcessHeadingMap: Record<string, string> = {
   'baseball-lessons-el-dorado-hills': 'A Lesson Path Built Around the Player',
   'baseball-academy': 'A Weekly System for Player Development',
   'travel-baseball': 'A Clearer Path Toward Competitive Baseball',
+  'batting-cages-rocklin': 'How Families Actually Use the Rocklin Cages',
 };
 
 const storyProcessCopyMap: Record<string, string> = {
@@ -188,6 +213,7 @@ const storyProcessCopyMap: Record<string, string> = {
   'baseball-lessons-el-dorado-hills': 'EDH lessons give families a nearby training option with enough structure to connect skill work to long-term growth.',
   'baseball-academy': 'Academy membership works best when players need frequent, guided reps and families want a clearer development plan.',
   'travel-baseball': 'The page is built around readiness: what a player needs to handle tougher competition, communicate better, and keep developing.',
+  'batting-cages-rocklin': 'The cages are the indoor space. The training path is a lesson, academy reps, or a conversation with the Rocklin staff.',
 };
 
 const storyLocationHeadingMap: Record<string, string> = {
@@ -195,6 +221,7 @@ const storyLocationHeadingMap: Record<string, string> = {
   'baseball-lessons-el-dorado-hills': 'EDH Lessons Connected to the Bigger Training System',
   'baseball-academy': 'Two Facilities, One Development Standard',
   'travel-baseball': 'Built Around the Player Before the Roster',
+  'batting-cages-rocklin': 'Rocklin Programs That Use These Cages',
 };
 
 const storyLocationCopyMap: Record<string, string> = {
@@ -202,6 +229,7 @@ const storyLocationCopyMap: Record<string, string> = {
   'baseball-lessons-el-dorado-hills': 'The El Dorado Hills facility gives families a local place to start with lessons, then build toward academy training, coach matching, or more competitive baseball when it fits.',
   'baseball-academy': 'Families can train in Rocklin or El Dorado Hills while keeping the same development philosophy: consistent reps, specific feedback, and a next step that fits the athlete.',
   'travel-baseball': 'BBT uses lessons, academy training, and coach feedback to help players understand what competitive baseball asks of them before families chase the next team label.',
+  'batting-cages-rocklin': 'If the search was for a specific skill in Rocklin, use the matching Rocklin lesson page. This page stays the facility answer for batting cages in Rocklin.',
 };
 
 const storyGallery: GalleryItem[] =
@@ -237,7 +265,7 @@ const webPageSchema = {
   description: page.meta_description,
   dateModified: new Date().toISOString(),
   isPartOf: { '@id': `${SITE}/#website` },
-  about: { '@id': `${SITE}/#organization` },
+  about: { '@id': `${pageUrl}#service` },
 };
 
 const breadcrumbSchema = {
@@ -251,11 +279,11 @@ const breadcrumbSchema = {
 
 const pageSchema = [webPageSchema, breadcrumbSchema, serviceSchema, ...(faqSchema ? [faqSchema] : [])];
 
-// A core location page links to ITS service-area pages, not to the shared lesson pages —
-// that one-to-one targeting is the whole point of the layer. `locationKey` is only set on
-// the two location pages, so the block renders nowhere else.
+// Location hubs and the Rocklin cages facility page link to THIS city's service-area
+// children — not the shared /lessons/* hubs — so hitting intent does not keep landing
+// on the cages URL.
 const locationKey =
-  page.slug === 'baseball-lessons-rocklin' ? 'rocklin' :
+  page.slug === 'baseball-lessons-rocklin' || page.slug === 'batting-cages-rocklin' ? 'rocklin' :
   page.slug === 'baseball-lessons-el-dorado-hills' ? 'el-dorado-hills' :
   null;
 const localServiceAreas = locationKey ? serviceAreasForLocation(locationKey) : [];
@@ -451,6 +479,9 @@ const otherLocation = locationKey ? locations.find((l) => l.key !== locationKey)
           </div>
 
           <div class="ls-facility-lessons__foot">
+            {page.slug === 'batting-cages-rocklin' && (
+              <a href={seoPageUrl('baseball-lessons-rocklin')}>Rocklin baseball lessons hub</a>
+            )}
             <a href={coachesUrl()}>Meet the coaching staff</a>
             {otherLocation && (
               <a href={otherLocation.location_url}>
