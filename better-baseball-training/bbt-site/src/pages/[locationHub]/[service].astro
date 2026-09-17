@@ -20,6 +20,7 @@ import {
   bookingUrl,
   coachesUrl,
   lessonRelatedCoachKeysFor,
+  seoPageUrl,
 } from '../../data/urls';
 import LeadForm from '../../components/LeadForm.astro';
 
@@ -346,6 +347,15 @@ const breadcrumbSchema = {
                 </li>
               ))}
             </ul>
+          </article>
+        )}
+
+        {area.locationKey === 'rocklin' && (area.lessonSlug === 'hitting' || area.lessonSlug === 'pitching') && (
+          <article class="bk-card">
+            <div class="bk-card__eyebrow">Rocklin Facility</div>
+            <h3 class="bk-card__title">Rocklin Batting Cages</h3>
+            <p class="bk-card__copy">Indoor cage and turf space at 4283 Duluth Ave used for structured lessons and academy reps — not the {lesson.label.toLowerCase()} lesson page.</p>
+            <a href={seoPageUrl('batting-cages-rocklin')} class="bk-card__inline-link">View Rocklin batting cages</a>
           </article>
         )}
       </div>

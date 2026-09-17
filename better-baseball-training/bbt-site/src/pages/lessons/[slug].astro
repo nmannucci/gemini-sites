@@ -271,6 +271,16 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
             <a href={bookingUrl()} class="membership-cta">Book a {lessonTitle} Lesson</a>
             <a href={contact.phoneHref} class="cta-box-secondary-link">Call {contact.phone}</a>
           </div>
+          {(rocklinArea || edhArea) && (
+            <div class="ls-coach-pills" aria-label={`${lessonTitle} lessons by location`}>
+              {rocklinArea && (
+                <a href={serviceAreaUrl('rocklin', rocklinArea.slug)}>{lessonTitle} Lessons in Rocklin</a>
+              )}
+              {edhArea && (
+                <a href={serviceAreaUrl('el-dorado-hills', edhArea.slug)}>{lessonTitle} Lessons in El Dorado Hills</a>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -433,10 +443,36 @@ const metaTitle = `${lessonTitle} Lessons | Better Baseball Training`;
             <span>El Dorado Hills, CA 95762</span>
           </div>
           <div class="bk-card__links">
-            <a href={seoPageUrl('baseball-lessons-rocklin')} class="bk-card__inline-link">Rocklin Baseball Lessons</a>
-            <a href={seoPageUrl('baseball-lessons-el-dorado-hills')} class="bk-card__inline-link">El Dorado Hills Baseball Lessons</a>
+            {rocklinArea ? (
+              <a href={serviceAreaUrl('rocklin', rocklinArea.slug)} class="bk-card__inline-link">
+                {lessonTitle} Lessons in Rocklin
+              </a>
+            ) : (
+              <a href={seoPageUrl('baseball-lessons-rocklin')} class="bk-card__inline-link">Rocklin Baseball Lessons</a>
+            )}
+            {edhArea ? (
+              <a href={serviceAreaUrl('el-dorado-hills', edhArea.slug)} class="bk-card__inline-link">
+                {lessonTitle} Lessons in El Dorado Hills
+              </a>
+            ) : (
+              <a href={seoPageUrl('baseball-lessons-el-dorado-hills')} class="bk-card__inline-link">El Dorado Hills Baseball Lessons</a>
+            )}
           </div>
         </article>
+
+        {lesson.slug === 'hitting' && (
+          <article class="bk-card">
+            <div class="bk-card__eyebrow">Rocklin Facility</div>
+            <h2 class="bk-card__title">Rocklin Batting Cages</h2>
+            <p class="bk-card__copy">The Duluth Ave cages are the indoor space used for coached hitting work. Hitting instruction lives on this page and the Rocklin hitting page — the cages page is the facility answer, not the lesson page.</p>
+            <div class="bk-card__links">
+              {rocklinArea && (
+                <a href={serviceAreaUrl('rocklin', rocklinArea.slug)} class="bk-card__inline-link">Hitting lessons in Rocklin</a>
+              )}
+              <a href={seoPageUrl('batting-cages-rocklin')} class="bk-card__inline-link">Rocklin batting cages</a>
+            </div>
+          </article>
+        )}
 
         <article class="bk-card">
           <div class="bk-card__eyebrow">Academy Membership</div>

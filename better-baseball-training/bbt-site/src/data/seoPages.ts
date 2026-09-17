@@ -172,6 +172,11 @@ export const seoPages: SeoPage[] = [
         title: 'Former Pro and College Backgrounds',
         copy: 'The staff includes coaches with professional, college, academy, and travel baseball experience across multiple player-development needs.',
       },
+      {
+        label: 'Indoor Facility',
+        title: 'Turf and Netted Training Space',
+        copy: 'EDH is an indoor gym at 4990 Hillsdale Cir, Suite 400 with turf and netted training space for lessons and academy reps. Facility questions for this location stay on this hub. Families who want the dedicated Rocklin cage facility should use the Rocklin batting cages page.',
+      },
     ],
     faq_items: [
       {
@@ -420,63 +425,120 @@ export const seoPages: SeoPage[] = [
     slug: 'batting-cages-rocklin',
     label: 'Rocklin Batting Cages',
     title: 'Rocklin Batting Cages',
-    meta_title: `Rocklin Batting Cages | Youth Baseball Training | ${SITE_NAME}`,
+    meta_title: 'Rocklin Batting Cages | Indoor Youth Training',
     meta_description:
-      'Rocklin batting cages and indoor baseball training spaces at Better Baseball Training. Built for structured lessons, academy reps, and youth development.',
+      'Indoor batting cages in Rocklin at 4283 Duluth Ave. Training-first cage and turf space for youth lessons and academy reps — not a drop-in rental shop.',
     kicker: 'Rocklin Batting Cages',
     headline: 'Rocklin Batting Cages for Structured Baseball Training',
     subheadline:
-      'Indoor cage and turf spaces that support hitting lessons, academy training, and player-development reps at BBT Rocklin.',
-    meta_items: ['Rocklin Facility', 'Training-Focused Cages', 'Youth Development'],
+      'Indoor cage and turf space at 4283 Duluth Ave for coached hitting work, academy reps, and youth player development — not a public hourly cage shop.',
+    meta_items: ['4283 Duluth Ave', 'Training-First Cages', 'Ages 8-14U'],
     image: '/assets/images/facility-img-1.jpg',
-    image_alt: 'Batting cages inside Better Baseball Training Rocklin facility',
+    image_alt: 'Indoor batting cages at Better Baseball Training Rocklin on Duluth Ave',
     intro_label: 'Facility + Training',
-    intro_title: 'Cage Work Connected to Coaching',
+    intro_title: 'Cage Space Built Around Coaching, Not a Timer',
     intro_copy:
-      'BBT uses batting cages and indoor facility space as part of a structured development environment. Families should contact the team for current availability and the best training option for their player.',
+      'The Rocklin facility at 4283 Duluth Ave includes indoor batting cages and turf used as part of Better Baseball Training programming. Families searching for Rocklin batting cages will find a training-first environment: coaches watch the reps, correct the work, and connect cage time to hitting, pitching, defense, catching, and baseball IQ. Call 916-465-5551 for current availability rather than expecting a walk-up hourly rental counter.',
     focus_items: [
-      'Batting cage space connected to hitting development',
-      'Indoor turf and netting for year-round training environments',
-      'Private lessons and academy reps instead of disconnected random swings',
-      'Rocklin location access for families in Roseville, Granite Bay, and nearby areas',
+      'Indoor batting cages in the same building as turf training space',
+      'Cage time tied to hitting lessons and academy reps, not random buckets',
+      'Year-round indoor work for Rocklin, Roseville, Granite Bay, and Loomis families',
+      'A clear next step into private lessons, academy membership, or a location plan',
     ],
     detail_cards: [
       {
         label: 'Important',
         title: 'Training-First Facility',
-        copy: 'This page does not promise generic drop-in cage rental. Call 916-465-5551 to ask what is currently available.',
+        copy: 'This page does not promise generic drop-in cage rental or a public lane-by-the-hour product. The Duluth Ave cages exist to support structured lessons and academy training. Call 916-465-5551 to ask what is currently available for your athlete.',
       },
       {
         label: 'Best Use',
-        title: 'Hitting Lessons and Academy Reps',
-        copy: 'The cages support skill development, swing confidence, timing, and better practice habits.',
+        title: 'Hitting Lessons, Not Open Cage Time',
+        copy: 'Open cage time is reps without feedback. Hitting lessons at this facility are coached sessions that use the same lanes. If the search was for hitting instruction, start with Rocklin hitting lessons rather than treating this page as the lesson page.',
       },
       {
         label: 'Location',
         title: '4283 Duluth Ave',
-        copy: 'The Rocklin facility serves families from Rocklin, Roseville, Granite Bay, Loomis, and surrounding communities.',
+        copy: 'BBT Rocklin sits at 4283 Duluth Ave, Rocklin, CA 95765 and serves families from Rocklin, Roseville, Granite Bay, and Loomis. Cesar Tamayo is the Rocklin GM and can help match a player to a coach and training path.',
+      },
+      {
+        label: 'Programs',
+        title: 'Lessons and Academy Use the Same Space',
+        copy: 'Private lessons and Rocklin academy membership ($250/month for ages 8-14U) both use the indoor cages and turf. Membership is recurring group training, not a cage-rental pass. Staff can help a family choose one or use both.',
+      },
+      {
+        label: 'What It Is Not',
+        title: 'Not a Drop-In Public Cage Shop',
+        copy: 'BBT is a youth baseball training facility. The cages are part of that model. Families who only want uncoached hourly rental should call first — current access is based on programming, not a published walk-in rate card on this page.',
+      },
+      {
+        label: 'Next Step',
+        title: 'Book or Call Before You Drive',
+        copy: 'Use the form on this page or call 916-465-5551. Tell the team the athlete\'s age, the skill they need, and whether Rocklin is the right commute. The staff will point you to a lesson, academy conversation, or current facility option.',
       },
     ],
     faq_items: [
       {
         question: 'Does BBT have batting cages in Rocklin?',
         answer:
-          'Yes. The Rocklin facility includes batting cage space used as part of BBT training and player-development programming.',
+          'Yes. The Rocklin facility at 4283 Duluth Ave, Rocklin, CA 95765 includes indoor batting cage space and turf used for youth baseball training, private lessons, and academy reps.',
       },
       {
-        question: 'Can I rent a cage for drop-in use?',
+        question: 'Can I rent a Rocklin batting cage for drop-in use?',
         answer:
-          'BBT should be contacted directly for current cage availability. The facility is positioned around structured lessons, academy reps, and youth baseball training.',
+          'The facility is positioned around structured lessons, academy reps, and youth baseball training — not as a public drop-in rental shop. Call 916-465-5551 and ask what is currently available. Do not assume a walk-up hourly lane.',
       },
       {
-        question: 'Can my player take hitting lessons at the Rocklin cages?',
+        question: 'Are Rocklin batting cages the same thing as hitting lessons?',
         answer:
-          'Yes. BBT offers hitting lessons and training options that use the Rocklin facility environment.',
+          'No. This page is about the indoor cage and turf facility. Hitting lessons are coached sessions that often use those cages. Families looking for swing instruction should use the Rocklin hitting lessons page or the main hitting lessons page.',
+      },
+      {
+        question: 'What training happens in the Rocklin cages besides hitting?',
+        answer:
+          'The Duluth Ave building supports the same youth programs BBT runs in Rocklin: hitting, pitching, catching, infield/outfield, and baseball IQ, plus academy membership. Cage lanes are the hitting-specific part of that indoor environment.',
+      },
+      {
+        question: 'What ages use the Rocklin batting cages?',
+        answer:
+          'The core lesson and academy model is built for players ages 8-14U. Families outside that range can call 916-465-5551 to ask what makes sense for their athlete.',
+      },
+      {
+        question: 'Which cities are closest to the Rocklin cages?',
+        answer:
+          'The Duluth Ave facility mainly serves Rocklin, Roseville, Granite Bay, and Loomis. El Dorado Hills families should use the Hillsdale Cir facility unless the Rocklin commute is easier on a given day.',
+      },
+      {
+        question: 'Who should we talk to about training at the Rocklin cages?',
+        answer:
+          'Cesar Tamayo is the general manager at BBT Rocklin and can help families choose a coach, a lesson focus, or academy membership. Call 916-465-5551 or use the form on this page.',
+      },
+      {
+        question: 'How much does it cost to train in the Rocklin cages?',
+        answer:
+          'Private lessons are priced per session. Rocklin academy membership is $250 per month for recurring group training, including hitting work in the facility. Call 916-465-5551 for current lesson pricing. This page does not list an hourly public cage-rental rate because that is not the product BBT publishes here.',
+      },
+      {
+        question: 'How do we get a player into the Rocklin facility?',
+        answer:
+          'Fill out the player interest form or call 916-465-5551. The staff follows up to match age, goals, and schedule. The live academy calendar lives on the schedule page if you want to see class times first.',
       },
     ],
     service_type: 'Indoor batting cage training',
     schema_locations: ['rocklin'],
-    related_links: ['hitting', 'baseball-lessons-rocklin', 'baseball-academy', 'book-now', 'schedule'],
+    related_links: [
+      'rocklin:hitting',
+      'rocklin:pitching',
+      'rocklin:catching',
+      'rocklin:infield-outfield',
+      'rocklin:baseball-iq',
+      'hitting',
+      'baseball-lessons-rocklin',
+      'baseball-academy',
+      'book-now',
+    ],
     cta_label: 'Ask About Rocklin Cage Training',
+    map_query: '4283 Duluth Ave, Rocklin, CA 95765',
+    map_caption: 'BBT Rocklin batting cages — 4283 Duluth Ave, Rocklin, CA 95765',
   },
 ];

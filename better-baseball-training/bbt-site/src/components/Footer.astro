@@ -9,6 +9,7 @@ import {
   bookingUrl,
   privacyPolicyUrl,
   homeSectionUrl,
+  serviceAreaUrl,
 } from '../data/urls';
 
 const SITE = 'https://www.betterbaseballtraining.com';
@@ -23,6 +24,7 @@ const schema = [
     // Branded searches arrive as "bbt baseball" / "bbt boys" far more than the full name.
     alternateName: ['BBT', 'BBT Baseball', 'BBT Boys'],
     url: `${SITE}/`,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE}/#webpage` },
     logo: `${SITE}/assets/images/logo-bbt.png`,
     email: contact.email,
     telephone: contact.phone,
@@ -169,7 +171,9 @@ const schema = [
       <h3 class="footer-title">Training</h3>
       <ul class="footer-links">
         <li><a href={lessonUrl('hitting')}>Hitting Lessons</a></li>
+        <li><a href={serviceAreaUrl('rocklin', 'hitting')}>Hitting Lessons in Rocklin</a></li>
         <li><a href={lessonUrl('pitching')}>Pitching Lessons</a></li>
+        <li><a href={serviceAreaUrl('rocklin', 'pitching')}>Pitching Lessons in Rocklin</a></li>
         <li><a href={lessonUrl('infield-outfield')}>Infield / Outfield</a></li>
         <li><a href={lessonUrl('catching')}>Catching</a></li>
         <li><a href={lessonUrl('baseball-iq')}>Baseball IQ</a></li>
@@ -181,6 +185,7 @@ const schema = [
     <div class="footer-contact">
       <h3 class="footer-title">About BBT</h3>
       <ul class="footer-links">
+        <li><a href="/" rel="home">Better Baseball Training</a></li>
         <li><a href={seoPageUrl('baseball-academy')}>Baseball Academy</a></li>
         <li><a href={seoPageUrl('travel-baseball')}>Travel Baseball</a></li>
         <li><a href={seoPageUrl('batting-cages-rocklin')}>Rocklin Batting Cages</a></li>
