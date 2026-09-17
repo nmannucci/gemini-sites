@@ -462,16 +462,6 @@ export const seoPages: SeoPage[] = [
         copy: 'BBT Rocklin sits at 4283 Duluth Ave, Rocklin, CA 95765 and serves families from Rocklin, Roseville, Granite Bay, and Loomis. Cesar Tamayo is the Rocklin GM and can help match a player to a coach and training path.',
       },
       {
-        label: 'Programs',
-        title: 'Lessons and Academy Use the Same Space',
-        copy: 'Private lessons and Rocklin academy membership ($250/month for ages 8-14U) both use the indoor cages and turf. Membership is recurring group training, not a cage-rental pass. Staff can help a family choose one or use both.',
-      },
-      {
-        label: 'What It Is Not',
-        title: 'Not a Drop-In Public Cage Shop',
-        copy: 'BBT is a youth baseball training facility. The cages are part of that model. Families who only want uncoached hourly rental should call first — current access is based on programming, not a published walk-in rate card on this page.',
-      },
-      {
         label: 'Next Step',
         title: 'Book or Call Before You Drive',
         copy: 'Use the form on this page or call 916-465-5551. Tell the team the athlete\'s age, the skill they need, and whether Rocklin is the right commute. The staff will point you to a lesson, academy conversation, or current facility option.',
