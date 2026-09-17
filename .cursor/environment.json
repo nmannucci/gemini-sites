@@ -1,0 +1,4 @@
+{
+  "name": "gemini-sites",
+  "install": "npm --prefix better-baseball-training/bbt-site ci && pnpm -C james-russo-cpa install --frozen-lockfile && npm --prefix la-jolla-martial-arts ci && npm --prefix tri-city-generals ci"
+}
