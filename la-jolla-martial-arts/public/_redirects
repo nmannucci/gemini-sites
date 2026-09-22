@@ -8,3 +8,9 @@
 /contact-us /contact 301
 /special-offer /contact 301
 /privacy-policy /privacy 301
+
+# Orphan organic paths. Exact matches only — does not match /lp/karate or /lp/taekwondo.
+/karate / 301
+/karate/ / 301
+/taekwondo /programs 301
+/taekwondo/ /programs 301
