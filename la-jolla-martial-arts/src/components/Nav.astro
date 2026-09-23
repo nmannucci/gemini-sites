@@ -1,9 +1,12 @@
 ---
+import AnnouncementBar from './AnnouncementBar.astro';
 interface Props { ctaText?: string; ctaHref?: string; }
 const { ctaText = 'Claim My Free Week', ctaHref = '/contact' } = Astro.props;
 const { pathname } = Astro.url;
 const isActive = (href: string) => pathname === href || pathname === href + '/';
 ---
+
+<AnnouncementBar />
 
 <nav class="nav" id="nav">
   <a href="/" class="logo" aria-label="La Jolla Martial Arts — Home">
@@ -71,9 +74,11 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
   Layout page gets these styles. Do not re-copy into page-only <style is:global> blocks.
 */}
 <style is:global>
-  .nav {
+  body { padding-top: 44px; }
+
+  #nav {
     position: fixed;
-    top: 0;
+    top: 44px;
     left: 0;
     right: 0;
     padding: 0.75rem 3rem;
@@ -193,6 +198,8 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    white-space: nowrap;
     padding: 0.55rem 1.2rem;
     background: var(--blood-red, #29bee2);
     color: var(--bone-white, #f5f5f0);

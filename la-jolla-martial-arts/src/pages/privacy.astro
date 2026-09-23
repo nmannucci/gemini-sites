@@ -1,5 +1,6 @@
 ---
 // Minimal Privacy Policy — required by Google Ads for landing pages.
+import AnnouncementBar from '../components/AnnouncementBar.astro';
 const updated = 'June 2026';
 ---
 <!DOCTYPE html>
@@ -17,7 +18,7 @@ const updated = 'June 2026';
   <style is:global>
     :root { --bg:#fdfbf5; --ink:#141414; --muted:#5a5a5a; --red:#b9121b; --line:#ecebe7; }
     * { box-sizing:border-box; margin:0; padding:0; }
-    body { font-family:'Archivo',system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; }
+    body { font-family:'Archivo',system-ui,sans-serif; background:var(--bg); color:var(--ink); line-height:1.65; padding-top:44px; }
     .wrap { max-width:760px; margin:0 auto; padding:3rem 1.25rem 4rem; }
     .logo { height:50px; margin-bottom:2rem; }
     h1 { font-family:'Bebas Neue',sans-serif; font-size:2.6rem; text-transform:uppercase; }
@@ -28,6 +29,7 @@ const updated = 'June 2026';
   </style>
 </head>
 <body>
+  <AnnouncementBar />
   <div class="wrap">
     <img class="logo" src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" />
     <h1>Privacy Policy</h1>

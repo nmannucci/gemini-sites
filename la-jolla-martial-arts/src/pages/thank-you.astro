@@ -2,6 +2,7 @@
 // Conversion confirmation page for PPC landing pages.
 // Fires the Google Ads "Submit lead form" conversion on load.
 import PostHog from '../components/PostHog.astro';
+import AnnouncementBar from '../components/AnnouncementBar.astro';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +47,7 @@ import PostHog from '../components/PostHog.astro';
     :root { --bg:#F5F5F0; --ink:#141414; --muted:#5A5A5A; --red:#D32F2F; --teal:#29BEE2; --orange:#EA580C; --teal-soft:rgba(41,190,226,.12); }
     * { box-sizing:border-box; margin:0; padding:0; }
     body { font-family:'Archivo',system-ui,sans-serif; background:var(--bg); color:var(--ink);
-      min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:1.5rem;
+      min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:calc(1.5rem + 44px) 1.5rem 1.5rem;
       background:radial-gradient(ellipse at 50% -10%, var(--teal-soft), transparent 60%), var(--bg); }
     .card { max-width:540px; }
     .tick { width:84px; height:84px; border-radius:50%; background:rgba(15,118,110,.1);
@@ -60,6 +61,7 @@ import PostHog from '../components/PostHog.astro';
   </style>
 </head>
 <body>
+  <AnnouncementBar />
   <div class="card">
     <img class="logo" src="/assets/LJ-martial-arts-logo.PNG" alt="La Jolla Martial Arts" />
     <div class="tick"><i data-lucide="check" style="width:42px;height:42px"></i></div>

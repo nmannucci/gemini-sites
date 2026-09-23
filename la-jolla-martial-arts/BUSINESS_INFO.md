@@ -26,6 +26,15 @@
 - **Conversion requirement:** Route Zumba inquiries through the same standard contact form and lead pipeline used across the site.
 - **Source:** Direct message from Sam Haddoff supplied by the client on August 25, 2026.
 
+## Website Update — September 23, 2026
+
+- Every page should announce that Zumba classes are available and link the announcement to the dedicated `/zumba` page.
+- The announcement should promote the free week offer.
+- Place the announcement above the navbar with concise copy.
+- The homepage headline should make both martial arts and Zumba visible to new visitors.
+- Keep the homepage title focused on the school and its broad offerings; use the dedicated kids martial arts and Zumba pages for those specific searches.
+- **Source:** Direct client request on September 23, 2026.
+
 ## Research Scope
 - Research date: April 5, 2026
 - Primary source reviewed: [https://lajollamartialarts.com/](https://lajollamartialarts.com/)

@@ -10,7 +10,7 @@
       var navEl = document.getElementById('nav');
       function navOffset() {
         // Fixed nav overlays content; offset so the target heading isn't hidden.
-        return (navEl ? navEl.offsetHeight : 0) + 12;
+        return (navEl ? navEl.getBoundingClientRect().bottom : 0) + 12;
       }
       function targetY(el) {
         return window.scrollY + el.getBoundingClientRect().top - navOffset();
