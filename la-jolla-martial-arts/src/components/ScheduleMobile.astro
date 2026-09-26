@@ -42,6 +42,18 @@ const privateCopy =
     <div class="schedule-mobile-block">
       <h3 class="schedule-mobile-heading">Mon–Thu</h3>
       <div class="schedule-mobile-weekdays">
+        {showZumba && (
+          <article class="schedule-mobile-card schedule-mobile-card--zumba">
+            <div class="schedule-mobile-when">
+              <span class="schedule-mobile-day">Mon + Thu</span>
+              <span class="schedule-mobile-time">9:00am</span>
+            </div>
+            <div class="schedule-mobile-body">
+              <strong>Zumba</strong>
+              <p>Dance fitness. <a href="/zumba#zumba-signup">Try a class</a>.</p>
+            </div>
+          </article>
+        )}
         {showLittleCombined && (
           <article class="schedule-mobile-card schedule-mobile-card--little">
             <span class="schedule-mobile-time">3:30–4:30pm</span>
@@ -109,8 +121,8 @@ const privateCopy =
       {showZumba && (
         <article class="schedule-mobile-card schedule-mobile-card--zumba">
           <div class="schedule-mobile-when">
-            <span class="schedule-mobile-day">Fri + Sat</span>
-            <span class="schedule-mobile-time">10:30–11:15am</span>
+            <span class="schedule-mobile-day">Friday</span>
+            <span class="schedule-mobile-time">10:30am</span>
           </div>
           <div class="schedule-mobile-body">
             <strong>Zumba</strong>

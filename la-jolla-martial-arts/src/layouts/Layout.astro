@@ -143,6 +143,8 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
         var submitBtn = form.querySelector('button[type="submit"], .form-submit');
         var originalLabel = submitBtn ? submitBtn.textContent : '';
         var programSelect = form.querySelector('[name="program"]');
+        // Pages can supply their own confirmation via <template data-lead-success>.
+        var successTemplate = form.querySelector('template[data-lead-success]');
 
         function currentSubmitLabel() {
           return programSelect && programSelect.tagName === 'SELECT' && programSelect.value === 'zumba'
@@ -218,7 +220,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
               });
             }
 
-            form.innerHTML = SUCCESS_HTML;
+            form.innerHTML = successTemplate ? successTemplate.innerHTML : SUCCESS_HTML;
             form.scrollIntoView({ behavior: 'smooth', block: 'center' });
           } catch (err) {
             if (window.posthog && typeof window.posthog.captureException === 'function') {

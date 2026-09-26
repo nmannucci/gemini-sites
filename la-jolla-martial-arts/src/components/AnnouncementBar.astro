@@ -16,8 +16,10 @@
     justify-content: center;
     gap: 0.7rem;
     padding: 0 0.75rem;
-    background: #c9e500;
-    color: #172000;
+    /* LAVEL Zumba branding: black with gold. */
+    background: linear-gradient(90deg, #0b0906, #1c150a 50%, #0b0906);
+    border-bottom: 1px solid rgba(212, 167, 60, 0.55);
+    color: #fff;
     font-family: 'Archivo', sans-serif;
     font-size: 0.82rem;
     font-weight: 700;
@@ -29,15 +31,16 @@
 
   .zumba-announcement:hover,
   .zumba-announcement:focus-visible {
-    background: #dfff32;
+    background: linear-gradient(90deg, #15110b, #2a1f0e 50%, #15110b);
   }
 
   .zumba-announcement:focus-visible {
-    outline: 3px solid #172000;
+    outline: 2px solid #f3d27a;
     outline-offset: -3px;
   }
 
   .zumba-announcement strong {
+    color: #f3d27a;
     text-decoration: underline;
     text-underline-offset: 0.2em;
   }
@@ -46,6 +49,7 @@
     width: 18px;
     height: 18px;
     flex: 0 0 auto;
+    color: #f3d27a;
   }
 
   @media (max-width: 480px) {

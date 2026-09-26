@@ -6,6 +6,9 @@ interface LeadPayload {
   program?: string;
   message?: string;
   source?: string;
+  // Zumba (LAVEL) form extras, forwarded to GoHighLevel as their own fields.
+  interest?: string;
+  classDate?: string;
 }
 
 interface NormalizedLead {
@@ -16,6 +19,8 @@ interface NormalizedLead {
   program: string;
   message: string;
   source: string;
+  interest: string;
+  classDate: string;
 }
 
 const GONE_PATHS = new Set(['/fitness-kickboxing']);
@@ -87,6 +92,8 @@ async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Pr
   const program = (payload.program ?? '').trim();
   const message = (payload.message ?? '').trim();
   const source = (payload.source ?? '').trim();
+  const interest = (payload.interest ?? '').trim();
+  const classDate = (payload.classDate ?? '').trim();
 
   if (!firstName || !lastName || !email) {
     return json({ error: 'Missing required fields' }, 400);
@@ -96,7 +103,7 @@ async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Pr
     return json({ error: 'Invalid email' }, 400);
   }
 
-  if (firstName.length > 100 || lastName.length > 100 || email.length > 200 || message.length > 5000 || source.length > 100) {
+  if (firstName.length > 100 || lastName.length > 100 || email.length > 200 || message.length > 5000 || source.length > 100 || interest.length > 100 || classDate.length > 100) {
     return json({ error: 'Field too long' }, 400);
   }
 
@@ -119,7 +126,7 @@ async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Pr
     return json({ error: 'Could not save your message. Please try again.' }, 500);
   }
 
-  const lead = { firstName, lastName, email, phone, program, message, source };
+  const lead = { firstName, lastName, email, phone, program, message, source, interest, classDate };
   ctx.waitUntil(sendToGoHighLevel(env, lead));
 
   return json({ ok: true });
@@ -144,6 +151,8 @@ async function sendToGoHighLevel(env: Env, lead: NormalizedLead): Promise<void> 
     source: lead.source || 'lajollatkd.com',
     program: programLabel || undefined,
     message: lead.message || undefined,
+    signup_for: lead.interest || undefined,
+    class_date: lead.classDate || undefined,
   };
 
   try {
@@ -182,6 +191,8 @@ function isLeadPayload(value: unknown): value is LeadPayload {
     'program',
     'message',
     'source',
+    'interest',
+    'classDate',
   ];
 
   return allowedFields.every((field) =>
