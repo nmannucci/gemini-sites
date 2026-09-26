@@ -1,0 +1,86 @@
+[
+  {
+    "source": "/assets/LJ-martial-arts-logo.PNG",
+    "output": "/assets/lj-martial-arts-logo-optimized.webp",
+    "before": 467602,
+    "after": 25812
+  },
+  {
+    "source": "/assets/Lead Form BG Image.jpg",
+    "output": "/assets/lead-form-bg-image-optimized.webp",
+    "before": 2886557,
+    "after": 81314
+  },
+  {
+    "source": "/assets/EMA - Post 12.jpg",
+    "output": "/assets/ema-post-12-optimized.webp",
+    "before": 236298,
+    "after": 128674
+  },
+  {
+    "source": "/assets/EMA Image 2.webp",
+    "output": "/assets/ema-image-2-optimized.webp",
+    "before": 254704,
+    "after": 226780
+  },
+  {
+    "source": "/assets/EMA - Post.jpg",
+    "output": "/assets/ema-post-optimized.webp",
+    "before": 265289,
+    "after": 153266
+  },
+  {
+    "source": "/assets/IMG_8330-5592456.webp",
+    "output": "/assets/img-8330-5592456-optimized.webp",
+    "before": 198646,
+    "after": 134222
+  },
+  {
+    "source": "/assets/EMA - Post 2.jpg",
+    "output": "/assets/ema-post-2-optimized.webp",
+    "before": 317874,
+    "after": 271862
+  },
+  {
+    "source": "/assets/IMG_3276-5592099.webp",
+    "output": "/assets/img-3276-5592099-optimized.webp",
+    "before": 133752,
+    "after": 127536
+  },
+  {
+    "source": "/assets/gamezone-astro-1.webp",
+    "output": "/assets/gamezone-astro-1-optimized.webp",
+    "before": 157934,
+    "after": 89360
+  },
+  {
+    "source": "/assets/gamezone-astro-2.webp",
+    "output": "/assets/gamezone-astro-2-optimized.webp",
+    "before": 238616,
+    "after": 163566
+  },
+  {
+    "source": "/assets/gamezone-astro-3.webp",
+    "output": "/assets/gamezone-astro-3-optimized.webp",
+    "before": 198080,
+    "after": 128856
+  },
+  {
+    "source": "/assets/EMA - Cover Page.jpg",
+    "output": "/assets/ema-cover-page-optimized.webp",
+    "before": 473157,
+    "after": 166590
+  },
+  {
+    "source": "/assets/zumba-banner.jpeg",
+    "output": "/assets/zumba-banner-optimized.webp",
+    "before": 605231,
+    "after": 207270
+  },
+  {
+    "source": "/assets/little-ninjas-1.webp",
+    "output": "/assets/little-ninjas-1-optimized.webp",
+    "before": 256442,
+    "after": 248960
+  }
+]

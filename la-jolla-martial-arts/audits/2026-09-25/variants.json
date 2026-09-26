@@ -1,0 +1,72 @@
+[
+  {
+    "url": "http://lajollatkd.com/",
+    "status": "200",
+    "final": "https://lajollatkd.com/",
+    "error": "",
+    "canonical": [
+      "https://lajollatkd.com/"
+    ],
+    "robots": "index,follow"
+  },
+  {
+    "url": "http://www.lajollatkd.com/",
+    "status": "200",
+    "final": "https://www.lajollatkd.com/",
+    "error": "",
+    "canonical": [
+      "https://lajollatkd.com/"
+    ],
+    "robots": "index,follow"
+  },
+  {
+    "url": "https://www.lajollatkd.com/",
+    "status": "200",
+    "final": "https://www.lajollatkd.com/",
+    "error": "",
+    "canonical": [
+      "https://lajollatkd.com/"
+    ],
+    "robots": "index,follow"
+  },
+  {
+    "url": "https://www.lajollatkd.com/kids-martial-arts",
+    "status": "200",
+    "final": "https://www.lajollatkd.com/kids-martial-arts",
+    "error": "",
+    "canonical": [
+      "https://lajollatkd.com/kids-martial-arts"
+    ],
+    "robots": "index,follow"
+  },
+  {
+    "url": "https://lajollatkd.com/kids-martial-arts/",
+    "status": "200",
+    "final": "https://lajollatkd.com/kids-martial-arts",
+    "error": "",
+    "canonical": [
+      "https://lajollatkd.com/kids-martial-arts"
+    ],
+    "robots": "index,follow"
+  },
+  {
+    "url": "https://lajollatkd.com/not-a-real-page-audit",
+    "status": "404",
+    "final": "https://lajollatkd.com/not-a-real-page-audit",
+    "error": "",
+    "canonical": [
+      "https://lajollatkd.com/404"
+    ],
+    "robots": "noindex,follow"
+  },
+  {
+    "url": "https://lajollatkd.com/lp/karate",
+    "status": "200",
+    "final": "https://lajollatkd.com/lp/karate",
+    "error": "",
+    "canonical": [
+      "https://lajollatkd.com/lp/karate.html"
+    ],
+    "robots": "noindex,follow"
+  }
+]

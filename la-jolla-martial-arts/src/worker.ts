@@ -21,6 +21,7 @@ interface NormalizedLead {
 const GONE_PATHS = new Set(['/fitness-kickboxing']);
 
 const SECURITY_HEADERS = {
+  'content-security-policy': "base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'",
   'x-content-type-options': 'nosniff',
   'x-frame-options': 'SAMEORIGIN',
   'referrer-policy': 'strict-origin-when-cross-origin',
@@ -40,6 +41,13 @@ const PROGRAM_LABELS: Record<string, string> = {
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+    // Preserve paths, tracking parameters, and POST bodies when consolidating hosts.
+    if (url.hostname === 'www.lajollatkd.com') {
+      url.hostname = 'lajollatkd.com';
+      url.protocol = 'https:';
+      return Response.redirect(url.toString(), 308);
+    }
+
     const normalizedPath = url.pathname.replace(/\/+$/, '') || '/';
 
     if (GONE_PATHS.has(normalizedPath)) {

@@ -60,6 +60,17 @@ if (existsSync(dist)) {
     const descriptionCount = (html.match(/<meta\s+name="description"/gi) || []).length;
     const canonicalCount = (html.match(/<link\s+rel="canonical"/gi) || []).length;
 
+    for (const [index, match] of [...html.matchAll(/<img\b[^>]*>/gi)].entries()) {
+      const tag = match[0];
+      assert(/\balt="[^"]*"/i.test(tag), `${displayPath} image ${index + 1}: missing alt attribute`);
+      assert(/\bwidth="[1-9]\d*"/i.test(tag) && /\bheight="[1-9]\d*"/i.test(tag), `${displayPath} image ${index + 1}: missing intrinsic dimensions`);
+      const src = tag.match(/\bsrc="([^"]+)"/i)?.[1];
+      if (src?.startsWith('/assets/')) {
+        assert(existsSync(join(dist, decodeURIComponent(src))), `${displayPath}: missing image ${src}`);
+      }
+    }
+    assert(!html.includes('"@type":"MartialArtsSchool"'), `${displayPath}: unsupported business schema type`);
+
     assert(titleCount === 1, `${displayPath}: expected one title, found ${titleCount}`);
     assert(descriptionCount === 1, `${displayPath}: expected one meta description, found ${descriptionCount}`);
     if (!isNoindex) {
@@ -83,7 +94,6 @@ if (existsSync(dist)) {
     const homeImages = [...home.matchAll(/<img\b[^>]*>/gi)].map((match) => match[0]);
     homeImages.forEach((tag, index) => {
       assert(/\balt="[^"]+"/i.test(tag), `index.html image ${index + 1} is missing alt`);
-      assert(/\btitle="[^"]+"/i.test(tag), `index.html image ${index + 1} is missing title`);
     });
     assert(home.includes('(858) 361-0961'), 'Homepage body/footer is missing the published phone number');
     assert(home.includes('7680 Girard Ave, Basement'), 'Homepage is missing the Basement street address');

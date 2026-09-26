@@ -13,7 +13,8 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "drop-trailing-slash",
-    "run_worker_first": ["/api/*", "/fitness-kickboxing*"]
+    // Run the hostname redirect before serving any static path.
+    "run_worker_first": true
   },
   "observability": {
     "enabled": true,

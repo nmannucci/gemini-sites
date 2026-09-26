@@ -12,8 +12,8 @@ export interface Props {
   ogImage?: string;
   ctaText?: string;
 }
-const { title, description, leadSource, ctaText = 'Claim My Free Week', ogImage = '/assets/EMA%20-%20Post.jpg' } = Astro.props;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://lajollatkd.com').toString();
+const { title, description, leadSource, ctaText = 'Claim My Free Week', ogImage = '/assets/ema-post-optimized.webp' } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site ?? 'https://lajollatkd.com').toString();
 ---
 
 <!DOCTYPE html>

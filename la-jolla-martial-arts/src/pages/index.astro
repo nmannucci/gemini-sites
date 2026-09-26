@@ -284,7 +284,7 @@ const faqSchema = {
       min-width: auto;
     }
 
-    .stat-item h3 {
+    .stat-item .stat-value {
       font-size: 2rem;
       font-weight: 700;
       color: var(--blood-red);
@@ -1355,7 +1355,7 @@ const faqSchema = {
       flex-shrink: 0;
     }
 
-    .step-content h4 {
+    .step-content h3 {
       font-size: 0.95rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -2117,7 +2117,7 @@ const faqSchema = {
         gap: 1.25rem;
       }
 
-      .stat-item h3 {
+      .stat-item .stat-value {
         font-size: 1.6rem;
       }
 
@@ -2142,7 +2142,7 @@ const faqSchema = {
 <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-background">
-      <img src="/assets/EMA - Post.jpg" alt="La Jolla Martial Arts students practicing Taekwondo" title="La Jolla Martial Arts students practicing Taekwondo">
+      <img width="1600" height="1200" src="/assets/ema-post-optimized.webp" fetchpriority="high" alt="La Jolla Martial Arts students practicing Taekwondo" title="La Jolla Martial Arts students practicing Taekwondo">
     </div>
 
     <div class="hero-container">
@@ -2165,15 +2165,15 @@ const faqSchema = {
 
         <div class="stats">
           <div class="stat-item">
-            <h3 class="font-display">40+</h3>
+            <div class="stat-value font-display">40+</div>
             <p>Years Teaching</p>
           </div>
           <div class="stat-item">
-            <h3 class="font-display">300+</h3>
+            <div class="stat-value font-display">300+</div>
             <p>Black Belts Trained</p>
           </div>
           <div class="stat-item">
-            <h3 class="font-display">5.0</h3>
+            <div class="stat-value font-display">5.0</div>
             <p>Star Rating</p>
           </div>
         </div>
@@ -2184,7 +2184,7 @@ const faqSchema = {
           <form class="hero-form" action="/api/lead" method="POST" novalidate data-lead-form data-lead-source="home-hero">
             <div class="hero-form-header">
               <span class="hero-form-badge">1 Week Free</span>
-              <h3 class="hero-form-title font-display">Claim Your Free Week of Classes</h3>
+              <h2 class="hero-form-title font-display">Claim Your Free Week of Classes</h2>
               <p class="hero-form-subtitle">No commitment required. See what we're all about.</p>
             </div>
 
@@ -2236,7 +2236,7 @@ const faqSchema = {
   <section class="section about" id="about-school">
     <div class="about__container">
       <div class="about__image">
-        <img src="/assets/EMA - Post 12.jpg" alt="Kids martial arts and Taekwondo class at La Jolla Martial Arts" title="Kids martial arts and Taekwondo class at La Jolla Martial Arts">
+        <img width="1600" height="1200" src="/assets/ema-post-12-optimized.webp" alt="Kids martial arts and Taekwondo class at La Jolla Martial Arts" title="Kids martial arts and Taekwondo class at La Jolla Martial Arts">
       </div>
       <div class="about__content">
         <p class="about__eyebrow">Kids Martial Arts in La Jolla</p>
@@ -2281,7 +2281,7 @@ const faqSchema = {
     <div class="programs-grid">
       <a href="/little-ninjas" class="program-card" id="program-little-ninjas">
         <div class="program-image">
-          <img src="/assets/EMA - Post 12.jpg" alt="Little Ninjas class training" title="Little Ninjas class training">
+          <img width="1600" height="1200" src="/assets/ema-post-12-optimized.webp" alt="Little Ninjas class training" title="Little Ninjas class training">
           <span class="program-badge">Ages 3-6</span>
         </div>
         <div class="program-body">
@@ -2302,7 +2302,7 @@ const faqSchema = {
 
       <a href="/kids-martial-arts" class="program-card" id="program-kids">
         <div class="program-image">
-          <img src="/assets/EMA - Cover Page.jpg" alt="Kids martial arts class" title="Kids martial arts class" style="object-position: center top;">
+          <img width="1070" height="1210" src="/assets/ema-cover-page-optimized.webp" alt="Kids martial arts class" title="Kids martial arts class" style="object-position: center top;">
           <span class="program-badge">Kids &amp; Youth</span>
         </div>
         <div class="program-body">
@@ -2323,7 +2323,7 @@ const faqSchema = {
 
       <a href="/teen-martial-arts" class="program-card" id="program-teens">
         <div class="program-image">
-          <img src="/assets/EMA - Post 6.jpg" alt="Teen martial arts students" title="Teen martial arts students">
+          <img width="960" height="720" src="/assets/EMA - Post 6.jpg" alt="Teen martial arts students" title="Teen martial arts students">
           <span class="program-badge">Ages 13+</span>
         </div>
         <div class="program-body">
@@ -2344,7 +2344,7 @@ const faqSchema = {
 
       <a href="/adult-martial-arts" class="program-card" id="program-adults">
         <div class="program-image">
-          <img src="/assets/EMA Image 2.webp" alt="Adult martial arts class" title="Adult martial arts class">
+          <img width="1360" height="1020" src="/assets/ema-image-2-optimized.webp" alt="Adult martial arts class" title="Adult martial arts class">
           <span class="program-badge">Adults</span>
         </div>
         <div class="program-body">
@@ -2392,7 +2392,7 @@ const faqSchema = {
         <a href="/zumba#zumba-signup" class="btn-primary">Claim My Free Week</a>
       </div>
       <figure class="zumba-band-graphic">
-        <img src="/assets/zumba-banner.jpeg" alt="Zumba Dance, Sweat, Smile class banner" title="Zumba Dance, Sweat, Smile class banner" loading="lazy" />
+        <img width="1135" height="1600" src="/assets/zumba-banner-optimized.webp" alt="Zumba Dance, Sweat, Smile class banner" title="Zumba Dance, Sweat, Smile class banner" loading="lazy" />
       </figure>
     </div>
   </section>
@@ -2423,11 +2423,11 @@ const faqSchema = {
       </div>
       <div class="gamezone-media">
         <div class="gamezone-shot gamezone-shot--lg">
-          <img src="/assets/gamezone-jumper-1.webp" alt="Child jumping on the Jumper AR trampoline" title="Child jumping on the Jumper AR trampoline" loading="lazy" />
+          <img width="1680" height="945" src="/assets/gamezone-jumper-1.webp" alt="Child jumping on the Jumper AR trampoline" title="Child jumping on the Jumper AR trampoline" loading="lazy" />
           <span class="gamezone-tag">Jumper · AR Trampoline</span>
         </div>
         <div class="gamezone-shot gamezone-shot--sm">
-          <img src="/assets/gamezone-astro-1.webp" alt="Child playing Astro Blaster wall laser arena" title="Child playing Astro Blaster wall laser arena" loading="lazy" />
+          <img width="1600" height="900" src="/assets/gamezone-astro-1-optimized.webp" alt="Child playing Astro Blaster wall laser arena" title="Child playing Astro Blaster wall laser arena" loading="lazy" />
           <span class="gamezone-tag gamezone-tag--pink">Astro Blaster · Laser Arena</span>
         </div>
       </div>
@@ -2556,27 +2556,27 @@ const faqSchema = {
 
     <div class="gallery-grid">
       <div class="gallery-item gallery-item--wide">
-        <img src="/assets/EMA - Post 12.jpg" alt="Martial arts training action shot" title="Martial arts training action shot" loading="lazy">
+        <img width="1600" height="1200" src="/assets/ema-post-12-optimized.webp" alt="Martial arts training action shot" title="Martial arts training action shot" loading="lazy">
       </div>
 
       <div class="gallery-item">
-        <img src="/assets/EMA Image 2.webp" alt="Adult students training focus and discipline" title="Adult students training focus and discipline" loading="lazy">
+        <img width="1360" height="1020" src="/assets/ema-image-2-optimized.webp" alt="Adult students training focus and discipline" title="Adult students training focus and discipline" loading="lazy">
       </div>
 
       <div class="gallery-item">
-        <img src="/assets/EMA - Post.jpg" alt="Taekwondo kick technique" title="Taekwondo kick technique" loading="lazy">
+        <img width="1600" height="1200" src="/assets/ema-post-optimized.webp" alt="Taekwondo kick technique" title="Taekwondo kick technique" loading="lazy">
       </div>
 
       <div class="gallery-item">
-        <img src="/assets/EMA - Post 2.jpg" alt="Students practicing techniques" title="Students practicing techniques" loading="lazy">
+        <img width="1200" height="1500" src="/assets/ema-post-2-optimized.webp" alt="Students practicing techniques" title="Students practicing techniques" loading="lazy">
       </div>
 
       <div class="gallery-item gallery-item--wide">
-        <img src="/assets/Lead Form BG Image.jpg" alt="Dojo training atmosphere" title="Dojo training atmosphere" loading="lazy">
+        <img width="1600" height="838" src="/assets/lead-form-bg-image-optimized.webp" alt="Dojo training atmosphere" title="Dojo training atmosphere" loading="lazy">
       </div>
 
       <div class="gallery-item">
-        <img src="/assets/EMA - Post 6.jpg" alt="Fitness and self defense training" title="Fitness and self defense training" loading="lazy">
+        <img width="960" height="720" src="/assets/EMA - Post 6.jpg" alt="Fitness and self defense training" title="Fitness and self defense training" loading="lazy">
       </div>
     </div>
   </section>
@@ -2624,7 +2624,7 @@ const faqSchema = {
           <div class="step">
             <div class="step-number font-display">1</div>
             <div class="step-content">
-              <h4>Claim Your Free Week</h4>
+              <h3>Claim Your Free Week</h3>
               <p>
                 Sign up for our complimentary 1-week trial. No commitment required—just
                 come experience what La Jolla Martial Arts is all about.
@@ -2635,7 +2635,7 @@ const faqSchema = {
           <div class="step">
             <div class="step-number font-display">2</div>
             <div class="step-content">
-              <h4>Tour The Dojo</h4>
+              <h3>Tour The Dojo</h3>
               <p>
                 Tour our facility, meet our instructors, and find the right program for
                 you or your child. We'll answer all your questions.
@@ -2646,7 +2646,7 @@ const faqSchema = {
           <div class="step">
             <div class="step-number font-display">3</div>
             <div class="step-content">
-              <h4>Start Training</h4>
+              <h3>Start Training</h3>
               <p>
                 Join our family of martial artists and begin your path to discipline,
                 confidence, and black belt mastery.

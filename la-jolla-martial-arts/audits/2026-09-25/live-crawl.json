@@ -1,0 +1,4043 @@
+{
+  "robots": {
+    "url": "https://lajollatkd.com/robots.txt",
+    "status": "200",
+    "final": "https://lajollatkd.com/robots.txt",
+    "body": "User-agent: *\nAllow: /\n\nSitemap: https://lajollatkd.com/sitemap-index.xml\n",
+    "error": ""
+  },
+  "sitemap_index": {
+    "url": "https://lajollatkd.com/sitemap-index.xml",
+    "status": "200",
+    "final": "https://lajollatkd.com/sitemap-index.xml",
+    "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"><sitemap><loc>https://lajollatkd.com/sitemap-0.xml</loc></sitemap></sitemapindex>",
+    "error": ""
+  },
+  "sitemap": {
+    "url": "https://lajollatkd.com/sitemap-0.xml",
+    "status": "200",
+    "final": "https://lajollatkd.com/sitemap-0.xml",
+    "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:news=\"http://www.google.com/schemas/sitemap-news/0.9\" xmlns:xhtml=\"http://www.w3.org/1999/xhtml\" xmlns:image=\"http://www.google.com/schemas/sitemap-image/1.1\" xmlns:video=\"http://www.google.com/schemas/sitemap-video/1.1\"><url><loc>https://lajollatkd.com</loc></url><url><loc>https://lajollatkd.com/about</loc></url><url><loc>https://lajollatkd.com/adult-martial-arts</loc></url><url><loc>https://lajollatkd.com/birthday-parties</loc></url><url><loc>https://lajollatkd.com/contact</loc></url><url><loc>https://lajollatkd.com/game-zone</loc></url><url><loc>https://lajollatkd.com/kids-martial-arts</loc></url><url><loc>https://lajollatkd.com/little-ninjas</loc></url><url><loc>https://lajollatkd.com/programs</loc></url><url><loc>https://lajollatkd.com/schedule</loc></url><url><loc>https://lajollatkd.com/teen-martial-arts</loc></url><url><loc>https://lajollatkd.com/zumba</loc></url></urlset>",
+    "error": ""
+  },
+  "pages": [
+    {
+      "url": "https://lajollatkd.com",
+      "status": "200",
+      "final": "https://lajollatkd.com/",
+      "error": "",
+      "title": "La Jolla Martial Arts | Taekwondo & Zumba Classes",
+      "title_length": 49,
+      "description": "Martial arts and Taekwondo for kids, teens, and adults, plus Friday and Saturday Zumba classes in La Jolla. Claim a free week at La Jolla Martial Arts.",
+      "description_length": 151,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": " Martial Arts & Zumba Classes in La Jolla "
+        },
+        {
+          "tag": "h3",
+          "text": "40+"
+        },
+        {
+          "tag": "h3",
+          "text": "300+"
+        },
+        {
+          "tag": "h3",
+          "text": "5.0"
+        },
+        {
+          "tag": "h3",
+          "text": "Claim Your Free Week of Classes"
+        },
+        {
+          "tag": "h2",
+          "text": "A Taekwondo School For Kids And Families"
+        },
+        {
+          "tag": "h2",
+          "text": "\nTaekwondo For Every Age\n"
+        },
+        {
+          "tag": "h3",
+          "text": "Little Ninjas"
+        },
+        {
+          "tag": "h3",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "tag": "h3",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "tag": "h3",
+          "text": "Adult Classes"
+        },
+        {
+          "tag": "h2",
+          "text": "\nDance. Sweat. Smile. "
+        },
+        {
+          "tag": "h2",
+          "text": "\nStep Into The Game Zone "
+        },
+        {
+          "tag": "h2",
+          "text": "\nWeekly Class Schedule\n"
+        },
+        {
+          "tag": "h3",
+          "text": "Mon\u2013Thu"
+        },
+        {
+          "tag": "h3",
+          "text": "Fri\u2013Sat"
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhat Families Say\n"
+        },
+        {
+          "tag": "h2",
+          "text": "\nLife at La Jolla Martial Arts\n"
+        },
+        {
+          "tag": "h2",
+          "text": "\nFrequently Asked Questions "
+        },
+        {
+          "tag": "h2",
+          "text": "\nBegin Your Journey "
+        },
+        {
+          "tag": "h4",
+          "text": "Claim Your Free Week"
+        },
+        {
+          "tag": "h4",
+          "text": "Tour The Dojo"
+        },
+        {
+          "tag": "h4",
+          "text": "Start Training"
+        },
+        {
+          "tag": "h3",
+          "text": "Claim Your Free Week of Classes"
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post.jpg",
+          "alt": "La Jolla Martial Arts students practicing Taekwondo",
+          "title": "La Jolla Martial Arts students practicing Taekwondo"
+        },
+        {
+          "src": "/assets/EMA - Post 12.jpg",
+          "alt": "Kids martial arts and Taekwondo class at La Jolla Martial Arts",
+          "title": "Kids martial arts and Taekwondo class at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post 12.jpg",
+          "alt": "Little Ninjas class training",
+          "title": "Little Ninjas class training"
+        },
+        {
+          "src": "/assets/EMA - Cover Page.jpg",
+          "alt": "Kids martial arts class",
+          "title": "Kids martial arts class",
+          "style": "object-position: center top;"
+        },
+        {
+          "src": "/assets/EMA - Post 6.jpg",
+          "alt": "Teen martial arts students",
+          "title": "Teen martial arts students"
+        },
+        {
+          "src": "/assets/EMA Image 2.webp",
+          "alt": "Adult martial arts class",
+          "title": "Adult martial arts class"
+        },
+        {
+          "src": "/assets/zumba-banner.jpeg",
+          "alt": "Zumba Dance, Sweat, Smile class banner",
+          "title": "Zumba Dance, Sweat, Smile class banner",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/gamezone-jumper-1.webp",
+          "alt": "Child jumping on the Jumper AR trampoline",
+          "title": "Child jumping on the Jumper AR trampoline",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/gamezone-astro-1.webp",
+          "alt": "Child playing Astro Blaster wall laser arena",
+          "title": "Child playing Astro Blaster wall laser arena",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/EMA - Post 12.jpg",
+          "alt": "Martial arts training action shot",
+          "title": "Martial arts training action shot",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/EMA Image 2.webp",
+          "alt": "Adult students training focus and discipline",
+          "title": "Adult students training focus and discipline",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/EMA - Post.jpg",
+          "alt": "Taekwondo kick technique",
+          "title": "Taekwondo kick technique",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/EMA - Post 2.jpg",
+          "alt": "Students practicing techniques",
+          "title": "Students practicing techniques",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/Lead Form BG Image.jpg",
+          "alt": "Dojo training atmosphere",
+          "title": "Dojo training atmosphere",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/EMA - Post 6.jpg",
+          "alt": "Fitness and self defense training",
+          "title": "Fitness and self defense training",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim Free Week"
+        },
+        {
+          "href": "#programs",
+          "label": "",
+          "text": "View Programs"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "Meet The School"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "See All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "   Ages 3-6   Little Ninjas Ages 3-6 \nDesigned specifically for young minds, focusing on fundamental Taekwondo skills,\n            discipline, and respect while having fun in a highly supportive environment.\n  Focus & Coordination Character building Engaging & fun  Learn More \u2192  "
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "   Kids & Youth   Kids Martial Arts Ages 7-12 \nKids martial arts classes in La Jolla that teach Taekwondo for ages 7\u201312.\n            Build character, self-esteem, and structure in a supportive environment.\n  Anti-bullying skills Confidence building Learn respect & integrity  Learn More \u2192  "
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "   Ages 13+   Teen Martial Arts Ages 13 & Up \nTrains alongside our adult class\u2014an excellent outlet for physical activity\n            while building discipline, focus, and leadership during crucial formative years.\n  Physical fitness Mental toughness Leadership development  Learn More \u2192  "
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "   Adults   Adult Classes Adults \nWhether you're looking for self-defense, physical fitness, or personal development,\n            our adult classes offer a scientific approach to Taekwondo instruction.\n  Practical self-defense Stress relief & fitness All experience levels  Learn More \u2192  "
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "see all programs"
+        },
+        {
+          "href": "#get-started",
+          "label": "",
+          "text": "Book Your Free Trial"
+        },
+        {
+          "href": "/zumba#zumba-signup",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Explore The Game Zone"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Book A Party"
+        },
+        {
+          "href": "/zumba#zumba-signup",
+          "label": "",
+          "text": "Try a class"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": " \nCall (858) 361-0961 "
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"La Jolla Martial Arts\",\"url\":\"https://lajollatkd.com/\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Is La Jolla Martial Arts a kids martial arts and Taekwondo school?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes. La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience, and we teach kids, teens, and adults at 7680 Girard Ave, Basement.\"}},{\"@type\":\"Question\",\"name\":\"Do you offer adult martial arts classes in La Jolla?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes. La Jolla Martial Arts offers adult martial arts classes in La Jolla as a combined Teen & Adult Taekwondo class, Monday through Thursday from 5:15pm to 6:15pm at 7680 Girard Ave, Basement.\"}},{\"@type\":\"Question\",\"name\":\"Can martial arts help my child with self-control?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes. Self-control is a core part of martial arts training. Kids practice listening, regulating their actions, and learning that discipline helps them succeed both on and off the mat.\"}},{\"@type\":\"Question\",\"name\":\"Will martial arts make my child more aggressive?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"No. Our program teaches self-defense, respect, and restraint. Students learn that confidence should help them avoid conflict\u2014not seek it out.\"}},{\"@type\":\"Question\",\"name\":\"What if my child does not enjoy team sports?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Martial arts can be a great fit for kids who do not connect with team sports. It is active and challenging, while letting each student progress through personal, skill-based goals.\"}},{\"@type\":\"Question\",\"name\":\"Can martial arts help with focus and discipline at school?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Training reinforces focus, patience, self-control, and respect. Those habits can support stronger classroom behavior, better effort, and more confidence when school feels challenging.\"}},{\"@type\":\"Question\",\"name\":\"Is martial arts safe for a child who is not coordinated?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes. Kids begin at different ability levels, and our instructors help them improve balance, coordination, and control step by step in a supportive environment.\"}},{\"@type\":\"Question\",\"name\":\"Can martial arts help my child build confidence?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes. As kids learn techniques, work through challenges, and recognize their progress, they begin to trust themselves and carry that confidence into everyday life.\"}},{\"@type\":\"Question\",\"name\":\"Do I need to be athletic or experienced to start?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Not at all. Most students begin with no martial arts experience. Instruction is adapted to your starting point, so you can build strength, fitness, and skill at a comfortable pace.\"}},{\"@type\":\"Question\",\"name\":\"Can martial arts help adults feel safer and more confident?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes. Adults learn practical self-defense skills while improving awareness, fitness, and composure. Over time, that preparation can build real confidence in everyday situations.\"}},{\"@type\":\"Question\",\"name\":\"Is martial arts a good way for adults to stay motivated?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"It can be. Classes offer clear goals, steady progress, engaging workouts, and a welcoming group of people training alongside you\u2014making it easier to stay consistent.\"}}]}"
+      ]
+    },
+    {
+      "url": "https://lajollatkd.com/about",
+      "status": "200",
+      "final": "https://lajollatkd.com/about",
+      "error": "",
+      "title": "About La Jolla Martial Arts | Family-Owned Taekwondo Dojo Since 2008",
+      "title_length": 68,
+      "description": "Family-owned Taekwondo dojo in La Jolla since 2008. Discipline, respect, and confidence for kids, teens, and adults \u2014 delivered with humor, patience, and decades of mat time.",
+      "description_length": 174,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/about"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": " A Dojo Built On\u00a0Spirit. "
+        },
+        {
+          "tag": "h3",
+          "text": "2008"
+        },
+        {
+          "tag": "h3",
+          "text": "40+"
+        },
+        {
+          "tag": "h3",
+          "text": "300+"
+        },
+        {
+          "tag": "h2",
+          "text": "\nMore Than A Sport. A Way Of Growing Up. "
+        },
+        {
+          "tag": "h2",
+          "text": "\nThe Four Tenets We Train By. "
+        },
+        {
+          "tag": "h3",
+          "text": "Modesty"
+        },
+        {
+          "tag": "h3",
+          "text": "Perseverance"
+        },
+        {
+          "tag": "h3",
+          "text": "Courtesy"
+        },
+        {
+          "tag": "h3",
+          "text": "Indomitable Spirit"
+        },
+        {
+          "tag": "h2",
+          "text": "\nSmall Dojo. Big Results. "
+        },
+        {
+          "tag": "h3",
+          "text": "Certified, Friendly Instructors"
+        },
+        {
+          "tag": "h3",
+          "text": "Built For Every Learner"
+        },
+        {
+          "tag": "h3",
+          "text": "Goal-Oriented Progression"
+        },
+        {
+          "tag": "h3",
+          "text": "Fully Insured, Top Equipment"
+        },
+        {
+          "tag": "h3",
+          "text": "A Family That Kicks Together"
+        },
+        {
+          "tag": "h3",
+          "text": "Convenient La Jolla Location"
+        },
+        {
+          "tag": "h4",
+          "text": "40+"
+        },
+        {
+          "tag": "h4",
+          "text": "300+"
+        },
+        {
+          "tag": "h4",
+          "text": "2008"
+        },
+        {
+          "tag": "h4",
+          "text": "All Ages"
+        },
+        {
+          "tag": "h2",
+          "text": "Come See The Dojo. Try A Class."
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post.jpg",
+          "alt": "La Jolla Martial Arts students training Taekwondo in La Jolla"
+        },
+        {
+          "src": "/assets/EMA - Post 12.jpg",
+          "alt": "Students training at La Jolla Martial Arts in La Jolla"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "View Programs"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim Your Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "View Programs"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}"
+      ]
+    },
+    {
+      "url": "https://lajollatkd.com/adult-martial-arts",
+      "status": "200",
+      "final": "https://lajollatkd.com/adult-martial-arts",
+      "error": "",
+      "title": "Adult Martial Arts Classes La Jolla | Taekwondo For Adults",
+      "title_length": 58,
+      "description": "Adult martial arts classes in La Jolla at 7680 Girard Ave, Basement. Beginner-friendly Taekwondo for fitness, confidence, and real self-defense.",
+      "description_length": 144,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/adult-martial-arts"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": " Our Adult Martial Arts Program "
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhy Adults Choose La Jolla Martial Arts "
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhat Adult Martial Arts Is Built To Develop\n"
+        },
+        {
+          "tag": "h3",
+          "text": "A Knockout Workout"
+        },
+        {
+          "tag": "h3",
+          "text": "Real Self-Defense"
+        },
+        {
+          "tag": "h3",
+          "text": "Stress That Finally Leaves The Body"
+        },
+        {
+          "tag": "h3",
+          "text": "A Non-Competitive Floor"
+        },
+        {
+          "tag": "h3",
+          "text": "A Real Skill, Not Just A Workout"
+        },
+        {
+          "tag": "h3",
+          "text": "A Community Of Real Adults"
+        },
+        {
+          "tag": "h2",
+          "text": "\nStep Onto The Mat "
+        },
+        {
+          "tag": "h2",
+          "text": "\nSee The Weekly Rhythm For Adult Martial Arts "
+        },
+        {
+          "tag": "h3",
+          "text": "Mon\u2013Thu"
+        },
+        {
+          "tag": "h3",
+          "text": "Friday"
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhat Adults Notice In Adult Martial Arts "
+        },
+        {
+          "tag": "h3",
+          "text": "A Real Workout Without The Contact"
+        },
+        {
+          "tag": "h3",
+          "text": "Challenged And Corrected, In The Best Way"
+        },
+        {
+          "tag": "h3",
+          "text": "A Real Community Of Training Partners"
+        },
+        {
+          "tag": "h2",
+          "text": "\nQuestions About Adult Martial Arts "
+        },
+        {
+          "tag": "h2",
+          "text": "Try A Free Week Of Adult Martial Arts"
+        },
+        {
+          "tag": "h3",
+          "text": "1 Week Free Classes"
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA Image 2.webp",
+          "alt": "Adult martial arts students training at La Jolla Martial Arts in La Jolla"
+        },
+        {
+          "src": "/assets/EMA - Post.jpg",
+          "alt": "Adult martial arts students training at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post 2.jpg",
+          "alt": "Adults practicing Taekwondo drills"
+        },
+        {
+          "src": "/assets/EMA - Post 6.jpg",
+          "alt": "Head instructor coaching an adult student"
+        },
+        {
+          "src": "/assets/EMA - Post 12.jpg",
+          "alt": "Adult belt ceremony at the dojo"
+        },
+        {
+          "src": "/assets/IMG_8330-5592456.webp",
+          "alt": "Adult student demonstrating a technique"
+        },
+        {
+          "src": "/assets/Eagle_martial_arts_classes_2-9552290.webp",
+          "alt": "Adult Martial Arts class in session at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "#contact",
+          "label": "",
+          "text": "Claim Free Week"
+        },
+        {
+          "href": "#faq",
+          "label": "",
+          "text": "View FAQ"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "See all programs"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": " \nCall (858) 361-0961\n"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Question\",\"name\":\"Do you offer adult martial arts classes in La Jolla?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes. La Jolla Martial Arts offers adult martial arts classes in La Jolla at 7680 Girard Ave, Basement. Adults train Taekwondo in the evening Teen & Adult class, Monday through Thursday from 5:15pm to 6:15pm.\"}},{\"@type\":\"Question\",\"name\":\"Who are adult martial arts classes in La Jolla for?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Adult martial arts classes in La Jolla are for beginners and experienced adults who want a real workout, practical self-defense, and a supportive, non-competitive training floor. No prior martial arts experience is required.\"}},{\"@type\":\"Question\",\"name\":\"What do adults get from martial arts classes in La Jolla?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Adults get Taekwondo training that builds strength, flexibility, balance, confidence, and practical self-defense. Classes are a full-body workout with a skill you can actually use, not another gym routine.\"}},{\"@type\":\"Question\",\"name\":\"Where are adult martial arts classes in La Jolla held?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Adult martial arts classes are held at La Jolla Martial Arts, 7680 Girard Ave, Basement, La Jolla, CA 92037.\"}},{\"@type\":\"Question\",\"name\":\"I don't think of myself as an athlete. Will I keep up?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Martial arts instruction is tailored to each student's capabilities and goals, so anybody at any fitness level can benefit. You work at your pace and get stronger from there.\"}},{\"@type\":\"Question\",\"name\":\"I've always thought of myself as clumsy. Can I still train?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes. Training focuses on building core strength and improving balance. Coordination improves quickly once you start putting in the reps in class.\"}},{\"@type\":\"Question\",\"name\":\"Is this a good workout if I'm bored with the gym?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Taekwondo is a full-body workout that burns calories, tones muscle, and improves flexibility and balance without feeling like another chore. Most adults look forward to class instead of dreading it.\"}},{\"@type\":\"Question\",\"name\":\"Is the environment competitive or intimidating?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"The training environment is non-judgmental, non-competitive, positive, safe, and friendly. You are here to grow as an individual, not to prove anything to anyone.\"}},{\"@type\":\"Question\",\"name\":\"Will I actually learn real self-defense?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Yes. Classes teach vital self-defense techniques alongside the workout, and over time you start to carry yourself with more confidence and authority in everyday life.\"}},{\"@type\":\"Question\",\"name\":\"Can I start as a complete beginner?\",\"acceptedAnswer\":{\"@type\":\"Answer\",\"text\":\"Absolutely. Most adults start with no martial arts experience at all. Our head instructor and the coaching team meet you where you are and progress you step by step.\"}}]}"
+      ]
+    },
+    {
+      "url": "https://lajollatkd.com/birthday-parties",
+      "status": "200",
+      "final": "https://lajollatkd.com/birthday-parties",
+      "error": "",
+      "title": "Martial Arts Birthday Parties in La Jolla | La Jolla Martial Arts",
+      "title_length": 65,
+      "description": "Throw an unforgettable martial arts birthday party in La Jolla. A trained instructor runs the games, real kicks, board breaks and our interactive Game Zone \u2014 you just bring the cake. Ages 4+. Check dates & pricing.",
+      "description_length": 214,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/birthday-parties"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": " Martial Arts Birthday Parties In La Jolla "
+        },
+        {
+          "tag": "h2",
+          "text": "\nMore Than A Birthday Party "
+        },
+        {
+          "tag": "h2",
+          "text": "\nEverything For An Unforgettable Party\n"
+        },
+        {
+          "tag": "h3",
+          "text": "A Pro Instructor"
+        },
+        {
+          "tag": "h3",
+          "text": "High-Energy Games"
+        },
+        {
+          "tag": "h3",
+          "text": "The Interactive Game Zone"
+        },
+        {
+          "tag": "h3",
+          "text": "Real Kicks & Board Breaks"
+        },
+        {
+          "tag": "h3",
+          "text": "A Birthday-Star Moment"
+        },
+        {
+          "tag": "h3",
+          "text": "Zero Stress For You"
+        },
+        {
+          "tag": "h2",
+          "text": "\nAdd The Game Zone "
+        },
+        {
+          "tag": "h2",
+          "text": "\nThree Steps To An Epic Party "
+        },
+        {
+          "tag": "h3",
+          "text": "Pick Your Date"
+        },
+        {
+          "tag": "h3",
+          "text": "We Handle It All"
+        },
+        {
+          "tag": "h3",
+          "text": "You Enjoy The Day"
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhat Families Say About Our Parties "
+        },
+        {
+          "tag": "h3",
+          "text": "The Kids Had A Blast"
+        },
+        {
+          "tag": "h3",
+          "text": "So Much More Than Games"
+        },
+        {
+          "tag": "h3",
+          "text": "Stress-Free For Parents"
+        },
+        {
+          "tag": "h2",
+          "text": "\nBirthday Party Questions "
+        },
+        {
+          "tag": "h2",
+          "text": "Lock In Your Party Date"
+        },
+        {
+          "tag": "h3",
+          "text": "Check Dates & Pricing"
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/kids-martial-arts-1.webp",
+          "alt": "Kids celebrating a martial arts birthday party in La Jolla"
+        },
+        {
+          "src": "/assets/EMA - Post 12.jpg",
+          "alt": "Kids martial arts games at a birthday party"
+        },
+        {
+          "src": "/assets/gamezone-jumper-1.webp",
+          "alt": "Child jumping in the interactive Game Zone"
+        },
+        {
+          "src": "/assets/EMA - Post 6.jpg",
+          "alt": "Instructor teaching a real kick at a party"
+        },
+        {
+          "src": "/assets/gamezone-astro-1.webp",
+          "alt": "Child playing Astro Blaster laser arena"
+        },
+        {
+          "src": "/assets/EMA - Post 2.jpg",
+          "alt": "Birthday star breaking a board"
+        },
+        {
+          "src": "/assets/gamezone-jumper-poster.webp",
+          "alt": "Interactive Game Zone with glowing AR game portals"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "#contact",
+          "label": "",
+          "text": "Check Party Dates"
+        },
+        {
+          "href": "#faq",
+          "label": "",
+          "text": "View FAQ"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Explore The Game Zone"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": " \nCall (858) 361-0961\n"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}"
+      ]
+    },
+    {
+      "url": "https://lajollatkd.com/contact",
+      "status": "200",
+      "final": "https://lajollatkd.com/contact",
+      "error": "",
+      "title": "Contact Us | La Jolla Martial Arts",
+      "title_length": 34,
+      "description": "Contact La Jolla Martial Arts. Ask about classes, schedule a visit, or claim your free week of Taekwondo training in La Jolla, CA.",
+      "description_length": 130,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/contact"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": " Claim Your Free Week of Martial Arts "
+        },
+        {
+          "tag": "h3",
+          "text": "Message Sent"
+        },
+        {
+          "tag": "h2",
+          "text": "Claim My Free Week"
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/Lead Form BG Image.jpg",
+          "alt": "La Jolla Martial Arts training floor in La Jolla"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": " \nCall (858) 361-0961 "
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}"
+      ]
+    },
+    {
+      "url": "https://lajollatkd.com/game-zone",
+      "status": "200",
+      "final": "https://lajollatkd.com/game-zone",
+      "error": "",
+      "title": "Interactive Game Zone in La Jolla | La Jolla Martial Arts",
+      "title_length": 57,
+      "description": "Step into the Game Zone at La Jolla Martial Arts \u2014 Jumper, an AR trampoline, and Astro Blaster, a wall laser arena. Open play, birthday parties and group events for ages 6+. Plan your visit.",
+      "description_length": 190,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/game-zone"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": "\nEnter TheGame Zone "
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhere Martial-Arts EnergyMeets Next-Gen Arcade\n"
+        },
+        {
+          "tag": "h3",
+          "text": "2"
+        },
+        {
+          "tag": "h3",
+          "text": "8+"
+        },
+        {
+          "tag": "h3",
+          "text": "100%"
+        },
+        {
+          "tag": "h3",
+          "text": "6+"
+        },
+        {
+          "tag": "h2",
+          "text": "Jumper"
+        },
+        {
+          "tag": "h2",
+          "text": "Astro Blaster"
+        },
+        {
+          "tag": "h2",
+          "text": "Lights On, Game On"
+        },
+        {
+          "tag": "h2",
+          "text": "Four Ways To Play"
+        },
+        {
+          "tag": "h3",
+          "text": "Open Play"
+        },
+        {
+          "tag": "h3",
+          "text": "Birthday Parties"
+        },
+        {
+          "tag": "h3",
+          "text": "Class Rewards"
+        },
+        {
+          "tag": "h3",
+          "text": "Group Events"
+        },
+        {
+          "tag": "h2",
+          "text": "The Ultimate Birthday Party HQ"
+        },
+        {
+          "tag": "h2",
+          "text": "Game Zone Questions"
+        },
+        {
+          "tag": "h3",
+          "text": "What ages is the Game Zone for?"
+        },
+        {
+          "tag": "h3",
+          "text": "Do I need to be a member to play?"
+        },
+        {
+          "tag": "h3",
+          "text": "How many kids can play at once?"
+        },
+        {
+          "tag": "h3",
+          "text": "Can I book it for a birthday party?"
+        },
+        {
+          "tag": "h3",
+          "text": "Is it active or just screen time?"
+        },
+        {
+          "tag": "h3",
+          "text": "Where is it located?"
+        },
+        {
+          "tag": "h2",
+          "text": "Ready To Press Start?"
+        },
+        {
+          "tag": "h3",
+          "text": "Let's Get You Playing"
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/gamezone-astro-1.webp",
+          "alt": "Child playing Astro Blaster laser arena at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/gamezone-jumper-1.webp",
+          "alt": "Child jumping on the Jumper AR trampoline, controlling an on-screen jungle game"
+        },
+        {
+          "src": "/assets/gamezone-astro-1.webp",
+          "alt": "Child aiming a laser blaster at glowing targets projected on the wall in Astro Blaster"
+        },
+        {
+          "src": "/assets/gamezone-jumper-poster.webp",
+          "alt": "Player choosing between glowing Jumper game portals",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/gamezone-astro-poster.webp",
+          "alt": "Neon Astro Blaster laser gameplay on the wall",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/gamezone-jumper-2.webp",
+          "alt": "Kid mid-jump in an AR trampoline game",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/gamezone-astro-2.webp",
+          "alt": "Astro Blaster targets glowing on the wall",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/gamezone-jumper-3.webp",
+          "alt": "Jumper AR trampoline session",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/gamezone-astro-3.webp",
+          "alt": "Astro Blaster wall laser arena in play",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "#plan",
+          "label": "",
+          "text": "Plan Your Visit"
+        },
+        {
+          "href": "#plan",
+          "label": "",
+          "text": "Plan Your Visit"
+        },
+        {
+          "href": "#plan",
+          "label": "",
+          "text": "Reach out"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}"
+      ]
+    },
+    {
+      "url": "https://lajollatkd.com/kids-martial-arts",
+      "status": "200",
+      "final": "https://lajollatkd.com/kids-martial-arts",
+      "error": "",
+      "title": "Kids Martial Arts La Jolla | Taekwondo For Ages 7-12",
+      "title_length": 52,
+      "description": "Kids Martial Arts at La Jolla Martial Arts helps ages 7-12 build confidence, discipline, focus, respect, and self-defense through structured Taekwondo classes in La Jolla.",
+      "description_length": 171,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/kids-martial-arts"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": " Our Kids Martial Arts Program "
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhy Families Choose Kids Martial Arts "
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhat Kids Martial Arts Is Built To Develop\n"
+        },
+        {
+          "tag": "h3",
+          "text": "Focus On Self-Improvement"
+        },
+        {
+          "tag": "h3",
+          "text": "Develops Patience"
+        },
+        {
+          "tag": "h3",
+          "text": "Supports Better School Habits"
+        },
+        {
+          "tag": "h3",
+          "text": "Builds Strength And Endurance"
+        },
+        {
+          "tag": "h3",
+          "text": "Promotes Positivity"
+        },
+        {
+          "tag": "h3",
+          "text": "Teaches Respect And Self-Control"
+        },
+        {
+          "tag": "h2",
+          "text": "\nStep Onto The Mat "
+        },
+        {
+          "tag": "h2",
+          "text": "\nSee The Weekly Rhythm For Kids Martial Arts "
+        },
+        {
+          "tag": "h3",
+          "text": "Mon\u2013Thu"
+        },
+        {
+          "tag": "h3",
+          "text": "Fri\u2013Sat"
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhat People Notice In Kids Martial Arts "
+        },
+        {
+          "tag": "h3",
+          "text": "Confidence That Shows Up Everywhere"
+        },
+        {
+          "tag": "h3",
+          "text": "Life Lessons Beyond Kicks And Drills"
+        },
+        {
+          "tag": "h3",
+          "text": "Discipline And Focus Grow Over Time"
+        },
+        {
+          "tag": "h2",
+          "text": "\nQuestions About Kids Martial Arts "
+        },
+        {
+          "tag": "h2",
+          "text": "Try A Free Week Of Kids Martial Arts"
+        },
+        {
+          "tag": "h3",
+          "text": "1 Week Free Classes"
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post.jpg",
+          "alt": "Kids martial arts students training at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post.jpg",
+          "alt": "Kids martial arts students training at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post 2.jpg",
+          "alt": "Kids practicing Taekwondo drills"
+        },
+        {
+          "src": "/assets/EMA - Post 6.jpg",
+          "alt": "Head instructor working with a young student"
+        },
+        {
+          "src": "/assets/EMA - Post 12.jpg",
+          "alt": "Belt ceremony for kids martial arts students"
+        },
+        {
+          "src": "/assets/IMG_8330-5592456.webp",
+          "alt": "Kids martial arts student demonstrating a technique"
+        },
+        {
+          "src": "/assets/kids-martial-arts-1.webp",
+          "alt": "Kids Martial Arts class in session at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "#contact",
+          "label": "",
+          "text": "Claim Free Week"
+        },
+        {
+          "href": "#faq",
+          "label": "",
+          "text": "View FAQ"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "See all programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Martial Arts"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": " \nCall (858) 361-0961\n"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}"
+      ]
+    },
+    {
+      "url": "https://lajollatkd.com/little-ninjas",
+      "status": "200",
+      "final": "https://lajollatkd.com/little-ninjas",
+      "error": "",
+      "title": "Little Ninjas La Jolla | Preschool Taekwondo For Ages 3-6",
+      "title_length": 57,
+      "description": "Little Ninjas at La Jolla Martial Arts helps ages 3-6 build listening, focus, coordination, and confidence through fun beginner Taekwondo classes in La Jolla.",
+      "description_length": 158,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/little-ninjas"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": " Our Little Ninjas Program "
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhy Families Choose Little Ninjas "
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhat Little Ninjas Is Built To Develop\n"
+        },
+        {
+          "tag": "h3",
+          "text": "Balance"
+        },
+        {
+          "tag": "h3",
+          "text": "Memory"
+        },
+        {
+          "tag": "h3",
+          "text": "Control"
+        },
+        {
+          "tag": "h3",
+          "text": "Teamwork"
+        },
+        {
+          "tag": "h3",
+          "text": "Coordination"
+        },
+        {
+          "tag": "h3",
+          "text": "Fitness"
+        },
+        {
+          "tag": "h3",
+          "text": "Focus"
+        },
+        {
+          "tag": "h3",
+          "text": "Discipline"
+        },
+        {
+          "tag": "h2",
+          "text": "\nStep Onto The Mat "
+        },
+        {
+          "tag": "h2",
+          "text": "\nSee The Weekly Rhythm For Little Ninjas "
+        },
+        {
+          "tag": "h3",
+          "text": "Mon\u2013Thu"
+        },
+        {
+          "tag": "h3",
+          "text": "Fri\u2013Sat"
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhat Families Notice In Little Ninjas "
+        },
+        {
+          "tag": "h3",
+          "text": "Great For Energetic Kids"
+        },
+        {
+          "tag": "h3",
+          "text": "Kids Look Forward To It"
+        },
+        {
+          "tag": "h3",
+          "text": "Life Lessons Start Early"
+        },
+        {
+          "tag": "h2",
+          "text": "\nQuestions About Little Ninjas "
+        },
+        {
+          "tag": "h2",
+          "text": "Try A Free Week Of Little Ninjas"
+        },
+        {
+          "tag": "h3",
+          "text": "1 Week Free Classes"
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post 12.jpg",
+          "alt": "Little Ninjas students training at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post.jpg",
+          "alt": "Little Ninjas students training at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post 2.jpg",
+          "alt": "Young children practicing Taekwondo drills"
+        },
+        {
+          "src": "/assets/EMA - Post 6.jpg",
+          "alt": "Head instructor guiding a Little Ninjas student"
+        },
+        {
+          "src": "/assets/EMA - Post 12.jpg",
+          "alt": "Little Ninjas belt ceremony moment"
+        },
+        {
+          "src": "/assets/IMG_8330-5592456.webp",
+          "alt": "Little Ninjas student showing a technique"
+        },
+        {
+          "src": "/assets/little-ninjas-1.webp",
+          "alt": "Little Ninjas class in session at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "#contact",
+          "label": "",
+          "text": "Claim Free Week"
+        },
+        {
+          "href": "#faq",
+          "label": "",
+          "text": "View FAQ"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "See all programs"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": " \nCall (858) 361-0961\n"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}"
+      ]
+    },
+    {
+      "url": "https://lajollatkd.com/programs",
+      "status": "200",
+      "final": "https://lajollatkd.com/programs",
+      "error": "",
+      "title": "Programs | La Jolla Martial Arts",
+      "title_length": 32,
+      "description": "Kids martial arts and Taekwondo programs in La Jolla \u2014 Little Ninjas, kids, teen, and adult classes at 7680 Girard Ave, Basement.",
+      "description_length": 129,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/programs"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": " Programs at La Jolla Martial Arts "
+        },
+        {
+          "tag": "h2",
+          "text": "\nTaekwondo For Every Age\n"
+        },
+        {
+          "tag": "h3",
+          "text": "Little Ninjas"
+        },
+        {
+          "tag": "h3",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "tag": "h3",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "tag": "h3",
+          "text": "Adult Classes"
+        },
+        {
+          "tag": "h2",
+          "text": "\nDance. Sweat. Smile. "
+        },
+        {
+          "tag": "h2",
+          "text": "\nStep Into The Game Zone "
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post.jpg",
+          "alt": "Students training at La Jolla Martial Arts",
+          "title": "Students training at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post 12.jpg",
+          "alt": "Little Ninjas class training at La Jolla Martial Arts",
+          "title": "Little Ninjas class training at La Jolla Martial Arts",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/kids-martial-arts-1.webp",
+          "alt": "Kids martial arts class at La Jolla Martial Arts",
+          "title": "Kids martial arts class at La Jolla Martial Arts",
+          "style": "object-position: center top;",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/EMA - Post 6.jpg",
+          "alt": "Teen martial arts students at La Jolla Martial Arts",
+          "title": "Teen martial arts students at La Jolla Martial Arts",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/EMA Image 2.webp",
+          "alt": "Adult martial arts class at La Jolla Martial Arts",
+          "title": "Adult martial arts class at La Jolla Martial Arts",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/zumba-banner.jpeg",
+          "alt": "Zumba dance fitness at La Jolla Martial Arts",
+          "title": "Zumba dance fitness at La Jolla Martial Arts",
+          "loading": "lazy",
+          "style": "object-position: center 18%;"
+        },
+        {
+          "src": "/assets/gamezone-jumper-1.webp",
+          "alt": "Child jumping on the Jumper AR trampoline in the Game Zone",
+          "title": "Child jumping on the Jumper AR trampoline in the Game Zone",
+          "loading": "lazy"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim Free Week"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "View Schedule"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "   Ages 3-6   Little Ninjas Ages 3-6 Designed specifically for young minds, focusing on fundamental Taekwondo skills, discipline, and respect while having fun in a highly supportive environment.  Focus & CoordinationCharacter buildingEngaging & fun  Learn More \u2192  "
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "   Kids & Youth   Kids Martial Arts Ages 7-12 Kids martial arts classes in La Jolla that teach Taekwondo for ages 7\u201312. Build character, self-esteem, and structure in a supportive environment.  Anti-bullying skillsConfidence buildingLearn respect & integrity  Learn More \u2192  "
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "   Ages 13+   Teen Martial Arts Ages 13 & Up Trains alongside our adult class\u2014an excellent outlet for physical activity while building discipline, focus, and leadership during crucial formative years.  Physical fitnessMental toughnessLeadership development  Learn More \u2192  "
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "   Adults   Adult Classes Adults Adult martial arts classes in La Jolla for self-defense, fitness, and personal development. Beginner-friendly Taekwondo at 7680 Girard Ave, Basement.  Practical self-defenseStress relief & fitnessAll experience levels  Learn More \u2192  "
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim Your Free Week"
+        },
+        {
+          "href": "/zumba#zumba-signup",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Learn About Zumba"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Explore The Game Zone"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Book A Party"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}"
+      ]
+    },
+    {
+      "url": "https://lajollatkd.com/schedule",
+      "status": "200",
+      "final": "https://lajollatkd.com/schedule",
+      "error": "",
+      "title": "Class Schedule | La Jolla Martial Arts",
+      "title_length": 38,
+      "description": "Weekly La Jolla Martial Arts class schedule for Little Ninjas, Kids, Teens, Adults, and Zumba dance fitness classes.",
+      "description_length": 116,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/schedule"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": " Class Schedule. "
+        },
+        {
+          "tag": "h2",
+          "text": "\nFind A Class That Fits. "
+        },
+        {
+          "tag": "h3",
+          "text": "Mon\u2013Thu"
+        },
+        {
+          "tag": "h3",
+          "text": "Fri\u2013Sat"
+        },
+        {
+          "tag": "h3",
+          "text": "Location"
+        },
+        {
+          "tag": "h3",
+          "text": "Hours"
+        },
+        {
+          "tag": "h3",
+          "text": "Questions?"
+        },
+        {
+          "tag": "h2",
+          "text": "Not Sure Which Class? Come Try One."
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post 2.jpg",
+          "alt": "La Jolla Martial Arts class in session"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/zumba#zumba-signup",
+          "label": "",
+          "text": "Try a class"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim Your Free Week"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}"
+      ]
+    },
+    {
+      "url": "https://lajollatkd.com/teen-martial-arts",
+      "status": "200",
+      "final": "https://lajollatkd.com/teen-martial-arts",
+      "error": "",
+      "title": "Teen Martial Arts La Jolla | Taekwondo For Ages 13+",
+      "title_length": 51,
+      "description": "Teen Martial Arts at La Jolla Martial Arts in La Jolla helps ages 13+ build confidence, discipline, focus, and real self-defense through structured Taekwondo classes.",
+      "description_length": 166,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/teen-martial-arts"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": " Our Teen Martial Arts Program "
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhy Families Choose Teen Martial Arts "
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhat Teen Martial Arts Is Built To Develop\n"
+        },
+        {
+          "tag": "h3",
+          "text": "A Real After-School Outlet"
+        },
+        {
+          "tag": "h3",
+          "text": "Fitness And Physical Health"
+        },
+        {
+          "tag": "h3",
+          "text": "Higher Self-Esteem And Self-Respect"
+        },
+        {
+          "tag": "h3",
+          "text": "Leadership And Social Skills"
+        },
+        {
+          "tag": "h3",
+          "text": "A No-Bullying Environment"
+        },
+        {
+          "tag": "h3",
+          "text": "Art, Not Violence"
+        },
+        {
+          "tag": "h2",
+          "text": "\nStep Onto The Mat "
+        },
+        {
+          "tag": "h2",
+          "text": "\nSee The Weekly Rhythm For Teen Martial Arts "
+        },
+        {
+          "tag": "h3",
+          "text": "Mon\u2013Thu"
+        },
+        {
+          "tag": "h3",
+          "text": "Friday"
+        },
+        {
+          "tag": "h2",
+          "text": "\nWhat People Notice In Teen Martial Arts "
+        },
+        {
+          "tag": "h3",
+          "text": "A Class With All Kinds Of People"
+        },
+        {
+          "tag": "h3",
+          "text": "Role Models, Not Just Instructors"
+        },
+        {
+          "tag": "h3",
+          "text": "Discipline And Focus Grow Over Time"
+        },
+        {
+          "tag": "h2",
+          "text": "\nQuestions About Teen Martial Arts "
+        },
+        {
+          "tag": "h2",
+          "text": "Try A Free Week Of Teen Martial Arts"
+        },
+        {
+          "tag": "h3",
+          "text": "1 Week Free Classes"
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post 6.jpg",
+          "alt": "Teen martial arts students training at La Jolla Martial Arts in La Jolla"
+        },
+        {
+          "src": "/assets/EMA - Post.jpg",
+          "alt": "Teen martial arts students training at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/EMA - Post 2.jpg",
+          "alt": "Teens practicing Taekwondo drills"
+        },
+        {
+          "src": "/assets/EMA - Post 6.jpg",
+          "alt": "Head instructor working with a teen student"
+        },
+        {
+          "src": "/assets/EMA - Post 12.jpg",
+          "alt": "Belt ceremony at the dojo"
+        },
+        {
+          "src": "/assets/IMG_8330-5592456.webp",
+          "alt": "Teen student demonstrating a technique"
+        },
+        {
+          "src": "/assets/Eagle_martial_arts_classes_2-9552290.webp",
+          "alt": "Teen Martial Arts class in session at La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "#contact",
+          "label": "",
+          "text": "Claim Free Week"
+        },
+        {
+          "href": "#faq",
+          "label": "",
+          "text": "View FAQ"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "See all programs"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Martial Arts"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": " \nCall (858) 361-0961\n"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}"
+      ]
+    },
+    {
+      "url": "https://lajollatkd.com/zumba",
+      "status": "200",
+      "final": "https://lajollatkd.com/zumba",
+      "error": "",
+      "title": "Zumba Classes in La Jolla, CA | Dance Fitness",
+      "title_length": 45,
+      "description": "Claim a free week of Zumba classes at La Jolla Martial Arts. Join us Friday and Saturday from 10:30am to 11:15am in La Jolla.",
+      "description_length": 125,
+      "robots": "index,follow",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "canonical": [
+        "https://lajollatkd.com/zumba"
+      ],
+      "headings": [
+        {
+          "tag": "h1",
+          "text": " Get A Free Week Of Zumba. "
+        },
+        {
+          "tag": "h2",
+          "text": "Your New Weekend Energy."
+        },
+        {
+          "tag": "h2",
+          "text": "A Workout That Feels Like A Party."
+        },
+        {
+          "tag": "h3",
+          "text": "Full-Body Cardio"
+        },
+        {
+          "tag": "h3",
+          "text": "Mood Boost"
+        },
+        {
+          "tag": "h3",
+          "text": "No Dance Experience Needed"
+        },
+        {
+          "tag": "h3",
+          "text": "Community Energy"
+        },
+        {
+          "tag": "h2",
+          "text": "Claim Your Free Week."
+        }
+      ],
+      "images": [
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        },
+        {
+          "src": "/assets/zumba-banner.jpeg",
+          "alt": "Zumba Dance, Sweat, Smile class banner",
+          "fetchpriority": "high"
+        },
+        {
+          "src": "/assets/LJ-martial-arts-logo.PNG",
+          "alt": "La Jolla Martial Arts",
+          "title": "La Jolla Martial Arts"
+        }
+      ],
+      "links": [
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": " Now offering Zumba \u00b7 Claim a free week  "
+        },
+        {
+          "href": "/",
+          "label": "La Jolla Martial Arts \u2014 Home",
+          "text": "  "
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "Programs"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/#reviews",
+          "label": "",
+          "text": "Reviews"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/",
+          "label": "",
+          "text": "Home"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "Schedule"
+        },
+        {
+          "href": "/about",
+          "label": "",
+          "text": "About"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Contact"
+        },
+        {
+          "href": "/contact",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/programs",
+          "label": "",
+          "text": "All Programs"
+        },
+        {
+          "href": "/little-ninjas",
+          "label": "",
+          "text": "Little Ninjas"
+        },
+        {
+          "href": "/kids-martial-arts",
+          "label": "",
+          "text": "Kids Martial Arts"
+        },
+        {
+          "href": "/teen-martial-arts",
+          "label": "",
+          "text": "Teen Martial Arts"
+        },
+        {
+          "href": "/adult-martial-arts",
+          "label": "",
+          "text": "Adult Classes"
+        },
+        {
+          "href": "/zumba",
+          "label": "",
+          "text": "Zumba"
+        },
+        {
+          "href": "/birthday-parties",
+          "label": "",
+          "text": "Birthday Parties"
+        },
+        {
+          "href": "/game-zone",
+          "label": "",
+          "text": "Game Zone"
+        },
+        {
+          "href": "#zumba-signup",
+          "label": "",
+          "text": "Claim My Free Week"
+        },
+        {
+          "href": "/schedule",
+          "label": "",
+          "text": "View Full Schedule"
+        },
+        {
+          "href": "tel:8583610961",
+          "label": "",
+          "text": "(858) 361-0961"
+        },
+        {
+          "href": "mailto:LJBULLYPROOF@GMAIL.COM",
+          "label": "",
+          "text": "LJBULLYPROOF@GMAIL.COM"
+        },
+        {
+          "href": "https://house36marketing.com",
+          "label": "",
+          "text": "Built by House36 Marketing"
+        },
+        {
+          "href": "https://www.facebook.com/",
+          "label": "Facebook",
+          "text": "  "
+        },
+        {
+          "href": "https://lajollatkd.com/",
+          "label": "Website",
+          "text": "  "
+        }
+      ],
+      "schema": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"legalName\":\"La Jolla Martial Arts LLC\",\"description\":\"La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.\",\"url\":\"https://lajollatkd.com/\",\"telephone\":\"+1-858-361-0961\",\"image\":\"https://lajollatkd.com/assets/EMA%20-%20Post.jpg\",\"logo\":\"https://lajollatkd.com/assets/LJ-martial-arts-logo.PNG\",\"priceRange\":\"$$\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"},\"geo\":{\"@type\":\"GeoCoordinates\",\"latitude\":32.8442,\"longitude\":-117.274},\"areaServed\":[{\"@type\":\"City\",\"name\":\"La Jolla\"},{\"@type\":\"City\",\"name\":\"San Diego\"}],\"founder\":{\"@type\":\"Person\",\"name\":\"Master Sam\"},\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\"],\"opens\":\"15:00\",\"closes\":\"18:30\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"10:30\",\"closes\":\"11:15\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"09:00\",\"closes\":\"13:00\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Service\",\"name\":\"Zumba Classes in La Jolla\",\"description\":\"Get a free week of Zumba dance fitness classes at La Jolla Martial Arts. Classes meet Fridays and Saturdays from 10:30am to 11:15am.\",\"url\":\"https://lajollatkd.com/zumba\",\"areaServed\":{\"@type\":\"City\",\"name\":\"La Jolla\"},\"provider\":{\"@type\":\"MartialArtsSchool\",\"@id\":\"https://lajollatkd.com/#business\",\"name\":\"La Jolla Martial Arts\",\"telephone\":\"+1-858-361-0961\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"7680 Girard Ave, Basement\",\"addressLocality\":\"La Jolla\",\"addressRegion\":\"CA\",\"postalCode\":\"92037\",\"addressCountry\":\"US\"}},\"offers\":{\"@type\":\"Offer\",\"price\":\"0\",\"priceCurrency\":\"USD\",\"description\":\"One free week of Zumba classes\",\"availability\":\"https://schema.org/InStock\"}}"
+      ]
+    }
+  ]
+}

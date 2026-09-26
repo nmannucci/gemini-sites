@@ -1,0 +1,96 @@
+{
+  "version": "4eb556ed-5dda-402d-8c80-604625fb3ead",
+  "checks": [
+    {
+      "url": "https://lajollatkd.com/",
+      "status": "200",
+      "location": null,
+      "title": "La Jolla Martial Arts | Taekwondo &amp; Zumba Classes",
+      "optimized": true,
+      "old_schema": false,
+      "images": 17,
+      "missing_dimensions": 0,
+      "csp": true
+    },
+    {
+      "url": "https://lajollatkd.com/about",
+      "status": "200",
+      "location": null,
+      "title": "About La Jolla Martial Arts | Family-Owned Since 2008",
+      "optimized": true,
+      "old_schema": false,
+      "images": 4,
+      "missing_dimensions": 0,
+      "csp": true
+    },
+    {
+      "url": "https://lajollatkd.com/programs",
+      "status": "200",
+      "location": null,
+      "title": "Programs | La Jolla Martial Arts",
+      "optimized": true,
+      "old_schema": false,
+      "images": 9,
+      "missing_dimensions": 0,
+      "csp": true
+    },
+    {
+      "url": "https://lajollatkd.com/kids-martial-arts",
+      "status": "200",
+      "location": null,
+      "title": "Kids Martial Arts La Jolla | Taekwondo For Ages 7-12",
+      "optimized": true,
+      "old_schema": false,
+      "images": 9,
+      "missing_dimensions": 0,
+      "csp": true
+    },
+    {
+      "url": "https://lajollatkd.com/zumba",
+      "status": "200",
+      "location": null,
+      "title": "Zumba Classes in La Jolla, CA | Dance Fitness",
+      "optimized": true,
+      "old_schema": false,
+      "images": 3,
+      "missing_dimensions": 0,
+      "csp": true
+    },
+    {
+      "url": "https://lajollatkd.com/lp/kids-martial-arts",
+      "status": "200",
+      "location": null,
+      "title": "Kids Martial Arts in La Jolla | Free Week | La Jolla Martial Arts",
+      "optimized": true,
+      "old_schema": false,
+      "images": 12,
+      "missing_dimensions": 0,
+      "csp": true
+    },
+    {
+      "url": "https://www.lajollatkd.com/kids-martial-arts?utm_source=verification",
+      "status": "308",
+      "location": "https://lajollatkd.com/kids-martial-arts?utm_source=verification"
+    },
+    {
+      "url": "https://lajollatkd.com/reviews",
+      "status": "301",
+      "location": "/#reviews"
+    },
+    {
+      "url": "https://lajollatkd.com/fitness-kickboxing",
+      "status": "410",
+      "location": null
+    },
+    {
+      "url": "https://lajollatkd.com/not-a-real-page-audit",
+      "status": "404",
+      "location": null
+    },
+    {
+      "url": "https://lajollatkd.com/assets/lead-form-bg-image-optimized.webp",
+      "status": "200",
+      "location": null
+    }
+  ]
+}

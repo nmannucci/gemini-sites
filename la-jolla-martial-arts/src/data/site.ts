@@ -52,7 +52,7 @@ export const openingHoursSpecification = [
 
 export const businessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'MartialArtsSchool',
+  '@type': 'SportsActivityLocation',
   '@id': `${SITE_URL}/#business`,
   name: site.brand,
   legalName: site.legalName,
@@ -60,8 +60,8 @@ export const businessSchema = {
     'La Jolla Martial Arts is a kids martial arts and Taekwondo school in La Jolla. Master Sam has 40+ years of teaching experience. Classes for kids, teens, and adults at 7680 Girard Ave, Basement.',
   url: `${SITE_URL}/`,
   telephone: site.telephone,
-  image: `${SITE_URL}/assets/EMA%20-%20Post.jpg`,
-  logo: `${SITE_URL}/assets/LJ-martial-arts-logo.PNG`,
+  image: `${SITE_URL}/assets/ema-post-optimized.webp`,
+  logo: `${SITE_URL}/assets/lj-martial-arts-logo-optimized.webp`,
   priceRange: '$$',
   address: {
     '@type': 'PostalAddress',

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import imageMetadata from '../data/image-metadata.json';
 import { site } from '../data/site';
 
 /**
@@ -11,7 +12,7 @@ import { site } from '../data/site';
 const agePrograms = [
   {
     href: '/little-ninjas',
-    image: '/assets/EMA - Post 12.jpg',
+    image: '/assets/ema-post-12-optimized.webp',
     alt: 'Little Ninjas class training at La Jolla Martial Arts',
     badge: 'Ages 3-6',
     age: 'Ages 3-6',
@@ -42,7 +43,7 @@ const agePrograms = [
   },
   {
     href: '/adult-martial-arts',
-    image: '/assets/EMA Image 2.webp',
+    image: '/assets/ema-image-2-optimized.webp',
     alt: 'Adult martial arts class at La Jolla Martial Arts',
     badge: 'Adults',
     age: 'Adults',
@@ -57,7 +58,7 @@ const agePrograms = [
   title="Programs | La Jolla Martial Arts"
   description="Kids martial arts and Taekwondo programs in La Jolla — Little Ninjas, kids, teen, and adult classes at 7680 Girard Ave, Basement."
   canonical="https://lajollatkd.com/programs"
-  ogImage="/assets/EMA%20-%20Post.jpg"
+  ogImage="/assets/ema-post-optimized.webp"
   programPageCss
 >
   <Fragment slot="head">
@@ -558,8 +559,8 @@ const agePrograms = [
   <div class="programs-page">
     <header class="hero">
       <div class="hero-media">
-        <img
-          src="/assets/EMA - Post.jpg"
+        <img width="1600" height="1200"
+          src="/assets/ema-post-optimized.webp"
           alt="Students training at La Jolla Martial Arts"
           title="Students training at La Jolla Martial Arts"
         />
@@ -616,6 +617,8 @@ const agePrograms = [
                 <div class="program-image">
                   <img
                     src={program.image}
+                    width={imageMetadata[program.image as keyof typeof imageMetadata].width}
+                    height={imageMetadata[program.image as keyof typeof imageMetadata].height}
                     alt={program.alt}
                     title={program.alt}
                     style={program.imageStyle}
@@ -653,8 +656,8 @@ const agePrograms = [
           <article class="hub-dark-card">
             <p class="section-label">New · Zumba classes</p>
             <div class="hub-dark-media">
-              <img
-                src="/assets/zumba-banner.jpeg"
+              <img width="1135" height="1600"
+                src="/assets/zumba-banner-optimized.webp"
                 alt="Zumba dance fitness at La Jolla Martial Arts"
                 title="Zumba dance fitness at La Jolla Martial Arts"
                 loading="lazy"
@@ -677,7 +680,7 @@ const agePrograms = [
           <article class="hub-dark-card">
             <p class="section-label">New · Interactive Game Zone</p>
             <div class="hub-dark-media">
-              <img
+              <img width="1680" height="945"
                 src="/assets/gamezone-jumper-1.webp"
                 alt="Child jumping on the Jumper AR trampoline in the Game Zone"
                 title="Child jumping on the Jumper AR trampoline in the Game Zone"
