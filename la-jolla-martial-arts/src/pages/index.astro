@@ -76,6 +76,7 @@ const faqSchema = {
   description="Martial arts and Taekwondo for kids, teens, and adults, plus Monday, Thursday, and Friday morning Zumba classes in La Jolla. Claim a free week at La Jolla Martial Arts."
 >
   <Fragment slot="head">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,500&display=swap" rel="stylesheet" />
 <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 <style is:global>
@@ -886,101 +887,180 @@ const faqSchema = {
     }
 
     /* ============================================
-       ZUMBA ANNOUNCEMENT
+       ZUMBA (LAVEL) — mirrors /zumba hero
     ============================================ */
     .zumba-band {
-      padding: 5rem 4rem;
+      --lv-ink: #0b0906;
+      --lv-gold: #d4a73c;
+      --lv-gold-hi: #f3d27a;
+      --lv-gold-lo: #9a6d1a;
+      --lv-gold-grad: linear-gradient(180deg, var(--lv-gold-hi) 0%, var(--lv-gold) 55%, var(--lv-gold-lo) 100%);
+      padding: 5.5rem 4rem;
       position: relative;
       overflow: hidden;
-      background:
-        radial-gradient(circle at 83% 18%, rgba(41, 190, 226, 0.25), transparent 24%),
-        radial-gradient(circle at 73% 92%, rgba(245, 7, 104, 0.22), transparent 29%),
-        var(--deep-black);
       color: #fff;
+      background:
+        radial-gradient(ellipse 60% 70% at 80% 35%, rgba(212,167,60,0.24), transparent 65%),
+        radial-gradient(ellipse 50% 60% at 5% 100%, rgba(154,109,26,0.22), transparent 70%),
+        var(--lv-ink);
     }
 
     .zumba-band::before {
       content: '';
       position: absolute;
       inset: 0;
-      opacity: 0.13;
-      background-image: repeating-linear-gradient(115deg, transparent 0 30px, rgba(255,255,255,0.1) 30px 31px);
+      pointer-events: none;
+      opacity: 0.5;
+      background-image: repeating-linear-gradient(115deg, transparent 0 46px, rgba(243,210,122,0.05) 46px 47px);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%, #000 70%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 40%, #000 70%, transparent);
     }
 
     .zumba-band-inner {
-      max-width: 1400px;
+      max-width: 1320px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(330px, 0.85fr);
-      gap: clamp(3rem, 8vw, 8rem);
+      grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+      gap: clamp(2.5rem, 6vw, 6rem);
       align-items: center;
       position: relative;
       z-index: 1;
     }
 
+    .zumba-band-wordmark {
+      display: block;
+      width: min(320px, 70%);
+      height: auto;
+      margin-left: -2%;
+      filter: drop-shadow(0 10px 28px rgba(212,167,60,0.28));
+    }
+
     .zumba-band-kicker {
-      color: #c9e500;
+      margin-top: 0.4rem;
+      color: var(--lv-gold-hi);
       font-size: 0.74rem;
       font-weight: 700;
-      letter-spacing: 0.26em;
+      letter-spacing: 0.38em;
       text-transform: uppercase;
-      margin-bottom: 1rem;
     }
+    .zumba-band-kicker span { color: rgba(255,255,255,0.55); letter-spacing: 0.28em; }
 
     .zumba-band-title {
-      font-size: clamp(3.7rem, 7vw, 7rem);
-      line-height: 0.84;
+      margin: 1rem 0 0.8rem;
+      font-size: clamp(3.2rem, 5.4vw, 6rem);
+      line-height: 0.86;
       text-transform: uppercase;
-      margin-bottom: 1.35rem;
+    }
+    .zumba-band-title span { display: block; }
+
+    .zumba-gold {
+      background: var(--lv-gold-grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .zumba-band-title .accent { color: #c9e500; }
-
-    .zumba-band-copy {
-      max-width: 660px;
-      color: rgba(255,255,255,0.7);
-      font-size: 1rem;
-      line-height: 1.75;
+    .zumba-band-tagline {
+      font-family: 'Bodoni Moda', Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+      color: rgba(255,255,255,0.78);
     }
 
-    .zumba-band-details {
+    .zumba-band-days {
+      list-style: none;
+      margin: 1.6rem 0 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.6rem;
+      max-width: 560px;
+    }
+    .zumba-band-days li {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      margin: 1.75rem 0 2rem;
+      flex-direction: column;
+      gap: 0.3rem;
+      padding: 0.9rem 1.1rem 1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(212,167,60,0.5);
+      background: linear-gradient(180deg, rgba(243,210,122,0.07), rgba(255,255,255,0.02));
     }
-
-    .zumba-band-details span {
-      padding: 0.65rem 0.8rem;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.05);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 700;
+    .zumba-band-days b {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      color: var(--lv-gold-hi);
     }
+    .zumba-band-days span { font-size: 0.86rem; font-weight: 600; line-height: 1.35; color: rgba(255,255,255,0.88); }
 
-    .zumba-band-details .zumba-coming {
-      background: #f50768;
-      border-color: #f50768;
+    .zumba-band-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.6rem; }
+
+    .zumba-btn {
+      min-height: 54px;
+      padding: 0 1.6rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Archivo', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     }
+    .zumba-btn--gold { background: var(--lv-gold-grad); color: var(--lv-ink); box-shadow: 0 10px 30px -12px rgba(212,167,60,0.7); }
+    .zumba-btn--gold:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -12px rgba(212,167,60,0.85); }
+    .zumba-btn--line { color: #fff; box-shadow: inset 0 0 0 1px rgba(243,210,122,0.55); }
+    .zumba-btn--line:hover { background: rgba(243,210,122,0.1); box-shadow: inset 0 0 0 1px var(--lv-gold-hi); }
+    .zumba-btn:focus-visible { outline: 2px solid var(--lv-gold); outline-offset: 3px; }
 
-    .zumba-band-graphic {
+    .zumba-band-arch-wrap { position: relative; justify-self: center; width: min(400px, 100%); }
+    .zumba-band-arch {
       position: relative;
+      margin: 0;
+      aspect-ratio: 684 / 1000;
+      border-radius: 999px 999px 10px 10px;
       overflow: hidden;
-      max-width: 450px;
-      justify-self: end;
-      background: #fff7de;
-      transform: rotate(2deg);
-      box-shadow: 20px 24px 0 rgba(41,190,226,0.17);
+      border: 2px solid var(--lv-gold);
+      box-shadow: 0 0 0 10px rgba(212,167,60,0.1), 0 40px 90px -20px rgba(0,0,0,0.8);
     }
-
-    .zumba-band-graphic img {
-      display: block;
-      width: 100%;
-      height: auto;
+    .zumba-band-arch img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .zumba-band-arch::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(11,9,6,0.55));
     }
+    .zumba-band-badge {
+      position: absolute;
+      left: -2rem;
+      bottom: 2.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.8rem 1.1rem 0.8rem 0.8rem;
+      background: var(--lv-ink);
+      border: 1px solid var(--lv-gold);
+      border-radius: 999px;
+      box-shadow: 0 18px 40px -12px rgba(0,0,0,0.8);
+    }
+    .zumba-band-badge-star {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--lv-gold-grad);
+    }
+    .zumba-band-badge-star svg { width: 22px; height: 22px; }
+    .zumba-band-badge strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; font-weight: 400; line-height: 0.9; color: var(--lv-gold-hi); }
+    .zumba-band-badge small { display: block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
 
     /* ============================================
        SCHEDULE SECTION
@@ -1127,11 +1207,11 @@ const faqSchema = {
       border-color: rgba(153, 27, 27, 0.18);
     }
     .schedule-slot--zumba {
-      background: linear-gradient(145deg, #f9f7bf, #d7ef50);
-      border-color: rgba(117, 134, 0, 0.28);
-      color: #2d3300;
+      background: radial-gradient(ellipse 90% 90% at 100% 0%, rgba(212,167,60,0.3), transparent 70%), #0b0906;
+      border-color: #d4a73c;
+      color: #f3d27a;
     }
-    .schedule-slot--zumba span { color: rgba(45, 51, 0, 0.76); }
+    .schedule-slot--zumba span { color: rgba(247, 239, 224, 0.8); }
     .schedule-slot--private {
       background: linear-gradient(180deg, #fde7d2, #f8c98e);
       border-color: rgba(176, 96, 18, 0.25);
@@ -1982,7 +2062,7 @@ const faqSchema = {
       }
 
       .zumba-band-inner { grid-template-columns: 1fr; }
-      .zumba-band-graphic { max-width: 580px; width: 100%; margin: 0 auto; }
+      .zumba-band-arch-wrap { width: min(380px, 88%); margin-top: 1rem; }
     }
 
     @media (max-width: 768px) {
@@ -2031,9 +2111,15 @@ const faqSchema = {
         grid-template-columns: 1fr;
       }
 
-      .zumba-band { padding: 4rem 1.25rem; }
-      .zumba-band-title { font-size: clamp(3.6rem, 18vw, 5.3rem); }
-      .zumba-band-graphic { min-height: 335px; transform: none; box-shadow: 10px 14px 0 rgba(41,190,226,0.17); }
+      .zumba-band { padding: 4rem 1.25rem 5rem; }
+      .zumba-band-wordmark { width: min(260px, 75%); }
+      .zumba-band-kicker { font-size: 0.68rem; letter-spacing: 0.28em; }
+      .zumba-band-title { font-size: clamp(3.2rem, 15vw, 4.4rem); }
+      .zumba-band-days { grid-template-columns: 1fr; max-width: none; gap: 0.5rem; }
+      .zumba-band-days li { flex-direction: row; align-items: baseline; gap: 0.9rem; padding: 0.8rem 1.1rem; }
+      .zumba-band-days b { min-width: 3rem; }
+      .zumba-band-actions .zumba-btn { width: 100%; }
+      .zumba-band-badge { left: 50%; transform: translateX(-50%); bottom: -1.4rem; white-space: nowrap; }
 
       .programs-header {
         flex-direction: column;
@@ -2370,31 +2456,45 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Zumba Announcement -->
+  <!-- Zumba (LAVEL) -->
   <section class="zumba-band" aria-labelledby="home-zumba-title">
     <div class="zumba-band-inner">
       <div>
-        <p class="zumba-band-kicker">New · Zumba classes</p>
+        <img class="zumba-band-wordmark" src="/assets/lavel-wordmark.webp" width="1200" height="400" alt="LAVEL" loading="lazy" />
+        <p class="zumba-band-kicker">Zumba · Group Fitness <span>at La Jolla Martial Arts</span></p>
         <h2 class="zumba-band-title font-display" id="home-zumba-title">
-          Dance. Sweat. <span class="accent">Smile.</span>
+          <span>Zumba Classes</span>
+          <span>In La Jolla.</span>
+          <span class="zumba-gold">First Week Free.</span>
         </h2>
-        <p class="zumba-band-copy">
-          Zumba is here at La Jolla Martial Arts. Join LAVEL Group Fitness for upbeat
-          dance fitness classes Monday, Thursday, and Friday mornings—no dance
-          experience required.
-        </p>
-        <div class="zumba-band-details" aria-label="Planned Zumba class details">
-          <span class="zumba-coming">Now enrolling</span>
-          <span>Mon + Thu · 9:00am</span>
-          <span>Fri · 10:30am</span>
-          <span>First week free</span>
+        <p class="zumba-band-tagline">Fitness for your mind, body &amp; soul.</p>
+        <ul class="zumba-band-days" aria-label="Zumba class times, 60 minutes each">
+          <li><b>Mon</b><span>9:00 AM · 60 min</span></li>
+          <li><b>Thu</b><span>9:00 AM · 60 min</span></li>
+          <li><b>Fri</b><span>10:30 AM · 60 min</span></li>
+        </ul>
+        <div class="zumba-band-actions">
+          <a href="/zumba#zumba-signup" class="zumba-btn zumba-btn--gold">Claim My Free Week</a>
+          <a href="/zumba#master-class" class="zumba-btn zumba-btn--line" data-lv-until="2026-10-10T10:30:00-07:00">Free Master Class · Oct 10</a>
         </div>
-        <a href="/zumba#zumba-signup" class="btn-primary">Claim My Free Week</a>
       </div>
-      <figure class="zumba-band-graphic">
-        <img width="1135" height="1600" src="/assets/zumba-banner-optimized.webp" alt="Zumba Dance, Sweat, Smile class banner" title="Zumba Dance, Sweat, Smile class banner" loading="lazy" />
-      </figure>
+      <div class="zumba-band-arch-wrap">
+        <figure class="zumba-band-arch">
+          <img src="/assets/lavel-dancer.webp" width="684" height="1000" alt="Smiling dancer in a LAVEL tank top during an outdoor Zumba class" loading="lazy" />
+        </figure>
+        <div class="zumba-band-badge">
+          <span class="zumba-band-badge-star" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><polygon fill="#0b0906" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+          </span>
+          <div><strong>20% Off</strong><small>Military &amp; Veterans</small></div>
+        </div>
+      </div>
     </div>
+    <script is:inline>
+      document.querySelectorAll('.zumba-band [data-lv-until]').forEach(function (el) {
+        if (Date.now() > Date.parse(el.getAttribute('data-lv-until'))) el.remove();
+      });
+    </script>
   </section>
 
   <!-- Game Zone Section -->
@@ -2443,7 +2543,7 @@ const faqSchema = {
       </h2>
       <p class="section-intro">
         Classes run Monday through Thursday with an extra combo class on Saturday morning.
-        Zumba runs Monday and Thursday at 9:00am and Friday at 10:30am.
+        60-minute Zumba classes run Monday and Thursday at 9:00am and Friday at 10:30am.
         Private lessons are available Friday by appointment. Closed Sundays.
       </p>
     </div>
@@ -2461,10 +2561,10 @@ const faqSchema = {
           <div class="schedule-day" role="columnheader">Sun</div>
 
           <div class="schedule-time" role="rowheader">9:00am – 9:45am</div>
-          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>Zumba</strong><span>Dance fitness</span></div></div>
+          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>LAVEL Zumba</strong><span>60 min · Dance fitness</span></div></div>
           <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
           <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
-          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>Zumba</strong><span>Dance fitness</span></div></div>
+          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>LAVEL Zumba</strong><span>60 min · Dance fitness</span></div></div>
           <div class="schedule-slot schedule-slot--private" role="cell"><div><strong>Private Lessons</strong><span>By appointment</span></div></div>
           <div class="schedule-slot schedule-slot--combo" role="cell">
             <div>
@@ -2479,7 +2579,7 @@ const faqSchema = {
           <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
           <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
           <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
-          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>Zumba</strong><span>Dance fitness</span></div></div>
+          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>LAVEL Zumba</strong><span>60 min · Dance fitness</span></div></div>
           <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
           <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
 

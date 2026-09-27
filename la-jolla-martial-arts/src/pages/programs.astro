@@ -463,6 +463,28 @@ const agePrograms = [
         max-width: 460px;
       }
 
+      /* LAVEL Zumba card — mirrors the /zumba black & gold */
+      .programs-page .hub-dark-card--lavel {
+        background:
+          radial-gradient(ellipse 70% 60% at 100% 0%, rgba(212,167,60,0.18), transparent 70%),
+          #0b0906;
+        border-color: rgba(212,167,60,0.5);
+      }
+      .programs-page .hub-dark-card--lavel .section-label { color: #f3d27a; }
+      .programs-page .hub-dark-card--lavel h2 .accent {
+        background: linear-gradient(180deg, #f3d27a 0%, #d4a73c 55%, #9a6d1a 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .programs-page .hub-dark-card--lavel .hub-dark-media { border-color: #d4a73c; }
+      .programs-page .hub-dark-card--lavel .btn-primary {
+        background: linear-gradient(180deg, #f3d27a 0%, #d4a73c 55%, #9a6d1a 100%);
+        color: #0b0906;
+        border-color: transparent;
+      }
+      .programs-page .hub-dark-card--lavel .btn-secondary { border-color: rgba(243,210,122,0.55); }
+
       .programs-page .hub-dark-media {
         position: relative;
         width: 100%;
@@ -653,23 +675,23 @@ const agePrograms = [
 
       <section class="hub-dark-band" aria-label="Zumba and Game Zone">
         <div class="hub-dark-inner">
-          <article class="hub-dark-card">
-            <p class="section-label">New · Zumba classes</p>
+          <article class="hub-dark-card hub-dark-card--lavel">
+            <p class="section-label">New · LAVEL Zumba</p>
             <div class="hub-dark-media">
-              <img width="1135" height="1600"
-                src="/assets/zumba-banner-optimized.webp"
-                alt="Zumba dance fitness at La Jolla Martial Arts"
-                title="Zumba dance fitness at La Jolla Martial Arts"
+              <img width="684" height="1000"
+                src="/assets/lavel-dancer.webp"
+                alt="Smiling dancer in a LAVEL tank top during a Zumba class"
+                title="LAVEL Zumba at La Jolla Martial Arts"
                 loading="lazy"
-                style="object-position: center 18%;"
+                style="object-position: center 22%;"
               />
             </div>
             <h2 class="font-display">
-              Dance. Sweat. <span class="accent">Smile.</span>
+              Zumba Classes. <span class="accent">First Week Free.</span>
             </h2>
             <p>
-              LAVEL Zumba every Monday and Thursday at 9:00am and Friday at 10:30am.
-              First week free. No dance experience required.
+              60-minute LAVEL Zumba classes every Monday and Thursday at 9:00am and Friday
+              at 10:30am. No dance experience required. 20% off for military &amp; veterans.
             </p>
             <div class="hub-dark-actions">
               <a href="/zumba#zumba-signup" class="btn-primary">Claim My Free Week</a>
