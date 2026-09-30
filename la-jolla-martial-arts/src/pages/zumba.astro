@@ -4,7 +4,7 @@ import '../styles/site-theme.css';
 
 const SITE = 'https://lajollatkd.com';
 
-// LAVEL Group Fitness handoff (Lavel Bryant, Sep 25 2026). Every class runs 60 minutes.
+// LAVEL Group Fitness handoff (Lavel Bryant, Sep 25 2026). Regular classes run 60 minutes; the Master Class runs 90 minutes.
 const CLASS_LENGTH = '60 min';
 const CLASSES = [
   { day: 'Monday', time: '9:00 AM' },
@@ -27,7 +27,7 @@ const PRICES = [
 ];
 
 // Master Class content hides itself client-side once it has ended.
-const MASTER_CLASS_END = '2026-10-10T10:30:00-07:00';
+const MASTER_CLASS_END = '2026-10-17T10:30:00-07:00';
 
 const location = {
   '@type': 'SportsActivityLocation',
@@ -63,7 +63,7 @@ const masterClassSchema = {
   '@context': 'https://schema.org',
   '@type': 'Event',
   name: 'Free 90-Minute LAVEL Zumba Master Class',
-  startDate: '2026-10-10T09:00:00-07:00',
+  startDate: '2026-10-17T09:00:00-07:00',
   endDate: MASTER_CLASS_END,
   eventStatus: 'https://schema.org/EventScheduled',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
@@ -76,7 +76,7 @@ const masterClassSchema = {
 
 <Layout
   title="LAVEL Zumba Classes in La Jolla | First Week Free"
-  description="60-minute LAVEL Zumba group fitness at La Jolla Martial Arts. Mondays & Thursdays 9:00 AM, Fridays 10:30 AM. Your first week is free, plus a free Master Class Oct 10."
+  description="60-minute LAVEL Zumba group fitness at La Jolla Martial Arts. Mondays & Thursdays 9:00 AM, Fridays 10:30 AM. Your first week is free, plus a free Master Class Oct 17."
   canonical={`${SITE}/zumba`}
 >
   <Fragment slot="head">
@@ -321,6 +321,22 @@ const masterClassSchema = {
       .lv-badge strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; line-height: 0.9; color: var(--lv-gold-hi); }
       .lv-badge span { display: block; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.8); }
 
+      /* Approved LAVEL biography and class photography. */
+      .lv-meet { padding: 6rem 4rem; }
+      .lv-meet-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+      .lv-meet-photos { display: grid; gap: 1.2rem; }
+      .lv-meet-photos figure { margin: 0; }
+      .lv-meet-photos img { display: block; width: 100%; height: auto; border: 1px solid var(--lv-line); border-radius: 10px; }
+      .lv-meet-photos figcaption { margin-top: 0.6rem; font-size: 0.8rem; color: var(--lv-muted); }
+      .lv-meet-brand { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+      .lv-meet-brand img { width: 100px; height: 100px; flex: 0 0 auto; border-radius: 50%; }
+      .lv-meet-brand .lv-label { margin: 0; }
+      .lv-meet-role { margin-top: 1rem; font-weight: 700; color: var(--lv-gold-lo); }
+      .lv-meet-copy > p:not(.lv-meet-role) { margin-top: 1.2rem; line-height: 1.75; }
+      .lv-meet-copy .lv-btn { margin-top: 1.6rem; }
+      @media (max-width: 900px) { .lv-meet { padding: 4rem 1.5rem; } .lv-meet-grid { grid-template-columns: 1fr; } .lv-meet-copy { order: -1; } }
+      @media (max-width: 520px) { .lv-meet { padding: 3.5rem 1rem; } .lv-meet-brand img { width: 80px; height: 80px; } }
+
       /* ---------- SCHEDULE ---------- */
       .lv-schedule { padding: 6rem 4rem; }
       .lv-head {
@@ -335,7 +351,7 @@ const masterClassSchema = {
 
       .lv-days {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         border-top: 1px solid var(--lv-line);
         border-bottom: 1px solid var(--lv-line);
       }
@@ -353,27 +369,22 @@ const masterClassSchema = {
       .lv-day time { display: block; margin-top: 0.35rem; font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; color: var(--lv-gold-lo); }
       .lv-day time small { font-size: 0.75em; color: var(--lv-muted); }
       .lv-day p { color: var(--lv-muted); font-size: 0.82rem; line-height: 1.5; }
-      .lv-day--free {
-        border-right: 0;
-        background: var(--lv-ink);
+      .lv-day:last-child { border-right: 0; }
+      .lv-schedule-offer {
+        margin-top: 1.5rem;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        background: radial-gradient(ellipse at right, rgba(212,167,60,0.18), transparent 65%), var(--lv-ink);
         color: #fff;
-        position: relative;
-        overflow: hidden;
+        border: 1px solid var(--lv-gold-lo);
       }
-      .lv-day--free::before {
-        content: '';
-        position: absolute;
-        right: -60px;
-        top: -60px;
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(212,167,60,0.35), transparent 70%);
-      }
-      .lv-day--free .lv-day-num { color: var(--lv-gold-hi); }
-      .lv-day--free p { color: rgba(255,255,255,0.65); }
-      .lv-day--free a { color: var(--lv-gold-hi); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
-      .lv-day--free a:hover { text-decoration: underline; }
+      .lv-schedule-offer .lv-label { color: var(--lv-gold-hi); }
+      .lv-schedule-offer h3 { margin-top: 0.6rem; font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.3rem, 4vw, 3.2rem); font-weight: 400; line-height: 1; text-transform: uppercase; }
+      .lv-schedule-offer p:not(.lv-label) { margin-top: 0.5rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+      .lv-schedule-offer .lv-btn { flex-shrink: 0; }
 
       .lv-where {
         display: flex;
@@ -389,40 +400,26 @@ const masterClassSchema = {
       .lv-where a { color: inherit; }
 
       /* ---------- MASTER CLASS ---------- */
-      .lv-master {
-        padding: 5rem 4rem;
-        background:
-          radial-gradient(ellipse 45% 90% at 0% 50%, rgba(212,167,60,0.22), transparent 70%),
-          var(--lv-ink-2);
-        color: #fff;
-        border-top: 1px solid rgba(212,167,60,0.4);
-        border-bottom: 1px solid rgba(212,167,60,0.4);
-      }
+      .lv-master { padding: 3rem 4rem; background: var(--lv-cream); color: #fff; }
       .lv-master-grid {
         display: grid;
         grid-template-columns: auto 1fr auto;
-        gap: clamp(2rem, 5vw, 4.5rem);
+        gap: clamp(2rem, 4vw, 3rem);
         align-items: center;
+        padding: 3rem;
+        background: radial-gradient(ellipse at top left, rgba(212,167,60,0.12), transparent 60%), var(--lv-ink-2);
+        border: 1px solid rgba(212,167,60,0.4);
+        border-left: 5px solid var(--lv-gold);
+        box-shadow: 0 15px 35px -25px rgba(11,9,6,0.4);
       }
-      .lv-date {
-        width: 150px;
-        text-align: center;
-        border: 1px solid var(--lv-gold);
-        padding: 1rem 0.5rem 1.1rem;
-        position: relative;
-      }
-      .lv-date::before {
-        content: '';
-        position: absolute;
-        inset: 5px;
-        border: 1px solid rgba(243,210,122,0.25);
-        pointer-events: none;
-      }
-      .lv-date small { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3em; color: var(--lv-gold-hi); }
-      .lv-date strong { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 5rem; font-weight: 400; line-height: 0.85; margin: 0.3rem 0 0.1rem; }
-      .lv-date span { display: block; font-size: 0.68rem; letter-spacing: 0.24em; color: rgba(255,255,255,0.7); }
+      .lv-master .lv-label { color: var(--lv-gold-hi); letter-spacing: 0.18em; }
+      .lv-event-brand { width: 170px; text-align: center; }
+      .lv-event-brand img { display: block; width: 170px; height: 170px; border-radius: 50%; box-shadow: 0 0 30px rgba(212,167,60,0.12); }
+      .lv-event-date { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(212,167,60,0.4); }
+      .lv-event-date strong { display: block; color: var(--lv-gold-hi); font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; }
+      .lv-event-date span { display: block; margin-top: 0.3rem; color: rgba(255,255,255,0.75); font-size: 0.8rem; }
       .lv-master h2 { margin-top: 0.8rem; font-size: clamp(2.4rem, 4.4vw, 4rem); line-height: 0.92; text-transform: uppercase; }
-      .lv-master p:not(.lv-label) { margin-top: 0.9rem; color: rgba(255,255,255,0.68); line-height: 1.7; max-width: 560px; }
+      .lv-master p:not(.lv-label) { margin-top: 0.9rem; color: rgba(255,255,255,0.72); line-height: 1.7; max-width: 560px; }
       .lv-master p strong { color: #fff; }
 
       /* ---------- PRICING ---------- */
@@ -721,9 +718,7 @@ const masterClassSchema = {
         .lv-signup-grid { grid-template-columns: 1fr; }
         .lv-head { gap: 1.2rem; }
         .lv-arch-wrap { width: min(400px, 88%); margin-top: 1rem; }
-        .lv-days { grid-template-columns: 1fr 1fr; }
-        .lv-day:nth-child(2) { border-right: 0; }
-        .lv-day:nth-child(-n+2) { border-bottom: 1px solid var(--lv-line); }
+
         .lv-master-grid { grid-template-columns: auto 1fr; }
         .lv-master-grid > .lv-btn { grid-column: 1 / -1; justify-self: start; }
       }
@@ -749,18 +744,20 @@ const masterClassSchema = {
         .lv-why,
         .lv-signup { padding-top: 4.5rem; padding-bottom: 4.5rem; }
         .lv-days { grid-template-columns: 1fr; }
-        .lv-day,
-        .lv-day:nth-child(2) { min-height: 0; border-right: 0; border-bottom: 1px solid var(--lv-line); flex-direction: row; align-items: center; gap: 1rem; padding: 1.3rem 0.25rem; }
+        .lv-day { min-height: 0; border-right: 0; border-bottom: 1px solid var(--lv-line); flex-direction: row; align-items: center; gap: 1rem; padding: 1.3rem 0.25rem; }
         .lv-day > div { flex: 1; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
         .lv-day h3 { font-size: 2.3rem; }
         .lv-day time { margin-top: 0; }
         .lv-day p { display: none; }
-        .lv-day--free > div { display: block; }
-        .lv-day--free { padding: 1.6rem 1.25rem; flex-direction: column; align-items: flex-start; border-bottom: 0; }
-        .lv-day--free p { display: block; }
-        .lv-master { padding-top: 4rem; padding-bottom: 4rem; }
+        .lv-schedule-offer { padding: 1.6rem 1.25rem; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+        .lv-schedule-offer .lv-btn { width: 100%; }
+        .lv-master { padding-top: 2rem; padding-bottom: 2rem; }
         .lv-master-grid { grid-template-columns: 1fr; gap: 1.6rem; }
         .lv-master-grid > .lv-btn { width: 100%; }
+        .lv-master-grid { padding: 2rem 1.25rem; }
+        .lv-event-brand { width: 100%; display: flex; align-items: center; gap: 1.25rem; text-align: left; }
+        .lv-event-brand img { width: 100px; height: 100px; flex: 0 0 auto; }
+        .lv-event-date { margin: 0; padding: 0; border-top: 0; }
         .lv-offer { box-shadow: 10px 10px 0 var(--lv-gold); margin-right: 10px; }
         .lv-menu .dots { display: none; }
         .lv-menu li { justify-content: space-between; }
@@ -785,13 +782,13 @@ const masterClassSchema = {
             <span>In La Jolla.</span>
             <span class="lv-gold-text">First Week Free.</span>
           </h1>
-          <p class="lv-tagline lv-serif lv-rise">Fitness for your mind, body &amp; soul.</p>
+          <p class="lv-tagline lv-serif lv-rise">Moving mind, body &amp; soul.</p>
           <ul class="lv-pills lv-rise" aria-label="Benefits of Zumba">
             {HERO_BENEFITS.map((b) => <li><b>{b.kicker}</b><span>{b.text}</span></li>)}
           </ul>
           <div class="lv-hero-actions lv-rise">
             <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="Free First Week">Claim My Free Week</a>
-            <a href="#master-class" class="lv-btn lv-btn--line" data-lv-until={MASTER_CLASS_END}>Free Master Class · Oct 10</a>
+            <a href="#master-class" class="lv-btn lv-btn--line" data-lv-until={MASTER_CLASS_END}>Free Master Class · Oct 17</a>
           </div>
         </div>
 
@@ -807,6 +804,28 @@ const masterClassSchema = {
             <div><strong>20% Off</strong><span>Military &amp; Veterans</span></div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- MASTER CLASS -->
+    <section class="lv-master" id="master-class" aria-labelledby="lv-master-title" data-lv-until={MASTER_CLASS_END}>
+      <div class="lv-inner lv-master-grid">
+        <div class="lv-event-brand">
+          <img src="/assets/lavel-lion-emblem.webp" width="1254" height="1254" alt="LAVEL gold lion emblem" loading="lazy" decoding="async" />
+          <div class="lv-event-date">
+            <strong>Sat · Oct 17</strong>
+            <span>9:00 AM · Free</span>
+          </div>
+        </div>
+        <div>
+          <p class="lv-label">One-day event · Free admission</p>
+          <h2 class="font-display" id="lv-master-title">Free 90-Minute Zumba <span class="lv-gold-text">Master Class</span></h2>
+          <p>
+            <strong>Saturday, October 17, 2026 at 9:00 AM.</strong> Ninety minutes of nonstop
+            Zumba to kick off LAVEL in La Jolla, and it's completely free. Bring a friend.
+          </p>
+        </div>
+        <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="October 17 Master Class">Reserve Your Spot</a>
       </div>
     </section>
 
@@ -836,41 +855,22 @@ const masterClassSchema = {
               <p>60-Minute Zumba · Group Fitness</p>
             </article>
           ))}
-          <article class="lv-day lv-day--free">
-            <span class="lv-day-num">Launch offer</span>
-            <div>
-              <h3 class="lv-gold-text">First Week Free</h3>
-              <p>Try every class for a full week, on us.</p>
-            </div>
-            <a href="#zumba-signup" data-interest="Free First Week">Claim it →</a>
-          </article>
         </div>
+
+        <aside class="lv-schedule-offer" aria-labelledby="lv-schedule-offer-title">
+          <div>
+            <p class="lv-label">Launch offer</p>
+            <h3 class="lv-gold-text" id="lv-schedule-offer-title">First Week Free</h3>
+            <p>Try every class for a full week, on us.</p>
+          </div>
+          <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="Free First Week">Claim My Free Week →</a>
+        </aside>
 
         <div class="lv-where">
           <span><i data-lucide="map-pin"></i>7680 Girard Avenue, La Jolla</span>
           <span><i data-lucide="phone"></i><a href="tel:+18583610961">858-361-0961</a></span>
           <span><i data-lucide="music"></i>No dance experience needed</span>
         </div>
-      </div>
-    </section>
-
-    <!-- MASTER CLASS -->
-    <section class="lv-master lv-dark" id="master-class" aria-labelledby="lv-master-title" data-lv-until={MASTER_CLASS_END}>
-      <div class="lv-inner lv-master-grid">
-        <div class="lv-date" aria-hidden="true">
-          <small>SAT · OCT</small>
-          <strong>10</strong>
-          <span>9:00 AM</span>
-        </div>
-        <div>
-          <p class="lv-label">Free launch event</p>
-          <h2 class="font-display" id="lv-master-title">90-Minute Zumba <span class="lv-gold-text">Master Class</span></h2>
-          <p>
-            <strong>Saturday, October 10, 2026 at 9:00 AM.</strong> Ninety minutes of nonstop
-            Zumba to kick off LAVEL in La Jolla, and it's completely free. Bring a friend.
-          </p>
-        </div>
-        <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="October 10 Master Class">Reserve Your Spot</a>
       </div>
     </section>
 
@@ -884,7 +884,7 @@ const masterClassSchema = {
               Free<span>First Week</span>
             </div>
           </div>
-          <p>Come to every class for a full week before you pay a thing. Find your favorite time and see why the room fills up.</p>
+          <p>Come to every class for a full week before you pay a thing. Find your favorite time. Come see the energy for yourself.</p>
           <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="Free First Week">Claim My Free Week</a>
         </div>
 
@@ -927,6 +927,36 @@ const masterClassSchema = {
           <article class="lv-benefit"><i data-lucide="gauge"></i><h3>Go At Your Own Pace</h3><p>Go big or keep it low-impact. Match the moves to your energy that day.</p></article>
           <article class="lv-benefit"><i data-lucide="sunrise"></i><h3>Mornings That Fit</h3><p>Three morning classes a week, with drop-ins and packages after your free week.</p></article>
           <article class="lv-benefit"><i data-lucide="map-pin"></i><h3>Right In The Village</h3><p>Classes at La Jolla Martial Arts on Girard Avenue, in the heart of La Jolla.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEET LAVEL -->
+    <section class="lv-meet" aria-labelledby="lv-meet-title">
+      <div class="lv-inner lv-meet-grid">
+        <div class="lv-meet-photos">
+          <figure>
+            <img src="/assets/lavel-class-in-action.webp" width="1536" height="790" alt="Lavel Bryant leading a Zumba class as participants follow his movements" loading="lazy" decoding="async" />
+            <figcaption>Movement, music, and positive energy with Lavel.</figcaption>
+          </figure>
+          <figure>
+            <img src="/assets/lavel-class-community.webp" width="864" height="574" alt="Lavel Bryant dancing alongside a group of Zumba class participants" loading="lazy" decoding="async" />
+            <figcaption>A welcoming community, moving together.</figcaption>
+          </figure>
+        </div>
+        <div class="lv-meet-copy">
+          <div class="lv-meet-brand">
+            <img src="/assets/lavel-lion-emblem.webp" width="1254" height="1254" alt="LAVEL metallic gold lion emblem" loading="lazy" decoding="async" />
+            <p class="lv-label">Meet Lavel</p>
+          </div>
+          <h2 class="lv-h2 font-display" id="lv-meet-title">Lavel Bryant</h2>
+          <p class="lv-meet-role">Group Fitness Program Director</p>
+          <p>For more than 14 years, Lavel Bryant has been bringing people together through movement, music, and positive energy.</p>
+          <p>His experience includes teaching Zumba® and group fitness to everyone from first-time participants to longtime fitness enthusiasts, with classes ranging from intimate groups to more than 100 people. He has worked with participants across generations, from children to active older adults.</p>
+          <p>A U.S. Navy veteran, Lavel believes fitness shouldn't be about being perfect or keeping up with everyone else. His classes are designed to make people feel welcome, move at their own level, have fun, and leave feeling better than when they arrived.</p>
+          <p>Whether it's your first class or fitness has been part of your life for years, you're welcome here.</p>
+          <p>Come experience the energy, the community, and the joy of moving together.</p>
+          <a href="#zumba-signup" class="lv-btn lv-btn--ink" data-interest="Free First Week">Join Lavel for a Free Week</a>
         </div>
       </div>
     </section>
@@ -988,7 +1018,7 @@ const masterClassSchema = {
             <select class="form-select" id="lv-interest" name="interest" required>
               <option value="" disabled selected>Select one</option>
               <option value="Free First Week">Free First Week</option>
-              <option value="October 10 Master Class" data-lv-until={MASTER_CLASS_END}>Oct 10 Master Class (Free)</option>
+              <option value="October 17 Master Class" data-lv-until={MASTER_CLASS_END}>Oct 17 Master Class (Free)</option>
               <option value="Both" data-lv-until={MASTER_CLASS_END}>Both</option>
             </select>
           </div>
@@ -1048,7 +1078,7 @@ const masterClassSchema = {
     (function () {
       var now = Date.now();
 
-      // Remove time-limited content (the Oct 10 Master Class) once it's over.
+      // Remove time-limited content (the Oct 17 Master Class) once it's over.
       document.querySelectorAll('[data-lv-until]').forEach(function (el) {
         if (now > Date.parse(el.getAttribute('data-lv-until'))) el.remove();
       });
@@ -1211,7 +1241,7 @@ const masterClassSchema = {
       // The first-class date only applies to the regular classes, not a Master-Class-only sign-up.
       var submitBtn = form.querySelector('button[type="submit"]');
       function syncDateGroup() {
-        var masterOnly = interestSelect.value === 'October 10 Master Class';
+        var masterOnly = interestSelect.value === 'October 17 Master Class';
         if (!submitBtn.disabled) submitBtn.textContent = masterOnly ? 'Reserve My Spot' : 'Claim My Free Week';
         dateGroup.hidden = masterOnly;
         if (masterOnly) clearDateError();
@@ -1229,18 +1259,18 @@ const masterClassSchema = {
       // The lead API stores extra details in `message`; compose it before Layout's submit handler runs.
       var messageInput = form.querySelector('[data-lv-message]');
       var classDateInput = form.querySelector('[data-lv-class-date]');
-      var MASTER_CLASS_LABEL = 'Sat, Oct 10 · 9:00 AM';
+      var MASTER_CLASS_LABEL = 'Sat, Oct 17 · 9:00 AM';
       function composeMessage() {
         var lines = [
           'LAVEL Zumba registration',
           'Signing up for: ' + (interestSelect.value || '—'),
         ];
-        if (interestSelect.value !== 'October 10 Master Class') {
+        if (interestSelect.value !== 'October 17 Master Class') {
           lines.push('First class: ' + (dateValue.value || 'No date picked'));
         }
         messageInput.value = lines.join('\n');
         // Always give GoHighLevel a class date; Master-Class-only sign-ups get the event date.
-        classDateInput.value = interestSelect.value === 'October 10 Master Class' ? MASTER_CLASS_LABEL : dateValue.value;
+        classDateInput.value = interestSelect.value === 'October 17 Master Class' ? MASTER_CLASS_LABEL : dateValue.value;
       }
       form.addEventListener('change', composeMessage);
       form.addEventListener('submit', composeMessage, true);

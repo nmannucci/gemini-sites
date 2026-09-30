@@ -142,10 +142,10 @@ These should each have their own dedicated SEO page on the new site. Zumba has i
 
 ## Zumba Dance Fitness
 
-### Confirmed details
+### Confirmed details (Lavel handoff, September 25–26, 2026)
 
-- Friday and Saturday from 10:30am–11:15am
-- 45 minutes each
+- Monday and Thursday at 9:00am; Friday at 10:30am
+- Regular classes are 1 hour each
 - First week of Zumba classes is free
 - Active class schedule
 
@@ -1573,3 +1573,14 @@ The rebuild should lean heavily into:
 - one clear entry offer
 
 That combination will give us much better raw material for both conversion and local SEO than the current template-heavy site.
+
+## LAVEL approved updates — September 26, 2026
+
+Source: Lavel Bryant’s “LAVEL Zumba Page Updates” email, forwarded by Nico on September 29, 2026. These details supersede earlier Zumba schedule and branding notes.
+
+- Direct `/zumba` page approved for LAVEL/Zumba-specific materials and QR destinations.
+- Primary tagline: “Moving mind, body & soul.”
+- Free 90-minute Master Class: Saturday, October 17, 2026, 9:00–10:30am Pacific; replaces October 10.
+- Free-week copy: “Come see the energy for yourself.”
+- Lavel Bryant, Group Fitness Program Director: more than 14 years teaching Zumba® and group fitness; U.S. Navy veteran; experience with first-timers, longtime fitness enthusiasts, children, and active older adults, in groups of up to more than 100 people. Classes welcome all levels and emphasize fun and community.
+- Approved assets: two actual class photos and metallic gold lion + LAVEL emblem, saved as `public/assets/lavel-class-in-action.webp`, `lavel-class-community.webp`, and `lavel-lion-emblem.webp`. Class photo borders and phone interface cropped away; original attachments retained.
