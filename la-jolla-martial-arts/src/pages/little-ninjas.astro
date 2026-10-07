@@ -1,10 +1,50 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ScheduleMobile from '../components/ScheduleMobile.astro';
+
+const littleNinjasFaqs = [
+  {
+    question: 'Is my child too young to start martial arts?',
+    answer: 'Little Ninjas is designed specifically for ages 3 to 6, so the structure, pace, and coaching style are built around young beginners rather than older kids.',
+  },
+  {
+    question: 'What if my child has trouble listening or focusing?',
+    answer: 'That is one of the biggest reasons families start. Classes use repetition, movement, and positive reinforcement to help children practice attention, following directions, and self-control.',
+  },
+  {
+    question: 'Will classes be too intense for beginners?',
+    answer: 'No. This program is intentionally beginner-friendly. The goal is to make martial arts exciting and approachable while helping children build confidence and basic skills step by step.',
+  },
+  {
+    question: 'How do Little Ninjas classes help with confidence and focus?',
+    answer: 'Children practice listening, reacting, remembering movements, and finishing drills. Those small successes build confidence, and the repeated structure helps strengthen focus over time.',
+  },
+  {
+    question: 'Is martial arts safe for young children?',
+    answer: 'Yes. Instruction is age-appropriate and supervised in a supportive setting. The emphasis is on movement, listening, coordination, and respect, not overly intense training.',
+  },
+  {
+    question: 'How do I know if my child is ready?',
+    answer: 'If your child has energy, curiosity, and is ready to practice simple participation skills, Little Ninjas is worth trying. The free trial week makes it easy to see if the fit feels right.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: littleNinjasFaqs.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer,
+    },
+  })),
+};
 ---
 
 <Layout
-  title={`Little Ninjas La Jolla | Preschool Taekwondo For Ages 3-6`}
+  title={`Little Ninjas in La Jolla | Preschool Taekwondo for Ages 3–6`}
   description={`Fun beginner Taekwondo for ages 3–6 in La Jolla. Little Ninjas build listening, coordination, focus, and confidence. Claim a free week.`}
   canonical={`https://lajollatkd.com/little-ninjas`}
   ogImage={`/assets/ema-post-12-optimized.webp`}
@@ -19,6 +59,10 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
 
     .hero-title {
       font-size: clamp(3.75rem, 8vw, 6.4rem);
+    }
+
+    .hero-title span {
+      display: block;
     }
 
     .hero-title .program-accent {
@@ -321,6 +365,7 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
     }
   
 </style>
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   </Fragment>
 <header class="hero">
@@ -331,9 +376,8 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
     <div class="hero-grid">
       <div class="hero-copy">
         <h1 class="hero-title font-display">
-          <span>Our</span>
-          <span class="program-accent">Little Ninjas</span>
-          <span>Program</span>
+          <span>Little Ninjas</span>
+          <span class="program-accent">in La Jolla</span>
         </h1>
         <p class="hero-subtitle">For Ages 3-6</p>
 
@@ -682,65 +726,17 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
         </p>
 
         <div class="faq-list">
-          <article class="faq-item open">
-            <button class="faq-question" type="button" aria-expanded="true">
-              <span>Is my child too young to start martial arts?</span>
-              <i data-lucide="minus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Little Ninjas is designed specifically for ages 3 to 6, so the structure, pace, and coaching style are built around young beginners rather than older kids.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>What if my child has trouble listening or focusing?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">That is one of the biggest reasons families start. Classes use repetition, movement, and positive reinforcement to help children practice attention, following directions, and self-control.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Will classes be too intense for beginners?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">No. This program is intentionally beginner-friendly. The goal is to make martial arts exciting and approachable while helping children build confidence and basic skills step by step.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>How do Little Ninjas classes help with confidence and focus?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Children practice listening, reacting, remembering movements, and finishing drills. Those small successes build confidence, and the repeated structure helps strengthen focus over time.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Is martial arts safe for young children?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Yes. Instruction is age-appropriate and supervised in a supportive setting. The emphasis is on movement, listening, coordination, and respect, not overly intense training.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>How do I know if my child is ready?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">If your child has energy, curiosity, and is ready to practice simple participation skills, Little Ninjas is worth trying. The free trial week makes it easy to see if the fit feels right.</div>
-            </div>
-          </article>
+          {littleNinjasFaqs.map((faq, index) => (
+            <article class:list={['faq-item', { open: index === 0 }]}>
+              <button class="faq-question" type="button" aria-expanded={index === 0 ? 'true' : 'false'}>
+                <span>{faq.question}</span>
+                <i data-lucide={index === 0 ? 'minus' : 'plus'}></i>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">{faq.answer}</div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

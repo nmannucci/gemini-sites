@@ -1,10 +1,50 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ScheduleMobile from '../components/ScheduleMobile.astro';
+
+const teenFaqs = [
+  {
+    question: 'Can martial arts help with respect issues at home?',
+    answer: 'Respect is a core value in our school. Every student learns to respect their instructors, their classmates, and their parents, and those habits carry straight into how they behave at home.',
+  },
+  {
+    question: 'Can martial arts improve poor judgment in teens?',
+    answer: 'Yes. Classes ask teens to learn a lesson and then apply it to decisions in real time. Over weeks and months, that practice builds calmer, more deliberate decision-making under pressure.',
+  },
+  {
+    question: 'Will training reduce careless decisions?',
+    answer: 'We teach teenagers the value of respect, discipline, and judgment. They learn that knee-jerk decisions are often not the right ones, and that pausing to think is a strength, not a weakness.',
+  },
+  {
+    question: 'How does martial arts help teens who are being bullied?',
+    answer: 'Teens who train in martial arts learn to carry themselves with strength and confidence. That presence alone makes them less likely to be targeted, and they gain real self-defense skills if a situation ever escalates.',
+  },
+  {
+    question: 'What if my teen would rather play video games?',
+    answer: 'They might push back at first, but martial arts classes are fun, social, and physical. Most teens also think martial arts is genuinely cool, and that is often enough to get them through the first few classes.',
+  },
+  {
+    question: 'Why commit if my teen quits everything they start?',
+    answer: 'Teens who want to excel in martial arts have to make a commitment to continued study. Our instructors encourage persistence and teach them that they cannot reach their goals if they give up when things get hard.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: teenFaqs.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer,
+    },
+  })),
+};
 ---
 
 <Layout
-  title={`Teen Martial Arts La Jolla | Taekwondo For Ages 13+`}
+  title={`Teen Martial Arts in La Jolla | Taekwondo for Ages 13+`}
   description={`Taekwondo for teens ages 13+ in La Jolla. Build confidence, discipline, fitness, and self-defense skills with Master Sam. Claim a free week.`}
   canonical={`https://lajollatkd.com/teen-martial-arts`}
   ogImage={`/assets/EMA%20-%20Post%206.jpg`}
@@ -19,6 +59,10 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
 
     .hero-title {
       font-size: clamp(3.75rem, 8vw, 6.4rem);
+    }
+
+    .hero-title span {
+      display: block;
     }
 
     .hero-subtitle {
@@ -317,6 +361,7 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
     }
   
 </style>
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   </Fragment>
 <header class="hero">
@@ -327,8 +372,8 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
     <div class="hero-grid">
       <div class="hero-copy">
         <h1 class="hero-title font-display">
-          <span>Our Teen</span>
-          <span>Martial Arts Program</span>
+          <span>Teen Martial Arts</span>
+          <span>in La Jolla</span>
         </h1>
         <p class="hero-subtitle">For Ages 13+</p>
 
@@ -602,65 +647,17 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
         </p>
 
         <div class="faq-list">
-          <article class="faq-item open">
-            <button class="faq-question" type="button" aria-expanded="true">
-              <span>Can martial arts help with respect issues at home?</span>
-              <i data-lucide="minus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Respect is a core value in our school. Every student learns to respect their instructors, their classmates, and their parents, and those habits carry straight into how they behave at home.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Can martial arts improve poor judgment in teens?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Yes. Classes ask teens to learn a lesson and then apply it to decisions in real time. Over weeks and months, that practice builds calmer, more deliberate decision-making under pressure.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Will training reduce careless decisions?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">We teach teenagers the value of respect, discipline, and judgment. They learn that knee-jerk decisions are often not the right ones, and that pausing to think is a strength, not a weakness.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>How does martial arts help teens who are being bullied?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Teens who train in martial arts learn to carry themselves with strength and confidence. That presence alone makes them less likely to be targeted, and they gain real self-defense skills if a situation ever escalates.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>What if my teen would rather play video games?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">They might push back at first, but martial arts classes are fun, social, and physical. Most teens also think martial arts is genuinely cool, and that is often enough to get them through the first few classes.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Why commit if my teen quits everything they start?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Teens who want to excel in martial arts have to make a commitment to continued study. Our instructors encourage persistence and teach them that they cannot reach their goals if they give up when things get hard.</div>
-            </div>
-          </article>
+          {teenFaqs.map((faq, index) => (
+            <article class:list={['faq-item', { open: index === 0 }]}>
+              <button class="faq-question" type="button" aria-expanded={index === 0 ? 'true' : 'false'}>
+                <span>{faq.question}</span>
+                <i data-lucide={index === 0 ? 'minus' : 'plus'}></i>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">{faq.answer}</div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
