@@ -1,11 +1,72 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ScheduleMobile from '../components/ScheduleMobile.astro';
+
+// TODO: confirm typical drive times from Clairemont, Bay Ho, Pacific Beach, Bay Park, and UTC/University City to 7680 Girard Ave, Basement before publishing minute estimates.
+const kidsFaqs = [
+  {
+    question: 'Can martial arts help if my child is out of control?',
+    answer: 'Yes. Self-control is a core part of martial arts training. Kids practice listening, regulating their actions, and learning that discipline helps them succeed both on and off the mat.',
+  },
+  {
+    question: 'Will martial arts make my child more aggressive?',
+    answer: 'No. The program teaches self-defense, respect, and restraint. Kids learn that violence is not the answer and that confidence should help them avoid conflict, not seek it out.',
+  },
+  {
+    question: 'What if my child does not like traditional sports?',
+    answer: 'Martial arts often works well for kids who do not connect with team sports. It is active and challenging, but it also feels personal, skill-based, and motivating in a different way.',
+  },
+  {
+    question: 'What school-related skills can martial arts build?',
+    answer: 'Training reinforces focus, discipline, patience, self-control, and respect. Those habits can support better classroom behavior, stronger effort, and more confidence when school feels challenging.',
+  },
+  {
+    question: 'What if my child is not physically coordinated?',
+    answer: 'That is completely okay. Kids start at different levels, and instructors help them improve balance, coordination, and control step by step in a supportive environment.',
+  },
+  {
+    question: 'Can martial arts help my child believe in themselves?',
+    answer: 'Yes. Small wins matter. As kids learn techniques, handle challenges, and earn progress, they start to trust themselves more and carry that confidence into other parts of life.',
+  },
+  {
+    question: 'What ages is kids martial arts in La Jolla for?',
+    answer: 'Weekday Kids Martial Arts is for ages 7–12, Monday through Thursday from 4:30pm to 5:15pm. Children ages 3–6 train in Little Ninjas. Teens ages 13 and up train in the evening class. Saturday from 9:00am to 9:45am is a mixed-age class for ages 3–12.',
+  },
+  {
+    question: 'Do you teach kids karate or kids taekwondo in La Jolla?',
+    answer: 'La Jolla Martial Arts teaches Taekwondo. We do not run a separate karate curriculum. Parents searching for kids karate in La Jolla usually want beginner martial arts for children, and that is what the Kids Martial Arts class is: Taekwondo basics, focus, respect, and self-defense for ages 7–12.',
+  },
+  {
+    question: 'Can my child start kids martial arts as a beginner?',
+    answer: 'Yes. Beginners are welcome in the first class, and no experience is required. Start with a free week so you can see the kids class before you decide.',
+  },
+  {
+    question: 'How do families from Clairemont, Pacific Beach, Bay Ho, Bay Park, and University City get to class?',
+    answer: 'Everyone trains at the La Jolla studio, 7680 Girard Ave, Basement, La Jolla, CA 92037. Families come from Clairemont, Bay Ho, Pacific Beach, Bay Park, UTC and University City, and other parts of San Diego. The weekday kids class is after school, and Saturday morning is another option. Call (858) 361-0961 if you want help choosing a class time.',
+  },
+  {
+    question: 'What is the kids martial arts schedule in La Jolla?',
+    answer: 'Kids Martial Arts meets Monday through Thursday from 4:30pm to 5:15pm. Friday is private lessons by appointment. Saturday from 9:00am to 9:45am is a mixed Little Ninjas and Kids class for ages 3–12. Sunday is closed.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: kidsFaqs.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer,
+    },
+  })),
+};
 ---
 
 <Layout
-  title={`Kids Martial Arts La Jolla | Taekwondo For Ages 7-12`}
-  description={`Kids ages 7–12 build confidence, focus, and self-defense skills in our La Jolla Taekwondo classes. Meet Master Sam and claim a free week.`}
+  title={`Kids Martial Arts in La Jolla | Taekwondo for Ages 7–12`}
+  description={`Kids martial arts and kids taekwondo in La Jolla for ages 7–12. Beginner classes for parents comparing kids karate. Free week at 7680 Girard Ave.`}
   canonical={`https://lajollatkd.com/kids-martial-arts`}
   ogImage={`/assets/ema-post-2-optimized.webp`}
   programPageCss
@@ -34,6 +95,10 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
 
     .hero-title {
       font-size: clamp(3.75rem, 8vw, 6.4rem);
+    }
+
+    .hero-title span {
+      display: block;
     }
 
     .hero-subtitle {
@@ -332,6 +397,7 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
     }
   
 </style>
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   </Fragment>
 <header class="hero">
@@ -342,8 +408,8 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
     <div class="hero-grid">
       <div class="hero-copy">
         <h1 class="hero-title font-display">
-          <span>Our Kids</span>
-          <span>Martial Arts Program</span>
+          <span>Kids Martial Arts</span>
+          <span>in La Jolla</span>
         </h1>
         <p class="hero-subtitle">For Ages 7-12</p>
 
@@ -376,11 +442,18 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
         <h2 class="section-title font-display">
           Why Families Choose <span class="program-highlight">Kids Martial Arts</span>
         </h2>
-        <p class="section-intro">
-          Parents usually are not looking for just another after-school activity. They want a program that helps
-          their child focus better, grow in confidence, and use their energy in a positive way. This program is
-          built for school-age kids who need structure, encouragement, and real progress they can feel.
-        </p>
+        <div class="copy-links">
+          <p>
+            Parents usually are not looking for just another after-school activity. They want kids martial arts
+            in La Jolla that helps a child focus, grow in confidence, and use energy in a positive way. This
+            class is Taekwondo for ages 7–12: beginner-friendly, structured, and built around progress kids can feel.
+          </p>
+          <p>
+            Younger children start in <a href="/little-ninjas">Little Ninjas (ages 3–6)</a>. Older students move to
+            <a href="/teen-martial-arts">teen martial arts</a>. See the <a href="/schedule">weekly schedule</a> or
+            <a href="#contact">claim a free week</a> when you are ready to visit.
+          </p>
+        </div>
 
         <div class="proof-bar">
           <article class="proof-card">
@@ -425,6 +498,53 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
           <img width="1600" height="1043" src="/assets/img-8330-5592456-optimized.webp" alt="Kids martial arts student demonstrating a technique">
           <figcaption>Respect</figcaption>
         </figure>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="training">
+      <div class="section-inner">
+        <p class="section-label">The Class</p>
+        <h2 class="section-title font-display">
+          Kids Taekwondo In <span class="program-highlight">La Jolla</span>
+        </h2>
+        <div class="copy-links">
+          <p>
+            La Jolla Martial Arts teaches kids taekwondo at 7680 Girard Ave, Basement. The weekday Kids Martial Arts
+            class is for ages 7–12. It runs 45 minutes, Monday through Thursday from 4:30pm to 5:15pm, with Taekwondo
+            technique, focus drills, and habits kids can use at school and at home.
+          </p>
+          <p>
+            Parents searching for kids karate in La Jolla are usually looking for that same beginner class. This school
+            does not teach a separate karate curriculum. A kids karate search lands here because the training is martial
+            arts for children: listening, respect, kicks and stances, and self-defense through Taekwondo. Your child
+            would train Taekwondo in this kids program, not a second style.
+          </p>
+          <p>
+            Ages 3–6 start in <a href="/little-ninjas">Little Ninjas</a>. Ages 13 and up move to
+            <a href="/teen-martial-arts">teen martial arts</a>. Compare options on the
+            <a href="/programs">programs page</a>, check the <a href="/schedule">schedule</a>, then
+            <a href="#contact">claim a free week</a> if you want to see a class before you decide.
+          </p>
+        </div>
+
+        <div class="benefits-grid">
+          <article class="benefit-card">
+            <h3 class="font-display">Ages 7–12</h3>
+            <p>Weekday kids martial arts is for ages 7–12. Little Ninjas covers ages 3–6. The evening class is for ages 13 and up. Saturday 9:00am–9:45am mixes Little Ninjas and kids, ages 3–12.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">Beginner Training</h3>
+            <p>No experience is required. Beginners are welcomed in the first class. The free week is how families try kids taekwondo in La Jolla before making a longer commitment.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">What Parents Want</h3>
+            <p>Families choose this class for focus, confidence, respect, self-control, and a structured after-school outlet. Training is physical, and it is also a place to practice listening and follow-through.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">A Free Week To Start</h3>
+            <p>Visit the La Jolla studio, meet the instructor, and watch how your child handles a first class. Call (858) 361-0961 or use the form on this page to claim one week of free classes.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -491,6 +611,43 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
               <li>A supportive culture parents notice in how their child talks about class</li>
             </ul>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="neighborhoods">
+      <div class="section-inner">
+        <p class="section-label">Nearby Neighborhoods</p>
+        <h2 class="section-title font-display">
+          Kids Classes For Clairemont, Pacific Beach, <span class="program-highlight">And San Diego</span>
+        </h2>
+        <div class="copy-links">
+          <p>
+            There is one studio. Kids from Clairemont, Bay Ho, Pacific Beach, Bay Park, UTC, University City, and the
+            rest of San Diego train at 7680 Girard Ave, Basement, La Jolla, CA 92037. La Jolla Martial Arts does not
+            have a second dojo in Clairemont, Pacific Beach, Bay Park, Bay Ho, or University City.
+          </p>
+          <p>
+            Clairemont and Bay Ho families use the after-school kids martial arts class or the Saturday morning class.
+            Pacific Beach and Bay Park parents use that same La Jolla schedule. UTC and University City students come
+            to Girard Avenue for kids taekwondo. San Diego families who want a La Jolla school, rather than a class in
+            another neighborhood, can start with a <a href="#contact">free week</a> and then choose
+            <a href="/little-ninjas">Little Ninjas</a>, this kids class, or
+            <a href="/teen-martial-arts">teen martial arts</a>.
+          </p>
+        </div>
+        <ul class="spotlight-list">
+          <li>Clairemont: weekday 4:30pm kids martial arts, or Saturday 9:00am for ages 3–12, at the La Jolla studio.</li>
+          <li>Bay Ho: the same La Jolla kids taekwondo schedule, with weekday classes for ages 7–12.</li>
+          <li>Pacific Beach: kids martial arts in La Jolla. Families drive to Girard Avenue. There is no Pacific Beach location.</li>
+          <li>Bay Park: kids classes are at 7680 Girard Ave, Basement, not in Bay Park.</li>
+          <li>UTC and University City: after-school Taekwondo at the La Jolla dojo, Monday through Thursday.</li>
+          <li>San Diego: one school for kids martial arts, with Little Ninjas and teen classes under the same roof.</li>
+        </ul>
+        <div class="copy-links">
+          <p>
+            Class times are on the <a href="/schedule">schedule</a>. Call (858) 361-0961 if you want help matching a neighborhood drive to a class time.
+          </p>
         </div>
       </div>
     </section>
@@ -647,65 +804,17 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
         </p>
 
         <div class="faq-list">
-          <article class="faq-item open">
-            <button class="faq-question" type="button" aria-expanded="true">
-              <span>Can martial arts help if my child is out of control?</span>
-              <i data-lucide="minus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Yes. Self-control is a core part of martial arts training. Kids practice listening, regulating their actions, and learning that discipline helps them succeed both on and off the mat.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Will martial arts make my child more aggressive?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">No. The program teaches self-defense, respect, and restraint. Kids learn that violence is not the answer and that confidence should help them avoid conflict, not seek it out.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>What if my child does not like traditional sports?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Martial arts often works well for kids who do not connect with team sports. It is active and challenging, but it also feels personal, skill-based, and motivating in a different way.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>What school-related skills can martial arts build?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Training reinforces focus, discipline, patience, self-control, and respect. Those habits can support better classroom behavior, stronger effort, and more confidence when school feels challenging.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>What if my child is not physically coordinated?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">That is completely okay. Kids start at different levels, and instructors help them improve balance, coordination, and control step by step in a supportive environment.</div>
-            </div>
-          </article>
-
-          <article class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Can martial arts help my child believe in themselves?</span>
-              <i data-lucide="plus"></i>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-answer-inner">Yes. Small wins matter. As kids learn techniques, handle challenges, and earn progress, they start to trust themselves more and carry that confidence into other parts of life.</div>
-            </div>
-          </article>
+          {kidsFaqs.map((faq, index) => (
+            <article class:list={['faq-item', { open: index === 0 }]}>
+              <button class="faq-question" type="button" aria-expanded={index === 0 ? 'true' : 'false'}>
+                <span>{faq.question}</span>
+                <i data-lucide={index === 0 ? 'minus' : 'plus'}></i>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">{faq.answer}</div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -725,10 +834,11 @@ import ScheduleMobile from '../components/ScheduleMobile.astro';
             </ul>
 
             <ul class="related-links" aria-label="Related programs">
-              <li><a href="/programs">See all programs</a></li>
-              <li><a href="/little-ninjas">Little Ninjas</a></li>
-              <li><a href="/teen-martial-arts">Teen Martial Arts</a></li>
-              <li><a href="/adult-martial-arts">Adult Martial Arts</a></li>
+              <li><a href="/little-ninjas">Little Ninjas (ages 3–6)</a></li>
+              <li><a href="/teen-martial-arts">Teen martial arts</a></li>
+              <li><a href="/programs">All programs</a></li>
+              <li><a href="/schedule">Class schedule</a></li>
+              <li><a href="/adult-martial-arts">Adult martial arts</a></li>
             </ul>
 
           </div>

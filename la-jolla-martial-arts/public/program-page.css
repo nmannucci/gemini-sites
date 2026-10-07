@@ -412,6 +412,35 @@ a {
   color: var(--muted-text);
 }
 
+.copy-links p {
+  max-width: 760px;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--muted-text);
+  margin-bottom: 1rem;
+}
+
+.copy-links p:last-child {
+  margin-bottom: 0;
+}
+
+.spotlight-list + .copy-links {
+  margin-top: 1.5rem;
+}
+
+.copy-links a,
+.benefit-card a {
+  color: #137f9a;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.section-dark .copy-links a,
+.section-dark .benefit-card a {
+  color: #9be7f5;
+}
+
 .section-dark .section-intro {
   color: rgba(255, 255, 255, 0.68);
 }

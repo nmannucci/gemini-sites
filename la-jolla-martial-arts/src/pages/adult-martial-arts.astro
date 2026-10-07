@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import ScheduleMobile from '../components/ScheduleMobile.astro';
 
+// TODO: confirm adult first-class attire (dobok versus clothes you can move in). The site does not publish a dress code.
+// TODO: confirm the adult age floor. The shared Teen & Adult class is published as ages 13+. This page previously said "For Adults 15+" without a source in BUSINESS_INFO.
 const adultFaqs = [
   {
     question: 'Do you offer adult martial arts classes in La Jolla?',
@@ -43,6 +45,18 @@ const adultFaqs = [
     question: 'Can I start as a complete beginner?',
     answer: 'Absolutely. Most adults start with no martial arts experience at all. Our head instructor and the coaching team meet you where you are and progress you step by step.',
   },
+  {
+    question: 'What should I expect at my first adult class in La Jolla?',
+    answer: 'Start with a free week, with no long-term commitment. Most adults arrive with no martial arts experience. You train in the Monday through Thursday 5:15pm to 6:15pm class at 7680 Girard Ave, Basement, and the instructor meets you at your current fitness level.',
+  },
+  {
+    question: 'What should I wear to adult martial arts?',
+    answer: 'Call (858) 361-0961 or use the form on this page when you claim your free week, and ask what to wear. We will tell you how to dress before your first adult class.',
+  },
+  {
+    question: 'What is the pace like for adult beginners?',
+    answer: 'You work at your own pace. Instruction is tailored to each student\'s capabilities and goals, in a non-judgmental, non-competitive class. You are measured against your own progress.',
+  },
 ];
 
 const faqSchema = {
@@ -60,8 +74,8 @@ const faqSchema = {
 ---
 
 <Layout
-  title={`Adult Martial Arts Classes La Jolla | Taekwondo For Adults`}
-  description={`Adult martial arts classes in La Jolla at 7680 Girard Ave, Basement. Beginner-friendly Taekwondo for fitness, confidence, and real self-defense.`}
+  title={`Adult Martial Arts in La Jolla | Beginner Taekwondo`}
+  description={`Adult martial arts in La Jolla for beginners. Evening Taekwondo for fitness and self-defense, Mon–Thu 5:15–6:15pm at 7680 Girard Ave, Basement.`}
   canonical={`https://lajollatkd.com/adult-martial-arts`}
   ogImage={`/assets/ema-post-optimized.webp`}
   programPageCss
@@ -98,6 +112,10 @@ const faqSchema = {
 
     .hero-title {
       font-size: clamp(3.75rem, 8vw, 6.4rem);
+    }
+
+    .hero-title span {
+      display: block;
     }
 
     .hero-subtitle {
@@ -407,14 +425,13 @@ const faqSchema = {
     <div class="hero-grid">
       <div class="hero-copy">
         <h1 class="hero-title font-display">
-          <span>Our Adult</span>
-          <span>Martial Arts Program</span>
+          <span>Adult Martial Arts</span>
+          <span>in La Jolla</span>
         </h1>
-        <p class="hero-subtitle">For Adults 15+</p>
+        <p class="hero-subtitle">Evening Classes For Adults</p>
         <p class="hero-identity">
-          La Jolla Martial Arts offers adult martial arts classes in La Jolla at
-          7680 Girard Ave, Basement. Adults train Taekwondo in a supportive,
-          beginner-friendly evening class.
+          Adult martial arts in La Jolla at 7680 Girard Ave, Basement. Beginner-friendly
+          Taekwondo for fitness and self-defense, Monday through Thursday from 5:15pm to 6:15pm.
         </p>
 
         <div class="hero-details" aria-label="Program overview">
@@ -569,6 +586,40 @@ const faqSchema = {
       </div>
     </section>
 
+    <section class="section section-alt" id="expect">
+      <div class="section-inner">
+        <p class="section-label">What To Expect</p>
+        <h2 class="section-title font-display">
+          Your First <span class="program-highlight">Adult Class</span>
+        </h2>
+        <div class="copy-links">
+          <p>
+            Adult martial arts in La Jolla is the evening Teen &amp; Adult class at 7680 Girard Ave, Basement.
+            The schedule lists that class as ages 13 and up because teens share the floor. This page is for adults
+            who want a beginner class, a real workout, or practical self-defense.
+          </p>
+        </div>
+        <div class="benefits-grid">
+          <article class="benefit-card">
+            <h3 class="font-display">Who It's For</h3>
+            <p>Adults starting from zero, and adults who already train. You want fitness, self-defense, or both. No martial arts background is required.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">The First Class</h3>
+            <p>Claim a free week before you commit. You meet the instructor and step into the Monday–Thursday 5:15pm–6:15pm class at your current fitness level.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">Pace</h3>
+            <p>The floor is non-judgmental and non-competitive. Instruction is tailored to each student's capabilities and goals. You are measured against your own progress.</p>
+          </article>
+          <article class="benefit-card">
+            <h3 class="font-display">What To Wear</h3>
+            <p>Call (858) 361-0961 or use the form when you claim your free week, and ask what to wear. We will tell you how to dress before you come in.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section section-light schedule-section" id="schedule">
       <div class="section-inner">
         <div class="schedule-head">
@@ -718,9 +769,10 @@ const faqSchema = {
             </ul>
 
             <ul class="related-links" aria-label="Related programs">
-              <li><a href="/programs">See all programs</a></li>
-              <li><a href="/kids-martial-arts">Kids Martial Arts</a></li>
-              <li><a href="/teen-martial-arts">Teen Martial Arts</a></li>
+              <li><a href="/schedule">Class schedule</a></li>
+              <li><a href="/programs">All programs</a></li>
+              <li><a href="/teen-martial-arts">Teen martial arts</a></li>
+              <li><a href="/kids-martial-arts">Kids martial arts</a></li>
             </ul>
           </div>
 

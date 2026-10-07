@@ -21,12 +21,13 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
         <li><a href="/little-ninjas">Little Ninjas</a></li>
         <li><a href="/kids-martial-arts">Kids Martial Arts</a></li>
         <li><a href="/teen-martial-arts">Teen Martial Arts</a></li>
-        <li><a href="/adult-martial-arts">Adult Classes</a></li>
+        <li><a href="/adult-martial-arts">Adult Martial Arts</a></li>
         <li><a href="/zumba">Zumba</a></li>
         <li><a href="/birthday-parties">Birthday Parties</a></li>
         <li><a href="/game-zone">Game Zone</a></li>
       </ul>
     </li>
+    <li><a href="/adult-martial-arts" class:list={[{ active: isActive('/adult-martial-arts') }]}>Adult Martial Arts</a></li>
     <li><a href="/schedule">Schedule</a></li>
     <li><a href="/about">About</a></li>
     <li><a href="/#reviews">Reviews</a></li>
@@ -44,6 +45,7 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
           <span>Programs</span>
           <span class="mobile-programs-arrow" aria-hidden="true"></span>
         </button>
+        <a href="/adult-martial-arts">Adult Martial Arts</a>
         <a href="/schedule">Schedule</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
@@ -60,7 +62,7 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
         <a href="/little-ninjas">Little Ninjas</a>
         <a href="/kids-martial-arts">Kids Martial Arts</a>
         <a href="/teen-martial-arts">Teen Martial Arts</a>
-        <a href="/adult-martial-arts">Adult Classes</a>
+        <a href="/adult-martial-arts">Adult Martial Arts</a>
         <a href="/zumba">Zumba</a>
         <a href="/birthday-parties">Birthday Parties</a>
         <a href="/game-zone">Game Zone</a>
@@ -111,7 +113,7 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
 
   .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 1.35rem;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -298,9 +300,20 @@ const isActive = (href: string) => pathname === href || pathname === href + '/';
     padding: 0.95rem 1.5rem !important;
   }
 
+  @media (max-width: 1200px) {
+    .nav-links {
+      gap: 0.85rem;
+    }
+
+    .nav-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+    }
+  }
+
   @media (max-width: 1024px) {
     .nav {
-      padding: 1.5rem 2rem;
+      padding: 1.5rem 1.25rem;
     }
   }
 
