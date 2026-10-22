@@ -2256,7 +2256,7 @@ const faqSchema = {
           <span>in La Jolla</span>
         </h1>
         <p class="hero-subtitle">
-          Train in Taekwondo with Master Sam or join our upbeat Zumba classes on Monday, Thursday, and Friday mornings.
+          Train in Taekwondo with Master Sam or join our upbeat Zumba classes on Monday and Thursday mornings, starting November 2.
           Classes for kids, teens, and adults at 7680 Girard Ave, Basement.
         </p>
 
@@ -2491,15 +2491,15 @@ const faqSchema = {
           <span>In La Jolla.</span>
           <span class="zumba-gold">First Week Free.</span>
         </h2>
-        <p class="zumba-band-tagline">Moving mind, body &amp; soul.</p>
+        <p class="zumba-band-tagline">Starting November 2 · Ages 16+<br />3 free classes within 30 days, or a $15 first drop-in.</p>
         <ul class="zumba-band-days" aria-label="Zumba class times, 60 minutes each">
           <li><b>Mon</b><span>9:00 AM · 60 min</span></li>
           <li><b>Thu</b><span>9:00 AM · 60 min</span></li>
-          <li><b>Fri</b><span>10:30 AM · 60 min</span></li>
+          <li><b>Sat</b><span>Coming soon</span></li>
         </ul>
         <div class="zumba-band-actions">
           <a href="/zumba#zumba-signup" class="zumba-btn zumba-btn--gold">Claim My Free Week</a>
-          <a href="/zumba#master-class" class="zumba-btn zumba-btn--line" data-lv-until="2026-10-17T10:30:00-07:00">Free Master Class · Oct 17</a>
+          <a href="/zumba/waiver" class="zumba-btn zumba-btn--line">Sign the class waiver</a>
         </div>
       </div>
       <div class="zumba-band-arch-wrap">
@@ -2514,11 +2514,6 @@ const faqSchema = {
         </div>
       </div>
     </div>
-    <script is:inline>
-      document.querySelectorAll('.zumba-band [data-lv-until]').forEach(function (el) {
-        if (Date.now() > Date.parse(el.getAttribute('data-lv-until'))) el.remove();
-      });
-    </script>
   </section>
 
   <!-- Game Zone Section -->
@@ -2567,7 +2562,7 @@ const faqSchema = {
       </h2>
       <p class="section-intro">
         Classes run Monday through Thursday with an extra combo class on Saturday morning.
-        60-minute Zumba classes run Monday and Thursday at 9:00am and Friday at 10:30am.
+        60-minute Zumba classes run Monday and Thursday at 9:00am starting November 2. Saturday Zumba is coming soon.
         Private lessons are available Friday by appointment. Closed Sundays.
       </p>
     </div>
@@ -2584,27 +2579,18 @@ const faqSchema = {
           <div class="schedule-day" role="columnheader">Sat</div>
           <div class="schedule-day" role="columnheader">Sun</div>
 
-          <div class="schedule-time" role="rowheader">9:00am – 9:45am</div>
-          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>LAVEL Zumba</strong><span>60 min · Dance fitness</span></div></div>
+          <div class="schedule-time" role="rowheader">9:00am start</div>
+          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>LAVEL Zumba</strong><span>9:00–10:00am · Ages 16+</span></div></div>
           <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
           <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
-          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>LAVEL Zumba</strong><span>60 min · Dance fitness</span></div></div>
+          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>LAVEL Zumba</strong><span>9:00–10:00am · Ages 16+</span></div></div>
           <div class="schedule-slot schedule-slot--private" role="cell"><div><strong>Private Lessons</strong><span>By appointment</span></div></div>
           <div class="schedule-slot schedule-slot--combo" role="cell">
             <div>
               <strong>Little Ninjas &amp; Kids</strong>
-              <span>Ages 3–12</span>
+              <span>9:00–9:45am · Ages 3–12</span>
             </div>
           </div>
-          <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
-
-          <div class="schedule-time" role="rowheader">10:30am – 11:15am</div>
-          <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
-          <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
-          <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
-          <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
-          <div class="schedule-slot schedule-slot--zumba" role="cell"><div><strong>LAVEL Zumba</strong><span>60 min · Dance fitness</span></div></div>
-          <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
           <div class="schedule-slot schedule-slot--closed" role="cell"><div><strong>Closed</strong></div></div>
 
           <div class="schedule-time" role="rowheader">3:30pm – 4:00pm</div>

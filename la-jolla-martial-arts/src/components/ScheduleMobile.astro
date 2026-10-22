@@ -34,7 +34,7 @@ const privateCopy =
       ? 'By appointment. No Kids class Friday or Sunday.'
       : focus === 'teen-adult'
         ? 'By appointment. Saturdays and Sundays closed.'
-        : 'By appointment outside Zumba. Sundays closed.';
+        : 'By appointment. Sundays closed.';
 ---
 
 <div class="schedule-mobile" aria-label={labels[focus]}>
@@ -50,7 +50,7 @@ const privateCopy =
             </div>
             <div class="schedule-mobile-body">
               <strong>LAVEL Zumba</strong>
-              <p>60 min dance fitness. <a href="/zumba#zumba-signup">Try a class</a>.</p>
+              <p>60 min · Ages 16+ · Starts November 2. <a href="/zumba#zumba-signup">Try a class</a>.</p>
             </div>
           </article>
         )}
@@ -121,12 +121,12 @@ const privateCopy =
       {showZumba && (
         <article class="schedule-mobile-card schedule-mobile-card--zumba">
           <div class="schedule-mobile-when">
-            <span class="schedule-mobile-day">Friday</span>
-            <span class="schedule-mobile-time">10:30am</span>
+            <span class="schedule-mobile-day">Saturday</span>
+            <span class="schedule-mobile-time">Coming soon</span>
           </div>
           <div class="schedule-mobile-body">
             <strong>LAVEL Zumba</strong>
-            <p>60 min dance fitness. <a href="/zumba#zumba-signup">Try a class</a>.</p>
+            <p><a href="/zumba#zumba-signup">Register your Saturday interest</a>.</p>
           </div>
         </article>
       )}

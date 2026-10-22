@@ -1,3 +1,5 @@
+import { handleWaiver, handleWaiverCopy, handleWaiverConfirmation, retryWaiverEmails } from './lib/waiver-api';
+
 interface LeadPayload {
   firstName?: string;
   lastName?: string;
@@ -9,6 +11,7 @@ interface LeadPayload {
   // Zumba (LAVEL) form extras, forwarded to GoHighLevel as their own fields.
   interest?: string;
   classDate?: string;
+  saturdayInterest?: string;
 }
 
 interface NormalizedLead {
@@ -21,6 +24,7 @@ interface NormalizedLead {
   source: string;
   interest: string;
   classDate: string;
+  saturdayInterest: string;
 }
 
 const GONE_PATHS = new Set(['/fitness-kickboxing']);
@@ -59,6 +63,10 @@ export default {
       return gone();
     }
 
+    if (normalizedPath === '/api/zumba-waiver') return handleWaiver(request, env, ctx);
+    if (normalizedPath === '/zumba/waiver/confirmation') return handleWaiverConfirmation(request, env);
+    if (normalizedPath.startsWith('/api/zumba-waiver/copy/')) return handleWaiverCopy(request, env);
+
     if (url.pathname === '/api/lead') {
       if (request.method !== 'POST') {
         return json({ error: 'Method not allowed' }, 405, { allow: 'POST' });
@@ -68,6 +76,9 @@ export default {
     }
 
     return env.ASSETS.fetch(request);
+  },
+  async scheduled(_controller: ScheduledController, env: Env): Promise<void> {
+    await retryWaiverEmails(env);
   },
 } satisfies ExportedHandler<Env>;
 
@@ -94,6 +105,8 @@ async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Pr
   const source = (payload.source ?? '').trim();
   const interest = (payload.interest ?? '').trim();
   const classDate = (payload.classDate ?? '').trim();
+  const saturdayInterest = (payload.saturdayInterest ?? '').trim();
+  if (saturdayInterest && !['Yes', 'No'].includes(saturdayInterest)) return json({ error: 'Invalid Saturday preference' }, 400);
 
   if (!firstName || !lastName || !email) {
     return json({ error: 'Missing required fields' }, 400);
@@ -112,10 +125,10 @@ async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Pr
 
   try {
     await env.DB.prepare(
-      `INSERT INTO leads (first_name, last_name, email, phone, program, message, source, user_agent, ip)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO leads (first_name, last_name, email, phone, program, message, source, user_agent, ip, signup_for, class_date, saturday_interest)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     )
-      .bind(firstName, lastName, email, phone || null, program || null, message, source || null, userAgent, ip)
+      .bind(firstName, lastName, email, phone || null, program || null, message, source || null, userAgent, ip, interest || null, classDate || null, saturdayInterest || null)
       .run();
   } catch (err) {
     console.error(JSON.stringify({
@@ -126,7 +139,7 @@ async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Pr
     return json({ error: 'Could not save your message. Please try again.' }, 500);
   }
 
-  const lead = { firstName, lastName, email, phone, program, message, source, interest, classDate };
+  const lead = { firstName, lastName, email, phone, program, message, source, interest, classDate, saturdayInterest };
   ctx.waitUntil(sendToGoHighLevel(env, lead));
 
   return json({ ok: true });
@@ -153,6 +166,7 @@ async function sendToGoHighLevel(env: Env, lead: NormalizedLead): Promise<void> 
     message: lead.message || undefined,
     signup_for: lead.interest || undefined,
     class_date: lead.classDate || undefined,
+    saturday_interest: lead.saturdayInterest || undefined,
   };
 
   try {
@@ -193,6 +207,7 @@ function isLeadPayload(value: unknown): value is LeadPayload {
     'source',
     'interest',
     'classDate',
+    'saturdayInterest',
   ];
 
   return allowedFields.every((field) =>

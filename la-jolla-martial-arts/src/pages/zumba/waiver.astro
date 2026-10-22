@@ -1,0 +1,75 @@
+---
+import { WAIVER_TITLE, WAIVER_PARAGRAPHS, WAIVER_VERSION } from '../../data/zumba-waiver';
+import '../../styles/zumba-waiver.css';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,follow" />
+  <title>LAVEL Zumba Class Waiver | La Jolla Martial Arts</title>
+  <meta name="description" content="Read and sign your LAVEL Fitness Zumba participant waiver before class at La Jolla Martial Arts. For ages 16+, with guardian consent under 18." />
+  <link rel="canonical" href="https://lajollatkd.com/zumba/waiver" />
+  <link rel="icon" href="/favicon-32.png" />
+</head>
+<body class="waiver-page">
+  <header class="waiver-nav"><a href="/zumba" aria-label="LAVEL Zumba classes"><img src="/assets/lavel-wordmark.webp" width="1200" height="400" alt="LAVEL" /></a><a href="/zumba">Back to classes</a></header>
+  <main class="waiver-main">
+    <p class="waiver-eyebrow">Before your first class</p>
+    <h1>LAVEL Zumba Class Waiver</h1>
+    <p class="waiver-intro">Please fill out the form below before your first class. Read the waiver, then sign with your finger or mouse. Classes are for ages 16 and up. A parent or guardian must also sign for ages 16 and 17.</p>
+    <noscript><p class="waiver-alert">Please enable JavaScript to sign online, or text Lavel at <a href="sms:+16197220725">619-722-0725</a> for help.</p></noscript>
+    <form id="waiver-form" action="/api/zumba-waiver" method="post" novalidate data-waiver-version={WAIVER_VERSION}>
+      <fieldset id="waiver-fields">
+        <legend>Your details</legend>
+        <div class="waiver-grid">
+          <label class="waiver-wide" for="fullName">Full name<input id="fullName" name="fullName" type="text" autocomplete="name" maxlength="150" required /></label>
+          <label for="phone">Phone<input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" required /></label>
+          <label for="email">Email<input id="email" name="email" type="email" autocomplete="email" maxlength="200" required /></label>
+          <div class="waiver-birth-date">
+            <label for="dateOfBirth">Date of birth<input id="dateOfBirth" name="dateOfBirth" type="date" autocomplete="bday" required aria-describedby="age-note age-error" /></label>
+            <p id="age-error" class="waiver-field-error" role="alert" hidden>Participants must be 16 or older to join the Zumba classes.</p>
+          </div>
+          <label for="militaryVeteran">Military / veteran<select id="militaryVeteran" name="militaryVeteran" required><option value="" selected disabled>Select Yes or No</option><option>Yes</option><option>No</option></select></label>
+        </div>
+        <p id="age-note" class="waiver-note">Participants must be 16 or older. Your date of birth determines whether a guardian signature is needed.</p>
+        <h2>Emergency contact</h2>
+        <div class="waiver-grid">
+          <label for="emergencyName">Emergency contact name<input id="emergencyName" name="emergencyName" type="text" maxlength="150" required /></label>
+          <label for="emergencyPhone">Emergency contact phone<input id="emergencyPhone" name="emergencyPhone" type="tel" maxlength="40" required /></label>
+        </div>
+        <label class="waiver-check"><input name="photoOptOut" type="checkbox" /><span>Please don't show me in photos/videos</span></label>
+        <article class="waiver-copy" aria-labelledby="waiver-title">
+          <h2 id="waiver-title">{WAIVER_TITLE}</h2>
+          {WAIVER_PARAGRAPHS.map((paragraph) => <p>{paragraph}</p>)}
+        </article>
+        <label class="waiver-check"><input name="agreed" type="checkbox" required /><span>I have read and agree to the waiver above</span></label>
+        <div class="waiver-signature">
+          <div class="waiver-signature-heading"><h2 id="participant-signature-label">Your signature</h2><button type="button" class="waiver-clear" data-clear="participant-signature">Clear signature</button></div>
+          <p class="waiver-note" id="signature-help">Draw inside the box with your finger or mouse.</p>
+          <canvas id="participant-signature" aria-labelledby="participant-signature-label" aria-describedby="signature-help" width="1000" height="300">Your browser needs canvas support to draw a signature. Text Lavel for help.</canvas>
+        </div>
+        <fieldset id="guardian-fields" hidden disabled>
+          <legend>Parent or guardian consent</legend>
+          <p class="waiver-note">A parent or guardian must complete this section for participants under 18.</p>
+          <label for="guardianName">Parent / guardian full name<input id="guardianName" name="guardianName" type="text" maxlength="150" required /></label>
+          <div class="waiver-signature-heading"><h2 id="guardian-signature-label">Parent / guardian signature</h2><button type="button" class="waiver-clear" data-clear="guardian-signature">Clear signature</button></div>
+          <canvas id="guardian-signature" aria-labelledby="guardian-signature-label" aria-describedby="signature-help" width="1000" height="300">Draw your parent or guardian signature here.</canvas>
+        </fieldset>
+        <label class="waiver-date" for="signingDate">Date (Pacific Time)<input id="signingDate" type="date" readonly aria-describedby="date-note" /></label>
+        <p class="waiver-note" id="date-note">Filled automatically when you sign. A signed copy is sent to Lavel.</p>
+        <p id="age-submit-notice" class="waiver-alert" hidden>Your waiver cannot be submitted because the participant is under 16.</p>
+        <button type="submit" class="waiver-submit">Sign &amp; Submit Waiver</button>
+      </fieldset>
+      <p id="waiver-error" class="waiver-alert" role="alert" hidden></p>
+      <p id="waiver-progress" role="status" aria-live="polite"></p>
+    </form>
+    <footer class="waiver-help">Need a hand? <a href="sms:+16197220725">Text Lavel: 619-722-0725</a><br />La Jolla Martial Arts · 7680 Girard Ave, La Jolla · Basement level</footer>
+  </main>
+  <script>
+    import { initWaiverForm } from '../../lib/waiver-form';
+    initWaiverForm();
+  </script>
+</body>
+</html>

@@ -1584,3 +1584,29 @@ Source: Lavel Bryant’s “LAVEL Zumba Page Updates” email, forwarded by Nico
 - Free-week copy: “Come see the energy for yourself.”
 - Lavel Bryant, Group Fitness Program Director: more than 14 years teaching Zumba® and group fitness; U.S. Navy veteran; experience with first-timers, longtime fitness enthusiasts, children, and active older adults, in groups of up to more than 100 people. Classes welcome all levels and emphasize fun and community.
 - Approved assets: two actual class photos and metallic gold lion + LAVEL emblem, saved as `public/assets/lavel-class-in-action.webp`, `lavel-class-community.webp`, and `lavel-lion-emblem.webp`. Class photo borders and phone interface cropped away; original attachments retained.
+
+
+## LAVEL regular class update — October 20, 2026
+
+Source: owner-provided Google Doc, https://docs.google.com/document/d/13MCVg02jx9_py55UeHswwazO006LJB1RV4yjJjghkWo/view. These details supersede all earlier Zumba schedule, event and offer notes above.
+
+- Remove the October 17 Master Class event, its signup choices, and its structured data.
+- Regular classes start Monday, November 2, 2026: Monday and Thursday at 9:00 AM Pacific, 60 minutes, ages 16+. Saturday is coming soon; collect Saturday interest. No Friday Zumba class.
+- Venue: La Jolla Martial Arts, 7680 Girard Ave, La Jolla, basement level.
+- Pick one intro: Free First Week means 3 free classes within 30 days of the first class, OR $15 first drop-in.
+- Pricing: $25 single; $69 for 3 classes within 60 days; $160 for 8 classes within 90 days. Military/veterans receive 20% off, excluding the $15 first drop-in.
+- Keep the signup lead pipeline, with Saturday interest included. CTA: Claim Your Free First Week.
+- Contact Lavel: text 619-722-0725 or email lavelcreates@gmail.com.
+- Online waiver: /zumba/waiver; print sign: /zumba/waiver/print. Preserve the owner's waiver text exactly, retain signed records, email signed copies to Lavel, require guardian name/signature for ages 16–17.
+- Existing approved photographs remain until the owner provides the new Master Class gallery photos.
+- The owner did not supply revised general studio door hours in this update.
+
+### Waiver distribution — Nico's October 21 clarification
+
+Keep the standalone phone-friendly waiver and Lavel's QR code. After someone submits the Zumba signup, link to the waiver from both the on-page success confirmation and the confirmation SMS. Do not show the door QR print link in the public Questions/footer section. Signed waivers still notify Lavel through GoHighLevel.
+
+### Signup notifications and waiver receipts — Nico's October 21 follow-up
+
+Include Saturday-class interest in Lavel's internal SMS and send a similar internal registration email to `lavelcreates@gmail.com`. Show a dedicated confirmation page after a signed waiver is saved, with a signing date and reference number. Explicitly tell under-16 visitors their waiver has not been submitted and prevent submission; retain guardian requirements for ages 16–17. Persist registration choices and complete signed waiver records in Cloudflare D1 independently of notification delivery.
+
+Nico's subsequent display correction: simplify the waiver confirmation to “Your waiver has been submitted. Thank you!” without the email notice, signing date or reference number. Retain complete signed records internally. Keep the date-of-birth input aligned with the other fields on mobile, including iPhones.

@@ -149,7 +149,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
         function currentSubmitLabel() {
           return programSelect && programSelect.tagName === 'SELECT' && programSelect.value === 'zumba'
             ? 'Ask About Zumba'
-            : originalLabel;
+            : (submitBtn && submitBtn.dataset.submitLabel) || originalLabel;
         }
 
         if (programSelect && programSelect.tagName === 'SELECT' && submitBtn) {

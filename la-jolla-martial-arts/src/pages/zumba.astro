@@ -4,12 +4,12 @@ import '../styles/site-theme.css';
 
 const SITE = 'https://lajollatkd.com';
 
-// LAVEL Group Fitness handoff (Lavel Bryant, Sep 25 2026). Regular classes run 60 minutes; the Master Class runs 90 minutes.
+// Regular LAVEL classes begin November 2, 2026.
 const CLASS_LENGTH = '60 min';
 const CLASSES = [
   { day: 'Monday', time: '9:00 AM' },
   { day: 'Thursday', time: '9:00 AM' },
-  { day: 'Friday', time: '10:30 AM' },
+  { day: 'Saturday', time: 'Coming soon' },
 ];
 
 // Hero benefits map to Lavel's tagline: mind, body & soul.
@@ -20,14 +20,10 @@ const HERO_BENEFITS = [
 ];
 
 const PRICES = [
-  { label: 'First Class', price: '$15' },
-  { label: 'Single / Drop-In', price: '$25' },
-  { label: '3-Class Package', price: '$69' },
-  { label: '8-Class Package', price: '$160' },
+  { label: 'Single class', price: '$25', note: '' },
+  { label: '3 classes', price: '$69', note: 'Use within 60 days' },
+  { label: '8-Class Pack', price: '$160', note: 'Use within 90 days' },
 ];
-
-// Master Class content hides itself client-side once it has ended.
-const MASTER_CLASS_END = '2026-10-17T10:30:00-07:00';
 
 const location = {
   '@type': 'SportsActivityLocation',
@@ -49,41 +45,28 @@ const serviceSchema = {
   '@type': 'Service',
   name: 'LAVEL Zumba Group Fitness Classes in La Jolla',
   description:
-    '60-minute LAVEL Zumba group fitness classes at La Jolla Martial Arts on Mondays and Thursdays at 9:00 AM and Fridays at 10:30 AM. Your first week is free.',
+    '60-minute LAVEL Zumba classes for ages 16+ at La Jolla Martial Arts, Monday and Thursday at 9:00 AM, starting November 2, 2026. Three free intro classes within 30 days, or a $15 first drop-in.',
   url: `${SITE}/zumba`,
   areaServed: { '@type': 'City', name: 'La Jolla' },
   provider: location,
   offers: [
-    { '@type': 'Offer', name: 'Free First Week', price: '0', priceCurrency: 'USD' },
+    { '@type': 'Offer', name: 'Free First Week', description: '3 free classes within 30 days of your first class', price: '0', priceCurrency: 'USD' },
+    { '@type': 'Offer', name: 'First drop-in class', price: '15', priceCurrency: 'USD' },
     ...PRICES.map((p) => ({ '@type': 'Offer', name: p.label, price: p.price.replace('$', ''), priceCurrency: 'USD' })),
   ],
 };
 
-const masterClassSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Event',
-  name: 'Free 90-Minute LAVEL Zumba Master Class',
-  startDate: '2026-10-17T09:00:00-07:00',
-  endDate: MASTER_CLASS_END,
-  eventStatus: 'https://schema.org/EventScheduled',
-  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-  isAccessibleForFree: true,
-  location,
-  organizer: { '@type': 'Organization', name: 'La Jolla Martial Arts', url: SITE },
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', url: `${SITE}/zumba#zumba-signup` },
-};
 ---
 
 <Layout
   title="LAVEL Zumba Classes in La Jolla | First Week Free"
-  description="60-minute LAVEL Zumba group fitness at La Jolla Martial Arts. Mondays & Thursdays 9:00 AM, Fridays 10:30 AM. Your first week is free, plus a free Master Class Oct 17."
+  description="Zumba in La Jolla for ages 16+. Monday & Thursday at 9 AM, starting November 2. Claim 3 free classes within 30 days or a $15 first drop-in."
   canonical={`${SITE}/zumba`}
 >
   <Fragment slot="head">
     <link rel="preload" as="image" href="/assets/lavel-wordmark.webp" />
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,500&display=swap" rel="stylesheet" />
     <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(masterClassSchema)} />
     <style is:global>
       :root {
         --lv-ink: #0b0906;
@@ -134,7 +117,9 @@ const masterClassSchema = {
       /* Buttons */
       .lv-btn {
         min-height: 54px;
-        padding: 0 1.6rem;
+        padding: .9rem 1.6rem;
+        text-align: center;
+        line-height: 1.4;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -398,29 +383,6 @@ const masterClassSchema = {
       .lv-where span { display: inline-flex; align-items: center; gap: 0.45rem; }
       .lv-where .lucide, .lv-where i { width: 16px; height: 16px; color: var(--lv-gold-lo); }
       .lv-where a { color: inherit; }
-
-      /* ---------- MASTER CLASS ---------- */
-      .lv-master { padding: 3rem 4rem; background: var(--lv-cream); color: #fff; }
-      .lv-master-grid {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        gap: clamp(2rem, 4vw, 3rem);
-        align-items: center;
-        padding: 3rem;
-        background: radial-gradient(ellipse at top left, rgba(212,167,60,0.12), transparent 60%), var(--lv-ink-2);
-        border: 1px solid rgba(212,167,60,0.4);
-        border-left: 5px solid var(--lv-gold);
-        box-shadow: 0 15px 35px -25px rgba(11,9,6,0.4);
-      }
-      .lv-master .lv-label { color: var(--lv-gold-hi); letter-spacing: 0.18em; }
-      .lv-event-brand { width: 170px; text-align: center; }
-      .lv-event-brand img { display: block; width: 170px; height: 170px; border-radius: 50%; box-shadow: 0 0 30px rgba(212,167,60,0.12); }
-      .lv-event-date { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(212,167,60,0.4); }
-      .lv-event-date strong { display: block; color: var(--lv-gold-hi); font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; }
-      .lv-event-date span { display: block; margin-top: 0.3rem; color: rgba(255,255,255,0.75); font-size: 0.8rem; }
-      .lv-master h2 { margin-top: 0.8rem; font-size: clamp(2.4rem, 4.4vw, 4rem); line-height: 0.92; text-transform: uppercase; }
-      .lv-master p:not(.lv-label) { margin-top: 0.9rem; color: rgba(255,255,255,0.72); line-height: 1.7; max-width: 560px; }
-      .lv-master p strong { color: #fff; }
 
       /* ---------- PRICING ---------- */
       .lv-pricing { padding: 6rem 4rem; background: var(--lv-cream-2); }
@@ -719,14 +681,11 @@ const masterClassSchema = {
         .lv-head { gap: 1.2rem; }
         .lv-arch-wrap { width: min(400px, 88%); margin-top: 1rem; }
 
-        .lv-master-grid { grid-template-columns: auto 1fr; }
-        .lv-master-grid > .lv-btn { grid-column: 1 / -1; justify-self: start; }
       }
 
       @media (max-width: 768px) {
         .lv-hero,
         .lv-schedule,
-        .lv-master,
         .lv-pricing,
         .lv-why,
         .lv-signup { padding-left: 1.25rem; padding-right: 1.25rem; }
@@ -751,13 +710,6 @@ const masterClassSchema = {
         .lv-day p { display: none; }
         .lv-schedule-offer { padding: 1.6rem 1.25rem; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
         .lv-schedule-offer .lv-btn { width: 100%; }
-        .lv-master { padding-top: 2rem; padding-bottom: 2rem; }
-        .lv-master-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-        .lv-master-grid > .lv-btn { width: 100%; }
-        .lv-master-grid { padding: 2rem 1.25rem; }
-        .lv-event-brand { width: 100%; display: flex; align-items: center; gap: 1.25rem; text-align: left; }
-        .lv-event-brand img { width: 100px; height: 100px; flex: 0 0 auto; }
-        .lv-event-date { margin: 0; padding: 0; border-top: 0; }
         .lv-offer { box-shadow: 10px 10px 0 var(--lv-gold); margin-right: 10px; }
         .lv-menu .dots { display: none; }
         .lv-menu li { justify-content: space-between; }
@@ -765,6 +717,22 @@ const masterClassSchema = {
         .lv-benefit { min-height: 0; }
         .lv-form .form-row { grid-template-columns: 1fr; }
       }
+      .lv-intro { padding: 0 4rem 6rem; }
+      .lv-intro-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem; margin: 2.5rem 18px 0 0; }
+      .lv-intro .lv-offer { box-shadow: 10px 10px 0 var(--lv-gold); }
+      .lv-intro .lv-offer-big { font-size: clamp(4rem, 7vw, 6rem); }
+      .lv-offer--drop-in { background: #21190e; }
+      .lv-offer .lv-label { color: var(--lv-gold-hi); }
+      .lv-price-note { display: block; margin-top: .3rem; color: var(--lv-muted); font-size: .85rem; }
+      .lv-check { display: flex; gap: .75rem; align-items: flex-start; margin: 1.4rem 0; line-height: 1.5; cursor: pointer; }
+      .lv-check input { width: 22px; height: 22px; flex: 0 0 auto; accent-color: var(--lv-gold); }
+      .lv-form .form-hint a { color: var(--lv-gold-hi); text-decoration: underline; }
+      .lv-final-contact { padding: 3.5rem 1.25rem; text-align: center; background: var(--lv-ink); color: var(--lv-cream); }
+      .lv-final-contact h2 { font-size: 3rem; }
+      .lv-final-contact p { margin-top: 1rem; line-height: 1.7; }
+      .lv-final-contact a { color: var(--lv-gold-hi); overflow-wrap: anywhere; text-decoration: underline; }
+      @media (max-width: 768px) { .lv-intro { padding: 0 1.25rem 4.5rem; } .lv-intro-grid { grid-template-columns: 1fr; gap: 2rem; margin-right: 10px; } }
+      @media (max-width: 420px) { .lv-day > div { flex-wrap: wrap; gap: .4rem; } }
     </style>
   </Fragment>
 
@@ -778,17 +746,17 @@ const masterClassSchema = {
           </div>
           <p class="lv-hero-sub lv-rise">Zumba · Group Fitness <span>at La Jolla Martial Arts</span></p>
           <h1 class="lv-h1 font-display lv-rise" id="lv-title">
-            <span>Zumba Classes</span>
-            <span>In La Jolla.</span>
-            <span class="lv-gold-text">First Week Free.</span>
+            <span>Your First Week</span>
+            <span>of Zumba Is</span>
+            <span class="lv-gold-text">FREE</span>
           </h1>
+          <p class="lv-tagline lv-rise"><strong>Regular classes start Monday, November 2</strong></p>
           <p class="lv-tagline lv-serif lv-rise">Moving mind, body &amp; soul.</p>
           <ul class="lv-pills lv-rise" aria-label="Benefits of Zumba">
             {HERO_BENEFITS.map((b) => <li><b>{b.kicker}</b><span>{b.text}</span></li>)}
           </ul>
           <div class="lv-hero-actions lv-rise">
-            <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="Free First Week">Claim My Free Week</a>
-            <a href="#master-class" class="lv-btn lv-btn--line" data-lv-until={MASTER_CLASS_END}>Free Master Class · Oct 17</a>
+            <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="Free First Week">Claim Your Free First Week</a>
           </div>
         </div>
 
@@ -807,40 +775,18 @@ const masterClassSchema = {
       </div>
     </section>
 
-    <!-- MASTER CLASS -->
-    <section class="lv-master" id="master-class" aria-labelledby="lv-master-title" data-lv-until={MASTER_CLASS_END}>
-      <div class="lv-inner lv-master-grid">
-        <div class="lv-event-brand">
-          <img src="/assets/lavel-lion-emblem.webp" width="1254" height="1254" alt="LAVEL gold lion emblem" loading="lazy" decoding="async" />
-          <div class="lv-event-date">
-            <strong>Sat · Oct 17</strong>
-            <span>9:00 AM · Free</span>
-          </div>
-        </div>
-        <div>
-          <p class="lv-label">One-day event · Free admission</p>
-          <h2 class="font-display" id="lv-master-title">Free 90-Minute Zumba <span class="lv-gold-text">Master Class</span></h2>
-          <p>
-            <strong>Saturday, October 17, 2026 at 9:00 AM.</strong> Ninety minutes of nonstop
-            Zumba to kick off LAVEL in La Jolla, and it's completely free. Bring a friend.
-          </p>
-        </div>
-        <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="October 17 Master Class">Reserve Your Spot</a>
-      </div>
-    </section>
-
     <!-- SCHEDULE -->
     <section class="lv-schedule" aria-labelledby="lv-schedule-title">
       <div class="lv-inner">
         <div class="lv-head">
           <div>
             <p class="lv-label">Class schedule</p>
-            <h2 class="lv-h2 font-display" id="lv-schedule-title">Three Mornings. <br />One Great Mood.</h2>
+            <h2 class="lv-h2 font-display" id="lv-schedule-title">Move Together. <br />Feel Great.</h2>
           </div>
           <p>
-            High-energy, music-led 60-minute Zumba classes at La Jolla Martial Arts on Girard Avenue. Come to one
-            class a week or all three. <strong>Your entire first week is free.</strong> Claim it below
-            and pick the class you want to start with.
+            Join Lavel on <strong>Monday and Thursday at 9:00 AM</strong>, starting November 2.
+            Classes run 60 minutes and welcome ages 16+. Saturday classes are coming soon;
+            let us know you're interested when you sign up.
           </p>
         </div>
 
@@ -850,87 +796,172 @@ const masterClassSchema = {
               <span class="lv-day-num">0{i + 1}</span>
               <div>
                 <h3>{c.day}</h3>
-                <time>{c.time} <small>· {CLASS_LENGTH}</small></time>
+                <time>{c.time}{c.day !== 'Saturday' && <small> · {CLASS_LENGTH}</small>}</time>
               </div>
-              <p>60-Minute Zumba · Group Fitness</p>
+              <p>{c.day === 'Saturday' ? 'Check the Saturday interest box below' : '60-Minute Zumba · Ages 16+'}</p>
             </article>
           ))}
         </div>
 
-        <aside class="lv-schedule-offer" aria-labelledby="lv-schedule-offer-title">
-          <div>
-            <p class="lv-label">Launch offer</p>
-            <h3 class="lv-gold-text" id="lv-schedule-offer-title">First Week Free</h3>
-            <p>Try every class for a full week, on us.</p>
-          </div>
-          <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="Free First Week">Claim My Free Week →</a>
-        </aside>
 
         <div class="lv-where">
-          <span><i data-lucide="map-pin"></i>7680 Girard Avenue, La Jolla</span>
-          <span><i data-lucide="phone"></i><a href="tel:+18583610961">858-361-0961</a></span>
+          <span><i data-lucide="map-pin"></i>La Jolla Martial Arts · 7680 Girard Ave, La Jolla (basement level)</span>
+          <span><i data-lucide="phone"></i><a href="sms:+16197220725">Text Lavel: 619-722-0725</a></span>
           <span><i data-lucide="music"></i>No dance experience needed</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO OFFERS -->
+    <section class="lv-intro" aria-labelledby="lv-intro-title">
+      <div class="lv-inner">
+        <p class="lv-label">New here?</p>
+        <h2 class="lv-h2 font-display" id="lv-intro-title">Pick One Intro Offer</h2>
+        <div class="lv-intro-grid">
+          <article class="lv-offer">
+            <h3 class="lv-offer-big font-display lv-gold-text">Free<span>First Week</span></h3>
+            <p>3 free classes, used within 30 days of your first class.</p>
+            <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="Free First Week">Claim Your Free First Week</a>
+          </article>
+          <article class="lv-offer lv-offer--drop-in">
+            <p class="lv-label">Or choose</p>
+            <h3 class="lv-offer-big font-display lv-gold-text">$15<span>First Drop-In</span></h3>
+            <p>Try your first drop-in class for $15. Choose this offer or the Free First Week.</p>
+            <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="$15 first drop-in class">Choose the $15 Intro Class</a>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- PRICING -->
     <section class="lv-pricing" aria-labelledby="lv-pricing-title">
-      <div class="lv-inner lv-price-grid">
-        <div class="lv-offer">
-          <div>
-            <p class="lv-label">Launch offer</p>
-            <div class="lv-offer-big font-display lv-gold-text" style="margin-top:1.2rem;">
-              Free<span>First Week</span>
+      <div class="lv-inner">
+        <p class="lv-label">Pricing</p>
+        <h2 class="lv-h2 font-display" id="lv-pricing-title">Simple, Flexible Pricing.</h2>
+        <ul class="lv-menu">
+          {PRICES.map((p) => (
+            <li><span><span class="name">{p.label}</span>{p.note && <small class="lv-price-note">{p.note}</small>}</span><span class="dots" aria-hidden="true"></span><span class="price">{p.price}</span></li>
+          ))}
+        </ul>
+        <div class="lv-military">
+          <strong>20%</strong>
+          <span>Off for military and veterans. Excludes the $15 first drop-in class.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIGNUP -->
+    <section class="lv-signup" id="zumba-signup" aria-labelledby="lv-signup-title">
+      <div class="lv-inner lv-signup-grid">
+        <div class="lv-signup-copy">
+          <p class="lv-label">Your free week</p>
+          <h2 class="lv-h2 font-display" id="lv-signup-title">Claim Your <span class="lv-gold-text lv-gold-text--deep">Free First Week</span></h2>
+          <p>
+            Choose your intro offer and the date of your first class. The Free First Week includes
+            3 free classes within 30 days of your first class. We'll follow up with the details.
+          </p>
+          <ul class="lv-contact">
+            <li><i data-lucide="map-pin"></i><span>La Jolla Martial Arts<br />7680 Girard Ave, La Jolla, CA 92037<br />Basement level</span></li>
+            <li><i data-lucide="phone"></i><a href="sms:+16197220725">Text Lavel: 619-722-0725</a></li>
+            <li><i data-lucide="mail"></i><a href="mailto:lavelcreates@gmail.com">lavelcreates@gmail.com</a></li>
+          </ul>
+        </div>
+
+        <form
+          class="lv-form"
+          action="/api/lead"
+          method="POST"
+          novalidate
+          data-lead-form
+          data-form-type="ZumbaTrialForm"
+          data-lead-source="zumba-page"
+          data-lv-form
+        >
+          <div class="lv-form-head">
+            <strong>Claim Your Free First Week</strong>
+            <span>Mon &amp; Thu 9:00&nbsp;AM · 60 minutes · Ages 16+</span>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="lv-first-name">First Name</label>
+              <input class="form-input" id="lv-first-name" name="firstName" type="text" autocomplete="given-name" placeholder="First name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lv-last-name">Last Name</label>
+              <input class="form-input" id="lv-last-name" name="lastName" type="text" autocomplete="family-name" placeholder="Last name" required />
             </div>
           </div>
-          <p>Come to every class for a full week before you pay a thing. Find your favorite time. Come see the energy for yourself.</p>
-          <a href="#zumba-signup" class="lv-btn lv-btn--gold" data-interest="Free First Week">Claim My Free Week</a>
-        </div>
-
-        <div>
-          <p class="lv-label">Pricing</p>
-          <h2 class="lv-h2 font-display" id="lv-pricing-title">Simple, Flexible Pricing.</h2>
-          <p class="lv-after" style="margin-top:1.8rem;">After your free first week</p>
-          <ul class="lv-menu">
-            {PRICES.map((p) => (
-              <li><span class="name">{p.label}</span><span class="dots" aria-hidden="true"></span><span class="price">{p.price}</span></li>
-            ))}
-          </ul>
-          <div class="lv-military">
-            <strong>20%</strong>
-            <span>Military &amp; veteran discount on every class and package. Thank you for your service.</span>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="lv-phone">Mobile Number</label>
+              <input class="form-input" id="lv-phone" name="phone" type="tel" autocomplete="tel" placeholder="(858) 555-0123" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lv-email">Email</label>
+              <input class="form-input" id="lv-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+            </div>
           </div>
-        </div>
+
+          <div class="form-group" data-lv-interest>
+            <label class="form-label" for="lv-interest">I'm Signing Up For</label>
+            <select class="form-select" id="lv-interest" name="interest" required>
+              <option value="Free First Week" selected>Free First Week — 3 free classes within 30 days</option>
+              <option value="$15 first drop-in class">$15 first drop-in class</option>
+            </select>
+          </div>
+
+          <div class="form-group" data-lv-date-group>
+            <span class="form-label" id="lv-date-label">Your First Class</span>
+            <div class="lv-picker-row" data-lv-picker-row>
+              <button type="button" class="lv-picker-toggle" id="lv-date" aria-haspopup="dialog" aria-expanded="false" aria-controls="lv-cal" aria-labelledby="lv-date-label lv-date" data-lv-picker-toggle>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
+                <span data-lv-picker-text>Pick a date</span>
+              </button>
+              <button type="button" class="lv-picker-clear" data-lv-picker-clear>Clear</button>
+            </div>
+            <p class="lv-field-error" role="alert" hidden data-lv-date-error>Pick the date of your first class.</p>
+            <div class="lv-cal" id="lv-cal" role="dialog" aria-label="Choose a class date" hidden data-lv-cal>
+              <div class="lv-cal-head">
+                <button type="button" class="lv-cal-nav" data-lv-cal-prev aria-label="Previous month">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+                </button>
+                <strong data-lv-cal-title aria-live="polite"></strong>
+                <button type="button" class="lv-cal-nav" data-lv-cal-next aria-label="Next month">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+                </button>
+              </div>
+              <div class="lv-cal-grid" data-lv-cal-grid></div>
+              <div class="lv-cal-legend">
+                <span><i></i>Mon &amp; Thu 9:00 AM · Starting November 2</span>
+              </div>
+            </div>
+            <input type="hidden" value="" data-lv-date-value />
+            <input type="hidden" name="classDate" value="" data-lv-class-date />
+            <p class="form-hint">Choose your first class. All class times are Pacific Time.</p>
+          </div>
+
+          <label class="lv-check"><input type="checkbox" data-lv-saturday /> <span>I'm interested in a Saturday class</span></label>
+          <input type="hidden" name="saturdayInterest" value="No" data-lv-saturday-value />
+          <input type="hidden" name="message" value="" data-lv-message />
+          <input type="hidden" name="program" value="zumba" />
+          <button class="lv-btn lv-btn--gold lv-submit" type="submit">Claim Your Free First Week</button>
+          <p class="form-disclaimer">By submitting, you agree to receive emails and texts about LAVEL Zumba classes and events. We respect your privacy and will never share your information.</p>
+
+          <template data-lead-success>
+            <div class="lv-success" role="status">
+              <div class="lv-success-mark" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+              </div>
+              <h3>You're In!</h3>
+              <p>Thanks for connecting with LAVEL. We received your registration.</p>
+              <a class="lv-btn lv-btn--gold" href="/zumba/waiver">Sign Your Class Waiver</a>
+              <address>La Jolla Martial Arts<br />7680 Girard Avenue, basement level<br />La Jolla, CA</address>
+              <p>We'll use the contact information you provided for relevant class and event details.</p>
+            </div>
+          </template>
+        </form>
       </div>
     </section>
-
-    <!-- WHY -->
-    <section class="lv-why lv-dark" aria-labelledby="lv-why-title">
-      <div class="lv-inner lv-why-grid">
-        <div class="lv-why-copy">
-          <p class="lv-label">Why LAVEL Zumba</p>
-          <h2 class="lv-h2 font-display" id="lv-why-title">A Workout That Feels Like <span class="lv-gold-text">A Party.</span></h2>
-          <p>
-            Zumba blends Latin and world rhythms with easy-to-follow moves, so it feels more like a
-            dance party than a workout. LAVEL brings premium energy and a welcoming room you'll
-            actually look forward to.
-          </p>
-          <div class="lv-sig">
-            <small>Your instructor</small>
-            <strong>Lavel Bryant</strong>
-            <span>Group Fitness Program Director</span>
-          </div>
-        </div>
-        <div class="lv-benefits">
-          <article class="lv-benefit"><i data-lucide="music"></i><h3>No Dance Experience Needed</h3><p>Just follow along. The moves are simple, repeatable, and made for first-timers.</p></article>
-          <article class="lv-benefit"><i data-lucide="gauge"></i><h3>Go At Your Own Pace</h3><p>Go big or keep it low-impact. Match the moves to your energy that day.</p></article>
-          <article class="lv-benefit"><i data-lucide="sunrise"></i><h3>Mornings That Fit</h3><p>Three morning classes a week, with drop-ins and packages after your free week.</p></article>
-          <article class="lv-benefit"><i data-lucide="map-pin"></i><h3>Right In The Village</h3><p>Classes at La Jolla Martial Arts on Girard Avenue, in the heart of La Jolla.</p></article>
-        </div>
-      </div>
-    </section>
-
     <!-- MEET LAVEL -->
     <section class="lv-meet" aria-labelledby="lv-meet-title">
       <div class="lv-inner lv-meet-grid">
@@ -961,115 +992,10 @@ const masterClassSchema = {
       </div>
     </section>
 
-    <!-- SIGNUP -->
-    <section class="lv-signup" id="zumba-signup" aria-labelledby="lv-signup-title">
-      <div class="lv-inner lv-signup-grid">
-        <div class="lv-signup-copy">
-          <p class="lv-label">Your free week</p>
-          <h2 class="lv-h2 font-display" id="lv-signup-title">Claim Your <span class="lv-gold-text lv-gold-text--deep">Free Week.</span></h2>
-          <p>
-            Fill out the form and your first week of LAVEL Zumba is on us. Pick the class you
-            want to start with and we'll follow up with everything you need before you come in.
-          </p>
-          <ul class="lv-contact">
-            <li><i data-lucide="map-pin"></i><span>La Jolla Martial Arts<br />7680 Girard Avenue, La Jolla, CA 92037</span></li>
-            <li><i data-lucide="phone"></i><a href="tel:+18583610961">858-361-0961</a></li>
-            <li><i data-lucide="mail"></i><a href="mailto:info@lajollatkd.com">info@lajollatkd.com</a></li>
-          </ul>
-        </div>
-
-        <form
-          class="lv-form"
-          action="/api/lead"
-          method="POST"
-          novalidate
-          data-lead-form
-          data-form-type="ZumbaTrialForm"
-          data-lead-source="zumba-page"
-          data-lv-form
-        >
-          <div class="lv-form-head">
-            <strong>Claim Your Free Week</strong>
-            <span>First week free · Mon &amp; Thu 9:00&nbsp;AM · Fri 10:30&nbsp;AM</span>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="lv-first-name">First Name</label>
-              <input class="form-input" id="lv-first-name" name="firstName" type="text" autocomplete="given-name" placeholder="First name" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="lv-last-name">Last Name</label>
-              <input class="form-input" id="lv-last-name" name="lastName" type="text" autocomplete="family-name" placeholder="Last name" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="lv-phone">Mobile Number</label>
-              <input class="form-input" id="lv-phone" name="phone" type="tel" autocomplete="tel" placeholder="(858) 555-0123" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="lv-email">Email</label>
-              <input class="form-input" id="lv-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
-            </div>
-          </div>
-
-          <div class="form-group" data-lv-interest>
-            <label class="form-label" for="lv-interest">I'm Signing Up For</label>
-            <select class="form-select" id="lv-interest" name="interest" required>
-              <option value="" disabled selected>Select one</option>
-              <option value="Free First Week">Free First Week</option>
-              <option value="October 17 Master Class" data-lv-until={MASTER_CLASS_END}>Oct 17 Master Class (Free)</option>
-              <option value="Both" data-lv-until={MASTER_CLASS_END}>Both</option>
-            </select>
-          </div>
-
-          <div class="form-group" data-lv-date-group>
-            <span class="form-label" id="lv-date-label">Your First Class</span>
-            <div class="lv-picker-row" data-lv-picker-row>
-              <button type="button" class="lv-picker-toggle" id="lv-date" aria-haspopup="dialog" aria-expanded="false" aria-controls="lv-cal" aria-labelledby="lv-date-label lv-date" data-lv-picker-toggle>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
-                <span data-lv-picker-text>Pick a date</span>
-              </button>
-              <button type="button" class="lv-picker-clear" data-lv-picker-clear>Clear</button>
-            </div>
-            <p class="lv-field-error" role="alert" hidden data-lv-date-error>Pick the date of your first class.</p>
-            <div class="lv-cal" id="lv-cal" role="dialog" aria-label="Choose a class date" hidden data-lv-cal>
-              <div class="lv-cal-head">
-                <button type="button" class="lv-cal-nav" data-lv-cal-prev aria-label="Previous month">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></svg>
-                </button>
-                <strong data-lv-cal-title aria-live="polite"></strong>
-                <button type="button" class="lv-cal-nav" data-lv-cal-next aria-label="Next month">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
-                </button>
-              </div>
-              <div class="lv-cal-grid" data-lv-cal-grid></div>
-              <div class="lv-cal-legend">
-                <span><i></i>Mon &amp; Thu 9:00 AM · Fri 10:30 AM</span>
-              </div>
-            </div>
-            <input type="hidden" value="" data-lv-date-value />
-            <input type="hidden" name="classDate" value="" data-lv-class-date />
-            <p class="form-hint">Choose the class you'd like to start your free week with.</p>
-          </div>
-
-          <input type="hidden" name="message" value="" data-lv-message />
-          <input type="hidden" name="program" value="zumba" />
-          <button class="lv-btn lv-btn--gold lv-submit" type="submit">Claim My Free Week</button>
-          <p class="form-disclaimer">By submitting, you agree to receive emails and texts about LAVEL Zumba classes and events. We respect your privacy and will never share your information.</p>
-
-          <template data-lead-success>
-            <div class="lv-success" role="status">
-              <div class="lv-success-mark" aria-hidden="true">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-              </div>
-              <h3>You're In!</h3>
-              <p>Thanks for connecting with LAVEL. We received your information.</p>
-              <address>La Jolla Martial Arts<br />7680 Girard Avenue<br />La Jolla, CA</address>
-              <p>We'll use the contact information you provided for relevant class and event details.</p>
-            </div>
-          </template>
-        </form>
+    <section class="lv-final-contact" aria-labelledby="lv-contact-title">
+      <div class="lv-inner">
+        <h2 class="font-display" id="lv-contact-title">Questions?</h2>
+        <p>Text Lavel at <a href="sms:+16197220725">619-722-0725</a> or email <a href="mailto:lavelcreates@gmail.com">lavelcreates@gmail.com</a>.</p>
       </div>
     </section>
   </main>
@@ -1078,24 +1004,10 @@ const masterClassSchema = {
     (function () {
       var now = Date.now();
 
-      // Remove time-limited content (the Oct 17 Master Class) once it's over.
-      document.querySelectorAll('[data-lv-until]').forEach(function (el) {
-        if (now > Date.parse(el.getAttribute('data-lv-until'))) el.remove();
-      });
-
       var form = document.querySelector('form[data-lv-form]');
       if (!form) return;
-
-      var interestGroup = form.querySelector('[data-lv-interest]');
-      var interestSelect = form.interest;
+      var interestSelect = form.elements.namedItem('interest');
       var dateGroup = form.querySelector('[data-lv-date-group]');
-
-      // Once the Master Class has passed, Free First Week is the only option.
-      var interestChoices = interestSelect.querySelectorAll('option[value]:not([value=""])');
-      if (interestChoices.length === 1) {
-        interestSelect.value = interestChoices[0].value;
-        interestGroup.hidden = true;
-      }
 
       // CTAs elsewhere on the page preselect the matching option.
       document.querySelectorAll('a[data-interest]').forEach(function (link) {
@@ -1109,15 +1021,18 @@ const masterClassSchema = {
       });
 
       // Class-day date picker: only real class days in the next 8 weeks are selectable.
-      var SLOTS = { 1: { label: '9:00 AM', hour: 9 }, 4: { label: '9:00 AM', hour: 9 }, 5: { label: '10:30 AM', hour: 10.5 } };
+      var SLOTS = { 1: { label: '9:00 AM', hour: 9 }, 4: { label: '9:00 AM', hour: 9 } };
+      var startDate = new Date(2026, 10, 2);
       var WINDOW_DAYS = 56;
-      var nowDate = new Date(now);
+      var pacific = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date(now));
+      var parts = Object.fromEntries(pacific.map(function (p) { return [p.type, p.value]; }));
+      var nowDate = new Date(+parts.year, +parts.month - 1, +parts.day, +parts.hour, +parts.minute);
       var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate());
       var lastDay = new Date(today.getFullYear(), today.getMonth(), today.getDate() + WINDOW_DAYS);
       var nowHour = nowDate.getHours() + nowDate.getMinutes() / 60;
 
       function slotFor(date) {
-        if (date < today || date > lastDay) return null;
+        if (date < today || date < startDate || date > lastDay) return null;
         var slot = SLOTS[date.getDay()];
         if (slot && date.getTime() === today.getTime() && nowHour >= slot.hour) return null;
         return slot;
@@ -1143,7 +1058,7 @@ const masterClassSchema = {
       var maxMonth = lastDay.getFullYear() * 12 + lastDay.getMonth();
       var viewMonth = minMonth;
       var selected = null;
-      var shortFmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      var shortFmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
       var longFmt = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
       var monthFmt = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' });
 
@@ -1238,17 +1153,13 @@ const masterClassSchema = {
         form.dispatchEvent(new Event('change'));
       });
 
-      // The first-class date only applies to the regular classes, not a Master-Class-only sign-up.
       var submitBtn = form.querySelector('button[type="submit"]');
-      function syncDateGroup() {
-        var masterOnly = interestSelect.value === 'October 17 Master Class';
-        if (!submitBtn.disabled) submitBtn.textContent = masterOnly ? 'Reserve My Spot' : 'Claim My Free Week';
-        dateGroup.hidden = masterOnly;
-        if (masterOnly) clearDateError();
-        if (masterOnly && dateValue.value) clearDate();
+      function syncOffer() {
+        submitBtn.dataset.submitLabel = interestSelect.value === '$15 first drop-in class' ? 'Request My $15 First Class' : 'Claim Your Free First Week';
+        if (!submitBtn.disabled) submitBtn.textContent = submitBtn.dataset.submitLabel;
       }
-      interestSelect.addEventListener('change', syncDateGroup);
-      syncDateGroup();
+      interestSelect.addEventListener('change', syncOffer);
+      syncOffer();
 
       prevBtn.addEventListener('click', function () { viewMonth--; render(); });
       nextBtn.addEventListener('click', function () { viewMonth++; render(); });
@@ -1259,23 +1170,22 @@ const masterClassSchema = {
       // The lead API stores extra details in `message`; compose it before Layout's submit handler runs.
       var messageInput = form.querySelector('[data-lv-message]');
       var classDateInput = form.querySelector('[data-lv-class-date]');
-      var MASTER_CLASS_LABEL = 'Sat, Oct 17 · 9:00 AM';
+      var saturdayCheckbox = form.querySelector('[data-lv-saturday]');
+      var saturdayValue = form.querySelector('[data-lv-saturday-value]');
       function composeMessage() {
-        var lines = [
+        saturdayValue.value = saturdayCheckbox.checked ? 'Yes' : 'No';
+        messageInput.value = [
           'LAVEL Zumba registration',
-          'Signing up for: ' + (interestSelect.value || '—'),
-        ];
-        if (interestSelect.value !== 'October 17 Master Class') {
-          lines.push('First class: ' + (dateValue.value || 'No date picked'));
-        }
-        messageInput.value = lines.join('\n');
-        // Always give GoHighLevel a class date; Master-Class-only sign-ups get the event date.
-        classDateInput.value = interestSelect.value === 'October 17 Master Class' ? MASTER_CLASS_LABEL : dateValue.value;
+          'Signing up for: ' + interestSelect.value,
+          'First class (Pacific Time): ' + (dateValue.value || 'No date picked'),
+          'Interested in Saturday: ' + saturdayValue.value,
+        ].join('\n');
+        classDateInput.value = dateValue.value;
       }
       form.addEventListener('change', composeMessage);
       form.addEventListener('submit', composeMessage, true);
 
-      // A first-class date is required unless they're only signing up for the Master Class.
+      // Require a first-class date before the shared signup handler runs.
       // Runs in the capture phase so it can stop Layout's submit handler; other fields are
       // left to the browser's own validation first.
       form.addEventListener('submit', function (e) {

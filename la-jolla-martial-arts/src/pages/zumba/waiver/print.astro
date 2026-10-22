@@ -1,0 +1,35 @@
+---
+import '../../../styles/zumba-waiver.css';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="description" content="Print the LAVEL Fitness door sign with a QR code linking directly to the mobile Zumba waiver." />
+  <title>Print the LAVEL Waiver QR Code | La Jolla Martial Arts</title>
+  <link rel="canonical" href="https://lajollatkd.com/zumba/waiver/print" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    .waiver-page { font-family: 'Archivo', sans-serif; }
+    .poster-actions { display: flex; justify-content: center; flex-wrap: wrap; align-items: center; gap: 1.25rem; padding: 1rem 1.25rem; background: #0b0906; }
+    .poster-actions a { color: #f3d27a; font-size: .85rem; }
+    .poster-actions button { margin: 0; border: 1px solid #a67a26; min-height: 44px; padding: .6rem 1rem; font-size: .85rem; }
+    .poster { width: min(100% - 2rem, 730px); margin: 2rem auto 1rem; background: white; box-shadow: 0 12px 40px #21190f20; }
+    .poster img { display: block; width: 100%; height: auto; }
+    .poster-hint { text-align: center; color: #66573f; font-size: .8rem; padding: 0 1rem 1rem; }
+    @media print { @page { size: letter; margin: 0; } .waiver-page { margin: 0; background: white; } .poster-actions, .poster-hint { display: none; } .poster { width: 8.5in; max-width: none; margin: 0; box-shadow: none; break-inside: avoid; } .poster img { width: 100%; height: 11in; print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
+  </style>
+</head>
+<body class="waiver-page">
+  <nav class="poster-actions" aria-label="Poster actions"><a href="/zumba">Back to classes</a><a href="/assets/lavel-waiver-door-sign.pdf" download>Download print-ready PDF</a><button class="waiver-submit" id="print-poster" type="button">Print this sign</button></nav>
+  <main class="poster" aria-label="LAVEL Zumba waiver door sign">
+    <a href="/zumba/waiver" aria-label="Open the LAVEL Zumba class waiver"><img src="/assets/lavel-waiver-door-sign.png" alt="LAVEL Zumba / Group Fitness. Before your first class, sign your class waiver. Scan the QR code or visit lajollatkd.com/zumba/waiver. Classes for ages 16+. Parent or guardian must also sign for ages 16–17. Questions? Text Lavel: 619-722-0725. La Jolla Martial Arts, 7680 Girard Ave, basement level." width="1275" height="1650" /></a>
+  </main>
+  <p class="poster-hint">Print on US Letter paper. <a href="/assets/lavel-waiver-door-sign.pdf" download>Download the PDF</a> or <a href="/zumba/waiver">open the waiver</a>.</p>
+  <script>document.querySelector('#print-poster')?.addEventListener('click', () => window.print());</script>
+</body>
+</html>

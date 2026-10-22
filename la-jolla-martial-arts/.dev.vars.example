@@ -1,8 +1,11 @@
-# The production value must be stored with `wrangler secret put GHL_WEBHOOK_URL`.
+# Worker runtime secrets. Copy to .dev.vars for local use (gitignored).
+# Keep the existing signup webhook when configuring production.
 GHL_WEBHOOK_URL=""
+# Separate published GHL workflow: LAVEL | Signed Waiver Email.
+# It emails Lavel private links to the signed PDF and original record.
+GHL_WAIVER_WEBHOOK_URL=""
+# Random 256-bit secret for private signed-copy links. Keep stable; rotating invalidates old links.
+WAIVER_LINK_KEY=""
 
-# PostHog: PUBLIC_POSTHOG_KEY is a *build-time* Astro env var (see .env.example).
-# `.dev.vars` / wrangler runtime bindings do not populate import.meta.env.PUBLIC_*.
-# For `astro build` / `astro dev`, set it in `.env`. For Cloudflare Workers Builds,
-# add PUBLIC_POSTHOG_KEY as a build-time environment variable in the dashboard.
-# PUBLIC_POSTHOG_KEY=
+# PostHog: PUBLIC_POSTHOG_KEY is a build-time Astro variable (see .env.example).
+# Runtime bindings do not populate import.meta.env.PUBLIC_*.
