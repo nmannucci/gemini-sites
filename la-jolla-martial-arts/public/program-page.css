@@ -429,7 +429,8 @@ a {
 }
 
 .copy-links a,
-.benefit-card a {
+.benefit-card a,
+.section-intro a {
   color: #137f9a;
   font-weight: 600;
   text-decoration: underline;
@@ -437,7 +438,8 @@ a {
 }
 
 .section-dark .copy-links a,
-.section-dark .benefit-card a {
+.section-dark .benefit-card a,
+.section-dark .section-intro a {
   color: #9be7f5;
 }
 
@@ -568,7 +570,7 @@ a {
 
 .reviews-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 1.25rem;
 }
 
