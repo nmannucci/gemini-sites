@@ -412,6 +412,30 @@ a {
   color: var(--muted-text);
 }
 
+.service-areas {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+}
+
+.service-areas li {
+  font-family: "Archivo", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bone-white);
+  background: var(--blood-red);
+  padding: 0.5rem 0.9rem;
+  border-radius: 100px;
+}
+
+.service-areas + .section-intro {
+  margin-top: 1.5rem;
+}
+
 .copy-links p {
   max-width: 760px;
   font-size: 1rem;
