@@ -93,8 +93,17 @@ import { site } from '../data/site';
     .contact-lede {
       font-size: 1.1rem; line-height: 1.7;
       color: rgba(255,255,255,0.78);
-      margin-bottom: 2.25rem; max-width: 480px;
+      margin-bottom: 0.85rem; max-width: 480px;
     }
+    .contact-lede + .contact-lede { margin-bottom: 2.25rem; }
+    .contact-lede a {
+      color: #9be7f5;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+    }
+    .contact-lede a:hover,
+    .contact-lede a:focus-visible { color: var(--bone-white); }
 
     .contact-facts {
       list-style: none;
@@ -404,6 +413,9 @@ import { site } from '../data/site';
         <p class="contact-lede" id="contact-lede">
           Fill out the form and we'll get you set up with your complimentary one-week
           trial. No commitment — just come experience what we're all about.
+        </p>
+        <p class="contact-lede">
+          Ages 7–12 can start in <a href="/kids-martial-arts">kids martial arts classes</a>.
         </p>
       </div>
 
