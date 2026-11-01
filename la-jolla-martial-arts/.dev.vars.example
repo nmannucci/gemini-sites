@@ -6,6 +6,10 @@ GHL_WEBHOOK_URL=""
 GHL_WAIVER_WEBHOOK_URL=""
 # Random 256-bit secret for private signed-copy links. Keep stable; rotating invalidates old links.
 WAIVER_LINK_KEY=""
+# Separate published GHL workflow: LJMA giveaway entries (Inbound Webhook trigger).
+GHL_GIVEAWAY_WEBHOOK_URL=""
+# Cloudflare Turnstile secret for the giveaway form. Unset skips the bot check (logged).
+TURNSTILE_SECRET_KEY=""
 
 # PostHog: PUBLIC_POSTHOG_KEY is a build-time Astro variable (see .env.example).
 # Runtime bindings do not populate import.meta.env.PUBLIC_*.

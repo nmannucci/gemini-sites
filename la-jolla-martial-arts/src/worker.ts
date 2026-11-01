@@ -1,5 +1,6 @@
 import { handleWaiver, handleWaiverCopy, handleWaiverConfirmation, retryWaiverEmails } from './lib/waiver-api';
 import { handleMetaPageView, sendMetaEvent, type MetaContext } from './lib/meta-conversions';
+import { handleGiveawayEntry, retryGiveawayEntries } from './lib/giveaway-api';
 
 interface LeadPayload extends MetaContext {
   firstName?: string;
@@ -69,6 +70,8 @@ export default {
     if (normalizedPath === '/zumba/waiver/confirmation') return handleWaiverConfirmation(request, env);
     if (normalizedPath.startsWith('/api/zumba-waiver/copy/')) return handleWaiverCopy(request, env);
 
+    if (normalizedPath === '/api/giveaway-entry') return handleGiveawayEntry(request, env, ctx);
+
     if (url.pathname === '/api/lead') {
       if (request.method !== 'POST') {
         return json({ error: 'Method not allowed' }, 405, { allow: 'POST' });
@@ -80,7 +83,8 @@ export default {
     return env.ASSETS.fetch(request);
   },
   async scheduled(_controller: ScheduledController, env: Env): Promise<void> {
-    await retryWaiverEmails(env);
+    // Each outbox retries independently, so one failing never stalls the other.
+    await Promise.allSettled([retryWaiverEmails(env), retryGiveawayEntries(env)]);
   },
 } satisfies ExportedHandler<Env>;
 

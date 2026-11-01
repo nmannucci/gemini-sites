@@ -9,6 +9,8 @@ interface __BaseEnv_Env {
 	WAIVER_LINK_KEY: string;
 	RESEND_API_KEY: string;
 	META_CAPI_ACCESS_TOKEN: string;
+	GHL_GIVEAWAY_WEBHOOK_URL: string;
+	TURNSTILE_SECRET_KEY: string;
 }
 declare namespace Cloudflare {
 	interface GlobalProps {
@@ -21,7 +23,7 @@ type StringifyValues<EnvType extends Record<string, unknown>> = {
 	[Binding in keyof EnvType]: EnvType[Binding] extends string ? EnvType[Binding] : string;
 };
 declare namespace NodeJS {
-	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "GHL_WEBHOOK_URL" | "GHL_WAIVER_WEBHOOK_URL" | "WAIVER_LINK_KEY" | "RESEND_API_KEY" | "META_CAPI_ACCESS_TOKEN">> {}
+	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "GHL_WEBHOOK_URL" | "GHL_WAIVER_WEBHOOK_URL" | "WAIVER_LINK_KEY" | "RESEND_API_KEY" | "META_CAPI_ACCESS_TOKEN" | "GHL_GIVEAWAY_WEBHOOK_URL" | "TURNSTILE_SECRET_KEY">> {}
 }
 
 // Begin runtime types
