@@ -8,7 +8,8 @@ GHL_WAIVER_WEBHOOK_URL=""
 WAIVER_LINK_KEY=""
 # Separate published GHL workflow: LJMA giveaway entries (Inbound Webhook trigger).
 GHL_GIVEAWAY_WEBHOOK_URL=""
-# Cloudflare Turnstile secret for the giveaway form. Unset skips the bot check (logged).
+# Cloudflare Turnstile secret for the giveaway form; required to deploy. Pair it with the
+# PUBLIC_TURNSTILE_SITE_KEY build variable, or every giveaway entry is refused (403).
 TURNSTILE_SECRET_KEY=""
 
 # PostHog: PUBLIC_POSTHOG_KEY is a build-time Astro variable (see .env.example).

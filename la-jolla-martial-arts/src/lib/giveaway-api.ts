@@ -294,13 +294,13 @@ export async function handleGiveawayEntry(request: Request, env: Env, ctx: Execu
   if ('errors' in result) return respond({ error: 'Validation failed', errors: result.errors }, 400);
 
   const ip = request.headers.get('cf-connecting-ip') ?? '';
-  if (!(await turnstilePasses(env, text(input.turnstileToken), ip))) return respond({ error: 'Verification failed' }, 403);
-
+  // Rate limit first: a Turnstile token verifies only once, so don't spend it on a request we'll refuse.
   if (ip) {
     const since = new Date(Date.now() - 3_600_000).toISOString();
     const recent = await env.DB.prepare('SELECT COUNT(*) AS n FROM giveaway_entries WHERE ip = ? AND updated_at >= ?').bind(ip, since).first<{ n: number }>();
     if ((recent?.n ?? 0) >= RATE_LIMIT_PER_HOUR) return respond({ error: 'Too many entries' }, 429);
   }
+  if (!(await turnstilePasses(env, text(input.turnstileToken), ip))) return respond({ error: 'Verification failed' }, 403);
 
   let saved: { id: string; updated: boolean };
   try {

@@ -1,4 +1,5 @@
 import posthog from 'posthog-js';
+import { postHogConfig } from './posthog-config';
 
 const SITE = 'lj' as const;
 
@@ -29,13 +30,7 @@ export function initPostHog(options: { autocapture?: boolean; sessionRecording?:
   if (!key || window.__posthog_initialized) return Boolean(window.__posthog_initialized);
 
   window.__posthog_initialized = true;
-  posthog.init(key, {
-    api_host: import.meta.env.PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
-    defaults: '2026-01-30',
-    capture_pageview: true,
-    autocapture: options.autocapture ?? true,
-    disable_session_recording: !(options.sessionRecording ?? true),
-  });
+  posthog.init(key, postHogConfig(options));
   window.posthog = posthog;
   posthog.register({ site: SITE });
 

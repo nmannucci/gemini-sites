@@ -10,6 +10,8 @@ export async function createHarness(port?: number, configured = true, metaToken 
   const metaEvents: Array<any> = [];
   const metaRequestUrls: string[] = [];
   const giveaways: Array<{ body: any }> = [];
+  const turnstileSeen = new Set<string>();
+  let turnstileCalls = 0;
   let giveawayFails = false;
   let emailFails = false;
   let emailGate: Promise<void> | null = null;
@@ -34,7 +36,13 @@ export async function createHarness(port?: number, configured = true, metaToken 
     },
     outboundService: async (req: Request) => {
       if (req.url.startsWith('https://graph.facebook.com/')) { metaRequestUrls.push(req.url); metaEvents.push(await req.json()); return Response.json({ events_received: 1 }); }
-      if (req.url === 'https://challenges.cloudflare.com/turnstile/v0/siteverify') return Response.json({ success: opts.turnstileOk ?? true });
+      if (req.url === 'https://challenges.cloudflare.com/turnstile/v0/siteverify') {
+        // Like Cloudflare, each token verifies once.
+        turnstileCalls++;
+        const token = String((await req.formData()).get('response'));
+        const fresh = !turnstileSeen.has(token); turnstileSeen.add(token);
+        return Response.json({ success: (opts.turnstileOk ?? true) && fresh });
+      }
       if (req.url === 'https://ghl.test/giveaway') {
         if (giveawayFails) return Response.json({ error: 'simulated outage' }, { status: 503 });
         giveaways.push({ body: await req.json() });
@@ -75,5 +83,5 @@ export async function createHarness(port?: number, configured = true, metaToken 
   };
   const holdEmail = () => { emailGate = new Promise<void>((resolve) => { releaseEmail = resolve; }); };
   const resumeEmail = () => { releaseEmail?.(); emailGate = null; releaseEmail = null; };
-  return { mf, db, emails, leads, metaEvents, metaRequestUrls, giveaways, postGiveaway, runScheduled, waitForGiveaway, setGiveawayFails: (value: boolean) => { giveawayFails = value; }, post, waitForDelivery, holdEmail, resumeEmail, setEmailFails: (value: boolean) => { emailFails = value; } };
+  return { mf, db, emails, leads, metaEvents, metaRequestUrls, giveaways, turnstileCalls: () => turnstileCalls, postGiveaway, runScheduled, waitForGiveaway, setGiveawayFails: (value: boolean) => { giveawayFails = value; }, post, waitForDelivery, holdEmail, resumeEmail, setEmailFails: (value: boolean) => { emailFails = value; } };
 }

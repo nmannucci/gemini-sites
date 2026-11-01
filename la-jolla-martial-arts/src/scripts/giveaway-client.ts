@@ -28,6 +28,7 @@ export function initGiveaway(): void {
   const answers: Record<string, any> = {};
   let step = 0;
   let saving = false;
+  let usedToken = '';
   let confettiTimer: ReturnType<typeof setTimeout> | undefined;
   const escape = (value: unknown) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]!));
   const child = () => answers.child || 'your child';
@@ -155,15 +156,30 @@ export function initGiveaway(): void {
     $('back').disabled = on;
     $('continue').innerHTML = on ? 'Saving your entry…' : continueLabel();
   }
+  // A Turnstile token verifies once. After a request that may have spent it, wait for the
+  // widget to issue a new one instead of resending the old token (which would get a 403).
+  async function freshToken(): Promise<string> {
+    if (!document.querySelector('.cf-turnstile')) return '';
+    for (let tries = 0; tries < 40; tries++) {
+      const value = document.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]')?.value || '';
+      if (value && value !== usedToken) return value;
+      await new Promise((resolve) => setTimeout(resolve, 250));
+    }
+    return '';
+  }
+  function spendToken(token: string) {
+    usedToken = token;
+    window.turnstile?.reset();
+  }
   async function submitEntry() {
     setSaving(true);
-    const tokenInput = document.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]');
+    const turnstileToken = await freshToken();
     const body = {
       ...(window.ljmaMeta?.context() ?? {}),
       parentName: answers.parent, phone: answers.phone, email: answers.email, childFirstName: answers.child,
       childAge: answers.age, zip: answers.zip, benefits: answers.goal, benefitOther: answers.other || '',
       twiceWeekly: answers.attendance, smsConsent: answers.consent === true,
-      turnstileToken: tokenInput?.value || '', website: $('website').value, utm,
+      turnstileToken, website: $('ljma-hp').value, utm,
     };
     let res: Response;
     let data: any = {};
@@ -171,11 +187,15 @@ export function initGiveaway(): void {
       res = await fetch('/api/giveaway-entry', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
       data = await res.json().catch(() => ({}));
     } catch {
+      spendToken(turnstileToken);
       setSaving(false);
       showError('We couldn’t save your entry. Please check your connection and try again.');
       return;
     }
-    if (res.ok && data.ok) return complete(data);
+    // Only a saved entry has a reference; never show "You're in" without one.
+    if (res.ok && data.ok && data.entryId) return complete(data);
+    // Validation (400) and rate limiting (429) are refused before the token is checked.
+    if (res.status !== 400 && res.status !== 429) spendToken(turnstileToken);
     setSaving(false);
     if (res.status === 400 && data.errors) {
       const [field, message] = Object.entries(data.errors as Record<string, string>)
@@ -185,7 +205,6 @@ export function initGiveaway(): void {
       showError(message);
       return;
     }
-    if (res.status === 403) window.turnstile?.reset();
     showError(res.status === 429 ? 'Too many entries from this connection. Please try again later.' : 'We couldn’t save your entry. Please try again.');
   }
   function complete(data: { entryId?: string; updated?: boolean }) {

@@ -196,3 +196,27 @@ test('existing /api/lead still works', async (t) => {
   const res = await h.mf.dispatchFetch('http://localhost/api/lead', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ firstName: 'A', lastName: 'B', email: 'a@example.com', message: 'hi' }) });
   assert.equal(res.status, 200);
 });
+
+test('rate limit is checked before Turnstile, so a 429 does not burn the token', async (t) => {
+  const h = await createHarness(undefined, true, '', { turnstileSecret: 'test', turnstileOk: true }); t.after(() => h.mf.dispose());
+  const ip = { 'cf-connecting-ip': '203.0.113.10' };
+  for (let i = 0; i < 10; i++) {
+    const res = await h.postGiveaway({ ...validInput(), phone: `619555${1000 + i}`, email: `r${i}@example.com`, turnstileToken: `tok-${i}` }, ip);
+    assert.equal(res.status, 200, `entry ${i}`);
+  }
+  assert.equal((await h.postGiveaway({ ...validInput(), phone: '6195559999', email: 'r99@example.com', turnstileToken: 'tok-last' }, ip)).status, 429);
+  assert.equal(h.turnstileCalls(), 10);
+});
+
+test('PostHog config for the giveaway page turns off every capture that can read page text', async () => {
+  const { postHogConfig } = await import('../src/lib/posthog-config');
+  const giveaway = postHogConfig({ autocapture: false, sessionRecording: false });
+  assert.equal(giveaway.autocapture, false);
+  assert.equal(giveaway.disable_session_recording, true);
+  assert.equal(giveaway.capture_dead_clicks, false);
+  assert.equal(giveaway.rageclick, false);
+  assert.equal(giveaway.capture_heatmaps, false);
+  const site = postHogConfig();
+  assert.equal(site.autocapture, true);
+  assert.equal(site.disable_session_recording, false);
+});

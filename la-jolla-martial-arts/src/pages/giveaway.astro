@@ -68,7 +68,7 @@ const prizeItems = [
         <form id="entry-form" novalidate>
           <div id="question"></div>
           <input id="answer" class="answer-input" type="text" aria-labelledby="question-title" aria-describedby="question-help error" enterkeyhint="next" required hidden>
-          <div class="hp-field" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <div class="hp-field" aria-hidden="true"><label for="ljma-hp">Leave this field empty</label><input id="ljma-hp" name="ljma-hp" type="text" tabindex="-1" autocomplete="off"></div>
           <p id="error" class="error" role="alert"></p>
           <div class="form-actions"><button type="button" id="back" class="back" aria-label="Previous question">← <span>Back</span></button><button type="submit" id="continue" class="primary">Continue <span aria-hidden="true">→</span></button><span class="keyboard-hint">press Enter ↵</span></div>
           {turnstileSiteKey && <div id="turnstile" class="cf-turnstile turnstile-slot" data-sitekey={turnstileSiteKey} data-appearance="interaction-only" data-action="giveaway-entry"></div>}
