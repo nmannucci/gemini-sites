@@ -189,6 +189,24 @@ test('Meta Lead is sent for new entries only, keyed by the entry ID', async (t) 
   assert.equal(leads().length, 1);
 });
 
+test('Meta Lead carries location and entry ID match keys and skips a blank last name', async (t) => {
+  const { createHash } = await import('node:crypto');
+  const sha = (s: string) => createHash('sha256').update(s).digest('hex');
+  const h = await createHarness(undefined, true, 'test-only'); t.after(() => h.mf.dispose());
+  const saved = await (await h.postGiveaway({ ...validInput(), parentName: 'Cher', phone: '6195550142', email: 'cher@example.com', zip: '92109' })).json() as Saved;
+  await h.waitForGiveaway(saved.entryId); await settle();
+  const lead = h.metaEvents.flatMap((e) => e.data).find((d: any) => d.event_name === 'Lead');
+  const user = lead.user_data;
+  assert.deepEqual(user.fn, [sha('cher')]);
+  assert.equal(user.ln, undefined);
+  assert.deepEqual(user.zp, [sha('92109')]);
+  assert.deepEqual(user.ct, [sha('sandiego')]);
+  assert.deepEqual(user.st, [sha('ca')]);
+  assert.deepEqual(user.country, [sha('us')]);
+  assert.deepEqual(user.external_id, [sha(saved.entryId)]);
+  assert.equal(lead.custom_data?.content_name, 'LJMA giveaway entry');
+});
+
 test('existing /api/lead still works', async (t) => {
   const h = await createHarness(); t.after(() => h.mf.dispose());
   const res = await h.mf.dispatchFetch('http://localhost/api/lead', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ firstName: 'A', lastName: 'B', email: 'a@example.com', message: 'hi' }) });

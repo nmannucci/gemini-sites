@@ -305,8 +305,11 @@ export async function handleGiveawayEntry(request: Request, env: Env, ctx: Execu
 
   ctx.waitUntil(deliverGiveawayEntry(env, saved.id));
   if (!saved.updated) {
-    const { email, phone, parentFirstName: firstName, parentLastName: lastName } = result.entry;
-    ctx.waitUntil(sendMetaEvent(env, request, 'Lead', saved.id, input, { email, phone, firstName, lastName }));
+    const { email, phone, zip, parentFirstName: firstName, parentLastName: lastName } = result.entry;
+    // All eligible ZIPs are in the city of San Diego, CA.
+    ctx.waitUntil(sendMetaEvent(env, request, 'Lead', saved.id, input,
+      { email, phone, firstName, lastName, zip, city: 'San Diego', state: 'CA', country: 'US', externalId: saved.id },
+      { content_name: 'LJMA giveaway entry' }));
   }
   return respond({ ok: true, entryId: saved.id, updated: saved.updated });
 }
