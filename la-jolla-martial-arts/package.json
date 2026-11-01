@@ -17,6 +17,8 @@
     "test:zumba": "tsx --test tests/zumba.test.ts",
     "pretest:zumba": "node scripts/configure-meta.mjs production",
     "test:meta": "tsx --test tests/meta.test.ts",
+    "test:giveaway": "tsx --test tests/giveaway.test.ts",
+    "pretest:giveaway": "node scripts/configure-meta.mjs production",
     "pretest:meta": "node scripts/configure-meta.mjs production",
     "generate:zumba-qr": "node scripts/generate-zumba-qr.mjs"
   },
