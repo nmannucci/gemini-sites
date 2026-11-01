@@ -1,0 +1,41 @@
+---
+import MetaPixel from '../../components/MetaPixel.astro';
+import { GIVEAWAY_DATES } from '../../data/giveaway';
+import { compiledContent } from '../../data/giveaway-rules.md';
+import '../../styles/giveaway.css';
+
+const dates: Record<string, string> = {
+  entry_open: GIVEAWAY_DATES.entryOpen,
+  entry_close: GIVEAWAY_DATES.entryClose,
+  drawing_date: GIVEAWAY_DATES.drawing,
+  announcement_date: GIVEAWAY_DATES.announcement,
+};
+const html = (await compiledContent()).replace(/\{\{(\w+)\}\}/g, (token, name) => dates[name] ?? token);
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Official rules for the La Jolla Martial Arts free year of kids martial arts giveaway.">
+  <title>Giveaway Official Rules | La Jolla Martial Arts</title>
+  <link rel="canonical" href="https://lajollatkd.com/giveaway/rules">
+  <link rel="icon" href="/assets/giveaway/logo.webp">
+  <MetaPixel />
+</head>
+<body>
+  <header class="funnel-header">
+    <nav aria-label="School website">
+      <a class="funnel-brand" href="/" aria-label="La Jolla Martial Arts website">
+        <img src="/assets/giveaway/logo.webp" width="32" height="32" alt="">
+        <span>LA JOLLA MARTIAL ARTS</span>
+      </a>
+    </nav>
+  </header>
+  <main class="rules">
+    <p class="rules-back"><a href="/giveaway">← Back to the giveaway</a></p>
+    <article set:html={html} />
+  </main>
+</body>
+</html>
