@@ -24,7 +24,7 @@ function isBookingCta(el: HTMLAnchorElement): boolean {
   return el.classList.contains('btn-primary') && (bookingHash || bookingPath);
 }
 
-export function initPostHog(): boolean {
+export function initPostHog(options: { autocapture?: boolean; sessionRecording?: boolean } = {}): boolean {
   const key = import.meta.env.PUBLIC_POSTHOG_KEY;
   if (!key || window.__posthog_initialized) return Boolean(window.__posthog_initialized);
 
@@ -33,8 +33,8 @@ export function initPostHog(): boolean {
     api_host: import.meta.env.PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
     defaults: '2026-01-30',
     capture_pageview: true,
-    autocapture: true,
-    disable_session_recording: false,
+    autocapture: options.autocapture ?? true,
+    disable_session_recording: !(options.sessionRecording ?? true),
   });
   window.posthog = posthog;
   posthog.register({ site: SITE });

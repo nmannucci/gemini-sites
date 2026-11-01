@@ -1,0 +1,104 @@
+---
+// Standalone giveaway entry page, ported from the approved preview (house36 repo,
+// giveaway-offer/la-jolla-martial-arts/funnel-preview). It keeps its own look instead of the site layout.
+import MetaPixel from '../components/MetaPixel.astro';
+import { GIVEAWAY_DATES } from '../data/giveaway';
+import '../styles/giveaway.css';
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim() ?? '';
+const prizeItems = [
+  ['A full year of classes', '$2,640'],
+  ['A new uniform', '$80'],
+  ['Registration fee included', '$70'],
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Enter to win a free year of kids martial arts at La Jolla Martial Arts. For ages 3–12. One entry per family.">
+  <title>Win a Free Year | La Jolla Martial Arts</title>
+  <link rel="canonical" href="https://lajollatkd.com/giveaway">
+  <link rel="icon" href="/assets/giveaway/logo.webp">
+  <link rel="preload" href="/assets/giveaway/bebas.ttf" as="font" type="font/ttf" crossorigin>
+  <MetaPixel />
+  {turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+</head>
+<body>
+  <header class="funnel-header">
+    <nav aria-label="School website">
+      <a class="funnel-brand" href="/" aria-label="La Jolla Martial Arts website">
+        <img src="/assets/giveaway/logo.webp" width="32" height="32" alt="">
+        <span>LA JOLLA MARTIAL ARTS</span>
+      </a>
+    </nav>
+  </header>
+  <main>
+    <section id="welcome" class="welcome" aria-labelledby="welcome-title">
+      <div class="hero-copy">
+        <h1 id="welcome-title">WIN A <span>FREE YEAR</span><br>OF KIDS MARTIAL ARTS!</h1>
+        <p class="age-badge">FOR AGES 3–12</p>
+        <p class="intro">One lucky family wins 12 months of training,<br class="desktop-break"> a new uniform, and registration — all included.</p>
+        <div class="prize-value"><strong>$2,790</strong><span>TOTAL GRAND PRIZE VALUE</span></div>
+        <div class="hero-actions">
+          <button id="start" class="primary">ENTER THE GIVEAWAY <span aria-hidden="true">→</span></button>
+          <p class="small-note">A few quick questions. One entry per family.</p>
+        </div>
+        <ul class="prize-inclusions" aria-label="What's included in the grand prize">
+          {prizeItems.map(([label, value]) => <li><span aria-hidden="true">✓</span><div class="stack-copy"><strong>{label}</strong><span>Valued at <b>{value}</b></span></div></li>)}
+        </ul>
+        <p class="age-note">One winning family · La Jolla, CA</p>
+      </div>
+      <p class="preview-note">No purchase necessary · <a href="/giveaway/rules">Official rules</a></p>
+    </section>
+
+    <section id="application" class="application" hidden aria-label="Giveaway entry form">
+      <aside class="entry-prize" aria-label="Grand prize reminder">
+        <div><strong>WIN A FREE YEAR OF MARTIAL ARTS</strong></div>
+        <span class="entry-value"><strong>$2,790</strong><small>PRIZE VALUE</small></span>
+      </aside>
+      <div class="progress-area">
+        <div class="progress-label"><span class="form-instructions">8 quick questions to enter.</span><span id="step-count">1 of 8</span></div>
+        <div id="progress" class="progress-track" role="progressbar" aria-label="Entry progress" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0"><span id="progress-fill"></span></div>
+      </div>
+      <div class="form-stage">
+        <form id="entry-form" novalidate>
+          <div id="question"></div>
+          <input id="answer" class="answer-input" type="text" aria-labelledby="question-title" aria-describedby="question-help error" enterkeyhint="next" required hidden>
+          <div class="hp-field" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <p id="error" class="error" role="alert"></p>
+          <div class="form-actions"><button type="button" id="back" class="back" aria-label="Previous question">← <span>Back</span></button><button type="submit" id="continue" class="primary">Continue <span aria-hidden="true">→</span></button><span class="keyboard-hint">press Enter ↵</span></div>
+          {turnstileSiteKey && <div id="turnstile" class="cf-turnstile turnstile-slot" data-sitekey={turnstileSiteKey} data-appearance="interaction-only" data-action="giveaway-entry"></div>}
+        </form>
+      </div>
+      <footer class="form-footer"><span>One entry per family · No purchase necessary</span><a href="/giveaway/rules" target="_blank">Official rules</a></footer>
+    </section>
+
+    <section id="complete" class="complete" hidden aria-labelledby="complete-title">
+      <div id="confetti" class="confetti" aria-hidden="true"></div>
+      <div class="complete-mark" aria-hidden="true">✓</div>
+      <p class="eyebrow">GIVEAWAY ENTRY RECEIVED</p>
+      <h1 id="complete-title">YOU’RE IN!</h1>
+      <p id="thanks"></p>
+      <p id="entry-ref" class="entry-ref"></p>
+      <div class="announcement-card"><p>WINNER ANNOUNCEMENT</p>{GIVEAWAY_DATES.announcementIso
+        ? <time datetime={GIVEAWAY_DATES.announcementIso}>{GIVEAWAY_DATES.announcement}</time>
+        : <time>{GIVEAWAY_DATES.announcement}</time>}<span>Pacific Time</span></div>
+      <div class="completion-prize"><p>THE GRAND PRIZE · AGES 3–12</p><h2>A FREE YEAR OF<br>MARTIAL ARTS!</h2><strong>$2,790 <span>in total value</span></strong><ul class="prize-inclusions">
+        {prizeItems.map(([label, value]) => <li><span aria-hidden="true">✓</span><div class="stack-copy"><strong>{label}</strong><span>Valued at <b>{value}</b></span></div></li>)}
+      </ul></div>
+      <p class="next-copy">A full year to build confidence, practice focus, and learn new skills. One lucky family will win it all!</p>
+      <p class="completion-disclosure">Watch for a text and an email confirming your entry. <a href="/giveaway/rules">Official rules</a></p>
+      <a id="school-site" class="primary" href="/">Visit La Jolla Martial Arts <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+  <noscript><p class="noscript">Please enable JavaScript to enter the giveaway, or call us at (858) 361-0961.</p></noscript>
+  <script>
+    import { initGiveaway } from '../scripts/giveaway-client';
+    initGiveaway();
+  </script>
+</body>
+</html>
