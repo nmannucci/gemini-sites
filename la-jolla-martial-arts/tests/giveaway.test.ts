@@ -50,6 +50,8 @@ test('validateGiveawayEntry rejects ineligible or incomplete entries', () => {
   assert.ok(errorsFor({ email: 'no-at-sign' }).email);
   assert.ok(errorsFor({ phone: '555-0123' }).phone);
   assert.ok(errorsFor({ parentName: '   ' }).parentName);
+  assert.equal(errorsFor({ parentName: 'Cher' }).parentName, 'Please enter your first and last name.');
+  assert.equal(errorsFor({ parentName: '  Cher  ' }).parentName, 'Please enter your first and last name.');
   assert.ok(errorsFor({ childFirstName: 'x'.repeat(101) }).childFirstName);
   assert.ok('errors' in validateGiveawayEntry(null));
 });
@@ -189,16 +191,16 @@ test('Meta Lead is sent for new entries only, keyed by the entry ID', async (t) 
   assert.equal(leads().length, 1);
 });
 
-test('Meta Lead carries location and entry ID match keys and skips a blank last name', async (t) => {
+test('Meta Lead carries name, location and entry ID match keys', async (t) => {
   const { createHash } = await import('node:crypto');
   const sha = (s: string) => createHash('sha256').update(s).digest('hex');
   const h = await createHarness(undefined, true, 'test-only'); t.after(() => h.mf.dispose());
-  const saved = await (await h.postGiveaway({ ...validInput(), parentName: 'Cher', phone: '6195550142', email: 'cher@example.com', zip: '92109' })).json() as Saved;
+  const saved = await (await h.postGiveaway({ ...validInput(), parentName: 'Cher Example', phone: '6195550142', email: 'cher@example.com', zip: '92109' })).json() as Saved;
   await h.waitForGiveaway(saved.entryId); await settle();
   const lead = h.metaEvents.flatMap((e) => e.data).find((d: any) => d.event_name === 'Lead');
   const user = lead.user_data;
   assert.deepEqual(user.fn, [sha('cher')]);
-  assert.equal(user.ln, undefined);
+  assert.deepEqual(user.ln, [sha('example')]);
   assert.deepEqual(user.zp, [sha('92109')]);
   assert.deepEqual(user.ct, [sha('sandiego')]);
   assert.deepEqual(user.st, [sha('ca')]);

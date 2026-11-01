@@ -1,4 +1,4 @@
-import { AGE_MAX, AGE_MIN, BENEFITS, ELIGIBLE_ZIPS, OUT_OF_AREA_MESSAGE, SMS_CONSENT_TEXT, TWICE_WEEKLY } from '../data/giveaway';
+import { AGE_MAX, AGE_MIN, BENEFITS, ELIGIBLE_ZIPS, FULL_NAME_MESSAGE, OUT_OF_AREA_MESSAGE, SMS_CONSENT_TEXT, TWICE_WEEKLY } from '../data/giveaway';
 import { sendMetaEvent, type MetaContext } from './meta-conversions';
 
 type UtmKey = 'utm_source' | 'utm_medium' | 'utm_campaign' | 'utm_content' | 'fbclid';
@@ -56,6 +56,7 @@ export function validateGiveawayEntry(input: unknown): { entry: ValidEntry } | {
 
   const parentName = text(raw.parentName);
   if (!parentName) errors.parentName = 'Please enter your name.';
+  else if (parentName.split(/\s+/).length < 2) errors.parentName = FULL_NAME_MESSAGE;
   else if (parentName.length > 100) errors.parentName = 'Please shorten your name to 100 characters.';
 
   const phone = normalizePhone(text(raw.phone));

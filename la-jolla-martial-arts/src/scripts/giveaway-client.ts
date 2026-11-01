@@ -1,7 +1,7 @@
 // Giveaway entry form, ported from the approved preview's app.js. Answers stay in memory,
 // are sent once to /api/giveaway-entry, and are cleared after a confirmed save.
 import { initPostHog } from '../lib/posthog-client';
-import { AGE_MAX, AGE_MIN, ELIGIBLE_ZIPS, OUT_OF_AREA_MESSAGE, SMS_CONSENT_TEXT } from '../data/giveaway';
+import { AGE_MAX, AGE_MIN, ELIGIBLE_ZIPS, FULL_NAME_MESSAGE, OUT_OF_AREA_MESSAGE, SMS_CONSENT_TEXT } from '../data/giveaway';
 
 declare global {
   interface Window {
@@ -38,7 +38,7 @@ export function initGiveaway(): void {
   initPostHog({ autocapture: false, sessionRecording: false });
 
   const steps: Step[] = [
-    { key: 'parent', title: () => 'What’s your name?', type: 'text', autocomplete: 'name', placeholder: 'Your full name' },
+    { key: 'parent', title: () => 'What’s your name?', type: 'text', autocomplete: 'name', placeholder: 'First and last name' },
     { key: 'phone', title: () => 'What’s your mobile number?', type: 'tel', autocomplete: 'tel', placeholder: '(858) 555-0123' },
     { key: 'email', title: () => 'What’s your email address?', type: 'email', autocomplete: 'email', placeholder: 'you@example.com' },
     { key: 'child', title: () => 'What’s your child’s first name?', help: `Choose one child ages ${AGE_MIN}–${AGE_MAX}.`, type: 'text', autocomplete: 'off', placeholder: 'Your child’s first name' },
@@ -139,6 +139,7 @@ export function initGiveaway(): void {
     const value = String(answers[item.key] || '').trim();
     let message = '';
     if (!value) message = item.choices ? 'Please choose an answer to continue.' : 'Please fill this in to continue.';
+    else if (item.key === 'parent' && value.split(/\s+/).length < 2) message = FULL_NAME_MESSAGE;
     else if (item.key === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) message = 'Please enter a valid email address, like you@example.com.';
     else if (item.key === 'phone' && !/^(?:\d{10}|1\d{10})$/.test(value.replace(/\D/g, ''))) message = 'Please enter a 10-digit US phone number. You can include +1.';
     else if (item.key === 'zip' && !/^\d{5}$/.test(value)) message = 'Please enter a five-digit ZIP code.';

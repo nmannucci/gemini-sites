@@ -11,6 +11,8 @@ export const TWICE_WEEKLY = ['Yes', 'Not sure', 'No'] as const;
 export const SMS_CONSENT_TEXT =
   'I agree to receive text messages from La Jolla Martial Arts about this giveaway, including my entry confirmation, announcement reminders and offers. Message frequency varies. Msg & data rates may apply. Reply STOP to opt out, HELP for help.';
 
+export const FULL_NAME_MESSAGE = 'Please enter your first and last name.';
+
 export const OUT_OF_AREA_MESSAGE = 'This giveaway is open to families in 92037, 92117, 92109 and 92122.';
 
 // Display strings in Pacific Time. announcementIso feeds the confirmation card's <time datetime>.
