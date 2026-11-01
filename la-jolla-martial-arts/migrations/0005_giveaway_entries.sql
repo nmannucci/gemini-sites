@@ -1,5 +1,6 @@
 -- One row per family. Repeat entries update the row and bump version.
--- GHL delivery is an outbox: pending rows are retried by the Worker cron until GHL accepts them.
+-- Each entry is sent to GHL once (plus once per re-entry). Failures are marked 'failed' and never retried,
+-- so GHL can't receive the same entry twice and send a second receipt text.
 CREATE TABLE IF NOT EXISTS giveaway_entries (
   id TEXT PRIMARY KEY,
   created_at TEXT NOT NULL,
@@ -24,7 +25,7 @@ CREATE TABLE IF NOT EXISTS giveaway_entries (
   utm_campaign TEXT,
   utm_content TEXT,
   fbclid TEXT,
-  ghl_status TEXT NOT NULL DEFAULT 'pending' CHECK (ghl_status IN ('pending', 'sent')),
+  ghl_status TEXT NOT NULL DEFAULT 'pending' CHECK (ghl_status IN ('pending', 'sent', 'failed')),
   ghl_attempts INTEGER NOT NULL DEFAULT 0,
   ghl_next_attempt_at TEXT NOT NULL,
   ghl_error TEXT,

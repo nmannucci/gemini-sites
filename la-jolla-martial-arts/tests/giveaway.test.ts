@@ -153,22 +153,20 @@ test('limits one connection to 10 entries an hour', async (t) => {
   assert.equal((await h.postGiveaway({ ...validInput(), phone: '8585559999', email: 'p99@example.com' }, ip)).status, 429);
 });
 
-test('GHL outage: entry saved, retried by cron, delivered once', async (t) => {
+test('GHL outage: entry saved, marked failed, never resent', async (t) => {
   const h = await createHarness(); t.after(() => h.mf.dispose());
   h.setGiveawayFails(true);
   const saved = await (await h.postGiveaway(validInput())).json() as Saved;
   assert.equal(saved.ok, true);
-  await h.waitForGiveaway(saved.entryId, 'pending'); await settle();
-  let row = await h.db.prepare('SELECT ghl_status, ghl_attempts, ghl_error FROM giveaway_entries WHERE id = ?').bind(saved.entryId).first();
-  assert.equal(row.ghl_status, 'pending'); assert.equal(row.ghl_attempts, 1); assert.ok(row.ghl_error);
+  await h.waitForGiveaway(saved.entryId, 'failed'); await settle();
+  const row = await h.db.prepare('SELECT ghl_status, ghl_attempts, ghl_error FROM giveaway_entries WHERE id = ?').bind(saved.entryId).first();
+  assert.equal(row.ghl_status, 'failed'); assert.equal(row.ghl_attempts, 1); assert.ok(row.ghl_error);
+  // No automatic retries, so GHL can never receive the same entry twice and send a second receipt text.
   h.setGiveawayFails(false);
   await h.db.prepare("UPDATE giveaway_entries SET ghl_next_attempt_at = '2000-01-01T00:00:00.000Z'").run();
-  await h.runScheduled();
-  row = await h.db.prepare('SELECT ghl_status, ghl_error FROM giveaway_entries WHERE id = ?').bind(saved.entryId).first();
-  assert.equal(row.ghl_status, 'sent'); assert.equal(row.ghl_error, null);
-  await h.runScheduled();
-  assert.equal(h.giveaways.length, 1);
-  assert.equal(h.giveaways[0].body.entry_update, 'no');
+  await h.runScheduled(); await settle();
+  assert.equal(h.giveaways.length, 0);
+  assert.equal((await h.db.prepare('SELECT ghl_status FROM giveaway_entries WHERE id = ?').bind(saved.entryId).first()).ghl_status, 'failed');
 });
 
 test('Turnstile: enforced only when a secret is configured', async (t) => {

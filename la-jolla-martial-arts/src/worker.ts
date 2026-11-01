@@ -1,6 +1,6 @@
 import { handleWaiver, handleWaiverCopy, handleWaiverConfirmation, retryWaiverEmails } from './lib/waiver-api';
 import { handleMetaPageView, sendMetaEvent, type MetaContext } from './lib/meta-conversions';
-import { handleGiveawayEntry, retryGiveawayEntries } from './lib/giveaway-api';
+import { handleGiveawayEntry } from './lib/giveaway-api';
 
 interface LeadPayload extends MetaContext {
   firstName?: string;
@@ -83,8 +83,7 @@ export default {
     return env.ASSETS.fetch(request);
   },
   async scheduled(_controller: ScheduledController, env: Env): Promise<void> {
-    // Each outbox retries independently, so one failing never stalls the other.
-    await Promise.allSettled([retryWaiverEmails(env), retryGiveawayEntries(env)]);
+    await retryWaiverEmails(env);
   },
 } satisfies ExportedHandler<Env>;
 

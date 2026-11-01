@@ -106,7 +106,7 @@ export function validateGiveawayEntry(input: unknown): { entry: ValidEntry } | {
   };
 }
 
-// ---- Worker endpoint and GHL outbox ----
+// ---- Worker endpoint and GHL hand-off (one send per entry, no retries) ----
 
 interface GiveawayRow {
   id: string; version: number; created_at: string; parent_first_name: string; parent_last_name: string; phone: string; email: string;
@@ -225,14 +225,12 @@ async function deliverGiveawayEntry(env: Env, id: string, depth = 0): Promise<vo
   }
   // Claim a short lease before sending: only one send per entry is ever in flight, so a family
   // re-entering mid-send can't trigger a second "new entry" (and a second receipt text).
-  const attempts = row.ghl_attempts + 1;
-  const retryAt = new Date(now.getTime() + Math.min(3_600_000, 600_000 * 2 ** Math.min(attempts - 1, 8))).toISOString();
   const leaseUntil = new Date(now.getTime() + 60_000).toISOString();
   const claim = await env.DB.prepare(
-    `UPDATE giveaway_entries SET ghl_attempts = ?, ghl_next_attempt_at = ?, ghl_lease_until = ?
+    `UPDATE giveaway_entries SET ghl_attempts = ghl_attempts + 1, ghl_lease_until = ?
      WHERE id = ? AND ghl_status = 'pending' AND ghl_attempts = ? AND version = ? AND ghl_next_attempt_at <= ?
        AND (ghl_lease_until IS NULL OR ghl_lease_until <= ?)`
-  ).bind(attempts, retryAt, leaseUntil, id, row.ghl_attempts, row.version, now.toISOString(), now.toISOString()).run();
+  ).bind(leaseUntil, id, row.ghl_attempts, row.version, now.toISOString(), now.toISOString()).run();
   if (!claim.meta.changes) return;
 
   let error: string | null = null;
@@ -251,8 +249,11 @@ async function deliverGiveawayEntry(env: Env, id: string, depth = 0): Promise<vo
   }
 
   if (error) {
-    console.error(JSON.stringify({ message: 'Giveaway GHL handoff failed; retry scheduled', entryId: id, error }));
-    await env.DB.prepare('UPDATE giveaway_entries SET ghl_error = ?, ghl_lease_until = NULL WHERE id = ?').bind(error, id).run();
+    // No automatic retry (Nico, November 1): GHL may have run the workflow anyway, and a resend
+    // could text the family a second receipt. The entry stays saved in D1, marked failed.
+    console.error(JSON.stringify({ message: 'Giveaway GHL handoff failed; not retried', entryId: id, error }));
+    await env.DB.prepare(`UPDATE giveaway_entries SET ghl_status = 'failed', ghl_error = ?, ghl_lease_until = NULL WHERE id = ? AND version = ?`)
+      .bind(error, id, row.version).run();
     return;
   }
   const sentAt = new Date().toISOString();
@@ -266,14 +267,6 @@ async function deliverGiveawayEntry(env: Env, id: string, depth = 0): Promise<vo
       .bind(sentAt, sentAt, id).run();
     if (depth < 2) await deliverGiveawayEntry(env, id, depth + 1);
   }
-}
-
-export async function retryGiveawayEntries(env: Env): Promise<void> {
-  if (!env.GHL_GIVEAWAY_WEBHOOK_URL) return;
-  const due = await env.DB.prepare(
-    `SELECT id FROM giveaway_entries WHERE ghl_status = 'pending' AND ghl_next_attempt_at <= ? ORDER BY ghl_next_attempt_at LIMIT 20`
-  ).bind(new Date().toISOString()).all<{ id: string }>();
-  for (const { id } of due.results) await deliverGiveawayEntry(env, id);
 }
 
 export async function handleGiveawayEntry(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
