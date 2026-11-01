@@ -216,7 +216,9 @@ test('PostHog config for the giveaway page turns off every capture that can read
   assert.equal(giveaway.capture_dead_clicks, false);
   assert.equal(giveaway.rageclick, false);
   assert.equal(giveaway.capture_heatmaps, false);
-  const site = postHogConfig();
+  const site = postHogConfig({ apiHost: 'https://ph.example.com' });
+  assert.equal(site.api_host, 'https://ph.example.com');
+  assert.equal(postHogConfig().api_host, 'https://us.i.posthog.com');
   assert.equal(site.autocapture, true);
   assert.equal(site.disable_session_recording, false);
 });

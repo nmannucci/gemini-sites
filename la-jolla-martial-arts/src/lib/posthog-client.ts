@@ -30,7 +30,8 @@ export function initPostHog(options: { autocapture?: boolean; sessionRecording?:
   if (!key || window.__posthog_initialized) return Boolean(window.__posthog_initialized);
 
   window.__posthog_initialized = true;
-  posthog.init(key, postHogConfig(options));
+  // Read PUBLIC_POSTHOG_HOST here: Vite only inlines the literal import.meta.env.NAME form.
+  posthog.init(key, postHogConfig({ ...options, apiHost: import.meta.env.PUBLIC_POSTHOG_HOST }));
   window.posthog = posthog;
   posthog.register({ site: SITE });
 
