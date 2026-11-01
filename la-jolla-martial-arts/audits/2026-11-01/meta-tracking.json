@@ -1,0 +1,41 @@
+{
+  "site": "https://lajollatkd.com",
+  "dataset": "Eagle Martial Arts (La Jolla | House36)",
+  "dataset_id": "1467220277627514",
+  "worker_version": "6c536c2c-a10c-4b15-9a6a-5b7546d81b28",
+  "events": [
+    "PageView",
+    "Lead"
+  ],
+  "secret_name": "META_CAPI_ACCESS_TOKEN",
+  "secret_storage": "Cloudflare encrypted Worker secret",
+  "traffic_allowlist": "lajollatkd.com and subdomains",
+  "server_test_events_processed": 2,
+  "live_worker_pageview_delivery": "Processed in Meta Test Events; 39564e9d-f588-43ba-8409-b995a42e4998",
+  "browser_test_receipt": "Blocked: Chrome returns net::ERR_BLOCKED_BY_CLIENT for https://connect.facebook.net/en_US/fbevents.js; user chose to keep blocker enabled",
+  "tests": {
+    "meta": 4,
+    "existing_waiver": 5,
+    "build": "passed",
+    "seo": "passed"
+  },
+  "deduplication": "Server-generated lead event ID returned to browser; shared UUID for PageView",
+  "privacy": {
+    "hash_lead_identity": true,
+    "global_privacy_control": true,
+    "waiver_data_excluded": true,
+    "form_messages_excluded": true
+  },
+  "meta_capi_connection_status": "Active / Business connected; dataset 1467220277627514 connected",
+  "live_worker_lead_delivery": "Processed in Meta Test Events; 2cd7d52e-ce70-4be3-a34a-f299a3f14dac",
+  "contact_form": "Separate contact-page handler now passes Meta context and fires browser Lead with server event ID",
+  "test_mode": "Only requests carrying an explicit valid Meta test event code are routed to Test Events; ordinary traffic remains live",
+  "crm_diagnostic": {
+    "name": "Make sure you are sending events from your CRM integration(s)",
+    "reason": "Meta reports no CRM integration events for 7 days; CRM report shows zero uploaded events and raw leads",
+    "campaign_destination_confirmed_by_user": "Website forms only",
+    "disposition": "Ignored the unused CRM freshness diagnostic; Meta active Diagnostics now shows No errors at this time",
+    "website_payload": "Keep action_source=website; no fabricated lead_id or CRM event changes",
+    "legacy_workflow_observation": "1. Facebook Lead Form Submitted is published but has no execution logs in the inspected 30-day period. Inspected Meta CAPI action maps Facebook Lead ID to contact.id, which is a CRM contact ID. No workflow configuration was changed."
+  }
+}

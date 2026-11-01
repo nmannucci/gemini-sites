@@ -1610,3 +1610,23 @@ Keep the standalone phone-friendly waiver and Lavel's QR code. After someone sub
 Include Saturday-class interest in Lavel's internal SMS and send a similar internal registration email to `lavelcreates@gmail.com`. Show a dedicated confirmation page after a signed waiver is saved, with a signing date and reference number. Explicitly tell under-16 visitors their waiver has not been submitted and prevent submission; retain guardian requirements for ages 16–17. Persist registration choices and complete signed waiver records in Cloudflare D1 independently of notification delivery.
 
 Nico's subsequent display correction: simplify the waiver confirmation to “Your waiver has been submitted. Thank you!” without the email notice, signing date or reference number. Retain complete signed records internally. Keep the date-of-birth input aligned with the other fields on mobile, including iPhones.
+
+
+## Meta measurement — November 1, 2026
+
+User requested the Eagle Martial Arts (La Jolla | House36) dataset shown in Events Manager for lajollatkd.com. Verified dataset ID: 1467220277627514; business portfolio: House36 (403469046830206); linked ad account: Eagle Martial Arts, La Jolla (237447413449720). This is distinct from the House36 v2 dataset. Existing traffic allow list only contained intromartialarts.com; lajollatkd.com and subdomains were added. Browser Pixel and direct server Conversions API cover PageView and saved lead submissions; event IDs are shared for deduplication. No signed-waiver data is sent.
+
+
+### Meta verification follow-up — November 1, 2026
+
+Meta's web-only Conversions API connection was activated in Events Manager; it now shows Active, Business connected, and this dataset connected. Actual website PageView and saved contact-form Lead requests were processed in Meta Test Events. Corrected the contact page's separate submit handler to include Meta context and return the same event ID to the browser. Browser verification is blocked by Chrome's ERR_BLOCKED_BY_CLIENT when loading connect.facebook.net/en_US/fbevents.js. The user elected to keep the blocker enabled. Opt-in diagnostics: add meta_debug=1; optional per-request Meta test stream: meta_test_event_code=TEST56495. Normal visitors continue producing live events. Labeled Meta Integration Test leads use reserved example contact details.
+
+
+### CRM diagnostic clarification — November 1, 2026
+
+The owner confirmed Meta campaigns use website forms only. The active freshness warning was specifically for the unused CRM conversion-leads integration, not the website CAPI payload. Marked only that diagnostic Ignored; Meta active Diagnostics shows “No errors at this time.” Website events retain action_source=website. The legacy “1. Facebook Lead Form Submitted” workflow has no logs in the inspected 30-day period; one inspected CAPI action incorrectly maps Facebook Lead ID to GoHighLevel contact.id. No CRM workflow configuration was changed. Revisit that mapping and initial/lifecycle CRM events if Instant Forms are used in future.
+
+
+### Shared Pixel component coordination — November 1, 2026
+
+Claude owns the standalone giveaway and rules pages on a separate branch. No src/pages/giveaway* files were created or changed in this tracking work. Standalone pages can import src/components/MetaPixel.astro and include <MetaPixel /> once in the head. The component reads PUBLIC_META_PIXEL_ID at build time, following PUBLIC_POSTHOG_KEY's environment-variable pattern; the build also generates the same ID for CAPI. The current value is 1467220277627514. Base initialization emits PageView only; giveaway Lead emission remains in the giveaway's successful-save handler. Configure this public variable in the deployment build environment before deploying this branch.

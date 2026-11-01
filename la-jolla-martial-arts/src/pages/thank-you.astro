@@ -2,6 +2,7 @@
 // Conversion confirmation page for PPC landing pages.
 // Fires the Google Ads "Submit lead form" conversion on load.
 import PostHog from '../components/PostHog.astro';
+import MetaPixel from '../components/MetaPixel.astro';
 import AnnouncementBar from '../components/AnnouncementBar.astro';
 ---
 <!DOCTYPE html>
@@ -42,6 +43,14 @@ import AnnouncementBar from '../components/AnnouncementBar.astro';
     } catch (_) {}
   </script>
   <PostHog />
+  <MetaPixel />
+  <script is:inline>
+    try {
+      var metaLeadId = sessionStorage.getItem('ljma_meta_lead');
+      sessionStorage.removeItem('ljma_meta_lead');
+      if (metaLeadId && window.ljmaMeta) window.ljmaMeta.lead(metaLeadId);
+    } catch (_) {}
+  </script>
 
   <style is:global>
     :root { --bg:#F5F5F0; --ink:#141414; --muted:#5A5A5A; --red:#D32F2F; --teal:#29BEE2; --orange:#EA580C; --teal-soft:rgba(41,190,226,.12); }

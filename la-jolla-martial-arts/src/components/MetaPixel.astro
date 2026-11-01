@@ -1,0 +1,66 @@
+---
+/** Include once in <head>, including on standalone pages. Only PageView fires on load. */
+const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID?.trim() ?? '';
+---
+{pixelId && <script is:inline define:vars={{ pixelId }}>
+  (function () {
+    if (!['lajollatkd.com', 'www.lajollatkd.com'].includes(location.hostname) || window.ljmaMeta) return;
+    var diagnostic = new URLSearchParams(location.search).get('meta_debug') === '1';
+    var testEventCode = new URLSearchParams(location.search).get('meta_test_event_code') || '';
+    var diagnosticLines = [];
+    function report(status, details) {
+      if (!diagnostic) return;
+      diagnosticLines.push(status + (details ? ' ' + JSON.stringify(details) : ''));
+      console.info('LJMA Meta: ' + status, details || {});
+      function render() {
+        var panel = document.getElementById('meta-diagnostics');
+        if (!panel) {
+          panel = document.createElement('pre'); panel.id = 'meta-diagnostics';
+          panel.style.cssText = 'position:fixed;bottom:12px;left:12px;z-index:2147483647;background:#fff;color:#111;border:2px solid #555;padding:16px;max-width:calc(100vw - 24px);white-space:pre-wrap;font:13px/1.5 monospace;box-shadow:0 2px 12px #0003';
+          document.body.appendChild(panel);
+        }
+        panel.textContent = 'Meta delivery diagnostics — pixel ' + pixelId + '\n' + diagnosticLines.join('\n');
+      }
+      if (document.body) render(); else document.addEventListener('DOMContentLoaded', render, {once:true});
+    }
+    function optedOut() { return navigator.globalPrivacyControl === true; }
+    function cookie(name) {
+      return document.cookie.split(';').map(function (v) { return v.trim(); })
+        .filter(function (v) { return v.indexOf(name + '=') === 0; })
+        .map(function (v) { return v.slice(name.length + 1); })[0] || '';
+    }
+    window.ljmaMeta = {
+      context: function () {
+        return { metaEventSourceUrl: location.origin + location.pathname,
+          metaFbp: cookie('_fbp'), metaFbc: cookie('_fbc'), metaOptOut: optedOut() ? '1' : '0', metaTestEventCode: testEventCode };
+      },
+      lead: function (eventId) {
+        if (!optedOut() && eventId && window.fbq) {
+          fbq('trackSingle', pixelId, 'Lead', {}, { eventID: eventId });
+          report('Lead queued', {eventId:eventId});
+        }
+      }
+    };
+    if (optedOut()) { report('disabled by Global Privacy Control'); return; }
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;t.onload=function(){report('SDK loaded', {ready:typeof f.fbq.callMethod==='function', queued:(f.fbq.queue||[]).length});};
+    t.onerror=function(){report('SDK download blocked or failed');};
+    s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', pixelId);
+    // Persist real click attribution across the site; never invent a Facebook click ID.
+    var clickId = new URLSearchParams(location.search).get('fbclid');
+    if (clickId && /^[A-Za-z0-9_-]{1,450}$/.test(clickId)) {
+      document.cookie = '_fbc=fb.1.' + Date.now() + '.' + clickId + '; Max-Age=7776000; Path=/; Secure; SameSite=Lax';
+    }
+    var eventId = crypto.randomUUID();
+    fbq('trackSingle', pixelId, 'PageView', {}, { eventID: eventId });
+    report('PageView queued', {pixelId:pixelId,eventId:eventId});
+    fetch('/api/meta/pageview', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.assign({ eventId: eventId }, window.ljmaMeta.context())), keepalive: true
+    }).then(function(response){report('server PageView response', {status:response.status});})
+      .catch(function () {report('server PageView request failed');});
+  })();
+</script>}

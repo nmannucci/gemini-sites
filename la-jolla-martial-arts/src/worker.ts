@@ -1,6 +1,7 @@
 import { handleWaiver, handleWaiverCopy, handleWaiverConfirmation, retryWaiverEmails } from './lib/waiver-api';
+import { handleMetaPageView, sendMetaEvent, type MetaContext } from './lib/meta-conversions';
 
-interface LeadPayload {
+interface LeadPayload extends MetaContext {
   firstName?: string;
   lastName?: string;
   email?: string;
@@ -64,6 +65,7 @@ export default {
     }
 
     if (normalizedPath === '/api/zumba-waiver') return handleWaiver(request, env, ctx);
+    if (normalizedPath === '/api/meta/pageview') return handleMetaPageView(request, env, ctx);
     if (normalizedPath === '/zumba/waiver/confirmation') return handleWaiverConfirmation(request, env);
     if (normalizedPath.startsWith('/api/zumba-waiver/copy/')) return handleWaiverCopy(request, env);
 
@@ -83,6 +85,9 @@ export default {
 } satisfies ExportedHandler<Env>;
 
 async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  if (request.headers.get('origin') && request.headers.get('origin') !== new URL(request.url).origin) {
+    return json({ error: 'Forbidden' }, 403);
+  }
   let parsed: unknown;
   try {
     parsed = await request.json();
@@ -95,6 +100,9 @@ async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Pr
   }
 
   const payload = parsed;
+  if (['metaEventSourceUrl', 'metaFbp', 'metaFbc'].some((field) => (payload[field as keyof LeadPayload] || '').length > 1000)) {
+    return json({ error: 'Tracking field too long' }, 400);
+  }
 
   const firstName = (payload.firstName ?? '').trim();
   const lastName = (payload.lastName ?? '').trim();
@@ -141,8 +149,10 @@ async function handleLead(request: Request, env: Env, ctx: ExecutionContext): Pr
 
   const lead = { firstName, lastName, email, phone, program, message, source, interest, classDate, saturdayInterest };
   ctx.waitUntil(sendToGoHighLevel(env, lead));
+  const metaEventId = crypto.randomUUID();
+  ctx.waitUntil(sendMetaEvent(env, request, 'Lead', metaEventId, payload, lead));
 
-  return json({ ok: true });
+  return json({ ok: true, metaEventId });
 }
 
 async function sendToGoHighLevel(env: Env, lead: NormalizedLead): Promise<void> {
@@ -208,6 +218,11 @@ function isLeadPayload(value: unknown): value is LeadPayload {
     'interest',
     'classDate',
     'saturdayInterest',
+    'metaEventSourceUrl',
+    'metaFbp',
+    'metaFbc',
+    'metaOptOut',
+    'metaTestEventCode',
   ];
 
   return allowedFields.every((field) =>

@@ -3,6 +3,7 @@ import AnchorScroll from '../components/AnchorScroll.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import PostHog from '../components/PostHog.astro';
+import MetaPixel from '../components/MetaPixel.astro';
 import { businessSchema } from '../data/site';
 import '../styles/global.css';
 
@@ -96,6 +97,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
   </script>
 
   <PostHog />
+  <MetaPixel />
 
   <slot name="head" />
 </head>
@@ -191,6 +193,8 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
             data.source = form.dataset.leadSource || window.location.pathname;
           }
 
+          if (window.ljmaMeta) Object.assign(data, window.ljmaMeta.context());
+
           if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
 
           try {
@@ -203,6 +207,8 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, Astro.site ?? 'htt
             if (!res.ok || !payload.ok) {
               throw new Error(payload.error || 'Something went wrong. Please try again or call (858) 361-0961.');
             }
+
+            if (window.ljmaMeta) window.ljmaMeta.lead(payload.metaEventId);
 
             if (typeof gtag === 'function') {
               gtag('event', 'generate_lead', {

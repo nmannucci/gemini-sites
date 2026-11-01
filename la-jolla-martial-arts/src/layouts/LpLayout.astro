@@ -2,6 +2,7 @@
 /** Shared site branding and navigation with campaign-specific forms and tracking. */
 import AnchorScroll from '../components/AnchorScroll.astro';
 import PostHog from '../components/PostHog.astro';
+import MetaPixel from '../components/MetaPixel.astro';
 import '../styles/site-theme.css';
 import '../styles/global.css';
 
@@ -57,6 +58,7 @@ const canonicalUrl = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.si
   </script>
 
   <PostHog />
+  <MetaPixel />
 
   <!-- PPC-specific pieces, built in the homepage's visual language -->
   <style is:global>
@@ -286,11 +288,16 @@ const canonicalUrl = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.si
             program: d.program || 'kids', source: src,
             message: 'PPC landing page: ' + src + (track ? ' | ' + track : '')
           };
+          if (window.ljmaMeta) Object.assign(body, window.ljmaMeta.context());
           if (btn) { btn.disabled=true; btn.textContent='Sending…'; }
           try {
             var res = await fetch('/api/lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
             var j = await res.json().catch(function(){return {};});
             if (!res.ok || !j.ok) throw new Error(j.error || 'Something went wrong. Please call (858) 361-0961.');
+            // Carry the exact server event ID through the redirect, then consume once.
+            try { sessionStorage.setItem('ljma_meta_lead', j.metaEventId || ''); } catch (_) {
+              if (window.ljmaMeta) window.ljmaMeta.lead(j.metaEventId);
+            }
             try { sessionStorage.setItem('ljma_confirmed_lead', '1'); } catch (_) {}
             window.location.href = '/thank-you';
           } catch (ex) {

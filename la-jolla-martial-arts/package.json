@@ -4,14 +4,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/configure-meta.mjs development",
     "dev": "astro dev",
+    "prestart": "node scripts/configure-meta.mjs development",
     "start": "astro dev",
+    "prebuild": "node scripts/configure-meta.mjs production",
     "build": "astro build",
     "check:seo": "node scripts/check-seo.mjs",
     "types:worker": "wrangler types",
     "preview": "astro preview",
     "astro": "astro",
     "test:zumba": "tsx --test tests/zumba.test.ts",
+    "pretest:zumba": "node scripts/configure-meta.mjs production",
+    "test:meta": "tsx --test tests/meta.test.ts",
+    "pretest:meta": "node scripts/configure-meta.mjs production",
     "generate:zumba-qr": "node scripts/generate-zumba-qr.mjs"
   },
   "dependencies": {

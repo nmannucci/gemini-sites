@@ -103,7 +103,7 @@ const {
   formSubtitle = 'See class times and claim your free week.',
   formSubmit = 'Send Me Your Class Schedule',
   respTag = 'We Respond In Under 60 Seconds',
-  formDisclaimer = 'No commitment. By submitting, you agree to receive emails and texts about your trial. We never share your information.',
+  formDisclaimer = 'No commitment. By submitting, you agree to receive emails and texts about your trial.',
   finalLabel = 'Claim Your Spot',
   finalTitle = 'Get The Schedule &amp; Your <span class="accent">Free Week</span>',
 } = Astro.props;
@@ -163,7 +163,7 @@ const heroDimensions = imageMetadata[decodeURIComponent(heroImg) as keyof typeof
             <button type="submit" class="form-submit">{formSubmit}</button>
             <div class="form-err" role="alert"></div>
             <div class="or-call">or call <a href={tel}>{phone}</a></div>
-            <p class="form-disclaimer">{formDisclaimer}</p>
+            <p class="form-disclaimer">{formDisclaimer} <a href="/privacy">Privacy Policy</a>.</p>
           </form>
         </div>
       </div>
@@ -331,7 +331,7 @@ const heroDimensions = imageMetadata[decodeURIComponent(heroImg) as keyof typeof
           <button type="submit" class="form-submit">{formSubmit}</button>
           <div class="form-err" role="alert"></div>
           <div class="or-call">or call <a href={tel}>{phone}</a></div>
-          <p class="form-disclaimer">{formDisclaimer}</p>
+          <p class="form-disclaimer">{formDisclaimer} <a href="/privacy">Privacy Policy</a>.</p>
         </form>
       </div>
     </div>

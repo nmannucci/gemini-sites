@@ -3,17 +3,19 @@ import { build } from 'esbuild';
 import { readFile } from 'node:fs/promises';
 import { join, extname, resolve } from 'node:path';
 
-export async function createHarness(port?: number, configured = true) {
+export async function createHarness(port?: number, configured = true, metaToken = '') {
   const bundle = await build({ entryPoints: ['src/worker.ts'], write: false, bundle: true, format: 'esm', platform: 'browser', target: 'es2022' });
   const emails: Array<{ body: any; key: string | null }> = [];
   const leads: Array<any> = [];
+  const metaEvents: Array<any> = [];
+  const metaRequestUrls: string[] = [];
   let emailFails = false;
   let emailGate: Promise<void> | null = null;
   let releaseEmail: (() => void) | null = null;
   const mf = new Miniflare({
     modules: true, script: bundle.outputFiles[0].text, compatibilityDate: '2026-08-06', compatibilityFlags: ['nodejs_compat'],
     ...(port ? { port, host: '127.0.0.1' } : {}),
-    bindings: { GHL_WAIVER_WEBHOOK_URL: configured ? 'https://ghl.test/waiver' : '', WAIVER_LINK_KEY: 'local-test-only-256-bit-key-value', GHL_WEBHOOK_URL: 'https://ghl.test/lead' },
+    bindings: { META_CAPI_ACCESS_TOKEN: metaToken, GHL_WAIVER_WEBHOOK_URL: configured ? 'https://ghl.test/waiver' : '', WAIVER_LINK_KEY: 'local-test-only-256-bit-key-value', GHL_WEBHOOK_URL: 'https://ghl.test/lead' },
     d1Databases: ['DB'],
     serviceBindings: {
       ASSETS: async (req: Request) => {
@@ -29,6 +31,7 @@ export async function createHarness(port?: number, configured = true) {
       },
     },
     outboundService: async (req: Request) => {
+      if (req.url.startsWith('https://graph.facebook.com/')) { metaRequestUrls.push(req.url); metaEvents.push(await req.json()); return Response.json({ events_received: 1 }); }
       if (req.url === 'https://ghl.test/waiver') {
         emails.push({ body: await req.json(), key: req.headers.get('idempotency-key') });
         if (emailGate) await emailGate;
@@ -54,5 +57,5 @@ export async function createHarness(port?: number, configured = true) {
   };
   const holdEmail = () => { emailGate = new Promise<void>((resolve) => { releaseEmail = resolve; }); };
   const resumeEmail = () => { releaseEmail?.(); emailGate = null; releaseEmail = null; };
-  return { mf, db, emails, leads, post, waitForDelivery, holdEmail, resumeEmail, setEmailFails: (value: boolean) => { emailFails = value; } };
+  return { mf, db, emails, leads, metaEvents, metaRequestUrls, post, waitForDelivery, holdEmail, resumeEmail, setEmailFails: (value: boolean) => { emailFails = value; } };
 }
