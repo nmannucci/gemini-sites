@@ -53,18 +53,17 @@ The winner pays $0 for the items above.
 
 **Prize conditions:**
 
-- The child's first class must take place within 60 days of the winner accepting the prize. The 12 months begin on that first class.
+- The prize must be claimed in person within five days (see section 8). The 12 months begin on the day it's claimed.
 - Classes follow Sponsor's published class schedule for the child's age group.
-- The child's parent or guardian must sign Sponsor's standard student registration and liability waiver before the first class.
 - The prize can't be exchanged for cash, transferred to another child, or combined with other offers. Sponsor may substitute a prize of equal or greater value if a listed item becomes unavailable.
 
 ### 7. Drawing and odds
 
-On {{drawing_date}}, Sponsor will randomly draw one winner from all eligible entries received during the entry period. Your chances of winning depend on the number of eligible entries received.
+On {{drawing_date}}, Sam Hadaf of La Jolla Martial Arts will randomly draw one winner from all eligible entries received during the entry period. The result is subject to verification of eligibility. Your chances of winning depend on the number of eligible entries received.
 
 ### 8. Winner notification
 
-The winner will be announced on {{announcement_date}}, Pacific Time, and contacted by phone, text message, and email. To claim the prize, the winner must respond within **72 hours** and sign a declaration confirming eligibility. If the winner can't be reached within that time, is found ineligible, or declines the prize, Sponsor may draw an alternate winner from the remaining eligible entries.
+Sponsor will contact the winner directly by phone, text message, and email, and will announce the winner to entrants by text message on {{announcement_date}}, Pacific Time. The claim period starts from that direct notice. **To claim the prize, the winner must bring the child to a class at La Jolla Martial Arts in person within five (5) days** and sign a declaration confirming eligibility. If the winner doesn't claim the prize in person within five days, is found ineligible, or declines the prize, the prize is forfeited and Sponsor may draw an alternate winner from the remaining eligible entries. Each alternate also has five days from Sponsor's notice to claim in person.
 
 ### 9. Taxes
 
