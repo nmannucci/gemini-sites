@@ -1,4 +1,5 @@
 import posthog from 'posthog-js';
+import { postHogConfig } from './posthog-config';
 
 const SITE = 'lj' as const;
 
@@ -24,18 +25,13 @@ function isBookingCta(el: HTMLAnchorElement): boolean {
   return el.classList.contains('btn-primary') && (bookingHash || bookingPath);
 }
 
-export function initPostHog(): boolean {
+export function initPostHog(options: { autocapture?: boolean; sessionRecording?: boolean } = {}): boolean {
   const key = import.meta.env.PUBLIC_POSTHOG_KEY;
   if (!key || window.__posthog_initialized) return Boolean(window.__posthog_initialized);
 
   window.__posthog_initialized = true;
-  posthog.init(key, {
-    api_host: import.meta.env.PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
-    defaults: '2026-01-30',
-    capture_pageview: true,
-    autocapture: true,
-    disable_session_recording: false,
-  });
+  // Read PUBLIC_POSTHOG_HOST here: Vite only inlines the literal import.meta.env.NAME form.
+  posthog.init(key, postHogConfig({ ...options, apiHost: import.meta.env.PUBLIC_POSTHOG_HOST }));
   window.posthog = posthog;
   posthog.register({ site: SITE });
 

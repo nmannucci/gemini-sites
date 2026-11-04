@@ -13,6 +13,12 @@ interface LeadIdentity {
   phone: string;
   firstName: string;
   lastName: string;
+  // Optional extra match keys (giveaway entries know these); omitted when unknown.
+  zip?: string;
+  city?: string;
+  state?: string;
+  country?: string;
+  externalId?: string;
 }
 
 export function metaOptedOut(request: Request, context: MetaContext): boolean {
@@ -44,7 +50,7 @@ async function hash(value: string): Promise<string> {
 /** Only called for PageView or after a lead has been saved. Never forwards messages or waiver data. */
 export async function sendMetaEvent(
   env: Env, request: Request, eventName: 'PageView' | 'Lead', eventId: string,
-  context: MetaContext, identity?: LeadIdentity,
+  context: MetaContext, identity?: LeadIdentity, customData?: Record<string, string>,
 ): Promise<boolean> {
   if (!META_PIXEL_ID || !env.META_CAPI_ACCESS_TOKEN || metaOptedOut(request, context)) return false;
   const userData: Record<string, string | string[]> = {
@@ -62,14 +68,25 @@ export async function sendMetaEvent(
     let phone = identity.phone.replace(/\D/g, '');
     if (phone.length === 10) phone = '1' + phone;
     if (phone.length >= 11 && phone.length <= 15) userData.ph = [await hash(phone)];
-    userData.fn = [await hash(identity.firstName.trim().toLowerCase())];
-    userData.ln = [await hash(identity.lastName.trim().toLowerCase())];
+    // Meta's normalization: lowercase; city without spaces or punctuation; 5-digit US ZIP.
+    // A hashed empty string is an invalid match key, so blanks are left out.
+    const keys: Array<[string, string | undefined]> = [
+      ['fn', identity.firstName.trim().toLowerCase()],
+      ['ln', identity.lastName.trim().toLowerCase()],
+      ['zp', identity.zip?.replace(/\D/g, '').slice(0, 5)],
+      ['ct', identity.city?.toLowerCase().replace(/[^a-z]/g, '')],
+      ['st', identity.state?.trim().toLowerCase()],
+      ['country', identity.country?.trim().toLowerCase()],
+      ['external_id', identity.externalId?.trim()],
+    ];
+    for (const [key, value] of keys) if (value) userData[key] = [await hash(value)];
   }
   const body = {
     // Opt-in only for a tester's request; ordinary visitors continue sending live events.
     test_event_code: /^TEST\d{1,20}$/.test(context.metaTestEventCode || '') ? context.metaTestEventCode : undefined,
     data: [{ event_name: eventName, event_time: Math.floor(Date.now() / 1000),
-      event_id: eventId, action_source: 'website', event_source_url: eventSource(request, context), user_data: userData }],
+      event_id: eventId, action_source: 'website', event_source_url: eventSource(request, context), user_data: userData,
+      custom_data: customData }],
   };
   for (let attempt = 0; attempt < 2; attempt++) {
     try {

@@ -1,5 +1,6 @@
 import { handleWaiver, handleWaiverCopy, handleWaiverConfirmation, retryWaiverEmails } from './lib/waiver-api';
 import { handleMetaPageView, sendMetaEvent, type MetaContext } from './lib/meta-conversions';
+import { handleGiveawayEntry } from './lib/giveaway-api';
 
 interface LeadPayload extends MetaContext {
   firstName?: string;
@@ -68,6 +69,8 @@ export default {
     if (normalizedPath === '/api/meta/pageview') return handleMetaPageView(request, env, ctx);
     if (normalizedPath === '/zumba/waiver/confirmation') return handleWaiverConfirmation(request, env);
     if (normalizedPath.startsWith('/api/zumba-waiver/copy/')) return handleWaiverCopy(request, env);
+
+    if (normalizedPath === '/api/giveaway-entry') return handleGiveawayEntry(request, env, ctx);
 
     if (url.pathname === '/api/lead') {
       if (request.method !== 'POST') {

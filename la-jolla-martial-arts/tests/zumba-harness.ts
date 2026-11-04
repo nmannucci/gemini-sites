@@ -3,19 +3,23 @@ import { build } from 'esbuild';
 import { readFile } from 'node:fs/promises';
 import { join, extname, resolve } from 'node:path';
 
-export async function createHarness(port?: number, configured = true, metaToken = '') {
+export async function createHarness(port?: number, configured = true, metaToken = '', opts: { turnstileSecret?: string; turnstileOk?: boolean } = {}) {
   const bundle = await build({ entryPoints: ['src/worker.ts'], write: false, bundle: true, format: 'esm', platform: 'browser', target: 'es2022' });
   const emails: Array<{ body: any; key: string | null }> = [];
   const leads: Array<any> = [];
   const metaEvents: Array<any> = [];
   const metaRequestUrls: string[] = [];
+  const giveaways: Array<{ body: any }> = [];
+  const turnstileSeen = new Set<string>();
+  let turnstileCalls = 0;
+  let giveawayFails = false;
   let emailFails = false;
   let emailGate: Promise<void> | null = null;
   let releaseEmail: (() => void) | null = null;
   const mf = new Miniflare({
     modules: true, script: bundle.outputFiles[0].text, compatibilityDate: '2026-08-06', compatibilityFlags: ['nodejs_compat'],
     ...(port ? { port, host: '127.0.0.1' } : {}),
-    bindings: { META_CAPI_ACCESS_TOKEN: metaToken, GHL_WAIVER_WEBHOOK_URL: configured ? 'https://ghl.test/waiver' : '', WAIVER_LINK_KEY: 'local-test-only-256-bit-key-value', GHL_WEBHOOK_URL: 'https://ghl.test/lead' },
+    bindings: { META_CAPI_ACCESS_TOKEN: metaToken, GHL_WAIVER_WEBHOOK_URL: configured ? 'https://ghl.test/waiver' : '', WAIVER_LINK_KEY: 'local-test-only-256-bit-key-value', GHL_WEBHOOK_URL: 'https://ghl.test/lead', GHL_GIVEAWAY_WEBHOOK_URL: configured ? 'https://ghl.test/giveaway' : '', TURNSTILE_SECRET_KEY: opts.turnstileSecret ?? '' },
     d1Databases: ['DB'],
     serviceBindings: {
       ASSETS: async (req: Request) => {
@@ -32,6 +36,18 @@ export async function createHarness(port?: number, configured = true, metaToken 
     },
     outboundService: async (req: Request) => {
       if (req.url.startsWith('https://graph.facebook.com/')) { metaRequestUrls.push(req.url); metaEvents.push(await req.json()); return Response.json({ events_received: 1 }); }
+      if (req.url === 'https://challenges.cloudflare.com/turnstile/v0/siteverify') {
+        // Like Cloudflare, each token verifies once.
+        turnstileCalls++;
+        const token = String((await req.formData()).get('response'));
+        const fresh = !turnstileSeen.has(token); turnstileSeen.add(token);
+        return Response.json({ success: (opts.turnstileOk ?? true) && fresh });
+      }
+      if (req.url === 'https://ghl.test/giveaway') {
+        if (giveawayFails) return Response.json({ error: 'simulated outage' }, { status: 503 });
+        giveaways.push({ body: await req.json() });
+        return Response.json({ status: 'Success: request sent to trigger execution server', id: 'ghl-giveaway-' + giveaways.length });
+      }
       if (req.url === 'https://ghl.test/waiver') {
         emails.push({ body: await req.json(), key: req.headers.get('idempotency-key') });
         if (emailGate) await emailGate;
@@ -42,7 +58,7 @@ export async function createHarness(port?: number, configured = true, metaToken 
     },
   });
   const db = await mf.getD1Database('DB');
-  for (const name of ['0001_leads.sql', '0002_add_source.sql', '0003_zumba_waivers.sql', '0004_signup_preferences.sql']) {
+  for (const name of ['0001_leads.sql', '0002_add_source.sql', '0003_zumba_waivers.sql', '0004_signup_preferences.sql', '0005_giveaway_entries.sql']) {
     const sql = (await readFile(join('migrations', name), 'utf8')).replace(/^--.*$/gm, '');
     for (const statement of sql.split(';').filter((s) => s.trim())) await db.prepare(statement).run();
   }
@@ -55,7 +71,17 @@ export async function createHarness(port?: number, configured = true, metaToken 
     }
     throw new Error('Timed out waiting for waiver notification: ' + status);
   };
+  const postGiveaway = (body: unknown, headers: Record<string, string> = {}) => mf.dispatchFetch('http://localhost/api/giveaway-entry', { method: 'POST', headers: { 'content-type': 'application/json', ...headers }, body: JSON.stringify(body) });
+  const runScheduled = async () => { const worker = await mf.getWorker(); await worker.scheduled({ cron: '*/10 * * * *' }); };
+  const waitForGiveaway = async (id: string, status = 'sent') => {
+    for (let attempt = 0; attempt < 100; attempt++) {
+      const row = await db.prepare('SELECT ghl_status, ghl_attempts FROM giveaway_entries WHERE id = ?').bind(id).first();
+      if (row?.ghl_status === status && Number(row.ghl_attempts) > 0) return;
+      await new Promise((resolve) => setTimeout(resolve, 20));
+    }
+    throw new Error('Timed out waiting for giveaway delivery: ' + status);
+  };
   const holdEmail = () => { emailGate = new Promise<void>((resolve) => { releaseEmail = resolve; }); };
   const resumeEmail = () => { releaseEmail?.(); emailGate = null; releaseEmail = null; };
-  return { mf, db, emails, leads, metaEvents, metaRequestUrls, post, waitForDelivery, holdEmail, resumeEmail, setEmailFails: (value: boolean) => { emailFails = value; } };
+  return { mf, db, emails, leads, metaEvents, metaRequestUrls, giveaways, turnstileCalls: () => turnstileCalls, postGiveaway, runScheduled, waitForGiveaway, setGiveawayFails: (value: boolean) => { giveawayFails = value; }, post, waitForDelivery, holdEmail, resumeEmail, setEmailFails: (value: boolean) => { emailFails = value; } };
 }

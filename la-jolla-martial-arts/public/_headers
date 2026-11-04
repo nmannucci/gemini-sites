@@ -20,3 +20,9 @@
 
 /privacy
   X-Robots-Tag: noindex, follow
+
+/giveaway
+  X-Robots-Tag: noindex, follow
+
+/giveaway/*
+  X-Robots-Tag: noindex, follow
