@@ -1,7 +1,7 @@
 // Giveaway entry form, ported from the approved preview's app.js. Answers stay in memory,
 // are sent once to /api/giveaway-entry, and are cleared after a confirmed save.
 import { initPostHog } from '../lib/posthog-client';
-import { AGE_MAX, AGE_MIN, ELIGIBLE_ZIPS, FULL_NAME_MESSAGE, OUT_OF_AREA_MESSAGE, SMS_CONSENT_TEXT } from '../data/giveaway';
+import { AGE_MAX, AGE_MIN, ELIGIBLE_ZIPS, FULL_NAME_MESSAGE, GIVEAWAY_DATES, OUT_OF_AREA_MESSAGE, SMS_CONSENT_TEXT } from '../data/giveaway';
 
 declare global {
   interface Window {
@@ -51,7 +51,7 @@ export function initGiveaway(): void {
   const continueLabel = () => step === last ? 'SUBMIT MY GIVEAWAY ENTRY! <span aria-hidden="true">→</span>' : 'Continue <span aria-hidden="true">→</span>';
 
   function showScreen(screen: string) {
-    ['welcome', 'application', 'complete'].forEach((id) => { $(id).hidden = id !== screen; });
+    ['welcome', 'application', 'complete', 'closed'].forEach((id) => { $(id).hidden = id !== screen; });
     document.body.classList.toggle('in-form', screen === 'application');
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   }
@@ -195,6 +195,7 @@ export function initGiveaway(): void {
     }
     // Only a saved entry has a reference; never show "You're in" without one.
     if (res.ok && data.ok && data.entryId) return complete(data);
+    if (res.status === 410) { setSaving(false); showScreen('closed'); return; }
     // Validation (400) and rate limiting (429) are refused before the token is checked.
     if (res.status !== 400 && res.status !== 429) spendToken(turnstileToken);
     setSaving(false);
@@ -227,6 +228,10 @@ export function initGiveaway(): void {
     $('question').replaceChildren();
     setSaving(false);
   }
+
+  // Winner page: no form on it, just the celebration.
+  if ($('winner')) { celebrate(); track('giveaway_winner_viewed'); return; }
+  if (Date.now() > Date.parse(GIVEAWAY_DATES.entryCloseIso)) { showScreen('closed'); track('giveaway_closed_viewed'); return; }
 
   $('start').addEventListener('click', () => { track('giveaway_started'); showScreen('application'); render(); });
   $('answer').addEventListener('input', () => {

@@ -1,4 +1,4 @@
-import { AGE_MAX, AGE_MIN, BENEFITS, ELIGIBLE_ZIPS, FULL_NAME_MESSAGE, OUT_OF_AREA_MESSAGE, SMS_CONSENT_TEXT, TWICE_WEEKLY } from '../data/giveaway';
+import { AGE_MAX, AGE_MIN, BENEFITS, ELIGIBLE_ZIPS, FULL_NAME_MESSAGE, GIVEAWAY_DATES, OUT_OF_AREA_MESSAGE, SMS_CONSENT_TEXT, TWICE_WEEKLY } from '../data/giveaway';
 import { sendMetaEvent, type MetaContext } from './meta-conversions';
 
 type UtmKey = 'utm_source' | 'utm_medium' | 'utm_campaign' | 'utm_content' | 'fbclid';
@@ -270,10 +270,18 @@ async function deliverGiveawayEntry(env: Env, id: string, depth = 0): Promise<vo
   }
 }
 
+export function entriesClosed(nowMs: number, closeIso: string): boolean {
+  return nowMs > Date.parse(closeIso);
+}
+
 export async function handleGiveawayEntry(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
   if (request.method !== 'POST') return respond({ error: 'Method not allowed' }, 405, { allow: 'POST' });
   const origin = request.headers.get('origin');
   if (origin && origin !== new URL(request.url).origin) return respond({ error: 'Forbidden' }, 403);
+  // GIVEAWAY_ENTRY_CLOSE overrides the closing moment without a code change (tests use it too).
+  if (entriesClosed(Date.now(), env.GIVEAWAY_ENTRY_CLOSE || GIVEAWAY_DATES.entryCloseIso)) {
+    return respond({ error: 'Giveaway entries are closed.', closed: true }, 410);
+  }
 
   let payload: unknown;
   try {
