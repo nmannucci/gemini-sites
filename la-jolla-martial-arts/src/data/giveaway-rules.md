@@ -76,7 +76,7 @@ The winner is responsible for any taxes on the prize. Before awarding the prize,
 Separately from the drawing, Sponsor offers every eligible entrant who does not win the grand prize a **$600 Scholarship toward one year of martial arts** for the child named in the entry. Terms:
 
 - **How it applies:** $600 off 12 months of kids martial arts tuition, as either a single payment of **$2,040** for 12 months or **$170 per month** ($50 off each month for up to 12 months). The uniform and registration are included at enrollment.
-- **How to claim it:** after the winner is announced, Sponsor will send the scholarship notice by email and text with a claim deadline seven days later. Schedule and **attend** a free introductory class in person by that deadline. Scheduling a class without attending does not claim the scholarship.
+- **How to claim it:** after the winner is announced, Sponsor will send the scholarship notice by email and text with a claim deadline of Saturday, November 21, 2026 at 10:00 a.m. Pacific. Schedule and **attend** a free introductory class in person by that deadline. Scheduling a class without attending does not claim the scholarship.
 - **Who can use it:** children who are not currently enrolled at La Jolla Martial Arts. It can't be applied to an existing membership. Former students who are not currently enrolled can use it.
 - **What it isn't:** it has no cash value, can't be transferred to another child or family, and can't be combined with other offers. One per family.
 - Full enrollment terms, including payment schedule, cancellation, and pricing after the 12 months, are provided in writing before you enroll. You never have to enroll to stay in the giveaway.
