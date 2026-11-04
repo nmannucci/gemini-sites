@@ -11,6 +11,7 @@ interface __BaseEnv_Env {
 	META_CAPI_ACCESS_TOKEN: string;
 	GHL_GIVEAWAY_WEBHOOK_URL: string;
 	TURNSTILE_SECRET_KEY: string;
+	GIVEAWAY_ENTRY_CLOSE?: string;
 }
 declare namespace Cloudflare {
 	interface GlobalProps {

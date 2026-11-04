@@ -3,7 +3,7 @@ import { build } from 'esbuild';
 import { readFile } from 'node:fs/promises';
 import { join, extname, resolve } from 'node:path';
 
-export async function createHarness(port?: number, configured = true, metaToken = '', opts: { turnstileSecret?: string; turnstileOk?: boolean } = {}) {
+export async function createHarness(port?: number, configured = true, metaToken = '', opts: { turnstileSecret?: string; turnstileOk?: boolean; entryClose?: string } = {}) {
   const bundle = await build({ entryPoints: ['src/worker.ts'], write: false, bundle: true, format: 'esm', platform: 'browser', target: 'es2022' });
   const emails: Array<{ body: any; key: string | null }> = [];
   const leads: Array<any> = [];
@@ -19,7 +19,7 @@ export async function createHarness(port?: number, configured = true, metaToken 
   const mf = new Miniflare({
     modules: true, script: bundle.outputFiles[0].text, compatibilityDate: '2026-08-06', compatibilityFlags: ['nodejs_compat'],
     ...(port ? { port, host: '127.0.0.1' } : {}),
-    bindings: { META_CAPI_ACCESS_TOKEN: metaToken, GHL_WAIVER_WEBHOOK_URL: configured ? 'https://ghl.test/waiver' : '', WAIVER_LINK_KEY: 'local-test-only-256-bit-key-value', GHL_WEBHOOK_URL: 'https://ghl.test/lead', GHL_GIVEAWAY_WEBHOOK_URL: configured ? 'https://ghl.test/giveaway' : '', TURNSTILE_SECRET_KEY: opts.turnstileSecret ?? '' },
+    bindings: { META_CAPI_ACCESS_TOKEN: metaToken, GHL_WAIVER_WEBHOOK_URL: configured ? 'https://ghl.test/waiver' : '', WAIVER_LINK_KEY: 'local-test-only-256-bit-key-value', GHL_WEBHOOK_URL: 'https://ghl.test/lead', GHL_GIVEAWAY_WEBHOOK_URL: configured ? 'https://ghl.test/giveaway' : '', TURNSTILE_SECRET_KEY: opts.turnstileSecret ?? '', ...(opts.entryClose ? { GIVEAWAY_ENTRY_CLOSE: opts.entryClose } : {}) },
     d1Databases: ['DB'],
     serviceBindings: {
       ASSETS: async (req: Request) => {

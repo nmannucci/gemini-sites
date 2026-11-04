@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizePhone, splitName, validateGiveawayEntry } from '../src/lib/giveaway-api';
+import { entriesClosed, normalizePhone, splitName, validateGiveawayEntry } from '../src/lib/giveaway-api';
 import { OUT_OF_AREA_MESSAGE } from '../src/data/giveaway';
 
 const validInput = () => ({
@@ -126,6 +126,23 @@ test('rejects out-of-area ZIPs and missing consent without saving', async (t) =>
   assert.equal(zip.status, 400);
   assert.equal(((await zip.json()) as any).errors.zip, OUT_OF_AREA_MESSAGE);
   assert.equal((await h.postGiveaway({ ...validInput(), smsConsent: false })).status, 400);
+  await settle();
+  assert.equal((await h.db.prepare('SELECT COUNT(*) AS n FROM giveaway_entries').first()).n, 0);
+  assert.equal(h.giveaways.length, 0);
+});
+
+test('entriesClosed is true only after the closing moment', () => {
+  const close = '2026-11-13T07:59:59Z';
+  assert.equal(entriesClosed(Date.parse('2026-11-13T07:59:58Z'), close), false);
+  assert.equal(entriesClosed(Date.parse('2026-11-13T07:59:59Z'), close), false);
+  assert.equal(entriesClosed(Date.parse('2026-11-13T08:00:00Z'), close), true);
+});
+
+test('after entries close, submissions are refused without saving or forwarding', async (t) => {
+  const h = await createHarness(undefined, true, '', { entryClose: '2020-01-01T00:00:00Z' }); t.after(() => h.mf.dispose());
+  const res = await h.postGiveaway(validInput());
+  assert.equal(res.status, 410);
+  assert.equal(((await res.json()) as any).closed, true);
   await settle();
   assert.equal((await h.db.prepare('SELECT COUNT(*) AS n FROM giveaway_entries').first()).n, 0);
   assert.equal(h.giveaways.length, 0);
