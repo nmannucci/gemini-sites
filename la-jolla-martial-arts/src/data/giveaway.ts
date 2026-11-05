@@ -30,7 +30,7 @@ export const GIVEAWAY_DATES: {
   announcementIso: string | null;
   entryCloseIso: string;
 } = {
-  entryOpen: 'Thursday, November 5, 2026 at 12:00 a.m.',
+  entryOpen: 'Friday, November 6, 2026 at 12:00 a.m.',
   entryClose: 'Thursday, November 12, 2026 at 11:59 p.m.',
   drawing: 'Friday, November 13, 2026',
   announcement: 'Friday, November 13, 2026',
