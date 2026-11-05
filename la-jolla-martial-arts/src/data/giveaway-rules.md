@@ -53,7 +53,7 @@ The winner pays $0 for the items above.
 
 **Prize conditions:**
 
-- The prize must be claimed in person within five days (see section 8). The 12 months begin on the day it's claimed.
+- The prize must be claimed in person by Thursday, November 19, 2026 (see section 8). The 12 months begin on the day it's claimed.
 - Classes follow Sponsor's published class schedule for the child's age group.
 - The prize can't be exchanged for cash, transferred to another child, or combined with other offers. Sponsor may substitute a prize of equal or greater value if a listed item becomes unavailable.
 
@@ -63,7 +63,7 @@ On {{drawing_date}}, Sam Hadaf of La Jolla Martial Arts will randomly draw one w
 
 ### 8. Winner notification
 
-Sponsor will contact the winner directly by phone, text message, and email, and will announce the winner to entrants by text message on {{announcement_date}}, Pacific Time. The claim period starts from that direct notice. **To claim the prize, the winner must bring the child to a class at La Jolla Martial Arts in person within five (5) days** and sign a declaration confirming eligibility. If the winner doesn't claim the prize in person within five days, is found ineligible, or declines the prize, the prize is forfeited and Sponsor may draw an alternate winner from the remaining eligible entries. Each alternate also has five days from Sponsor's notice to claim in person.
+Sponsor will contact the winner directly by phone, text message, and email, and will announce the winner to entrants by text message on {{announcement_date}}, Pacific Time. The claim period starts from that direct notice. **To claim the prize, the winner must bring the child to a class at La Jolla Martial Arts in person by Thursday, November 19, 2026** and sign a declaration confirming eligibility. If the winner doesn't claim the prize in person by then, is found ineligible, or declines the prize, the prize is forfeited and Sponsor may draw an alternate winner from the remaining eligible entries. Each alternate has five (5) days from Sponsor's notice to claim in person.
 
 ### 9. Taxes
 
