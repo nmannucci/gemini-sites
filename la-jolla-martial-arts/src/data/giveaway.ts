@@ -31,10 +31,11 @@ export const GIVEAWAY_DATES: {
   entryCloseIso: string;
 } = {
   entryOpen: 'Friday, November 6, 2026 at 12:00 a.m.',
-  entryClose: 'Thursday, November 12, 2026 at 11:59 p.m.',
+  entryClose: 'Friday, November 13, 2026 at 4:00 p.m.',
   drawing: 'Friday, November 13, 2026',
-  announcement: 'Friday, November 13, 2026',
-  announcementIso: '2026-11-13',
-  // Thursday, November 12 at 11:59:59 p.m. Pacific (PST). The Worker refuses entries after this and the page shows them as closed.
-  entryCloseIso: '2026-11-13T07:59:59Z',
+  announcement: 'Friday, November 13, 2026 at 5:00 p.m.',
+  announcementIso: '2026-11-13T17:00-08:00',
+  // Friday, November 13 at 4:00 p.m. Pacific (PST, UTC-8). The Worker refuses entries after this and the page shows them as closed.
+  // The page itself stays up: it shows the closed state until the winner is set in GIVEAWAY_WINNER and deployed.
+  entryCloseIso: '2026-11-14T00:00:00Z',
 };
