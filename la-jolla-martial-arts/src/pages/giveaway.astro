@@ -6,6 +6,12 @@ import { GIVEAWAY_DATES, GIVEAWAY_WINNER } from '../data/giveaway';
 import '../styles/giveaway.css';
 
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY?.trim() ?? '';
+const classPhotos = [
+  ['class-drill', 'Kids practicing stances in a martial arts class'],
+  ['little-ninjas', 'Young students in white uniforms showing their fighting stance'],
+  ['yellow-belt', 'Master Sam with a young student wearing her new yellow belt'],
+  ['kids-class', 'A full kids class practicing punches together'],
+];
 const prizeItems = [
   ['A full year of classes', '$2,640'],
   ['A new uniform', '$80'],
@@ -62,6 +68,12 @@ const prizeItems = [
           <button id="start" class="primary">ENTER THE GIVEAWAY <span aria-hidden="true">→</span></button>
           <p class="small-note">A few quick questions. One entry per family.</p>
         </div>
+        <section class="class-photos" aria-labelledby="class-photos-title">
+          <h2 id="class-photos-title">Real classes at La Jolla Martial Arts</h2>
+          <ul>
+            {classPhotos.map(([file, alt]) => <li><img src={`/assets/giveaway/class/${file}.webp`} width="640" height="640" alt={alt} loading="lazy" decoding="async"></li>)}
+          </ul>
+        </section>
         <ul class="prize-inclusions" aria-label="What's included in the grand prize">
           {prizeItems.map(([label, value]) => <li><span aria-hidden="true">✓</span><div class="stack-copy"><strong>{label}</strong><span>Valued at <b>{value}</b></span></div></li>)}
         </ul>

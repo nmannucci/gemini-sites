@@ -221,3 +221,10 @@ body{font-size:18px}
   .answer-input{padding:9px 0}
   .form-actions{margin-top:14px}
 }
+
+/* Real class photos under the Enter button (Nov 6). */
+.class-photos{max-width:560px;margin:22px auto 26px}
+.class-photos h2{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--deep-blue);font-weight:700;margin:0 0 10px}
+.class-photos ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.class-photos img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:10px;background:var(--pale-blue)}
+@media(min-width:651px){.class-photos{max-width:730px}.class-photos ul{grid-template-columns:repeat(4,1fr);gap:10px}}
