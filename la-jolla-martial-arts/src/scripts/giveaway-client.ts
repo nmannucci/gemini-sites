@@ -76,8 +76,9 @@ export function initGiveaway(): void {
     $('answer').hidden = Boolean(item.choices);
     $('answer').setAttribute('aria-describedby', describedBy);
     $('answer').removeAttribute('aria-invalid');
-    $('step-count').textContent = `${step + 1} of ${steps.length}`;
-    $('progress-fill').style.width = `${step / steps.length * 100}%`;
+    $('step-count').textContent = `Question ${step + 1} of ${steps.length}`;
+    // Count the current question as started so the bar is never empty on question 1.
+    $('progress-fill').style.width = `${(step + 1) / (steps.length + 1) * 100}%`;
     $('progress').setAttribute('aria-valuenow', String(step));
     $('continue').innerHTML = continueLabel();
     let control = '';

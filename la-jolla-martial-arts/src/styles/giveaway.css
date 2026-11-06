@@ -199,3 +199,25 @@ body{font-size:18px}
 .winner-video video{display:block;width:100%;border-radius:12px;background:#000}
 .winner-video figcaption{margin-top:10px;font-size:16px;color:var(--muted)}
 .winner .primary{display:inline-flex;margin-top:6px}
+
+/* Compact form screen (Nov 6): on phones the keyboard covered Continue. One slim prize line,
+   a progress bar with no text, and tighter spacing keep the question, answer and Continue above it. */
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.application{padding-top:12px}
+.entry-prize{flex-wrap:nowrap;justify-content:space-between;align-items:center;gap:12px;padding:8px 14px;margin:0 auto 12px;border-radius:7px}
+.entry-prize>strong{font-family:Bebas,'Arial Narrow',sans-serif;font-weight:400;font-size:19px;line-height:1.1;letter-spacing:.4px;color:var(--deep-blue)}
+.entry-value{border-left:0;padding-left:0;text-align:right;white-space:nowrap;font-family:Bebas,'Arial Narrow',sans-serif;font-size:19px;line-height:1.1;letter-spacing:.4px;color:var(--orange)}
+.progress-track{height:6px}
+.form-stage{padding-top:22px}
+.question-title{margin-bottom:10px}
+.form-actions{margin-top:16px}
+@media(max-width:650px){
+  .application{padding-top:10px}
+  .entry-prize{padding:7px 12px;margin-bottom:10px}
+  .entry-prize>strong,.entry-value{font-size:17px}
+  .form-stage{padding:20px 0 24px}
+  .question-title{font-size:26px;line-height:1.25;letter-spacing:-.5px;margin-bottom:8px}
+  .question-help{font-size:15px;line-height:1.5;margin-bottom:12px}
+  .answer-input{padding:9px 0}
+  .form-actions{margin-top:14px}
+}
