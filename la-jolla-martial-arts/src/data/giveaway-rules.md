@@ -105,7 +105,7 @@ These rules are governed by California law. Any dispute will be resolved in the 
 
 ### 15. Winner's name
 
-For the winner's first name and city, send a request to the Sponsor address above within 60 days after {{announcement_date}}.
+For the winner's first name and city, send a request to the Sponsor address above within 60 days after {{announcement_date}}, Pacific Time.
 
 ### 16. Social media
 

@@ -132,10 +132,10 @@ test('rejects out-of-area ZIPs and missing consent without saving', async (t) =>
 });
 
 test('entriesClosed is true only after the closing moment', () => {
-  const close = '2026-11-13T07:59:59Z';
-  assert.equal(entriesClosed(Date.parse('2026-11-13T07:59:58Z'), close), false);
-  assert.equal(entriesClosed(Date.parse('2026-11-13T07:59:59Z'), close), false);
-  assert.equal(entriesClosed(Date.parse('2026-11-13T08:00:00Z'), close), true);
+  const close = '2026-11-14T00:00:00Z';
+  assert.equal(entriesClosed(Date.parse('2026-11-13T23:59:59Z'), close), false);
+  assert.equal(entriesClosed(Date.parse('2026-11-14T00:00:00Z'), close), false);
+  assert.equal(entriesClosed(Date.parse('2026-11-14T00:00:01Z'), close), true);
 });
 
 test('after entries close, submissions are refused without saving or forwarding', async (t) => {
